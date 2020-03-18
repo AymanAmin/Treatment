@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Treatment.Pages.Treatment
+namespace Treatment.Pages.Setting
 {
 
 
-    public partial class CreateTreatment
+    public partial class TreatmentPriority
     {
     }
 }

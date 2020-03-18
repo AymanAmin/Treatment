@@ -19,22 +19,22 @@
     <meta name="keywords" content=" Flat ui, Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app" />
     <meta name="author" content="#" />
     <!-- Favicon icon -->
-    <link rel="icon" href="..\Theme\files\assets\images\favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="..\..\Theme\files\assets\images\favicon.ico" type="image/x-icon" />
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet" />
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="..\Theme\files\bower_components\bootstrap\css\bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap\css\bootstrap.min.css" />
     <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="..\Theme\files\assets\icon\themify-icons\themify-icons.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\themify-icons\themify-icons.css" />
     <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="..\Theme\files\assets\icon\icofont\css\icofont.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\icofont\css\icofont.css" />
     <!-- feather Awesome -->
-    <link rel="stylesheet" type="text/css" href="..\Theme\files\assets\icon\feather\css\feather.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\feather\css\feather.css" />
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="..\Theme\files\assets\css\style.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\style.css" />
 
 
-    <link rel="stylesheet" type="text/css" href="..\Theme\files\assets\css\jquery.mCustomScrollbar.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\jquery.mCustomScrollbar.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
      <title>E-CMS - Main Screen</title>
@@ -92,7 +92,7 @@
                                     <i class="feather icon-menu"></i>
                                 </a>
                                 <a href="index-1.htm">
-                                    <img class="img-fluid" src="..\Theme\files\assets\images\logo.png" alt="Theme-Logo" width="70" height="50">
+                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\logo.png" alt="Theme-Logo" width="70" height="50">
                                 </a>
                                 <a class="mobile-options">
                                     <i class="feather icon-more-horizontal"></i>
@@ -182,7 +182,7 @@
                                                 </li>
                                                 <li>
                                                     <div class="media">
-                                                        <img class="d-flex align-self-center img-radius" src="..\Theme\files\assets\images\avatar-2.jpg" alt="Generic placeholder image">
+                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="Generic placeholder image">
                                                         <div class="media-body">
                                                             <h5 class="notification-user">Mazin Awad</h5>
                                                             <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -192,7 +192,7 @@
                                                 </li>
                                                 <li>
                                                     <div class="media">
-                                                        <img class="d-flex align-self-center img-radius" src="..\Theme\files\assets\images\avatar-3.jpg" alt="Generic placeholder image">
+                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="Generic placeholder image">
                                                         <div class="media-body">
                                                             <h5 class="notification-user">Ayman Amin</h5>
                                                             <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -202,7 +202,7 @@
                                                 </li>
                                                 <li>
                                                     <div class="media">
-                                                        <img class="d-flex align-self-center img-radius" src="..\Theme\files\assets\images\avatar-5.jpg" alt="Generic placeholder image">
+                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-5.jpg" alt="Generic placeholder image">
                                                         <div class="media-body">
                                                             <h5 class="notification-user">Hassan Bakre</h5>
                                                             <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -216,7 +216,7 @@
                                     <li class="user-profile header-notification">
                                         <div class="dropdown-primary dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">
-                                                <img src="..\Theme\files\assets\images\user.png" class="img-radius" alt="User-Profile-Image">
+                                                <img src="..\..\..\..\Theme\files\assets\images\user.png" class="img-radius" alt="User-Profile-Image">
                                                 <span>Omer Alharith</span>
                                                 <i class="feather icon-chevron-down"></i>
                                             </div>
@@ -388,30 +388,30 @@
 <![endif]-->
             <!-- Warning Section Ends -->
             <!-- Required Jquery -->
-            <script type="text/javascript" src="..\Theme\files\bower_components\jquery\js\jquery.min.js"></script>
-            <script type="text/javascript" src="..\Theme\files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
-            <script type="text/javascript" src="..\Theme\files\bower_components\popper.js\js\popper.min.js"></script>
-            <script type="text/javascript" src="..\Theme\files\bower_components\bootstrap\js\bootstrap.min.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\jquery\js\jquery.min.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\popper.js\js\popper.min.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\bootstrap\js\bootstrap.min.js"></script>
             <!-- jquery slimscroll js -->
-            <script type="text/javascript" src="..\Theme\files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js"></script>
             <!-- modernizr js -->
-            <script type="text/javascript" src="..\Theme\files\bower_components\modernizr\js\modernizr.js"></script>
-            <script type="text/javascript" src="..\Theme\files\bower_components\modernizr\js\css-scrollbars.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\modernizr\js\modernizr.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\modernizr\js\css-scrollbars.js"></script>
 
             <!-- ck editor -->
-            <script src="..\Theme\files\assets\pages\ckeditor\ckeditor.js"></script>
+            <script src="..\..\..\Theme\files\assets\pages\ckeditor\ckeditor.js"></script>
             <!-- i18next.min.js -->
-            <script type="text/javascript" src="..\Theme\files\bower_components\i18next\js\i18next.min.js"></script>
-            <script type="text/javascript" src="..\Theme\files\bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js"></script>
-            <script type="text/javascript" src="..\Theme\files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
-            <script type="text/javascript" src="..\Theme\files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\i18next\js\i18next.min.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
             <!-- Custom js -->
-            <script type="text/javascript" src="..\Theme\files\assets\pages\ckeditor\ckeditor-custom.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\assets\pages\ckeditor\ckeditor-custom.js"></script>
 
-            <script src="..\Theme\files\assets\js\pcoded.min.js"></script>
-            <script src="..\Theme\files\assets\js\vartical-layout.min.js"></script>
-            <script src="..\Theme\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
-            <script type="text/javascript" src="..\Theme\files\assets\js\script.js"></script>
+            <script src="..\..\..\Theme\files\assets\js\pcoded.min.js"></script>
+            <script src="..\..\..\Theme\files\assets\js\vartical-layout.min.js"></script>
+            <script src="..\..\..\Theme\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
+            <script type="text/javascript" src="..\..\..\Theme\files\assets\js\script.js"></script>
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
             <script>
