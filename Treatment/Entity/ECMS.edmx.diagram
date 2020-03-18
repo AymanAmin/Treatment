@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f62dfefdc8bb4fa99f92edb61164352e" Name="Diagram1">
+        <EntityTypeShape EntityType="ECMSModel.Assignment_Status" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Attachment" Width="1.5" PointX="7.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Employee" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Employee_Structure" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Owner_Relationship" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Prepared_Administration" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Structure" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Class" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Confidentiality" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Delivery" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Detial" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Priority" Width="1.5" PointX="3" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Procedure" Width="1.5" PointX="3" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Status" Width="1.5" PointX="3" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Type" Width="1.5" PointX="3" PointY="25.5" IsExpanded="true" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Detial_Assignment_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Attachment_Treatment" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Employee_Structure_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Employee_Structure_Structure" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Detial_Employee_Structure" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Employee_Structure" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Owner_Relationship_Treatment" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Prepared_Administration" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Detial_Treatment" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Confidentiality" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Delivery" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Priority" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Procedure" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Type" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>E-CMS - Main Screen</title>
+   
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -37,6 +37,7 @@
     <link rel="stylesheet" type="text/css" href="..\Theme\files\assets\css\jquery.mCustomScrollbar.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+     <title>E-CMS - Main Screen</title>
 </head>
 <body>
     <form id="form1" runat="server">
