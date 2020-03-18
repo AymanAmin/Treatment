@@ -30,35 +30,5 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body_Holder" runat="server">
-    <div class="page-body">
-        <!-- Article Editor card start -->
-        <div class="card">
-            <div class="card-header">
-                <h5>Form Name</h5>
-                <span>Add New Data </span>
-                <div class="card-header-right">
-                    <ul class="list-unstyled card-option">
-                        <li><i class="feather icon-maximize full-card"></i></li>
-                        <li><i class="feather icon-minus minimize-card"></i></li>
-                        <li><i class="feather icon-trash-2 close-card"></i></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card-block">
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Tratment Name</label>
-                    <div class="col-sm-5">
-                        <asp:TextBox ID="Name" runat="server" class="form-control form-control-round" placeholder="Treatment Name"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-8">
-                        <asp:Button ID="Save" runat="server" Text="Add Treatment" class="btn btn-primary btn-round" OnClick="Save_Click" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Article Editor card end -->
-    </div>
+    
 </asp:Content>

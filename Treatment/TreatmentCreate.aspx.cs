@@ -17,16 +17,6 @@ namespace Treatment
 
         }
 
-        protected void Save_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        
-        private bool CreateTreat()
-        {
-
-            return true;
-        }
+       
     }
 }
