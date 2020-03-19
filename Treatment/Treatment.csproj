@@ -45,16 +45,17 @@
   <ItemGroup>
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v15.2.Core, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxTreeList.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpo.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v15.2.Service, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -91,6 +92,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -127,19 +129,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ReportService.mdf" />
-    <Content Include="Entity\ECMS.Context.tt">
+    <Content Include="Email\SendingEmail.aspx" />
+    <Content Include="Entity\EMCS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECMS.edmx</DependentUpon>
-      <LastGenOutput>ECMS.Context.cs</LastGenOutput>
+      <DependentUpon>EMCS.edmx</DependentUpon>
+      <LastGenOutput>EMCS.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Entity\ECMS.tt">
+    <Content Include="Entity\EMCS.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECMS.edmx</DependentUpon>
-      <LastGenOutput>ECMS.cs</LastGenOutput>
+      <DependentUpon>EMCS.edmx</DependentUpon>
+      <LastGenOutput>EMCS.cs</LastGenOutput>
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Pages\Setting\TreatmentPriority.aspx" />
+    <Content Include="Pages\Treatment\NewTreatment.aspx" />
+    <Content Include="Pages\Treatment\Tree.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Theme\files\assets\css\component.css" />
@@ -2058,77 +2062,89 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Classes\ddlFiller.cs" />
+    <Compile Include="Classes\Enums.cs" />
+    <Compile Include="Classes\SessionWrapper.cs" />
+    <Compile Include="Classes\UtilityClass.cs" />
+    <Compile Include="Email\SendEmail.cs" />
+    <Compile Include="Email\SendingEmail.aspx.cs">
+      <DependentUpon>SendingEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Email\SendingEmail.aspx.designer.cs">
+      <DependentUpon>SendingEmail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Assignment_Status.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Attachment.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\ECMS.Context.cs">
+    <Compile Include="Entity\EMCS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ECMS.Context.tt</DependentUpon>
+      <DependentUpon>EMCS.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\ECMS.cs">
+    <Compile Include="Entity\EMCS.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\ECMS.Designer.cs">
+    <Compile Include="Entity\EMCS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ECMS.edmx</DependentUpon>
+      <DependentUpon>EMCS.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entity\Employee.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Employee_Structure.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Owner_Relationship.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Prepared_Administration.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\sp_helpdiagrams_Result.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Structure.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\sysdiagram.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Class.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Confidentiality.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Delivery.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Detial.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Priority.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Procedure.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Status.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Type.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
+      <DependentUpon>EMCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2146,6 +2162,20 @@
     </Compile>
     <Compile Include="Pages\Setting\TreatmentPriority.aspx.designer.cs">
       <DependentUpon>TreatmentPriority.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Treatment\NewTreatment.aspx.cs">
+      <DependentUpon>NewTreatment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Treatment\NewTreatment.aspx.designer.cs">
+      <DependentUpon>NewTreatment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Treatment\Tree.aspx.cs">
+      <DependentUpon>Tree.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Treatment\Tree.aspx.designer.cs">
+      <DependentUpon>Tree.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Default.aspx.cs">
@@ -2307,12 +2337,12 @@
     <Content Include="Theme\files\extra-pages\landingpage\assets\fonts\ionicons.woff" />
     <Content Include="Theme\files\readme.md" />
     <Content Include="MasterEn.Master" />
-    <EntityDeploy Include="Entity\ECMS.edmx">
+    <EntityDeploy Include="Entity\EMCS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ECMS.Designer.cs</LastGenOutput>
+      <LastGenOutput>EMCS.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Entity\ECMS.edmx.diagram">
-      <DependentUpon>ECMS.edmx</DependentUpon>
+    <Content Include="Entity\EMCS.edmx.diagram">
+      <DependentUpon>EMCS.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2322,12 +2352,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
-    <Folder Include="Pages\Treatment\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

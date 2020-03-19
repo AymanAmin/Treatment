@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-   
+
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -33,11 +33,18 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\style.css" />
 
+    <script>
+        $(document).ready(function () {
+            $("#pcoded").pcodedmenu({
+                verticalMenuplacement: 'right',
+            });
+        });
+    </script>
 
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\jquery.mCustomScrollbar.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-     <title>E-CMS - Main Screen</title>
+    <title>E-CMS - Main Screen</title>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -224,27 +231,27 @@
                                                 <li>
                                                     <a href="#!">
                                                         <i class="feather icon-settings"></i>Settings
-                                        </a>
+                                                    </a>
                                                 </li>
                                                 <li>
                                                     <a href="user-profile.htm">
                                                         <i class="feather icon-user"></i>Profile
-                                        </a>
+                                                    </a>
                                                 </li>
                                                 <li>
                                                     <a href="email-inbox.htm">
                                                         <i class="feather icon-mail"></i>My Messages
-                                        </a>
+                                                    </a>
                                                 </li>
                                                 <li>
                                                     <a href="auth-lock-screen.htm">
                                                         <i class="feather icon-lock"></i>Lock Screen
-                                        </a>
+                                                    </a>
                                                 </li>
                                                 <li>
                                                     <a href="auth-normal-sign-in.htm">
                                                         <i class="feather icon-log-out"></i>Logout
-                                        </a>
+                                                    </a>
                                                 </li>
                                             </ul>
 
@@ -320,14 +327,53 @@
                                         <div class="page-wrapper">
 
                                             <!-- Page-header start -->
-                                            <asp:ContentPlaceHolder ID="Breadcrumb_Holder" runat="server">
-                                            </asp:ContentPlaceHolder>
+                                            <div class="page-header">
+                                                <div class="row align-items-end">
+                                                    <div class="col-lg-8">
+                                                        <div class="page-header-title">
+                                                            <div class="d-inline">
+                                                                <h4>Treatment</h4>
+                                                                <!--<span>Treament Priority</span>-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="page-header-breadcrumb">
+                                                            <ul class="breadcrumb-title">
+                                                                <asp:Label ID="breadcrumb" runat="server" Text="Label"></asp:Label>
+                                                                
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <!-- Page-header end -->
 
                                             <!-- Page-body start -->
-                                            <asp:ContentPlaceHolder ID="Body_Holder" runat="server">
-                                            </asp:ContentPlaceHolder>
+                                            <div class="page-body">
+                                                <!-- Article Editor card start -->
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <!--<h5>Treament Priority Form</h5>
+                                                        <span>Add New </span>-->
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li><i class="feather icon-maximize full-card"></i></li>
+                                                                <!-- <li><i class="feather icon-minus minimize-card"></i></li>-->
+                                                                <!-- <li><i class="feather icon-trash-2 close-card"></i></li>-->
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <asp:ContentPlaceHolder ID="Body_Holder" runat="server">
+                                                        </asp:ContentPlaceHolder>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Article Editor card end -->
+                                            </div>
                                             <!-- Page-body end -->
+
                                         </div>
                                     </div>
                                     <!-- Main-body end -->
@@ -420,7 +466,7 @@
                 gtag('js', new Date());
 
                 gtag('config', 'UA-23581568-13');
-</script>
+            </script>
         </div>
     </form>
 </body>

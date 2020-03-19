@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Treatment.Pages.Setting {
+namespace Treatment.Pages.Treatment {
     
     
-    public partial class TreatmentPriority {
+    public partial class Tree {
         
         /// <summary>
         /// Name control.
@@ -22,6 +22,15 @@ namespace Treatment.Pages.Setting {
         protected global::System.Web.UI.WebControls.TextBox Name;
         
         /// <summary>
+        /// ddlParent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlParent;
+        
+        /// <summary>
         /// Save control.
         /// </summary>
         /// <remarks>
@@ -31,21 +40,39 @@ namespace Treatment.Pages.Setting {
         protected global::System.Web.UI.WebControls.Button Save;
         
         /// <summary>
-        /// grid control.
+        /// ASPxTreeList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView grid;
+        protected global::DevExpress.Web.ASPxTreeList.ASPxTreeList ASPxTreeList1;
         
         /// <summary>
-        /// PriorityDataSource control.
+        /// TreeDataSourceView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource PriorityDataSource;
+        protected global::System.Web.UI.WebControls.EntityDataSource TreeDataSourceView;
+        
+        /// <summary>
+        /// TreeGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView TreeGridView;
+        
+        /// <summary>
+        /// TreeDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource TreeDataSource;
     }
 }

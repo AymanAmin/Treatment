@@ -4,19 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-//using Treatment.Entity;
 
-namespace Treatment
+namespace Treatment.Pages.Treatment
 {
-    public partial class TreatmentCreate : System.Web.UI.Page
+    public partial class NewTreatment : System.Web.UI.Page
     {
-
-        //ECMSEntities db = new ECMSEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
-       
     }
 }

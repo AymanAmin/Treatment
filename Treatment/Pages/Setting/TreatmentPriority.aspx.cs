@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -29,10 +30,13 @@ namespace Treatment.Pages.Setting
                 Treatment_Priority TP = db.Treatment_Priority.Create();
                 TP.Treatment_Priority_Name = name;
                 db.Treatment_Priority.Add(TP);
-                db.SaveChangesAsync();
+                db.SaveChanges();
+
+                //PriorityDataSource.DataBind();
             }
             catch { return false; }
             return true;
         }
     }
 }
+ 
