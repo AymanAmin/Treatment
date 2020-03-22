@@ -12,12 +12,18 @@ namespace Treatment.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class Group
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public Group()
+        {
+            this.Employees = new HashSet<Employee>();
+            this.Permission_Group = new HashSet<Permission_Group>();
+        }
+    
+        public int Group_Id { get; set; }
+        public string Group_Name { get; set; }
+    
+        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Permission_Group> Permission_Group { get; set; }
     }
 }
