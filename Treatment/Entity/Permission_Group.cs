@@ -12,22 +12,13 @@ namespace Treatment.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class Permission_Group
     {
-        public Employee()
-        {
-            this.Employee_Structure = new HashSet<Employee_Structure>();
-            this.Log_File = new HashSet<Log_File>();
-        }
-    
-        public int Employee_Id { get; set; }
-        public string Employee_Name { get; set; }
-        public string Employee_Email { get; set; }
-        public string Employee_Phone { get; set; }
+        public int Permission_Group_Id { get; set; }
+        public Nullable<int> Permission_Id { get; set; }
         public Nullable<int> Group_Id { get; set; }
     
         public virtual Group Group { get; set; }
-        public virtual ICollection<Employee_Structure> Employee_Structure { get; set; }
-        public virtual ICollection<Log_File> Log_File { get; set; }
+        public virtual Permission Permission { get; set; }
     }
 }

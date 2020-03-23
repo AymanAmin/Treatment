@@ -33,15 +33,16 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\style.css" />
 
-    <script>
-        $(document).ready(function () {
-            $("#pcoded").pcodedmenu({
-                verticalMenuplacement: 'right',
-            });
-        });
-    </script>
-
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\jquery.mCustomScrollbar.css" />
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\font-awesome\css\font-awesome.min.css" />
+
+     <!-- Switch component css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\switchery\css\switchery.min.css"/>
+    <!-- Tags css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap-tagsinput\css\bootstrap-tagsinput.css"/>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <title>E-CMS - Main Screen</title>
@@ -267,57 +268,8 @@
                             <nav class="pcoded-navbar">
                                 <div class="pcoded-inner-navbar main-menu">
                                     <div class="pcoded-navigatio-lavel">Menu</div>
-                                    <ul class="pcoded-item pcoded-left-item">
-                                        <li class="">
-                                            <a href="index.html">
-                                                <span class="pcoded-micon"><i class="feather icon-home"></i></span>
-                                                <span class="pcoded-mtext">Dashboard</span>
-                                            </a>
-                                        </li>
+                                    <asp:Literal ID="Menu" runat="server"></asp:Literal>
 
-                                        <li class="pcoded-hasmenu active pcoded-trigger">
-                                            <a href="javascript:void(0)">
-                                                <span class="pcoded-micon"><i class="feather icon-mail"></i></span>
-                                                <span class="pcoded-mtext">Treatment</span>
-                                            </a>
-                                            <ul class="pcoded-submenu">
-                                                <li class="">
-                                                    <a href="ready-suggestion-form.htm">
-                                                        <span class="pcoded-mtext">Create Treatment</span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="email-inbox.htm">
-                                                        <span class="pcoded-mtext">Show Treatment</span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="search-suggestion-form.htm">
-                                                        <span class="pcoded-mtext">Search Treatment</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="pcoded-hasmenu active pcoded-trigger">
-                                            <a href="javascript:void(0)">
-                                                <span class="pcoded-micon"><i class="feather icon-cpu"></i></span>
-                                                <span class="pcoded-mtext">Settings</span>
-                                            </a>
-                                            <ul class="pcoded-submenu">
-                                                <li class="">
-                                                    <a href="treeview.htm">
-                                                        <span class="pcoded-mtext">Organizational Structure</span>
-                                                    </a>
-                                                </li>
-                                                <li class="">
-                                                    <a href="ck-editor.htm">
-                                                        <span class="pcoded-mtext">General Settings</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-
-                                    </ul>
                                 </div>
                             </nav>
                             <div class="pcoded-content">
@@ -341,7 +293,7 @@
                                                         <div class="page-header-breadcrumb">
                                                             <ul class="breadcrumb-title">
                                                                 <asp:Label ID="breadcrumb" runat="server" Text="Label"></asp:Label>
-                                                                
+
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -381,8 +333,8 @@
                                     <div id="styleSelector">
                                     </div>
                                 </div>
-                            </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -434,30 +386,50 @@
 <![endif]-->
             <!-- Warning Section Ends -->
             <!-- Required Jquery -->
-            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\jquery\js\jquery.min.js"></script>
-            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
-            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\popper.js\js\popper.min.js"></script>
-            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\bootstrap\js\bootstrap.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\jquery\js\jquery.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\jquery-ui\js\jquery-ui.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\popper.js\js\popper.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap\js\bootstrap.min.js"></script>
             <!-- jquery slimscroll js -->
-            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js"></script>
             <!-- modernizr js -->
-            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\modernizr\js\modernizr.js"></script>
-            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\modernizr\js\css-scrollbars.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\modernizr\js\modernizr.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\modernizr\js\css-scrollbars.js"></script>
 
             <!-- ck editor -->
-            <script src="..\..\..\Theme\files\assets\pages\ckeditor\ckeditor.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\pages\ckeditor\ckeditor.js"></script>
             <!-- i18next.min.js -->
-            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\i18next\js\i18next.min.js"></script>
-            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js"></script>
-            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
-            <script type="text/javascript" src="..\..\..\Theme\files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\i18next\js\i18next.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
             <!-- Custom js -->
-            <script type="text/javascript" src="..\..\..\Theme\files\assets\pages\ckeditor\ckeditor-custom.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\ckeditor\ckeditor-custom.js"></script>
 
-            <script src="..\..\..\Theme\files\assets\js\pcoded.min.js"></script>
-            <script src="..\..\..\Theme\files\assets\js\vartical-layout.min.js"></script>
-            <script src="..\..\..\Theme\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
-            <script type="text/javascript" src="..\..\..\Theme\files\assets\js\script.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\js\pcoded.min.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\js\vartical-layout.min.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\script.js"></script>
+
+            <!-- Switch component js -->
+    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\switchery\js\switchery.min.js"></script>
+    <!-- Tags js -->
+    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap-tagsinput\js\bootstrap-tagsinput.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js"></script>
+    <!-- Max-length js -->
+    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap-maxlength\js\bootstrap-maxlength.js"></script>
+    <!-- i18next.min.js -->
+    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\i18next\js\i18next.min.js"></script>
+    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js"></script>
+    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
+    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
+    <!-- Custom js -->
+
+    <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\advance-elements\swithces.js"></script>
+    <script src="..\..\..\..\Theme\files\assets\js\pcoded.min.js"></script>
+    <script src="..\..\..\..\Theme\files\assets\js\vartical-layout.min.js"></script>
+    <script src="..\..\..\..\Theme\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\script.js"></script>
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
             <script>

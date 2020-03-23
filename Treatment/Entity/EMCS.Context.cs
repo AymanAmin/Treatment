@@ -32,10 +32,13 @@ namespace Treatment.Entity
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Employee_Structure> Employee_Structure { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Log_File> Log_File { get; set; }
         public DbSet<Owner_Relationship> Owner_Relationship { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<Permission_Group> Permission_Group { get; set; }
         public DbSet<Prepared_Administration> Prepared_Administration { get; set; }
         public DbSet<Structure> Structures { get; set; }
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<Treatment> Treatments { get; set; }
         public DbSet<Treatment_Class> Treatment_Class { get; set; }
         public DbSet<Treatment_Confidentiality> Treatment_Confidentiality { get; set; }
