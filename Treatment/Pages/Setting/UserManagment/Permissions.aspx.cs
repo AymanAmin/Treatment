@@ -20,7 +20,8 @@ namespace Treatment.Pages.Setting.UserManagment
         protected void Save_Click(object sender, EventArgs e)
         {
             int ParentID = 0;
-            try { ParentID = int.Parse(txtParent.Text);}catch { }
+
+            if (MainMenu.Checked){ ParentID = 0; } else {try { ParentID = int.Parse(txtParent.Text); } catch { ParentID = 0; } }
 
             bool result = AddPermission(txtPermission_Name.Text, txtPermission_Name_En.Text, ParentID, txtUrl_Path.Text);
             if (result)
@@ -32,7 +33,7 @@ namespace Treatment.Pages.Setting.UserManagment
         private bool AddPermission(string arabic_name,string english_name, int parent_id , string url)
         {
             try
-            {
+            { 
                 Permission Per = db.Permissions.Create();
                 Per.Permission_Name = arabic_name;
                 Per.Permission_Name_En = english_name;

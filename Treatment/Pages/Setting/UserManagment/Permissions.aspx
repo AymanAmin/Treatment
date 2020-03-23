@@ -14,11 +14,10 @@
             <label class="j-label">Name Arabic</label>
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-underline"></i></span>
-                <asp:TextBox ID="txtPermission_Name" runat="server" class="form-control" placeholder="Enter Name in Arabic" TextMode="SingleLine" MaxLength="10"></asp:TextBox>
+                <asp:TextBox ID="txtPermission_Name" runat="server" class="form-control" placeholder="Enter Name in Arabic" TextMode="SingleLine"></asp:TextBox>
             </div>
             <div class="col-sm-12" style="margin-top:-5%">
                 <asp:RequiredFieldValidator ID="RFVtxtPermission_Name" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Arabic Name" ValidationGroup="Per" ControlToValidate="txtPermission_Name" Display="Dynamic"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="RegularExpressionValidator" ForeColor="Red" ValidationExpression="\d*" ValidationGroup="Per" ControlToValidate="txtPermission_Name" Text="Enter Number" Display="Dynamic"></asp:RegularExpressionValidator>
             </div>
         </div>
         <div class="form-group col-sm-4 j-unit" >
@@ -35,7 +34,9 @@
             <label class="j-label">Parent Form</label>
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon3"><i class="icofont icofont-tree"></i></span>
-                <asp:DropDownList ID="txtParent" runat="server" class="form-control form-control-primary" DataSourceID="PermissionDataSource" DataTextField="Permission_Name_En" DataValueField="Permission_Id"></asp:DropDownList>
+                <asp:DropDownList ID="txtParent" runat="server" class="form-control form-control-primary" DataSourceID="PermissionDataSource" DataTextField="Permission_Name_En" DataValueField="Permission_Id">
+                    <asp:ListItem Value="0">Select Parent</asp:ListItem>
+                </asp:DropDownList>
             </div>
         </div>
         <div class="form-group col-sm-8 j-unit" style="margin-top:-1%">
@@ -43,6 +44,12 @@
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon4"><i class="icofont icofont-link-alt"></i></span>
                 <asp:TextBox ID="txtUrl_Path" runat="server" class="form-control" placeholder="Enter URL Path Ex(Pages/Setting/...)"></asp:TextBox>
+            </div>
+        </div>
+        <div class="form-group col-sm-4 j-unit" style="margin-top: -1%">
+            <div class="col-sm-12 col-xl-12 m-b-30">
+                <h5 class="sub-title">Main Menu</h5>
+                <input runat="server" id="MainMenu" type="checkbox" class="js-info" />
             </div>
         </div>
         
@@ -66,10 +73,8 @@
                             </Styles>
                         </EditButton>
                         <DeleteButton Visible="True"  Text=" ">
-                            <Styles>
-                                
+                            <Styles> 
                                 <Style CssClass="icofont icofont-ui-delete text-danger h6" VerticalAlign="Middle" >
-                                    
                                 </Style>
                             </Styles>
                         </DeleteButton>
@@ -83,7 +88,7 @@
 
                         <CancelButton Text=" ">
                             <Styles>
-                                <Style  CssClass="icofont icofont-ui-close text-warning h6">
+                                <Style  CssClass="icofont icofont-ui-close text-warning h6" VerticalAlign="Middle">
                                 </Style>
                             </Styles>
                         </CancelButton>

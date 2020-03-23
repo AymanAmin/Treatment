@@ -31,15 +31,6 @@ namespace Treatment.Pages.Setting.UserManagment {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtPermission_Name;
         
         /// <summary>
-        /// RegularExpressionValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
-        
-        /// <summary>
         /// txtPermission_Name_En control.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,15 @@ namespace Treatment.Pages.Setting.UserManagment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUrl_Path;
+        
+        /// <summary>
+        /// MainMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox MainMenu;
         
         /// <summary>
         /// Save control.
