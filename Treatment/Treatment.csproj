@@ -147,7 +147,9 @@
     <Content Include="Pages\Setting\UserManagment\Groups.aspx" />
     <Content Include="Pages\Setting\UserManagment\PermissionGroups.aspx" />
     <Content Include="Pages\Setting\UserManagment\Permissions.aspx" />
+    <Content Include="Pages\Treatment\Employees.aspx" />
     <Content Include="Pages\Treatment\NewTreatment.aspx" />
+    <Content Include="Pages\Treatment\Structure.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Theme\files\assets\css\component.css" />
@@ -2203,12 +2205,24 @@
     <Compile Include="Pages\Setting\UserManagment\Permissions.aspx.designer.cs">
       <DependentUpon>Permissions.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Treatment\Employees.aspx.cs">
+      <DependentUpon>Employees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Treatment\Employees.aspx.designer.cs">
+      <DependentUpon>Employees.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Treatment\NewTreatment.aspx.cs">
       <DependentUpon>NewTreatment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Treatment\NewTreatment.aspx.designer.cs">
       <DependentUpon>NewTreatment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Treatment\Structure.aspx.cs">
+      <DependentUpon>Structure.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Treatment\Structure.aspx.designer.cs">
+      <DependentUpon>Structure.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Default.aspx.cs">
