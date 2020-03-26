@@ -38,16 +38,137 @@
     <!-- font-awesome -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\font-awesome\css\font-awesome.min.css" />
 
-     <!-- Switch component css -->
-    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\switchery\css\switchery.min.css"/>
+    <!-- feather Awesome -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\feather\css\feather.css" />
+    <!-- Switch component css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\switchery\css\switchery.min.css" />
     <!-- Tags css -->
-    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap-tagsinput\css\bootstrap-tagsinput.css"/>
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap-tagsinput\css\bootstrap-tagsinput.css" />
 
+    <!-- Notification.css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\pages\notification\notification.css"/>
+
+    <!-- jquery file upload Frame work -->
+    <link href="~\Theme\files\assets\pages\jquery.filer\css\jquery.filer.css" type="text/css" rel="stylesheet" />
+    <link href="~\Theme\files\assets\pages\jquery.filer\css\themes\jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+    <!-- Select 2 css -->
+    <link rel="stylesheet" href="~\Theme\files\bower_components\select2\css\select2.min.css" />
+    <!-- Date-time picker css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\pages\advance-elements\css\bootstrap-datetimepicker.css" />
+    <!-- Date-range picker css  -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap-daterangepicker\css\daterangepicker.css" />
+    <!-- Date-Dropper css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datedropper\css\datedropper.min.css" />
+    <!-- Color Picker css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\spectrum\css\spectrum.css" />
+    <!-- Multi Select css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap-multiselect\css\bootstrap-multiselect.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\multiselect\css\multi-select.css" />
+    <style>
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            background-color: transparent;
+            color: black;
+            padding: 0px 0px 4px 14px;
+            line-height: 30px;
+        }
+
+        .select2-container--default .select2-selection--single {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            height:100%;
+            vertical-align:middle;
+        }
+            .select2-container--default .select2-selection--single .select2-selection__arrow b {
+                border-color: #342222 transparent transparent transparent;
+            }
+
+        .select2-container--default .select2-selection--multiple {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+            .select2-container--default .select2-selection--multiple .select2-search__field {
+                width: 100% !important;
+            }
+        .input-group {
+            margin-bottom: 0.25em;
+        }
+        .dxbButton_Material {
+            color: white;
+            background-color: #01a9ac;
+        }
+        .jFiler-input-dragDrop{
+            width:100%
+        }
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #01a9ac;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #01a9ac;
+    color: white;
+}
+    </style>
+
+    <script>
+        /* Close Model */
+        function HideTheModel() {
+            document.getElementById("bt-data-dismiss").click();
+            // Click on the checkbox
+        }
+        /*--------------------------------------
+        Notifications & Dialogs
+    ---------------------------------------*/
+        /*
+         * Notifications
+         */
+        function notify(from, align, icon, type, animIn, animOut,Message_title,new_message) {
+            $.growl({
+                icon: icon,
+                title: Message_title,
+                message: new_message,
+                url: ''
+            }, {
+                element: 'body',
+                type: type,
+                allow_dismiss: true,
+                placement: {
+                    from: from,
+                    align: align
+                },
+                offset: {
+                    x: 30,
+                    y: 30
+                },
+                spacing: 10,
+                z_index: 999999,
+                delay: 2500,
+                timer: 5000,
+                url_target: '_blank',
+                mouse_over: false,
+                animate: {
+                    enter: animIn,
+                    exit: animOut
+                },
+                icon_type: 'class',
+                template: '<div data-growl="container" class="alert" role="alert">' +
+                '<button type="button" class="close" data-growl="dismiss">' +
+                '<span aria-hidden="true">&times;</span>' +
+                '<span class="sr-only">Close</span>' +
+                '</button>' +
+                '<span data-growl="icon"></span>' +
+                '<span data-growl="title"></span>' +
+                '<span data-growl="message"></span>' +
+                '<a href="#" data-growl="url"></a>' +
+                '</div>'
+            });
+        }
+    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <title>E-CMS - Main Screen</title>
 </head>
 <body>
+    <input id="bt-data-dismiss" type="hidden" data-dismiss="modal"  value="" />
     <form id="form1" runat="server">
         <div>
             <!-- Pre-loader start -->
@@ -100,7 +221,7 @@
                                     <i class="feather icon-menu"></i>
                                 </a>
                                 <a href="index-1.htm">
-                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\logo.png" alt="Theme-Logo" width="70" height="50">
+                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="Theme-Logo" width="70" height="50">
                                 </a>
                                 <a class="mobile-options">
                                     <i class="feather icon-more-horizontal"></i>
@@ -245,7 +366,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="auth-lock-screen.htm">
+                                                    <a href="../../../../Pages/Setting/admin/LockScreen.aspx">
                                                         <i class="feather icon-lock"></i>Lock Screen
                                                     </a>
                                                 </li>
@@ -267,7 +388,7 @@
                         <div class="pcoded-wrapper">
                             <nav class="pcoded-navbar">
                                 <div class="pcoded-inner-navbar main-menu">
-                                    <div class="pcoded-navigatio-lavel">Menu</div>
+                                    <!--<div class="pcoded-navigatio-lavel">Menu</div>-->
                                     <asp:Literal ID="Menu" runat="server"></asp:Literal>
 
                                 </div>
@@ -284,7 +405,8 @@
                                                     <div class="col-lg-8">
                                                         <div class="page-header-title">
                                                             <div class="d-inline">
-                                                                <h4>Treatment</h4>
+                                                                <h4>
+                                                                    <asp:Literal ID="PageName" runat="server"></asp:Literal></h4>
                                                                 <!--<span>Treament Priority</span>-->
                                                             </div>
                                                         </div>
@@ -333,8 +455,8 @@
                                     <div id="styleSelector">
                                     </div>
                                 </div>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -403,8 +525,6 @@
             <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js"></script>
             <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
             <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
-            <!-- Custom js -->
-            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\ckeditor\ckeditor-custom.js"></script>
 
             <script src="..\..\..\..\Theme\files\assets\js\pcoded.min.js"></script>
             <script src="..\..\..\..\Theme\files\assets\js\vartical-layout.min.js"></script>
@@ -412,32 +532,62 @@
             <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\script.js"></script>
 
             <!-- Switch component js -->
-    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\switchery\js\switchery.min.js"></script>
-    <!-- Tags js -->
-    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap-tagsinput\js\bootstrap-tagsinput.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js"></script>
-    <!-- Max-length js -->
-    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap-maxlength\js\bootstrap-maxlength.js"></script>
-    <!-- i18next.min.js -->
-    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\i18next\js\i18next.min.js"></script>
-    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js"></script>
-    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
-    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
-    <!-- Custom js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\switchery\js\switchery.min.js"></script>
+            <!-- Tags js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap-tagsinput\js\bootstrap-tagsinput.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.4/typeahead.bundle.min.js"></script>
+            <!-- Max-length js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap-maxlength\js\bootstrap-maxlength.js"></script>
+            <!-- Custom js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\advance-elements\swithces.js"></script>
 
-    <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\advance-elements\swithces.js"></script>
-    <script src="..\..\..\..\Theme\files\assets\js\pcoded.min.js"></script>
-    <script src="..\..\..\..\Theme\files\assets\js\vartical-layout.min.js"></script>
-    <script src="..\..\..\..\Theme\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
-    <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\script.js"></script>
+            <!-- notification js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\bootstrap-growl.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\notification\notification.js"></script>
+
+            <!-- jquery file upload js -->
+            <script src="..\..\..\..\Theme\files\assets\pages\jquery.filer\js\jquery.filer.min.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\pages\filer\custom-filer.js" type="text/javascript"></script>
+            <script src="..\..\..\..\Theme\files\assets\pages\filer\jquery.fileuploads.init.js" type="text/javascript"></script>
+
+            <!-- Custom js -->
+            <script type="text/javascript" src=".\..\..\..\Theme\files\assets\pages\advance-elements\select2-custom.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\advance-elements\custom-picker.js"></script>
+
+            <!-- Bootstrap date-time-picker js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\advance-elements\moment-with-locales.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap-datepicker\js\bootstrap-datepicker.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\advance-elements\bootstrap-datetimepicker.min.js"></script>
+            <!-- Date-range picker js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap-daterangepicker\js\daterangepicker.js"></script>
+            <!-- Date-dropper js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\datedropper\js\datedropper.min.js"></script>
+            <!-- Color picker js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\spectrum\js\spectrum.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\jscolor\js\jscolor.js"></script>
+            <!-- Mini-color js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\jquery-minicolors\js\jquery.minicolors.min.js"></script>
+            <!-- Select 2 js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\select2\js\select2.full.min.js"></script>
+            <!-- Multiselect js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap-multiselect\js\bootstrap-multiselect.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\multiselect\js\jquery.multi-select.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\jquery.quicksearch.js"></script>
+            
+
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
             <script>
+               
+
                 window.dataLayer = window.dataLayer || [];
                 function gtag() { dataLayer.push(arguments); }
                 gtag('js', new Date());
 
                 gtag('config', 'UA-23581568-13');
+            </script>
+            <script>
+                initSample();
             </script>
         </div>
     </form>

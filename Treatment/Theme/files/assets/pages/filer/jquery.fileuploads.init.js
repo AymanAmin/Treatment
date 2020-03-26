@@ -29,7 +29,7 @@ $(document).ready(function(){
     });
 
 	//Example 1
-    $("#filer_input1").filer({
+    $("#Body_Holder_addAttachments").filer({
         limit: null,
         maxSize: null,
         extensions: null,

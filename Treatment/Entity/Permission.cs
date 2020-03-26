@@ -21,10 +21,11 @@ namespace Treatment.Entity
         }
     
         public int Permission_Id { get; set; }
-        public string Permission_Name { get; set; }
+        public string Permission_Name_Ar { get; set; }
         public string Permission_Name_En { get; set; }
         public Nullable<int> Parent { get; set; }
         public string Url_Path { get; set; }
+        public string Permission_Icon { get; set; }
     
         public virtual ICollection<Log_File> Log_File { get; set; }
         public virtual ICollection<Permission_Group> Permission_Group { get; set; }

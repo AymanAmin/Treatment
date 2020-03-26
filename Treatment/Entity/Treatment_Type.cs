@@ -20,7 +20,8 @@ namespace Treatment.Entity
         }
     
         public int Treatment_Type_Id { get; set; }
-        public string Treatment_Type_Name { get; set; }
+        public string Treatment_Type_Name_Ar { get; set; }
+        public string Treatment_Type_Name_En { get; set; }
     
         public virtual ICollection<Treatment> Treatments { get; set; }
     }

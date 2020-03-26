@@ -18,7 +18,7 @@ var initSample = ( function() {
 		isBBCodeBuiltIn = !!CKEDITOR.plugins.get( 'bbcode' );
 
 	return function() {
-		var editorElement = CKEDITOR.document.getById( 'editor' );
+	    var editorElement = CKEDITOR.document.getById('Body_Holder_speech');
 
 		// :(((
 		if ( isBBCodeBuiltIn ) {
@@ -30,7 +30,7 @@ var initSample = ( function() {
 
 		// Depending on the wysiwygarea plugin availability initialize classic or inline editor.
 		if ( wysiwygareaAvailable ) {
-			CKEDITOR.replace( 'editor' );
+		    CKEDITOR.replace('Body_Holder_speech');
 		} else {
 			editorElement.setAttribute( 'contenteditable', 'true' );
 			CKEDITOR.inline( 'editor' );

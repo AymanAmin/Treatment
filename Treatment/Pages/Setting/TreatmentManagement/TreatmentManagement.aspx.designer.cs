@@ -7,108 +7,135 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Treatment.Pages.Setting.UserManagment {
+namespace Treatment.Pages.Setting.TreatmentManagement {
     
     
-    public partial class Permissions {
+    public partial class TreatmentManagement {
         
         /// <summary>
-        /// txtPermission_Name control.
+        /// TypeGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPermission_Name;
+        protected global::DevExpress.Web.ASPxGridView TypeGridView;
         
         /// <summary>
-        /// RFVtxtPermission_Name control.
+        /// TypeDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtPermission_Name;
+        protected global::System.Web.UI.WebControls.EntityDataSource TypeDataSource;
         
         /// <summary>
-        /// txtPermission_Name_En control.
+        /// StatusGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPermission_Name_En;
+        protected global::DevExpress.Web.ASPxGridView StatusGridView;
         
         /// <summary>
-        /// RFVtxtPermission_Name_En control.
+        /// StatusDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtPermission_Name_En;
+        protected global::System.Web.UI.WebControls.EntityDataSource StatusDataSource;
         
         /// <summary>
-        /// txtParent control.
+        /// ProcedureGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList txtParent;
+        protected global::DevExpress.Web.ASPxGridView ProcedureGridView;
         
         /// <summary>
-        /// txtClass_Icon control.
+        /// ProcedureDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtClass_Icon;
+        protected global::System.Web.UI.WebControls.EntityDataSource ProcedureDataSource;
         
         /// <summary>
-        /// txtUrl_Path control.
+        /// PriorityGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUrl_Path;
+        protected global::DevExpress.Web.ASPxGridView PriorityGridView;
         
         /// <summary>
-        /// MainMenu control.
+        /// PriorityDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox MainMenu;
+        protected global::System.Web.UI.WebControls.EntityDataSource PriorityDataSource;
         
         /// <summary>
-        /// Save control.
+        /// DeliveryGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Save;
+        protected global::DevExpress.Web.ASPxGridView DeliveryGridView;
         
         /// <summary>
-        /// PermissionTreeList control.
+        /// DeliveryDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTreeList.ASPxTreeList PermissionTreeList;
+        protected global::System.Web.UI.WebControls.EntityDataSource DeliveryDataSource;
         
         /// <summary>
-        /// PermissionDataSource control.
+        /// ConfidentialityGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource PermissionDataSource;
+        protected global::DevExpress.Web.ASPxGridView ConfidentialityGridView;
+        
+        /// <summary>
+        /// ConfidentialityDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource ConfidentialityDataSource;
+        
+        /// <summary>
+        /// ClassGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView ClassGridView;
+        
+        /// <summary>
+        /// ClassDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource ClassDataSource;
     }
 }

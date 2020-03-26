@@ -21,7 +21,8 @@ namespace Treatment.Entity
         }
     
         public int Group_Id { get; set; }
-        public string Group_Name { get; set; }
+        public string Group_Name_Ar { get; set; }
+        public string Group_Name_En { get; set; }
     
         public virtual ICollection<Employee> Employees { get; set; }
         public virtual ICollection<Permission_Group> Permission_Group { get; set; }

@@ -20,7 +20,8 @@ namespace Treatment.Entity
         }
     
         public int Assignment_Status_Id { get; set; }
-        public string Assignment_Status_Name { get; set; }
+        public string Assignment_Status_Name_Ar { get; set; }
+        public string Assignment_Status_Name_En { get; set; }
     
         public virtual ICollection<Treatment_Detial> Treatment_Detial { get; set; }
     }

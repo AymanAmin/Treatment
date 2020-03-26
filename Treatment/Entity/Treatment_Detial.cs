@@ -25,6 +25,7 @@ namespace Treatment.Entity
         public Nullable<System.DateTime> Delete_Date { get; set; }
         public string Note { get; set; }
         public string Key_Word { get; set; }
+        public Nullable<bool> Treatment_Copy_To { get; set; }
     
         public virtual Assignment_Status Assignment_Status { get; set; }
         public virtual Employee_Structure Employee_Structure { get; set; }

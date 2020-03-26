@@ -7,72 +7,279 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Treatment.Pages.Setting.UserManagment {
+namespace Treatment.Pages.Treatment {
     
     
-    public partial class Permissions {
+    public partial class NewTreatment {
         
         /// <summary>
-        /// txtPermission_Name1 control.
+        /// treatmentDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPermission_Name1;
+        protected global::System.Web.UI.WebControls.TextBox treatmentDate;
         
         /// <summary>
-        /// RFVtxtPermission_Name1 control.
+        /// standardProcedure control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtPermission_Name1;
+        protected global::System.Web.UI.WebControls.DropDownList standardProcedure;
         
         /// <summary>
-        /// RegularExpressionValidator11 control.
+        /// typeTreatment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator11;
+        protected global::System.Web.UI.WebControls.DropDownList typeTreatment;
         
         /// <summary>
-        /// txtPermission_Name_En1 control.
+        /// preparedManagement control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPermission_Name_En1;
+        protected global::System.Web.UI.WebControls.DropDownList preparedManagement;
         
         /// <summary>
-        /// RFVtxtPermission_Name_En1 control.
+        /// treatmentTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtPermission_Name_En1;
+        protected global::System.Web.UI.WebControls.DropDownList treatmentTo;
         
         /// <summary>
-        /// txtUrl_Path1 control.
+        /// treatmentCopyTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUrl_Path1;
+        protected global::System.Web.UI.WebControls.DropDownList treatmentCopyTo;
         
         /// <summary>
-        /// Save1 control.
+        /// subjectTreatement control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Save1;
+        protected global::System.Web.UI.WebControls.TextBox subjectTreatement;
+        
+        /// <summary>
+        /// classificationSubject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList classificationSubject;
+        
+        /// <summary>
+        /// secretLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList secretLevel;
+        
+        /// <summary>
+        /// priorityLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList priorityLevel;
+        
+        /// <summary>
+        /// speedUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList speedUp;
+        
+        /// <summary>
+        /// speech control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox speech;
+        
+        /// <summary>
+        /// addAttachments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload addAttachments;
+        
+        /// <summary>
+        /// requiredReply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox requiredReply;
+        
+        /// <summary>
+        /// replyDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox replyDate;
+        
+        /// <summary>
+        /// ownerShip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView ownerShip;
+        
+        /// <summary>
+        /// SaveTreatment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveTreatment;
+        
+        /// <summary>
+        /// EntityDataSourceStandardProcedure control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceStandardProcedure;
+        
+        /// <summary>
+        /// OwnerShipDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource OwnerShipDataSource;
+        
+        /// <summary>
+        /// EntityDataSourceAssignmentStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceAssignmentStatus;
+        
+        /// <summary>
+        /// EntityDataSourcePreparedAdministration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourcePreparedAdministration;
+        
+        /// <summary>
+        /// EntityDataSourceTreatmentClass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceTreatmentClass;
+        
+        /// <summary>
+        /// EntityDataSourceTreatmentConfidentiality control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceTreatmentConfidentiality;
+        
+        /// <summary>
+        /// EntityDataSourceTreatmentDelivery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceTreatmentDelivery;
+        
+        /// <summary>
+        /// EntityDataSourceTreatmentPriority control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceTreatmentPriority;
+        
+        /// <summary>
+        /// EntityDataSourceTreatmentProcedure control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceTreatmentProcedure;
+        
+        /// <summary>
+        /// EntityDataSourceTreatmentStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceTreatmentStatus;
+        
+        /// <summary>
+        /// EntityDataSourceTreatmentType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceTreatmentType;
+        
+        /// <summary>
+        /// EntityDataSourceEmployee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceEmployee;
+        
+        /// <summary>
+        /// EntityDataSourceStructure control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceStructure;
     }
 }
