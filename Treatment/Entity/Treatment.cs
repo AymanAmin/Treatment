@@ -23,6 +23,7 @@ namespace Treatment.Entity
     
         public int Treatment_Id { get; set; }
         public string Treatment_Subject { get; set; }
+        public Nullable<System.DateTime> Treatment_Date { get; set; }
         public Nullable<System.DateTime> Create_Date { get; set; }
         public Nullable<System.DateTime> Update_Date { get; set; }
         public string Treatment_Body { get; set; }
@@ -36,11 +37,13 @@ namespace Treatment.Entity
         public Nullable<int> Treatment_Status_Id { get; set; }
         public Nullable<int> Treatment_Procedure_Id { get; set; }
         public Nullable<int> Prepared_Administration_Id { get; set; }
+        public Nullable<System.DateTime> Required_Reply_Date { get; set; }
+        public Nullable<int> Treatment_Number { get; set; }
     
         public virtual ICollection<Attachment> Attachments { get; set; }
         public virtual Employee_Structure Employee_Structure { get; set; }
         public virtual ICollection<Owner_Relationship> Owner_Relationship { get; set; }
-        public virtual Prepared_Administration Prepared_Administration { get; set; }
+        public virtual Structure Structure { get; set; }
         public virtual ICollection<Treatment_Detial> Treatment_Detial { get; set; }
         public virtual Treatment_Class Treatment_Class { get; set; }
         public virtual Treatment_Confidentiality Treatment_Confidentiality { get; set; }

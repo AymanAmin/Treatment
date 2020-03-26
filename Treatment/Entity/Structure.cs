@@ -17,12 +17,15 @@ namespace Treatment.Entity
         public Structure()
         {
             this.Employee_Structure = new HashSet<Employee_Structure>();
+            this.Treatments = new HashSet<Treatment>();
         }
     
         public int Structure_Id { get; set; }
-        public string Structure_Name { get; set; }
+        public string Structure_Name_Ar { get; set; }
         public Nullable<int> Structure_Parent { get; set; }
+        public string Structure_Name_En { get; set; }
     
         public virtual ICollection<Employee_Structure> Employee_Structure { get; set; }
+        public virtual ICollection<Treatment> Treatments { get; set; }
     }
 }

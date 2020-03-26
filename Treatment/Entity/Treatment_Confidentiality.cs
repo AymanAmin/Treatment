@@ -20,7 +20,8 @@ namespace Treatment.Entity
         }
     
         public int Treatment_Confidentiality_Id { get; set; }
-        public string Treatment_Confidentiality_Name { get; set; }
+        public string Treatment_Confidentiality_Name_Ar { get; set; }
+        public string Treatment_Confidentiality_Name_En { get; set; }
     
         public virtual ICollection<Treatment> Treatments { get; set; }
     }
