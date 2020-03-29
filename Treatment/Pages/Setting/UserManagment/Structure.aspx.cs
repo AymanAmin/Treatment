@@ -30,6 +30,8 @@ namespace Treatment.Pages.Treatment
             {
                 ASPxTreeList1.DataBind();
                 Parent.DataBind();
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The new Structure was Sucessfully saved in system ! ');", true);
+
             }
         }
 

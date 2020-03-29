@@ -12,23 +12,41 @@ namespace Treatment.Pages.Treatment
     {
         ECMSEntities db = new ECMSEntities();
         string messageForm = "";
+        int currentStructureUserId = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
-            OwnerShipDataSource = new EntityDataSource();
         }
 
         protected void SaveTreatment_Click(object sender, EventArgs e)
         {
             if (saveTreatment())
             {
-
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Treatment was Sucessfully saved in system !');", true);
+                clearTreatment();
             }
             else
             {
-
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','" + messageForm + "');", true);
             }
         }
 
+        private void clearTreatment()
+        {
+            treatmentDate.Text = "";
+            subjectTreatement.Text = "";
+            treatmentTo.ClearSelection();
+            treatmentCopyTo.ClearSelection();
+            speech.Text = "";
+            replyDate.Text = "";
+            requiredReply.Text = "";
+            standardProcedure.ClearSelection();
+            preparedManagement.ClearSelection();
+            typeTreatment.ClearSelection();
+            classificationSubject.ClearSelection();
+            secretLevel.ClearSelection();
+            priorityLevel.ClearSelection();
+            speedUp.ClearSelection();
+        }
         private bool saveTreatment()
         {
             if (validationForm())
@@ -49,14 +67,51 @@ namespace Treatment.Pages.Treatment
                     newTreatment.Treatment_Delivery_Id= int.Parse(speedUp.SelectedValue);
                     newTreatment.Treatment_Body = speech.Text;
                     newTreatment.Required_Reply = checkRequiredReply();
+                    newTreatment.Treatment_Status_Id = 1;
+                    newTreatment.Treatment_Number = getTreatmentNumber();
+                    newTreatment.From_Employee_Structure_Id = currentStructureUserId;
                     if (checkRequiredReply())
                         newTreatment.Required_Reply_Date = DateTime.Parse(replyDate.Text);
 
+                    /////////////////////////////////////// Start Insert To /////////////////////////////////////
+                    Treatment_Detial treatmentDetial;
+                    for (int i = 0; i < treatmentTo.Items.Count; i++)
+                    {
+                        if (treatmentTo.Items[i].Selected)
+                        {
+                            treatmentDetial = new Treatment_Detial();
+                            treatmentDetial.To_Employee_Structure_Id = int.Parse(treatmentTo.Items[i].Value);
+                            treatmentDetial.Parent = 0;
+                            treatmentDetial.Assignment_Status_Id = 1;
+                            treatmentDetial.Is_Read = false;
+                            treatmentDetial.Is_Delete = false;
+                            treatmentDetial.Treatment_Copy_To = false;
+                            newTreatment.Treatment_Detial.Add(treatmentDetial);
+                        }
+                    }
+                    /////////////////////////////////////// End Insert To /////////////////////////////////////
+
+                    /////////////////////////////////////// Start Insert Copy To /////////////////////////////////////
+                    for (int i = 0; i < treatmentCopyTo.Items.Count; i++)
+                    {
+                        if (treatmentCopyTo.Items[i].Selected)
+                        {
+                            treatmentDetial = new Treatment_Detial();
+                            treatmentDetial.To_Employee_Structure_Id = int.Parse(treatmentCopyTo.Items[i].Value);
+                            treatmentDetial.Parent = 0;
+                            treatmentDetial.Assignment_Status_Id = 1;
+                            treatmentDetial.Is_Read = false;
+                            treatmentDetial.Is_Delete = false;
+                            treatmentDetial.Treatment_Copy_To = true;
+                            newTreatment.Treatment_Detial.Add(treatmentDetial);
+                        }
+                    }
+                    /////////////////////////////////////// End Insert Copy To /////////////////////////////////////
+
                     db.Treatments.Add(newTreatment);
                     db.SaveChanges();
-
                 }
-                catch { return false; }
+                catch { messageForm = "Erorr to save data in system";  return false; }
                 return true;
             }
             else
@@ -65,6 +120,23 @@ namespace Treatment.Pages.Treatment
             }
         }
 
+        private string getTreatmentNumber()
+        {
+            string treatmentNumber = "";
+            using (var db1 = new ECMSEntities())
+            {
+                try
+                {
+                    Int64 dc = db.Treatments.ToList().Max(e => Convert.ToInt64(e.Treatment_Id));
+                    treatmentNumber = DateTime.Now.Year + "" + (dc + 1).ToString("D5");
+                }
+                catch (Exception ree)
+                {
+                    treatmentNumber = DateTime.Now.Year + "" + 1.ToString("D5");
+                }
+                return treatmentNumber;
+            }
+        }
         private bool validationForm()
         {
             bool flayVal = false;
@@ -73,11 +145,6 @@ namespace Treatment.Pages.Treatment
             if (treatmentDate.Text.Trim() == "")
             {
                 messageForm = "Pleace Enter Treatment Date";
-                return false;
-            }
-            else if (standardProcedure.SelectedValue == "")
-            {
-                messageForm = "Pleace Select Standard Procedure";
                 return false;
             }
             else if (treatmentTo.SelectedValue == "")
@@ -110,11 +177,11 @@ namespace Treatment.Pages.Treatment
                 messageForm = "Pleace Select Speed Up";
                 return false;
             }
-            else if (speech.Text.Trim() == "")
+            /*else if (speech.Text.Trim() == "")
             {
                 messageForm = "Pleace Enter Speech";
                 return false;
-            }
+            }*/
             else flayVal = true;
             return flayVal;
         }

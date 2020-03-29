@@ -107,6 +107,21 @@
     background-color: #01a9ac;
     color: white;
 }
+        .validation-messages {
+    margin-right: 0;
+    margin-left: 0;
+}
+        .nav-link.active {
+               border-left-color: #01a9ac !important;
+    border-left-style: solid !important;
+    border-left-width: 3px !important;
+    background-color: #fafafa !important;
+    color: #01a9ac;
+}
+        .user-body .page-list li.mail-section a:hover {
+    color: #01a9ac !important;
+    background-color: #fafafa !important;
+}
     </style>
 
     <script>
@@ -213,7 +228,7 @@
                 <div class="pcoded-overlay-box"></div>
                 <div class="pcoded-container navbar-wrapper">
 
-                    <nav class="navbar header-navbar pcoded-header">
+                    <nav class="navbar header-navbar pcoded-header" >
                         <div class="navbar-wrapper">
 
                             <div class="navbar-logo">
@@ -361,7 +376,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="email-inbox.htm">
+                                                    <a href="inbox.aspx">
                                                         <i class="feather icon-mail"></i>My Messages
                                                     </a>
                                                 </li>
@@ -427,14 +442,10 @@
                                             <div class="page-body">
                                                 <!-- Article Editor card start -->
                                                 <div class="card">
-                                                    <div class="card-header">
-                                                        <!--<h5>Treament Priority Form</h5>
-                                                        <span>Add New </span>-->
+                                                    <div class="card-header"> 
                                                         <div class="card-header-right">
                                                             <ul class="list-unstyled card-option">
                                                                 <li><i class="feather icon-maximize full-card"></i></li>
-                                                                <!-- <li><i class="feather icon-minus minimize-card"></i></li>-->
-                                                                <!-- <li><i class="feather icon-trash-2 close-card"></i></li>-->
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -573,7 +584,6 @@
             <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap-multiselect\js\bootstrap-multiselect.js"></script>
             <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\multiselect\js\jquery.multi-select.js"></script>
             <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\jquery.quicksearch.js"></script>
-            
 
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
