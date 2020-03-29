@@ -21,6 +21,7 @@
                 </div>
             </div>
             <div class="card-block">
+
                 <div class="row col-sm-12">
                     <div id="add-model" class="modal fade" role="dialog">
                         <div class="modal-dialog">
@@ -43,7 +44,7 @@
                                                     <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-underline"></i></span>
                                                     <asp:TextBox ID="txtGroup_Name" runat="server" class="form-control" placeholder="Enter Name in Arabic" TextMode="SingleLine"></asp:TextBox>
                                                 </div>
-                                                <div class="col-sm-12" style="margin-top: -5%">
+                                                <div class="col-sm-12" style="">
                                                     <asp:RequiredFieldValidator ID="RFVtxtPermission_Name" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Arabic Name" ValidationGroup="Group" ControlToValidate="txtGroup_Name" Display="Dynamic"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
@@ -53,7 +54,7 @@
                                                     <span class="input-group-addon" id="basic-addon2"><i class="icofont icofont-underline"></i></span>
                                                     <asp:TextBox ID="txtGroup_Name_En" runat="server" class="form-control" placeholder="Enter Name in English" TextMode="SingleLine"></asp:TextBox>
                                                 </div>
-                                                <div class="col-sm-12" style="margin-top: -5%">
+                                                <div class="col-sm-12" style="">
                                                     <asp:RequiredFieldValidator ID="RFVtxtGroup_Name_En" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter English Name" ValidationGroup="Group" ControlToValidate="txtGroup_Name_En" Display="Dynamic"></asp:RequiredFieldValidator>
                                                 </div>
                                             </div>
