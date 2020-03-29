@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Assignment_Status">
           <Key>
             <PropertyRef Name="Assignment_Status_Id" />
@@ -126,7 +126,7 @@
           <Property Name="Treatment_Procedure_Id" Type="int" />
           <Property Name="Prepared_Administration_Id" Type="int" />
           <Property Name="Required_Reply_Date" Type="datetime" />
-          <Property Name="Treatment_Number" Type="int" />
+          <Property Name="Treatment_Number" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Treatment_Class">
           <Key>
@@ -202,14 +202,31 @@
           <Property Name="Treatment_Type_Name_En" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ECMS.dbo.Permission_Group_Views' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Permission_Group_Views">
+warning 6002: The table/view 'ECMS.dbo.Treatment_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Treatment_View">
           <Key>
-            <PropertyRef Name="Permission_Group_Id" />
+            <PropertyRef Name="Treatment_Id" />
           </Key>
-          <Property Name="Group_Name_En" Type="nvarchar(max)" />
-          <Property Name="Permission_Name_En" Type="nvarchar(max)" />
-          <Property Name="Permission_Group_Id" Type="int" Nullable="false" />
+          <Property Name="Treatment_Id" Type="int" Nullable="false" />
+          <Property Name="Treatment_Subject" Type="nvarchar(max)" />
+          <Property Name="Treatment_Date" Type="datetime" />
+          <Property Name="Create_Date" Type="datetime" />
+          <Property Name="Update_Date" Type="datetime" />
+          <Property Name="Treatment_Body" Type="ntext" />
+          <Property Name="Required_Reply" Type="bit" />
+          <Property Name="From_Employee_Structure_Id" Type="int" />
+          <Property Name="Treatment_Type_Id" Type="int" />
+          <Property Name="Treatment_Class_Id" Type="int" />
+          <Property Name="Treatment_Priority_id" Type="int" />
+          <Property Name="Treatment_Confidentiality_Id" Type="int" />
+          <Property Name="Treatment_Delivery_Id" Type="int" />
+          <Property Name="Treatment_Status_Id" Type="int" />
+          <Property Name="Treatment_Procedure_Id" Type="int" />
+          <Property Name="Prepared_Administration_Id" Type="int" />
+          <Property Name="Required_Reply_Date" Type="datetime" />
+          <Property Name="Treatment_Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="Employee_Name_Ar" Type="nvarchar(max)" />
+          <Property Name="Employee_Name_En" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Attachment_Treatment">
           <End Role="Treatment" Type="Self.Treatment" Multiplicity="0..1" />
@@ -483,12 +500,29 @@ warning 6002: The table/view 'ECMS.dbo.Permission_Group_Views' does not have a p
           <EntitySet Name="Treatment_Procedure" EntityType="Self.Treatment_Procedure" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatment_Status" EntityType="Self.Treatment_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatment_Type" EntityType="Self.Treatment_Type" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Permission_Group_Views" EntityType="Self.Permission_Group_Views" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="Treatment_View" EntityType="Self.Treatment_View" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-[Permission_Group_Views].[Group_Name_En] AS [Group_Name_En], 
-[Permission_Group_Views].[Permission_Name_En] AS [Permission_Name_En], 
-[Permission_Group_Views].[Permission_Group_Id] AS [Permission_Group_Id]
-FROM [dbo].[Permission_Group_Views] AS [Permission_Group_Views]</DefiningQuery>
+[Treatment_View].[Treatment_Id] AS [Treatment_Id], 
+[Treatment_View].[Treatment_Subject] AS [Treatment_Subject], 
+[Treatment_View].[Treatment_Date] AS [Treatment_Date], 
+[Treatment_View].[Create_Date] AS [Create_Date], 
+[Treatment_View].[Update_Date] AS [Update_Date], 
+[Treatment_View].[Treatment_Body] AS [Treatment_Body], 
+[Treatment_View].[Required_Reply] AS [Required_Reply], 
+[Treatment_View].[From_Employee_Structure_Id] AS [From_Employee_Structure_Id], 
+[Treatment_View].[Treatment_Type_Id] AS [Treatment_Type_Id], 
+[Treatment_View].[Treatment_Class_Id] AS [Treatment_Class_Id], 
+[Treatment_View].[Treatment_Priority_id] AS [Treatment_Priority_id], 
+[Treatment_View].[Treatment_Confidentiality_Id] AS [Treatment_Confidentiality_Id], 
+[Treatment_View].[Treatment_Delivery_Id] AS [Treatment_Delivery_Id], 
+[Treatment_View].[Treatment_Status_Id] AS [Treatment_Status_Id], 
+[Treatment_View].[Treatment_Procedure_Id] AS [Treatment_Procedure_Id], 
+[Treatment_View].[Prepared_Administration_Id] AS [Prepared_Administration_Id], 
+[Treatment_View].[Required_Reply_Date] AS [Required_Reply_Date], 
+[Treatment_View].[Treatment_Number] AS [Treatment_Number], 
+[Treatment_View].[Employee_Name_Ar] AS [Employee_Name_Ar], 
+[Treatment_View].[Employee_Name_En] AS [Employee_Name_En]
+FROM [dbo].[Treatment_View] AS [Treatment_View]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Attachment_Treatment" Association="Self.FK_Attachment_Treatment">
             <End Role="Treatment" EntitySet="Treatment" />
@@ -720,7 +754,7 @@ FROM [dbo].[Permission_Group_Views] AS [Permission_Group_Views]</DefiningQuery>
           <Property Name="Treatment_Procedure_Id" Type="Int32" />
           <Property Name="Prepared_Administration_Id" Type="Int32" />
           <Property Name="Required_Reply_Date" Type="DateTime" Precision="3" />
-          <Property Name="Treatment_Number" Type="Int32" />
+          <Property Name="Treatment_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Attachments" Relationship="Self.FK_Attachment_Treatment" FromRole="Treatment" ToRole="Attachment" />
           <NavigationProperty Name="Employee_Structure" Relationship="Self.FK_Treatment_Employee_Structure" FromRole="Treatment" ToRole="Employee_Structure" />
           <NavigationProperty Name="Owner_Relationship" Relationship="Self.FK_Owner_Relationship_Treatment" FromRole="Treatment" ToRole="Owner_Relationship" />
@@ -1173,15 +1207,32 @@ FROM [dbo].[Permission_Group_Views] AS [Permission_Group_Views]</DefiningQuery>
             <End Role="Treatment_Type" EntitySet="Treatment_Type" />
             <End Role="Treatment" EntitySet="Treatments" />
           </AssociationSet>
-          <EntitySet Name="Permission_Group_Views" EntityType="ECMSModel.Permission_Group_Views" />
+          <EntitySet Name="Treatment_View" EntityType="ECMSModel.Treatment_View" />
         </EntityContainer>
-        <EntityType Name="Permission_Group_Views">
+        <EntityType Name="Treatment_View">
           <Key>
-            <PropertyRef Name="Permission_Group_Id" />
+            <PropertyRef Name="Treatment_Id" />
           </Key>
-          <Property Name="Group_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Permission_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Permission_Group_Id" Type="Int32" Nullable="false" />
+          <Property Name="Treatment_Id" Type="Int32" Nullable="false" />
+          <Property Name="Treatment_Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Treatment_Date" Type="DateTime" Precision="3" />
+          <Property Name="Create_Date" Type="DateTime" Precision="3" />
+          <Property Name="Update_Date" Type="DateTime" Precision="3" />
+          <Property Name="Treatment_Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Required_Reply" Type="Boolean" />
+          <Property Name="From_Employee_Structure_Id" Type="Int32" />
+          <Property Name="Treatment_Type_Id" Type="Int32" />
+          <Property Name="Treatment_Class_Id" Type="Int32" />
+          <Property Name="Treatment_Priority_id" Type="Int32" />
+          <Property Name="Treatment_Confidentiality_Id" Type="Int32" />
+          <Property Name="Treatment_Delivery_Id" Type="Int32" />
+          <Property Name="Treatment_Status_Id" Type="Int32" />
+          <Property Name="Treatment_Procedure_Id" Type="Int32" />
+          <Property Name="Prepared_Administration_Id" Type="Int32" />
+          <Property Name="Required_Reply_Date" Type="DateTime" Precision="3" />
+          <Property Name="Treatment_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Employee_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Employee_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1404,12 +1455,29 @@ FROM [dbo].[Permission_Group_Views] AS [Permission_Group_Views]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Permission_Group_Views">
-            <EntityTypeMapping TypeName="ECMSModel.Permission_Group_Views">
-              <MappingFragment StoreEntitySet="Permission_Group_Views">
-                <ScalarProperty Name="Permission_Group_Id" ColumnName="Permission_Group_Id" />
-                <ScalarProperty Name="Permission_Name_En" ColumnName="Permission_Name_En" />
-                <ScalarProperty Name="Group_Name_En" ColumnName="Group_Name_En" />
+          <EntitySetMapping Name="Treatment_View">
+            <EntityTypeMapping TypeName="ECMSModel.Treatment_View">
+              <MappingFragment StoreEntitySet="Treatment_View">
+                <ScalarProperty Name="Employee_Name_En" ColumnName="Employee_Name_En" />
+                <ScalarProperty Name="Employee_Name_Ar" ColumnName="Employee_Name_Ar" />
+                <ScalarProperty Name="Treatment_Number" ColumnName="Treatment_Number" />
+                <ScalarProperty Name="Required_Reply_Date" ColumnName="Required_Reply_Date" />
+                <ScalarProperty Name="Prepared_Administration_Id" ColumnName="Prepared_Administration_Id" />
+                <ScalarProperty Name="Treatment_Procedure_Id" ColumnName="Treatment_Procedure_Id" />
+                <ScalarProperty Name="Treatment_Status_Id" ColumnName="Treatment_Status_Id" />
+                <ScalarProperty Name="Treatment_Delivery_Id" ColumnName="Treatment_Delivery_Id" />
+                <ScalarProperty Name="Treatment_Confidentiality_Id" ColumnName="Treatment_Confidentiality_Id" />
+                <ScalarProperty Name="Treatment_Priority_id" ColumnName="Treatment_Priority_id" />
+                <ScalarProperty Name="Treatment_Class_Id" ColumnName="Treatment_Class_Id" />
+                <ScalarProperty Name="Treatment_Type_Id" ColumnName="Treatment_Type_Id" />
+                <ScalarProperty Name="From_Employee_Structure_Id" ColumnName="From_Employee_Structure_Id" />
+                <ScalarProperty Name="Required_Reply" ColumnName="Required_Reply" />
+                <ScalarProperty Name="Treatment_Body" ColumnName="Treatment_Body" />
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Treatment_Date" ColumnName="Treatment_Date" />
+                <ScalarProperty Name="Treatment_Subject" ColumnName="Treatment_Subject" />
+                <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

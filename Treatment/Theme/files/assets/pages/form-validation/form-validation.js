@@ -23,6 +23,10 @@
               // and must be an email (duh)
               email: true
           },
+          Body_Holder_treatmentDate: {
+              // Email is required
+              presence: true,
+          },
           password: {
               // Password is also required
               presence: true,

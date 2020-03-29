@@ -144,9 +144,12 @@
     <Content Include="Pages\Setting\Admin\LockScreen.aspx" />
     <Content Include="Pages\Setting\Auth\Login.aspx" />
     <Content Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx" />
+    <Content Include="Pages\Setting\UserManagment\Employees.aspx" />
     <Content Include="Pages\Setting\UserManagment\Groups.aspx" />
     <Content Include="Pages\Setting\UserManagment\PermissionGroups.aspx" />
     <Content Include="Pages\Setting\UserManagment\Permissions.aspx" />
+    <Content Include="Pages\Setting\UserManagment\Structure.aspx" />
+    <Content Include="Pages\Treatment\inbox.aspx" />
     <Content Include="Pages\Treatment\NewTreatment.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -573,6 +576,7 @@
     <Content Include="Theme\files\assets\images\user-card\img-round4.jpg" />
     <Content Include="Theme\files\assets\images\user-card\inverse-img1.jpg" />
     <Content Include="Theme\files\assets\images\user-card\inverse-img2.jpg" />
+    <Content Include="Theme\files\assets\images\user-card\m.jpg" />
     <Content Include="Theme\files\assets\images\user-profile\bg-img1.jpg" />
     <Content Include="Theme\files\assets\images\user-profile\follower\f-1.jpg" />
     <Content Include="Theme\files\assets\images\user-profile\follower\f-2.jpg" />
@@ -2120,9 +2124,6 @@
     <Compile Include="Entity\Permission_Group.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\Permission_Group_Views.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entity\Structure.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
@@ -2151,6 +2152,9 @@
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Type.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Treatment_View.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -2184,6 +2188,13 @@
     <Compile Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx.designer.cs">
       <DependentUpon>TreatmentManagement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Setting\UserManagment\Employees.aspx.cs">
+      <DependentUpon>Employees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Setting\UserManagment\Employees.aspx.designer.cs">
+      <DependentUpon>Employees.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Setting\UserManagment\Groups.aspx.cs">
       <DependentUpon>Groups.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2204,6 +2215,20 @@
     </Compile>
     <Compile Include="Pages\Setting\UserManagment\Permissions.aspx.designer.cs">
       <DependentUpon>Permissions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Setting\UserManagment\Structure.aspx.cs">
+      <DependentUpon>Structure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Setting\UserManagment\Structure.aspx.designer.cs">
+      <DependentUpon>Structure.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Treatment\inbox.aspx.cs">
+      <DependentUpon>inbox.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Treatment\inbox.aspx.designer.cs">
+      <DependentUpon>inbox.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Treatment\NewTreatment.aspx.cs">
       <DependentUpon>NewTreatment.aspx</DependentUpon>
@@ -2372,6 +2397,7 @@
     <Content Include="Theme\files\extra-pages\landingpage\assets\fonts\ionicons.woff" />
     <Content Include="Theme\files\readme.md" />
     <Content Include="MasterEn.Master" />
+    <Content Include="Pages\Setting\TreatmentPriority.aspx.bak" />
     <EntityDeploy Include="Entity\ECMS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ECMS.Designer.cs</LastGenOutput>
@@ -2389,7 +2415,6 @@
       <DependentUpon>ECMS.edmx</DependentUpon>
       <LastGenOutput>ECMS.cs</LastGenOutput>
     </Content>
-    <Content Include="Pages\Setting\TreatmentPriority.aspx.bak" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
