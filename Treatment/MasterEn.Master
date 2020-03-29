@@ -46,7 +46,7 @@
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap-tagsinput\css\bootstrap-tagsinput.css" />
 
     <!-- Notification.css -->
-    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\pages\notification\notification.css"/>
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\pages\notification\notification.css" />
 
     <!-- jquery file upload Frame work -->
     <link href="~\Theme\files\assets\pages\jquery.filer\css\jquery.filer.css" type="text/css" rel="stylesheet" />
@@ -75,9 +75,10 @@
         .select2-container--default .select2-selection--single {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
-            height:100%;
-            vertical-align:middle;
+            height: 100%;
+            vertical-align: middle;
         }
+
             .select2-container--default .select2-selection--single .select2-selection__arrow b {
                 border-color: #342222 transparent transparent transparent;
             }
@@ -90,38 +91,46 @@
             .select2-container--default .select2-selection--multiple .select2-search__field {
                 width: 100% !important;
             }
+
         .input-group {
             margin-bottom: 0.25em;
         }
+
         .dxbButton_Material {
             color: white;
             background-color: #01a9ac;
         }
-        .jFiler-input-dragDrop{
-            width:100%
+
+        .jFiler-input-dragDrop {
+            width: 100%;
         }
+
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
             background-color: #01a9ac;
         }
+
         .select2-container--default .select2-results__option--highlighted[aria-selected] {
-    background-color: #01a9ac;
-    color: white;
-}
+            background-color: #01a9ac;
+            color: white;
+        }
+
         .validation-messages {
-    margin-right: 0;
-    margin-left: 0;
-}
+            margin-right: 0;
+            margin-left: 0;
+        }
+
         .nav-link.active {
-               border-left-color: #01a9ac !important;
-    border-left-style: solid !important;
-    border-left-width: 3px !important;
-    background-color: #fafafa !important;
-    color: #01a9ac;
-}
+            border-left-color: #01a9ac !important;
+            border-left-style: solid !important;
+            border-left-width: 3px !important;
+            background-color: #fafafa !important;
+            color: #01a9ac;
+        }
+
         .user-body .page-list li.mail-section a:hover {
-    color: #01a9ac !important;
-    background-color: #fafafa !important;
-}
+            color: #01a9ac !important;
+            background-color: #fafafa !important;
+        }
     </style>
 
     <script>
@@ -136,7 +145,7 @@
         /*
          * Notifications
          */
-        function notify(from, align, icon, type, animIn, animOut,Message_title,new_message) {
+        function notify(from, align, icon, type, animIn, animOut, Message_title, new_message) {
             $.growl({
                 icon: icon,
                 title: Message_title,
@@ -183,7 +192,7 @@
     <title>E-CMS - Main Screen</title>
 </head>
 <body>
-    <input id="bt-data-dismiss" type="hidden" data-dismiss="modal"  value="" />
+    <input id="bt-data-dismiss" type="hidden" data-dismiss="modal" value="" />
     <form id="form1" runat="server">
         <div>
             <!-- Pre-loader start -->
@@ -228,7 +237,7 @@
                 <div class="pcoded-overlay-box"></div>
                 <div class="pcoded-container navbar-wrapper">
 
-                    <nav class="navbar header-navbar pcoded-header" >
+                    <nav class="navbar header-navbar pcoded-header">
                         <div class="navbar-wrapper">
 
                             <div class="navbar-logo">
@@ -438,28 +447,12 @@
                                             </div>
                                             <!-- Page-header end -->
 
-                                            <!-- Page-body start -->
-                                            <div class="page-body">
-                                                <!-- Article Editor card start -->
-                                                <div class="card">
-                                                    <div class="card-header"> 
-                                                        <div class="card-header-right">
-                                                            <ul class="list-unstyled card-option">
-                                                                <li><i class="feather icon-maximize full-card"></i></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <asp:ContentPlaceHolder ID="Body_Holder" runat="server">
-                                                        </asp:ContentPlaceHolder>
-                                                    </div>
 
-                                                </div>
-                                                <!-- Article Editor card end -->
-                                            </div>
-                                            <!-- Page-body end -->
-
+                                            <asp:ContentPlaceHolder ID="Body_Holder" runat="server">
+                                            </asp:ContentPlaceHolder>
                                         </div>
+
+
                                     </div>
                                     <!-- Main-body end -->
 
@@ -588,7 +581,7 @@
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
             <script>
-               
+
 
                 window.dataLayer = window.dataLayer || [];
                 function gtag() { dataLayer.push(arguments); }

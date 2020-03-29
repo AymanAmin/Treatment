@@ -44,6 +44,5 @@ namespace Treatment.Entity
         public DbSet<Treatment_Procedure> Treatment_Procedure { get; set; }
         public DbSet<Treatment_Status> Treatment_Status { get; set; }
         public DbSet<Treatment_Type> Treatment_Type { get; set; }
-        public DbSet<Permission_Group_Views> Permission_Group_Views { get; set; }
     }
 }
