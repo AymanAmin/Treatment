@@ -22,6 +22,15 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.TextBox treatmentDate;
         
         /// <summary>
+        /// valTreatmentDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valTreatmentDate;
+        
+        /// <summary>
         /// standardProcedure control.
         /// </summary>
         /// <remarks>
@@ -29,15 +38,6 @@ namespace Treatment.Pages.Treatment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList standardProcedure;
-        
-        /// <summary>
-        /// typeTreatment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList typeTreatment;
         
         /// <summary>
         /// preparedManagement control.
@@ -49,13 +49,31 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.DropDownList preparedManagement;
         
         /// <summary>
+        /// classificationSubject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList classificationSubject;
+        
+        /// <summary>
         /// treatmentTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList treatmentTo;
+        protected global::System.Web.UI.WebControls.ListBox treatmentTo;
+        
+        /// <summary>
+        /// valTreatmentTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valTreatmentTo;
         
         /// <summary>
         /// treatmentCopyTo control.
@@ -64,7 +82,7 @@ namespace Treatment.Pages.Treatment {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList treatmentCopyTo;
+        protected global::System.Web.UI.WebControls.ListBox treatmentCopyTo;
         
         /// <summary>
         /// subjectTreatement control.
@@ -76,13 +94,31 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.TextBox subjectTreatement;
         
         /// <summary>
-        /// classificationSubject control.
+        /// valSubjectTreatement control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList classificationSubject;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valSubjectTreatement;
+        
+        /// <summary>
+        /// typeTreatment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList typeTreatment;
+        
+        /// <summary>
+        /// valTypeTreatment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valTypeTreatment;
         
         /// <summary>
         /// secretLevel control.
@@ -94,6 +130,15 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.DropDownList secretLevel;
         
         /// <summary>
+        /// valSecretLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valSecretLevel;
+        
+        /// <summary>
         /// priorityLevel control.
         /// </summary>
         /// <remarks>
@@ -103,6 +148,15 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.DropDownList priorityLevel;
         
         /// <summary>
+        /// valPriorityLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valPriorityLevel;
+        
+        /// <summary>
         /// speedUp control.
         /// </summary>
         /// <remarks>
@@ -110,6 +164,15 @@ namespace Treatment.Pages.Treatment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList speedUp;
+        
+        /// <summary>
+        /// valSpeedUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valSpeedUp;
         
         /// <summary>
         /// speech control.

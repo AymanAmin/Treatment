@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b69c7149e3e24360a5e9178a05102e0c" Name="Diagram1">
+      <Diagram DiagramId="92fd3a3224c9427798a1f4ce2087d4d3" Name="Diagram1">
         <EntityTypeShape EntityType="ECMSModel.Assignment_Status" Width="1.5" PointX="10.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ECMSModel.Attachment" Width="1.5" PointX="12.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ECMSModel.Employee" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
@@ -45,6 +45,7 @@
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Procedure" ManuallyRouted="false" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Status" ManuallyRouted="false" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Type" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_View" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
