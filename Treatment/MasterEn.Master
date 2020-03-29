@@ -191,7 +191,7 @@
     </asp:ContentPlaceHolder>
     <title>E-CMS - Main Screen</title>
 </head>
-<body>
+<body onload="omer()">
     <input id="bt-data-dismiss" type="hidden" data-dismiss="modal" value="" />
     <form id="form1" runat="server">
         <div>
