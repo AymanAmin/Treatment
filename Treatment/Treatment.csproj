@@ -620,8 +620,6 @@
     <Content Include="Theme\files\assets\js\swiper-custom.js" />
     <Content Include="Theme\files\assets\js\vartical-layout.min.js" />
     <Content Include="Theme\files\assets\pages\accordion\accordion.js" />
-    <Content Include="Theme\files\assets\pages\ace-editor\ace-editor-custom.js" />
-    <Content Include="Theme\files\assets\pages\ace-editor\build\aui\aui.js" />
     <Content Include="Theme\files\assets\pages\advance-elements\bootstrap-datetimepicker.min.js" />
     <Content Include="Theme\files\assets\pages\advance-elements\css\bootstrap-datetimepicker.css" />
     <Content Include="Theme\files\assets\pages\advance-elements\custom-picker.js" />
@@ -656,7 +654,6 @@
     <Content Include="Theme\files\assets\pages\clndr-calendar\css\clndr.css" />
     <Content Include="Theme\files\assets\pages\clndr-calendar\js\clndr-custom.js" />
     <Content Include="Theme\files\assets\pages\counter\task-detail.js" />
-    <Content Include="Theme\files\assets\pages\cropper\croper.js" />
     <Content Include="Theme\files\assets\pages\dashboard\amchart\js\amcharts.js" />
     <Content Include="Theme\files\assets\pages\dashboard\amchart\js\light.js" />
     <Content Include="Theme\files\assets\pages\dashboard\amchart\js\serial.js" />
@@ -2061,7 +2058,9 @@
     <Content Include="Theme\files\extra-pages\landingpage\assets\logos\logo7.png" />
     <Content Include="Theme\files\extra-pages\landingpage\index.htm" />
     <Content Include="TreatmentCreate.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -2119,6 +2118,9 @@
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Permission_Group.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Permission_Group_Views.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Structure.cs">
@@ -2388,6 +2390,7 @@
       <LastGenOutput>ECMS.cs</LastGenOutput>
     </Content>
     <Content Include="Pages\Setting\TreatmentPriority.aspx.bak" />
+    <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Assignment_Status">
           <Key>
             <PropertyRef Name="Assignment_Status_Id" />
@@ -200,6 +200,16 @@
           <Property Name="Treatment_Type_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Treatment_Type_Name_Ar" Type="nvarchar(max)" />
           <Property Name="Treatment_Type_Name_En" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ECMS.dbo.Permission_Group_Views' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Permission_Group_Views">
+          <Key>
+            <PropertyRef Name="Permission_Group_Id" />
+          </Key>
+          <Property Name="Group_Name_En" Type="nvarchar(max)" />
+          <Property Name="Permission_Name_En" Type="nvarchar(max)" />
+          <Property Name="Permission_Group_Id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Attachment_Treatment">
           <End Role="Treatment" Type="Self.Treatment" Multiplicity="0..1" />
@@ -473,6 +483,13 @@
           <EntitySet Name="Treatment_Procedure" EntityType="Self.Treatment_Procedure" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatment_Status" EntityType="Self.Treatment_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatment_Type" EntityType="Self.Treatment_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permission_Group_Views" EntityType="Self.Permission_Group_Views" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Permission_Group_Views].[Group_Name_En] AS [Group_Name_En], 
+[Permission_Group_Views].[Permission_Name_En] AS [Permission_Name_En], 
+[Permission_Group_Views].[Permission_Group_Id] AS [Permission_Group_Id]
+FROM [dbo].[Permission_Group_Views] AS [Permission_Group_Views]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Attachment_Treatment" Association="Self.FK_Attachment_Treatment">
             <End Role="Treatment" EntitySet="Treatment" />
             <End Role="Attachment" EntitySet="Attachment" />
@@ -558,8 +575,7 @@
             <End Role="Treatment" EntitySet="Treatment" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ECMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1157,7 +1173,16 @@
             <End Role="Treatment_Type" EntitySet="Treatment_Type" />
             <End Role="Treatment" EntitySet="Treatments" />
           </AssociationSet>
+          <EntitySet Name="Permission_Group_Views" EntityType="ECMSModel.Permission_Group_Views" />
         </EntityContainer>
+        <EntityType Name="Permission_Group_Views">
+          <Key>
+            <PropertyRef Name="Permission_Group_Id" />
+          </Key>
+          <Property Name="Group_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Permission_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Permission_Group_Id" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1376,6 +1401,15 @@
                 <ScalarProperty Name="Treatment_Type_Id" ColumnName="Treatment_Type_Id" />
                 <ScalarProperty Name="Treatment_Type_Name_Ar" ColumnName="Treatment_Type_Name_Ar" />
                 <ScalarProperty Name="Treatment_Type_Name_En" ColumnName="Treatment_Type_Name_En" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permission_Group_Views">
+            <EntityTypeMapping TypeName="ECMSModel.Permission_Group_Views">
+              <MappingFragment StoreEntitySet="Permission_Group_Views">
+                <ScalarProperty Name="Permission_Group_Id" ColumnName="Permission_Group_Id" />
+                <ScalarProperty Name="Permission_Name_En" ColumnName="Permission_Name_En" />
+                <ScalarProperty Name="Group_Name_En" ColumnName="Group_Name_En" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

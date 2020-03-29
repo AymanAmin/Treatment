@@ -14,6 +14,7 @@ namespace Treatment.Pages.Setting.UserManagment
         ECMSEntities db = new ECMSEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
+            Permission_Group group = db.Permission_Group.First();
             
             if (!IsPostBack)
             {
