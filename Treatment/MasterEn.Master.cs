@@ -12,9 +12,11 @@ namespace Treatment
     public partial class MasterEn : System.Web.UI.MasterPage
     {
         ECMSEntities db = new ECMSEntities();
+        List<Permission> ListPermissions = new List<Permission>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (SessionWrapper.LoggedUser != null)
+            ListPermissions = db.Permissions.ToList();
+            /*if (SessionWrapper.LoggedUser != null)
             {
                 if (SessionWrapper.IsLocked)
                     Response.Redirect("~/Pages/Setting/admin/LockScreen.aspx");
@@ -23,19 +25,21 @@ namespace Treatment
             {
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
             }
+            ListPermissions = SessionWrapper.Permssions;*/
             Employee_Name();
-            LoadBreadcrumb();
-            LoadMenu();
+            LoadBreadcrumb(ListPermissions);
+            LoadMenu(ListPermissions);
         }
 
         private void Employee_Name()
         {
-            Emp_Name.Text = SessionWrapper.LoggedUser.Employee_Name_En;
+            if (SessionWrapper.LoggedUser != null)
+                Emp_Name.Text = SessionWrapper.LoggedUser.Employee_Name_En;
         }
 
-        private void LoadBreadcrumb()
+        private void LoadBreadcrumb(List<Permission> ListPermission)
         {
-            string str = "<li class='breadcrumb-item'><a href = '~/' ><i class='feather icon-home'></i></a></li>";
+            string str = "<li class='breadcrumb-item'><a href = '~/'><i class='feather icon-home'></i></a></li>";
 
             List<string> breadcrumbs = new List<string>();
 
@@ -44,7 +48,7 @@ namespace Treatment
             string LocalPath =  String.Concat(HttpContext.Current.Request.Url.LocalPath.Skip(1));
             try
             {
-                List<Permission> ListPermission = SessionWrapper.Permssions;
+                
                 Permission CurrentPage  =  ListPermission.Where(x => x.Url_Path == LocalPath).First();
 
                 if (CurrentPage != null)
@@ -68,9 +72,8 @@ namespace Treatment
             catch { breadcrumb.Text = str; PageName.Text = Current_PageName; }
         }
 
-        private void LoadMenu()
+        private void LoadMenu(List<Permission> Permission_List)
         {
-            List<Permission> Permission_List = SessionWrapper.Permssions;
             string str = string.Empty;
             try
             {

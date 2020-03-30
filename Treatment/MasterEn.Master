@@ -371,7 +371,7 @@
                                             <div class="dropdown-toggle" data-toggle="dropdown">
                                                 <img src="..\..\..\..\Theme\files\assets\images\user.png" class="img-radius" alt="User-Profile-Image">
                                                 <span>
-                                                    <asp:Literal ID="Emp_Name" runat="server" Text="Geust User"></asp:Literal></span>
+                                                    <asp:Literal ID="Emp_Name" runat="server" Text="Guest User"></asp:Literal></span>
                                                 <i class="feather icon-chevron-down"></i>
                                             </div>
                                             <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
