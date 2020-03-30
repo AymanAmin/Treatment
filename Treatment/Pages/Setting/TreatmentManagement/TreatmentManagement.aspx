@@ -6,7 +6,7 @@
     <title>Treatment Management</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
-    <div class="card-block box-list">
+    <div class="box-list" style="background-color:white;">
         <div class="row">
             <div class="col-lg-6">
                 <div class="p-20 z-depth-0 waves-effect dt-responsive table-responsive" data-toggle="tooltip" data-placement="top" title="Treatment Type">

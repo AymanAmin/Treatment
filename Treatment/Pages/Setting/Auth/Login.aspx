@@ -91,11 +91,11 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <asp:TextBox ID="txtEmail" runat="server" class="form-control" required="" placeholder="Your User Name"></asp:TextBox>
+                                        <asp:TextBox ID="txtEmail" runat="server" class="form-control" required="" placeholder="Your Email"></asp:TextBox>
                                         <span class="form-bar"></span>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <asp:TextBox ID="txtPassword" runat="server" class="form-control" required="" placeholder="Password"></asp:TextBox>
+                                        <asp:TextBox ID="txtPassword" runat="server" class="form-control" required="" placeholder="Your Password" TextMode="Password"></asp:TextBox>
                                         <span class="form-bar"></span>
                                     </div>
                                     <div class="row m-t-25 text-left">

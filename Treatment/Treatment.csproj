@@ -141,7 +141,7 @@
   <ItemGroup>
     <Content Include="Email\SendingEmail.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Pages\Setting\Admin\LockScreen.aspx" />
+    <Content Include="Pages\Setting\Auth\LockScreen.aspx" />
     <Content Include="Pages\Setting\Auth\Login.aspx" />
     <Content Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx" />
     <Content Include="Pages\Setting\UserManagment\Employees.aspx" />
@@ -2167,11 +2167,11 @@
     <Compile Include="MasterEn.Master.designer.cs">
       <DependentUpon>MasterEn.Master</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Setting\Admin\LockScreen.aspx.cs">
+    <Compile Include="Pages\Setting\Auth\LockScreen.aspx.cs">
       <DependentUpon>LockScreen.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Setting\Admin\LockScreen.aspx.designer.cs">
+    <Compile Include="Pages\Setting\Auth\LockScreen.aspx.designer.cs">
       <DependentUpon>LockScreen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setting\Auth\Login.aspx.cs">
@@ -2180,6 +2180,9 @@
     </Compile>
     <Compile Include="Pages\Setting\Auth\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Setting\Auth\Logout.ashx.cs">
+      <DependentUpon>Logout.ashx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx.cs">
       <DependentUpon>TreatmentManagement.aspx</DependentUpon>
@@ -2415,6 +2418,7 @@
       <DependentUpon>ECMS.edmx</DependentUpon>
       <LastGenOutput>ECMS.cs</LastGenOutput>
     </Content>
+    <Content Include="Pages\Setting\Auth\Logout.ashx" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2427,6 +2431,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+    <Folder Include="Pages\Setting\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

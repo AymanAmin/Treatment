@@ -14,11 +14,23 @@ namespace Treatment
         ECMSEntities db = new ECMSEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["IsLocked"] != null)
-                if ((bool)Session["IsLocked"])
+            if (SessionWrapper.LoggedUser != null)
+            {
+                if (SessionWrapper.IsLocked)
                     Response.Redirect("~/Pages/Setting/admin/LockScreen.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+            }
+            Employee_Name();
             LoadBreadcrumb();
             LoadMenu();
+        }
+
+        private void Employee_Name()
+        {
+            Emp_Name.Text = SessionWrapper.LoggedUser.Employee_Name_En;
         }
 
         private void LoadBreadcrumb()
@@ -32,7 +44,7 @@ namespace Treatment
             string LocalPath =  String.Concat(HttpContext.Current.Request.Url.LocalPath.Skip(1));
             try
             {
-                List<Permission> ListPermission = db.Permissions.ToList();
+                List<Permission> ListPermission = SessionWrapper.Permssions;
                 Permission CurrentPage  =  ListPermission.Where(x => x.Url_Path == LocalPath).First();
 
                 if (CurrentPage != null)
@@ -58,7 +70,7 @@ namespace Treatment
 
         private void LoadMenu()
         {
-            List<Permission> Permission_List = db.Permissions.ToList();
+            List<Permission> Permission_List = SessionWrapper.Permssions;
             string str = string.Empty;
             try
             {

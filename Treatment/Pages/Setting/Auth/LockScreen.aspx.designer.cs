@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Treatment.Pages.Setting.Admin {
+namespace Treatment.Pages.Setting.Auth {
     
     
     public partial class LockScreen {
