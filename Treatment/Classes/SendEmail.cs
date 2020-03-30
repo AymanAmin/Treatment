@@ -12,7 +12,15 @@ namespace Website.Classes
         string System_password = "admin123!@#";
         string System_Name = "ECMS System";
 
-        public bool NewMail(string SendTo, string Message, string Subject)
+        /// <summary>
+        /// Send New message 
+        /// </summary>
+        /// <param name="SendTo"></param>
+        /// <param name="Message"></param>
+        /// <param name="Subject"></param>
+        /// <param name="IsBodyHTML"></param>
+        /// <returns>True Or False</returns>
+        public bool NewMail(string SendTo, string Message, string Subject, bool IsBodyHTML)
         {
             try
             {
@@ -27,7 +35,7 @@ namespace Website.Classes
                 mail.To.Add(SendTo);
                 mail.Subject = Subject;
                 mail.Body = Message;
-
+                mail.IsBodyHtml = IsBodyHTML;
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential(System_email, System_password);
                 SmtpServer.EnableSsl = true;
@@ -40,6 +48,13 @@ namespace Website.Classes
             return true;
         }
 
+        /// <summary>
+        /// Reset The Email 
+        /// </summary>
+        /// <param name="SendTo"></param>
+        /// <param name="NewPassword"></param>
+        /// <param name="server_name"></param>
+        /// <returns>return True if it sent the email - false if not senr</returns>
         public bool ResetEmail(string SendTo, string NewPassword, string server_name)
         {
             bool res = IsValidEmail(SendTo);
@@ -157,10 +172,16 @@ namespace Website.Classes
             return true;
         }
 
+        /// <summary>
+        /// Validation if the email is valid
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns> return true of is valid - False if it's not valid</returns>
         bool IsValidEmail(string email)
         {
             try
             {
+
                 var addr = new System.Net.Mail.MailAddress(email);
                 return addr.Address == email;
             }
