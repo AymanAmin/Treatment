@@ -139,10 +139,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Email\SendingEmail.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Setting\Auth\LockScreen.aspx" />
     <Content Include="Pages\Setting\Auth\Login.aspx" />
+    <Content Include="Pages\Setting\Auth\ResetPassword.aspx" />
     <Content Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx" />
     <Content Include="Pages\Setting\UserManagment\Employees.aspx" />
     <Content Include="Pages\Setting\UserManagment\Groups.aspx" />
@@ -463,6 +463,7 @@
     <Content Include="Theme\files\assets\images\e-payment\card\amex.jpg" />
     <Content Include="Theme\files\assets\images\e-payment\card\mastercard.jpg" />
     <Content Include="Theme\files\assets\images\e-payment\card\visa.jpg" />
+    <Content Include="Theme\files\assets\images\error.png" />
     <Content Include="Theme\files\assets\images\error\error-1.jpg" />
     <Content Include="Theme\files\assets\images\error\error-2.jpg" />
     <Content Include="Theme\files\assets\images\error\error-3.jpg" />
@@ -515,6 +516,7 @@
     <Content Include="Theme\files\assets\images\navbar\nav7.jpg" />
     <Content Include="Theme\files\assets\images\navbar\nav8.jpg" />
     <Content Include="Theme\files\assets\images\navbar\nav9.jpg" />
+    <Content Include="Theme\files\assets\images\notfound.png" />
     <Content Include="Theme\files\assets\images\product-detail\pro-d-l-1.jpg" />
     <Content Include="Theme\files\assets\images\product-detail\pro-d-l-2.jpg" />
     <Content Include="Theme\files\assets\images\product-detail\pro-d-l-3.jpg" />
@@ -561,6 +563,7 @@
     <Content Include="Theme\files\assets\images\slider\slider7.jpg" />
     <Content Include="Theme\files\assets\images\social\img1.jpg" />
     <Content Include="Theme\files\assets\images\social\profile.jpg" />
+    <Content Include="Theme\files\assets\images\success.png" />
     <Content Include="Theme\files\assets\images\task\task-u1.jpg" />
     <Content Include="Theme\files\assets\images\task\task-u2.jpg" />
     <Content Include="Theme\files\assets\images\task\task-u3.jpg" />
@@ -2074,14 +2077,7 @@
     <Compile Include="Classes\SessionWrapper.cs" />
     <Compile Include="Classes\StringCipher.cs" />
     <Compile Include="Classes\UtilityClass.cs" />
-    <Compile Include="Email\SendEmail.cs" />
-    <Compile Include="Email\SendingEmail.aspx.cs">
-      <DependentUpon>SendingEmail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Email\SendingEmail.aspx.designer.cs">
-      <DependentUpon>SendingEmail.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Classes\SendEmail.cs" />
     <Compile Include="Entity\Assignment_Status.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
@@ -2183,6 +2179,13 @@
     </Compile>
     <Compile Include="Pages\Setting\Auth\Logout.ashx.cs">
       <DependentUpon>Logout.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Setting\Auth\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Setting\Auth\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx.cs">
       <DependentUpon>TreatmentManagement.aspx</DependentUpon>
@@ -2400,7 +2403,6 @@
     <Content Include="Theme\files\extra-pages\landingpage\assets\fonts\ionicons.woff" />
     <Content Include="Theme\files\readme.md" />
     <Content Include="MasterEn.Master" />
-    <Content Include="Pages\Setting\TreatmentPriority.aspx.bak" />
     <EntityDeploy Include="Entity\ECMS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ECMS.Designer.cs</LastGenOutput>
@@ -2431,7 +2433,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
-    <Folder Include="Pages\Setting\Admin\" />
+    <Folder Include="Pages\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
