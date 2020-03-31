@@ -245,7 +245,7 @@
                                     <i class="feather icon-menu"></i>
                                 </a>
                                 <a href="index-1.htm">
-                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="Theme-Logo" width="70" height="50"/>
+                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="Theme-Logo" width="70" height="50" />
                                 </a>
                                 <a class="mobile-options">
                                     <i class="feather icon-more-horizontal"></i>
@@ -258,7 +258,7 @@
                                         <div class="main-search morphsearch-search">
                                             <div class="input-group">
                                                 <span class="input-group-addon search-close"><i class="feather icon-x"></i></span>
-                                                <input type="text" class="form-control"/>
+                                                <input type="text" class="form-control" />
                                                 <span class="input-group-addon search-btn"><i class="feather icon-search"></i></span>
                                             </div>
                                         </div>
@@ -335,7 +335,7 @@
                                                 </li>
                                                 <li>
                                                     <div class="media">
-                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="Generic placeholder image"/>
+                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="Generic placeholder image" />
                                                         <div class="media-body">
                                                             <h5 class="notification-user">Mazin Awad</h5>
                                                             <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -345,7 +345,7 @@
                                                 </li>
                                                 <li>
                                                     <div class="media">
-                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="Generic placeholder image"/>
+                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="Generic placeholder image" />
                                                         <div class="media-body">
                                                             <h5 class="notification-user">Ayman Amin</h5>
                                                             <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -355,7 +355,7 @@
                                                 </li>
                                                 <li>
                                                     <div class="media">
-                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-5.jpg" alt="Generic placeholder image"/>
+                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-5.jpg" alt="Generic placeholder image" />
                                                         <div class="media-body">
                                                             <h5 class="notification-user">Hassan Bakre</h5>
                                                             <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -369,7 +369,7 @@
                                     <li class="user-profile header-notification">
                                         <div class="dropdown-primary dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">
-                                                <img src="..\..\..\..\Theme\files\assets\images\user.png" class="img-radius" alt="User-Profile-Image"/>
+                                                <img src="..\..\..\..\Theme\files\assets\images\user.png" class="img-radius" alt="User-Profile-Image" />
                                                 <span>
                                                     <asp:Literal ID="Emp_Name" runat="server" Text="Guest User"></asp:Literal></span>
                                                 <i class="feather icon-chevron-down"></i>
@@ -580,15 +580,20 @@
             <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\jquery.quicksearch.js"></script>
 
             <!-- Chart js -->
-    <script type="text/javascript" src="..\..\Theme\files\bower_components\chart.js\js\Chart.js"></script>
-    <!-- amchart js -->
-    <script src="..\..\Theme\files\assets\pages\widget\amchart\amcharts.js"></script>
-    <script src="..\..\Theme\files\assets\pages\widget\amchart\serial.js"></script>
-    <script src="..\..\Theme\files\assets\pages\widget\amchart\light.js"></script>
-    <script src="..\..\Theme\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
-    <script type="text/javascript" src="..\..\Theme\files\assets\js\SmoothScroll.js"></script>
-    <script src="..\..\Theme\files\assets\js\pcoded.min.js"></script>
-    <script type="text/javascript" src="..\..\Theme\files\assets\pages\dashboard\custom-dashboard.js"></script>
+            <script type="text/javascript" src="..\..\Theme\files\bower_components\chart.js\js\Chart.js"></script>
+            <!-- amchart js -->
+            <script src="..\..\..\..\Theme\files\assets\pages\widget\amchart\amcharts.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\pages\widget\amchart\serial.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\pages\widget\amchart\light.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\SmoothScroll.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\js\pcoded.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\dashboard\custom-dashboard.js"></script>
+
+            <!-- amchart js -->
+            <script src="..\..\..\..\Theme\files\assets\pages\widget\amchart\amcharts.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\pages\widget\amchart\serial.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\pages\widget\amchart\light.js"></script>
 
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
