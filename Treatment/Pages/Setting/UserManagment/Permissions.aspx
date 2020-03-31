@@ -111,12 +111,28 @@
                         <dx:ASPxTreeList ID="PermissionTreeList" Style="width: 100%; text-align: center" runat="server" AutoGenerateColumns="False" DataSourceID="PermissionDataSource" EnableTheming="True" KeyFieldName="Permission_Id" Theme="Mulberry" ParentFieldName="Parent">
                             <Columns>
                                 <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Arabic Name" FieldName="Permission_Name_Ar" ShowInFilterControl="Default" VisibleIndex="1">
+                                    <PropertiesTextEdit>
+                                        <Style CssClass="form-control">
+                                        </Style>
+                                    </PropertiesTextEdit>
                                 </dx:TreeListTextColumn>
                                 <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="English Name" FieldName="Permission_Name_En" ShowInFilterControl="Default" VisibleIndex="0">
+                                    <PropertiesTextEdit>
+                                        <Style CssClass="form-control">
+                                        </Style>
+                                    </PropertiesTextEdit>
                                 </dx:TreeListTextColumn>
                                 <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Path" FieldName="Url_Path" ShowInFilterControl="Default" VisibleIndex="4">
+                                    <PropertiesTextEdit>
+                                        <Style CssClass="form-control">
+                                        </Style>
+                                    </PropertiesTextEdit>
                                 </dx:TreeListTextColumn>
                                 <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Icon" FieldName="Permission_Icon" ShowInFilterControl="Default" VisibleIndex="5">
+                                    <PropertiesTextEdit>
+                                        <Style CssClass="form-control">
+                                        </Style>
+                                    </PropertiesTextEdit>
                                 </dx:TreeListTextColumn>
                                 <dx:TreeListCommandColumn Caption="Action" VisibleIndex="6">
                                     <EditButton Visible="True" Text=" ">
@@ -148,12 +164,13 @@
 
                                 </dx:TreeListCommandColumn>
                                 <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="ParentID" FieldName="Parent" ShowInFilterControl="Default" VisibleIndex="3">
+                                    <PropertiesTextEdit>
+                                        <Style CssClass="form-control">
+                                        </Style>
+                                    </PropertiesTextEdit>
                                 </dx:TreeListTextColumn>
                             </Columns>
                             <SettingsBehavior AllowAutoFilter="True" AutoExpandAllNodes="True"></SettingsBehavior>
-
-                            <SettingsPager Mode="ShowPager">
-                            </SettingsPager>
 
                             <SettingsCustomizationWindow PopupHorizontalAlign="RightSides" PopupVerticalAlign="BottomSides"></SettingsCustomizationWindow>
 

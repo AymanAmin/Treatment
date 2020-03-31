@@ -135,7 +135,7 @@ namespace Website.Classes
             restEmail_Message += "</tr>";
             restEmail_Message += "<tr>";
             restEmail_Message += "<td style = 'padding-top: 24px; -ms-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #9095a2; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 16px; font-smoothing: always; font-style: normal; font-weight: 400; letter-spacing: -0.18px; line-height: 24px; mso-line-height-rule: exactly; text-decoration: none; vertical-align: top; width: 100%;'>";
-            restEmail_Message += "Your old password is :  <strong>"+NewPassword+"</strong>. Please Change this password as soon as possible.";
+            restEmail_Message += "Your New password is :  <strong>"+NewPassword+"</strong>. Please Change this password as soon as possible.";
             restEmail_Message += "</td>";
             restEmail_Message += "</tr>";
             restEmail_Message += "<tr>";
