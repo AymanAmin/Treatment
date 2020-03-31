@@ -32,7 +32,7 @@ namespace Treatment.Pages.Setting.Auth
             Employee emp = db.Employees.Where(x => x.Employee_Email == email).FirstOrDefault();
             if (emp != null)
             {
-                string New_Password = RandomString(7);
+                string New_Password = StringCipher.RandomString(7);
                 string Encrypted_Password = StringCipher.Encrypt(New_Password, "Password"); // emp.Employee_Password.ToString();
                 emp.Employee_Password = Encrypted_Password;
                 db.Entry(emp).State = System.Data.EntityState.Modified;
@@ -59,12 +59,7 @@ namespace Treatment.Pages.Setting.Auth
             }
         }
 
-        private static Random random = new Random();
-        public static string RandomString(int length)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length)
-              .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
+        
+        
     }
 }
