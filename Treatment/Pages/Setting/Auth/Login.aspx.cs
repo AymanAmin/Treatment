@@ -22,6 +22,7 @@ namespace Treatment.Pages.Setting.Auth
 
         protected void btLogin_Click(object sender, EventArgs e)
         {
+          //string Encrpted_Password = StringCipher.Encrypt(,"Password");
            bool result =  auth_Login(txtEmail.Text, txtPassword.Text);
             if (result)
                 Response.Redirect("~/");
@@ -33,28 +34,36 @@ namespace Treatment.Pages.Setting.Auth
         {
             try
             {
-                Employee emp = db.Employees.Where(x => x.Employee_Email == username && x.Employee_Password == password).FirstOrDefault();
-                if (emp != null)
+                List<Employee> emp_list = db.Employees.ToList();
+                for (int i = 0; i < emp_list.Count; i++)
                 {
-                    SessionWrapper.LoggedUser = emp;
-                    SessionWrapper.IsLocked = false;
-                    int id = SessionWrapper.LoggedUser.Employee_Id;
-                   
-                    List<Permission_Group> Per_group = db.Permission_Group.Where(x => x.Group_Id == emp.Group_Id).ToList();
-                    List_permission.Clear();
-                    for (int i = 0; i < Per_group.Count; i++)
+                    if (username.ToUpper() == emp_list[i].Employee_Email.ToUpper())
                     {
+                        string DecryptedPassword = StringCipher.Decrypt(emp_list[i].Employee_Password, "Password");
+                        if (password == DecryptedPassword)
+                        {
+                            Employee emp = emp_list[i];
+                            SessionWrapper.LoggedUser = emp;
+                            SessionWrapper.IsLocked = false;
+                            int id = SessionWrapper.LoggedUser.Employee_Id;
 
-                        Permission per = db.Permissions.Find(Per_group[i].Permission_Id);
-                       if(per != null)
-                            List_permission.Add(per);
+                            List<Permission_Group> Per_group = db.Permission_Group.Where(x => x.Group_Id == emp.Group_Id).ToList();
+                            List_permission.Clear();
+                            for (int j = 0; j < Per_group.Count; j++)
+                            {
+                                Permission per = db.Permissions.Find(Per_group[j].Permission_Id);
+                                if (per != null)
+                                    List_permission.Add(per);
+                            }
+                            SessionWrapper.Permssions = List_permission;
+                        }
+                        else
+                            continue;
+
+                        return true;
                     }
-                    SessionWrapper.Permssions = List_permission;
                 }
-                else
-                    return false;
-
-                return true;
+                return false;
             }
             catch (Exception er) { return false; }
         }
