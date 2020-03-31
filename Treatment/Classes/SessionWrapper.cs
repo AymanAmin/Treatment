@@ -55,9 +55,11 @@ namespace Website.Classes
         #endregion
 
 
-        #region Session Names
-
         #region Users
+
+        #region Permissions
+
+        #region IsLocked
 
 
         public static Employee LoggedUser
@@ -77,18 +79,34 @@ namespace Website.Classes
         }
         
         
-        public static Nullable<int> OrdId
+        public static List<Permission> Permssions
         {
-            get { return GetFromSession<Nullable<int>>("OrdId"); }
+            get { return GetFromSession<List<Permission>>("Permission"); }
             set
             {
                 if (value == null)
                 {
-                    HttpContext.Current.Session.Remove("OrdId");
+                    HttpContext.Current.Session.Remove("Permission");
                 }
                 else
                 {
-                    SetInSession<Nullable<int>>("OrdId", value);
+                    SetInSession<List<Permission>>("Permission", value);
+                }
+            }
+        }
+
+        public static bool IsLocked
+        {
+            get { return GetFromSession<bool>("IsLocked"); }
+            set
+            {
+                if (value == null)
+                {
+                    HttpContext.Current.Session.Remove("IsLocked");
+                }
+                else
+                {
+                    SetInSession<bool>("IsLocked", value);
                 }
             }
         }
@@ -96,7 +114,8 @@ namespace Website.Classes
         #endregion
 
         #endregion
+
+        #endregion
     }
-
-
 }
+

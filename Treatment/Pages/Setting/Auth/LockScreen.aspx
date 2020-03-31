@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LockScreen.aspx.cs" Inherits="Treatment.Pages.Setting.Admin.LockScreen" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LockScreen.aspx.cs" Inherits="Treatment.Pages.Setting.Auth.LockScreen" %>
 
 <!DOCTYPE html>
 

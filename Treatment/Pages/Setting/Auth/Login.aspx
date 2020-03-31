@@ -91,17 +91,17 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <asp:TextBox ID="txtEmail" runat="server" class="form-control" required="" placeholder="Your User Name"></asp:TextBox>
+                                        <asp:TextBox ID="txtEmail" runat="server" class="form-control" required="" placeholder="Your Email"></asp:TextBox>
                                         <span class="form-bar"></span>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <asp:TextBox ID="txtPassword" runat="server" class="form-control" required="" placeholder="Password"></asp:TextBox>
+                                        <asp:TextBox ID="txtPassword" runat="server" class="form-control" required="" placeholder="Your Password" TextMode="Password"></asp:TextBox>
                                         <span class="form-bar"></span>
                                     </div>
                                     <div class="row m-t-25 text-left">
                                         <div class="col-12">
                                             <div class="forgot-phone text-right f-right">
-                                                <a href="auth-reset-password.htm" class="text-right f-w-600">Forgot Password?</a>
+                                                <a href="ResetPassword.aspx" class="text-right f-w-600">Forgot Password?</a>
                                             </div>
                                         </div>
                                     </div>
@@ -124,7 +124,7 @@
                                     </div>
                                     <br />
                                     <div class="forgot-phone text-left f-left">
-                                        <a href="auth-lock-screen.htm" class="text-right f-w-600">Look Screen</a>
+                                        <a href="LockScreen.aspx" class="text-right f-w-600">Look Screen</a>
                                     </div>
                                 </div>
                             </div>

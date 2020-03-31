@@ -6,12 +6,13 @@
     <title>Treatment Management</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
-    <div class="card-block box-list">
+    <div class="box-list" style="background-color:white;">
         <div class="row">
             <div class="col-lg-6">
                 <div class="p-20 z-depth-0 waves-effect dt-responsive table-responsive" data-toggle="tooltip" data-placement="top" title="Treatment Type">
                     <h4 class="sub-title">Treatment Type</h4>
                     <dx:ASPxGridView ID="TypeGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="TypeDataSource" EnableTheming="True" KeyFieldName="Treatment_Type_Id" Theme="Mulberry">
+                        <SettingsBehavior ConfirmDelete="True" />
                         <SettingsCommandButton>
                             <NewButton Text=" ">
                                 <Styles>
@@ -45,6 +46,19 @@
                                 </Styles>
                             </CancelButton>
                         </SettingsCommandButton>
+                        <SettingsPopup>
+                            <EditForm AllowResize="True" Modal="True" ShowPinButton="True" ShowShadow="True" VerticalAlign="WindowCenter">
+                                <SettingsAdaptivity VerticalAlign="WindowCenter" />
+                            </EditForm>
+                        </SettingsPopup>
+                        <StylesPopup>
+                            <EditForm>
+                                <Content CssClass="modal-body text-center">
+                                </Content>
+                                <Header CssClass="modal-title">
+                                </Header>
+                            </EditForm>
+                        </StylesPopup>
                         <Columns>
                             <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Type_Id" ReadOnly="True" VisibleIndex="0">
                             </dx:GridViewDataTextColumn>
