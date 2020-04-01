@@ -8,7 +8,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Employee</title>
     <script>
-        function showmodel() { 
+        function showmodel() {
+            alert("jdnjk");
         }
 
        document.getElementById("AddEmp").click(); 
