@@ -2441,12 +2441,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-<<<<<<< HEAD
-    <Folder Include="media\Profile\" />
-    <Folder Include="media\Signature\" />
-=======
     <Folder Include="media\" />
->>>>>>> 5390ad8d75545709e508a6da579fa6a56b2b779f
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
