@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,9 @@ namespace Treatment.Pages.Treatment
     {
         ECMSEntities db = new ECMSEntities();
         string messageForm = "";
-        int currentStructureUserId = 1;
+        int currentStructureUserId = 1; 
+        LogFileModule logFileModule = new LogFileModule();
+        String LogData = "";
         protected void Page_Load(object sender, EventArgs e)
         {
         }
@@ -21,7 +24,7 @@ namespace Treatment.Pages.Treatment
         {
             if (saveTreatment())
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Treatment was Sucessfully saved in system !');", true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Treatment was Sucessfully saved in system');", true);
                 clearTreatment();
             }
             else
@@ -110,6 +113,8 @@ namespace Treatment.Pages.Treatment
 
                     db.Treatments.Add(newTreatment);
                     db.SaveChanges();
+                    LogData = "data:" + JsonConvert.SerializeObject(newTreatment, logFileModule.settings);
+                    logFileModule.logfile(4, "إضافة معاملة", "", LogData);
                 }
                 catch { messageForm = "Erorr to save data in system";  return false; }
                 return true;
@@ -139,9 +144,6 @@ namespace Treatment.Pages.Treatment
         }
         private bool validationForm()
         {
-            bool flayVal = false;
-            String omer = treatmentTo.Items.ToString();
-            String omer1 = treatmentCopyTo.Items.ToString();
             if (treatmentDate.Text.Trim() == "")
             {
                 messageForm = "Pleace Enter Treatment Date";
@@ -182,8 +184,7 @@ namespace Treatment.Pages.Treatment
                 messageForm = "Pleace Enter Speech";
                 return false;
             }*/
-            else flayVal = true;
-            return flayVal;
+            else return true;
         }
         private bool checkRequiredReply()
         {

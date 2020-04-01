@@ -168,6 +168,7 @@
           <Property Name="Note" Type="ntext" />
           <Property Name="Key_Word" Type="ntext" />
           <Property Name="Treatment_Copy_To" Type="bit" />
+          <Property Name="Treatment_Detial_Date" Type="datetime" />
         </EntityType>
         <EntityType Name="Treatment_Priority">
           <Key>
@@ -201,8 +202,6 @@
           <Property Name="Treatment_Type_Name_Ar" Type="nvarchar(max)" />
           <Property Name="Treatment_Type_Name_En" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ECMS.dbo.Treatment_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <Association Name="FK_Attachment_Treatment">
           <End Role="Treatment" Type="Self.Treatment" Multiplicity="0..1" />
           <End Role="Attachment" Type="Self.Attachment" Multiplicity="*" />
@@ -765,6 +764,7 @@ warning 6002: The table/view 'ECMS.dbo.Treatment_View' does not have a primary k
           <NavigationProperty Name="Assignment_Status" Relationship="Self.FK_Treatment_Detial_Assignment_Status" FromRole="Treatment_Detial" ToRole="Assignment_Status" />
           <NavigationProperty Name="Employee_Structure" Relationship="Self.FK_Treatment_Detial_Employee_Structure" FromRole="Treatment_Detial" ToRole="Employee_Structure" />
           <NavigationProperty Name="Treatment" Relationship="Self.FK_Treatment_Detial_Treatment" FromRole="Treatment_Detial" ToRole="Treatment" />
+          <Property Name="Treatment_Detial_Date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Treatment_Priority">
           <Key>
@@ -1329,6 +1329,7 @@ warning 6002: The table/view 'ECMS.dbo.Treatment_View' does not have a primary k
           <EntitySetMapping Name="Treatment_Detial">
             <EntityTypeMapping TypeName="ECMSModel.Treatment_Detial">
               <MappingFragment StoreEntitySet="Treatment_Detial">
+                <ScalarProperty Name="Treatment_Detial_Date" ColumnName="Treatment_Detial_Date" />
                 <ScalarProperty Name="Treatment_Detial_Id" ColumnName="Treatment_Detial_Id" />
                 <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
                 <ScalarProperty Name="To_Employee_Structure_Id" ColumnName="To_Employee_Structure_Id" />
