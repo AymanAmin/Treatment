@@ -45,7 +45,6 @@
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Procedure" ManuallyRouted="false" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Status" ManuallyRouted="false" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Type" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ECMSModel.Treatment_View" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -5,5 +5,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     
-<dx:ASPxUploadControl ID="ASPxUploadControl1" runat="server" UploadMode="Auto" Width="280px" OnFileUploadComplete="ASPxUploadControl1_FileUploadComplete" ShowUploadButton="True"></dx:ASPxUploadControl>
+    <div class="row">
+        <dx:ASPxGridView ID="ASPxGridView1" runat="server"></dx:ASPxGridView>
+    </div>
+    
 </asp:Content>

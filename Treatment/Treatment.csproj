@@ -119,6 +119,7 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -146,7 +147,6 @@
     <Content Include="Pages\Setting\Auth\Login.aspx" />
     <Content Include="Pages\Setting\Auth\ResetPassword.aspx" />
     <Content Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx" />
-    <Content Include="Pages\Setting\UserManagment\Employees.aspx" />
     <Content Include="Pages\Setting\UserManagment\Groups.aspx" />
     <Content Include="Pages\Setting\UserManagment\PermissionGroups.aspx" />
     <Content Include="Pages\Setting\UserManagment\Permissions.aspx" />
@@ -2152,9 +2152,6 @@
     <Compile Include="Entity\Treatment_Type.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\Treatment_View.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2202,13 +2199,6 @@
     </Compile>
     <Compile Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx.designer.cs">
       <DependentUpon>TreatmentManagement.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Setting\UserManagment\Employees.aspx.cs">
-      <DependentUpon>Employees.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Setting\UserManagment\Employees.aspx.designer.cs">
-      <DependentUpon>Employees.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setting\UserManagment\Groups.aspx.cs">
       <DependentUpon>Groups.aspx</DependentUpon>
