@@ -610,6 +610,17 @@
             <script>
                 initSample();
             </script>
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('select:not(.normal)').each(function () {
+                        $(this).select2({
+                            dropdownParent: $(this).parent()
+                        });
+                    });
+                });
+                
+</script>
         </div>
     </form>
 </body>

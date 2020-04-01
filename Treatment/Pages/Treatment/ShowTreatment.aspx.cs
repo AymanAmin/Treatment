@@ -13,7 +13,7 @@ namespace Treatment.Pages.Treatment
     public partial class ShowTreatment : System.Web.UI.Page
     {
         ECMSEntities db = new ECMSEntities();
-        int treatmentId = 5, treatmentDetialId = 5;
+        int treatmentId = 2003, treatmentDetialId = 2006;
         string messageReplyForm = "";
         int currentStructureUserId = 1;
         LogFileModule logFileModule = new LogFileModule();
