@@ -89,8 +89,8 @@ namespace Treatment
                 {
                     if (Permission_List[First_Level].Parent == 0)
                     {
-                        str += "<li class='pcoded-hasmenu active '>";
-                        str += "<a href = 'javascript:void(0)' > ";
+                        str += "<li class='pcoded-hasmenu'>";
+                        str += "<a href = 'javascript:void(0)'>";
                         str += "<span class='pcoded-micon'><i class='"+ Permission_List[First_Level].Permission_Icon+ "'></i></span>";
                         str += "<span class='pcoded-mtext'>"+ Permission_List[First_Level].Permission_Name_En + "</span>";
                         str += "</a>";
@@ -101,16 +101,18 @@ namespace Treatment
                             List<Permission> Third_List = Permission_List.Where(x => x.Parent == Second_List[Second_Level].Permission_Id).ToList();
                             if (Third_List.Count > 0)
                             {
-                                str += "<li class='pcoded-hasmenu active '>";
-                                str += "<a href = 'javascript:void(0)' > ";
+                                str += "<li class='pcoded-hasmenu'>";
+                                str += "<a href = 'javascript:void(0)'>";
                                 str += "<span class='pcoded-micon'><i class='"+ Second_List[Second_Level].Permission_Icon+ "'></i></span>";
                                 str += "<span class='pcoded-mtext'>"+ Second_List[Second_Level].Permission_Name_En + "</span>";
                                 str += "</a>";
                                 str += "<ul class='pcoded-submenu'>";
                                 for (int Third_Level = 0; Third_Level < Third_List.Count; Third_Level++)
                                 {
+                                    //str += "<li class='active'>";
                                     str += "<li class=''>";
                                     str += "<a href = '../../../../" + Third_List[Third_Level].Url_Path + "' > ";
+                                    str += "<span class='pcoded-micon'><i class='"+ Third_List[Third_Level].Permission_Icon+ "'></i></span>";
                                     str += "<span class='pcoded-mtext'>"+ Third_List[Third_Level].Permission_Name_En + "</span>";
                                     str += "</a>";
                                     str += "</li>";
@@ -122,6 +124,7 @@ namespace Treatment
                             {
                                 str += "<li class=''>";
                                 str += "<a href = '../../../../" + Second_List[Second_Level].Url_Path + "' > ";
+                                str += "<span class='pcoded-micon'><i class='" + Second_List[Second_Level].Permission_Icon + "'></i></span>";
                                 str += "<span class='pcoded-mtext'>" + Second_List[Second_Level].Permission_Name_En + "</span>";
                                 str += "</a>";
                                 str += "</li>";
