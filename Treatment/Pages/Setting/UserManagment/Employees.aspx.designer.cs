@@ -13,13 +13,13 @@ namespace Treatment.Pages.Treatment {
     public partial class Employees {
         
         /// <summary>
-        /// Image1 control.
+        /// Emp_Profile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Image Emp_Profile;
         
         /// <summary>
         /// EmpProfile control.
@@ -29,6 +29,15 @@ namespace Treatment.Pages.Treatment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload EmpProfile;
+        
+        /// <summary>
+        /// Emp_Signature control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Emp_Signature;
         
         /// <summary>
         /// EmpSignature control.

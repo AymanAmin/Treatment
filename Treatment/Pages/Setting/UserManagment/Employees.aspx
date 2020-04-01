@@ -46,10 +46,10 @@
                                     <div class="card rounded-card user-card">
                                         <div class="card-block">
                                             <div class="img-hover">
-                                                <asp:Image ID="Image1" class="img-fluid img-radius" alt="img-round4.jpg" runat="server" ImageUrl="~/Theme/files/assets/images/user-card/img-round2.jpg" />
+                                                <asp:Image ID="Emp_Profile" class="img-fluid img-radius" alt="img-round4.jpg" runat="server" ImageUrl="~/Theme/files/assets/images/user-card/img-round2.jpg"  />
                                                 <div class="img-overlay img-radius">
                                                     <span>
-                                                        <asp:FileUpload ID="EmpProfile" runat="server" class="form-control" />
+                                                        <asp:FileUpload ID="EmpProfile" runat="server" class="form-control"  />
                                                     </span>
                                                 </div>
                                             </div>
@@ -62,7 +62,7 @@
                                     <div class="card rounded-card user-card">
                                         <div class="card-block">
                                             <div class="img-hover">
-                                                <img class="img-fluid img-radius" src="..\..\..\..\Theme\files\assets\images\user-card\m.jpg" alt="m.jpg">
+                                                <asp:Image ID="Emp_Signature" class="img-fluid img-radius" alt="img-round4.jpg" runat="server" ImageUrl="~/Theme/files/assets/images/user-card/m.jpg" />
                                                 <div class="img-overlay img-radius">
                                                     <span>
                                                         <asp:FileUpload ID="EmpSignature" runat="server" class="form-control" />
@@ -162,7 +162,7 @@
                                 <div class="col-sm-6">
                                     <label></label>
                                     <div class="col-md-12">
-                                        <asp:Button ID="Save" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="Per" OnClick="Save_Click" />
+                                        <asp:Button ID="Save" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="Per" OnClick="Save_Click"  />
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +179,7 @@
         <div class="table-responsive">
             <!-- Social Sign in card start -->
             <div class="form-group col-sm-12" style="text-align: right;">
-                <button runat="server" id="AddEmp" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social">Add Employees</button>
+                <button runat="server" id="AddEmp" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" >Add Employees</button>
             </div>
             <!-- Social Sign in card end -->
             <!-- Panal User Card -->

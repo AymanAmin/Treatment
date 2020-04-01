@@ -19,12 +19,10 @@ namespace Treatment.Pages.Treatment
         protected void Page_Load(object sender, EventArgs e)
         {
              UserCard();
-
-            
+            var name = this.Request.Form["EmployeeId"];
             if (int.TryParse(Request["EmployeeId"], out EmployeeId) && EmployeeId >0 )
             {
-                //ViewUserCard(EmployeeId);
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "showmodel();", true);
+                ViewUserCard(EmployeeId);
             }
 
         }
@@ -33,32 +31,40 @@ namespace Treatment.Pages.Treatment
         {
             int Group_id = 0;
             int.TryParse(Groups.SelectedValue, out Group_id);
-            bool result = AU_Emplooyees(Employee_Name_Ar.Text, Employee_Name_En.Text, Employee_Email.Text, Employee_Phone.Text, Active.Checked, Group_id);
+            bool result = AU_Emplooyees(EmployeeId,Employee_Name_Ar.Text, Employee_Name_En.Text, Employee_Email.Text, Employee_Phone.Text, Active.Checked, Group_id);
             if (result)
             {
                 ASPxGridView1.DataBind();
-                UserCard();
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The new Employee was Sucessfully saved in system ! ');", true);
+                Response.Redirect("~/Pages/Setting/UserManagment/Employees.aspx");
             }
         }
 
-        public bool AU_Emplooyees(string ArabicName, string EnglishName, string Email, string Phone, bool Active, int GroupID)
+        public bool AU_Emplooyees(int Employee_Id, string ArabicName, string EnglishName, string Email, string Phone, bool Active, int GroupID)
         {
             try
             {
                 Employee Emp = db.Employees.Create();
+                if(EmployeeId != 0) Emp = db.Employees.First(x=>x.Employee_Id== EmployeeId);
                 Emp.Employee_Name_Ar = ArabicName;
                 Emp.Employee_Name_En = EnglishName;
                 Emp.Employee_Email = Email;
-                string New_Password = StringCipher.RandomString(7);
-                string Encrypted_Password = StringCipher.Encrypt(New_Password, "Password"); // emp.Employee_Password.ToString();
-                Emp.Employee_Password = Encrypted_Password;
+                if (EmployeeId == 0)
+                {
+                    string New_Password = StringCipher.RandomString(7);
+                    string Encrypted_Password = StringCipher.Encrypt(New_Password, "Password"); // emp.Employee_Password.ToString();
+                    Emp.Employee_Password = Encrypted_Password;
+                }
                 Emp.Employee_Phone = Phone;
                 Emp.Employee_Active = Active;
                 Emp.Group_Id = GroupID;
                 Emp.Employee_Profile= UploadFile(1);
                 Emp.Employee_Signature = UploadFile(2);
-                db.Employees.Add(Emp);
+                if(EmployeeId != 0) {
+                    db.Entry(Emp).State =  System.Data.EntityState.Modified;
+                }
+                else { db.Employees.Add(Emp); }
+                EmployeeId = 0;
                 db.SaveChanges();
             }
             catch { return false; }
@@ -131,8 +137,8 @@ namespace Treatment.Pages.Treatment
                                                                 ImgTag +
                                                                 "<div class='img-overlay img-radius'>" +
                                                                  "   <span>" +
-                                                                       " <button type='submit' class='btn btn-sm btn-primary' data-toggle='modal' data-target='#sign-in-social'><i class='icofont icofont-plus'></i></button> " +
-                                                                       "<input id='EmployeeId' type='text' value='"+ Employees[i].Employee_Id.ToString()+ "' hidden='hidden'/>" +
+                                                                       " <button  type='submit' class='btn btn-sm btn-primary' value='" + Employees[i].Employee_Id.ToString() + "' OnClick='showmodel()'><i class='icofont icofont-plus'></i></button> " +
+                                                                       "<input id='EmployeeId' runat='server' runat='server' type='text' value='" + Employees[i].Employee_Id.ToString()+ "' hidden='hidden'/>" +
                                                                         "<a id='mm' href= 'Employees.aspx?EmployeeId=" + Employees[i].Employee_Id.ToString()+ "'class='btn btn-sm btn-primary' data-target='#sign-in-social' runat='server' ><i class='icofont icofont-link-alt'></i></a> " +
                                                                     "</span>" +
                                                                 "</div>" +
@@ -153,7 +159,18 @@ namespace Treatment.Pages.Treatment
 
         public void ViewUserCard(int Employee_Id)
         {
-            
+            var Employees = db.Employees.First(x=>x.Employee_Id== Employee_Id);
+
+            if (Employees.Employee_Profile!="") Emp_Profile.ImageUrl = "../../../../media/Profile/" + Employees.Employee_Profile;
+            if(Employees.Employee_Signature!="") Emp_Signature.ImageUrl="../../../../media/Signature/" + Employees.Employee_Signature;
+            Employee_Name_Ar.Text = Employees.Employee_Name_Ar;
+            Employee_Name_En.Text = Employees.Employee_Name_En;
+            Employee_Email.Text =   Employees.Employee_Email;
+            Employee_Phone.Text =   Employees.Employee_Phone;
+            Groups.SelectedValue =  Employees.Group_Id.ToString();
+            Active.Checked =bool.Parse(Employees.Employee_Active.ToString());
+
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "showmodel();", true);
         }
 
 
