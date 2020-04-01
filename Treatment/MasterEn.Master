@@ -193,6 +193,7 @@
 </head>
 <body>
     <input id="bt-data-dismiss" type="hidden" data-dismiss="modal" value="" />
+     <input id="AddEmp_show" type="hidden" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" />
     <form id="form1" runat="server">
         <div>
             <!-- Pre-loader start -->
