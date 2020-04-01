@@ -7,6 +7,12 @@
 <%@ Register Assembly="DevExpress.Web.Bootstrap.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.Bootstrap" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Employee</title>
+    <script>
+        function showmodel() { 
+        }
+
+       document.getElementById("AddEmp").click(); 
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <div class="page-body">
@@ -277,11 +283,4 @@
         </div>
         <!-- Page-body end -->
     </div>
-
-       <script>
-           function showmodel() {
-               alert("mazin");
-               setTimeout(function () { document.getElementById("AddEmp").click(); }, 10);
-           }
-    </script>
 </asp:Content>
