@@ -15,11 +15,18 @@ namespace Treatment.Pages.Treatment
     public partial class Employees : System.Web.UI.Page
     {
         ECMSEntities db = new ECMSEntities();
-        
+        int EmployeeId = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            UserCard();
-            var id = Request["EmployeeId"];
+             UserCard();
+
+            
+            if (int.TryParse(Request["EmployeeId"], out EmployeeId) && EmployeeId >0 )
+            {
+                //ViewUserCard(EmployeeId);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "showmodel();", true);
+            }
+
         }
 
         protected void Save_Click(object sender, EventArgs e)
@@ -124,7 +131,7 @@ namespace Treatment.Pages.Treatment
                                                                  "   <span>" +
                                                                        " <button type='submit' class='btn btn-sm btn-primary' data-toggle='modal' data-target='#sign-in-social'><i class='icofont icofont-plus'></i></button> " +
                                                                        "<input id='EmployeeId' type='text' value='"+ Employees[i].Employee_Id.ToString()+ "' hidden='hidden'/>" +
-                                                                        "<a href = ''class='btn btn-sm btn-primary' data-toggle='modal' data-target='#sign-in-social'><i class='icofont icofont-link-alt'></i></a> " +
+                                                                        "<a id='mm' href= 'Employees.aspx?EmployeeId=" + Employees[i].Employee_Id.ToString()+ "'class='btn btn-sm btn-primary' data-target='#sign-in-social' runat='server' ><i class='icofont icofont-link-alt'></i></a> " +
                                                                     "</span>" +
                                                                 "</div>" +
                                                             "</div>" +
@@ -140,6 +147,11 @@ namespace Treatment.Pages.Treatment
             }
 
 
+        }
+
+        public void ViewUserCard(int Employee_Id)
+        {
+            
         }
 
 

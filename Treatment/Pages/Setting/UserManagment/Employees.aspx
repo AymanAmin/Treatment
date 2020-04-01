@@ -11,7 +11,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <div class="page-body">
          <!-- Article Editor card start -->
-        <div class="card">
+        <div class="card"  runat="server">
             <div class="card-header">
                 <div class="card-header-right">
                     <ul class="list-unstyled card-option">
@@ -174,7 +174,7 @@
         <div class="table-responsive">
             <!-- Social Sign in card start -->
             <div class="form-group col-sm-12" style="text-align: right;">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social">Add Employees</button>
+                <button runat="server" id="AddEmp" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social">Add Employees</button>
             </div>
             <!-- Social Sign in card end -->
             <!-- Panal User Card -->
@@ -277,4 +277,11 @@
         </div>
         <!-- Page-body end -->
     </div>
+
+       <script>
+           function showmodel() {
+               alert("mazin");
+               setTimeout(function () { document.getElementById("AddEmp").click(); }, 10);
+           }
+    </script>
 </asp:Content>
