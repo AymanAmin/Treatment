@@ -10,6 +10,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <div class="page-body">
+         <!-- Article Editor card start -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-header-right">
+                    <ul class="list-unstyled card-option">
+                        <li><i class="feather icon-maximize full-card"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-block">
         <!-- Modal Employee start -->
         <div id="sign-in-social" class="modal fade" role="dialog">
             <div class="modal-dialog" style="max-width: 700px">
@@ -31,35 +41,33 @@
                                     <div class="card rounded-card user-card">
                                         <div class="card-block">
                                             <div class="img-hover">
-                                                <img class="img-fluid img-radius" src="..\..\..\..\Theme\files\assets\images\user-card\img-round4.jpg" alt="img-round4.jpg">
+                                                <asp:Image ID="Image1" class="img-fluid img-radius" alt="img-round4.jpg" runat="server" ImageUrl="~/Theme/files/assets/images/user-card/img-round2.jpg" />
                                                 <div class="img-overlay img-radius">
                                                     <span>
-                                                        <a href="#"  class="btn btn-sm btn-primary" data-popup="lightbox"><i class="icofont icofont-plus" ></i></a>
-                                                        <a href="" class="btn btn-sm btn-primary"><i class="icofont icofont-link-alt"></i></a>
+                                                        <asp:FileUpload ID="EmpProfile" runat="server" class="form-control" />
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                  <div class="col-lg-6 col-xl-4 col-md-6">
-                                  </div>
-                                  <div class="col-lg-6 col-xl-4 col-md-6">
+                                <div class="col-lg-6 col-xl-4 col-md-6">
+                                </div>
+                                <div class="col-lg-6 col-xl-4 col-md-6">
                                     <div class="card rounded-card user-card">
                                         <div class="card-block">
                                             <div class="img-hover">
                                                 <img class="img-fluid img-radius" src="..\..\..\..\Theme\files\assets\images\user-card\m.jpg" alt="m.jpg">
                                                 <div class="img-overlay img-radius">
                                                     <span>
-                                                        <a href="#" class="btn btn-sm btn-primary" data-popup="lightbox"><i class="icofont icofont-plus"></i></a>
-                                                        <a href="" class="btn btn-sm btn-primary"><i class="icofont icofont-link-alt"></i></a>
+                                                        <asp:FileUpload ID="EmpSignature" runat="server" class="form-control" />
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                               
+
                             </div>
 
 
@@ -70,7 +78,7 @@
                                         <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
                                         <asp:TextBox ID="Employee_Name_Ar" runat="server" class="form-control" placeholder="Enter Arabic Name" TextMode="SingleLine"></asp:TextBox>
                                     </div>
-                                    <div class="col-sm-12" >
+                                    <div class="col-sm-12">
                                         <asp:RequiredFieldValidator ID="RFVtxtEmployee_Name_Ar" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Arabic Name" ValidationGroup="Per" ControlToValidate="Employee_Name_Ar" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -81,7 +89,7 @@
                                         <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
                                         <asp:TextBox ID="Employee_Name_En" runat="server" class="form-control" placeholder="Enter English Name" TextMode="SingleLine"></asp:TextBox>
                                     </div>
-                                     <div class="col-sm-12" >
+                                    <div class="col-sm-12">
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter English Name" ValidationGroup="Per" ControlToValidate="Employee_Name_En" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -94,52 +102,34 @@
                                         <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
                                         <asp:TextBox ID="Employee_Email" runat="server" class="form-control" placeholder="Enter Employee Email" TextMode="SingleLine"></asp:TextBox>
                                     </div>
-                                     <div class="col-sm-12" >
+                                    <div class="col-sm-12">
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Email" ValidationGroup="Per" ControlToValidate="Employee_Email" Display="Dynamic" SetFocusOnError="True">
                                         </asp:RequiredFieldValidator>
                                     </div>
                                 </div>
-                                 <div class="col-sm-6">
-                                    <label class="j-label">password</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="icofont icofont-ui-password"></i></span>
-                                        <asp:TextBox ID="Employee_Password" type="password" runat="server" class="form-control" placeholder="Enter Employee password" TextMode="SingleLine"></asp:TextBox>
-                                    </div>
-                                     <div class="col-sm-12" >
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Employee Password" ValidationGroup="Per" ControlToValidate="Employee_Password" Display="Dynamic"></asp:RequiredFieldValidator>
-                                    </div>
-                                </div>
-                               
-                            </div>
-                            <div class="row">
-                                 <div class="col-sm-6">
+
+                                <div class="col-sm-6">
                                     <label class="j-label">Phone</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-ui-call"></i></span>
                                         <asp:TextBox ID="Employee_Phone" runat="server" class="form-control" placeholder="Enter Employee Phone" TextMode="SingleLine"></asp:TextBox>
                                     </div>
-                                      <div class="col-sm-12" >
+                                    <div class="col-sm-12">
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Employee Phone" ValidationGroup="Per" ControlToValidate="Employee_Phone" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label>Active</label>
-                                    <div class="input-group">
-                                        <input id="Active" runat="server" type="checkbox" class="js-single" />
-                                    </div>
-                                </div>
-                            
+
                             </div>
                             <div class="row">
-                               
-                                   <div class="col-sm-6">
+
+                                <div class="col-sm-6">
                                     <label>Structure</label>
-                                   <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-chart-flow-alt-1"></i></span>
-                                    <asp:ListBox ID="ListBox1" runat="server" CssClass="js-example-basic-multiple col-sm-12 select2-hidden-accessible" data-placeholder="Enter Employee Structure" multiple="multiple" DataSourceID="StructureDataSource" DataTextField="Structure_Name_Ar" DataValueField="Structure_Id"></asp:ListBox>
-                                    <asp:EntityDataSource ID="StructureDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Structures">
-                                    </asp:EntityDataSource>
-                                  </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="icofont icofont-chart-flow-alt-1"></i></span>
+                                        <asp:ListBox ID="ListBox1" runat="server" CssClass="js-example-basic-multiple col-sm-12 select2-hidden-accessible" data-placeholder="Enter Employee Structure" multiple="multiple" DataSourceID="StructureDataSource" DataTextField="Structure_Name_Ar" DataValueField="Structure_Id"></asp:ListBox>
+                                        <asp:EntityDataSource ID="StructureDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Structures">
+                                        </asp:EntityDataSource>
+                                    </div>
                                 </div>
 
                                 <div class="col-sm-6">
@@ -147,20 +137,27 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-group"></i></span>
                                         <asp:DropDownList ID="Groups" runat="server" class="form-control" DataTextField="Group_Name_Ar" DataValueField="Group_Id" DataSourceID="GroupDataSource"></asp:DropDownList>
-                                       
+
                                         <asp:EntityDataSource ID="GroupDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Groups">
                                         </asp:EntityDataSource>
-                                       
+
                                     </div>
                                 </div>
                             </div>
-                          
+
                             <div class="row">
                                 <div class="col-sm-6">
+                                    <div class="col-sm-6">
+                                        <label>Active</label>
+                                        <div class="input-group">
+                                            <input id="Active" runat="server" type="checkbox" class="js-single" />
+                                        </div>
                                     </div>
+                                </div>
                                 <div class="col-sm-6">
+                                    <label></label>
                                     <div class="col-md-12">
-                                      <asp:Button ID="Save" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="Per" OnClick="Save_Click" />
+                                        <asp:Button ID="Save" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="Per" OnClick="Save_Click" />
                                     </div>
                                 </div>
                             </div>
@@ -177,9 +174,14 @@
         <div class="table-responsive">
             <!-- Social Sign in card start -->
             <div class="form-group col-sm-12" style="text-align: right;">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social">Add Employees</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social">Add Employees</button>
             </div>
             <!-- Social Sign in card end -->
+            <!-- Panal User Card -->
+            <div class="row users-card" runat="server" id="UCard">
+                
+            </div>
+            <!-- Panal User Card -->
             <dx:ASPxGridView ID="ASPxGridView1" runat="server" DataSourceID="EmployeeDataSource" KeyFieldName="Employee_Id" Theme="Moderno" RightToLeft="False" EnablePagingCallbackAnimation="True" AutoGenerateColumns="False">
 
                 <SettingsCommandButton>
@@ -247,11 +249,11 @@
                             </ValidationSettings>
                         </PropertiesTextEdit>
                     </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn Caption="Employee Profile" FieldName="Employee_Profile" VisibleIndex="7">
+                    <dx:GridViewDataTextColumn Caption="Employee Profile" FieldName="Employee_Profile" VisibleIndex="7" Visible="False">
                     </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn Caption="Employee Signature" FieldName="Employee_Signature" VisibleIndex="8">
+                    <dx:GridViewDataTextColumn Caption="Employee Signature" FieldName="Employee_Signature" VisibleIndex="8" Visible="False">
                     </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn Caption="Employee Password" FieldName="Employee_Password" VisibleIndex="3">
+                    <dx:GridViewDataTextColumn Caption="Employee Password" FieldName="Employee_Password" VisibleIndex="3" Visible="False">
                         <PropertiesTextEdit Password="True">
                             <ValidationSettings SetFocusOnError="True">
                                 <RequiredField IsRequired="True" />
@@ -270,7 +272,9 @@
             </asp:EntityDataSource>
         </div>
         <!-- End Grid-->
-
+          </div>
+            <!-- Article Editor card end -->
+        </div>
+        <!-- Page-body end -->
     </div>
-
 </asp:Content>

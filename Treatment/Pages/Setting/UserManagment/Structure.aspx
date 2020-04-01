@@ -34,7 +34,7 @@
                                     <label class="j-label">Name Arabic</label>
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-underline"></i></span>
-                                        <asp:TextBox ID="Name_Ar" runat="server" class="form-control" placeholder="Enter Name in Arabic" TextMode="SingleLine"></asp:TextBox>
+                                        <asp:TextBox ID="Name_Ar" runat="server" class="form-control" placeholder="Enter Name in Arabic" TextMode="SingleLine" ></asp:TextBox>
                                     </div>
                                     <div class="col-sm-12">
                                         <asp:RequiredFieldValidator ID="RFVtxtPermission_Name" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Arabic Name" ValidationGroup="Per" ControlToValidate="Name_Ar"></asp:RequiredFieldValidator>
@@ -142,13 +142,20 @@
 
             <SettingsCustomizationWindow PopupHorizontalAlign="RightSides" PopupVerticalAlign="BottomSides"></SettingsCustomizationWindow>
 
-            <SettingsEditing AllowNodeDragDrop="True" />
+            <SettingsEditing AllowNodeDragDrop="True" Mode="Inline" />
 
-            <SettingsPopupEditForm VerticalOffset="-1"></SettingsPopupEditForm>
+            
 
-            <SettingsPopup>
-                <EditForm VerticalOffset="-1"></EditForm>
-            </SettingsPopup>
+            
+           
+
+
+        
+
+            
+
+            
+           
         </dx:ASPxTreeList>
         <asp:EntityDataSource ID="TreeDataSourceView" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="Structures" EntityTypeFilter="Structure">
         </asp:EntityDataSource>
