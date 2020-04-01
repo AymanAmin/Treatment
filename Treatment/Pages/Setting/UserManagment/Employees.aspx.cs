@@ -108,6 +108,8 @@ namespace Treatment.Pages.Treatment
             int i = 0;
             string ImgTag = "";
             string img = "";
+            string yourHTMLstring = "";
+            UCard.Controls.Remove(new LiteralControl(yourHTMLstring));
             var Employees = db.Employees.ToList();
             while (i < Employees.Count)
             {
@@ -121,7 +123,7 @@ namespace Treatment.Pages.Treatment
                     img = "7be69466-86d2-4b79-a9f4-144ba676b1c8.jpg";
                 }
                 ImgTag = "<img class='img-fluid img-radius'" + "src='../../../../media/Profile/" + img + "'alt='" + img + "'>";
-                string yourHTMLstring = "<div class='col-lg-6 col-xl-3 col-md-6'>" +
+                 yourHTMLstring = "<div class='col-lg-6 col-xl-3 col-md-6'>" +
                                                 "<div class='card rounded-card user-card'>"+
                                                     "<div class='card-block'>" +
                                                            " <div class='img-hover'>"+

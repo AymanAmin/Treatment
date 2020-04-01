@@ -9,10 +9,10 @@
     <title>Employee</title>
     <script>
         function showmodel() {
-            alert("jdnjk");
+            document.getElementById("AddEmp").click(); 
         }
 
-       document.getElementById("AddEmp").click(); 
+       
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
