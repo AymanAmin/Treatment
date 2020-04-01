@@ -141,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Pages\Admin\TestPage.aspx" />
     <Content Include="Pages\Setting\Auth\LockScreen.aspx" />
     <Content Include="Pages\Setting\Auth\Login.aspx" />
     <Content Include="Pages\Setting\Auth\ResetPassword.aspx" />
@@ -2164,6 +2165,13 @@
     <Compile Include="MasterEn.Master.designer.cs">
       <DependentUpon>MasterEn.Master</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Admin\TestPage.aspx.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\TestPage.aspx.designer.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Setting\Auth\LockScreen.aspx.cs">
       <DependentUpon>LockScreen.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2433,10 +2441,13 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
+<<<<<<< HEAD
     <Folder Include="media\Profile\" />
     <Folder Include="media\Signature\" />
+=======
+    <Folder Include="media\" />
+>>>>>>> 5390ad8d75545709e508a6da579fa6a56b2b779f
     <Folder Include="Models\" />
-    <Folder Include="Pages\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
