@@ -21,6 +21,7 @@ namespace Treatment.Pages.Setting.Auth
             {
                 SessionWrapper.IsLocked = false;
                 Response.Redirect("~/");
+                /* Ayman */
             }
         }
     }
