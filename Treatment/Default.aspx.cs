@@ -20,6 +20,12 @@ namespace Treatment
             txtNewInboxTreatment.Text = "531";
             txtOutboxTreatment.Text = "211";
             txtComplateTreatment.Text = "676";
+
+            txtLastUpdateOne.Text = "update : " + DateTime.Now.ToShortTimeString();
+            txtLastUpdateTwo.Text = "update : " + DateTime.Now.ToShortTimeString();
+            txtLastUpdateThree.Text = "update : " + DateTime.Now.ToShortTimeString();
+            txtLastUpdateFour.Text = "update : " + DateTime.Now.ToShortTimeString();
+            // Ayman
         }
         private void Charts()
         {
