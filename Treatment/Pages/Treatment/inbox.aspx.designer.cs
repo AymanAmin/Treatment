@@ -13,21 +13,21 @@ namespace Treatment.Pages.Treatment {
     public partial class inbox {
         
         /// <summary>
-        /// TreatmentInbox control.
+        /// inboxTreatment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView TreatmentInbox;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl inboxTreatment;
         
         /// <summary>
-        /// EntityDataSourceTreatment control.
+        /// gridViewTreatment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceTreatment;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridViewTreatment;
     }
 }

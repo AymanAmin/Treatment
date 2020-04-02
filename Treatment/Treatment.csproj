@@ -2127,9 +2127,6 @@
     <Compile Include="Entity\Structure.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\Treatment.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entity\Treatment_Class.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
@@ -2140,6 +2137,9 @@
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Detial.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Treatment_Master.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Priority.cs">
@@ -2411,6 +2411,8 @@
     <Content Include="Theme\files\extra-pages\landingpage\assets\fonts\ionicons.woff" />
     <Content Include="Theme\files\readme.md" />
     <Content Include="MasterEn.Master" />
+    <Content Include="Pages\Setting\Auth\Logout.ashx" />
+    <Content Include="Pages\Treatment\Tree.aspx.bak" />
     <EntityDeploy Include="Entity\ECMS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ECMS.Designer.cs</LastGenOutput>
@@ -2428,8 +2430,6 @@
       <DependentUpon>ECMS.edmx</DependentUpon>
       <LastGenOutput>ECMS.cs</LastGenOutput>
     </Content>
-    <Content Include="Pages\Setting\Auth\Logout.ashx" />
-    <Content Include="Pages\Treatment\Tree.aspx.bak" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

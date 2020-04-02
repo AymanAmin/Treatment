@@ -30,7 +30,12 @@ namespace Treatment.Pages.Treatment
         protected void Save_Click(object sender, EventArgs e)
         {
             int Group_id = 0;
-            int.TryParse(Groups.SelectedValue, out Group_id);
+            //int.TryParse(Groups.SelectedValue, out Group_id);
+            string omer = "";
+            omer = Employee_Name_Ar.Text;
+            omer = Employee_Name_En.Text;
+            omer = Employee_Email.Text;
+            omer = Employee_Phone.Text;
             bool result = AU_Emplooyees(EmployeeId,Employee_Name_Ar.Text, Employee_Name_En.Text, Employee_Email.Text, Employee_Phone.Text, Active.Checked, Group_id);
             if (result)
             {

@@ -191,7 +191,7 @@
     </asp:ContentPlaceHolder>
     <title>E-CMS - Main Screen</title>
 </head>
-<body>
+<body onload="hidePcoded()">
     <input id="bt-data-dismiss" type="hidden" data-dismiss="modal" value="" />
      <input id="AddEmp_show" type="hidden" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" />
     <form id="form1" runat="server">
@@ -620,6 +620,19 @@
                     });
                 });
                 
+</script>
+            <script>
+
+                $(function () {
+                    $('#listViewId').on('click', function () {
+                        $('#Body_Holder_gridViewTreatment').hide();
+                        $('#listViewTreatment').show();
+                    });
+                    $('#gridViewId').on('click', function () {
+                        $('#listViewTreatment').hide();
+                        $('#Body_Holder_gridViewTreatment').show();
+                    });
+                });
 </script>
         </div>
     </form>

@@ -56,7 +56,7 @@ namespace Treatment.Pages.Treatment
             {
                 try
                 {
-                    var newTreatment = db.Treatments.Create();
+                    var newTreatment = db.Treatment_Master.Create();
                     newTreatment.Create_Date = DateTime.Now;
                     newTreatment.Update_Date = DateTime.Now;
                     newTreatment.Treatment_Date = DateTime.Parse(treatmentDate.Text);
@@ -111,7 +111,7 @@ namespace Treatment.Pages.Treatment
                     }
                     /////////////////////////////////////// End Insert Copy To /////////////////////////////////////
 
-                    db.Treatments.Add(newTreatment);
+                    db.Treatment_Master.Add(newTreatment);
                     db.SaveChanges();
                     LogData = "data:" + JsonConvert.SerializeObject(newTreatment, logFileModule.settings);
                     logFileModule.logfile(4, "إضافة معاملة", "", LogData);
@@ -132,7 +132,7 @@ namespace Treatment.Pages.Treatment
             {
                 try
                 {
-                    Int64 dc = db.Treatments.ToList().Max(e => Convert.ToInt64(e.Treatment_Id));
+                    Int64 dc = db.Treatment_Master.ToList().Max(e => Convert.ToInt64(e.Treatment_Id));
                     treatmentNumber = DateTime.Now.Year + "" + (dc + 1).ToString("D5");
                 }
                 catch (Exception ree)

@@ -25,22 +25,22 @@
                     <div class="card-block">
                         <div class="counter">
                             <div class="yourCountdownContainer">
-                                <div class="row">
+                                <div class="row m-l-20">
                                     <div class="col-xs-3">
                                         <h2>12&nbsp;&nbsp;&nbsp;</h2>
-                                        <p>Days&nbsp;&nbsp;&nbsp;</p>
+                                        <p>Days&nbsp;&nbsp;&nbsp;&nbsp;</p>
                                     </div>
                                     <div class="col-xs-3">
                                         <h2>24&nbsp;&nbsp;&nbsp;</h2>
-                                        <p>Hours&nbsp;&nbsp;&nbsp;</p>
+                                        <p>Hours&nbsp;&nbsp;&nbsp;&nbsp;</p>
                                     </div>
                                     <div class="col-xs-3">
                                         <h2>38&nbsp;&nbsp;&nbsp;</h2>
-                                        <p>Minutes&nbsp;&nbsp;&nbsp;</p>
+                                        <p>Minutes&nbsp;&nbsp;&nbsp;&nbsp;</p>
                                     </div>
                                     <div class="col-xs-3">
                                         <h2>56&nbsp;&nbsp;&nbsp;</h2>
-                                        <p>Seconds&nbsp;&nbsp;&nbsp;</p>
+                                        <p>Seconds&nbsp;&nbsp;&nbsp;&nbsp;</p>
                                     </div>
                                 </div>
                                 <!-- end of row -->
@@ -288,7 +288,7 @@
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card thumb-block">
                                         <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u1.jpg" class="img-fluid width-100" alt="task-u1.jpg">
+                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u1.jpg" class="img-fluid width-100" alt="task-u1.jpg" />
                                             <div class="caption-hover">
                                                 <span>
                                                     <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
@@ -304,7 +304,7 @@
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card thumb-block">
                                         <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u2.jpg" class="img-fluid width-100" alt="task-u2.jpg">
+                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u2.jpg" class="img-fluid width-100" alt="task-u2.jpg" />
                                             <div class="caption-hover">
                                                 <span>
                                                     <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
@@ -320,7 +320,7 @@
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card thumb-block">
                                         <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u3.jpg" class="img-fluid width-100" alt="task-u3.jpg">
+                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u3.jpg" class="img-fluid width-100" alt="task-u3.jpg" />
                                             <div class="caption-hover">
                                                 <span>
                                                     <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
@@ -336,7 +336,7 @@
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card thumb-block">
                                         <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u4.jpg" class="img-fluid width-100" alt="task-u4.jpg">
+                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u4.jpg" class="img-fluid width-100" alt="task-u4.jpg" />
                                             <div class="caption-hover">
                                                 <span>
                                                     <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
@@ -367,9 +367,7 @@
                                 <button type="button" class="btn btn-warning btn-xs waves-effect waves-light" data-toggle="modal" data-target="#add-model-reply">
                                     <i class="icofont icofont-reply-all"></i>Reply
                                 </button>
-                                <button type="button" class="btn btn-danger btn-xs waves-effect waves-light">
-                                    <i class="icofont icofont-close"></i>Close
-                                </button>
+                                <asp:LinkButton ID="CloseAssignment" runat="server" CssClass="btn btn-danger btn-xs waves-effect waves-light" OnClick="CloseAssignment_Click"><i class="icofont icofont-close"></i>Close</asp:LinkButton>
                             </div>
                         </span>
                         <div class="card-header-right">
@@ -523,21 +521,20 @@
             </div>
             <!-- Task-detail-left end -->
             <div id="add-model-assignment" class="modal fade" role="dialog">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg m-t-0">
                     <div class="login-card card-block login-card-modal">
-
                         <div class="text-center">
-                            <img src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="logo.png">
+                            <img src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="logo.png" />
                         </div>
-                        <div class="card m-t-15">
+                        <div class="card m-t-10">
                             <div class="auth-box card-block">
-                                <div class="row m-b-20">
+                                <div class="row m-b-10">
                                     <div class="col-md-12">
                                         <h3 class="text-center txt-primary">Add Assignment</h3>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 ">
-                                    <div class="form-group col-sm-12">
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
                                         <label>Standard Procedure</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-edit-alt"></i></span>
@@ -545,91 +542,109 @@
                                             </asp:DropDownList>
                                         </div>
                                     </div>
-                                        <div class="form-group col-sm-12">
-                                            <label>Send To</label><i class="icofont icofont-star-alt-1 text-danger"></i>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-paper-plane"></i></span>
-                                                <asp:ListBox ID="treatmentTo" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Send To" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
-                                            </div>
-                                            <asp:RequiredFieldValidator ID="valTreatmentTo" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Send To" ValidationGroup="valFormGroup" ControlToValidate="treatmentTo" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
-                                        </div>
-                                        <div class="form-group col-sm-12">
-                                            <label>Copy To</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-ui-copy"></i></span>
-                                                <asp:ListBox ID="treatmentCopyTo" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Copy To" runat="server" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
-                                            </div>
-                                        </div>
-                                    <div class="form-group col-sm-12 j-unit">
-                                        <label class="j-label">English Name</label>
+                                    <div class="form-group col-sm-6">
+                                        <label>Secret Level</label><i class="icofont icofont-star-alt-1 text-danger"></i>
                                         <div class="input-group">
-                                            <span class="input-group-addon" id="basic-addon2"><i class="icofont icofont-underline"></i></span>
-                                            <asp:TextBox ID="txtGroup_Name_En" runat="server" class="form-control" placeholder="Enter Name in English" TextMode="SingleLine"></asp:TextBox>
+                                            <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
+                                            <asp:DropDownList ID="secretLevel" CssClass="js-example-basic-single col-sm-12" runat="server" DataSourceID="EntityDataSourceTreatmentConfidentiality" DataTextField="Treatment_Confidentiality_Name_En" DataValueField="Treatment_Confidentiality_Id">
+                                            </asp:DropDownList>
                                         </div>
-                                        <div class="col-sm-12" style="">
-                                            <asp:RequiredFieldValidator ID="RFVtxtGroup_Name_En" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter English Name" ValidationGroup="Group" ControlToValidate="txtGroup_Name_En" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-sm-12" style="text-align: right; margin-top: -2%">
-                                        <asp:Button ID="Save" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="Group" />
-
+                                        <asp:RequiredFieldValidator ID="valSecretLevel" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Secret Level" ValidationGroup="valFormAssignment" ControlToValidate="secretLevel" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
-
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label>Send To</label><i class="icofont icofont-star-alt-1 text-danger"></i>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-paper-plane"></i></span>
+                                            <asp:ListBox ID="treatmentTo" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Send To" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
+                                        </div>
+                                        <asp:RequiredFieldValidator ID="valTreatmentTo" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Send To" ValidationGroup="valFormAssignment" ControlToValidate="treatmentTo" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Copy To</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-ui-copy"></i></span>
+                                            <asp:ListBox ID="treatmentCopyTo" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Copy To" runat="server" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label>Required</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-presentation-alt"></i></span>
+                                            <asp:TextBox ID="requiredAssignment" runat="server" placeholder="Enter Required" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label>Keywork</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-keyboard-alt"></i></span>
+                                            <asp:TextBox ID="keyworkAssignment" runat="server" placeholder="Enter Keywork" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12 text-right">
+                                    <asp:Button ID="SaveAssignment" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="valFormAssignment" OnClick="SaveAssignment_Click" />
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- end of form -->
+                        </div>
                     </div>
+
+                    <!-- end of form -->
                 </div>
             </div>
+        </div>
 
 
-            <div id="add-model-reply" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="login-card card-block login-card-modal">
+        <div id="add-model-reply" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="login-card card-block login-card-modal">
 
-                        <div class="text-center">
-                            <img src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="logo.png">
-                        </div>
-                        <div class="card m-t-15">
-                            <div class="auth-box card-block">
-                                <div class="row m-b-10">
-                                    <div class="col-md-12 m-t-10">
-                                        <h3 class="text-center txt-primary">Reply</h3>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ">
-                                    <div class="row">
-                                        <div class="form-group col-sm-12">
-                                            <label class="j-label">Reply</label><i class="icofont icofont-star-alt-1 text-danger"></i>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-reply-all"></i></span>
-                                                <asp:TextBox ID="replyTreatement" runat="server" placeholder="Enter Reply" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
-                                            </div>
-                                            <asp:RequiredFieldValidator ID="valReplyTreatement" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Reply" ValidationGroup="valReplyGroup" ControlToValidate="replyTreatement" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-sm-12">
-                                            <label class="j-label">Keywork</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-keyboard-alt"></i></span>
-                                                <asp:TextBox ID="keyworkTreatment" runat="server" placeholder="Enter Keywork" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-sm-12 text-right">
-                                        <asp:Button ID="SaveReply" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="valReplyGroup" OnClick="SaveReply_Click" />
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- end of form -->
+                    <div class="text-center">
+                        <img src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="logo.png">
                     </div>
+                    <div class="card m-t-15">
+                        <div class="auth-box card-block">
+                            <div class="row m-b-10">
+                                <div class="col-md-12 m-t-10">
+                                    <h3 class="text-center txt-primary">Reply</h3>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 ">
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label class="j-label">Reply</label><i class="icofont icofont-star-alt-1 text-danger"></i>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-reply-all"></i></span>
+                                            <asp:TextBox ID="replyTreatement" runat="server" placeholder="Enter Reply" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
+                                        </div>
+                                        <asp:RequiredFieldValidator ID="valReplyTreatement" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Reply" ValidationGroup="valReplyGroup" ControlToValidate="replyTreatement" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label class="j-label">Keywork</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-keyboard-alt"></i></span>
+                                            <asp:TextBox ID="keyworkTreatment" runat="server" placeholder="Enter Keywork" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12 text-right">
+                                    <asp:Button ID="SaveReply" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="valReplyGroup" OnClick="SaveReply_Click" />
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- end of form -->
                 </div>
             </div>
         </div>
