@@ -52,6 +52,7 @@ namespace Treatment.Pages.Setting.UserManagment
         {
             try
             {
+                db.Configuration.LazyLoadingEnabled = false;
                 Permission Per = db.Permissions.Create();
                 Per.Permission_Name_Ar = arabic_name;
                 Per.Permission_Name_En = english_name;

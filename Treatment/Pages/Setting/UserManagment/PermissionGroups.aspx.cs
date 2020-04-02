@@ -8,6 +8,8 @@ using Treatment.Entity;
 using Website.Classes;
 using Newtonsoft.Json;
 
+
+
 namespace Treatment.Pages.Setting.UserManagment
 {
     public partial class PermissionGroups : System.Web.UI.Page
@@ -52,12 +54,15 @@ namespace Treatment.Pages.Setting.UserManagment
         {
             try
             {
+                db.Configuration.LazyLoadingEnabled = false;
                 Group group = db.Groups.Create();
                 group.Group_Name_Ar = arabic_name;
                 group.Group_Name_En = english_name;
                 db.Groups.Add(group);
                 db.SaveChanges();
                 /* Add it to log file */
+                db.Configuration.LazyLoadingEnabled = true;
+                group = db.Groups.Find(group.Group_Id);
                 LogData = "data:" + JsonConvert.SerializeObject(group, logFileModule.settings);
                 logFileModule.logfile(10, "إنشاء مجموعة جديدة", "", LogData);
                 //PriorityDataSource.DataBind();

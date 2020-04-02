@@ -40,6 +40,7 @@ namespace Treatment.Pages.Setting.Auth
         {
             try
             {
+                db.Configuration.LazyLoadingEnabled = false;
                 List<Employee> emp_list = db.Employees.ToList();
                 for (int i = 0; i < emp_list.Count; i++)
                 {
@@ -51,7 +52,6 @@ namespace Treatment.Pages.Setting.Auth
                             Employee emp = emp_list[i];
                             SessionWrapper.LoggedUser = emp;
                             SessionWrapper.IsLocked = false;
-                            int id = SessionWrapper.LoggedUser.Employee_Id;
 
                             List<Permission_Group> Per_group = db.Permission_Group.Where(x => x.Group_Id == emp.Group_Id).ToList();
                             List_permission.Clear();

@@ -34,6 +34,7 @@ namespace Treatment.Pages.Setting.Auth
 
         private bool rest_account(string email)
         {
+            db.Configuration.LazyLoadingEnabled = false;
             Employee emp = db.Employees.Where(x => x.Employee_Email == email).FirstOrDefault();
             if (emp != null)
             {
@@ -52,6 +53,7 @@ namespace Treatment.Pages.Setting.Auth
                     txtEmail.Text = "";
 
                     /* Add it to log file */
+                    
                     LogData = "data:" + JsonConvert.SerializeObject(emp, logFileModule.settings);
                     logFileModule.logfile(10, "إعادة تعين كلمة السر", "", LogData);
 
@@ -71,6 +73,6 @@ namespace Treatment.Pages.Setting.Auth
         }
 
         
-
+        
     }
 }

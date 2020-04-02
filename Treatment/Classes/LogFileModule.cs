@@ -33,7 +33,7 @@ namespace Treatment
                     if (controlId != 0)
                     {
                         logFileInsert.Login_Id = currentUserId;
-                        logFileInsert.Form_Id = currentPage() ;
+                        logFileInsert.Form_Id = currentPage();
                     }
                     logFileInsert.Log_Name = logName;
                     logFileInsert.Log_Description = logDescription;
