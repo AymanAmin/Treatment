@@ -6,12 +6,19 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Treatment.Entity;
 using Website.Classes;
+using Newtonsoft.Json;
+
 
 namespace Treatment.Pages.Setting.UserManagment
 {
     public partial class Permissions : System.Web.UI.Page
     {
         ECMSEntities db = new ECMSEntities();
+
+        //LogFile Data
+        LogFileModule logFileModule = new LogFileModule();
+        String LogData = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -44,7 +51,7 @@ namespace Treatment.Pages.Setting.UserManagment
         private bool AddPermission(string arabic_name,string english_name, int parent_id , string url,string icon)
         {
             try
-            { 
+            {
                 Permission Per = db.Permissions.Create();
                 Per.Permission_Name_Ar = arabic_name;
                 Per.Permission_Name_En = english_name;
@@ -54,18 +61,15 @@ namespace Treatment.Pages.Setting.UserManagment
                 db.Permissions.Add(Per);
                 db.SaveChanges();
 
+                /* Add it to log file */
+                LogData = "data:" + JsonConvert.SerializeObject(Per, logFileModule.settings);
+                logFileModule.logfile(10, "إضافة صلاحية جديدة", "", LogData);
+
                 //PriorityDataSource.DataBind();
             }
             catch { return false; }
             return true;
         }
-
-       /* private void FillParent()
-        {
-            List<Permission> structList = db.Permissions.ToList();
-            ddlFiller.dropDDL(txtParent, "Structure_Id", "Structure_Name", structList, "Select Parent");
-            if (structList.Count > 0)
-                ddlParent.SelectedIndex = 1;
-        }*/
+        
     }
 }

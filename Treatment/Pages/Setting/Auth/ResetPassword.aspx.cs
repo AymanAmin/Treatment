@@ -7,12 +7,17 @@ using System.Web.UI.WebControls;
 using Treatment.Classes;
 using Treatment.Entity;
 using Website.Classes;
+using Newtonsoft.Json;
 
 namespace Treatment.Pages.Setting.Auth
 {
     public partial class ResetPassword : System.Web.UI.Page
     {
         ECMSEntities db = new ECMSEntities();
+
+        //LogFile Data
+        LogFileModule logFileModule = new LogFileModule();
+        String LogData = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -37,6 +42,7 @@ namespace Treatment.Pages.Setting.Auth
                 emp.Employee_Password = Encrypted_Password;
                 db.Entry(emp).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
+
                 string sever_name = Request.Url.Authority.ToString();
                 SendEmail send = new SendEmail();
                 bool result = send.ResetEmail(emp.Employee_Email, New_Password, sever_name);
@@ -44,6 +50,11 @@ namespace Treatment.Pages.Setting.Auth
                 {
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "show_model_sucess();", true);
                     txtEmail.Text = "";
+
+                    /* Add it to log file */
+                    LogData = "data:" + JsonConvert.SerializeObject(emp, logFileModule.settings);
+                    logFileModule.logfile(10, "إعادة تعين كلمة السر", "", LogData);
+
                     return true;
                 }
                 else
@@ -60,6 +71,6 @@ namespace Treatment.Pages.Setting.Auth
         }
 
         
-        
+
     }
 }

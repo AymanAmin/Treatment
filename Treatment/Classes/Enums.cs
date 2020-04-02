@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Website.Classes
+namespace Website.Classes  
 {
     public class Enums
     {
+        public enum LogFileID
+        {
+            Login = 11,
+            ResetPassword = 12,
+            AddGroup = 13,
+            PermissionGroup = 14,
+            CreatePermission = 15
 
+        }
         public enum brnch
         {
             Olaya = 1,

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,11 @@ namespace Treatment.Pages.Setting.Auth
     {
         ECMSEntities db = new ECMSEntities();
         List<Permission> List_permission = new List<Permission>();
+
+        //LogFile Data
+        LogFileModule logFileModule = new LogFileModule();
+        String LogData = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (SessionWrapper.LoggedUser != null)
@@ -56,6 +62,10 @@ namespace Treatment.Pages.Setting.Auth
                                     List_permission.Add(per);
                             }
                             SessionWrapper.Permssions = List_permission;
+
+                            /* Add it to log file */
+                            LogData = "data:" + JsonConvert.SerializeObject(emp, logFileModule.settings);
+                            logFileModule.logfile(10, "تسجيل دخول", "", LogData);
                         }
                         else
                             continue;
@@ -67,5 +77,7 @@ namespace Treatment.Pages.Setting.Auth
             }
             catch (Exception er) { return false; }
         }
+
+        
     }
 }
