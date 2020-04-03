@@ -72,7 +72,7 @@ namespace Treatment.Pages.Treatment
                     newTreatment.Required_Reply = checkRequiredReply();
                     newTreatment.Treatment_Status_Id = 1;
                     newTreatment.Treatment_Number = getTreatmentNumber();
-                    newTreatment.From_Employee_Structure_Id = currentStructureUserId;
+                    newTreatment.From_Employee_Structure_Id = getStructure(currentStructureUserId);
                     if (checkRequiredReply())
                         newTreatment.Required_Reply_Date = DateTime.Parse(replyDate.Text);
 
@@ -83,7 +83,7 @@ namespace Treatment.Pages.Treatment
                         if (treatmentTo.Items[i].Selected)
                         {
                             treatmentDetial = new Treatment_Detial();
-                            treatmentDetial.To_Employee_Structure_Id = int.Parse(treatmentTo.Items[i].Value);
+                            treatmentDetial.To_Employee_Structure_Id = getStructure(int.Parse(treatmentTo.Items[i].Value));
                             treatmentDetial.Parent = 0;
                             treatmentDetial.Assignment_Status_Id = 1;
                             treatmentDetial.Is_Read = false;
@@ -100,7 +100,7 @@ namespace Treatment.Pages.Treatment
                         if (treatmentCopyTo.Items[i].Selected)
                         {
                             treatmentDetial = new Treatment_Detial();
-                            treatmentDetial.To_Employee_Structure_Id = int.Parse(treatmentCopyTo.Items[i].Value);
+                            treatmentDetial.To_Employee_Structure_Id = getStructure(int.Parse(treatmentCopyTo.Items[i].Value));
                             treatmentDetial.Parent = 0;
                             treatmentDetial.Assignment_Status_Id = 1;
                             treatmentDetial.Is_Read = false;
@@ -113,8 +113,8 @@ namespace Treatment.Pages.Treatment
 
                     db.Treatment_Master.Add(newTreatment);
                     db.SaveChanges();
-                    LogData = "data:" + JsonConvert.SerializeObject(newTreatment, logFileModule.settings);
-                    logFileModule.logfile(4, "إضافة معاملة", "", LogData);
+                    //LogData = "data:" + JsonConvert.SerializeObject(newTreatment, logFileModule.settings);
+                    //logFileModule.logfile(4, "إضافة معاملة", "", LogData);
                 }
                 catch { messageForm = "Erorr to save data in system";  return false; }
                 return true;
@@ -125,6 +125,19 @@ namespace Treatment.Pages.Treatment
             }
         }
 
+        private int getStructure(int employeeId)
+        {
+            int employeeStructureId = 0;
+            try
+            {
+                Employee_Structure employeeStructure = db.Employee_Structure.First(x => x.Employee_Id == employeeId);
+                employeeStructureId = (int)employeeStructure.Employee_Structure_Id;
+            }
+            catch (Exception)
+            {
+            }
+            return employeeStructureId;
+        }
         private string getTreatmentNumber()
         {
             string treatmentNumber = "";

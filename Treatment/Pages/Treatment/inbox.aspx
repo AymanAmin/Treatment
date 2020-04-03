@@ -87,17 +87,17 @@
                             </div>
                             <ul class="page-list nav nav-tabs flex-column" id="pills-tab" role="tablist">
                                 <li class="nav-item mail-section">
-                                    <a class="nav-link" data-toggle="pill" href="#e-sent" role="tab" style="font-size: 120%; color: #ccd0d5">
+                                    <a class="nav-link active" data-toggle="pill" href="#e-inbox" role="tab" style="font-size: 120%; color: #ccd0d5">
                                         <i class="icofont icofont-inbox"></i>Inbox
                                     </a>
                                 </li>
                                 <li class="nav-item mail-section">
-                                    <a class="nav-link active" data-toggle="pill" href="#e-inbox" role="tab" style="font-size: 120%;">
-                                        <i class="icofont icofont-paper-plane"></i>Send
+                                    <a class="nav-link" data-toggle="pill" href="#e-send" role="tab" style="font-size: 120%; color: #ccd0d5">
+                                        <i class="icofont icofont-paper-plane"></i>Sent
                                     </a>
                                 </li>
                                 <li class="nav-item mail-section">
-                                    <a class="nav-link" data-toggle="pill" href="#e-trash" role="tab" style="font-size: 120%; color: #ccd0d5">
+                                    <a class="nav-link" data-toggle="pill" href="#e-completed" role="tab" style="font-size: 120%; color: #ccd0d5">
                                         <i class="icofont icofont-license"></i>Completed
                                     </a>
                                 </li>
@@ -108,26 +108,45 @@
                     <!-- Right-side section start -->
                     <div class="col-lg-12 col-xl-10">
                         <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="e-inbox" role="tabpanel">
 
+                            <!-- Start Inbox Treatment-->
+                            <div class="tab-pane fade show active" id="e-inbox" role="tabpanel">
                                 <div class="mail-body">
-                                    <!--<div class="mail-body-header">
-                                <button type="button" class="btn btn-primary btn-xs waves-effect waves-light">
-                                    <i class="icofont icofont-ui-reply"></i>
-                                </button>
-                                <button type="button" class="btn btn-success btn-xs waves-effect waves-light">
-                                    <i class="icofont icofont-plus-circle"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-xs waves-effect waves-light">
-                                    <i class="icofont icofont-close-squared-alt"></i>
-                                </button>
-                            </div>-->
                                     <div class="mail-body-content">
                                         <div class="table-responsive" runat="server" id="inboxTreatment">
+                                            <!-- Create Table Send Treatment in Code behind Function loadListViewTreatment()-->
                                         </div>
+                                        <hr style="margin-top: -2%;">
                                     </div>
                                 </div>
                             </div>
+                            <!-- End Inbox Treatment -->
+
+                            <!-- Start Send Treatment-->
+                            <div class="tab-pane fade" id="e-send" role="tabpanel">
+                                <div class="mail-body">
+                                    <div class="mail-body-content">
+                                        <div class="table-responsive" runat="server" id="sendTreatment">
+                                            <!-- Create Table Send Treatment in Code behind Function loadListViewTreatment()-->
+                                        </div>
+                                        <hr style="margin-top: -2%;">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Send Treatment -->
+
+                            <!-- Start Complete Treatment  -->
+                            <div class="tab-pane fade" id="e-completed" role="tabpanel">
+                                <div class="mail-body">
+                                    <div class="mail-body-content">
+                                        <div class="table-responsive" runat="server" id="completeTreatment">
+                                            <!-- Create Table Complete Treatment in Code behind Function loadListViewTreatment()-->
+                                        </div>
+                                        <hr style="margin-top: -2%;">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Complete Treatment -->
                         </div>
                     </div>
                     <!-- Right-side section End -->
