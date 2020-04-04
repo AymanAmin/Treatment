@@ -4,11 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-<<<<<<< HEAD
-    <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-=======
-    <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
->>>>>>> 14134e4293291cb090b99fcd0387f02a2ef7aa09
+      <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Assignment_Status">
           <Key>
             <PropertyRef Name="Assignment_Status_Id" />
@@ -569,7 +565,8 @@
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ECMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -765,6 +762,8 @@
           <Property Name="Prepared_Administration_Id" Type="Int32" />
           <Property Name="Required_Reply_Date" Type="DateTime" Precision="3" />
           <Property Name="Treatment_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Treatment_Keywork" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Treatment_Mother" Type="Int32" />
           <NavigationProperty Name="Attachments" Relationship="Self.FK_Attachment_Treatment" FromRole="Treatment_Master" ToRole="Attachment" />
           <NavigationProperty Name="Employee_Structure" Relationship="Self.FK_Treatment_Employee_Structure" FromRole="Treatment_Master" ToRole="Employee_Structure" />
           <NavigationProperty Name="Owner_Relationship" Relationship="Self.FK_Owner_Relationship_Treatment" FromRole="Treatment_Master" ToRole="Owner_Relationship" />
@@ -777,8 +776,6 @@
           <NavigationProperty Name="Treatment_Procedure" Relationship="Self.FK_Treatment_Treatment_Procedure" FromRole="Treatment_Master" ToRole="Treatment_Procedure" />
           <NavigationProperty Name="Treatment_Status" Relationship="Self.FK_Treatment_Treatment_Status" FromRole="Treatment_Master" ToRole="Treatment_Status" />
           <NavigationProperty Name="Treatment_Type" Relationship="Self.FK_Treatment_Treatment_Type" FromRole="Treatment_Master" ToRole="Treatment_Type" />
-          <Property Name="Treatment_Keywork" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Treatment_Mother" Type="Int32" />
         </EntityType>
         <EntityType Name="Treatment_Priority">
           <Key>
@@ -1342,8 +1339,6 @@
           <EntitySetMapping Name="Treatment_Master">
             <EntityTypeMapping TypeName="ECMSModel.Treatment_Master">
               <MappingFragment StoreEntitySet="Treatment_Master">
-                <ScalarProperty Name="Treatment_Mother" ColumnName="Treatment_Mother" />
-                <ScalarProperty Name="Treatment_Keywork" ColumnName="Treatment_Keywork" />
                 <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
                 <ScalarProperty Name="Treatment_Subject" ColumnName="Treatment_Subject" />
                 <ScalarProperty Name="Treatment_Date" ColumnName="Treatment_Date" />
@@ -1362,6 +1357,8 @@
                 <ScalarProperty Name="Prepared_Administration_Id" ColumnName="Prepared_Administration_Id" />
                 <ScalarProperty Name="Required_Reply_Date" ColumnName="Required_Reply_Date" />
                 <ScalarProperty Name="Treatment_Number" ColumnName="Treatment_Number" />
+                <ScalarProperty Name="Treatment_Keywork" ColumnName="Treatment_Keywork" />
+                <ScalarProperty Name="Treatment_Mother" ColumnName="Treatment_Mother" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
