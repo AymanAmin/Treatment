@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Treatment.Entity;
+using Website.Classes;
 
 namespace Treatment
 {
@@ -13,7 +14,6 @@ namespace Treatment
     public class LogFileModule
     {
         ECMSEntities db = new ECMSEntities();
-        int currentUserId = 1;
         public JsonSerializerSettings settings = new JsonSerializerSettings()
         {
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
@@ -32,7 +32,10 @@ namespace Treatment
                     logFileInsert.Log_Date = DateTime.Now;
                     if (controlId != 0)
                     {
-                        logFileInsert.Login_Id = currentUserId;
+                        if (SessionWrapper.LoggedUser != null)
+                            logFileInsert.Login_Id = SessionWrapper.LoggedUser.Employee_Id;
+                        else
+                            logFileInsert.Login_Id = 1;
                         logFileInsert.Form_Id = currentPage();
                     }
                     logFileInsert.Log_Name = logName;
