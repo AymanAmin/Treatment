@@ -4,6 +4,52 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>ECMS - LogFile</title>
     <script>
+        /* var str = 'data:{"Employees":[],"Permission_Group":[],"Group_Id":40,"Group_Name_Ar":"5","Group_Name_En":"5"}';
+         var json = "["+str.slice(5)+"]";
+         //alert(json);
+ 
+         var col = [];
+         for (var i = 0; i < json.length; i++) {
+             for (var key in json[i]) {
+                 if (col.indexOf(key) === -1) {
+                     col.push(key);
+                 }
+             }
+         }
+         
+         // CREATE DYNAMIC TABLE.
+         var table = document.createElement("table");
+         var tables = "<table><tr>";
+         // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+ 
+         var tr = table.insertRow(-1);                   // TABLE ROW.
+ 
+         for (var i = 0; i < col.length; i++) {
+             var th = document.createElement("th");      // TABLE HEADER.
+             th.innerHTML = col[i];
+             tr.appendChild(th);
+             tables += "<th>" + col[i] + "</th>";
+         }
+         tables += "</tr><tr>";
+         // ADD JSON DATA TO THE TABLE AS ROWS.
+         for (var i = 0; i < json.length; i++) {
+ 
+             tr = table.insertRow(-1);
+ 
+             for (var j = 0; j < col.length; j++) {
+                 var tabCell = tr.insertCell(-1);
+                 tabCell.innerHTML = json[i][col[j]];
+                 tables += "<td>" + json[i][col[j]] + "</td>";
+             }
+         }
+         tables += "</tr></table>";
+         //alert(tables);
+         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        /* var divContainer = document.getElementById("showData");
+         divContainer.innerHTML = "";
+         divContainer.appendChild(table);*/
+
+
         //setTimeout(function () { document.getElementById("header-div").style.display = "none"; }, 1);
     </script>
 </asp:Content>
@@ -24,10 +70,57 @@
                     <div class="options">
                         <div class="options-item">
                             <dx:ASPxCheckBox ID="chkSingleExpanded" runat="server" Text="Keep a single expanded row at a time"
-                                AutoPostBack="true" OnCheckedChanged="chkSingleExpanded_CheckedChanged" Theme="DevEx" />
+                                AutoPostBack="true" OnCheckedChanged="chkSingleExpanded_CheckedChanged" Theme="DevEx" Checked="True" CheckState="Checked" />
                         </div>
                     </div>
                     <dx:ASPxGridView Style="width: 100%" ID="LogFileGridView" runat="server" DataSourceID="LogFileDataSource" EnableTheming="True" Theme="MetropolisBlue" AutoGenerateColumns="False" KeyFieldName="Log_Id">
+                        <ClientSideEvents EndCallback="function(s, e) {
+var div_target = document.getElementsByClassName(&quot;dx-wrap dxgv&quot;)[0];
+	var str = div_target.innerHTML;
+var obj= &quot;[&quot;+str.slice(5)+&quot;]&quot;;
+var json= JSON.parse(obj);
+        var col = [];
+        for (var i = 0; i &lt; json.length; i++) {
+            for (var key in json[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        }
+        
+        // CREATE DYNAMIC TABLE.
+        var table = document.createElement(&quot;table&quot;);
+        var tables = &quot;&lt;div = class= 'dt-responsive table-responsive'&gt;&lt;table class='table table-striped table-bordered nowrap dataTable'&gt;&lt;thead&gt;&lt;tr&gt;&quot;;
+        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+        var tr = table.insertRow(-1);                   // TABLE ROW.
+
+        for (var i = 0; i &lt; col.length; i++) {
+            var th = document.createElement(&quot;th&quot;);      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+            tables += &quot;&lt;th&gt;&quot; + col[i] + &quot;&lt;/th&gt;&quot;;
+        }
+        tables += &quot;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr class='even'&gt;&quot;;
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i &lt; json.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j &lt; col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = json[i][col[j]];
+if ( json[i][col[j]] === &quot;&quot;) {
+    tables += &quot;&lt;td&gt; Empty &lt;/td&gt;&quot;;
+
+}else{
+                tables += &quot;&lt;td&gt;&quot; + json[i][col[j]] + &quot;&lt;/td&gt;&quot;;
+}
+            }
+        }
+        tables += &quot;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&quot;;
+document.getElementsByClassName(&quot;dx-wrap dxgv&quot;)[0].innerHTML = tables ;
+&nbsp;&nbsp;&nbsp; }" />
                         <SettingsDetail ShowDetailRow="True" />
                         <SettingsAdaptivity>
                             <AdaptiveDetailLayoutProperties>

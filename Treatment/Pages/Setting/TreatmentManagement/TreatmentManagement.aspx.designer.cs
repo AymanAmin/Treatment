@@ -13,6 +13,42 @@ namespace Treatment.Pages.Setting.TreatmentManagement {
     public partial class TreatmentManagement {
         
         /// <summary>
+        /// PriorityGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView PriorityGridView;
+        
+        /// <summary>
+        /// PriorityDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource PriorityDataSource;
+        
+        /// <summary>
+        /// ConfidentialityGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView ConfidentialityGridView;
+        
+        /// <summary>
+        /// ConfidentialityDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource ConfidentialityDataSource;
+        
+        /// <summary>
         /// TypeGridView control.
         /// </summary>
         /// <remarks>
@@ -67,24 +103,6 @@ namespace Treatment.Pages.Setting.TreatmentManagement {
         protected global::System.Web.UI.WebControls.EntityDataSource ProcedureDataSource;
         
         /// <summary>
-        /// PriorityGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView PriorityGridView;
-        
-        /// <summary>
-        /// PriorityDataSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource PriorityDataSource;
-        
-        /// <summary>
         /// DeliveryGridView control.
         /// </summary>
         /// <remarks>
@@ -101,24 +119,6 @@ namespace Treatment.Pages.Setting.TreatmentManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.EntityDataSource DeliveryDataSource;
-        
-        /// <summary>
-        /// ConfidentialityGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView ConfidentialityGridView;
-        
-        /// <summary>
-        /// ConfidentialityDataSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource ConfidentialityDataSource;
         
         /// <summary>
         /// ClassGridView control.

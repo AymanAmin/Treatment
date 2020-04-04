@@ -14,6 +14,7 @@ namespace Treatment.Pages.Admin
         ECMSEntities db = new ECMSEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
+            LogFileGridView.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
             if (!IsPostBack)
             {
                 /*LogFileGridView.DataBind();
@@ -27,6 +28,7 @@ namespace Treatment.Pages.Admin
             
             Int32 id = (Int32)(sender as ASPxGridView).GetMasterRowKeyValue();
             Session["LogID"] = id;
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "changeView();", true);
         }
 
         protected void detailGrid_CustomUnboundColumnData(object sender, ASPxGridViewColumnDataEventArgs e)
@@ -36,7 +38,7 @@ namespace Treatment.Pages.Admin
 
         protected void chkSingleExpanded_CheckedChanged(object sender, EventArgs e)
         {
-            LogFileGridView.SettingsDetail.AllowOnlyOneMasterRowExpanded = chkSingleExpanded.Checked;
+            LogFileGridView.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;// chkSingleExpanded.Checked;
             if (LogFileGridView.SettingsDetail.AllowOnlyOneMasterRowExpanded)
             {
                 LogFileGridView.DetailRows.CollapseAllRows();
