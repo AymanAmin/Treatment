@@ -25,7 +25,11 @@ namespace Treatment
             {
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
             }
+<<<<<<< HEAD
             ListPermissions = SessionWrapper.Permssions;
+=======
+            //ListPermissions = SessionWrapper.Permssions;
+>>>>>>> 14134e4293291cb090b99fcd0387f02a2ef7aa09
             Employee_Name();
             LoadBreadcrumb(ListPermissions);
             LoadMenu(ListPermissions);

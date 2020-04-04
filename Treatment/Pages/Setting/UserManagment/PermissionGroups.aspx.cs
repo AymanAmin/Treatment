@@ -22,7 +22,7 @@ namespace Treatment.Pages.Setting.UserManagment
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Permission_Group group = db.Permission_Group.First();
+            //Permission_Group group = db.Permission_Group.First();
             
             if (!IsPostBack)
             {
@@ -61,8 +61,6 @@ namespace Treatment.Pages.Setting.UserManagment
                 db.Groups.Add(group);
                 db.SaveChanges();
                 /* Add it to log file */
-                db.Configuration.LazyLoadingEnabled = true;
-                group = db.Groups.Find(group.Group_Id);
                 LogData = "data:" + JsonConvert.SerializeObject(group, logFileModule.settings);
                 logFileModule.logfile(10, "إنشاء مجموعة جديدة", "", LogData);
                 //PriorityDataSource.DataBind();
