@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Treatment.Entity;
+using Website.Classes;
 
 namespace Treatment.Pages.Treatment
 {
@@ -13,11 +14,12 @@ namespace Treatment.Pages.Treatment
     {
         ECMSEntities db = new ECMSEntities();
         string messageForm = "";
-        int currentStructureUserId = 1; 
+        int currentUserId = 0; 
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            currentUserId = SessionWrapper.LoggedUser.Employee_Id;
         }
 
         protected void SaveTreatment_Click(object sender, EventArgs e)
@@ -72,7 +74,8 @@ namespace Treatment.Pages.Treatment
                     newTreatment.Required_Reply = checkRequiredReply();
                     newTreatment.Treatment_Status_Id = 1;
                     newTreatment.Treatment_Number = getTreatmentNumber();
-                    newTreatment.From_Employee_Structure_Id = getStructure(currentStructureUserId);
+                    newTreatment.From_Employee_Structure_Id = getStructure(currentUserId);
+                    newTreatment.Treatment_Mother = 0;
                     if (checkRequiredReply())
                         newTreatment.Required_Reply_Date = DateTime.Parse(replyDate.Text);
 

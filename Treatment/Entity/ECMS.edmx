@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Assignment_Status">
           <Key>
             <PropertyRef Name="Assignment_Status_Id" />
@@ -171,6 +171,8 @@
           <Property Name="Prepared_Administration_Id" Type="int" />
           <Property Name="Required_Reply_Date" Type="datetime" />
           <Property Name="Treatment_Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="Treatment_Keywork" Type="nvarchar(max)" />
+          <Property Name="Treatment_Mother" Type="int" />
         </EntityType>
         <EntityType Name="Treatment_Priority">
           <Key>
@@ -563,8 +565,7 @@
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ECMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -772,6 +773,8 @@
           <NavigationProperty Name="Treatment_Procedure" Relationship="Self.FK_Treatment_Treatment_Procedure" FromRole="Treatment_Master" ToRole="Treatment_Procedure" />
           <NavigationProperty Name="Treatment_Status" Relationship="Self.FK_Treatment_Treatment_Status" FromRole="Treatment_Master" ToRole="Treatment_Status" />
           <NavigationProperty Name="Treatment_Type" Relationship="Self.FK_Treatment_Treatment_Type" FromRole="Treatment_Master" ToRole="Treatment_Type" />
+          <Property Name="Treatment_Keywork" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Treatment_Mother" Type="Int32" />
         </EntityType>
         <EntityType Name="Treatment_Priority">
           <Key>
@@ -1335,6 +1338,8 @@
           <EntitySetMapping Name="Treatment_Master">
             <EntityTypeMapping TypeName="ECMSModel.Treatment_Master">
               <MappingFragment StoreEntitySet="Treatment_Master">
+                <ScalarProperty Name="Treatment_Mother" ColumnName="Treatment_Mother" />
+                <ScalarProperty Name="Treatment_Keywork" ColumnName="Treatment_Keywork" />
                 <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
                 <ScalarProperty Name="Treatment_Subject" ColumnName="Treatment_Subject" />
                 <ScalarProperty Name="Treatment_Date" ColumnName="Treatment_Date" />

@@ -315,144 +315,12 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row card-block">
-                        <div class="col-md-12">
-                            <ul class="list-view">
-                                <li>
-                                    <div class="card list-view-media">
-                                        <div class="card-block z-depth-0">
-                                            <div class="media">
-                                                <a class="media-left" href="#">
-                                                    <img class="media-object card-list-img" src="..\..\..\..\Theme\files\assets\images\avatar-1.jpg" alt="Generic placeholder image">
-                                                </a>
-                                                <div class="media-body">
-
-                                                    <div class="col-xs-12">
-                                                        <h6 class="d-inline-block">Heading</h6>
-                                                        <label class="label label-info">Agent</label>
-                                                    </div>
-                                                    <div class="f-13 text-muted m-b-15">
-                                                        Software Engineer
-                                                                               
-                                                    </div>
-                                                    <p>
-                                                        Hi, This is my short intro text.
-                                                                                    Lorem ipsum is a dummy content sit
-                                                                                    dollar. You can copy and paste this
-                                                                                    dummy content from anywhere and to
-                                                                                    anywhere. Its all free and must be a
-                                                                                    good to folllow in prectice
-                                                    </p>
-                                                    <div class="m-t-15">
-                                                        <button type="button" data-toggle="tooltip" title="Facebook" class="btn btn-facebook btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-social-facebook"></span>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Twitter" class="btn btn-twitter btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-social-twitter"></span>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Linkedin" class="btn btn-linkedin btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-brand-linkedin"></span>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Drible" class="btn btn-dribbble btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-social-dribble"></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <div class="card list-view-media">
-                                                <div class="card-block z-depth-0">
-                                                    <div class="media">
-                                                        <a class="media-left" href="#">
-                                                            <img class="media-object card-list-img" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="Generic placeholder image">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <div>
-                                                                <h6 class="d-inline-block">Heading</h6>
-                                                                <label class="label  label-info">Accountant</label>
-                                                            </div>
-                                                            <div class="f-13 text-muted m-b-15">
-                                                                Softwear Engineer
-                                                                               
-                                                            </div>
-                                                            <p>
-                                                                Hi, This is my short intro text.
-                                                                                    Lorem ipsum is a dummy content sit
-                                                                                    dollar. You can copy and paste this
-                                                                                    dummy content from anywhere and to
-                                                                                    anywhere. Its all free and must be a
-                                                                                    good to folllow in prectice
-                                                            </p>
-                                                            <div class="m-t-15">
-                                                                <button type="button" data-toggle="tooltip" title="Facebook" class="btn btn-facebook btn-mini waves-effect waves-light">
-                                                                    <span class="icofont icofont-social-facebook"></span>
-                                                                </button>
-                                                                <button type="button" data-toggle="tooltip" title="Twitter" class="btn btn-twitter btn-mini waves-effect waves-light">
-                                                                    <span class="icofont icofont-social-twitter"></span>
-                                                                </button>
-                                                                <button type="button" data-toggle="tooltip" title="Linkedin" class="btn btn-linkedin btn-mini waves-effect waves-light">
-                                                                    <span class="icofont icofont-brand-linkedin"></span>
-                                                                </button>
-                                                                <button type="button" data-toggle="tooltip" title="Drible" class="btn btn-dribbble btn-mini waves-effect waves-light">
-                                                                    <span class="icofont icofont-social-dribble"></span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="">
-                                    <div class="card list-view-media">
-                                        <div class="card-block z-depth-0">
-                                            <div class="media">
-                                                <a class="media-left" href="#">
-                                                    <img class="media-object card-list-img" src="..\..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="Generic placeholder image">
-                                                </a>
-                                                <div class="media-body">
-                                                    <div>
-                                                        <h6 class="d-inline-block">Heading</h6>
-                                                        <label class="label  label-info">Accountant</label>
-                                                    </div>
-                                                    <div class="f-13 text-muted m-b-15">
-                                                        Softwear Engineer
-                                                                               
-                                                    </div>
-                                                    <p>
-                                                        Hi, This is my short intro text.
-                                                                                    Lorem ipsum is a dummy content sit
-                                                                                    dollar. You can copy and paste this
-                                                                                    dummy content from anywhere and to
-                                                                                    anywhere. Its all free and must be a
-                                                                                    good to folllow in prectice
-                                                    </p>
-                                                    <div class="m-t-15">
-                                                        <button type="button" data-toggle="tooltip" title="Facebook" class="btn btn-facebook btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-social-facebook"></span>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Twitter" class="btn btn-twitter btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-social-twitter"></span>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Linkedin" class="btn btn-linkedin btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-brand-linkedin"></span>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Drible" class="btn btn-dribbble btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-social-dribble"></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                    <div class="row">
+                        <div class="col-md-12" id="draggableMultiple">
+                            <div class="col-lg-12 col-xl-12" id="trackTreatment" runat="server">
+                            </div>
                         </div>
-                    </div>
+                </div>
                 </div>
                 <!-- List view card end -->
             </div>
@@ -603,4 +471,10 @@
     <asp:EntityDataSource ID="EntityDataSourceStructure" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Structures" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
     <!-- End Treatment Data Source-->
 
+    <style>
+        #draggableMultiple .sortable-moves {
+            box-shadow: 0 5px 25px -5px #ccc, 0 1px 5px 0 rgba(0,0,0,0.1), 0 0 0 0 rgba(0,0,0,0);
+            cursor: pointer;
+        }
+    </style>
 </asp:Content>

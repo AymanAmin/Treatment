@@ -87,7 +87,7 @@
                             </div>
                             <ul class="page-list nav nav-tabs flex-column" id="pills-tab" role="tablist">
                                 <li class="nav-item mail-section">
-                                    <a class="nav-link active" data-toggle="pill" href="#e-inbox" role="tab" style="font-size: 120%; color: #ccd0d5">
+                                    <a class="nav-link active" data-toggle="pill" href="#e-inbox" role="tab" style="font-size: 120%; color: #ccd0d5" id="addNfNumTreatment" runat="server">
                                         <i class="icofont icofont-inbox"></i>Inbox
                                     </a>
                                 </li>
@@ -179,6 +179,10 @@
         .label-default {
             background: linear-gradient(to right, #e0e0e0, #fffcfca1);
         }
+        .read-email-tr {
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    background-color: #fafafa;
+}
     </style>
     <script>
         function hidePcoded() {

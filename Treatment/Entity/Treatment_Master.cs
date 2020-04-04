@@ -39,6 +39,8 @@ namespace Treatment.Entity
         public Nullable<int> Prepared_Administration_Id { get; set; }
         public Nullable<System.DateTime> Required_Reply_Date { get; set; }
         public string Treatment_Number { get; set; }
+        public string Treatment_Keywork { get; set; }
+        public Nullable<int> Treatment_Mother { get; set; }
     
         public virtual ICollection<Attachment> Attachments { get; set; }
         public virtual Employee_Structure Employee_Structure { get; set; }
