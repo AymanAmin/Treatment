@@ -12,6 +12,8 @@
                 <div class="p-20 z-depth-0 waves-effect dt-responsive table-responsive" data-toggle="tooltip" data-placement="top" title="Treatment Type">
                     <h4 class="sub-title">Treatment Type</h4>
                     <dx:ASPxGridView ID="TypeGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="TypeDataSource" EnableTheming="True" KeyFieldName="Treatment_Type_Id" Theme="Mulberry">
+                        <SettingsEditing UseFormLayout="False">
+                        </SettingsEditing>
                         <SettingsBehavior ConfirmDelete="True" />
                         <SettingsCommandButton>
                             <NewButton Text=" ">
@@ -59,12 +61,38 @@
                                 </Header>
                             </EditForm>
                         </StylesPopup>
+                        <EditFormLayoutProperties>
+                            <Items>
+                                <dx:GridViewLayoutGroup>
+                                    <Items>
+                                        <dx:GridViewColumnLayoutItem ColumnName="Arabic Name">
+                                        </dx:GridViewColumnLayoutItem>
+                                    </Items>
+                                </dx:GridViewLayoutGroup>
+                                <dx:GridViewLayoutGroup>
+                                    <Items>
+                                        <dx:GridViewColumnLayoutItem ColumnName="English Name">
+                                            <CaptionCellStyle CssClass="form-control">
+                                            </CaptionCellStyle>
+                                        </dx:GridViewColumnLayoutItem>
+                                    </Items>
+                                </dx:GridViewLayoutGroup>
+                                <dx:GridViewLayoutGroup>
+                                    <Items>
+                                        <dx:GridViewColumnLayoutItem ColumnName="Actions">
+                                        </dx:GridViewColumnLayoutItem>
+                                    </Items>
+                                </dx:GridViewLayoutGroup>
+                            </Items>
+                        </EditFormLayoutProperties>
                         <Columns>
-                            <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Type_Id" ReadOnly="True" VisibleIndex="0">
-                            </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Type_Name_Ar" VisibleIndex="1">
+                                <PropertiesTextEdit Width="100%">
+                                </PropertiesTextEdit>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Type_Name_En" VisibleIndex="2">
+                                <PropertiesTextEdit Width="100%">
+                                </PropertiesTextEdit>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Actions" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
                             </dx:GridViewCommandColumn>
@@ -113,8 +141,6 @@
                             </CancelButton>
                         </SettingsCommandButton>
                         <Columns>
-                            <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Status_Id" ReadOnly="True" VisibleIndex="0">
-                            </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Status_Name_Ar" VisibleIndex="1">
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Status_Name_En" VisibleIndex="2">
@@ -165,8 +191,6 @@
                             </CancelButton>
                         </SettingsCommandButton>
                         <Columns>
-                            <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Procedure_Id" ReadOnly="True" VisibleIndex="0">
-                            </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Procedure_Name_Ar" VisibleIndex="1">
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Procedure_Name_En" VisibleIndex="2">
@@ -217,13 +241,15 @@
                             </CancelButton>
                         </SettingsCommandButton>
                         <Columns>
-                            <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Action" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
+                            <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Action" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="5">
                             </dx:GridViewCommandColumn>
-                            <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Priority_Id" ReadOnly="True" VisibleIndex="0">
-                            </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Priority_Name_Ar" VisibleIndex="1">
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Priority_Name_En" VisibleIndex="2">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn Caption="Card Class" FieldName="Card_Class" VisibleIndex="4">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn Caption="CSS Class" FieldName="Css_Class" VisibleIndex="3">
                             </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
@@ -271,8 +297,6 @@
                         <Columns>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Action" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
                             </dx:GridViewCommandColumn>
-                            <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Delivery_Id" ReadOnly="True" VisibleIndex="0">
-                            </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Delivery_Name_Ar" VisibleIndex="1">
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Delivery_Name_En" VisibleIndex="2">
@@ -287,6 +311,7 @@
                 <div class="p-20 z-depth-5 waves-effect dt-responsive table-responsive" data-toggle="tooltip" data-placement="top" title="Treatment Confidentiality">
                     <h4 class="sub-title">Treatment Confidentiality</h4>
                     <dx:ASPxGridView ID="ConfidentialityGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="ConfidentialityDataSource" EnableTheming="True" KeyFieldName="Treatment_Confidentiality_Id" Theme="Mulberry">
+                        <SettingsBehavior ConfirmDelete="True" />
                         <SettingsCommandButton>
                             <NewButton Text=" ">
                                 <Styles>
@@ -321,13 +346,13 @@
                             </CancelButton>
                         </SettingsCommandButton>
                         <Columns>
-                            <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Action" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
+                            <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Action" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="4">
                             </dx:GridViewCommandColumn>
-                            <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Confidentiality_Id" ReadOnly="True" VisibleIndex="0">
-                            </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Confidentiality_Name_Ar" VisibleIndex="1">
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Confidentiality_Name_En" VisibleIndex="2">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn Caption="CSS Class" FieldName="Css_Class" VisibleIndex="3">
                             </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
@@ -375,8 +400,6 @@
                         <Columns>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Action" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
                             </dx:GridViewCommandColumn>
-                            <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Class_Id" ReadOnly="True" VisibleIndex="0">
-                            </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Class_Name_Ar" VisibleIndex="1">
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Class_Name_En" VisibleIndex="2">
