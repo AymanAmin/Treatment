@@ -13,6 +13,24 @@ namespace Treatment.Pages.Treatment {
     public partial class ShowTreatment {
         
         /// <summary>
+        /// divRequiredReply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRequiredReply;
+        
+        /// <summary>
+        /// counterDateAgo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl counterDateAgo;
+        
+        /// <summary>
         /// treatmentDate control.
         /// </summary>
         /// <remarks>
@@ -92,6 +110,24 @@ namespace Treatment.Pages.Treatment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlTableCell treatmentStatus;
+        
+        /// <summary>
+        /// sendToTreatment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sendToTreatment;
+        
+        /// <summary>
+        /// copyToTreatment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl copyToTreatment;
         
         /// <summary>
         /// subject control.

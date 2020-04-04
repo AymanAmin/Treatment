@@ -9,7 +9,7 @@
         <div class="row">
             <!-- Task-detail-right start -->
             <div class="col-xl-4 col-lg-12 push-xl-8 task-detail-right">
-                <div class="card">
+                <div class="card" runat="server" id="divRequiredReply">
                     <div class="card-header">
                         <h5><i class="icofont icofont-clock-time"></i></h5>
                         <h5>Required Reply</h5>
@@ -24,25 +24,8 @@
                     </div>
                     <div class="card-block">
                         <div class="counter">
-                            <div class="yourCountdownContainer">
-                                <div class="row m-l-20">
-                                    <div class="col-xs-3">
-                                        <h2>12&nbsp;&nbsp;&nbsp;</h2>
-                                        <p>Days&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <h2>24&nbsp;&nbsp;&nbsp;</h2>
-                                        <p>Hours&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <h2>38&nbsp;&nbsp;&nbsp;</h2>
-                                        <p>Minutes&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <h2>56&nbsp;&nbsp;&nbsp;</h2>
-                                        <p>Seconds&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                    </div>
-                                </div>
+                            <div class="yourCountdownContainer" runat="server" id="counterDateAgo">
+                                
                                 <!-- end of row -->
                             </div>
                             <!-- end of yourCountdown -->
@@ -104,6 +87,32 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="icofont icofont-users-alt-4"></i></h5>
+                        <h5>Send To</h5>
+                        <span></span>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                                <li><i class="feather icon-maximize full-card"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
+                                <li><i class="feather icon-trash-2 close-card"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-block user-box assign-user" id="sendToTreatment" runat="server">
+                        
+                    </div>
+                    <div class="card-header" style="margin-top:-8%">
+                        <h5><i class="icofont icofont-users-alt-4"></i></h5>
+                        <h5>Copy To</h5>
+                        <span></span>
+                    </div>
+                    <div class="card-block user-box assign-user" id="copyToTreatment" runat="server">
+                        
                     </div>
                 </div>
                 <div class="card">
@@ -188,78 +197,6 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h5><i class="icofont icofont-users-alt-4"></i></h5>
-                        <h5>Assigned Users</h5>
-                        <span></span>
-                        <div class="card-header-right">
-                            <ul class="list-unstyled card-option">
-                                <li><i class="feather icon-maximize full-card"></i></li>
-                                <li><i class="feather icon-minus minimize-card"></i></li>
-                                <li><i class="feather icon-trash-2 close-card"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-block user-box assign-user">
-                        <div class="media">
-                            <div class="media-left media-middle photo-table">
-                                <a href="#">
-                                    <img class="img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="chat-user">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h6>Sortino media</h6>
-                                <p>Software Engineer</p>
-                            </div>
-                            <div>
-                                <a href="#!" class="text-muted"><i class="icon-options-vertical"></i></a>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left media-middle photo-table">
-                                <a href="#">
-                                    <img class="img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="chat-user">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h6>Larry heading </h6>
-                                <p>Web Designer</p>
-                            </div>
-                            <div>
-                                <a href="#!" class="text-muted"><i class="icon-options-vertical"></i></a>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left media-middle photo-table">
-                                <a href="#">
-                                    <img class="img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-1.jpg" alt="chat-user">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h6>Mark</h6>
-                                <p>Chief Financial Officer (CFO)</p>
-                            </div>
-                            <div>
-                                <a href="#!" class="text-muted"><i class="icon-options-vertical"></i></a>
-                            </div>
-                        </div>
-                        <div class="media p-0 d-flex">
-                            <div class="media-left media-middle photo-table">
-                                <a href="#">
-                                    <img class="img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-4.jpg" alt="chat-user">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h6>John Doe</h6>
-                                <p>Senior Marketing Designer</p>
-                            </div>
-                            <div>
-                                <a href="#!" class="text-muted"><i class="icon-options-vertical"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- Task-detail-right start -->
             <!-- Task-detail-left start -->
@@ -288,7 +225,7 @@
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card thumb-block">
                                         <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u1.jpg" class="img-fluid width-100" alt="task-u1.jpg" />
+                                            <img src="..\..\..\..\Theme\files\assets\images\card-block\card10.png" class="img-fluid width-100" alt="task-u1.jpg" />
                                             <div class="caption-hover">
                                                 <span>
                                                     <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
@@ -297,14 +234,14 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="#!">task/task-u1.jpg </a>
+                                            <a href="#!">ayman.pdf </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card thumb-block">
                                         <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u2.jpg" class="img-fluid width-100" alt="task-u2.jpg" />
+                                            <img src="..\..\..\..\Theme\files\assets\images\card-block\card10.png" class="img-fluid width-100" alt="task-u2.jpg" />
                                             <div class="caption-hover">
                                                 <span>
                                                     <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
@@ -313,14 +250,14 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="#!">task/task-u2.jpg </a>
+                                            <a href="#!">mazin.pdf </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card thumb-block">
                                         <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u3.jpg" class="img-fluid width-100" alt="task-u3.jpg" />
+                                            <img src="..\..\..\..\Theme\files\assets\images\card-block\card10.png" class="img-fluid width-100" alt="task-u3.jpg" />
                                             <div class="caption-hover">
                                                 <span>
                                                     <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
@@ -329,14 +266,14 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="#!">task/task-u3.jpg </a>
+                                            <a href="#!">ahmed.pdf </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card thumb-block">
                                         <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u4.jpg" class="img-fluid width-100" alt="task-u4.jpg" />
+                                            <img src="..\..\..\..\Theme\files\assets\images\card-block\card10.png" class="img-fluid width-100" alt="task-u4.jpg" />
                                             <div class="caption-hover">
                                                 <span>
                                                     <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
@@ -345,7 +282,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="#!">task/task-u4.jpg </a>
+                                            <a href="#!">omer.pdf </a>
                                         </div>
                                     </div>
                                 </div>
