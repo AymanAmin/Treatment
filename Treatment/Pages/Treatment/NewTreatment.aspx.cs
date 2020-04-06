@@ -14,6 +14,7 @@ namespace Treatment.Pages.Treatment
     {
         ECMSEntities db = new ECMSEntities();
         string messageForm = "";
+        int currentStructureUserId = 15; 
         int currentUserId = 0; 
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";

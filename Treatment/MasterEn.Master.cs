@@ -30,6 +30,8 @@ namespace Treatment
             Employee_Name();
             LoadBreadcrumb(ListPermissions);
             LoadMenu(ListPermissions);
+
+           // ViewData(60);
         }
 
         private void Employee_Name()
@@ -142,6 +144,9 @@ namespace Treatment
             Menu.Text = str;
         }
 
-        
+
+      
+
+     
     }
 }
