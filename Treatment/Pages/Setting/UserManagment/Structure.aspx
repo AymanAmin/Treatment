@@ -113,7 +113,7 @@
                     </DeleteButton>
                     <UpdateButton Text=" ">
                         <Styles>
-                            <Style CssClass="icofont icofont-refresh text-primary h6" VerticalAlign="Middle" Font-Underline="false">
+                            <Style CssClass="icofont icofont-save text-primary h6" VerticalAlign="Middle" Font-Underline="false">
                                             </Style>
                         </Styles>
                     </UpdateButton>

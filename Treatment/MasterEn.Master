@@ -195,8 +195,13 @@
     </asp:ContentPlaceHolder>
     <title>E-CMS - Main Screen</title>
 </head>
+
 <body>
     <input id="bt-data-dismiss" type="hidden" data-toggle="modal" data-target="#sign-in-social" value="" />
+
+<body onload="hidePcoded()">
+    <input id="bt-data-dismiss" type="hidden" data-dismiss="modal" value="" />
+
      <input id="AddEmp_show" type="hidden" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" />
     <form id="form1" runat="server">
         <div>
@@ -396,7 +401,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="../../../../Pages/Setting/admin/LockScreen.aspx">
+                                                    <a href="../../../../Pages/Setting/Auth/LockScreen.aspx">
                                                         <i class="feather icon-lock"></i>Lock Screen
                                                     </a>
                                                 </li>
@@ -603,6 +608,7 @@
             <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 
 
+
            <!-- data-table js -->
             <script src="..\..\..\..\Theme\files\bower_components\datatables.net\js\jquery.dataTables.min.js"></script>
             <script src="..\..\..\..\Theme\files\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js"></script>
@@ -614,6 +620,7 @@
             
             
             <script>
+
                 window.dataLayer = window.dataLayer || [];
                 function gtag() { dataLayer.push(arguments); }
                 gtag('js', new Date());
@@ -633,6 +640,20 @@
                     });
                 });
                 
+</script>
+
+            <script>
+
+                $(function () {
+                    $('#listViewId').on('click', function () {
+                        $('#Body_Holder_gridViewTreatment').hide();
+                        $('#listViewTreatment').show();
+                    });
+                    $('#gridViewId').on('click', function () {
+                        $('#listViewTreatment').hide();
+                        $('#Body_Holder_gridViewTreatment').show();
+                    });
+                });
 </script>
 
         </div>

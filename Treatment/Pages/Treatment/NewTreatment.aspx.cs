@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Treatment.Entity;
+using Website.Classes;
 
 namespace Treatment.Pages.Treatment
 {
@@ -14,10 +15,12 @@ namespace Treatment.Pages.Treatment
         ECMSEntities db = new ECMSEntities();
         string messageForm = "";
         int currentStructureUserId = 15; 
+        int currentUserId = 0; 
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            currentUserId = SessionWrapper.LoggedUser.Employee_Id;
         }
 
         protected void SaveTreatment_Click(object sender, EventArgs e)
@@ -56,7 +59,7 @@ namespace Treatment.Pages.Treatment
             {
                 try
                 {
-                    var newTreatment = db.Treatments.Create();
+                    var newTreatment = db.Treatment_Master.Create();
                     newTreatment.Create_Date = DateTime.Now;
                     newTreatment.Update_Date = DateTime.Now;
                     newTreatment.Treatment_Date = DateTime.Parse(treatmentDate.Text);
@@ -72,7 +75,8 @@ namespace Treatment.Pages.Treatment
                     newTreatment.Required_Reply = checkRequiredReply();
                     newTreatment.Treatment_Status_Id = 1;
                     newTreatment.Treatment_Number = getTreatmentNumber();
-                    newTreatment.From_Employee_Structure_Id = currentStructureUserId;
+                    newTreatment.From_Employee_Structure_Id = getStructure(currentUserId);
+                    newTreatment.Treatment_Mother = 0;
                     if (checkRequiredReply())
                         newTreatment.Required_Reply_Date = DateTime.Parse(replyDate.Text);
 
@@ -83,7 +87,7 @@ namespace Treatment.Pages.Treatment
                         if (treatmentTo.Items[i].Selected)
                         {
                             treatmentDetial = new Treatment_Detial();
-                            treatmentDetial.To_Employee_Structure_Id = int.Parse(treatmentTo.Items[i].Value);
+                            treatmentDetial.To_Employee_Structure_Id = getStructure(int.Parse(treatmentTo.Items[i].Value));
                             treatmentDetial.Parent = 0;
                             treatmentDetial.Assignment_Status_Id = 1;
                             treatmentDetial.Is_Read = false;
@@ -100,7 +104,7 @@ namespace Treatment.Pages.Treatment
                         if (treatmentCopyTo.Items[i].Selected)
                         {
                             treatmentDetial = new Treatment_Detial();
-                            treatmentDetial.To_Employee_Structure_Id = int.Parse(treatmentCopyTo.Items[i].Value);
+                            treatmentDetial.To_Employee_Structure_Id = getStructure(int.Parse(treatmentCopyTo.Items[i].Value));
                             treatmentDetial.Parent = 0;
                             treatmentDetial.Assignment_Status_Id = 1;
                             treatmentDetial.Is_Read = false;
@@ -111,10 +115,10 @@ namespace Treatment.Pages.Treatment
                     }
                     /////////////////////////////////////// End Insert Copy To /////////////////////////////////////
 
-                    db.Treatments.Add(newTreatment);
+                    db.Treatment_Master.Add(newTreatment);
                     db.SaveChanges();
-                    LogData = "data:" + JsonConvert.SerializeObject(newTreatment, logFileModule.settings);
-                    logFileModule.logfile(4, "إضافة معاملة", "", LogData);
+                    //LogData = "data:" + JsonConvert.SerializeObject(newTreatment, logFileModule.settings);
+                    //logFileModule.logfile(4, "إضافة معاملة", "", LogData);
                 }
                 catch { messageForm = "Erorr to save data in system";  return false; }
                 return true;
@@ -125,6 +129,19 @@ namespace Treatment.Pages.Treatment
             }
         }
 
+        private int getStructure(int employeeId)
+        {
+            int employeeStructureId = 0;
+            try
+            {
+                Employee_Structure employeeStructure = db.Employee_Structure.First(x => x.Employee_Id == employeeId);
+                employeeStructureId = (int)employeeStructure.Employee_Structure_Id;
+            }
+            catch (Exception)
+            {
+            }
+            return employeeStructureId;
+        }
         private string getTreatmentNumber()
         {
             string treatmentNumber = "";
@@ -132,7 +149,7 @@ namespace Treatment.Pages.Treatment
             {
                 try
                 {
-                    Int64 dc = db.Treatments.ToList().Max(e => Convert.ToInt64(e.Treatment_Id));
+                    Int64 dc = db.Treatment_Master.ToList().Max(e => Convert.ToInt64(e.Treatment_Id));
                     treatmentNumber = DateTime.Now.Year + "" + (dc + 1).ToString("D5");
                 }
                 catch (Exception ree)

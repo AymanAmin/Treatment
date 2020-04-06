@@ -9,7 +9,7 @@
         <div class="row">
             <!-- Task-detail-right start -->
             <div class="col-xl-4 col-lg-12 push-xl-8 task-detail-right">
-                <div class="card">
+                <div class="card" runat="server" id="divRequiredReply">
                     <div class="card-header">
                         <h5><i class="icofont icofont-clock-time"></i></h5>
                         <h5>Required Reply</h5>
@@ -24,25 +24,8 @@
                     </div>
                     <div class="card-block">
                         <div class="counter">
-                            <div class="yourCountdownContainer">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <h2>12&nbsp;&nbsp;&nbsp;</h2>
-                                        <p>Days&nbsp;&nbsp;&nbsp;</p>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <h2>24&nbsp;&nbsp;&nbsp;</h2>
-                                        <p>Hours&nbsp;&nbsp;&nbsp;</p>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <h2>38&nbsp;&nbsp;&nbsp;</h2>
-                                        <p>Minutes&nbsp;&nbsp;&nbsp;</p>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <h2>56&nbsp;&nbsp;&nbsp;</h2>
-                                        <p>Seconds&nbsp;&nbsp;&nbsp;</p>
-                                    </div>
-                                </div>
+                            <div class="yourCountdownContainer" runat="server" id="counterDateAgo">
+                                
                                 <!-- end of row -->
                             </div>
                             <!-- end of yourCountdown -->
@@ -104,6 +87,32 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="icofont icofont-users-alt-4"></i></h5>
+                        <h5>Send To</h5>
+                        <span></span>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                                <li><i class="feather icon-maximize full-card"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
+                                <li><i class="feather icon-trash-2 close-card"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-block user-box assign-user" id="sendToTreatment" runat="server">
+                        
+                    </div>
+                    <div class="card-header" style="margin-top:-8%">
+                        <h5><i class="icofont icofont-users-alt-4"></i></h5>
+                        <h5>Copy To</h5>
+                        <span></span>
+                    </div>
+                    <div class="card-block user-box assign-user" id="copyToTreatment" runat="server">
+                        
                     </div>
                 </div>
                 <div class="card">
@@ -188,78 +197,6 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h5><i class="icofont icofont-users-alt-4"></i></h5>
-                        <h5>Assigned Users</h5>
-                        <span></span>
-                        <div class="card-header-right">
-                            <ul class="list-unstyled card-option">
-                                <li><i class="feather icon-maximize full-card"></i></li>
-                                <li><i class="feather icon-minus minimize-card"></i></li>
-                                <li><i class="feather icon-trash-2 close-card"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-block user-box assign-user">
-                        <div class="media">
-                            <div class="media-left media-middle photo-table">
-                                <a href="#">
-                                    <img class="img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="chat-user">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h6>Sortino media</h6>
-                                <p>Software Engineer</p>
-                            </div>
-                            <div>
-                                <a href="#!" class="text-muted"><i class="icon-options-vertical"></i></a>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left media-middle photo-table">
-                                <a href="#">
-                                    <img class="img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="chat-user">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h6>Larry heading </h6>
-                                <p>Web Designer</p>
-                            </div>
-                            <div>
-                                <a href="#!" class="text-muted"><i class="icon-options-vertical"></i></a>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left media-middle photo-table">
-                                <a href="#">
-                                    <img class="img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-1.jpg" alt="chat-user">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h6>Mark</h6>
-                                <p>Chief Financial Officer (CFO)</p>
-                            </div>
-                            <div>
-                                <a href="#!" class="text-muted"><i class="icon-options-vertical"></i></a>
-                            </div>
-                        </div>
-                        <div class="media p-0 d-flex">
-                            <div class="media-left media-middle photo-table">
-                                <a href="#">
-                                    <img class="img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-4.jpg" alt="chat-user">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h6>John Doe</h6>
-                                <p>Senior Marketing Designer</p>
-                            </div>
-                            <div>
-                                <a href="#!" class="text-muted"><i class="icon-options-vertical"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- Task-detail-right start -->
             <!-- Task-detail-left start -->
@@ -288,7 +225,7 @@
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card thumb-block">
                                         <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u1.jpg" class="img-fluid width-100" alt="task-u1.jpg">
+                                            <img src="..\..\..\..\Theme\files\assets\images\card-block\card10.png" class="img-fluid width-100" alt="task-u1.jpg" />
                                             <div class="caption-hover">
                                                 <span>
                                                     <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
@@ -297,14 +234,14 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="#!">task/task-u1.jpg </a>
+                                            <a href="#!">ayman.pdf </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card thumb-block">
                                         <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u2.jpg" class="img-fluid width-100" alt="task-u2.jpg">
+                                            <img src="..\..\..\..\Theme\files\assets\images\card-block\card10.png" class="img-fluid width-100" alt="task-u2.jpg" />
                                             <div class="caption-hover">
                                                 <span>
                                                     <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
@@ -313,14 +250,14 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="#!">task/task-u2.jpg </a>
+                                            <a href="#!">mazin.pdf </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card thumb-block">
                                         <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u3.jpg" class="img-fluid width-100" alt="task-u3.jpg">
+                                            <img src="..\..\..\..\Theme\files\assets\images\card-block\card10.png" class="img-fluid width-100" alt="task-u3.jpg" />
                                             <div class="caption-hover">
                                                 <span>
                                                     <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
@@ -329,14 +266,14 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="#!">task/task-u3.jpg </a>
+                                            <a href="#!">ahmed.pdf </a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card thumb-block">
                                         <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\task\task-u4.jpg" class="img-fluid width-100" alt="task-u4.jpg">
+                                            <img src="..\..\..\..\Theme\files\assets\images\card-block\card10.png" class="img-fluid width-100" alt="task-u4.jpg" />
                                             <div class="caption-hover">
                                                 <span>
                                                     <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
@@ -345,7 +282,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="#!">task/task-u4.jpg </a>
+                                            <a href="#!">omer.pdf </a>
                                         </div>
                                     </div>
                                 </div>
@@ -367,9 +304,7 @@
                                 <button type="button" class="btn btn-warning btn-xs waves-effect waves-light" data-toggle="modal" data-target="#add-model-reply">
                                     <i class="icofont icofont-reply-all"></i>Reply
                                 </button>
-                                <button type="button" class="btn btn-danger btn-xs waves-effect waves-light">
-                                    <i class="icofont icofont-close"></i>Close
-                                </button>
+                                <asp:LinkButton ID="CloseAssignment" runat="server" CssClass="btn btn-danger btn-xs waves-effect waves-light" OnClick="CloseAssignment_Click"><i class="icofont icofont-close"></i>Close</asp:LinkButton>
                             </div>
                         </span>
                         <div class="card-header-right">
@@ -380,164 +315,31 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row card-block">
-                        <div class="col-md-12">
-                            <ul class="list-view">
-                                <li>
-                                    <div class="card list-view-media">
-                                        <div class="card-block z-depth-0">
-                                            <div class="media">
-                                                <a class="media-left" href="#">
-                                                    <img class="media-object card-list-img" src="..\..\..\..\Theme\files\assets\images\avatar-1.jpg" alt="Generic placeholder image">
-                                                </a>
-                                                <div class="media-body">
-
-                                                    <div class="col-xs-12">
-                                                        <h6 class="d-inline-block">Heading</h6>
-                                                        <label class="label label-info">Agent</label>
-                                                    </div>
-                                                    <div class="f-13 text-muted m-b-15">
-                                                        Software Engineer
-                                                                               
-                                                    </div>
-                                                    <p>
-                                                        Hi, This is my short intro text.
-                                                                                    Lorem ipsum is a dummy content sit
-                                                                                    dollar. You can copy and paste this
-                                                                                    dummy content from anywhere and to
-                                                                                    anywhere. Its all free and must be a
-                                                                                    good to folllow in prectice
-                                                    </p>
-                                                    <div class="m-t-15">
-                                                        <button type="button" data-toggle="tooltip" title="Facebook" class="btn btn-facebook btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-social-facebook"></span>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Twitter" class="btn btn-twitter btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-social-twitter"></span>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Linkedin" class="btn btn-linkedin btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-brand-linkedin"></span>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Drible" class="btn btn-dribbble btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-social-dribble"></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <div class="card list-view-media">
-                                                <div class="card-block z-depth-0">
-                                                    <div class="media">
-                                                        <a class="media-left" href="#">
-                                                            <img class="media-object card-list-img" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="Generic placeholder image">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <div>
-                                                                <h6 class="d-inline-block">Heading</h6>
-                                                                <label class="label  label-info">Accountant</label>
-                                                            </div>
-                                                            <div class="f-13 text-muted m-b-15">
-                                                                Softwear Engineer
-                                                                               
-                                                            </div>
-                                                            <p>
-                                                                Hi, This is my short intro text.
-                                                                                    Lorem ipsum is a dummy content sit
-                                                                                    dollar. You can copy and paste this
-                                                                                    dummy content from anywhere and to
-                                                                                    anywhere. Its all free and must be a
-                                                                                    good to folllow in prectice
-                                                            </p>
-                                                            <div class="m-t-15">
-                                                                <button type="button" data-toggle="tooltip" title="Facebook" class="btn btn-facebook btn-mini waves-effect waves-light">
-                                                                    <span class="icofont icofont-social-facebook"></span>
-                                                                </button>
-                                                                <button type="button" data-toggle="tooltip" title="Twitter" class="btn btn-twitter btn-mini waves-effect waves-light">
-                                                                    <span class="icofont icofont-social-twitter"></span>
-                                                                </button>
-                                                                <button type="button" data-toggle="tooltip" title="Linkedin" class="btn btn-linkedin btn-mini waves-effect waves-light">
-                                                                    <span class="icofont icofont-brand-linkedin"></span>
-                                                                </button>
-                                                                <button type="button" data-toggle="tooltip" title="Drible" class="btn btn-dribbble btn-mini waves-effect waves-light">
-                                                                    <span class="icofont icofont-social-dribble"></span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="">
-                                    <div class="card list-view-media">
-                                        <div class="card-block z-depth-0">
-                                            <div class="media">
-                                                <a class="media-left" href="#">
-                                                    <img class="media-object card-list-img" src="..\..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="Generic placeholder image">
-                                                </a>
-                                                <div class="media-body">
-                                                    <div>
-                                                        <h6 class="d-inline-block">Heading</h6>
-                                                        <label class="label  label-info">Accountant</label>
-                                                    </div>
-                                                    <div class="f-13 text-muted m-b-15">
-                                                        Softwear Engineer
-                                                                               
-                                                    </div>
-                                                    <p>
-                                                        Hi, This is my short intro text.
-                                                                                    Lorem ipsum is a dummy content sit
-                                                                                    dollar. You can copy and paste this
-                                                                                    dummy content from anywhere and to
-                                                                                    anywhere. Its all free and must be a
-                                                                                    good to folllow in prectice
-                                                    </p>
-                                                    <div class="m-t-15">
-                                                        <button type="button" data-toggle="tooltip" title="Facebook" class="btn btn-facebook btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-social-facebook"></span>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Twitter" class="btn btn-twitter btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-social-twitter"></span>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Linkedin" class="btn btn-linkedin btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-brand-linkedin"></span>
-                                                        </button>
-                                                        <button type="button" data-toggle="tooltip" title="Drible" class="btn btn-dribbble btn-mini waves-effect waves-light">
-                                                            <span class="icofont icofont-social-dribble"></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                    <div class="row">
+                        <div class="col-md-12" id="draggableMultiple">
+                            <div class="col-lg-12 col-xl-12" id="trackTreatment" runat="server">
+                            </div>
                         </div>
-                    </div>
+                </div>
                 </div>
                 <!-- List view card end -->
             </div>
             <!-- Task-detail-left end -->
             <div id="add-model-assignment" class="modal fade" role="dialog">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg m-t-0">
                     <div class="login-card card-block login-card-modal">
-
                         <div class="text-center">
-                            <img src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="logo.png">
+                            <img src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="logo.png" />
                         </div>
-                        <div class="card m-t-15">
+                        <div class="card m-t-10">
                             <div class="auth-box card-block">
-                                <div class="row m-b-20">
+                                <div class="row m-b-10">
                                     <div class="col-md-12">
                                         <h3 class="text-center txt-primary">Add Assignment</h3>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 ">
-                                    <div class="form-group col-sm-12">
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
                                         <label>Standard Procedure</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-edit-alt"></i></span>
@@ -545,91 +347,109 @@
                                             </asp:DropDownList>
                                         </div>
                                     </div>
-                                        <div class="form-group col-sm-12">
-                                            <label>Send To</label><i class="icofont icofont-star-alt-1 text-danger"></i>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-paper-plane"></i></span>
-                                                <asp:ListBox ID="treatmentTo" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Send To" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
-                                            </div>
-                                            <asp:RequiredFieldValidator ID="valTreatmentTo" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Send To" ValidationGroup="valFormGroup" ControlToValidate="treatmentTo" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
-                                        </div>
-                                        <div class="form-group col-sm-12">
-                                            <label>Copy To</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-ui-copy"></i></span>
-                                                <asp:ListBox ID="treatmentCopyTo" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Copy To" runat="server" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
-                                            </div>
-                                        </div>
-                                    <div class="form-group col-sm-12 j-unit">
-                                        <label class="j-label">English Name</label>
+                                    <div class="form-group col-sm-6">
+                                        <label>Secret Level</label><i class="icofont icofont-star-alt-1 text-danger"></i>
                                         <div class="input-group">
-                                            <span class="input-group-addon" id="basic-addon2"><i class="icofont icofont-underline"></i></span>
-                                            <asp:TextBox ID="txtGroup_Name_En" runat="server" class="form-control" placeholder="Enter Name in English" TextMode="SingleLine"></asp:TextBox>
+                                            <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
+                                            <asp:DropDownList ID="secretLevel" CssClass="js-example-basic-single col-sm-12" runat="server" DataSourceID="EntityDataSourceTreatmentConfidentiality" DataTextField="Treatment_Confidentiality_Name_En" DataValueField="Treatment_Confidentiality_Id">
+                                            </asp:DropDownList>
                                         </div>
-                                        <div class="col-sm-12" style="">
-                                            <asp:RequiredFieldValidator ID="RFVtxtGroup_Name_En" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter English Name" ValidationGroup="Group" ControlToValidate="txtGroup_Name_En" Display="Dynamic"></asp:RequiredFieldValidator>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-sm-12" style="text-align: right; margin-top: -2%">
-                                        <asp:Button ID="Save" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="Group" />
-
+                                        <asp:RequiredFieldValidator ID="valSecretLevel" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Secret Level" ValidationGroup="valFormAssignment" ControlToValidate="secretLevel" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
-
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label>Send To</label><i class="icofont icofont-star-alt-1 text-danger"></i>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-paper-plane"></i></span>
+                                            <asp:ListBox ID="treatmentTo" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Send To" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
+                                        </div>
+                                        <asp:RequiredFieldValidator ID="valTreatmentTo" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Send To" ValidationGroup="valFormAssignment" ControlToValidate="treatmentTo" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Copy To</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-ui-copy"></i></span>
+                                            <asp:ListBox ID="treatmentCopyTo" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Copy To" runat="server" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label>Required</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-presentation-alt"></i></span>
+                                            <asp:TextBox ID="requiredAssignment" runat="server" placeholder="Enter Required" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label>Keywork</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-keyboard-alt"></i></span>
+                                            <asp:TextBox ID="keyworkAssignment" runat="server" placeholder="Enter Keywork" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12 text-right">
+                                    <asp:Button ID="SaveAssignment" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="valFormAssignment" OnClick="SaveAssignment_Click" />
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- end of form -->
+                        </div>
                     </div>
+
+                    <!-- end of form -->
                 </div>
             </div>
+        </div>
 
 
-            <div id="add-model-reply" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="login-card card-block login-card-modal">
+        <div id="add-model-reply" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="login-card card-block login-card-modal">
 
-                        <div class="text-center">
-                            <img src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="logo.png">
-                        </div>
-                        <div class="card m-t-15">
-                            <div class="auth-box card-block">
-                                <div class="row m-b-10">
-                                    <div class="col-md-12 m-t-10">
-                                        <h3 class="text-center txt-primary">Reply</h3>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 ">
-                                    <div class="row">
-                                        <div class="form-group col-sm-12">
-                                            <label class="j-label">Reply</label><i class="icofont icofont-star-alt-1 text-danger"></i>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-reply-all"></i></span>
-                                                <asp:TextBox ID="replyTreatement" runat="server" placeholder="Enter Reply" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
-                                            </div>
-                                            <asp:RequiredFieldValidator ID="valReplyTreatement" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Reply" ValidationGroup="valReplyGroup" ControlToValidate="replyTreatement" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-sm-12">
-                                            <label class="j-label">Keywork</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-keyboard-alt"></i></span>
-                                                <asp:TextBox ID="keyworkTreatment" runat="server" placeholder="Enter Keywork" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-sm-12 text-right">
-                                        <asp:Button ID="SaveReply" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="valReplyGroup" OnClick="SaveReply_Click" />
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- end of form -->
+                    <div class="text-center">
+                        <img src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="logo.png">
                     </div>
+                    <div class="card m-t-15">
+                        <div class="auth-box card-block">
+                            <div class="row m-b-10">
+                                <div class="col-md-12 m-t-10">
+                                    <h3 class="text-center txt-primary">Reply</h3>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 ">
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label class="j-label">Reply</label><i class="icofont icofont-star-alt-1 text-danger"></i>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-reply-all"></i></span>
+                                            <asp:TextBox ID="replyTreatement" runat="server" placeholder="Enter Reply" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
+                                        </div>
+                                        <asp:RequiredFieldValidator ID="valReplyTreatement" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Reply" ValidationGroup="valReplyGroup" ControlToValidate="replyTreatement" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label class="j-label">Keywork</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-keyboard-alt"></i></span>
+                                            <asp:TextBox ID="keyworkTreatment" runat="server" placeholder="Enter Keywork" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-12 text-right">
+                                    <asp:Button ID="SaveReply" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="valReplyGroup" OnClick="SaveReply_Click" />
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- end of form -->
                 </div>
             </div>
         </div>
@@ -651,4 +471,10 @@
     <asp:EntityDataSource ID="EntityDataSourceStructure" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Structures" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
     <!-- End Treatment Data Source-->
 
+    <style>
+        #draggableMultiple .sortable-moves {
+            box-shadow: 0 5px 25px -5px #ccc, 0 1px 5px 0 rgba(0,0,0,0.1), 0 0 0 0 rgba(0,0,0,0);
+            cursor: pointer;
+        }
+    </style>
 </asp:Content>

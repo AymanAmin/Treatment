@@ -16,7 +16,7 @@ namespace Treatment
         protected void Page_Load(object sender, EventArgs e)
         {
             ListPermissions = db.Permissions.ToList();
-            /*if (SessionWrapper.LoggedUser != null)
+            if (SessionWrapper.LoggedUser != null)
             {
                 if (SessionWrapper.IsLocked)
                     Response.Redirect("~/Pages/Setting/admin/LockScreen.aspx");
@@ -25,7 +25,7 @@ namespace Treatment
             {
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
             }
-            ListPermissions = SessionWrapper.Permssions;*/
+            ListPermissions = SessionWrapper.Permssions;
             Employee_Name();
             LoadBreadcrumb(ListPermissions);
             LoadMenu(ListPermissions);

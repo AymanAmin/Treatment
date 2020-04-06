@@ -7,54 +7,63 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Treatment.Pages.Treatment {
+namespace Treatment.Pages.Admin {
     
     
-    public partial class inbox {
+    public partial class LogFile {
         
         /// <summary>
-        /// addNfNumTreatment control.
+        /// chkSingleExpanded control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor addNfNumTreatment;
+        protected global::DevExpress.Web.ASPxCheckBox chkSingleExpanded;
         
         /// <summary>
-        /// inboxTreatment control.
+        /// LogFileGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl inboxTreatment;
+        protected global::DevExpress.Web.ASPxGridView LogFileGridView;
         
         /// <summary>
-        /// sendTreatment control.
+        /// LogFileDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sendTreatment;
+        protected global::System.Web.UI.WebControls.EntityDataSource LogFileDataSource;
         
         /// <summary>
-        /// completeTreatment control.
+        /// LogFileDataSourceDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl completeTreatment;
+        protected global::System.Web.UI.WebControls.EntityDataSource LogFileDataSourceDetails;
         
         /// <summary>
-        /// gridViewTreatment control.
+        /// EmployeeDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridViewTreatment;
+        protected global::System.Web.UI.WebControls.EntityDataSource EmployeeDataSource;
+        
+        /// <summary>
+        /// PermissionDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource PermissionDataSource;
     }
 }

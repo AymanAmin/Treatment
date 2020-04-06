@@ -119,7 +119,6 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -141,20 +140,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Email\SendingEmail.aspx" />
+    <Content Include="Entity\ECMS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ECMS.edmx</DependentUpon>
+      <LastGenOutput>ECMS.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entity\ECMS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ECMS.edmx</DependentUpon>
+      <LastGenOutput>ECMS.cs</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
-    <Content Include="Pages\Setting\Auth\LockScreen.aspx" />
+    <Content Include="Pages\Setting\Admin\LockScreen.aspx" />
     <Content Include="Pages\Setting\Auth\Login.aspx" />
-    <Content Include="Pages\Setting\Auth\ResetPassword.aspx" />
     <Content Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx" />
-    <Content Include="Pages\Setting\UserManagment\Employees.aspx" />
     <Content Include="Pages\Setting\UserManagment\Groups.aspx" />
     <Content Include="Pages\Setting\UserManagment\PermissionGroups.aspx" />
     <Content Include="Pages\Setting\UserManagment\Permissions.aspx" />
-    <Content Include="Pages\Setting\UserManagment\Profile.aspx" />
-    <Content Include="Pages\Setting\UserManagment\Structure.aspx" />
-    <Content Include="Pages\Treatment\inbox.aspx" />
+    <Content Include="Pages\Treatment\Employees.aspx" />
     <Content Include="Pages\Treatment\NewTreatment.aspx" />
-    <Content Include="Pages\Treatment\ShowTreatment.aspx" />
+    <Content Include="Pages\Treatment\Structure.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Theme\files\assets\css\component.css" />
@@ -467,7 +473,6 @@
     <Content Include="Theme\files\assets\images\e-payment\card\amex.jpg" />
     <Content Include="Theme\files\assets\images\e-payment\card\mastercard.jpg" />
     <Content Include="Theme\files\assets\images\e-payment\card\visa.jpg" />
-    <Content Include="Theme\files\assets\images\error.png" />
     <Content Include="Theme\files\assets\images\error\error-1.jpg" />
     <Content Include="Theme\files\assets\images\error\error-2.jpg" />
     <Content Include="Theme\files\assets\images\error\error-3.jpg" />
@@ -520,7 +525,6 @@
     <Content Include="Theme\files\assets\images\navbar\nav7.jpg" />
     <Content Include="Theme\files\assets\images\navbar\nav8.jpg" />
     <Content Include="Theme\files\assets\images\navbar\nav9.jpg" />
-    <Content Include="Theme\files\assets\images\notfound.png" />
     <Content Include="Theme\files\assets\images\product-detail\pro-d-l-1.jpg" />
     <Content Include="Theme\files\assets\images\product-detail\pro-d-l-2.jpg" />
     <Content Include="Theme\files\assets\images\product-detail\pro-d-l-3.jpg" />
@@ -567,7 +571,6 @@
     <Content Include="Theme\files\assets\images\slider\slider7.jpg" />
     <Content Include="Theme\files\assets\images\social\img1.jpg" />
     <Content Include="Theme\files\assets\images\social\profile.jpg" />
-    <Content Include="Theme\files\assets\images\success.png" />
     <Content Include="Theme\files\assets\images\task\task-u1.jpg" />
     <Content Include="Theme\files\assets\images\task\task-u2.jpg" />
     <Content Include="Theme\files\assets\images\task\task-u3.jpg" />
@@ -583,7 +586,6 @@
     <Content Include="Theme\files\assets\images\user-card\img-round4.jpg" />
     <Content Include="Theme\files\assets\images\user-card\inverse-img1.jpg" />
     <Content Include="Theme\files\assets\images\user-card\inverse-img2.jpg" />
-    <Content Include="Theme\files\assets\images\user-card\m.jpg" />
     <Content Include="Theme\files\assets\images\user-profile\bg-img1.jpg" />
     <Content Include="Theme\files\assets\images\user-profile\follower\f-1.jpg" />
     <Content Include="Theme\files\assets\images\user-profile\follower\f-2.jpg" />
@@ -631,6 +633,8 @@
     <Content Include="Theme\files\assets\js\swiper-custom.js" />
     <Content Include="Theme\files\assets\js\vartical-layout.min.js" />
     <Content Include="Theme\files\assets\pages\accordion\accordion.js" />
+    <Content Include="Theme\files\assets\pages\ace-editor\ace-editor-custom.js" />
+    <Content Include="Theme\files\assets\pages\ace-editor\build\aui\aui.js" />
     <Content Include="Theme\files\assets\pages\advance-elements\bootstrap-datetimepicker.min.js" />
     <Content Include="Theme\files\assets\pages\advance-elements\css\bootstrap-datetimepicker.css" />
     <Content Include="Theme\files\assets\pages\advance-elements\custom-picker.js" />
@@ -665,6 +669,7 @@
     <Content Include="Theme\files\assets\pages\clndr-calendar\css\clndr.css" />
     <Content Include="Theme\files\assets\pages\clndr-calendar\js\clndr-custom.js" />
     <Content Include="Theme\files\assets\pages\counter\task-detail.js" />
+    <Content Include="Theme\files\assets\pages\cropper\croper.js" />
     <Content Include="Theme\files\assets\pages\dashboard\amchart\js\amcharts.js" />
     <Content Include="Theme\files\assets\pages\dashboard\amchart\js\light.js" />
     <Content Include="Theme\files\assets\pages\dashboard\amchart\js\serial.js" />
@@ -2069,21 +2074,23 @@
     <Content Include="Theme\files\extra-pages\landingpage\assets\logos\logo7.png" />
     <Content Include="Theme\files\extra-pages\landingpage\index.htm" />
     <Content Include="TreatmentCreate.aspx" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\ddlFiller.cs" />
-    <Compile Include="Classes\Emp_Structure.cs" />
     <Compile Include="Classes\Enums.cs" />
-    <Compile Include="Classes\LogFileModule.cs" />
     <Compile Include="Classes\SessionWrapper.cs" />
     <Compile Include="Classes\StringCipher.cs" />
     <Compile Include="Classes\UtilityClass.cs" />
-    <Compile Include="Classes\SendEmail.cs" />
+    <Compile Include="Email\SendEmail.cs" />
+    <Compile Include="Email\SendingEmail.aspx.cs">
+      <DependentUpon>SendingEmail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Email\SendingEmail.aspx.designer.cs">
+      <DependentUpon>SendingEmail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Assignment_Status.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
@@ -2166,12 +2173,10 @@
     <Compile Include="MasterEn.Master.designer.cs">
       <DependentUpon>MasterEn.Master</DependentUpon>
     </Compile>
-    <Compile Include="Classes\EmployeDTO.cs" />
-    <Compile Include="Pages\Setting\Auth\LockScreen.aspx.cs">
+    <Compile Include="Pages\Setting\Admin\LockScreen.aspx.cs">
       <DependentUpon>LockScreen.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Setting\Auth\LockScreen.aspx.designer.cs">
+    <Compile Include="Pages\Setting\Admin\LockScreen.aspx.designer.cs">
       <DependentUpon>LockScreen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setting\Auth\Login.aspx.cs">
@@ -2181,29 +2186,12 @@
     <Compile Include="Pages\Setting\Auth\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Setting\Auth\Logout.ashx.cs">
-      <DependentUpon>Logout.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Setting\Auth\ResetPassword.aspx.cs">
-      <DependentUpon>ResetPassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Setting\Auth\ResetPassword.aspx.designer.cs">
-      <DependentUpon>ResetPassword.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx.cs">
       <DependentUpon>TreatmentManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx.designer.cs">
       <DependentUpon>TreatmentManagement.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Setting\UserManagment\Employees.aspx.cs">
-      <DependentUpon>Employees.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Setting\UserManagment\Employees.aspx.designer.cs">
-      <DependentUpon>Employees.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setting\UserManagment\Groups.aspx.cs">
       <DependentUpon>Groups.aspx</DependentUpon>
@@ -2226,26 +2214,11 @@
     <Compile Include="Pages\Setting\UserManagment\Permissions.aspx.designer.cs">
       <DependentUpon>Permissions.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Setting\UserManagment\Profile.aspx.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="Pages\Treatment\Employees.aspx.cs">
+      <DependentUpon>Employees.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Setting\UserManagment\Profile.aspx.designer.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Setting\UserManagment\Structure.aspx.cs">
-      <DependentUpon>Structure.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Setting\UserManagment\Structure.aspx.designer.cs">
-      <DependentUpon>Structure.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Treatment\inbox.aspx.cs">
-      <DependentUpon>inbox.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Treatment\inbox.aspx.designer.cs">
-      <DependentUpon>inbox.aspx</DependentUpon>
+    <Compile Include="Pages\Treatment\Employees.aspx.designer.cs">
+      <DependentUpon>Employees.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Treatment\NewTreatment.aspx.cs">
       <DependentUpon>NewTreatment.aspx</DependentUpon>
@@ -2254,12 +2227,11 @@
     <Compile Include="Pages\Treatment\NewTreatment.aspx.designer.cs">
       <DependentUpon>NewTreatment.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Treatment\ShowTreatment.aspx.cs">
-      <DependentUpon>ShowTreatment.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="Pages\Treatment\Structure.aspx.cs">
+      <DependentUpon>Structure.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Treatment\ShowTreatment.aspx.designer.cs">
-      <DependentUpon>ShowTreatment.aspx</DependentUpon>
+    <Compile Include="Pages\Treatment\Structure.aspx.designer.cs">
+      <DependentUpon>Structure.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Default.aspx.cs">
@@ -2421,26 +2393,15 @@
     <Content Include="Theme\files\extra-pages\landingpage\assets\fonts\ionicons.woff" />
     <Content Include="Theme\files\readme.md" />
     <Content Include="MasterEn.Master" />
+    <Content Include="Pages\Setting\TreatmentPriority.aspx.bak" />
     <EntityDeploy Include="Entity\ECMS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ECMS.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Entity\ECMS.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECMS.edmx</DependentUpon>
-      <LastGenOutput>ECMS.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Entity\ECMS.edmx.diagram">
       <DependentUpon>ECMS.edmx</DependentUpon>
     </Content>
-    <Content Include="Entity\ECMS.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECMS.edmx</DependentUpon>
-      <LastGenOutput>ECMS.cs</LastGenOutput>
-    </Content>
-    <Content Include="Pages\Setting\Auth\Logout.ashx" />
-    <Content Include="Pages\Treatment\Tree.aspx.bak" />
-    <None Include="Properties\PublishProfiles\ECMS.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2451,9 +2412,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="media\" />
     <Folder Include="Models\" />
-    <Folder Include="Pages\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

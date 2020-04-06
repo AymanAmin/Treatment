@@ -30,11 +30,14 @@ namespace Treatment.Pages.Treatment
         protected void Save_Click(object sender, EventArgs e)
         {
             int Group_id = 0;
+
             int Emp_ID = 0;
             int.TryParse(EmpID.Value ,out Emp_ID);
             int.TryParse(Groups.SelectedValue, out Group_id);
             string EMPN = Employee_Name_Ar.Text;
             bool result = AU_Emplooyees(Emp_ID, EMPN, Employee_Name_En.Text, Employee_Email.Text, Employee_Phone.Text, Active.Checked, Group_id);
+
+            bool result = AU_Emplooyees(EmployeeId,Employee_Name_Ar.Text, Employee_Name_En.Text, Employee_Email.Text, Employee_Phone.Text, Active.Checked, Group_id);
             if (result)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The new Employee was Sucessfully saved in system ! ');", true);
