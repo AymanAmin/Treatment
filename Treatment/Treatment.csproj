@@ -150,6 +150,7 @@
     <Content Include="Pages\Setting\UserManagment\Groups.aspx" />
     <Content Include="Pages\Setting\UserManagment\PermissionGroups.aspx" />
     <Content Include="Pages\Setting\UserManagment\Permissions.aspx" />
+    <Content Include="Pages\Setting\UserManagment\Profile.aspx" />
     <Content Include="Pages\Setting\UserManagment\Structure.aspx" />
     <Content Include="Pages\Treatment\inbox.aspx" />
     <Content Include="Pages\Treatment\NewTreatment.aspx" />
@@ -2076,6 +2077,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\ddlFiller.cs" />
+    <Compile Include="Classes\Emp_Structure.cs" />
     <Compile Include="Classes\Enums.cs" />
     <Compile Include="Classes\LogFileModule.cs" />
     <Compile Include="Classes\SessionWrapper.cs" />
@@ -2164,6 +2166,7 @@
     <Compile Include="MasterEn.Master.designer.cs">
       <DependentUpon>MasterEn.Master</DependentUpon>
     </Compile>
+    <Compile Include="Classes\EmployeDTO.cs" />
     <Compile Include="Pages\Setting\Auth\LockScreen.aspx.cs">
       <DependentUpon>LockScreen.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2222,6 +2225,13 @@
     </Compile>
     <Compile Include="Pages\Setting\UserManagment\Permissions.aspx.designer.cs">
       <DependentUpon>Permissions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Setting\UserManagment\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Setting\UserManagment\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setting\UserManagment\Structure.aspx.cs">
       <DependentUpon>Structure.aspx</DependentUpon>

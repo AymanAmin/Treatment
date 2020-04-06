@@ -7,10 +7,76 @@
 <%@ Register Assembly="DevExpress.Web.Bootstrap.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.Bootstrap" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Employee</title>
-    <script>
-        function showmodel() {
-            document.getElementById("AddEmp_show").click();          
+    <script type="text/javascript">
+
+        function showmodel(x) {           // debugger;            if (!isNaN(x.id)){            $.ajax({
+                url: "Employees.aspx/ViewUserCard",
+                type: "POST",
+                data: "{ Employee_Id:"+x.id+"}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (resultData) {
+                    var Emp = JSON.parse(resultData.d);
+                    $('#Body_Holder_EmpID').val(Emp.Employee_Id);
+                    $('#Body_Holder_Employee_Name_Ar').val(Emp.Employee_Name_Ar);
+                    $('#Body_Holder_Employee_Name_En').val(Emp.Employee_Name_En);
+                    $('#Body_Holder_Employee_Email').val(Emp.Employee_Email);
+                    $('#Body_Holder_Employee_Phone').val(Emp.Employee_Phone);
+                    $('#select2-Body_Holder_Groups-container').val(Emp.Group_Id);
+                    $('#Body_Holder_Active').val(Emp.Employee_Active);
+                    var Struc = Emp.Structures;
+                    $('#Body_Holder_Emp_Structure').val(Struc).trigger('change');
+                    debugger;
+                    if (Emp.Employee_Profile == "" || Emp.Employee_Profile == null) {
+                        var Profile = "..\/..\/..\/..\/media\/Profile\/Profile.jpg";
+                    } else {
+                        var Profile = "..\/..\/..\/..\/media\/Profile\/" + Emp.Employee_Profile;
+                    }
+
+                    if (Emp.Employee_Signature == "" || Emp.Employee_Signature == null ) {
+                        var Signature = "..\/..\/..\/..\/media\/Signature\/Signature.jpg";
+                    } else {
+                        var Signature = "..\/..\/..\/..\/media\/Signature\/"+Emp.Employee_Signature;
+                    }
+
+                    $('#Body_Holder_Emp_Profile').attr('src', Profile);
+                    $('#Body_Holder_Emp_Signature').attr('src', Signature);
+                    }
+                });
+            } else {
+                $('#Body_Holder_EmpID').val(0);
+                $('#Body_Holder_Employee_Name_Ar').val('');
+                $('#Body_Holder_Employee_Name_En').val('');
+                $('#Body_Holder_Employee_Email').val('');
+                $('#Body_Holder_Employee_Phone').val('');
+                $('#select2-Body_Holder_Groups-container').val(0);
+                $('#Body_Holder_Active').val(false);
+                $('#Body_Holder_Emp_Structure').val('').trigger('change');
+                $('#Body_Holder_Emp_Profile').attr('src', "..\/..\/..\/..\/media\/Profile\/Profile.jpg");
+                $('#Body_Holder_Emp_Signature').attr('src', "..\/..\/..\/..\/media\/Signature\/Signature.jpg");
+            }
+
+            document.getElementById("AddEmp_show").click(); 
+           // GetServiceInformation(x.id)
         }
+
+        function DeleteEmplooye(x) {            $.ajax({
+                url: "Employees.aspx/DeleteEmplooye",
+                type: "POST",
+                data: "{ Employee_Id:" + x.id + "}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (resultData) {
+                    notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight', '  Save Status : ', '  The new Employee was Sucessfully saved in system ! ');
+                   // location.reload();
+                    window.location = window.location;
+                }
+            });
+            
+            //document.getElementById("AddEmp_show").click();
+            // GetServiceInformation(x.id)
+        }
+
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
@@ -46,7 +112,7 @@
                                     <div class="card rounded-card user-card">
                                         <div class="card-block">
                                             <div class="img-hover">
-                                                <asp:Image ID="Emp_Profile" class="img-fluid img-radius" alt="img-round4.jpg" runat="server" ImageUrl="~/Theme/files/assets/images/user-card/img-round2.jpg"  />
+                                                <asp:Image ID="Emp_Profile" class="img-fluid img-radius"  runat="server"   alt="Profile.jpg"  ImageUrl="~/media/Profile/Profile.jpg"  />
                                                 <div class="img-overlay img-radius">
                                                     <span>
                                                         <asp:FileUpload ID="EmpProfile" runat="server" class="form-control"  />
@@ -62,7 +128,7 @@
                                     <div class="card rounded-card user-card">
                                         <div class="card-block">
                                             <div class="img-hover">
-                                                <asp:Image ID="Emp_Signature" class="img-fluid img-radius" alt="img-round4.jpg" runat="server" ImageUrl="~/Theme/files/assets/images/user-card/m.jpg" />
+                                                <asp:Image ID="Emp_Signature" class="img-fluid img-radius" alt="Signature.jpg" runat="server" ImageUrl="~/media/Signature/Signature.jpg" />
                                                 <div class="img-overlay img-radius">
                                                     <span>
                                                         <asp:FileUpload ID="EmpSignature" runat="server" class="form-control" />
@@ -131,9 +197,12 @@
                                     <label>Structure</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-chart-flow-alt-1"></i></span>
-                                        <asp:ListBox ID="ListBox1" runat="server" CssClass="js-example-basic-multiple col-sm-12 select2-hidden-accessible" data-placeholder="Enter Employee Structure" multiple="multiple" DataSourceID="StructureDataSource" DataTextField="Structure_Name_Ar" DataValueField="Structure_Id"></asp:ListBox>
+                                        <asp:ListBox ID="Emp_Structure" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Enter Employee Structure"  DataSourceID="StructureDataSource" DataTextField="Structure_Name_Ar" DataValueField="Structure_Id"  SelectionMode="Multiple"></asp:ListBox>
                                         <asp:EntityDataSource ID="StructureDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Structures">
                                         </asp:EntityDataSource>
+                                    </div>
+                                     <div class="col-sm-12">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Employee Structure" ValidationGroup="Per" ControlToValidate="Emp_Structure" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
@@ -141,7 +210,7 @@
                                     <label class="j-label">Group</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-group"></i></span>
-                                        <asp:DropDownList ID="Groups" runat="server" class="form-control" DataTextField="Group_Name_Ar" DataValueField="Group_Id" DataSourceID="GroupDataSource"></asp:DropDownList>
+                                        <asp:DropDownList ID="Groups" runat="server" class="form-control" DataTextField="Group_Name_Ar" DataValueField="Group_Id" DataSourceID="GroupDataSource" ></asp:DropDownList>
 
                                         <asp:EntityDataSource ID="GroupDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Groups">
                                         </asp:EntityDataSource>
@@ -162,7 +231,8 @@
                                 <div class="col-sm-6">
                                     <label></label>
                                     <div class="col-md-12">
-                                        <asp:Button ID="Save" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="Per" OnClick="Save_Click"  />
+                                        <asp:HiddenField ID="EmpID" runat="server" />
+                                        <asp:Button  ID="Save"  runat="server" Text="Save" class="btn btn-primary" ValidationGroup="Per" OnClick="Save_Click"  />
                                     </div>
                                 </div>
                             </div>
@@ -174,109 +244,13 @@
         </div>
         <!-- Modal Employee end-->
         <!-- End Employee Form-->
-
-        <!-- Start Grid-->
-        <div class="table-responsive">
-            <!-- Social Sign in card start -->
-            <div class="form-group col-sm-12" style="text-align: right;">
-                <button runat="server" id="AddEmp" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" >Add Employees</button>
+              <div class="form-group col-sm-12" style="text-align: right;">
+                <button runat="server" id="AddEmp" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" OnClick="showmodel(this)">Add Employees</button>
             </div>
-            <!-- Social Sign in card end -->
-            <!-- Panal User Card -->
-            <div class="row users-card" runat="server" id="UCard">
-                
+             <div class="row users-card" runat="server" id="UCard">
+              
             </div>
-            <!-- Panal User Card -->
-            <dx:ASPxGridView ID="ASPxGridView1" runat="server" DataSourceID="EmployeeDataSource" KeyFieldName="Employee_Id" Theme="Moderno" RightToLeft="False" EnablePagingCallbackAnimation="True" AutoGenerateColumns="False">
-
-                <SettingsCommandButton>
-                    <NewButton Text=" " Styles-Style-Font-Underline="false">
-                        <Styles>
-                            <Style CssClass="icofont icofont-plus text-primary h5">
-                        </Style>
-                        </Styles>
-                    </NewButton>
-                    <UpdateButton Text=" " Styles-Style-Font-Underline="false">
-                        <Styles>
-                            <Style CssClass="icofont icofont-refresh text-primary h5">
-                        </Style>
-                        </Styles>
-                    </UpdateButton>
-                    <CancelButton Text="  " Styles-Style-Font-Underline="false">
-                        <Styles>
-                            <Style CssClass="icofont icofont-ui-close text-warning h5">
-                        </Style>
-                        </Styles>
-                    </CancelButton>
-                    <EditButton Text=" " Styles-Style-Font-Underline="false">
-                        <Styles>
-                            <Style CssClass="icofont icofont-ui-edit text-info h5">
-                        </Style>
-                        </Styles>
-                    </EditButton>
-                    <DeleteButton Text=" " Styles-Style-Font-Underline="false">
-                        <Styles>
-                            <Style CssClass="icofont icofont-ui-delete text-danger h5">
-                        </Style>
-                        </Styles>
-                    </DeleteButton>
-                </SettingsCommandButton>
-                <SettingsSearchPanel Visible="True" />
-                <Columns>
-                    <dx:GridViewDataTextColumn FieldName="Employee_Name_Ar" ShowInCustomizationForm="True" VisibleIndex="0" Caption="Employee Name Arabic">
-                        <PropertiesTextEdit>
-                            <ValidationSettings SetFocusOnError="True">
-                                <RequiredField IsRequired="True" />
-                            </ValidationSettings>
-                        </PropertiesTextEdit>
-                    </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn FieldName="Employee_Email" ShowInCustomizationForm="True" VisibleIndex="2" Caption="Employee Email">
-                        <PropertiesTextEdit>
-                            <ValidationSettings CausesValidation="True" EnableCustomValidation="True" SetFocusOnError="True">
-                                <RegularExpression ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
-                                <RequiredField IsRequired="True" />
-                            </ValidationSettings>
-                        </PropertiesTextEdit>
-                    </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn FieldName="Employee_Phone" ShowInCustomizationForm="True" VisibleIndex="4" Caption="Employee Phone">
-                        <PropertiesTextEdit>
-                            <ValidationSettings SetFocusOnError="True">
-                                <RequiredField IsRequired="True" />
-                            </ValidationSettings>
-                        </PropertiesTextEdit>
-                    </dx:GridViewDataTextColumn>
-                    <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="9">
-                    </dx:GridViewCommandColumn>
-                    <dx:GridViewDataTextColumn Caption="Employee Name English" FieldName="Employee_Name_En" VisibleIndex="1">
-                        <PropertiesTextEdit>
-                            <ValidationSettings CausesValidation="True" SetFocusOnError="True">
-                                <RequiredField IsRequired="True" />
-                            </ValidationSettings>
-                        </PropertiesTextEdit>
-                    </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn Caption="Employee Profile" FieldName="Employee_Profile" VisibleIndex="7" Visible="False">
-                    </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn Caption="Employee Signature" FieldName="Employee_Signature" VisibleIndex="8" Visible="False">
-                    </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataTextColumn Caption="Employee Password" FieldName="Employee_Password" VisibleIndex="3" Visible="False">
-                        <PropertiesTextEdit Password="True">
-                            <ValidationSettings SetFocusOnError="True">
-                                <RequiredField IsRequired="True" />
-                            </ValidationSettings>
-                        </PropertiesTextEdit>
-                    </dx:GridViewDataTextColumn>
-                    <dx:GridViewDataCheckColumn Caption="Employee Active" FieldName="Employee_Active" VisibleIndex="5">
-                        <PropertiesCheckEdit>
-                            <Style CssClass="js-single">
-                            </Style>
-                        </PropertiesCheckEdit>
-                    </dx:GridViewDataCheckColumn>
-                </Columns>
-            </dx:ASPxGridView>
-            <asp:EntityDataSource ID="EmployeeDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Employees" EntityTypeFilter="Employee" AutoGenerateOrderByClause="False" AutoGenerateWhereClause="False" EnableDelete="True" EnableInsert="True" EnableUpdate="True">
-            </asp:EntityDataSource>
-        </div>
-        <!-- End Grid-->
+        
           </div>
             <!-- Article Editor card end -->
         </div>
