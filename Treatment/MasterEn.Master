@@ -278,7 +278,7 @@
                                             </div>
                                             <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                                 <li>
-                                                    <h6>Language:</h6>
+                                                    <h6><% = Treatment.Classes.FieldNames.getFieldName("Master-language", "Language") %>:</h6>
                                                 </li>
                                                 <li>
                                                     <div class="media">

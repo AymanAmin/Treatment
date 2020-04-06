@@ -101,7 +101,7 @@ var json= JSON.parse(obj);
             tr.appendChild(th);
             tables += &quot;&lt;th&gt;&quot; + col[i] + &quot;&lt;/th&gt;&quot;;
         }
-        tables += &quot;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr class='even'&gt;&quot;;
+        tables += &quot;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr class='even' style='background-color:white'&gt;&quot;;
         // ADD JSON DATA TO THE TABLE AS ROWS.
         for (var i = 0; i &lt; json.length; i++) {
 

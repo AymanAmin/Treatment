@@ -15,26 +15,24 @@ namespace Treatment.Entity
 using System;
     using System.Collections.Generic;
     
-public partial class Treatment_Delivery
+public partial class LanguageMaster
 {
 
-    public Treatment_Delivery()
+    public LanguageMaster()
     {
 
-        this.Treatment_Master = new HashSet<Treatment_Master>();
+        this.Lanuage_Detials = new HashSet<Lanuage_Detials>();
 
     }
 
 
-    public int Treatment_Delivery_Id { get; set; }
+    public int ID { get; set; }
 
-    public string Treatment_Delivery_Name_Ar { get; set; }
-
-    public string Treatment_Delivery_Name_En { get; set; }
+    public string Language_Name { get; set; }
 
 
 
-    public virtual ICollection<Treatment_Master> Treatment_Master { get; set; }
+    public virtual ICollection<Lanuage_Detials> Lanuage_Detials { get; set; }
 
 }
 

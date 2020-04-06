@@ -47,7 +47,7 @@ namespace Treatment.Pages.Setting.Auth
                     if (username.ToUpper() == emp_list[i].Employee_Email.ToUpper())
                     {
                         string DecryptedPassword = StringCipher.Decrypt(emp_list[i].Employee_Password, "Password");
-                        if (password == DecryptedPassword)
+                        if (password == DecryptedPassword && (bool)emp_list[i].Employee_Active)
                         {
                             Employee emp = emp_list[i];
                             SessionWrapper.LoggedUser = emp;

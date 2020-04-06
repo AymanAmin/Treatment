@@ -4,22 +4,32 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Treatment.Entity;
+using Website.Classes;
 
 namespace Treatment
 {
     public partial class Default : System.Web.UI.Page 
     {
+        ECMSEntities db = new ECMSEntities();
+        List<Treatment_Master> treatmentList = new List<Treatment_Master>();
+        List<Treatment_Detial> treatmentDList = new List<Treatment_Detial>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (SessionWrapper.LoggedUser == null)
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+            int UserID = SessionWrapper.LoggedUser.Employee_Id;
+            treatmentList = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == SessionWrapper.LoggedUser.Employee_Id).ToList();
+            treatmentDList = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == UserID).ToList();
             Treatment_Status();
             Charts();
         }
         private void Treatment_Status()
         {
-            txtAllTreatment.Text = "742";
-            txtNewInboxTreatment.Text = "531";
-            txtOutboxTreatment.Text = "211";
-            txtComplateTreatment.Text = "676";
+            txtAllTreatment.Text = (treatmentList.Count() + treatmentDList.Count()).ToString();
+            txtNewInboxTreatment.Text = treatmentDList.Count().ToString();
+            txtOutboxTreatment.Text = treatmentList.Count().ToString();
+            txtComplateTreatment.Text = (treatmentList.Count() + treatmentDList.Count()).ToString();
 
             txtLastUpdateOne.Text = "update : " + DateTime.Now.ToShortTimeString();
             txtLastUpdateTwo.Text = "update : " + DateTime.Now.ToShortTimeString();

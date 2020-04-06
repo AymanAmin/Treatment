@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Pages\Admin\Language.aspx" />
     <Content Include="Pages\Admin\LogFile.aspx" />
     <Content Include="Pages\Setting\Auth\LockScreen.aspx" />
     <Content Include="Pages\Setting\Auth\Login.aspx" />
@@ -2079,6 +2080,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\ddlFiller.cs" />
     <Compile Include="Classes\Enums.cs" />
+    <Compile Include="Classes\FieldNames.cs" />
     <Compile Include="Classes\LogFileModule.cs" />
     <Compile Include="Classes\SessionWrapper.cs" />
     <Compile Include="Classes\StringCipher.cs" />
@@ -2112,6 +2114,12 @@
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Group.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\LanguageMaster.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Lanuage_Detials.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Log_File.cs">
@@ -2165,6 +2173,13 @@
     </Compile>
     <Compile Include="MasterEn.Master.designer.cs">
       <DependentUpon>MasterEn.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Language.aspx.cs">
+      <DependentUpon>Language.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Language.aspx.designer.cs">
+      <DependentUpon>Language.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\LogFile.aspx.cs">
       <DependentUpon>LogFile.aspx</DependentUpon>
