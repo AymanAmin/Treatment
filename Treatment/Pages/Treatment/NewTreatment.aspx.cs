@@ -13,7 +13,7 @@ namespace Treatment.Pages.Treatment
     {
         ECMSEntities db = new ECMSEntities();
         string messageForm = "";
-        int currentStructureUserId = 1; 
+        int currentStructureUserId = 15; 
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
         protected void Page_Load(object sender, EventArgs e)

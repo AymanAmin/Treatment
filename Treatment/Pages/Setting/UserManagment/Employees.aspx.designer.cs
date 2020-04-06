@@ -121,13 +121,13 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
-        /// ListBox1 control.
+        /// Emp_Structure control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBox1;
+        protected global::System.Web.UI.WebControls.ListBox Emp_Structure;
         
         /// <summary>
         /// StructureDataSource control.
@@ -137,6 +137,15 @@ namespace Treatment.Pages.Treatment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.EntityDataSource StructureDataSource;
+        
+        /// <summary>
+        /// RequiredFieldValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
         /// Groups control.
@@ -166,6 +175,15 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Active;
         
         /// <summary>
+        /// EmpID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField EmpID;
+        
+        /// <summary>
         /// Save control.
         /// </summary>
         /// <remarks>
@@ -191,23 +209,5 @@ namespace Treatment.Pages.Treatment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UCard;
-        
-        /// <summary>
-        /// ASPxGridView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView ASPxGridView1;
-        
-        /// <summary>
-        /// EmployeeDataSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource EmployeeDataSource;
     }
 }
