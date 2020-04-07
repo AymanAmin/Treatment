@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using Treatment.Entity;
 using Website.Classes;
 using Newtonsoft.Json;
-
+using Treatment.Classes;
 
 namespace Treatment.Pages.Setting.UserManagment
 {
@@ -21,7 +21,10 @@ namespace Treatment.Pages.Setting.UserManagment
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                Change_LablesName_BasedOn_Language();
+            }
         }
 
         protected void Save_Click(object sender, EventArgs e)
@@ -71,6 +74,24 @@ namespace Treatment.Pages.Setting.UserManagment
             catch { return false; }
             return true;
         }
-        
+
+        private void Change_LablesName_BasedOn_Language()
+        {
+            try
+            {
+                //Permission List
+                PermissionTreeList.Columns[0].Caption = FieldNames.getFieldName("Permissions-ArabicName", "Arabic Name");
+                PermissionTreeList.Columns[1].Caption = FieldNames.getFieldName("Permissions-EnglishName", "English Name");
+                PermissionTreeList.Columns[2].Caption = FieldNames.getFieldName("Permissions-URLPath", "URL Path");
+                PermissionTreeList.Columns[3].Caption = FieldNames.getFieldName("Permissions-Icon", "Icon");
+                PermissionTreeList.Columns[4].Caption = FieldNames.getFieldName("Permissions-Action", "Action");
+                PermissionTreeList.Columns[5].Caption = FieldNames.getFieldName("Permissions-Parent", "Parent");
+
+                // Save Button
+                Save.Text = FieldNames.getFieldName("Permissions-Save", "Save");
+            }
+            catch { }
+        }
+
     }
 }

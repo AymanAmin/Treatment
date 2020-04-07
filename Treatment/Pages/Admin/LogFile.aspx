@@ -73,7 +73,7 @@
                                 AutoPostBack="true" OnCheckedChanged="chkSingleExpanded_CheckedChanged" Theme="DevEx" Checked="True" CheckState="Checked" />
                         </div>
                     </div>
-                    <dx:ASPxGridView Style="width: 100%" ID="LogFileGridView" runat="server" DataSourceID="LogFileDataSource" EnableTheming="True" Theme="MetropolisBlue" AutoGenerateColumns="False" KeyFieldName="Log_Id">
+                    <dx:ASPxGridView Style="width: 100%" ID="LogFileGridView" runat="server" DataSourceID="LogFileDataSource" EnableTheming="True" Theme="MetropolisBlue" AutoGenerateColumns="False" KeyFieldName="Log_Id" OnHtmlDataCellPrepared="LogFileGridView_HtmlDataCellPrepared" >
                         <ClientSideEvents EndCallback="function(s, e) {
 var div_target = document.getElementsByClassName(&quot;dx-wrap dxgv&quot;)[0];
 	var str = div_target.innerHTML;

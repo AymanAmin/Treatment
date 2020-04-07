@@ -2219,6 +2219,7 @@
     <Compile Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx.designer.cs">
       <DependentUpon>TreatmentManagement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Classes\EmployeDTO.cs" />
     <Compile Include="Pages\Setting\UserManagment\Employees.aspx.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

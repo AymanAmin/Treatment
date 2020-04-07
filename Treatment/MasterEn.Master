@@ -65,7 +65,7 @@
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\multiselect\css\multi-select.css" />
 
     <!-- Data Table Css -->
-    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css"/>
 
     <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -193,16 +193,12 @@
     </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <title>E-CMS - Main Screen</title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("Master-Title", "E-CMS - Main Screen") %></title>
 </head>
 
-<body>
-    <input id="bt-data-dismiss" type="hidden" data-toggle="modal" data-target="#sign-in-social" value="" />
 
 <body onload="hidePcoded()">
     <input id="bt-data-dismiss" type="hidden" data-dismiss="modal" value="" />
-
-     <input id="AddEmp_show" type="hidden" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" />
     <form id="form1" runat="server">
         <div>
             <!-- Pre-loader start -->
@@ -280,7 +276,7 @@
                                     </li>
                                 </ul>
                                 <ul class="nav-right">
-                                    <li class="header-notification">
+                                    <!--<li class="header-notification">
                                         <div class="dropdown-primary dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">
                                                 <i class="feather icon-map"></i>
@@ -313,7 +309,7 @@
                                             </div>
                                             <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                                 <li>
-                                                    <h6>Calendar:</h6>
+                                                    <h6><% = Treatment.Classes.FieldNames.getFieldName("Master-Calendar", "Calendar") %>:</h6>
                                                 </li>
                                                 <li>
                                                     <div class="media">
@@ -331,7 +327,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </li>
+                                    </li>-->
                                     <li class="header-notification">
                                         <div class="dropdown-primary dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">
@@ -340,8 +336,8 @@
                                             </div>
                                             <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                                 <li>
-                                                    <h6>Notifications:</h6>
-                                                    <label class="label label-danger">New</label>
+                                                    <h6><% = Treatment.Classes.FieldNames.getFieldName("Master-Notifications", "Notifications") %>:</h6>
+                                                    <label class="label label-danger"><% = Treatment.Classes.FieldNames.getFieldName("Master-Notifications-New", "New") %></label>
                                                 </li>
                                                 <li>
                                                     <div class="media">
@@ -387,27 +383,27 @@
                                             <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                                 <li>
                                                     <a href="#!">
-                                                        <i class="feather icon-settings"></i>Settings
+                                                        <i class="feather icon-settings"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Settings", "Settings") %>
                                                     </a>
                                                 </li>
                                                 <li>
                                                 <a href="inbox.aspx">
-                                                        <i class="eather icon-user"></i>Profile
+                                                        <i class="feather icon-user"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Profile", "Profile") %>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="inbox.aspx">
-                                                        <i class="feather icon-mail"></i>My Messages
+                                                        <i class="feather icon-mail"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Messages", "My Messages") %>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="../../../../Pages/Setting/Auth/LockScreen.aspx">
-                                                        <i class="feather icon-lock"></i>Lock Screen
+                                                        <i class="feather icon-lock"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-LockScreen", "Lock Screen") %>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="../../../../Pages/Setting/Auth/Logout.ashx">
-                                                        <i class="feather icon-log-out"></i>Logout
+                                                        <i class="feather icon-log-out"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Logout", "Logout") %>
                                                     </a>
                                                 </li>
                                             </ul>

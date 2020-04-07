@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <title>User Management - Permission</title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("Permissions-Title", "User Management - Permission") %></title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <!-- Page-body start -->
@@ -33,12 +33,12 @@
                                     <div class="auth-box card-block">
                                         <div class="row m-b-20">
                                             <div class="col-md-12">
-                                                <h3 class="text-center txt-primary">Add Permission</h3>
+                                                <h3 class="text-center txt-primary"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-AddPermission", "Add Permission") %></h3>
                                             </div>
                                         </div>
                                         <div class="row col-sm-12">
                                             <div class="form-group col-sm-6 j-unit">
-                                                <label class="j-label">Name Arabic</label>
+                                                <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-NameArabic", "Name Arabic") %></label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-underline"></i></span>
                                                     <asp:TextBox ID="txtPermission_Name" runat="server" class="form-control" placeholder="Enter Name in Arabic" TextMode="SingleLine"></asp:TextBox>
@@ -49,7 +49,7 @@
                                             </div>
 
                                             <div class="form-group col-sm-6 j-unit">
-                                                <label class="j-label">Name English</label>
+                                                <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-NameEnglish", "Name English") %></label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id="basic-addon2"><i class="icofont icofont-underline"></i></span>
                                                     <asp:TextBox ID="txtPermission_Name_En" runat="server" class="form-control" placeholder="Enter Name in English"></asp:TextBox>
@@ -60,17 +60,16 @@
                                             </div>
 
                                             <div class="form-group col-sm-6 j-unit">
-                                                <label class="j-label">Parent Form</label>
+                                                <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-ParentForm", "Parent Form") %></label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id="basic-addon3"><i class="icofont icofont-tree"></i></span>
                                                     <asp:DropDownList ID="txtParent" runat="server" class="form-control form-control-primary" DataSourceID="PermissionDataSource" DataTextField="Permission_Name_En" DataValueField="Permission_Id">
-                                                        <asp:ListItem Value="0">Select Parent</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
 
                                             <div class="form-group col-sm-6 j-unit" style="margin-top: -1%">
-                                                <label class="j-label">Class Icon (<a href="https://icofont.com/icons" target="_blank">Click Here</a>)</label>
+                                                <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-ClassIcon", "Class Icon") %> (<a href="https://icofont.com/icons" target="_blank"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-ClickHere", "Click Here") %></a>)</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id="basic-addon5"><i class="icofont icofont-lens"></i></span>
                                                     <asp:TextBox ID="txtClass_Icon" runat="server" class="form-control" placeholder="icofont icofont-navigation-menu"></asp:TextBox>
@@ -78,7 +77,7 @@
                                             </div>
 
                                             <div class="form-group col-sm-8 j-unit" style="margin-top: -1%">
-                                                <label class="j-label">URL Path</label>
+                                                <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-URLPath", "URL Path") %></label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id="basic-addon4"><i class="icofont icofont-link-alt"></i></span>
                                                     <asp:TextBox ID="txtUrl_Path" runat="server" class="form-control" placeholder="Enter URL Path Ex(Pages/Setting/...)"></asp:TextBox>
@@ -87,7 +86,7 @@
 
                                             <div class="form-group col-sm-4 j-unit" style="margin-top: -2%">
                                                 <div class="col-sm-12 col-xl-12 m-b-30">
-                                                    <h5 class="sub-title">Main Parent</h5>
+                                                    <h5 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-MainParent", "Main Parent") %></h5>
                                                     <input runat="server" id="MainMenu" type="checkbox" style="color: #01a9ac" class="js-single" />
                                                 </div>
                                             </div>
@@ -105,7 +104,7 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-12" style="text-align: right; margin-top: -2%">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-model">Add Permission</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-model"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-AddPermission", "Add Permission") %></button>
                     </div>
                     <div class="form-group col-sm-12 dt-responsive table-responsive">
                         <dx:ASPxTreeList ID="PermissionTreeList" Style="width: 100%; text-align: center" runat="server" AutoGenerateColumns="False" DataSourceID="PermissionDataSource" EnableTheming="True" KeyFieldName="Permission_Id" Theme="Mulberry" ParentFieldName="Parent">
@@ -163,12 +162,12 @@
                                     </CancelButton>
 
                                 </dx:TreeListCommandColumn>
-                                <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="ParentID" FieldName="Parent" ShowInFilterControl="Default" VisibleIndex="3">
-                                    <PropertiesTextEdit>
+                                <dx:TreeListComboBoxColumn AutoFilterCondition="Default" Caption="ParentID" FieldName="Parent" ShowInFilterControl="Default" VisibleIndex="3">
+                                    <PropertiesComboBox DataSourceID="PermissionDataSource" TextField="Permission_Name_En" ValueField="Permission_Id">
                                         <Style CssClass="form-control">
                                         </Style>
-                                    </PropertiesTextEdit>
-                                </dx:TreeListTextColumn>
+                                    </PropertiesComboBox>
+                                </dx:TreeListComboBoxColumn>
                             </Columns>
                             <SettingsBehavior AllowAutoFilter="True" AutoExpandAllNodes="True"></SettingsBehavior>
 
@@ -195,5 +194,7 @@
         <!-- Page-body end -->
 
     </div>
+
+    </label>
 
 </asp:Content>

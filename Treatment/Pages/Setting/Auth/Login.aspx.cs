@@ -52,6 +52,7 @@ namespace Treatment.Pages.Setting.Auth
                             Employee emp = emp_list[i];
                             SessionWrapper.LoggedUser = emp;
                             SessionWrapper.IsLocked = false;
+                            SessionWrapper.Language = db.Lanuage_Detials.Where(x => x.Language_Master_ID == 2).ToList();
 
                             List<Permission_Group> Per_group = db.Permission_Group.Where(x => x.Group_Id == emp.Group_Id).ToList();
                             List_permission.Clear();
@@ -76,8 +77,6 @@ namespace Treatment.Pages.Setting.Auth
                 return false;
             }
             catch (Exception er) { return false; }
-        }
-
-        
+        }       
     }
 }

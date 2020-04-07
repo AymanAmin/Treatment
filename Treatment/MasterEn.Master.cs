@@ -26,7 +26,6 @@ namespace Treatment
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
             }
             ListPermissions = SessionWrapper.Permssions;*/
-            SessionWrapper.Language = db.Lanuage_Detials.ToList();
             Employee_Name();
             LoadBreadcrumb(ListPermissions);
             LoadMenu(ListPermissions);

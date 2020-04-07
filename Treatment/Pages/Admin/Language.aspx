@@ -6,15 +6,15 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>ECMS - Language</title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("Language-Title", "ECMS - Language") %></title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
-    <div class="row text-center">
-        <% = Treatment.Classes.FieldNames.getFieldName("ProfilePic", "Default Name") %>
-    </div>
-
-    <div class="row">
+    <div class="box-list" style="background-color: white;">
+        <div class="row">
+    <div class="p-10 z-depth-3 waves-effect dt-responsive table-responsive">
         <dx:ASPxGridView Style="width: 100%" ID="LanguageGridView" runat="server" AutoGenerateColumns="False" DataSourceID="LanguageDataSource" EnableTheming="True" KeyFieldName="Language_Detial_ID" Theme="MetropolisBlue">
+            <SettingsPager PageSize="50">
+            </SettingsPager>
             <Settings ShowFilterRow="True" ShowGroupPanel="True" />
             <SettingsSearchPanel Visible="True" />
             <SettingsCommandButton>
@@ -53,19 +53,24 @@
             <Columns>
                 <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="4" Caption="Action">
                 </dx:GridViewCommandColumn>
-                <dx:GridViewDataTextColumn FieldName="Language_Detial_ID" ReadOnly="True" VisibleIndex="0" Caption="ID">
+                <dx:GridViewDataTextColumn FieldName="Language_Detial_ID" ReadOnly="True" VisibleIndex="0" Caption="ID" Width="10%" Name="LangID">
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <CellStyle HorizontalAlign="Center">
+                    </CellStyle>
                 </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="Language_Detial_FieldName" VisibleIndex="2" Caption="Field Name">
+                <dx:GridViewDataTextColumn FieldName="Language_Detial_FieldName" VisibleIndex="2" Caption="Field Name" Name="LangFieldName">
                 </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="Language_Detial_Value" VisibleIndex="3" Caption="Value">
+                <dx:GridViewDataTextColumn FieldName="Language_Detial_Value" VisibleIndex="3" Caption="Value" Name="LangValue">
                 </dx:GridViewDataTextColumn>
-                <dx:GridViewDataComboBoxColumn Caption="Language Name" FieldName="Language_Master_ID" VisibleIndex="1">
+                <dx:GridViewDataComboBoxColumn Caption="Language Name" FieldName="Language_Master_ID" VisibleIndex="1" Name="LangName">
                     <PropertiesComboBox DataSourceID="LanguageMasterDataSource" TextField="Language_Name" ValueField="ID">
                     </PropertiesComboBox>
                 </dx:GridViewDataComboBoxColumn>
             </Columns>
         </dx:ASPxGridView>
     </div>
+            </div>
+        </div>
     <asp:EntityDataSource ID="LanguageDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="Lanuage_Detials" EntityTypeFilter="Lanuage_Detials">
     </asp:EntityDataSource>
     <asp:EntityDataSource ID="LanguageMasterDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="LanguageMasters" EntityTypeFilter="LanguageMaster">

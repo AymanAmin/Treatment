@@ -30,11 +30,13 @@ namespace Treatment
             txtNewInboxTreatment.Text = treatmentDList.Count().ToString();
             txtOutboxTreatment.Text = treatmentList.Count().ToString();
             txtComplateTreatment.Text = (treatmentList.Count() + treatmentDList.Count()).ToString();
-
-            txtLastUpdateOne.Text = "update : " + DateTime.Now.ToShortTimeString();
-            txtLastUpdateTwo.Text = "update : " + DateTime.Now.ToShortTimeString();
-            txtLastUpdateThree.Text = "update : " + DateTime.Now.ToShortTimeString();
-            txtLastUpdateFour.Text = "update : " + DateTime.Now.ToShortTimeString();
+            string str = "update : ";
+            if (false)
+                str = "اخر تحديث :";
+            txtLastUpdateOne.Text = str + DateTime.Now.ToShortTimeString();
+            txtLastUpdateTwo.Text = str + DateTime.Now.ToShortTimeString();
+            txtLastUpdateThree.Text = str + DateTime.Now.ToShortTimeString();
+            txtLastUpdateFour.Text = str + DateTime.Now.ToShortTimeString();
             // Ayman
         }
         private void Charts()
@@ -52,6 +54,8 @@ namespace Treatment
             string categories = "['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']";
             string Treatment_Per_Mounth_Function = "Pie_ChartColumn(" + Total + "," + Recived + "," + Sent + "," + categories + ");";
             /* End Treatment Per mounth Chart */
+
+            /* Call javascript funcations   */
             Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", Pie_Function +"  "+ Treatment_Per_Mounth_Function, true);
         }
     }

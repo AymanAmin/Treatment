@@ -10,7 +10,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Treatment.Classes;
 using Treatment.Entity;
-using Treatment.Models;
 using Website.Classes;
 
 
@@ -37,7 +36,6 @@ namespace Treatment.Pages.Treatment
             string EMPN = Employee_Name_Ar.Text;
             bool result = AU_Emplooyees(Emp_ID, EMPN, Employee_Name_En.Text, Employee_Email.Text, Employee_Phone.Text, Active.Checked, Group_id);
 
-            bool result = AU_Emplooyees(EmployeeId,Employee_Name_Ar.Text, Employee_Name_En.Text, Employee_Email.Text, Employee_Phone.Text, Active.Checked, Group_id);
             if (result)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The new Employee was Sucessfully saved in system ! ');", true);

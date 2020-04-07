@@ -3,16 +3,19 @@
 <%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Treatment Management</title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-Title", "ECMS - Treatment Management") %></title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <div class="box-list" style="background-color: white;">
         <div class="row">
 
             <div class="col-lg-12">
-                <div class="p-20 z-depth-3 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Priority">
-                    <h4 class="sub-title">Treatment Priority</h4>
-                    <dx:ASPxGridView ID="PriorityGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="PriorityDataSource" EnableTheming="True" KeyFieldName="Treatment_Priority_Id" Theme="Mulberry">
+                <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Priority">
+                    <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentPriority", "Treatment Priority") %></h4>
+                    <p class="text-sm-left"><span>In Class Css use <code>icofont icofont-star text-success</code> And change <code>success</code> Based on color.</span>
+                    <br />
+                    <span>In Class Card use <code>card card-border-success</code> And change <code>success</code> Based on color.</span><br />
+                    <br /></p><dx:ASPxGridView ID="PriorityGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="PriorityDataSource" EnableTheming="True" KeyFieldName="Treatment_Priority_Id" Theme="Mulberry">
                         <SettingsCommandButton>
                             <NewButton Text=" ">
                                 <Styles>
@@ -65,8 +68,9 @@
             </div>
 
             <div class="col-lg-12">
-                <div class="p-20 z-depth-5 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Confidentiality">
-                    <h4 class="sub-title">Treatment Confidentiality</h4>
+                <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Confidentiality">
+                    <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentConfidentiality", "Treatment Confidentiality") %></h4>
+                    <p class="text-sm-left"><span>In Class Css use <code>label label-success</code> And change <code>success</code> Based on color.</span></p><br />
                     <dx:ASPxGridView ID="ConfidentialityGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="ConfidentialityDataSource" EnableTheming="True" KeyFieldName="Treatment_Confidentiality_Id" Theme="Mulberry">
                         <SettingsBehavior ConfirmDelete="True" />
                         <SettingsCommandButton>
@@ -119,8 +123,8 @@
             </div>
 
             <div class="col-lg-6">
-                <div class="p-20 z-depth-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Type">
-                    <h4 class="sub-title">Treatment Type</h4>
+                <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Type">
+                    <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentType", "Treatment Type") %></h4>
                     <dx:ASPxGridView ID="TypeGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="TypeDataSource" EnableTheming="True" KeyFieldName="Treatment_Type_Id" Theme="Mulberry">
                         <SettingsEditing UseFormLayout="False">
                         </SettingsEditing>
@@ -192,7 +196,7 @@
             <div class="col-lg-6">
                 <div class="p-20 z-depth-1 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Status">
 
-                    <h4 class="sub-title">Treatment Status</h4>
+                    <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentStatus", "Treatment Status") %> </h4>
                     <dx:ASPxGridView ID="StatusGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="StatusDataSource" EnableTheming="True" KeyFieldName="Treatment_Status_Id" Theme="Mulberry">
                         <SettingsCommandButton>
                             <NewButton Text=" ">
@@ -242,8 +246,8 @@
             </div>
 
             <div class="col-lg-6">
-                <div class="p-20 z-depth-2 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Procedure">
-                    <h4 class="sub-title">Treatment Procedure</h4>
+                <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Procedure">
+                    <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentProcedure", "Treatment Procedure") %> </h4>
                     <dx:ASPxGridView ID="ProcedureGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="ProcedureDataSource" EnableTheming="True" KeyFieldName="Treatment_Procedure_Id" Theme="Mulberry">
                         <SettingsCommandButton>
                             <NewButton Text=" ">
@@ -294,7 +298,7 @@
 
             <div class="col-lg-6">
                 <div class="p-20 z-depth-4 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Delivery">
-                    <h4 class="sub-title">Treatment Delivery</h4>
+                    <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentDelivery", "Treatment Delivery") %></h4>
                     <dx:ASPxGridView ID="DeliveryGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="DeliveryDataSource" EnableTheming="True" KeyFieldName="Treatment_Delivery_Id" Theme="Mulberry">
                         <SettingsCommandButton>
                             <NewButton Text=" ">
@@ -344,8 +348,8 @@
             </div>
 
             <div class="col-lg-6">
-                <div class="p-20 z-depth-5 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Class">
-                    <h4 class="sub-title">Treatment Class</h4>
+                <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Class">
+                    <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentClass", "Treatment Class") %></h4>
                     <dx:ASPxGridView ID="ClassGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="ClassDataSource" EnableTheming="True" KeyFieldName="Treatment_Class_Id" Theme="Mulberry">
                         <SettingsCommandButton>
                             <NewButton Text=" ">
