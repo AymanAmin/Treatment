@@ -2,7 +2,7 @@
 
 <%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>ECMS - LogFile</title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("LogFile-Title", "ECMS - Log File") %></title>
     <script>
         /* var str = 'data:{"Employees":[],"Permission_Group":[],"Group_Id":40,"Group_Name_Ar":"5","Group_Name_En":"5"}';
          var json = "["+str.slice(5)+"]";

@@ -103,7 +103,7 @@
                         <div class="auth-box card-block">
                             <div class="row m-b-0">
                                 <div class="col-md-12">
-                                    <h3 class="text-center txt-primary">Employee</h3>
+                                    <h3 class="text-center txt-primary"><% = Treatment.Classes.FieldNames.getFieldName("Employees-Employee", "Employee") %></h3>
                                 </div>
                             </div>
                             <!-- Start Employee Form-->
