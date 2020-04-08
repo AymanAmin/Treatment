@@ -13,10 +13,13 @@ namespace Treatment
     {
         ECMSEntities db = new ECMSEntities();
         List<Permission> ListPermissions = new List<Permission>();
+        Permission CurrentPageNow = new Permission();
+        List<int> CurrentPageSequences = new List<int>();
+        bool isDashBoard = false;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ListPermissions = db.Permissions.ToList();
-            /*if (SessionWrapper.LoggedUser != null)
+            //ListPermissions = db.Permissions.ToList();
+            if (SessionWrapper.LoggedUser != null)
             {
                 if (SessionWrapper.IsLocked)
                     Response.Redirect("~/Pages/Setting/admin/LockScreen.aspx");
@@ -25,12 +28,11 @@ namespace Treatment
             {
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
             }
-            ListPermissions = SessionWrapper.Permssions;*/
+            ListPermissions = SessionWrapper.Permssions;
             Employee_Name();
             LoadBreadcrumb(ListPermissions);
             LoadMenu(ListPermissions);
-
-           // ViewData(60);
+            // ViewData(60);
         }
 
         private void Employee_Name()
@@ -48,21 +50,35 @@ namespace Treatment
             string Current_PageName = "DashBoard";
 
             string LocalPath =  String.Concat(HttpContext.Current.Request.Url.LocalPath.Skip(1));
+            int found = LocalPath.IndexOf(".aspx");
+            LocalPath = LocalPath.Substring(0, found + 5);
+
+            if (LocalPath == "default.aspx")
+                isDashBoard = true;
+
             try
             {
-                
-                Permission CurrentPage  =  ListPermission.Where(x => x.Url_Path == LocalPath).First();
+                Permission CurrentPage = CurrentPageNow =  ListPermission.Where(x => x.Url_Path == LocalPath).First();
 
                 if (CurrentPage != null)
                 {
                     Current_PageName = CurrentPage.Permission_Name_En;
                     do
                     {
+                        //Add id for currnet sequense to set menu as active
+                        CurrentPageSequences.Add(CurrentPage.Permission_Id);
+
                         breadcrumbs.Add(CurrentPage.Permission_Name_En);
                         CurrentPage = ListPermission.Where(x => x.Permission_Id == CurrentPage.Parent).First();
                     }
                     while (CurrentPage.Parent != 0);
+                    //Add Last Id (the Perant Id for list
+                    CurrentPageSequences.Add(CurrentPage.Permission_Id);
+
                     breadcrumbs.Add(CurrentPage.Permission_Name_En);
+
+                    
+
                     for (int i = breadcrumbs.Count - 1; i > 0; i--)
                     {
                         str += "<li class='breadcrumb-item'><a href='#'> " + breadcrumbs[i] + "</a> </li>";
@@ -82,7 +98,7 @@ namespace Treatment
                 str += "<ul class='pcoded-item pcoded-left-item'>";
                 str += "<li class=''>";
                 str += "<a href = '../../../../' > ";
-                str += "<span class='pcoded-micon active'><i class='feather icon-home'></i></span>";
+                str += "<span class='pcoded-micon active' style='color:#01a9ac'><i class='feather icon-home'></i></span>";
                 str += "<span class='pcoded-mtext'>Dashboard</span>";
                 str += "</a>";
                 str += "</li>";
@@ -91,7 +107,10 @@ namespace Treatment
                 {
                     if (Permission_List[First_Level].Parent == 0)
                     {
-                        str += "<li class='pcoded-hasmenu'>";
+                        if(CurrentPageSequences.Contains(Permission_List[First_Level].Permission_Id) || (isDashBoard && First_Level==0))
+                            str += "<li id='"+ Permission_List[First_Level].Permission_Id + "' class='pcoded-hasmenu pcoded-trigger'>";
+                        else
+                            str += "<li id='" + Permission_List[First_Level].Permission_Id + "' class='pcoded-hasmenu'>";
                         str += "<a href = 'javascript:void(0)'>";
                         str += "<span class='pcoded-micon'><i class='"+ Permission_List[First_Level].Permission_Icon+ "'></i></span>";
                         str += "<span class='pcoded-mtext'>"+ Permission_List[First_Level].Permission_Name_En + "</span>";
@@ -103,7 +122,10 @@ namespace Treatment
                             List<Permission> Third_List = Permission_List.Where(x => x.Parent == Second_List[Second_Level].Permission_Id).ToList();
                             if (Third_List.Count > 0)
                             {
-                                str += "<li class='pcoded-hasmenu'>";
+                                if (CurrentPageSequences.Contains(Second_List[Second_Level].Permission_Id))
+                                    str += "<li id='" + Second_List[Second_Level].Permission_Id + "' class='pcoded-hasmenu pcoded-trigger'>";
+                                else
+                                    str += "<li id='" + Second_List[Second_Level].Permission_Id + "' class='pcoded-hasmenu'>";
                                 str += "<a href = 'javascript:void(0)'>";
                                 str += "<span class='pcoded-micon'><i class='"+ Second_List[Second_Level].Permission_Icon+ "'></i></span>";
                                 str += "<span class='pcoded-mtext'>"+ Second_List[Second_Level].Permission_Name_En + "</span>";
@@ -111,8 +133,10 @@ namespace Treatment
                                 str += "<ul class='pcoded-submenu'>";
                                 for (int Third_Level = 0; Third_Level < Third_List.Count; Third_Level++)
                                 {
-                                    //str += "<li class='active'>";
-                                    str += "<li class=''>";
+                                    if (CurrentPageNow.Permission_Id == Third_List[Third_Level].Permission_Id)
+                                        str += "<li class='active'>";
+                                    else
+                                        str += "<li class=''>";
                                     str += "<a href = '../../../../" + Third_List[Third_Level].Url_Path + "' > ";
                                     str += "<span class='pcoded-micon'><i class='"+ Third_List[Third_Level].Permission_Icon+ "'></i></span>";
                                     str += "<span class='pcoded-mtext'>"+ Third_List[Third_Level].Permission_Name_En + "</span>";
@@ -124,7 +148,10 @@ namespace Treatment
                             }
                             else
                             {
-                                str += "<li class=''>";
+                                if (CurrentPageNow.Permission_Id == Second_List[Second_Level].Permission_Id)
+                                    str += "<li class='active'>";
+                                else
+                                    str += "<li class=''>";
                                 str += "<a href = '../../../../" + Second_List[Second_Level].Url_Path + "' > ";
                                 str += "<span class='pcoded-micon'><i class='" + Second_List[Second_Level].Permission_Icon + "'></i></span>";
                                 str += "<span class='pcoded-mtext'>" + Second_List[Second_Level].Permission_Name_En + "</span>";

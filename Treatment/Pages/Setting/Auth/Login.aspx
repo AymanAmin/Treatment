@@ -81,7 +81,7 @@
                             <!-- Authentication card start -->
 
                             <div class="text-center">
-                                <img src="..\..\..\..\Theme\files\assets\images\logo.png" alt="logo.png" width="200" height="100" />
+                                <img src="..\..\..\..\Theme\files\assets\images\logo.png" alt="logo.png"/>
                             </div>
                             <div class="auth-box card">
                                 <div class="card-block">

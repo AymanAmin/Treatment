@@ -134,9 +134,20 @@
             color: #01a9ac !important;
             background-color: #fafafa !important;
         }
+
+        /* Menu item color (onhover - active)*/
+      .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li.active > a{
+            color: #01a9ac !important;
+        }
+         .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li:hover > a {
+            color:#01a9ac !important;
+        }
     </style>
 
     <script>
+
+        
+
         /* Close Model */
         function HideTheModel() {
             document.getElementById("bt-data-dismiss").click();
@@ -243,15 +254,15 @@
                 <div class="pcoded-overlay-box"></div>
                 <div class="pcoded-container navbar-wrapper">
 
-                    <nav class="navbar header-navbar pcoded-header">
+                    <nav id="nav-bar-custom" class="navbar header-navbar pcoded-header">
                         <div class="navbar-wrapper">
 
                             <div class="navbar-logo">
                                 <a class="mobile-menu" id="mobile-collapse" href="#!">
                                     <i class="feather icon-menu"></i>
                                 </a>
-                                <a href="index-1.htm">
-                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="Theme-Logo" width="70" height="50" />
+                                <a href="../../../../">
+                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\logo.png" alt="Theme-Logo"/>
                                 </a>
                                 <a class="mobile-options">
                                     <i class="feather icon-more-horizontal"></i>
@@ -436,15 +447,17 @@
                                                     <div class="col-lg-8">
                                                         <div class="page-header-title">
                                                             <div class="d-inline">
+                                                                <!--<h4 style="color:#01a9ac;">-->
                                                                 <h4>
-                                                                    <asp:Literal ID="PageName" runat="server"></asp:Literal></h4>
+                                                                    <asp:Literal ID="PageName" runat="server"></asp:Literal>
+                                                                </h4>
                                                                 <!--<span>Treament Priority</span>-->
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <div class="page-header-breadcrumb">
-                                                            <ul class="breadcrumb-title">
+                                                            <ul class="breadcrumb-title" >
                                                                 <asp:Label ID="breadcrumb" runat="server" Text="Label"></asp:Label>
 
                                                             </ul>
@@ -471,6 +484,8 @@
                     </div>
                 </div>
             </div>
+
+            <input id="colorIcon" type="radio" name="radio" value="st5" onclick="handlemenutype(this.value)" hidden="hidden"/>
 
             <!-- Warning Section Starts -->
             <!-- Older IE warning message -->
@@ -616,6 +631,31 @@
             
             
             <script>
+
+                $(document).ready(function () {
+                    // themelight1 Theme for Menu
+                    $(".pcoded-navbar").attr("navbar-theme", "themelight1");
+
+                    // Change the color of nav-bar-custom
+                    document.getElementById("nav-bar-custom").style.backgroundColor = "#01a9ac";
+
+                    //Menu Icon Color 
+                    document.getElementById("colorIcon").click();
+
+                    // SubMenu Style
+                    $(".pcoded-navbar .pcoded-hasmenu").attr("subitem-icon", "style4")
+
+                    // Header tool bar Style 
+                    $(".pcoded-header").attr("header-theme", "theme6"), $(".navbar-logo").attr("logo-theme", "theme6")
+
+                    // Expand menu icon 
+                    $(".pcoded-navbar .pcoded-hasmenu").attr("dropdown-icon", "style3")
+                });
+
+                $(document).ready(function() {
+                     
+                });
+
 
                 window.dataLayer = window.dataLayer || [];
                 function gtag() { dataLayer.push(arguments); }

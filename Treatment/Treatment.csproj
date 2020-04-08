@@ -507,6 +507,7 @@
     <Content Include="Theme\files\assets\images\light-box\v4.jpg" />
     <Content Include="Theme\files\assets\images\logo-blue.png" />
     <Content Include="Theme\files\assets\images\logo.png" />
+    <Content Include="Theme\files\assets\images\logo2.png" />
     <Content Include="Theme\files\assets\images\logo1.png" />
     <Content Include="Theme\files\assets\images\mega-menu\01.jpg" />
     <Content Include="Theme\files\assets\images\mega-menu\02.jpg" />
