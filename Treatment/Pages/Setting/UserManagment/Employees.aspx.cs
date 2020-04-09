@@ -10,7 +10,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Treatment.Classes;
 using Treatment.Entity;
-using Treatment.Models;
 using Website.Classes;
 
 

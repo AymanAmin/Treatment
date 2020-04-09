@@ -3,10 +3,7 @@
 <%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>User Management - Groups</title>
-    <script>
-       
-    </script>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("PermissionGroups-Title", "User Management - Groups") %></title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <!-- Page-body start -->
@@ -28,18 +25,18 @@
                             <div class="login-card card-block login-card-modal">
 
                                 <div class="text-center">
-                                    <img src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="logo.png">
+                                    <img src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="logo.png" />
                                 </div>
                                 <div class="card m-t-15">
                                     <div class="auth-box card-block">
                                         <div class="row m-b-20">
                                             <div class="col-md-12">
-                                                <h3 class="text-center txt-primary">Add Group</h3>
+                                                <h3 class="text-center txt-primary"><% = Treatment.Classes.FieldNames.getFieldName("PermissionGroups-AddGroup", "Add Group") %></h3>
                                             </div>
                                         </div>
                                         <div class="col-sm-12 ">
                                             <div class="form-group col-sm-12 j-unit" style="margin-top: 5%">
-                                                <label class="j-label">Arabic Name</label>
+                                                <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("PermissionGroups-ArabicName", "Arabic Name") %></label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-underline"></i></span>
                                                     <asp:TextBox ID="txtGroup_Name" runat="server" class="form-control" placeholder="Enter Name in Arabic" TextMode="SingleLine"></asp:TextBox>
@@ -49,7 +46,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-12 j-unit">
-                                                <label class="j-label">English Name</label>
+                                                <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("PermissionGroups-EnglishName", "English Name") %></label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon" id="basic-addon2"><i class="icofont icofont-underline"></i></span>
                                                     <asp:TextBox ID="txtGroup_Name_En" runat="server" class="form-control" placeholder="Enter Name in English" TextMode="SingleLine"></asp:TextBox>
@@ -73,7 +70,7 @@
                     </div>
 
                     <div class="form-group col-sm-12" style="text-align: right; margin-top: -2%">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-model">Add Group</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-model"><% = Treatment.Classes.FieldNames.getFieldName("PermissionGroups-AddGroup", "Add Group") %></button>
                     </div>
                     <div class="form-group col-sm-7 blockquote">
                         <div class="dt-responsive table-responsive">
@@ -123,7 +120,7 @@
                     </div>
                     <hr />
                     <div class="form-group col-sm-6 j-unit" style="margin-top: 0%">
-                        <label class="j-label">Groups</label>
+                        <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("PermissionGroups-Groups", "Groups") %></label>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon3"><i class="icofont icofont-tree"></i></span>
                             <asp:DropDownList ID="ddlGroups" runat="server" AutoPostBack="true" class="form-control form-control-primary" OnSelectedIndexChanged="ddlGroups_SelectedIndexChanged"></asp:DropDownList>

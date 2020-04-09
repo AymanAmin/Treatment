@@ -65,6 +65,7 @@
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\multiselect\css\multi-select.css" />
 
     <!-- Data Table Css -->
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css" />
 
 
@@ -90,6 +91,9 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\style.css" />
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\jquery.mCustomScrollbar.css" />
+=======
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css"/>
+>>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
 
     <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -158,9 +162,20 @@
             color: #01a9ac !important;
             background-color: #fafafa !important;
         }
+
+        /* Menu item color (onhover - active)*/
+      .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li.active > a{
+            color: #01a9ac !important;
+        }
+         .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li:hover > a {
+            color:#01a9ac !important;
+        }
     </style>
 
     <script>
+
+        
+
         /* Close Model */
         function HideTheModel() {
             document.getElementById("bt-data-dismiss").click();
@@ -217,10 +232,13 @@
     </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <title>E-CMS - Main Screen</title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("Master-Title", "E-CMS - Main Screen") %></title>
 </head>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
 
 <body onload="hidePcoded()">
     <input id="bt-data-dismiss" type="hidden" data-dismiss="modal" value="" />
@@ -268,15 +286,15 @@
                 <div class="pcoded-overlay-box"></div>
                 <div class="pcoded-container navbar-wrapper">
 
-                    <nav class="navbar header-navbar pcoded-header">
+                    <nav id="nav-bar-custom" class="navbar header-navbar pcoded-header">
                         <div class="navbar-wrapper">
 
                             <div class="navbar-logo">
                                 <a class="mobile-menu" id="mobile-collapse" href="#!">
                                     <i class="feather icon-menu"></i>
                                 </a>
-                                <a href="index-1.htm">
-                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="Theme-Logo" width="70" height="50" />
+                                <a href="../../../../">
+                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\logo.png" alt="Theme-Logo"/>
                                 </a>
                                 <a class="mobile-options">
                                     <i class="feather icon-more-horizontal"></i>
@@ -301,14 +319,14 @@
                                     </li>
                                 </ul>
                                 <ul class="nav-right">
-                                    <li class="header-notification">
+                                    <!--<li class="header-notification">
                                         <div class="dropdown-primary dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">
                                                 <i class="feather icon-map"></i>
                                             </div>
                                             <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                                 <li>
-                                                    <h6>Language:</h6>
+                                                    <h6><% = Treatment.Classes.FieldNames.getFieldName("Master-language", "Language") %>:</h6>
                                                 </li>
                                                 <li>
                                                     <div class="media">
@@ -334,7 +352,7 @@
                                             </div>
                                             <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                                 <li>
-                                                    <h6>Calendar:</h6>
+                                                    <h6><% = Treatment.Classes.FieldNames.getFieldName("Master-Calendar", "Calendar") %>:</h6>
                                                 </li>
                                                 <li>
                                                     <div class="media">
@@ -352,7 +370,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </li>
+                                    </li>-->
                                     <li class="header-notification">
                                         <div class="dropdown-primary dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">
@@ -361,8 +379,8 @@
                                             </div>
                                             <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                                 <li>
-                                                    <h6>Notifications:</h6>
-                                                    <label class="label label-danger">New</label>
+                                                    <h6><% = Treatment.Classes.FieldNames.getFieldName("Master-Notifications", "Notifications") %>:</h6>
+                                                    <label class="label label-danger"><% = Treatment.Classes.FieldNames.getFieldName("Master-Notifications-New", "New") %></label>
                                                 </li>
                                                 <li>
                                                     <div class="media">
@@ -408,27 +426,32 @@
                                             <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                                 <li>
                                                     <a href="#!">
-                                                        <i class="feather icon-settings"></i>Settings
+                                                        <i class="feather icon-settings"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Settings", "Settings") %>
                                                     </a>
                                                 </li>
                                                 <li>
+<<<<<<< HEAD
                                                 <a href="../../../../Pages/Setting/UserManagment/Profile.aspx">
                                                         <i class="feather icon-user"></i>Profile
+=======
+                                                <a href="inbox.aspx">
+                                                        <i class="feather icon-user"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Profile", "Profile") %>
+>>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="inbox.aspx">
-                                                        <i class="feather icon-mail"></i>My Messages
+                                                        <i class="feather icon-mail"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Messages", "My Messages") %>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="../../../../Pages/Setting/Auth/LockScreen.aspx">
-                                                        <i class="feather icon-lock"></i>Lock Screen
+                                                        <i class="feather icon-lock"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-LockScreen", "Lock Screen") %>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="../../../../Pages/Setting/Auth/Logout.ashx">
-                                                        <i class="feather icon-log-out"></i>Logout
+                                                        <i class="feather icon-log-out"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Logout", "Logout") %>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -461,15 +484,17 @@
                                                     <div class="col-lg-8">
                                                         <div class="page-header-title">
                                                             <div class="d-inline">
+                                                                <!--<h4 style="color:#01a9ac;">-->
                                                                 <h4>
-                                                                    <asp:Literal ID="PageName" runat="server"></asp:Literal></h4>
+                                                                    <asp:Literal ID="PageName" runat="server"></asp:Literal>
+                                                                </h4>
                                                                 <!--<span>Treament Priority</span>-->
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <div class="page-header-breadcrumb">
-                                                            <ul class="breadcrumb-title">
+                                                            <ul class="breadcrumb-title" >
                                                                 <asp:Label ID="breadcrumb" runat="server" Text="Label"></asp:Label>
 
                                                             </ul>
@@ -496,6 +521,8 @@
                     </div>
                 </div>
             </div>
+
+            <input id="colorIcon" type="radio" name="radio" value="st5" onclick="handlemenutype(this.value)" hidden="hidden"/>
 
             <!-- Warning Section Starts -->
             <!-- Older IE warning message -->
@@ -643,6 +670,35 @@
 
             
             <script>
+<<<<<<< HEAD
+=======
+
+                $(document).ready(function () {
+                    // themelight1 Theme for Menu
+                    $(".pcoded-navbar").attr("navbar-theme", "themelight1");
+
+                    // Change the color of nav-bar-custom
+                    document.getElementById("nav-bar-custom").style.backgroundColor = "#01a9ac";
+
+                    //Menu Icon Color 
+                    document.getElementById("colorIcon").click();
+
+                    // SubMenu Style
+                    $(".pcoded-navbar .pcoded-hasmenu").attr("subitem-icon", "style4")
+
+                    // Header tool bar Style 
+                    $(".pcoded-header").attr("header-theme", "theme6"), $(".navbar-logo").attr("logo-theme", "theme6")
+
+                    // Expand menu icon 
+                    $(".pcoded-navbar .pcoded-hasmenu").attr("dropdown-icon", "style3")
+                });
+
+                $(document).ready(function() {
+                     
+                });
+
+
+>>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
                 window.dataLayer = window.dataLayer || [];
                 function gtag() { dataLayer.push(arguments); }
                 gtag('js', new Date());

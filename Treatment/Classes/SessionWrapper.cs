@@ -61,6 +61,8 @@ namespace Website.Classes
 
         #region IsLocked
 
+        #region Language
+
 
         public static Employee LoggedUser
         {
@@ -110,6 +112,24 @@ namespace Website.Classes
                 }
             }
         }
+
+        public static List<Lanuage_Detials> Language
+        {
+            get { return GetFromSession<List<Lanuage_Detials>>("Language"); }
+            set
+            {
+                if (value == null)
+                {
+                    HttpContext.Current.Session.Remove("Language");
+                }
+                else
+                {
+                    SetInSession<List<Lanuage_Detials>>("Language", value);
+                }
+            }
+        }
+
+        #endregion
 
         #endregion
 

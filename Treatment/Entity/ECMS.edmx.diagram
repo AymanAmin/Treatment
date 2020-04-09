@@ -4,6 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< HEAD
       <Diagram DiagramId="5a47df7026da4044a53db3bb120c2f4a" Name="Diagram1">
         <EntityTypeShape EntityType="ECMSModel.Assignment_Status" Width="1.5" PointX="11.25" PointY="14" />
         <EntityTypeShape EntityType="ECMSModel.Attachment" Width="1.5" PointX="12.75" PointY="5.5" />
@@ -30,13 +31,41 @@
         <AssociationConnector Association="ECMSModel.FK_Attachment_Treatment" />
         <AssociationConnector Association="ECMSModel.FK_Employee_Group" />
         <AssociationConnector Association="ECMSModel.FK_Employee_LanguageMaster" />
+=======
+      <Diagram DiagramId="5a47df7026da4044a53db3bb120c2f4a" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="ECMSModel.Assignment_Status" Width="1.5" PointX="10.5" PointY="3.5" />
+        <EntityTypeShape EntityType="ECMSModel.Attachment" Width="1.5" PointX="12.75" PointY="17.25" />
+        <EntityTypeShape EntityType="ECMSModel.Employee" Width="1.5" PointX="3" PointY="11.875" />
+        <EntityTypeShape EntityType="ECMSModel.Employee_Structure" Width="1.5" PointX="5.25" PointY="12.125" />
+        <EntityTypeShape EntityType="ECMSModel.Group" Width="1.5" PointX="0.75" PointY="9.875" />
+        <EntityTypeShape EntityType="ECMSModel.Log_File" Width="1.5" PointX="8.25" PointY="12.25" />
+        <EntityTypeShape EntityType="ECMSModel.Owner_Relationship" Width="1.5" PointX="12.75" PointY="8.125" />
+        <EntityTypeShape EntityType="ECMSModel.Permission" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="ECMSModel.Permission_Group" Width="1.5" PointX="3" PointY="8.875" />
+        <EntityTypeShape EntityType="ECMSModel.Structure" Width="1.5" PointX="3" PointY="16.5" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Class" Width="1.5" PointX="8.25" PointY="4.75" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Confidentiality" Width="1.5" PointX="8.25" PointY="15.875" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Delivery" Width="1.5" PointX="8.25" PointY="18.625" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Detial" Width="1.5" PointX="12.75" PointY="11.5" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Master" Width="1.5" PointX="10.5" PointY="10" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Priority" Width="1.5" PointX="8.25" PointY="23.625" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Procedure" Width="1.5" PointX="8.25" PointY="21.125" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Status" Width="1.5" PointX="8.25" PointY="7.375" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Type" Width="1.5" PointX="8.25" PointY="26.625" />
+        <AssociationConnector Association="ECMSModel.FK_Treatment_Detial_Assignment_Status" />
+        <AssociationConnector Association="ECMSModel.FK_Attachment_Treatment" />
+        <AssociationConnector Association="ECMSModel.FK_Employee_Group" />
+>>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
         <AssociationConnector Association="ECMSModel.FK_Employee_Structure_Employee" />
         <AssociationConnector Association="ECMSModel.FK_Log_File_Employee" />
         <AssociationConnector Association="ECMSModel.FK_Employee_Structure_Structure" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Detial_Employee_Structure" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Employee_Structure" />
         <AssociationConnector Association="ECMSModel.FK_Permission_Group_Group" />
+<<<<<<< HEAD
         <AssociationConnector Association="ECMSModel.FK_Lanuage_Detials_LanguageMaster" />
+=======
+>>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
         <AssociationConnector Association="ECMSModel.FK_Log_File_Permission" />
         <AssociationConnector Association="ECMSModel.FK_Owner_Relationship_Treatment" />
         <AssociationConnector Association="ECMSModel.FK_Permission_Group_Permission" />
@@ -49,6 +78,12 @@
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Procedure" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Status" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Type" />
+<<<<<<< HEAD
+=======
+        <EntityTypeShape EntityType="ECMSModel.LanguageMaster" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="ECMSModel.Lanuage_Detials" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="ECMSModel.FK_Lanuage_Detials_LanguageMaster" />
+>>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -81,7 +81,7 @@
                             <!-- Authentication card start -->
 
                             <div class="text-center">
-                                <img src="..\..\..\..\Theme\files\assets\images\logo.png" alt="logo.png" width="200" height="100" />
+                                <img src="..\..\..\..\Theme\files\assets\images\logo.png" alt="logo.png"/>
                             </div>
                             <div class="auth-box card">
                                 <div class="card-block">
@@ -119,13 +119,7 @@
                                             <img src="..\..\..\..\Theme\files\assets\images\Logo.png" alt="small-logo.png" width="50" height="30" />
                                         </div>
                                     </div>
-                                    <div class="forgot-phone text-left f-left">
-                                        <a href="auth-multi-step-sign-up.htm" class="text-right f-w-600">Sign Up</a>
-                                    </div>
-                                    <br />
-                                    <div class="forgot-phone text-left f-left">
-                                        <a href="LockScreen.aspx" class="text-right f-w-600">Look Screen</a>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <!-- end of form -->

@@ -7,8 +7,7 @@ using System.Web.UI.WebControls;
 using Treatment.Entity;
 using Website.Classes;
 using Newtonsoft.Json;
-
-
+using Treatment.Classes;
 
 namespace Treatment.Pages.Setting.UserManagment
 {
@@ -27,6 +26,7 @@ namespace Treatment.Pages.Setting.UserManagment
             if (!IsPostBack)
             {
                 FillGroupPermission();
+                Change_LablesName_BasedOn_Language();
             }
         }
 
@@ -115,6 +115,29 @@ namespace Treatment.Pages.Setting.UserManagment
             catch { }
         }
 
-        
+        private void Change_LablesName_BasedOn_Language()
+        {
+            try
+            {
+                // Group Grid View
+                GroupGridView.Columns[0].Caption = FieldNames.getFieldName("PermissionGroups-ID", "ID");
+                GroupGridView.Columns[1].Caption = FieldNames.getFieldName("PermissionGroups-ArabicName", "Arabic Name");
+                GroupGridView.Columns[2].Caption = FieldNames.getFieldName("PermissionGroups-Action", "Action");
+                GroupGridView.Columns[3].Caption = FieldNames.getFieldName("PermissionGroups-EnglishName", "English Name");
+
+                // Permission Grid View
+                PermissionGroupGridView.Columns[0].Caption = FieldNames.getFieldName("PermissionGroups-ID", "ID");
+                PermissionGroupGridView.Columns[1].Caption = FieldNames.getFieldName("PermissionGroups-PermissionID", "Permission ID");
+                PermissionGroupGridView.Columns[2].Caption = FieldNames.getFieldName("PermissionGroups-ArabicName", "Arabic Name");
+                PermissionGroupGridView.Columns[3].Caption = FieldNames.getFieldName("PermissionGroups-EnglishName", "English Name");
+                PermissionGroupGridView.Columns[4].Caption = FieldNames.getFieldName("PermissionGroups-URLPath", "URL Path");
+
+                // Save Button
+                SaveChanges.Text = FieldNames.getFieldName("PermissionGroups-Save", "Save");
+            }
+            catch { }
+        }
+
+
     }
 }
