@@ -152,6 +152,8 @@
       <LastGenOutput>ECMS.cs</LastGenOutput>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Pages\Admin\Language.aspx" />
+    <Content Include="Pages\Admin\LogFile.aspx" />
     <Content Include="Pages\Setting\Auth\LockScreen.aspx" />
     <Content Include="Pages\Setting\Auth\Login.aspx" />
     <Content Include="Pages\Setting\Auth\ResetPassword.aspx" />
@@ -2184,6 +2186,18 @@
       <DependentUpon>MasterEn.Master</DependentUpon>
     </Compile>
     <Compile Include="Classes\EmployeDTO.cs" />
+    <Compile Include="Pages\Admin\Language.aspx.cs">
+      <DependentUpon>Language.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Language.aspx.designer.cs">
+      <DependentUpon>Language.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\LogFile.aspx.cs">
+      <DependentUpon>LogFile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\LogFile.aspx.designer.cs">
+      <DependentUpon>LogFile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Setting\Auth\LockScreen.aspx.cs">
       <DependentUpon>LockScreen.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2460,7 +2474,6 @@
     <Folder Include="Controllers\" />
     <Folder Include="media\" />
     <Folder Include="Models\" />
-    <Folder Include="Pages\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
