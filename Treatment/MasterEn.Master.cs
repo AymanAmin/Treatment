@@ -29,6 +29,10 @@ namespace Treatment
             {
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
             }
+            //Change Layout to RTL
+            if (SessionWrapper.LoggedUser.Language_id != null)
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "RTL_Layout();", true);
             ListPermissions = SessionWrapper.Permssions;
             Employee_Name();
             LoadBreadcrumb(ListPermissions);
@@ -38,8 +42,10 @@ namespace Treatment
 
         private void Employee_Name()
         {
-            if (SessionWrapper.LoggedUser != null)
+            if (SessionWrapper.LoggedUser.Language_id == 2)
                 Emp_Name.Text = SessionWrapper.LoggedUser.Employee_Name_En;
+            else
+                Emp_Name.Text = SessionWrapper.LoggedUser.Employee_Name_Ar;
         }
 
         private void LoadBreadcrumb(List<Permission> ListPermission)
@@ -48,7 +54,9 @@ namespace Treatment
 
             List<string> breadcrumbs = new List<string>();
 
-            string Current_PageName = "DashBoard";
+            string Current_PageName = "لوحة المعلومات";
+            if (SessionWrapper.LoggedUser.Language_id == 2)
+            Current_PageName = "DashBoard";
 
             string LocalPath =  String.Concat(HttpContext.Current.Request.Url.LocalPath.Skip(1));
             int found = LocalPath.IndexOf(".aspx");
@@ -63,22 +71,32 @@ namespace Treatment
 
                 if (CurrentPage != null)
                 {
-                    Current_PageName = CurrentPage.Permission_Name_En;
+                    if (SessionWrapper.LoggedUser.Language_id == 2)
+                        Current_PageName = CurrentPage.Permission_Name_En;
+                    else
+                        Current_PageName = CurrentPage.Permission_Name_Ar;
                     do
                     {
                         //Add id for currnet sequense to set menu as active
                         CurrentPageSequences.Add(CurrentPage.Permission_Id);
 
-                        breadcrumbs.Add(CurrentPage.Permission_Name_En);
+                        if (SessionWrapper.LoggedUser.Language_id == 2)
+                            breadcrumbs.Add(CurrentPage.Permission_Name_En);
+                        else
+                            breadcrumbs.Add(CurrentPage.Permission_Name_Ar);
+
                         CurrentPage = ListPermission.Where(x => x.Permission_Id == CurrentPage.Parent).First();
                     }
                     while (CurrentPage.Parent != 0);
                     //Add Last Id (the Perant Id for list
                     CurrentPageSequences.Add(CurrentPage.Permission_Id);
 
-                    breadcrumbs.Add(CurrentPage.Permission_Name_En);
+                    if (SessionWrapper.LoggedUser.Language_id == 2)
+                        breadcrumbs.Add(CurrentPage.Permission_Name_En);
+                    else
+                        breadcrumbs.Add(CurrentPage.Permission_Name_Ar);
 
-                    
+
 
                     for (int i = breadcrumbs.Count - 1; i > 0; i--)
                     {
@@ -114,7 +132,10 @@ namespace Treatment
                             str += "<li id='" + Permission_List[First_Level].Permission_Id + "' class='pcoded-hasmenu'>";
                         str += "<a href = 'javascript:void(0)'>";
                         str += "<span class='pcoded-micon'><i class='"+ Permission_List[First_Level].Permission_Icon+ "'></i></span>";
-                        str += "<span class='pcoded-mtext'>"+ Permission_List[First_Level].Permission_Name_En + "</span>";
+                        if (SessionWrapper.LoggedUser.Language_id == 2)
+                            str += "<span class='pcoded-mtext'>"+ Permission_List[First_Level].Permission_Name_En + "</span>";
+                        else
+                            str += "<span class='pcoded-mtext'>" + Permission_List[First_Level].Permission_Name_Ar + "</span>";
                         str += "</a>";
                         str += "<ul class='pcoded-submenu'>";
                         List<Permission> Second_List = Permission_List.Where(x => x.Parent == Permission_List[First_Level].Permission_Id).ToList();
@@ -129,7 +150,10 @@ namespace Treatment
                                     str += "<li id='" + Second_List[Second_Level].Permission_Id + "' class='pcoded-hasmenu'>";
                                 str += "<a href = 'javascript:void(0)'>";
                                 str += "<span class='pcoded-micon'><i class='"+ Second_List[Second_Level].Permission_Icon+ "'></i></span>";
-                                str += "<span class='pcoded-mtext'>"+ Second_List[Second_Level].Permission_Name_En + "</span>";
+                                if (SessionWrapper.LoggedUser.Language_id == 2)
+                                    str += "<span class='pcoded-mtext'>"+ Second_List[Second_Level].Permission_Name_En + "</span>";
+                                else
+                                    str += "<span class='pcoded-mtext'>" + Second_List[Second_Level].Permission_Name_Ar + "</span>";
                                 str += "</a>";
                                 str += "<ul class='pcoded-submenu'>";
                                 for (int Third_Level = 0; Third_Level < Third_List.Count; Third_Level++)
@@ -140,7 +164,10 @@ namespace Treatment
                                         str += "<li class=''>";
                                     str += "<a href = '../../../../" + Third_List[Third_Level].Url_Path + "' > ";
                                     str += "<span class='pcoded-micon'><i class='"+ Third_List[Third_Level].Permission_Icon+ "'></i></span>";
-                                    str += "<span class='pcoded-mtext'>"+ Third_List[Third_Level].Permission_Name_En + "</span>";
+                                    if (SessionWrapper.LoggedUser.Language_id == 2)
+                                        str += "<span class='pcoded-mtext'>"+ Third_List[Third_Level].Permission_Name_En + "</span>";
+                                    else
+                                        str += "<span class='pcoded-mtext'>" + Third_List[Third_Level].Permission_Name_Ar + "</span>";
                                     str += "</a>";
                                     str += "</li>";
                                 }
@@ -155,7 +182,10 @@ namespace Treatment
                                     str += "<li class=''>";
                                 str += "<a href = '../../../../" + Second_List[Second_Level].Url_Path + "' > ";
                                 str += "<span class='pcoded-micon'><i class='" + Second_List[Second_Level].Permission_Icon + "'></i></span>";
-                                str += "<span class='pcoded-mtext'>" + Second_List[Second_Level].Permission_Name_En + "</span>";
+                                if (SessionWrapper.LoggedUser.Language_id == 2)
+                                    str += "<span class='pcoded-mtext'>" + Second_List[Second_Level].Permission_Name_En + "</span>";
+                                else
+                                    str += "<span class='pcoded-mtext'>" + Second_List[Second_Level].Permission_Name_Ar + "</span>";
                                 str += "</a>";
                                 str += "</li>";
                             }

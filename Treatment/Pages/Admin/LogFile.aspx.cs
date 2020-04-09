@@ -50,18 +50,19 @@ namespace Treatment.Pages.Admin
         protected void LogFileGridView_HtmlDataCellPrepared(object sender, ASPxGridViewTableDataCellEventArgs e)
         {
             {
-                if (true) // if He select Hijri calender
-                    if (e.DataColumn.FieldName != "Log_Date") return;
-                {
-                    DateTime date = DateTime.Parse(e.CellValue.ToString());
-
-                    string Hijri_date = UC.ConvertDateCalendar(date, "Hijri", "ar-SA");
-                    //new_date = UC.ConvertDateCalendar(date, "Gregorian", "en-US");
-                    int index = Hijri_date.IndexOf(" ");
-                    if (index > 0)
-                        Hijri_date = Hijri_date.Substring(0, index);
-                    e.Cell.Text = Hijri_date + " " + date.ToShortTimeString();
-                }
+                if (SessionWrapper.LoggedUser.Calendar_id != null)
+                    if (SessionWrapper.LoggedUser.Calendar_id != 1)// if He select Hijri calender
+                        if (e.DataColumn.FieldName != "Log_Date") return;
+                        else
+                        {
+                            DateTime date = DateTime.Parse(e.CellValue.ToString());
+                            string Hijri_date = UC.ConvertDateCalendar(date, "Hijri", "ar-SA");
+                            //new_date = UC.ConvertDateCalendar(date, "Gregorian", "en-US");
+                            int index = Hijri_date.IndexOf(" ");
+                            if (index > 0)
+                                Hijri_date = Hijri_date.Substring(0, index);
+                            e.Cell.Text = Hijri_date + " " + date.ToShortTimeString();
+                        }
             }
         }
     }

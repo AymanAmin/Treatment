@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Treatment.Classes;
 using Treatment.Entity;
 using Website.Classes;
 
@@ -46,9 +47,15 @@ namespace Treatment
             int new_treatment = DetialList.Where(x => x.Assignment_Status_Id == 1 && x.Is_Delete == false).Count();
             int under_process_treatment = DetialList.Where(x => x.Assignment_Status_Id == 2 && x.Is_Delete == false).Count() + MasterList.Where(x => x.Treatment_Status_Id == 1).Count();
             int finished_treatment = DetialList.Where(x => x.Assignment_Status_Id == 3 && x.Is_Delete == false).Count();
-            int deleted_treatment = DetialList.Where(x => x.Is_Delete == true && x.Is_Delete == false).Count() * 0;
+            int deleted_treatment = DetialList.Where(x => x.Is_Delete == true).Count() * 0;
+
+            string New = FieldNames.getFieldName("Default-New", "New");
+            string Under_Process = FieldNames.getFieldName("Default-UnderProcess", "Under Process");
+            string Finised = FieldNames.getFieldName("Default-Finised", "Finised");
+            string Deleted = FieldNames.getFieldName("Default-Deleted", "Deleted"); 
+
             string data = "[" + new_treatment + ", " + under_process_treatment + ", " + finished_treatment + ", " + deleted_treatment + "]";
-            string names = "['New', 'Under Process', 'Finised', 'Deleted']";
+            string names = "['"+New+"', '"+Under_Process+"', '"+Finised+"', '"+Deleted+"']";
             string Pie_Function = "Pie_Chart(" + data + "," + names + ");";
             /*  End of Pie Chart */
 

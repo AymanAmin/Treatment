@@ -107,7 +107,7 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-model"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-AddPermission", "Add Permission") %></button>
                     </div>
                     <div class="form-group col-sm-12 dt-responsive table-responsive">
-                        <dx:ASPxTreeList ID="PermissionTreeList" Style="width: 100%; text-align: center" runat="server" AutoGenerateColumns="False" DataSourceID="PermissionDataSource" EnableTheming="True" KeyFieldName="Permission_Id" Theme="Mulberry" ParentFieldName="Parent">
+                        <dx:ASPxTreeList ID="PermissionTreeList" Style="width: 100%; text-align: center" runat="server" AutoGenerateColumns="False" DataSourceID="PermissionDataSource" EnableTheming="True" KeyFieldName="Permission_Id" Theme="Mulberry" ParentFieldName="Parent" OnAutoFilterCellEditorInitialize="PermissionTreeList_AutoFilterCellEditorInitialize">
                             <Columns>
                                 <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Arabic Name" FieldName="Permission_Name_Ar" ShowInFilterControl="Default" VisibleIndex="1">
                                     <PropertiesTextEdit>
@@ -163,7 +163,7 @@
 
                                 </dx:TreeListCommandColumn>
                                 <dx:TreeListComboBoxColumn AutoFilterCondition="Default" Caption="ParentID" FieldName="Parent" ShowInFilterControl="Default" VisibleIndex="3">
-                                    <PropertiesComboBox DataSourceID="PermissionDataSource" TextField="Permission_Name_En" ValueField="Permission_Id">
+                                    <PropertiesComboBox DataSourceID="PermissionDataSource" TextField="Permission_Name_En" ValueField="Permission_Id" ValueType="System.Int32">
                                         <Style CssClass="form-control">
                                         </Style>
                                     </PropertiesComboBox>

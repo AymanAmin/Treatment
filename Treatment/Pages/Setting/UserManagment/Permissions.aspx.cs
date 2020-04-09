@@ -8,6 +8,7 @@ using Treatment.Entity;
 using Website.Classes;
 using Newtonsoft.Json;
 using Treatment.Classes;
+using DevExpress.Web;
 
 namespace Treatment.Pages.Setting.UserManagment
 {
@@ -89,9 +90,15 @@ namespace Treatment.Pages.Setting.UserManagment
 
                 // Save Button
                 Save.Text = FieldNames.getFieldName("Permissions-Save", "Save");
+
+                //Change DropDown 
             }
             catch { }
         }
 
+        protected void PermissionTreeList_AutoFilterCellEditorInitialize(object sender, DevExpress.Web.ASPxTreeList.ASPxTreeListEditorEventArgs e)
+        {
+            
+        }
     }
 }
