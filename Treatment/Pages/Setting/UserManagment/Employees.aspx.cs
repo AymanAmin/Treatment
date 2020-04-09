@@ -30,18 +30,28 @@ namespace Treatment.Pages.Treatment
         protected void Save_Click(object sender, EventArgs e)
         {
             int Group_id = 0;
+            int calander_id = 0;
+            int Lang = 0;
+
             int Emp_ID = 0;
             int.TryParse(EmpID.Value ,out Emp_ID);
             int.TryParse(Groups.SelectedValue, out Group_id);
+            int.TryParse(Language.SelectedValue, out Lang);
+            if(DateofBirth.Checked) calander_id = 1;
             string EMPN = Employee_Name_Ar.Text;
-            bool result = AU_Emplooyees(Emp_ID, EMPN, Employee_Name_En.Text, Employee_Email.Text, Employee_Phone.Text, Active.Checked, Group_id);
+            bool result = AU_Emplooyees(Emp_ID, EMPN, Employee_Name_En.Text, Employee_Email.Text, Employee_Phone.Text, Active.Checked, Group_id,Lang, calander_id);
+
             if (result)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The new Employee was Sucessfully saved in system ! ');", true);
             }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','Error');", true);
+            }
         }
 
-        public bool AU_Emplooyees(int EmployeeID, string ArabicName, string EnglishName, string Email, string Phone, bool Active, int GroupID)
+        public bool AU_Emplooyees(int EmployeeID, string ArabicName, string EnglishName, string Email, string Phone, bool Active, int GroupID,int lang,int calander)
         {
             try
             {
@@ -55,34 +65,55 @@ namespace Treatment.Pages.Treatment
                     string New_Password = StringCipher.RandomString(7);
                     string Encrypted_Password = StringCipher.Encrypt(New_Password, "Password"); // emp.Employee_Password.ToString();
                     Emp.Employee_Password = Encrypted_Password;
+
+                    string sever_name = Request.Url.Authority.ToString();
+                    SendEmail send = new SendEmail();
+                    bool EmailResult = send.ResetEmail(Email, New_Password, sever_name);
+                    if (EmailResult)
+                    {
+                        Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "show_model_sucess();", true);
+                    }
                 }
                 Emp.Employee_Phone = Phone;
                 Emp.Employee_Active = Active;
                 Emp.Group_Id = GroupID;
+                Emp.Language_id = lang;
+                Emp.Calendar_id = calander;
                 string ImagepathProfile = UploadFile(1);
                 string ImagepathSignature = UploadFile(2);
                 if (ImagepathProfile != "") Emp.Employee_Profile = ImagepathProfile;
                 if (ImagepathSignature != "") Emp.Employee_Signature =ImagepathSignature;
                 /////////////////////////////////////// Employee_Structure /////////////////////////////////////
-                if (EmployeeID != 0)
-                {
-                    var widgets = db.Employee_Structure.Where(x => x.Employee_Id == EmployeeID).ToList();
-                    if (widgets.Count > 0)
-                    {
-                        foreach (Employee_Structure widget in widgets)
-                        {
-                            db.Employee_Structure.Remove(widget);
-
-                        }
-                    }
-                }
                 Employee_Structure Emp_Stu ;
                 for (int i = 0; i < Emp_Structure.Items.Count; i++)
                 {
+                    int id = 0;
+                    Boolean IsFound = false;
+                    int.TryParse(Emp_Structure.Items[i].Value, out id);
+                    var Emp_Stru_found = db.Employee_Structure.Where(x => x.Employee_Id == EmployeeID && x.Structure_Id==id).ToList();
+                    if(Emp_Stru_found.Count > 0 ) IsFound = true;
                     if (Emp_Structure.Items[i].Selected)
                     {
-                        Emp_Stu = new Employee_Structure();
-                        Emp_Stu.Structure_Id= int.Parse(Emp_Structure.Items[i].Value);
+                        if (!IsFound) { 
+                            Emp_Stu = new Employee_Structure();
+                            Emp_Stu.Structure_Id= int.Parse(Emp_Structure.Items[i].Value);
+                            Emp_Stu.Status_Structure = true;
+                            Emp_Stu.Type_Delegation = true;
+                            Emp.Employee_Structure.Add(Emp_Stu);
+                        }
+                        else
+                        {
+                            Emp_Stu = db.Employee_Structure.First(x => x.Employee_Id == EmployeeID && x.Structure_Id == id);
+                            Emp_Stu.Status_Structure = true;
+                            Emp_Stu.Type_Delegation = true;
+                            Emp.Employee_Structure.Add(Emp_Stu);
+                        }
+                    }
+                    else if(IsFound)
+                    {
+                        Emp_Stu = db.Employee_Structure.First(x => x.Employee_Id == EmployeeID && x.Structure_Id == id);
+                        Emp_Stu.Status_Structure = false;
+                        Emp_Stu.Type_Delegation = false;
                         Emp.Employee_Structure.Add(Emp_Stu);
                     }
                 }
@@ -201,8 +232,10 @@ namespace Treatment.Pages.Treatment
                     Employee_Phone = x.Employee_Phone,
                     Employee_Profile = x.Employee_Profile,
                     Employee_Signature = x.Employee_Signature,
+                    Language_id =x.Language_id,
+                    Calendar_id =x.Calendar_id,
                     Group_Id = x.Group_Id,
-                    Structures = x.Employee_Structure.Select(c=> c.Structure_Id)
+                    Structures = x.Employee_Structure.Where(f => f.Status_Structure==true && f.Type_Delegation==true).Select(c=> c.Structure_Id)
                     }).FirstOrDefault();
              
                  JavaScriptSerializer js = new JavaScriptSerializer();
@@ -228,11 +261,9 @@ namespace Treatment.Pages.Treatment
                 db.SaveChanges();
             }catch(Exception e)
             {
-
             }
 
         }
-
 
         public void ViewDataEmp()
         {

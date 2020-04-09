@@ -13,6 +13,24 @@ namespace Treatment.Pages.Treatment {
     public partial class ShowTreatment {
         
         /// <summary>
+        /// divRequiredReply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRequiredReply;
+        
+        /// <summary>
+        /// counterDateAgo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl counterDateAgo;
+        
+        /// <summary>
         /// treatmentDate control.
         /// </summary>
         /// <remarks>
@@ -94,6 +112,24 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.HtmlControls.HtmlTableCell treatmentStatus;
         
         /// <summary>
+        /// sendToTreatment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sendToTreatment;
+        
+        /// <summary>
+        /// copyToTreatment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl copyToTreatment;
+        
+        /// <summary>
         /// subject control.
         /// </summary>
         /// <remarks>
@@ -112,6 +148,24 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl speech;
         
         /// <summary>
+        /// CloseAssignment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CloseAssignment;
+        
+        /// <summary>
+        /// trackTreatment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl trackTreatment;
+        
+        /// <summary>
         /// standardProcedure control.
         /// </summary>
         /// <remarks>
@@ -121,31 +175,76 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.DropDownList standardProcedure;
         
         /// <summary>
-        /// txtGroup_Name_En control.
+        /// secretLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGroup_Name_En;
+        protected global::System.Web.UI.WebControls.DropDownList secretLevel;
         
         /// <summary>
-        /// RFVtxtGroup_Name_En control.
+        /// valSecretLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtGroup_Name_En;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valSecretLevel;
         
         /// <summary>
-        /// Save control.
+        /// treatmentTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Save;
+        protected global::System.Web.UI.WebControls.ListBox treatmentTo;
+        
+        /// <summary>
+        /// valTreatmentTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valTreatmentTo;
+        
+        /// <summary>
+        /// treatmentCopyTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox treatmentCopyTo;
+        
+        /// <summary>
+        /// requiredAssignment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox requiredAssignment;
+        
+        /// <summary>
+        /// keyworkAssignment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox keyworkAssignment;
+        
+        /// <summary>
+        /// SaveAssignment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveAssignment;
         
         /// <summary>
         /// replyTreatement control.

@@ -6,21 +6,31 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Treatment.Entity;
 using Website.Classes;
+using Newtonsoft.Json;
+
+
 
 namespace Treatment.Pages.Setting.UserManagment
 {
     public partial class PermissionGroups : System.Web.UI.Page
     {
         ECMSEntities db = new ECMSEntities();
+
+        //LogFile Data
+        LogFileModule logFileModule = new LogFileModule();
+        String LogData = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            Permission_Group group = db.Permission_Group.First();
+            //Permission_Group group = db.Permission_Group.First();
             
             if (!IsPostBack)
             {
                 FillGroupPermission();
             }
         }
+
+        
 
         protected void Save_Click(object sender, EventArgs e)
         {
@@ -44,11 +54,15 @@ namespace Treatment.Pages.Setting.UserManagment
         {
             try
             {
+                db.Configuration.LazyLoadingEnabled = false;
                 Group group = db.Groups.Create();
                 group.Group_Name_Ar = arabic_name;
                 group.Group_Name_En = english_name;
                 db.Groups.Add(group);
                 db.SaveChanges();
+                /* Add it to log file */
+                LogData = "data:" + JsonConvert.SerializeObject(group, logFileModule.settings);
+                logFileModule.logfile(10, "إنشاء مجموعة جديدة", "", LogData);
                 //PriorityDataSource.DataBind();
             }
             catch { return false; }
@@ -94,7 +108,13 @@ namespace Treatment.Pages.Setting.UserManagment
                     db.Permission_Group.Add(per_group);
                 }
                 db.SaveChanges();
-            }catch { }
+                /* Add it to log file */
+                LogData = "data:" + JsonConvert.SerializeObject(Group_Id, logFileModule.settings);
+                logFileModule.logfile(10, "تعديل صلاحيات المجموعة", "", LogData);
+            }
+            catch { }
         }
+
+        
     }
 }

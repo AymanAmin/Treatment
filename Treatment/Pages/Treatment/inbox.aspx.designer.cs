@@ -13,21 +13,48 @@ namespace Treatment.Pages.Treatment {
     public partial class inbox {
         
         /// <summary>
-        /// TreatmentInbox control.
+        /// addNfNumTreatment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView TreatmentInbox;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor addNfNumTreatment;
         
         /// <summary>
-        /// EntityDataSourceTreatment control.
+        /// inboxTreatment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSourceTreatment;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl inboxTreatment;
+        
+        /// <summary>
+        /// sendTreatment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sendTreatment;
+        
+        /// <summary>
+        /// completeTreatment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl completeTreatment;
+        
+        /// <summary>
+        /// gridViewTreatment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridViewTreatment;
     }
 }

@@ -65,7 +65,31 @@
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\multiselect\css\multi-select.css" />
 
     <!-- Data Table Css -->
-    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css" />
+
+
+    <link rel="icon" href="~\Theme\files\assets\images\favicon.ico" type="image/x-icon" />
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap\css\bootstrap.min.css" />
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\font-awesome\css\font-awesome.min.css" />
+    <!-- Date-time picker css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\pages\advance-elements\css\bootstrap-datetimepicker.css" />
+    <!-- Date-range picker css  -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap-daterangepicker\css\daterangepicker.css" />
+    <!-- Date-Dropper css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datedropper\css\datedropper.min.css" />
+    <!-- Data Table Css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css" />
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\themify-icons\themify-icons.css" />
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\icofont\css\icofont.css" />
+    <!-- feather Awesome -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\feather\css\feather.css" />
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\style.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\jquery.mCustomScrollbar.css" />
 
     <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -195,9 +219,11 @@
     </asp:ContentPlaceHolder>
     <title>E-CMS - Main Screen</title>
 </head>
-<body>
-    <input id="bt-data-dismiss" type="hidden" data-toggle="modal" data-target="#sign-in-social" value="" />
-     <input id="AddEmp_show" type="hidden" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" />
+
+
+
+<body onload="hidePcoded()">
+    <input id="bt-data-dismiss" type="hidden" data-dismiss="modal" value="" />
     <form id="form1" runat="server">
         <div>
             <!-- Pre-loader start -->
@@ -386,8 +412,8 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                <a href="inbox.aspx">
-                                                        <i class="eather icon-user"></i>Profile
+                                                <a href="../../../../Pages/Setting/UserManagment/Profile.aspx">
+                                                        <i class="feather icon-user"></i>Profile
                                                     </a>
                                                 </li>
                                                 <li>
@@ -396,7 +422,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="../../../../Pages/Setting/admin/LockScreen.aspx">
+                                                    <a href="../../../../Pages/Setting/Auth/LockScreen.aspx">
                                                         <i class="feather icon-lock"></i>Lock Screen
                                                     </a>
                                                 </li>
@@ -603,6 +629,7 @@
             <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 
 
+
            <!-- data-table js -->
             <script src="..\..\..\..\Theme\files\bower_components\datatables.net\js\jquery.dataTables.min.js"></script>
             <script src="..\..\..\..\Theme\files\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js"></script>
@@ -611,7 +638,9 @@
              
             <!-- echart js -->
             <script src="..\..\..\..\Theme\files\assets\pages\chart\echarts\js\echarts-all.js" type="text/javascript"></script>
-            
+             <!-- user-profile -->
+             <script src="..\..\..\..\Theme\files\assets\pages\user-profile.js"></script>
+
             
             <script>
                 window.dataLayer = window.dataLayer || [];
@@ -634,6 +663,22 @@
                 });
                 
 </script>
+
+            <script>
+
+                $(function () {
+                    $('#listViewId').on('click', function () {
+                        $('#Body_Holder_gridViewTreatment').hide();
+                        $('#listViewTreatment').show();
+                    });
+                    $('#gridViewId').on('click', function () {
+                        $('#listViewTreatment').hide();
+                        $('#Body_Holder_gridViewTreatment').show();
+                    });
+                });
+</script>
+
+
 
         </div>
     </form>

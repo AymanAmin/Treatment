@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,11 @@ namespace Treatment.Pages.Setting.Auth
     {
         ECMSEntities db = new ECMSEntities();
         List<Permission> List_permission = new List<Permission>();
+
+        //LogFile Data
+        LogFileModule logFileModule = new LogFileModule();
+        String LogData = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (SessionWrapper.LoggedUser != null)
@@ -34,6 +40,7 @@ namespace Treatment.Pages.Setting.Auth
         {
             try
             {
+                db.Configuration.LazyLoadingEnabled = false;
                 List<Employee> emp_list = db.Employees.ToList();
                 for (int i = 0; i < emp_list.Count; i++)
                 {
@@ -45,7 +52,6 @@ namespace Treatment.Pages.Setting.Auth
                             Employee emp = emp_list[i];
                             SessionWrapper.LoggedUser = emp;
                             SessionWrapper.IsLocked = false;
-                            int id = SessionWrapper.LoggedUser.Employee_Id;
 
                             List<Permission_Group> Per_group = db.Permission_Group.Where(x => x.Group_Id == emp.Group_Id).ToList();
                             List_permission.Clear();
@@ -56,6 +62,10 @@ namespace Treatment.Pages.Setting.Auth
                                     List_permission.Add(per);
                             }
                             SessionWrapper.Permssions = List_permission;
+
+                            /* Add it to log file */
+                            LogData = "data:" + JsonConvert.SerializeObject(emp, logFileModule.settings);
+                            logFileModule.logfile(10, "تسجيل دخول", "", LogData);
                         }
                         else
                             continue;
@@ -67,5 +77,7 @@ namespace Treatment.Pages.Setting.Auth
             }
             catch (Exception er) { return false; }
         }
+
+        
     }
 }

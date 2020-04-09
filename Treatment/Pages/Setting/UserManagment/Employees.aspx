@@ -22,8 +22,15 @@
                     $('#Body_Holder_Employee_Name_En').val(Emp.Employee_Name_En);
                     $('#Body_Holder_Employee_Email').val(Emp.Employee_Email);
                     $('#Body_Holder_Employee_Phone').val(Emp.Employee_Phone);
-                    $('#select2-Body_Holder_Groups-container').val(Emp.Group_Id);
+                    $('#Body_Holder_Groups').val(Emp.Group_Id).trigger('change');
+                    $('#Body_Holder_Language').val(Emp.Language_id).trigger('change');
                     $('#Body_Holder_Active').val(Emp.Employee_Active);
+                    debugger;
+                    if (Emp.Calendar_id == 1){
+                        $("input[id=Body_Holder_DateofBirth][value=DateofBirth]").prop('checked', true);
+                    } else {
+                        $("input[id=Body_Holder_DateofHegira][value=DateofHegira]").prop('checked', true);
+                    }
                     var Struc = Emp.Structures;
                     $('#Body_Holder_Emp_Structure').val(Struc).trigger('change');
                     debugger;
@@ -49,7 +56,9 @@
                 $('#Body_Holder_Employee_Name_En').val('');
                 $('#Body_Holder_Employee_Email').val('');
                 $('#Body_Holder_Employee_Phone').val('');
-                $('#select2-Body_Holder_Groups-container').val(0);
+                $('#Body_Holder_Groups').val('').trigger('change');
+                $('#Body_Holder_Language').val('').trigger('change');
+                $("input[id=Body_Holder_DateofHegira][value=DateofHegira]").prop('checked', true);
                 $('#Body_Holder_Active').val(false);
                 $('#Body_Holder_Emp_Structure').val('').trigger('change');
                 $('#Body_Holder_Emp_Profile').attr('src', "..\/..\/..\/..\/media\/Profile\/Profile.jpg");
@@ -68,18 +77,16 @@
                 dataType: "json",
                 success: function (resultData) {
                     notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight', '  Save Status : ', '  The new Employee was Sucessfully saved in system ! ');
-                   // location.reload();
                     window.location = window.location;
                 }
             });
-            
             //document.getElementById("AddEmp_show").click();
             // GetServiceInformation(x.id)
         }
-
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
+    <input id="AddEmp_show" type="hidden" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" />
     <div class="page-body">
          <!-- Article Editor card start -->
         <div class="card"  runat="server">
@@ -211,11 +218,46 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-group"></i></span>
                                         <asp:DropDownList ID="Groups" runat="server" class="form-control" DataTextField="Group_Name_Ar" DataValueField="Group_Id" DataSourceID="GroupDataSource" ></asp:DropDownList>
-
                                         <asp:EntityDataSource ID="GroupDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Groups">
                                         </asp:EntityDataSource>
-
                                     </div>
+                                    <div class="col-sm-12">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Pesmission Group" ValidationGroup="Per" ControlToValidate="Groups" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+                            </div>
+
+                              <div class="row">
+
+                                <div class="col-sm-6">
+                                    <label>Language</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="icofont icofont-chart-flow-alt-1"></i></span>
+                                         <asp:DropDownList ID="Language" runat="server" class="form-control" DataSourceID="LangDataSource" DataTextField="Language_Name" DataValueField="ID"  ></asp:DropDownList>
+                                        <asp:EntityDataSource ID="LangDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="LanguageMasters" EntityTypeFilter="LanguageMaster">
+                                        </asp:EntityDataSource>
+                                    </div>
+                                     <div class="col-sm-12">
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Language" ValidationGroup="Per" ControlToValidate="Language" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label class="j-label">Type oF Calendar</label>
+                                    <div class="form-radio">
+                                    <div class="group-add-on">
+                                        <div class="radio radiofill radio-inline">
+                                            <label>
+                                                <asp:RadioButton ID="DateofHegira"  runat="server" GroupName="Calender" Text="Hegira" Checked="true" /><i class="helper"></i>
+                                            </label>
+                                        </div>
+                                        <div class="radio radiofill radio-inline">
+                                            <label>
+                                                <asp:RadioButton ID="DateofBirth" runat="server" GroupName="Calender"  Text="Birth" /><i class="helper"></i>
+                                        </label>
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
 

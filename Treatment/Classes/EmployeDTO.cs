@@ -29,5 +29,8 @@ namespace Treatment.Models
 
         public Nullable<bool> Employee_Active { get; set; }
         public IEnumerable<int?> Structures { get; set; }
+
+        public Nullable<int> Language_id { get; set; }
+        public Nullable<int> Calendar_id { get; set; }
     }
 }

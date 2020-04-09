@@ -150,7 +150,7 @@
 
                                     <UpdateButton Text=" ">
                                         <Styles>
-                                            <Style CssClass="icofont icofont-refresh text-primary h5" VerticalAlign="Middle">
+                                            <Style CssClass="icofont icofont-save text-primary h5" VerticalAlign="Middle">
                                 </Style>
                                         </Styles>
                                     </UpdateButton>

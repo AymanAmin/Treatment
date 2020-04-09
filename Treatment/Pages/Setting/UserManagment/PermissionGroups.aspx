@@ -94,7 +94,7 @@
                                     </DeleteButton>
                                     <UpdateButton Text=" ">
                                         <Styles>
-                                            <Style CssClass="icofont icofont-refresh text-primary h5" VerticalAlign="Middle">
+                                            <Style CssClass="icofont icofont-save text-primary h5" VerticalAlign="Middle">
                                 </Style>
                                         </Styles>
                                     </UpdateButton>
@@ -132,18 +132,20 @@
                     <div class="form-group col-sm-12">
                         <div class="dt-responsive table-responsive">
                             <dx:ASPxGridView ID="PermissionGroupGridView" Style="width: 100%; text-align: center;" runat="server" AutoGenerateColumns="False" DataSourceID="PermissonsDataSource" EnableTheming="True" KeyFieldName="Permission_Id" Theme="Mulberry">
+                                <SettingsPager PageSize="50">
+                                </SettingsPager>
                                 <Settings ShowGroupPanel="True" />
                                 <SettingsSearchPanel Visible="True" />
                                 <Columns>
                                     <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowSelectCheckbox="True" VisibleIndex="0">
                                     </dx:GridViewCommandColumn>
-                                    <dx:GridViewDataTextColumn FieldName="Permission_Id" ReadOnly="True" VisibleIndex="2" Caption="Permission ID">
+                                    <dx:GridViewDataTextColumn FieldName="Permission_Id" ReadOnly="True" VisibleIndex="1" Caption="Permission ID">
                                     </dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="Permission_Name_Ar" VisibleIndex="3" Caption="Permission Arabic Name">
+                                    <dx:GridViewDataTextColumn FieldName="Permission_Name_Ar" VisibleIndex="2" Caption="Permission Arabic Name">
                                     </dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="Permission_Name_En" VisibleIndex="4" Caption="Permission English Name">
+                                    <dx:GridViewDataTextColumn FieldName="Permission_Name_En" VisibleIndex="3" Caption="Permission English Name">
                                     </dx:GridViewDataTextColumn>
-                                    <dx:GridViewDataTextColumn FieldName="Url_Path" VisibleIndex="5" Caption="URL Path">
+                                    <dx:GridViewDataTextColumn FieldName="Url_Path" VisibleIndex="4" Caption="URL Path">
                                     </dx:GridViewDataTextColumn>
                                 </Columns>
                             </dx:ASPxGridView>
