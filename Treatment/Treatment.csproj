@@ -2114,6 +2114,12 @@
     <Compile Include="Entity\Group.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\LanguageMaster.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Lanuage_Detials.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Log_File.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
@@ -2129,9 +2135,6 @@
     <Compile Include="Entity\Structure.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\Treatment.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entity\Treatment_Class.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
@@ -2142,6 +2145,9 @@
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Detial.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Treatment_Master.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Treatment_Priority.cs">
