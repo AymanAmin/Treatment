@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Assignment_Status">
           <Key>
             <PropertyRef Name="Assignment_Status_Id" />
@@ -617,143 +617,11 @@
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ECMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="ECMSEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Assignment_Status" EntityType="ECMSModel.Assignment_Status" />
-          <EntitySet Name="Attachments" EntityType="ECMSModel.Attachment" />
-          <EntitySet Name="Employees" EntityType="ECMSModel.Employee" />
-          <EntitySet Name="Employee_Structure" EntityType="ECMSModel.Employee_Structure" />
-          <EntitySet Name="Groups" EntityType="ECMSModel.Group" />
-<<<<<<< HEAD
-          <EntitySet Name="LanguageMasters" EntityType="ECMSModel.LanguageMaster" />
-          <EntitySet Name="Lanuage_Detials" EntityType="ECMSModel.Lanuage_Detials" />
-=======
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
-          <EntitySet Name="Log_File" EntityType="ECMSModel.Log_File" />
-          <EntitySet Name="Owner_Relationship" EntityType="ECMSModel.Owner_Relationship" />
-          <EntitySet Name="Permissions" EntityType="ECMSModel.Permission" />
-          <EntitySet Name="Permission_Group" EntityType="ECMSModel.Permission_Group" />
-          <EntitySet Name="Structures" EntityType="ECMSModel.Structure" />
-          <EntitySet Name="Treatment_Class" EntityType="ECMSModel.Treatment_Class" />
-          <EntitySet Name="Treatment_Confidentiality" EntityType="ECMSModel.Treatment_Confidentiality" />
-          <EntitySet Name="Treatment_Delivery" EntityType="ECMSModel.Treatment_Delivery" />
-          <EntitySet Name="Treatment_Detial" EntityType="ECMSModel.Treatment_Detial" />
-          <EntitySet Name="Treatment_Master" EntityType="ECMSModel.Treatment_Master" />
-          <EntitySet Name="Treatment_Priority" EntityType="ECMSModel.Treatment_Priority" />
-          <EntitySet Name="Treatment_Procedure" EntityType="ECMSModel.Treatment_Procedure" />
-          <EntitySet Name="Treatment_Status" EntityType="ECMSModel.Treatment_Status" />
-          <EntitySet Name="Treatment_Type" EntityType="ECMSModel.Treatment_Type" />
-          <AssociationSet Name="FK_Treatment_Detial_Assignment_Status" Association="ECMSModel.FK_Treatment_Detial_Assignment_Status">
-            <End Role="Assignment_Status" EntitySet="Assignment_Status" />
-            <End Role="Treatment_Detial" EntitySet="Treatment_Detial" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Attachment_Treatment" Association="ECMSModel.FK_Attachment_Treatment">
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-            <End Role="Attachment" EntitySet="Attachments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Group" Association="ECMSModel.FK_Employee_Group">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-<<<<<<< HEAD
-          <AssociationSet Name="FK_Employee_LanguageMaster" Association="ECMSModel.FK_Employee_LanguageMaster">
-            <End Role="LanguageMaster" EntitySet="LanguageMasters" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-=======
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
-          <AssociationSet Name="FK_Employee_Structure_Employee" Association="ECMSModel.FK_Employee_Structure_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Employee_Structure" EntitySet="Employee_Structure" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Log_File_Employee" Association="ECMSModel.FK_Log_File_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Log_File" EntitySet="Log_File" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Structure_Structure" Association="ECMSModel.FK_Employee_Structure_Structure">
-            <End Role="Structure" EntitySet="Structures" />
-            <End Role="Employee_Structure" EntitySet="Employee_Structure" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Treatment_Detial_Employee_Structure" Association="ECMSModel.FK_Treatment_Detial_Employee_Structure">
-            <End Role="Employee_Structure" EntitySet="Employee_Structure" />
-            <End Role="Treatment_Detial" EntitySet="Treatment_Detial" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Treatment_Employee_Structure" Association="ECMSModel.FK_Treatment_Employee_Structure">
-            <End Role="Employee_Structure" EntitySet="Employee_Structure" />
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Permission_Group_Group" Association="ECMSModel.FK_Permission_Group_Group">
-            <End Role="Group" EntitySet="Groups" />
-            <End Role="Permission_Group" EntitySet="Permission_Group" />
-          </AssociationSet>
-<<<<<<< HEAD
-          <AssociationSet Name="FK_Lanuage_Detials_LanguageMaster" Association="ECMSModel.FK_Lanuage_Detials_LanguageMaster">
-            <End Role="LanguageMaster" EntitySet="LanguageMasters" />
-            <End Role="Lanuage_Detials" EntitySet="Lanuage_Detials" />
-          </AssociationSet>
-=======
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
-          <AssociationSet Name="FK_Log_File_Permission" Association="ECMSModel.FK_Log_File_Permission">
-            <End Role="Permission" EntitySet="Permissions" />
-            <End Role="Log_File" EntitySet="Log_File" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Owner_Relationship_Treatment" Association="ECMSModel.FK_Owner_Relationship_Treatment">
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-            <End Role="Owner_Relationship" EntitySet="Owner_Relationship" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Permission_Group_Permission" Association="ECMSModel.FK_Permission_Group_Permission">
-            <End Role="Permission" EntitySet="Permissions" />
-            <End Role="Permission_Group" EntitySet="Permission_Group" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Treatment_Prepared_Administration" Association="ECMSModel.FK_Treatment_Prepared_Administration">
-            <End Role="Structure" EntitySet="Structures" />
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Treatment_Treatment_Class" Association="ECMSModel.FK_Treatment_Treatment_Class">
-            <End Role="Treatment_Class" EntitySet="Treatment_Class" />
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Treatment_Treatment_Confidentiality" Association="ECMSModel.FK_Treatment_Treatment_Confidentiality">
-            <End Role="Treatment_Confidentiality" EntitySet="Treatment_Confidentiality" />
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Treatment_Treatment_Delivery" Association="ECMSModel.FK_Treatment_Treatment_Delivery">
-            <End Role="Treatment_Delivery" EntitySet="Treatment_Delivery" />
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Treatment_Detial_Treatment" Association="ECMSModel.FK_Treatment_Detial_Treatment">
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-            <End Role="Treatment_Detial" EntitySet="Treatment_Detial" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Treatment_Treatment_Priority" Association="ECMSModel.FK_Treatment_Treatment_Priority">
-            <End Role="Treatment_Priority" EntitySet="Treatment_Priority" />
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Treatment_Treatment_Procedure" Association="ECMSModel.FK_Treatment_Treatment_Procedure">
-            <End Role="Treatment_Procedure" EntitySet="Treatment_Procedure" />
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Treatment_Treatment_Status" Association="ECMSModel.FK_Treatment_Treatment_Status">
-            <End Role="Treatment_Status" EntitySet="Treatment_Status" />
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Treatment_Treatment_Type" Association="ECMSModel.FK_Treatment_Treatment_Type">
-            <End Role="Treatment_Type" EntitySet="Treatment_Type" />
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-          </AssociationSet>
-<<<<<<< HEAD
-=======
-          <EntitySet Name="LanguageMasters" EntityType="ECMSModel.LanguageMaster" />
-          <EntitySet Name="Lanuage_Detials" EntityType="ECMSModel.Lanuage_Detials" />
-          <AssociationSet Name="FK_Lanuage_Detials_LanguageMaster" Association="ECMSModel.FK_Lanuage_Detials_LanguageMaster">
-            <End Role="LanguageMaster" EntitySet="LanguageMasters" />
-            <End Role="Lanuage_Detials" EntitySet="Lanuage_Detials" />
-          </AssociationSet>
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
-        </EntityContainer>
+      <Schema Namespace="ECMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Assignment_Status">
           <Key>
             <PropertyRef Name="Assignment_Status_Id" />
@@ -761,7 +629,7 @@
           <Property Name="Assignment_Status_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Assignment_Status_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Assignment_Status_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Treatment_Detial" Relationship="ECMSModel.FK_Treatment_Detial_Assignment_Status" FromRole="Assignment_Status" ToRole="Treatment_Detial" />
+          <NavigationProperty Name="Treatment_Detial" Relationship="Self.FK_Treatment_Detial_Assignment_Status" FromRole="Assignment_Status" ToRole="Treatment_Detial" />
         </EntityType>
         <EntityType Name="Attachment">
           <Key>
@@ -770,7 +638,7 @@
           <Property Name="Attachment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Treatment_Id" Type="Int32" />
           <Property Name="Attachment_Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Attachment_Treatment" FromRole="Attachment" ToRole="Treatment_Master" />
+          <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Attachment_Treatment" FromRole="Attachment" ToRole="Treatment_Master" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -786,16 +654,12 @@
           <Property Name="Employee_Signature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Employee_Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Employee_Active" Type="Boolean" />
-<<<<<<< HEAD
           <Property Name="Language_id" Type="Int32" />
           <Property Name="Calendar_id" Type="Int32" />
-          <NavigationProperty Name="Group" Relationship="ECMSModel.FK_Employee_Group" FromRole="Employee" ToRole="Group" />
-          <NavigationProperty Name="LanguageMaster" Relationship="ECMSModel.FK_Employee_LanguageMaster" FromRole="Employee" ToRole="LanguageMaster" />
-=======
-          <NavigationProperty Name="Group" Relationship="ECMSModel.FK_Employee_Group" FromRole="Employee" ToRole="Group" />
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
-          <NavigationProperty Name="Employee_Structure" Relationship="ECMSModel.FK_Employee_Structure_Employee" FromRole="Employee" ToRole="Employee_Structure" />
-          <NavigationProperty Name="Log_File" Relationship="ECMSModel.FK_Log_File_Employee" FromRole="Employee" ToRole="Log_File" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Employee_Group" FromRole="Employee" ToRole="Group" />
+          <NavigationProperty Name="LanguageMaster" Relationship="Self.FK_Employee_LanguageMaster" FromRole="Employee" ToRole="LanguageMaster" />
+          <NavigationProperty Name="Employee_Structure" Relationship="Self.FK_Employee_Structure_Employee" FromRole="Employee" ToRole="Employee_Structure" />
+          <NavigationProperty Name="Log_File" Relationship="Self.FK_Log_File_Employee" FromRole="Employee" ToRole="Log_File" />
         </EntityType>
         <EntityType Name="Employee_Structure">
           <Key>
@@ -807,10 +671,10 @@
           <Property Name="Status_Structure" Type="Boolean" />
           <Property Name="Type_Delegation" Type="Boolean" />
           <Property Name="Default_Structure" Type="Boolean" />
-          <NavigationProperty Name="Employee" Relationship="ECMSModel.FK_Employee_Structure_Employee" FromRole="Employee_Structure" ToRole="Employee" />
-          <NavigationProperty Name="Structure" Relationship="ECMSModel.FK_Employee_Structure_Structure" FromRole="Employee_Structure" ToRole="Structure" />
-          <NavigationProperty Name="Treatment_Detial" Relationship="ECMSModel.FK_Treatment_Detial_Employee_Structure" FromRole="Employee_Structure" ToRole="Treatment_Detial" />
-          <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Treatment_Employee_Structure" FromRole="Employee_Structure" ToRole="Treatment_Master" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Structure_Employee" FromRole="Employee_Structure" ToRole="Employee" />
+          <NavigationProperty Name="Structure" Relationship="Self.FK_Employee_Structure_Structure" FromRole="Employee_Structure" ToRole="Structure" />
+          <NavigationProperty Name="Treatment_Detial" Relationship="Self.FK_Treatment_Detial_Employee_Structure" FromRole="Employee_Structure" ToRole="Treatment_Detial" />
+          <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Employee_Structure" FromRole="Employee_Structure" ToRole="Treatment_Master" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -819,9 +683,8 @@
           <Property Name="Group_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Group_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Group_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employees" Relationship="ECMSModel.FK_Employee_Group" FromRole="Group" ToRole="Employee" />
-          <NavigationProperty Name="Permission_Group" Relationship="ECMSModel.FK_Permission_Group_Group" FromRole="Group" ToRole="Permission_Group" />
-<<<<<<< HEAD
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Group" FromRole="Group" ToRole="Employee" />
+          <NavigationProperty Name="Permission_Group" Relationship="Self.FK_Permission_Group_Group" FromRole="Group" ToRole="Permission_Group" />
         </EntityType>
         <EntityType Name="LanguageMaster">
           <Key>
@@ -829,8 +692,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Language_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employees" Relationship="ECMSModel.FK_Employee_LanguageMaster" FromRole="LanguageMaster" ToRole="Employee" />
-          <NavigationProperty Name="Lanuage_Detials" Relationship="ECMSModel.FK_Lanuage_Detials_LanguageMaster" FromRole="LanguageMaster" ToRole="Lanuage_Detials" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_LanguageMaster" FromRole="LanguageMaster" ToRole="Employee" />
+          <NavigationProperty Name="Lanuage_Detials" Relationship="Self.FK_Lanuage_Detials_LanguageMaster" FromRole="LanguageMaster" ToRole="Lanuage_Detials" />
         </EntityType>
         <EntityType Name="Lanuage_Detials">
           <Key>
@@ -840,9 +703,7 @@
           <Property Name="Language_Master_ID" Type="Int32" />
           <Property Name="Language_Detial_FieldName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Language_Detial_Value" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="LanguageMaster" Relationship="ECMSModel.FK_Lanuage_Detials_LanguageMaster" FromRole="Lanuage_Detials" ToRole="LanguageMaster" />
-=======
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
+          <NavigationProperty Name="LanguageMaster" Relationship="Self.FK_Lanuage_Detials_LanguageMaster" FromRole="Lanuage_Detials" ToRole="LanguageMaster" />
         </EntityType>
         <EntityType Name="Log_File">
           <Key>
@@ -855,8 +716,8 @@
           <Property Name="Form_Id" Type="Int32" />
           <Property Name="Log_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Log_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employee" Relationship="ECMSModel.FK_Log_File_Employee" FromRole="Log_File" ToRole="Employee" />
-          <NavigationProperty Name="Permission" Relationship="ECMSModel.FK_Log_File_Permission" FromRole="Log_File" ToRole="Permission" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Log_File_Employee" FromRole="Log_File" ToRole="Employee" />
+          <NavigationProperty Name="Permission" Relationship="Self.FK_Log_File_Permission" FromRole="Log_File" ToRole="Permission" />
         </EntityType>
         <EntityType Name="Owner_Relationship">
           <Key>
@@ -868,7 +729,7 @@
           <Property Name="Owner_Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Identity_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Identity_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Owner_Relationship_Treatment" FromRole="Owner_Relationship" ToRole="Treatment_Master" />
+          <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Owner_Relationship_Treatment" FromRole="Owner_Relationship" ToRole="Treatment_Master" />
         </EntityType>
         <EntityType Name="Permission">
           <Key>
@@ -880,8 +741,8 @@
           <Property Name="Parent" Type="Int32" />
           <Property Name="Url_Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Permission_Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Log_File" Relationship="ECMSModel.FK_Log_File_Permission" FromRole="Permission" ToRole="Log_File" />
-          <NavigationProperty Name="Permission_Group" Relationship="ECMSModel.FK_Permission_Group_Permission" FromRole="Permission" ToRole="Permission_Group" />
+          <NavigationProperty Name="Log_File" Relationship="Self.FK_Log_File_Permission" FromRole="Permission" ToRole="Log_File" />
+          <NavigationProperty Name="Permission_Group" Relationship="Self.FK_Permission_Group_Permission" FromRole="Permission" ToRole="Permission_Group" />
         </EntityType>
         <EntityType Name="Permission_Group">
           <Key>
@@ -890,8 +751,8 @@
           <Property Name="Permission_Group_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Permission_Id" Type="Int32" />
           <Property Name="Group_Id" Type="Int32" />
-          <NavigationProperty Name="Group" Relationship="ECMSModel.FK_Permission_Group_Group" FromRole="Permission_Group" ToRole="Group" />
-          <NavigationProperty Name="Permission" Relationship="ECMSModel.FK_Permission_Group_Permission" FromRole="Permission_Group" ToRole="Permission" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Permission_Group_Group" FromRole="Permission_Group" ToRole="Group" />
+          <NavigationProperty Name="Permission" Relationship="Self.FK_Permission_Group_Permission" FromRole="Permission_Group" ToRole="Permission" />
         </EntityType>
         <EntityType Name="Structure">
           <Key>
@@ -901,8 +762,8 @@
           <Property Name="Structure_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Structure_Parent" Type="Int32" />
           <Property Name="Structure_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Employee_Structure" Relationship="ECMSModel.FK_Employee_Structure_Structure" FromRole="Structure" ToRole="Employee_Structure" />
-          <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Treatment_Prepared_Administration" FromRole="Structure" ToRole="Treatment_Master" />
+          <NavigationProperty Name="Employee_Structure" Relationship="Self.FK_Employee_Structure_Structure" FromRole="Structure" ToRole="Employee_Structure" />
+          <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Prepared_Administration" FromRole="Structure" ToRole="Treatment_Master" />
         </EntityType>
         <EntityType Name="Treatment_Class">
           <Key>
@@ -911,7 +772,7 @@
           <Property Name="Treatment_Class_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Treatment_Class_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Treatment_Class_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Treatment_Treatment_Class" FromRole="Treatment_Class" ToRole="Treatment_Master" />
+          <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Treatment_Class" FromRole="Treatment_Class" ToRole="Treatment_Master" />
         </EntityType>
         <EntityType Name="Treatment_Confidentiality">
           <Key>
@@ -921,7 +782,7 @@
           <Property Name="Treatment_Confidentiality_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Treatment_Confidentiality_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Css_Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Treatment_Treatment_Confidentiality" FromRole="Treatment_Confidentiality" ToRole="Treatment_Master" />
+          <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Treatment_Confidentiality" FromRole="Treatment_Confidentiality" ToRole="Treatment_Master" />
         </EntityType>
         <EntityType Name="Treatment_Delivery">
           <Key>
@@ -930,7 +791,7 @@
           <Property Name="Treatment_Delivery_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Treatment_Delivery_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Treatment_Delivery_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Treatment_Treatment_Delivery" FromRole="Treatment_Delivery" ToRole="Treatment_Master" />
+          <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Treatment_Delivery" FromRole="Treatment_Delivery" ToRole="Treatment_Master" />
         </EntityType>
         <EntityType Name="Treatment_Detial">
           <Key>
@@ -949,9 +810,9 @@
           <Property Name="Key_Word" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Treatment_Copy_To" Type="Boolean" />
           <Property Name="Treatment_Detial_Date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Assignment_Status" Relationship="ECMSModel.FK_Treatment_Detial_Assignment_Status" FromRole="Treatment_Detial" ToRole="Assignment_Status" />
-          <NavigationProperty Name="Employee_Structure" Relationship="ECMSModel.FK_Treatment_Detial_Employee_Structure" FromRole="Treatment_Detial" ToRole="Employee_Structure" />
-          <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Treatment_Detial_Treatment" FromRole="Treatment_Detial" ToRole="Treatment_Master" />
+          <NavigationProperty Name="Assignment_Status" Relationship="Self.FK_Treatment_Detial_Assignment_Status" FromRole="Treatment_Detial" ToRole="Assignment_Status" />
+          <NavigationProperty Name="Employee_Structure" Relationship="Self.FK_Treatment_Detial_Employee_Structure" FromRole="Treatment_Detial" ToRole="Employee_Structure" />
+          <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Detial_Treatment" FromRole="Treatment_Detial" ToRole="Treatment_Master" />
         </EntityType>
         <EntityType Name="Treatment_Master">
           <Key>
@@ -977,18 +838,18 @@
           <Property Name="Treatment_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Treatment_Keywork" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Treatment_Mother" Type="Int32" />
-          <NavigationProperty Name="Attachments" Relationship="ECMSModel.FK_Attachment_Treatment" FromRole="Treatment_Master" ToRole="Attachment" />
-          <NavigationProperty Name="Employee_Structure" Relationship="ECMSModel.FK_Treatment_Employee_Structure" FromRole="Treatment_Master" ToRole="Employee_Structure" />
-          <NavigationProperty Name="Owner_Relationship" Relationship="ECMSModel.FK_Owner_Relationship_Treatment" FromRole="Treatment_Master" ToRole="Owner_Relationship" />
-          <NavigationProperty Name="Structure" Relationship="ECMSModel.FK_Treatment_Prepared_Administration" FromRole="Treatment_Master" ToRole="Structure" />
-          <NavigationProperty Name="Treatment_Class" Relationship="ECMSModel.FK_Treatment_Treatment_Class" FromRole="Treatment_Master" ToRole="Treatment_Class" />
-          <NavigationProperty Name="Treatment_Confidentiality" Relationship="ECMSModel.FK_Treatment_Treatment_Confidentiality" FromRole="Treatment_Master" ToRole="Treatment_Confidentiality" />
-          <NavigationProperty Name="Treatment_Delivery" Relationship="ECMSModel.FK_Treatment_Treatment_Delivery" FromRole="Treatment_Master" ToRole="Treatment_Delivery" />
-          <NavigationProperty Name="Treatment_Detial" Relationship="ECMSModel.FK_Treatment_Detial_Treatment" FromRole="Treatment_Master" ToRole="Treatment_Detial" />
-          <NavigationProperty Name="Treatment_Priority" Relationship="ECMSModel.FK_Treatment_Treatment_Priority" FromRole="Treatment_Master" ToRole="Treatment_Priority" />
-          <NavigationProperty Name="Treatment_Procedure" Relationship="ECMSModel.FK_Treatment_Treatment_Procedure" FromRole="Treatment_Master" ToRole="Treatment_Procedure" />
-          <NavigationProperty Name="Treatment_Status" Relationship="ECMSModel.FK_Treatment_Treatment_Status" FromRole="Treatment_Master" ToRole="Treatment_Status" />
-          <NavigationProperty Name="Treatment_Type" Relationship="ECMSModel.FK_Treatment_Treatment_Type" FromRole="Treatment_Master" ToRole="Treatment_Type" />
+          <NavigationProperty Name="Attachments" Relationship="Self.FK_Attachment_Treatment" FromRole="Treatment_Master" ToRole="Attachment" />
+          <NavigationProperty Name="Employee_Structure" Relationship="Self.FK_Treatment_Employee_Structure" FromRole="Treatment_Master" ToRole="Employee_Structure" />
+          <NavigationProperty Name="Owner_Relationship" Relationship="Self.FK_Owner_Relationship_Treatment" FromRole="Treatment_Master" ToRole="Owner_Relationship" />
+          <NavigationProperty Name="Structure" Relationship="Self.FK_Treatment_Prepared_Administration" FromRole="Treatment_Master" ToRole="Structure" />
+          <NavigationProperty Name="Treatment_Class" Relationship="Self.FK_Treatment_Treatment_Class" FromRole="Treatment_Master" ToRole="Treatment_Class" />
+          <NavigationProperty Name="Treatment_Confidentiality" Relationship="Self.FK_Treatment_Treatment_Confidentiality" FromRole="Treatment_Master" ToRole="Treatment_Confidentiality" />
+          <NavigationProperty Name="Treatment_Delivery" Relationship="Self.FK_Treatment_Treatment_Delivery" FromRole="Treatment_Master" ToRole="Treatment_Delivery" />
+          <NavigationProperty Name="Treatment_Detial" Relationship="Self.FK_Treatment_Detial_Treatment" FromRole="Treatment_Master" ToRole="Treatment_Detial" />
+          <NavigationProperty Name="Treatment_Priority" Relationship="Self.FK_Treatment_Treatment_Priority" FromRole="Treatment_Master" ToRole="Treatment_Priority" />
+          <NavigationProperty Name="Treatment_Procedure" Relationship="Self.FK_Treatment_Treatment_Procedure" FromRole="Treatment_Master" ToRole="Treatment_Procedure" />
+          <NavigationProperty Name="Treatment_Status" Relationship="Self.FK_Treatment_Treatment_Status" FromRole="Treatment_Master" ToRole="Treatment_Status" />
+          <NavigationProperty Name="Treatment_Type" Relationship="Self.FK_Treatment_Treatment_Type" FromRole="Treatment_Master" ToRole="Treatment_Type" />
         </EntityType>
         <EntityType Name="Treatment_Priority">
           <Key>
@@ -999,7 +860,7 @@
           <Property Name="Treatment_Priority_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Css_Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Card_Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Treatment_Treatment_Priority" FromRole="Treatment_Priority" ToRole="Treatment_Master" />
+          <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Treatment_Priority" FromRole="Treatment_Priority" ToRole="Treatment_Master" />
         </EntityType>
         <EntityType Name="Treatment_Procedure">
           <Key>
@@ -1008,7 +869,7 @@
           <Property Name="Treatment_Procedure_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Treatment_Procedure_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Treatment_Procedure_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Treatment_Treatment_Procedure" FromRole="Treatment_Procedure" ToRole="Treatment_Master" />
+          <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Treatment_Procedure" FromRole="Treatment_Procedure" ToRole="Treatment_Master" />
         </EntityType>
         <EntityType Name="Treatment_Status">
           <Key>
@@ -1017,7 +878,7 @@
           <Property Name="Treatment_Status_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Treatment_Status_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Treatment_Status_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Treatment_Treatment_Status" FromRole="Treatment_Status" ToRole="Treatment_Master" />
+          <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Treatment_Status" FromRole="Treatment_Status" ToRole="Treatment_Master" />
         </EntityType>
         <EntityType Name="Treatment_Type">
           <Key>
@@ -1026,11 +887,11 @@
           <Property Name="Treatment_Type_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Treatment_Type_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Treatment_Type_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Treatment_Treatment_Type" FromRole="Treatment_Type" ToRole="Treatment_Master" />
+          <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Treatment_Type" FromRole="Treatment_Type" ToRole="Treatment_Master" />
         </EntityType>
         <Association Name="FK_Treatment_Detial_Assignment_Status">
-          <End Type="ECMSModel.Assignment_Status" Role="Assignment_Status" Multiplicity="0..1" />
-          <End Type="ECMSModel.Treatment_Detial" Role="Treatment_Detial" Multiplicity="*" />
+          <End Role="Assignment_Status" Type="Self.Assignment_Status" Multiplicity="0..1" />
+          <End Role="Treatment_Detial" Type="Self.Treatment_Detial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Assignment_Status">
               <PropertyRef Name="Assignment_Status_Id" />
@@ -1041,8 +902,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Attachment_Treatment">
-          <End Type="ECMSModel.Treatment_Master" Role="Treatment_Master" Multiplicity="0..1" />
-          <End Type="ECMSModel.Attachment" Role="Attachment" Multiplicity="*" />
+          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="0..1" />
+          <End Role="Attachment" Type="Self.Attachment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Treatment_Master">
               <PropertyRef Name="Treatment_Id" />
@@ -1053,8 +914,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Group">
-          <End Type="ECMSModel.Group" Role="Group" Multiplicity="0..1" />
-          <End Type="ECMSModel.Employee" Role="Employee" Multiplicity="*" />
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
               <PropertyRef Name="Group_Id" />
@@ -1065,8 +926,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_LanguageMaster">
-          <End Type="ECMSModel.LanguageMaster" Role="LanguageMaster" Multiplicity="0..1" />
-          <End Type="ECMSModel.Employee" Role="Employee" Multiplicity="*" />
+          <End Role="LanguageMaster" Type="Self.LanguageMaster" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LanguageMaster">
               <PropertyRef Name="ID" />
@@ -1077,8 +938,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Structure_Employee">
-          <End Type="ECMSModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="ECMSModel.Employee_Structure" Role="Employee_Structure" Multiplicity="*" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee_Structure" Type="Self.Employee_Structure" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Employee_Id" />
@@ -1089,8 +950,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Log_File_Employee">
-          <End Type="ECMSModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="ECMSModel.Log_File" Role="Log_File" Multiplicity="*" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Log_File" Type="Self.Log_File" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
               <PropertyRef Name="Employee_Id" />
@@ -1101,8 +962,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Structure_Structure">
-          <End Type="ECMSModel.Structure" Role="Structure" Multiplicity="0..1" />
-          <End Type="ECMSModel.Employee_Structure" Role="Employee_Structure" Multiplicity="*" />
+          <End Role="Structure" Type="Self.Structure" Multiplicity="0..1" />
+          <End Role="Employee_Structure" Type="Self.Employee_Structure" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Structure">
               <PropertyRef Name="Structure_Id" />
@@ -1113,8 +974,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Treatment_Detial_Employee_Structure">
-          <End Type="ECMSModel.Employee_Structure" Role="Employee_Structure" Multiplicity="0..1" />
-          <End Type="ECMSModel.Treatment_Detial" Role="Treatment_Detial" Multiplicity="*" />
+          <End Role="Employee_Structure" Type="Self.Employee_Structure" Multiplicity="0..1" />
+          <End Role="Treatment_Detial" Type="Self.Treatment_Detial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee_Structure">
               <PropertyRef Name="Employee_Structure_Id" />
@@ -1125,8 +986,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Treatment_Employee_Structure">
-          <End Type="ECMSModel.Employee_Structure" Role="Employee_Structure" Multiplicity="0..1" />
-          <End Type="ECMSModel.Treatment_Master" Role="Treatment_Master" Multiplicity="*" />
+          <End Role="Employee_Structure" Type="Self.Employee_Structure" Multiplicity="0..1" />
+          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee_Structure">
               <PropertyRef Name="Employee_Structure_Id" />
@@ -1137,8 +998,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Permission_Group_Group">
-          <End Type="ECMSModel.Group" Role="Group" Multiplicity="0..1" />
-          <End Type="ECMSModel.Permission_Group" Role="Permission_Group" Multiplicity="*" />
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Permission_Group" Type="Self.Permission_Group" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Group">
               <PropertyRef Name="Group_Id" />
@@ -1149,8 +1010,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Lanuage_Detials_LanguageMaster">
-          <End Type="ECMSModel.LanguageMaster" Role="LanguageMaster" Multiplicity="0..1" />
-          <End Type="ECMSModel.Lanuage_Detials" Role="Lanuage_Detials" Multiplicity="*" />
+          <End Role="LanguageMaster" Type="Self.LanguageMaster" Multiplicity="0..1" />
+          <End Role="Lanuage_Detials" Type="Self.Lanuage_Detials" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LanguageMaster">
               <PropertyRef Name="ID" />
@@ -1161,8 +1022,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Log_File_Permission">
-          <End Type="ECMSModel.Permission" Role="Permission" Multiplicity="0..1" />
-          <End Type="ECMSModel.Log_File" Role="Log_File" Multiplicity="*" />
+          <End Role="Permission" Type="Self.Permission" Multiplicity="0..1" />
+          <End Role="Log_File" Type="Self.Log_File" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Permission">
               <PropertyRef Name="Permission_Id" />
@@ -1173,8 +1034,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Owner_Relationship_Treatment">
-          <End Type="ECMSModel.Treatment_Master" Role="Treatment_Master" Multiplicity="0..1" />
-          <End Type="ECMSModel.Owner_Relationship" Role="Owner_Relationship" Multiplicity="*" />
+          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="0..1" />
+          <End Role="Owner_Relationship" Type="Self.Owner_Relationship" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Treatment_Master">
               <PropertyRef Name="Treatment_Id" />
@@ -1185,8 +1046,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Permission_Group_Permission">
-          <End Type="ECMSModel.Permission" Role="Permission" Multiplicity="0..1" />
-          <End Type="ECMSModel.Permission_Group" Role="Permission_Group" Multiplicity="*" />
+          <End Role="Permission" Type="Self.Permission" Multiplicity="0..1" />
+          <End Role="Permission_Group" Type="Self.Permission_Group" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Permission">
               <PropertyRef Name="Permission_Id" />
@@ -1197,8 +1058,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Treatment_Prepared_Administration">
-          <End Type="ECMSModel.Structure" Role="Structure" Multiplicity="0..1" />
-          <End Type="ECMSModel.Treatment_Master" Role="Treatment_Master" Multiplicity="*" />
+          <End Role="Structure" Type="Self.Structure" Multiplicity="0..1" />
+          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Structure">
               <PropertyRef Name="Structure_Id" />
@@ -1209,8 +1070,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Treatment_Treatment_Class">
-          <End Type="ECMSModel.Treatment_Class" Role="Treatment_Class" Multiplicity="0..1" />
-          <End Type="ECMSModel.Treatment_Master" Role="Treatment_Master" Multiplicity="*" />
+          <End Role="Treatment_Class" Type="Self.Treatment_Class" Multiplicity="0..1" />
+          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Treatment_Class">
               <PropertyRef Name="Treatment_Class_Id" />
@@ -1221,8 +1082,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Treatment_Treatment_Confidentiality">
-          <End Type="ECMSModel.Treatment_Confidentiality" Role="Treatment_Confidentiality" Multiplicity="0..1" />
-          <End Type="ECMSModel.Treatment_Master" Role="Treatment_Master" Multiplicity="*" />
+          <End Role="Treatment_Confidentiality" Type="Self.Treatment_Confidentiality" Multiplicity="0..1" />
+          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Treatment_Confidentiality">
               <PropertyRef Name="Treatment_Confidentiality_Id" />
@@ -1233,8 +1094,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Treatment_Treatment_Delivery">
-          <End Type="ECMSModel.Treatment_Delivery" Role="Treatment_Delivery" Multiplicity="0..1" />
-          <End Type="ECMSModel.Treatment_Master" Role="Treatment_Master" Multiplicity="*" />
+          <End Role="Treatment_Delivery" Type="Self.Treatment_Delivery" Multiplicity="0..1" />
+          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Treatment_Delivery">
               <PropertyRef Name="Treatment_Delivery_Id" />
@@ -1245,8 +1106,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Treatment_Detial_Treatment">
-          <End Type="ECMSModel.Treatment_Master" Role="Treatment_Master" Multiplicity="0..1" />
-          <End Type="ECMSModel.Treatment_Detial" Role="Treatment_Detial" Multiplicity="*" />
+          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="0..1" />
+          <End Role="Treatment_Detial" Type="Self.Treatment_Detial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Treatment_Master">
               <PropertyRef Name="Treatment_Id" />
@@ -1257,8 +1118,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Treatment_Treatment_Priority">
-          <End Type="ECMSModel.Treatment_Priority" Role="Treatment_Priority" Multiplicity="0..1" />
-          <End Type="ECMSModel.Treatment_Master" Role="Treatment_Master" Multiplicity="*" />
+          <End Role="Treatment_Priority" Type="Self.Treatment_Priority" Multiplicity="0..1" />
+          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Treatment_Priority">
               <PropertyRef Name="Treatment_Priority_Id" />
@@ -1269,8 +1130,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Treatment_Treatment_Procedure">
-          <End Type="ECMSModel.Treatment_Procedure" Role="Treatment_Procedure" Multiplicity="0..1" />
-          <End Type="ECMSModel.Treatment_Master" Role="Treatment_Master" Multiplicity="*" />
+          <End Role="Treatment_Procedure" Type="Self.Treatment_Procedure" Multiplicity="0..1" />
+          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Treatment_Procedure">
               <PropertyRef Name="Treatment_Procedure_Id" />
@@ -1281,8 +1142,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Treatment_Treatment_Status">
-          <End Type="ECMSModel.Treatment_Status" Role="Treatment_Status" Multiplicity="0..1" />
-          <End Type="ECMSModel.Treatment_Master" Role="Treatment_Master" Multiplicity="*" />
+          <End Role="Treatment_Status" Type="Self.Treatment_Status" Multiplicity="0..1" />
+          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Treatment_Status">
               <PropertyRef Name="Treatment_Status_Id" />
@@ -1293,8 +1154,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Treatment_Treatment_Type">
-          <End Type="ECMSModel.Treatment_Type" Role="Treatment_Type" Multiplicity="0..1" />
-          <End Type="ECMSModel.Treatment_Master" Role="Treatment_Master" Multiplicity="*" />
+          <End Role="Treatment_Type" Type="Self.Treatment_Type" Multiplicity="0..1" />
+          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Treatment_Type">
               <PropertyRef Name="Treatment_Type_Id" />
@@ -1304,40 +1165,122 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-=======
-        <EntityType Name="LanguageMaster">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Language_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Lanuage_Detials" Relationship="ECMSModel.FK_Lanuage_Detials_LanguageMaster" FromRole="LanguageMaster" ToRole="Lanuage_Detials" />
-        </EntityType>
-        <EntityType Name="Lanuage_Detials">
-          <Key>
-            <PropertyRef Name="Language_Detial_ID" />
-          </Key>
-          <Property Name="Language_Detial_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Language_Master_ID" Type="Int32" />
-          <Property Name="Language_Detial_FieldName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Language_Detial_Value" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="LanguageMaster" Relationship="ECMSModel.FK_Lanuage_Detials_LanguageMaster" FromRole="Lanuage_Detials" ToRole="LanguageMaster" />
-        </EntityType>
-        <Association Name="FK_Lanuage_Detials_LanguageMaster">
-          <End Type="ECMSModel.LanguageMaster" Role="LanguageMaster" Multiplicity="0..1" />
-          <End Type="ECMSModel.Lanuage_Detials" Role="Lanuage_Detials" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LanguageMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Lanuage_Detials">
-              <PropertyRef Name="Language_Master_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
-        </Schema>
+        <EntityContainer Name="ECMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Assignment_Status" EntityType="Self.Assignment_Status" />
+          <EntitySet Name="Attachments" EntityType="Self.Attachment" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Employee_Structure" EntityType="Self.Employee_Structure" />
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="LanguageMasters" EntityType="Self.LanguageMaster" />
+          <EntitySet Name="Lanuage_Detials" EntityType="Self.Lanuage_Detials" />
+          <EntitySet Name="Log_File" EntityType="Self.Log_File" />
+          <EntitySet Name="Owner_Relationship" EntityType="Self.Owner_Relationship" />
+          <EntitySet Name="Permissions" EntityType="Self.Permission" />
+          <EntitySet Name="Permission_Group" EntityType="Self.Permission_Group" />
+          <EntitySet Name="Structures" EntityType="Self.Structure" />
+          <EntitySet Name="Treatment_Class" EntityType="Self.Treatment_Class" />
+          <EntitySet Name="Treatment_Confidentiality" EntityType="Self.Treatment_Confidentiality" />
+          <EntitySet Name="Treatment_Delivery" EntityType="Self.Treatment_Delivery" />
+          <EntitySet Name="Treatment_Detial" EntityType="Self.Treatment_Detial" />
+          <EntitySet Name="Treatment_Master" EntityType="Self.Treatment_Master" />
+          <EntitySet Name="Treatment_Priority" EntityType="Self.Treatment_Priority" />
+          <EntitySet Name="Treatment_Procedure" EntityType="Self.Treatment_Procedure" />
+          <EntitySet Name="Treatment_Status" EntityType="Self.Treatment_Status" />
+          <EntitySet Name="Treatment_Type" EntityType="Self.Treatment_Type" />
+          <AssociationSet Name="FK_Treatment_Detial_Assignment_Status" Association="Self.FK_Treatment_Detial_Assignment_Status">
+            <End Role="Assignment_Status" EntitySet="Assignment_Status" />
+            <End Role="Treatment_Detial" EntitySet="Treatment_Detial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attachment_Treatment" Association="Self.FK_Attachment_Treatment">
+            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
+            <End Role="Attachment" EntitySet="Attachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Group" Association="Self.FK_Employee_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_LanguageMaster" Association="Self.FK_Employee_LanguageMaster">
+            <End Role="LanguageMaster" EntitySet="LanguageMasters" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Structure_Employee" Association="Self.FK_Employee_Structure_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Employee_Structure" EntitySet="Employee_Structure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_File_Employee" Association="Self.FK_Log_File_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Log_File" EntitySet="Log_File" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Structure_Structure" Association="Self.FK_Employee_Structure_Structure">
+            <End Role="Structure" EntitySet="Structures" />
+            <End Role="Employee_Structure" EntitySet="Employee_Structure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Detial_Employee_Structure" Association="Self.FK_Treatment_Detial_Employee_Structure">
+            <End Role="Employee_Structure" EntitySet="Employee_Structure" />
+            <End Role="Treatment_Detial" EntitySet="Treatment_Detial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Employee_Structure" Association="Self.FK_Treatment_Employee_Structure">
+            <End Role="Employee_Structure" EntitySet="Employee_Structure" />
+            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_Group_Group" Association="Self.FK_Permission_Group_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Permission_Group" EntitySet="Permission_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lanuage_Detials_LanguageMaster" Association="Self.FK_Lanuage_Detials_LanguageMaster">
+            <End Role="LanguageMaster" EntitySet="LanguageMasters" />
+            <End Role="Lanuage_Detials" EntitySet="Lanuage_Detials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_File_Permission" Association="Self.FK_Log_File_Permission">
+            <End Role="Permission" EntitySet="Permissions" />
+            <End Role="Log_File" EntitySet="Log_File" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Owner_Relationship_Treatment" Association="Self.FK_Owner_Relationship_Treatment">
+            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
+            <End Role="Owner_Relationship" EntitySet="Owner_Relationship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_Group_Permission" Association="Self.FK_Permission_Group_Permission">
+            <End Role="Permission" EntitySet="Permissions" />
+            <End Role="Permission_Group" EntitySet="Permission_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Prepared_Administration" Association="Self.FK_Treatment_Prepared_Administration">
+            <End Role="Structure" EntitySet="Structures" />
+            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Treatment_Class" Association="Self.FK_Treatment_Treatment_Class">
+            <End Role="Treatment_Class" EntitySet="Treatment_Class" />
+            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Treatment_Confidentiality" Association="Self.FK_Treatment_Treatment_Confidentiality">
+            <End Role="Treatment_Confidentiality" EntitySet="Treatment_Confidentiality" />
+            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Treatment_Delivery" Association="Self.FK_Treatment_Treatment_Delivery">
+            <End Role="Treatment_Delivery" EntitySet="Treatment_Delivery" />
+            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Detial_Treatment" Association="Self.FK_Treatment_Detial_Treatment">
+            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
+            <End Role="Treatment_Detial" EntitySet="Treatment_Detial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Treatment_Priority" Association="Self.FK_Treatment_Treatment_Priority">
+            <End Role="Treatment_Priority" EntitySet="Treatment_Priority" />
+            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Treatment_Procedure" Association="Self.FK_Treatment_Treatment_Procedure">
+            <End Role="Treatment_Procedure" EntitySet="Treatment_Procedure" />
+            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Treatment_Status" Association="Self.FK_Treatment_Treatment_Status">
+            <End Role="Treatment_Status" EntitySet="Treatment_Status" />
+            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Treatment_Type" Association="Self.FK_Treatment_Treatment_Type">
+            <End Role="Treatment_Type" EntitySet="Treatment_Type" />
+            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1346,269 +1289,242 @@
           <EntitySetMapping Name="Assignment_Status">
             <EntityTypeMapping TypeName="ECMSModel.Assignment_Status">
               <MappingFragment StoreEntitySet="Assignment_Status">
-                <ScalarProperty Name="Assignment_Status_Name_En" ColumnName="Assignment_Status_Name_En" />
-                <ScalarProperty Name="Assignment_Status_Name_Ar" ColumnName="Assignment_Status_Name_Ar" />
                 <ScalarProperty Name="Assignment_Status_Id" ColumnName="Assignment_Status_Id" />
+                <ScalarProperty Name="Assignment_Status_Name_Ar" ColumnName="Assignment_Status_Name_Ar" />
+                <ScalarProperty Name="Assignment_Status_Name_En" ColumnName="Assignment_Status_Name_En" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Attachments">
             <EntityTypeMapping TypeName="ECMSModel.Attachment">
               <MappingFragment StoreEntitySet="Attachment">
-                <ScalarProperty Name="Attachment_Path" ColumnName="Attachment_Path" />
-                <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
                 <ScalarProperty Name="Attachment_id" ColumnName="Attachment_id" />
+                <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
+                <ScalarProperty Name="Attachment_Path" ColumnName="Attachment_Path" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="ECMSModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-<<<<<<< HEAD
-                <ScalarProperty Name="Calendar_id" ColumnName="Calendar_id" />
-                <ScalarProperty Name="Language_id" ColumnName="Language_id" />
-=======
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
-                <ScalarProperty Name="Employee_Active" ColumnName="Employee_Active" />
-                <ScalarProperty Name="Employee_Password" ColumnName="Employee_Password" />
-                <ScalarProperty Name="Employee_Signature" ColumnName="Employee_Signature" />
-                <ScalarProperty Name="Employee_Profile" ColumnName="Employee_Profile" />
-                <ScalarProperty Name="Employee_Name_En" ColumnName="Employee_Name_En" />
-                <ScalarProperty Name="Group_Id" ColumnName="Group_Id" />
-                <ScalarProperty Name="Employee_Phone" ColumnName="Employee_Phone" />
-                <ScalarProperty Name="Employee_Email" ColumnName="Employee_Email" />
-                <ScalarProperty Name="Employee_Name_Ar" ColumnName="Employee_Name_Ar" />
                 <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
+                <ScalarProperty Name="Employee_Name_Ar" ColumnName="Employee_Name_Ar" />
+                <ScalarProperty Name="Employee_Email" ColumnName="Employee_Email" />
+                <ScalarProperty Name="Employee_Phone" ColumnName="Employee_Phone" />
+                <ScalarProperty Name="Group_Id" ColumnName="Group_Id" />
+                <ScalarProperty Name="Employee_Name_En" ColumnName="Employee_Name_En" />
+                <ScalarProperty Name="Employee_Profile" ColumnName="Employee_Profile" />
+                <ScalarProperty Name="Employee_Signature" ColumnName="Employee_Signature" />
+                <ScalarProperty Name="Employee_Password" ColumnName="Employee_Password" />
+                <ScalarProperty Name="Employee_Active" ColumnName="Employee_Active" />
+                <ScalarProperty Name="Language_id" ColumnName="Language_id" />
+                <ScalarProperty Name="Calendar_id" ColumnName="Calendar_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employee_Structure">
             <EntityTypeMapping TypeName="ECMSModel.Employee_Structure">
               <MappingFragment StoreEntitySet="Employee_Structure">
-                <ScalarProperty Name="Default_Structure" ColumnName="Default_Structure" />
-                <ScalarProperty Name="Type_Delegation" ColumnName="Type_Delegation" />
-                <ScalarProperty Name="Status_Structure" ColumnName="Status_Structure" />
-                <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
-                <ScalarProperty Name="Structure_Id" ColumnName="Structure_Id" />
                 <ScalarProperty Name="Employee_Structure_Id" ColumnName="Employee_Structure_Id" />
+                <ScalarProperty Name="Structure_Id" ColumnName="Structure_Id" />
+                <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
+                <ScalarProperty Name="Status_Structure" ColumnName="Status_Structure" />
+                <ScalarProperty Name="Type_Delegation" ColumnName="Type_Delegation" />
+                <ScalarProperty Name="Default_Structure" ColumnName="Default_Structure" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Groups">
             <EntityTypeMapping TypeName="ECMSModel.Group">
               <MappingFragment StoreEntitySet="Group">
-                <ScalarProperty Name="Group_Name_En" ColumnName="Group_Name_En" />
-                <ScalarProperty Name="Group_Name_Ar" ColumnName="Group_Name_Ar" />
                 <ScalarProperty Name="Group_Id" ColumnName="Group_Id" />
-<<<<<<< HEAD
+                <ScalarProperty Name="Group_Name_Ar" ColumnName="Group_Name_Ar" />
+                <ScalarProperty Name="Group_Name_En" ColumnName="Group_Name_En" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LanguageMasters">
             <EntityTypeMapping TypeName="ECMSModel.LanguageMaster">
               <MappingFragment StoreEntitySet="LanguageMaster">
-                <ScalarProperty Name="Language_Name" ColumnName="Language_Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Language_Name" ColumnName="Language_Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Lanuage_Detials">
             <EntityTypeMapping TypeName="ECMSModel.Lanuage_Detials">
               <MappingFragment StoreEntitySet="Lanuage_Detials">
-                <ScalarProperty Name="Language_Detial_Value" ColumnName="Language_Detial_Value" />
-                <ScalarProperty Name="Language_Detial_FieldName" ColumnName="Language_Detial_FieldName" />
-                <ScalarProperty Name="Language_Master_ID" ColumnName="Language_Master_ID" />
                 <ScalarProperty Name="Language_Detial_ID" ColumnName="Language_Detial_ID" />
-=======
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
+                <ScalarProperty Name="Language_Master_ID" ColumnName="Language_Master_ID" />
+                <ScalarProperty Name="Language_Detial_FieldName" ColumnName="Language_Detial_FieldName" />
+                <ScalarProperty Name="Language_Detial_Value" ColumnName="Language_Detial_Value" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Log_File">
             <EntityTypeMapping TypeName="ECMSModel.Log_File">
               <MappingFragment StoreEntitySet="Log_File">
-                <ScalarProperty Name="Log_Description" ColumnName="Log_Description" />
-                <ScalarProperty Name="Log_Name" ColumnName="Log_Name" />
-                <ScalarProperty Name="Form_Id" ColumnName="Form_Id" />
-                <ScalarProperty Name="Login_Id" ColumnName="Login_Id" />
-                <ScalarProperty Name="Log_Note" ColumnName="Log_Note" />
-                <ScalarProperty Name="Log_Date" ColumnName="Log_Date" />
                 <ScalarProperty Name="Log_Id" ColumnName="Log_Id" />
+                <ScalarProperty Name="Log_Date" ColumnName="Log_Date" />
+                <ScalarProperty Name="Log_Note" ColumnName="Log_Note" />
+                <ScalarProperty Name="Login_Id" ColumnName="Login_Id" />
+                <ScalarProperty Name="Form_Id" ColumnName="Form_Id" />
+                <ScalarProperty Name="Log_Name" ColumnName="Log_Name" />
+                <ScalarProperty Name="Log_Description" ColumnName="Log_Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Owner_Relationship">
             <EntityTypeMapping TypeName="ECMSModel.Owner_Relationship">
               <MappingFragment StoreEntitySet="Owner_Relationship">
-                <ScalarProperty Name="Identity_Number" ColumnName="Identity_Number" />
-                <ScalarProperty Name="Identity_Type" ColumnName="Identity_Type" />
-                <ScalarProperty Name="Owner_Phone" ColumnName="Owner_Phone" />
-                <ScalarProperty Name="Owner_Name" ColumnName="Owner_Name" />
-                <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
                 <ScalarProperty Name="Owner_Id" ColumnName="Owner_Id" />
+                <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
+                <ScalarProperty Name="Owner_Name" ColumnName="Owner_Name" />
+                <ScalarProperty Name="Owner_Phone" ColumnName="Owner_Phone" />
+                <ScalarProperty Name="Identity_Type" ColumnName="Identity_Type" />
+                <ScalarProperty Name="Identity_Number" ColumnName="Identity_Number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Permissions">
             <EntityTypeMapping TypeName="ECMSModel.Permission">
               <MappingFragment StoreEntitySet="Permission">
-                <ScalarProperty Name="Permission_Icon" ColumnName="Permission_Icon" />
-                <ScalarProperty Name="Url_Path" ColumnName="Url_Path" />
-                <ScalarProperty Name="Parent" ColumnName="Parent" />
-                <ScalarProperty Name="Permission_Name_En" ColumnName="Permission_Name_En" />
-                <ScalarProperty Name="Permission_Name_Ar" ColumnName="Permission_Name_Ar" />
                 <ScalarProperty Name="Permission_Id" ColumnName="Permission_Id" />
+                <ScalarProperty Name="Permission_Name_Ar" ColumnName="Permission_Name_Ar" />
+                <ScalarProperty Name="Permission_Name_En" ColumnName="Permission_Name_En" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="Url_Path" ColumnName="Url_Path" />
+                <ScalarProperty Name="Permission_Icon" ColumnName="Permission_Icon" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Permission_Group">
             <EntityTypeMapping TypeName="ECMSModel.Permission_Group">
               <MappingFragment StoreEntitySet="Permission_Group">
-                <ScalarProperty Name="Group_Id" ColumnName="Group_Id" />
-                <ScalarProperty Name="Permission_Id" ColumnName="Permission_Id" />
                 <ScalarProperty Name="Permission_Group_Id" ColumnName="Permission_Group_Id" />
+                <ScalarProperty Name="Permission_Id" ColumnName="Permission_Id" />
+                <ScalarProperty Name="Group_Id" ColumnName="Group_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Structures">
             <EntityTypeMapping TypeName="ECMSModel.Structure">
               <MappingFragment StoreEntitySet="Structure">
-                <ScalarProperty Name="Structure_Name_En" ColumnName="Structure_Name_En" />
-                <ScalarProperty Name="Structure_Parent" ColumnName="Structure_Parent" />
-                <ScalarProperty Name="Structure_Name_Ar" ColumnName="Structure_Name_Ar" />
                 <ScalarProperty Name="Structure_Id" ColumnName="Structure_Id" />
+                <ScalarProperty Name="Structure_Name_Ar" ColumnName="Structure_Name_Ar" />
+                <ScalarProperty Name="Structure_Parent" ColumnName="Structure_Parent" />
+                <ScalarProperty Name="Structure_Name_En" ColumnName="Structure_Name_En" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Treatment_Class">
             <EntityTypeMapping TypeName="ECMSModel.Treatment_Class">
               <MappingFragment StoreEntitySet="Treatment_Class">
-                <ScalarProperty Name="Treatment_Class_Name_En" ColumnName="Treatment_Class_Name_En" />
-                <ScalarProperty Name="Treatment_Class_Name_Ar" ColumnName="Treatment_Class_Name_Ar" />
                 <ScalarProperty Name="Treatment_Class_Id" ColumnName="Treatment_Class_Id" />
+                <ScalarProperty Name="Treatment_Class_Name_Ar" ColumnName="Treatment_Class_Name_Ar" />
+                <ScalarProperty Name="Treatment_Class_Name_En" ColumnName="Treatment_Class_Name_En" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Treatment_Confidentiality">
             <EntityTypeMapping TypeName="ECMSModel.Treatment_Confidentiality">
               <MappingFragment StoreEntitySet="Treatment_Confidentiality">
-                <ScalarProperty Name="Css_Class" ColumnName="Css_Class" />
-                <ScalarProperty Name="Treatment_Confidentiality_Name_En" ColumnName="Treatment_Confidentiality_Name_En" />
-                <ScalarProperty Name="Treatment_Confidentiality_Name_Ar" ColumnName="Treatment_Confidentiality_Name_Ar" />
                 <ScalarProperty Name="Treatment_Confidentiality_Id" ColumnName="Treatment_Confidentiality_Id" />
+                <ScalarProperty Name="Treatment_Confidentiality_Name_Ar" ColumnName="Treatment_Confidentiality_Name_Ar" />
+                <ScalarProperty Name="Treatment_Confidentiality_Name_En" ColumnName="Treatment_Confidentiality_Name_En" />
+                <ScalarProperty Name="Css_Class" ColumnName="Css_Class" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Treatment_Delivery">
             <EntityTypeMapping TypeName="ECMSModel.Treatment_Delivery">
               <MappingFragment StoreEntitySet="Treatment_Delivery">
-                <ScalarProperty Name="Treatment_Delivery_Name_En" ColumnName="Treatment_Delivery_Name_En" />
-                <ScalarProperty Name="Treatment_Delivery_Name_Ar" ColumnName="Treatment_Delivery_Name_Ar" />
                 <ScalarProperty Name="Treatment_Delivery_Id" ColumnName="Treatment_Delivery_Id" />
+                <ScalarProperty Name="Treatment_Delivery_Name_Ar" ColumnName="Treatment_Delivery_Name_Ar" />
+                <ScalarProperty Name="Treatment_Delivery_Name_En" ColumnName="Treatment_Delivery_Name_En" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Treatment_Detial">
             <EntityTypeMapping TypeName="ECMSModel.Treatment_Detial">
               <MappingFragment StoreEntitySet="Treatment_Detial">
-                <ScalarProperty Name="Treatment_Detial_Date" ColumnName="Treatment_Detial_Date" />
-                <ScalarProperty Name="Treatment_Copy_To" ColumnName="Treatment_Copy_To" />
-                <ScalarProperty Name="Key_Word" ColumnName="Key_Word" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Delete_Date" ColumnName="Delete_Date" />
-                <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
-                <ScalarProperty Name="Read_Date" ColumnName="Read_Date" />
-                <ScalarProperty Name="Is_Read" ColumnName="Is_Read" />
-                <ScalarProperty Name="Assignment_Status_Id" ColumnName="Assignment_Status_Id" />
-                <ScalarProperty Name="Parent" ColumnName="Parent" />
-                <ScalarProperty Name="To_Employee_Structure_Id" ColumnName="To_Employee_Structure_Id" />
-                <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
                 <ScalarProperty Name="Treatment_Detial_Id" ColumnName="Treatment_Detial_Id" />
+                <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
+                <ScalarProperty Name="To_Employee_Structure_Id" ColumnName="To_Employee_Structure_Id" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="Assignment_Status_Id" ColumnName="Assignment_Status_Id" />
+                <ScalarProperty Name="Is_Read" ColumnName="Is_Read" />
+                <ScalarProperty Name="Read_Date" ColumnName="Read_Date" />
+                <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+                <ScalarProperty Name="Delete_Date" ColumnName="Delete_Date" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Key_Word" ColumnName="Key_Word" />
+                <ScalarProperty Name="Treatment_Copy_To" ColumnName="Treatment_Copy_To" />
+                <ScalarProperty Name="Treatment_Detial_Date" ColumnName="Treatment_Detial_Date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Treatment_Master">
             <EntityTypeMapping TypeName="ECMSModel.Treatment_Master">
               <MappingFragment StoreEntitySet="Treatment_Master">
-                <ScalarProperty Name="Treatment_Mother" ColumnName="Treatment_Mother" />
-                <ScalarProperty Name="Treatment_Keywork" ColumnName="Treatment_Keywork" />
-                <ScalarProperty Name="Treatment_Number" ColumnName="Treatment_Number" />
-                <ScalarProperty Name="Required_Reply_Date" ColumnName="Required_Reply_Date" />
-                <ScalarProperty Name="Prepared_Administration_Id" ColumnName="Prepared_Administration_Id" />
-                <ScalarProperty Name="Treatment_Procedure_Id" ColumnName="Treatment_Procedure_Id" />
-                <ScalarProperty Name="Treatment_Status_Id" ColumnName="Treatment_Status_Id" />
-                <ScalarProperty Name="Treatment_Delivery_Id" ColumnName="Treatment_Delivery_Id" />
-                <ScalarProperty Name="Treatment_Confidentiality_Id" ColumnName="Treatment_Confidentiality_Id" />
-                <ScalarProperty Name="Treatment_Priority_id" ColumnName="Treatment_Priority_id" />
-                <ScalarProperty Name="Treatment_Class_Id" ColumnName="Treatment_Class_Id" />
-                <ScalarProperty Name="Treatment_Type_Id" ColumnName="Treatment_Type_Id" />
-                <ScalarProperty Name="From_Employee_Structure_Id" ColumnName="From_Employee_Structure_Id" />
-                <ScalarProperty Name="Required_Reply" ColumnName="Required_Reply" />
-                <ScalarProperty Name="Treatment_Body" ColumnName="Treatment_Body" />
-                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
-                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
-                <ScalarProperty Name="Treatment_Date" ColumnName="Treatment_Date" />
-                <ScalarProperty Name="Treatment_Subject" ColumnName="Treatment_Subject" />
                 <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
+                <ScalarProperty Name="Treatment_Subject" ColumnName="Treatment_Subject" />
+                <ScalarProperty Name="Treatment_Date" ColumnName="Treatment_Date" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="Treatment_Body" ColumnName="Treatment_Body" />
+                <ScalarProperty Name="Required_Reply" ColumnName="Required_Reply" />
+                <ScalarProperty Name="From_Employee_Structure_Id" ColumnName="From_Employee_Structure_Id" />
+                <ScalarProperty Name="Treatment_Type_Id" ColumnName="Treatment_Type_Id" />
+                <ScalarProperty Name="Treatment_Class_Id" ColumnName="Treatment_Class_Id" />
+                <ScalarProperty Name="Treatment_Priority_id" ColumnName="Treatment_Priority_id" />
+                <ScalarProperty Name="Treatment_Confidentiality_Id" ColumnName="Treatment_Confidentiality_Id" />
+                <ScalarProperty Name="Treatment_Delivery_Id" ColumnName="Treatment_Delivery_Id" />
+                <ScalarProperty Name="Treatment_Status_Id" ColumnName="Treatment_Status_Id" />
+                <ScalarProperty Name="Treatment_Procedure_Id" ColumnName="Treatment_Procedure_Id" />
+                <ScalarProperty Name="Prepared_Administration_Id" ColumnName="Prepared_Administration_Id" />
+                <ScalarProperty Name="Required_Reply_Date" ColumnName="Required_Reply_Date" />
+                <ScalarProperty Name="Treatment_Number" ColumnName="Treatment_Number" />
+                <ScalarProperty Name="Treatment_Keywork" ColumnName="Treatment_Keywork" />
+                <ScalarProperty Name="Treatment_Mother" ColumnName="Treatment_Mother" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Treatment_Priority">
             <EntityTypeMapping TypeName="ECMSModel.Treatment_Priority">
               <MappingFragment StoreEntitySet="Treatment_Priority">
-                <ScalarProperty Name="Card_Class" ColumnName="Card_Class" />
-                <ScalarProperty Name="Css_Class" ColumnName="Css_Class" />
-                <ScalarProperty Name="Treatment_Priority_Name_En" ColumnName="Treatment_Priority_Name_En" />
-                <ScalarProperty Name="Treatment_Priority_Name_Ar" ColumnName="Treatment_Priority_Name_Ar" />
                 <ScalarProperty Name="Treatment_Priority_Id" ColumnName="Treatment_Priority_Id" />
+                <ScalarProperty Name="Treatment_Priority_Name_Ar" ColumnName="Treatment_Priority_Name_Ar" />
+                <ScalarProperty Name="Treatment_Priority_Name_En" ColumnName="Treatment_Priority_Name_En" />
+                <ScalarProperty Name="Css_Class" ColumnName="Css_Class" />
+                <ScalarProperty Name="Card_Class" ColumnName="Card_Class" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Treatment_Procedure">
             <EntityTypeMapping TypeName="ECMSModel.Treatment_Procedure">
               <MappingFragment StoreEntitySet="Treatment_Procedure">
-                <ScalarProperty Name="Treatment_Procedure_Name_En" ColumnName="Treatment_Procedure_Name_En" />
-                <ScalarProperty Name="Treatment_Procedure_Name_Ar" ColumnName="Treatment_Procedure_Name_Ar" />
                 <ScalarProperty Name="Treatment_Procedure_Id" ColumnName="Treatment_Procedure_Id" />
+                <ScalarProperty Name="Treatment_Procedure_Name_Ar" ColumnName="Treatment_Procedure_Name_Ar" />
+                <ScalarProperty Name="Treatment_Procedure_Name_En" ColumnName="Treatment_Procedure_Name_En" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Treatment_Status">
             <EntityTypeMapping TypeName="ECMSModel.Treatment_Status">
               <MappingFragment StoreEntitySet="Treatment_Status">
-                <ScalarProperty Name="Treatment_Status_Name_En" ColumnName="Treatment_Status_Name_En" />
-                <ScalarProperty Name="Treatment_Status_Name_Ar" ColumnName="Treatment_Status_Name_Ar" />
                 <ScalarProperty Name="Treatment_Status_Id" ColumnName="Treatment_Status_Id" />
+                <ScalarProperty Name="Treatment_Status_Name_Ar" ColumnName="Treatment_Status_Name_Ar" />
+                <ScalarProperty Name="Treatment_Status_Name_En" ColumnName="Treatment_Status_Name_En" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Treatment_Type">
             <EntityTypeMapping TypeName="ECMSModel.Treatment_Type">
               <MappingFragment StoreEntitySet="Treatment_Type">
-                <ScalarProperty Name="Treatment_Type_Name_En" ColumnName="Treatment_Type_Name_En" />
-                <ScalarProperty Name="Treatment_Type_Name_Ar" ColumnName="Treatment_Type_Name_Ar" />
                 <ScalarProperty Name="Treatment_Type_Id" ColumnName="Treatment_Type_Id" />
-<<<<<<< HEAD
-=======
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LanguageMasters">
-            <EntityTypeMapping TypeName="ECMSModel.LanguageMaster">
-              <MappingFragment StoreEntitySet="LanguageMaster">
-                <ScalarProperty Name="Language_Name" ColumnName="Language_Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Lanuage_Detials">
-            <EntityTypeMapping TypeName="ECMSModel.Lanuage_Detials">
-              <MappingFragment StoreEntitySet="Lanuage_Detials">
-                <ScalarProperty Name="Language_Detial_Value" ColumnName="Language_Detial_Value" />
-                <ScalarProperty Name="Language_Detial_FieldName" ColumnName="Language_Detial_FieldName" />
-                <ScalarProperty Name="Language_Master_ID" ColumnName="Language_Master_ID" />
-                <ScalarProperty Name="Language_Detial_ID" ColumnName="Language_Detial_ID" />
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
+                <ScalarProperty Name="Treatment_Type_Name_Ar" ColumnName="Treatment_Type_Name_Ar" />
+                <ScalarProperty Name="Treatment_Type_Name_En" ColumnName="Treatment_Type_Name_En" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

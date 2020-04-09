@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Treatment.Models;
 
 namespace Treatment.Classes
 {

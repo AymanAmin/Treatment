@@ -18,13 +18,9 @@ namespace Treatment
         bool isDashBoard = false;
         protected void Page_Load(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            ListPermissions = db.Permissions.ToList();
-           if (SessionWrapper.LoggedUser != null)
-=======
+
             //ListPermissions = db.Permissions.ToList();
             if (SessionWrapper.LoggedUser != null)
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
             {
                 if (SessionWrapper.IsLocked)
                     Response.Redirect("~/Pages/Setting/admin/LockScreen.aspx");

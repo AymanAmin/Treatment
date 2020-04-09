@@ -65,7 +65,6 @@
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\multiselect\css\multi-select.css" />
 
     <!-- Data Table Css -->
-<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css" />
 
 
@@ -91,9 +90,7 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\style.css" />
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\jquery.mCustomScrollbar.css" />
-=======
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css"/>
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
 
     <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -234,11 +231,6 @@
     </asp:ContentPlaceHolder>
     <title><% = Treatment.Classes.FieldNames.getFieldName("Master-Title", "E-CMS - Main Screen") %></title>
 </head>
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
 
 <body onload="hidePcoded()">
     <input id="bt-data-dismiss" type="hidden" data-dismiss="modal" value="" />
@@ -430,13 +422,8 @@
                                                     </a>
                                                 </li>
                                                 <li>
-<<<<<<< HEAD
-                                                <a href="../../../../Pages/Setting/UserManagment/Profile.aspx">
-                                                        <i class="feather icon-user"></i>Profile
-=======
-                                                <a href="inbox.aspx">
+                                                    <a href="../../../../Pages/Setting/UserManagment/Profile.aspx">
                                                         <i class="feather icon-user"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Profile", "Profile") %>
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
                                                     </a>
                                                 </li>
                                                 <li>
@@ -670,9 +657,6 @@
 
             
             <script>
-<<<<<<< HEAD
-=======
-
                 $(document).ready(function () {
                     // themelight1 Theme for Menu
                     $(".pcoded-navbar").attr("navbar-theme", "themelight1");
@@ -698,7 +682,6 @@
                 });
 
 
->>>>>>> 60375737d9c40c1bae275e24705374f6e58986df
                 window.dataLayer = window.dataLayer || [];
                 function gtag() { dataLayer.push(arguments); }
                 gtag('js', new Date());

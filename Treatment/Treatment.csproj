@@ -141,6 +141,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Entity\ECMS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ECMS.edmx</DependentUpon>
+      <LastGenOutput>ECMS.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entity\ECMS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ECMS.edmx</DependentUpon>
+      <LastGenOutput>ECMS.cs</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Pages\Setting\Auth\LockScreen.aspx" />
     <Content Include="Pages\Setting\Auth\Login.aspx" />
@@ -2079,6 +2089,7 @@
     <Compile Include="Classes\ddlFiller.cs" />
     <Compile Include="Classes\Emp_Structure.cs" />
     <Compile Include="Classes\Enums.cs" />
+    <Compile Include="Classes\FieldNames.cs" />
     <Compile Include="Classes\LogFileModule.cs" />
     <Compile Include="Classes\SessionWrapper.cs" />
     <Compile Include="Classes\StringCipher.cs" />
@@ -2427,25 +2438,15 @@
     <Content Include="Theme\files\extra-pages\landingpage\assets\fonts\ionicons.woff" />
     <Content Include="Theme\files\readme.md" />
     <Content Include="MasterEn.Master" />
+    <Content Include="Pages\Setting\Auth\Logout.ashx" />
+    <Content Include="Pages\Treatment\Tree.aspx.bak" />
     <EntityDeploy Include="Entity\ECMS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ECMS.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Entity\ECMS.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECMS.edmx</DependentUpon>
-      <LastGenOutput>ECMS.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Entity\ECMS.edmx.diagram">
       <DependentUpon>ECMS.edmx</DependentUpon>
     </Content>
-    <Content Include="Entity\ECMS.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECMS.edmx</DependentUpon>
-      <LastGenOutput>ECMS.cs</LastGenOutput>
-    </Content>
-    <Content Include="Pages\Setting\Auth\Logout.ashx" />
-    <Content Include="Pages\Treatment\Tree.aspx.bak" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
