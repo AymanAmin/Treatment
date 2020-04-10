@@ -32,12 +32,80 @@
                         </li>
                     </ul>
                 </div>
+<<<<<<< Updated upstream
             </div>
             <!-- Left-side section end -->
             <!-- Right-side section start -->
             <div class="col-lg-12 col-xl-10">
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="e-inbox" role="tabpanel">
+=======
+                <!-- end of by priority dropdown -->
+
+            </nav>
+        </div>
+        <!-- Nav Filter tab end -->
+
+        <!-- Start View Inbox list  -->
+        <div class="card" id="listViewTreatment">
+            <div class="email-card">
+                <!-- Left-side section start -->
+                <div class="row">
+                    <div class="col-lg-12 col-xl-2">
+                        <div class="user-body">
+                            <div class="p-20 text-center">
+                                <a href="NewTreatment.aspx" class="btn btn-danger btn-round btn-block"><i class="icofont icofont-plus"></i>Create New</a>
+                            </div>
+                            <ul class="page-list nav nav-tabs flex-column" id="pills-tab" role="tablist">
+                                <li class="nav-item mail-section">
+                                    <a class="nav-link active" data-toggle="pill" href="#e-inbox" role="tab" style="font-size: 120%; color: #ccd0d5" id="addNfNumTreatment" runat="server">
+                                        <i class="icofont icofont-inbox"></i>Inbox
+                                    </a>
+                                </li>
+                                <li class="nav-item mail-section">
+                                    <a class="nav-link" data-toggle="pill" href="#e-send" role="tab" style="font-size: 120%; color: #ccd0d5">
+                                        <i class="icofont icofont-paper-plane"></i>Sent
+                                    </a>
+                                </li>
+                                <li class="nav-item mail-section">
+                                    <a class="nav-link" data-toggle="pill" href="#e-completed" role="tab" style="font-size: 120%; color: #ccd0d5">
+                                        <i class="icofont icofont-license"></i>Completed
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Left-side section end -->
+                    <!-- Right-side section start -->
+                    <div class="col-lg-12 col-xl-10">
+                        <div class="tab-content" id="pills-tabContent">
+
+                            <!-- Start Inbox Treatment-->
+                            <div class="tab-pane fade show active" id="e-inbox" role="tabpanel">
+                                <div class="mail-body">
+                                    <div class="mail-body-content">
+                                        <div class="table-responsive" runat="server" id="inboxTreatment">
+                                            <!-- Create Table Send Treatment in Code behind Function loadListViewTreatment()-->
+                                        </div>
+                                        <hr style="margin-top: -2%;">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Inbox Treatment -->
+
+                            <!-- Start Send Treatment-->
+                            <div class="tab-pane fade" id="e-send" role="tabpanel">
+                                <div class="mail-body">
+                                    <div class="mail-body-content">
+                                        <div class="table-responsive" runat="server" id="sendTreatment">
+                                            <!-- Create Table Send Treatment in Code behind Function loadListViewTreatment()-->
+                                        </div>
+                                        <hr style="margin-top: -2%;">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Send Treatment -->
+>>>>>>> Stashed changes
 
                         <div class="mail-body">
                             <!--<div class="mail-body-header">
@@ -109,6 +177,7 @@
         .dxgvDataRow_Material{
             background: rgba(242,245,245,0.8);
         }
+<<<<<<< Updated upstream
         .dxgvDataRow_Material:hover{
                 box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
                     z-index: 1;
@@ -117,4 +186,26 @@
     border: 1px solid #efefef;
 }
         </style>
+=======
+        .label-default {
+            background: linear-gradient(to right, #e0e0e0, #f6f7fb);
+        }
+        .read-email-tr {
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    background-color: #f6f7fb;
+}
+        .btn-danger {
+            background-color: rgb(255, 252, 252);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 1px 2px rgba(0, 0, 0, .23);
+    color: #01a9ac;
+    border-color: rgb(255, 252, 252);
+
+        }
+    </style>
+    <script>
+        function hidePcoded() {
+            document.getElementById("pcoded").setAttribute("vertical-nav-type", "offcanvas");
+        }
+    </script>
+>>>>>>> Stashed changes
 </asp:Content>

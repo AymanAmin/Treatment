@@ -2073,6 +2073,8 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\ddlFiller.cs" />
+    <Compile Include="Classes\EmployeDTO.cs" />
+    <Compile Include="Classes\Emp_Structure.cs" />
     <Compile Include="Classes\Enums.cs" />
     <Compile Include="Classes\SessionWrapper.cs" />
     <Compile Include="Classes\StringCipher.cs" />

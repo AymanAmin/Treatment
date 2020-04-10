@@ -147,6 +147,7 @@
         </div>
     </div>
 
+<<<<<<< Updated upstream
     <!-- Start Grid View -->
     <div class="row">
         <div class="form-group col-sm-12 table-responsive dt-responsive">
@@ -156,6 +157,17 @@
                     <NewButton Text=" ">
                         <Styles>
                             <Style CssClass="icofont icofont-plus text-primary h5">
+=======
+                <!-- Start Grid View -->
+                <div class="row">
+                    <div class="form-group col-sm-12 table-responsive dt-responsive">
+                        <label>Owner Relationship</label>
+                        <dx:ASPxGridView ID="ownerShip" runat="server" DataSourceID="OwnerShipDataSource" Theme="Material" KeyFieldName="Owner_Id" Width="100%" AutoGenerateColumns="False">
+                            <SettingsCommandButton>
+                                <NewButton Text=" ">
+                                    <Styles>
+                                        <Style CssClass="icofont icofont-plus text-primary h5">
+>>>>>>> Stashed changes
                             </Style>
                         </Styles>
                     </NewButton>
@@ -181,6 +193,7 @@
                         <Styles>
                             <Style CssClass="icofont icofont-ui-delete text-danger h5">
                             </Style>
+<<<<<<< Updated upstream
                         </Styles>
                     </DeleteButton>
                 </SettingsCommandButton>
@@ -224,6 +237,54 @@
     <asp:EntityDataSource ID="EntityDataSourceEmployee" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Employees" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
     <asp:EntityDataSource ID="EntityDataSourceStructure" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Structures" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
     <!-- End Treatment Data Source-->
+=======
+                                    </Styles>
+                                </DeleteButton>
+                            </SettingsCommandButton>
+                            <Columns>
+                                <dx:GridViewDataTextColumn Caption="Owner Name" FieldName="Owner_Name" ShowInCustomizationForm="True" VisibleIndex="0">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn Caption="Owner Phone" FieldName="Owner_Phone" ShowInCustomizationForm="True" VisibleIndex="1">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn Caption="Identity Type" FieldName="Identity_Type" ShowInCustomizationForm="True" VisibleIndex="2">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn Caption="Identity Number" FieldName="Identity_Number" ShowInCustomizationForm="True" VisibleIndex="3">
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="4" ButtonRenderMode="Link" ButtonType="Link">
+                                </dx:GridViewCommandColumn>
+                            </Columns>
+                            <Styles>
+                                <Header HorizontalAlign="Center" VerticalAlign="Middle">
+                                </Header>
+                            </Styles>
+                        </dx:ASPxGridView>
+                    </div>
+                </div>
+                <!-- End Grid View -->
+                <div class="form-group col-sm-12 text-right">
+                    <asp:Button ID="SaveTreatment" runat="server" Text="Save" CssClass="btn btn-primary" ValidationGroup="valFormGroup" OnClick="SaveTreatment_Click" />
+                </div>
+                <!-- End Treatment Form-->
+            </div>
+            <!-- Article Editor card end -->
+        </div>
+        <!-- Page-body end -->
+        <!-- Start Treatment Data Source-->
+        <asp:EntityDataSource ID="EntityDataSourceStandardProcedure" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntitySetName="Permissions"></asp:EntityDataSource>
+        <asp:EntityDataSource ID="OwnerShipDataSource" runat="server" ConnectionString="name=ECMSEntities" EntitySetName="Owner_Relationship" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EnableFlattening="False" EnableViewState="False" DefaultContainerName="ECMSEntities" Where=""></asp:EntityDataSource>
+        <asp:EntityDataSource ID="EntityDataSourceAssignmentStatus" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Assignment_Status" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
+        <asp:EntityDataSource ID="EntityDataSourcePreparedAdministration" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Prepared_Administration" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
+        <asp:EntityDataSource ID="EntityDataSourceTreatmentClass" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Treatment_Class" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
+        <asp:EntityDataSource ID="EntityDataSourceTreatmentConfidentiality" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Treatment_Confidentiality" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
+        <asp:EntityDataSource ID="EntityDataSourceTreatmentDelivery" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Treatment_Delivery" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
+        <asp:EntityDataSource ID="EntityDataSourceTreatmentPriority" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Treatment_Priority" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
+        <asp:EntityDataSource ID="EntityDataSourceTreatmentProcedure" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Treatment_Procedure" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
+        <asp:EntityDataSource ID="EntityDataSourceTreatmentStatus" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Treatment_Status" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
+        <asp:EntityDataSource ID="EntityDataSourceTreatmentType" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Treatment_Type" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
+        <asp:EntityDataSource ID="EntityDataSourceEmployee" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Employees" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
+        <asp:EntityDataSource ID="EntityDataSourceStructure" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Structures" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
+        <!-- End Treatment Data Source-->
+>>>>>>> Stashed changes
 
 <!-- ckeditor.css-->
 <script src="..\..\..\..\Theme\files\bower_components\ckeditor\ckeditor.js"></script>

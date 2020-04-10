@@ -15,6 +15,24 @@ namespace Treatment.Pages.Treatment
         int currentStructureUserId = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
+<<<<<<< Updated upstream
+=======
+            checkLogin();
+            currentUserId = SessionWrapper.LoggedUser.Employee_Id;
+            OwnerShipDataSource.Include = null;
+        }
+        private void checkLogin()
+        {
+            if (SessionWrapper.LoggedUser != null)
+            {
+                if (SessionWrapper.IsLocked)
+                    Response.Redirect("~/Pages/Setting/admin/LockScreen.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+            }
+>>>>>>> Stashed changes
         }
 
         protected void SaveTreatment_Click(object sender, EventArgs e)

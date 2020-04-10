@@ -85,13 +85,21 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
+<<<<<<< Updated upstream
         /// Employee_Phone control.
+=======
+        /// Emp_Structure control.
+>>>>>>> Stashed changes
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+<<<<<<< Updated upstream
         protected global::System.Web.UI.WebControls.TextBox Employee_Phone;
+=======
+        protected global::System.Web.UI.WebControls.ListBox Emp_Structure;
+>>>>>>> Stashed changes
         
         /// <summary>
         /// RequiredFieldValidator4 control.
@@ -103,49 +111,85 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
+<<<<<<< Updated upstream
         /// Active control.
+=======
+        /// RequiredFieldValidator3 control.
+>>>>>>> Stashed changes
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+<<<<<<< Updated upstream
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Active;
         
         /// <summary>
         /// ListBox1 control.
+=======
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        
+        /// <summary>
+        /// Groups control.
+>>>>>>> Stashed changes
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+<<<<<<< Updated upstream
         protected global::System.Web.UI.WebControls.ListBox ListBox1;
         
         /// <summary>
         /// StructureDataSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource StructureDataSource;
-        
-        /// <summary>
-        /// Groups control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+=======
         protected global::System.Web.UI.WebControls.DropDownList Groups;
         
         /// <summary>
         /// GroupDataSource control.
+>>>>>>> Stashed changes
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+<<<<<<< Updated upstream
+        protected global::System.Web.UI.WebControls.EntityDataSource StructureDataSource;
+        
+        /// <summary>
+        /// Groups control.
+=======
         protected global::System.Web.UI.WebControls.EntityDataSource GroupDataSource;
+        
+        /// <summary>
+        /// Active control.
+>>>>>>> Stashed changes
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+<<<<<<< Updated upstream
+        protected global::System.Web.UI.WebControls.DropDownList Groups;
+        
+        /// <summary>
+        /// GroupDataSource control.
+=======
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox Active;
+        
+        /// <summary>
+        /// EmpID control.
+>>>>>>> Stashed changes
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+<<<<<<< Updated upstream
+        protected global::System.Web.UI.WebControls.EntityDataSource GroupDataSource;
+=======
+        protected global::System.Web.UI.WebControls.HiddenField EmpID;
+>>>>>>> Stashed changes
         
         /// <summary>
         /// Save control.
@@ -157,21 +201,21 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.Button Save;
         
         /// <summary>
-        /// ASPxGridView1 control.
+        /// AddEmp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView ASPxGridView1;
+        protected global::System.Web.UI.HtmlControls.HtmlButton AddEmp;
         
         /// <summary>
-        /// EmployeeDataSource control.
+        /// UCard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource EmployeeDataSource;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UCard;
     }
 }
