@@ -18,6 +18,7 @@ namespace Treatment.Pages.Treatment
         ECMSEntities dbSentTo = new ECMSEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
+            checkLogin();
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = getStructure(currentUserId);
             if (loadListViewInboxTreatment())
@@ -54,6 +55,18 @@ namespace Treatment.Pages.Treatment
             }
         }
 
+        private void checkLogin()
+        {
+            if (SessionWrapper.LoggedUser != null)
+            {
+                if (SessionWrapper.IsLocked)
+                    Response.Redirect("~/Pages/Setting/admin/LockScreen.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+            }
+        }
         private int getStructure(int employeeId)
         {
             int employeeStructureId = 0;
@@ -77,7 +90,7 @@ namespace Treatment.Pages.Treatment
                     string yourHTMLstring = "<table class='table' >";
                     inboxTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                     List<Treatment_Detial> treatmentDetial = new List<Treatment_Detial>();
-                    treatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && (x.Assignment_Status_Id == 1 || x.Assignment_Status_Id == 2)).ToList<Treatment_Detial>();
+                    treatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && (x.Assignment_Status_Id == 1 || x.Assignment_Status_Id == 2)).OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
                     Treatment_Master oneTreatmentMaster;
                     int motherTreatmentId = 0;
                     for (int i = 0; i < treatmentDetial.Count; i++)
@@ -90,7 +103,7 @@ namespace Treatment.Pages.Treatment
                         {
                             oneTreatmentMaster = db.Treatment_Master.First(x => x.Treatment_Id == motherTreatmentId);
                         }
-                        yourHTMLstring = "<tr class='unread "+getReadEmail((bool)treatmentDetial[i].Is_Read)+"'>" +
+                        yourHTMLstring = "<tr class='" + getReadEmail((bool)treatmentDetial[i].Is_Read) + "'>" +
                                       "<td>" +
                                             "<div class='check-star'>" +
                                                  "<div class='checkbox-fade fade-in-primary checkbox'>" +
@@ -99,14 +112,16 @@ namespace Treatment.Pages.Treatment
                                                                 "<span class='cr'><i class='cr-icon icofont icofont-verification-check txt-primary'></i></span>" +
                                                       "</label>" +
                                                  "</div>" +
-                                                 "<i class='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Css_Class + "'></i>" +
+                                                 "<a href='#!' data-toggle='tooltip' data-placement='top' data-trigger='hover' title='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Treatment_Priority_Name_En + "'>" +
+                                                     "<i class='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Css_Class + "'></i>" +
+                                                "</a>"+
                                              "</div>" +
                                        "</td>" +
-                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En + "</a></td>" +
-                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + treatmentDetial[i].Treatment_Master.Treatment_Subject + "</a></td>" +
-                                       "<td class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'><label class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label></a></td>" +
+                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En + "</a></td>" +
+                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + treatmentDetial[i].Treatment_Master.Treatment_Subject + "</a></td>" +
+                                       "<td class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'><label class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label></a></td>" +
                                        "<td class='email-time'>" + dateAgo((DateTime)treatmentDetial[i].Treatment_Master.Create_Date) + "</td>" +
-                                   " </tr>";
+                                   "</tr>";
                         inboxTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                     }
 
@@ -126,7 +141,9 @@ namespace Treatment.Pages.Treatment
         {
             string strReadEmail = "";
             if (flayReadEmail)
-                strReadEmail = "read-email-tr";
+                strReadEmail = "read read-email-tr";
+            else
+                strReadEmail = "unread";
             return strReadEmail;
         }
         private bool loadListViewSendTreatment()
@@ -138,7 +155,7 @@ namespace Treatment.Pages.Treatment
                     string yourHTMLstring = "<table class='table' >";
                     sendTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                     List<Treatment_Master> treatmentMaster = new List<Treatment_Master>();
-                    treatmentMaster = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == currentStructureUserId && x.Treatment_Status_Id == 1).ToList<Treatment_Master>();
+                    treatmentMaster = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == currentStructureUserId && x.Treatment_Status_Id == 1).OrderByDescending(x => x.Treatment_Id).ToList<Treatment_Master>();
                     for (int i = 0; i < treatmentMaster.Count; i++)
                     {
                         yourHTMLstring = "<tr class='unread'>" +
@@ -153,9 +170,9 @@ namespace Treatment.Pages.Treatment
                                                  "<i class='" + treatmentMaster[i].Treatment_Priority.Css_Class + "'></i>" +
                                              "</div>" +
                                        "</td>" +
-                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentMaster[i].Treatment_Id + "' class='email-name'>" + getDetialSendTo(treatmentMaster[i].Treatment_Id) + "</a></td>" +
-                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentMaster[i].Treatment_Id + "' class='email-name'>" + treatmentMaster[i].Treatment_Subject + "</a></td>" +
-                                       "<td class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentMaster[i].Treatment_Id + "'><label class='" + treatmentMaster[i].Treatment_Confidentiality.Css_Class + "'>" + treatmentMaster[i].Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label></a></td>" +
+                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentMaster[i].Treatment_Id + "&getTabId=2' class='email-name'>" + getDetialSendTo(treatmentMaster[i].Treatment_Id) + "</a></td>" +
+                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentMaster[i].Treatment_Id + "&getTabId=2' class='email-name'>" + treatmentMaster[i].Treatment_Subject + "</a></td>" +
+                                       "<td class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentMaster[i].Treatment_Id + "&getTabId=2'><label class='" + treatmentMaster[i].Treatment_Confidentiality.Css_Class + "'>" + treatmentMaster[i].Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label></a></td>" +
                                        "<td class='email-time'>" + dateAgo((DateTime)treatmentMaster[i].Create_Date) + "</td>" +
                                    " </tr>";
                         sendTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
@@ -178,7 +195,7 @@ namespace Treatment.Pages.Treatment
                     string yourHTMLstring = "<table class='table' >";
                     completeTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                     List<Treatment_Detial> treatmentDetial = new List<Treatment_Detial>();
-                    treatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Assignment_Status_Id == 3).ToList<Treatment_Detial>();
+                    treatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Assignment_Status_Id == 3).OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
                     for (int i = 0; i < treatmentDetial.Count; i++)
                     {
                         yourHTMLstring = "<tr class='unread'>" +
@@ -193,9 +210,9 @@ namespace Treatment.Pages.Treatment
                                                  "<i class='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Css_Class + "'></i>" +
                                              "</div>" +
                                        "</td>" +
-                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentDetial[i].Treatment_Master.Treatment_Id + "' class='email-name'>" + treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En + "</a></td>" +
-                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentDetial[i].Treatment_Master.Treatment_Id + "' class='email-name'>" + treatmentDetial[i].Treatment_Master.Treatment_Subject + "</a></td>" +
-                                       "<td class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentDetial[i].Treatment_Master.Treatment_Id + "'><label class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label></a></td>" +
+                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentDetial[i].Treatment_Master.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En + "</a></td>" +
+                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentDetial[i].Treatment_Master.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + treatmentDetial[i].Treatment_Master.Treatment_Subject + "</a></td>" +
+                                       "<td class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentDetial[i].Treatment_Master.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'><label class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label></a></td>" +
                                        "<td class='email-time'>" + dateAgo((DateTime)treatmentDetial[i].Treatment_Detial_Date) + "</td>" +
                                    " </tr>";
                         completeTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
@@ -234,7 +251,7 @@ namespace Treatment.Pages.Treatment
                     string yourHTMLstring = "<table class='table' >";
                     gridViewTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                     List<Treatment_Detial> treatmentDetial = new List<Treatment_Detial>();
-                    treatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && (x.Assignment_Status_Id == 1 || x.Assignment_Status_Id == 2)).ToList<Treatment_Detial>();
+                    treatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && (x.Assignment_Status_Id == 1 || x.Assignment_Status_Id == 2)).OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
                     Treatment_Master oneTreatmentMaster;
                     int motherTreatmentId = 0;
                     for (int i = 0; i < treatmentDetial.Count; i++)
@@ -251,13 +268,13 @@ namespace Treatment.Pages.Treatment
                         yourHTMLstring = "<div class='col-sm-4'>" +
                                             "<div class='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Card_Class + "'>" +
                                                 "<div class='card-header'>" +
-                                                    "<a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'  class='card-title unread'>" + treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En + " </a>" +
+                                                    "<a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'  class='card-title'>" + treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En + " </a>" +
                                                     "<span class='label label-default f-right'>" + dateAgo((DateTime)treatmentDetial[i].Treatment_Master.Create_Date) + "</span>" +
                                                 "</div>" +
                                                 "<div class='card-block' style='margin-top: -2%;'>" +
                                                     "<div class='row'>" +
                                                         "<div class='col-sm-12'>" +
-                                                            "<p class='task-detail unread'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Subject + "</a></p>" +
+                                                            "<p class='task-detail unread'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Subject + "</a></p>" +
                                                             "<p class='task-due'><strong>Secret: </strong><strong class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</strong></p>" +
                                                         "</div>" +
                                                     "</div>" +

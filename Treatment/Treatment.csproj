@@ -141,6 +141,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Entity\DataBase\Treatment Schema &amp; Data.sql" />
     <Content Include="Entity\ECMS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ECMS.edmx</DependentUpon>
@@ -2188,12 +2189,14 @@
     <Compile Include="Classes\EmployeDTO.cs" />
     <Compile Include="Pages\Admin\Language.aspx.cs">
       <DependentUpon>Language.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Admin\Language.aspx.designer.cs">
       <DependentUpon>Language.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\LogFile.aspx.cs">
       <DependentUpon>LogFile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Admin\LogFile.aspx.designer.cs">
       <DependentUpon>LogFile.aspx</DependentUpon>

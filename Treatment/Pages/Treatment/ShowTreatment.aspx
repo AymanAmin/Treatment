@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>REU - Show Treatment</title>
+    <script>setTimeout(function () { document.getElementById("header-div").style.display = "none"; }, 1);</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <!-- Page-body start -->
@@ -295,16 +296,16 @@
                     <div class="card-header">
                         <h5><i class="icofont icofont-golf-cart"></i></h5>
                         <h5>Track</h5>
-                        <span class="text-center">
+                        <span class="text-center" id="actionReply" runat="server">
                             <div class="mail-body-header">
-                                <button type="button" class="btn btn-success btn-xs waves-effect waves-light" data-toggle="modal" data-target="#add-model-assignment">
+                                <button type="button" id="NewAssignment" runat="server" class="btn btn-success btn-xs waves-effect waves-light" data-toggle="modal" data-target="#add-model-assignment">
                                     <i class="icofont icofont-paper-plane"></i>New
                                 </button>
 
-                                <button type="button" class="btn btn-warning btn-xs waves-effect waves-light" data-toggle="modal" data-target="#add-model-reply">
+                                <button type="button" id="ReplyAssignment" runat="server" class="btn btn-warning btn-xs waves-effect waves-light" data-toggle="modal" data-target="#add-model-reply">
                                     <i class="icofont icofont-reply-all"></i>Reply
                                 </button>
-                                <asp:LinkButton ID="CloseAssignment" runat="server" CssClass="btn btn-danger btn-xs waves-effect waves-light" OnClick="CloseAssignment_Click"><i class="icofont icofont-close"></i>Close</asp:LinkButton>
+                                <asp:LinkButton ID="CloseAssignment" runat="server" OnClick="CloseAssignment_Click"><i class="icofont icofont-close"></i>Close</asp:LinkButton>
                             </div>
                         </span>
                         <div class="card-header-right">
@@ -375,11 +376,28 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    <div class="form-group col-sm-3">
+                                        <label>Required Reply</label>
+                                        <div class="input-group">
+                                            <label class="j-checkbox-toggle">
+                                                <input ID="requiredReply" runat="server" type="checkbox" class="js-single" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label>Reply Date</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
+                                            <asp:TextBox ID="replyDate" runat="server" class="form-control" placeholder="Enter Treatment Date" TextMode="SingleLine"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="form-group col-sm-12">
                                         <label>Required</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-presentation-alt"></i></span>
-                                            <asp:TextBox ID="requiredAssignment" runat="server" placeholder="Enter Required" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="requiredAssignment" runat="server" placeholder="Enter Required" TextMode="MultiLine" Rows="2" class="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
@@ -388,7 +406,7 @@
                                         <label>Keywork</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-keyboard-alt"></i></span>
-                                            <asp:TextBox ID="keyworkAssignment" runat="server" placeholder="Enter Keywork" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="keyworkAssignment" runat="server" placeholder="Enter Keywork" TextMode="MultiLine" Rows="2" class="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
@@ -475,6 +493,9 @@
         #draggableMultiple .sortable-moves {
             box-shadow: 0 5px 25px -5px #ccc, 0 1px 5px 0 rgba(0,0,0,0.1), 0 0 0 0 rgba(0,0,0,0);
             cursor: pointer;
+        }
+        .label-default {
+            background: linear-gradient(to right, #e0e0e0, #f6f7fb);
         }
     </style>
 </asp:Content>

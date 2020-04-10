@@ -16,7 +16,7 @@
                         <a class="nav-link" href="#!">Filter: <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#!" id="bydate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-clock-time"></i>By Date</a>
+                        <a class="nav-link dropdown-toggle" href="#!" id="bydate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-clock-time"></i> By Date</a>
                         <div class="dropdown-menu" aria-labelledby="bydate">
                             <a class="dropdown-item" href="#!">Show all</a>
                             <div class="dropdown-divider"></div>
@@ -29,7 +29,7 @@
                     </li>
                     <!-- end of by date dropdown -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#!" id="bystatus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-chart-histogram-alt"></i>By Status</a>
+                        <a class="nav-link dropdown-toggle" href="#!" id="bystatus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-chart-histogram-alt"></i> By Status</a>
                         <div class="dropdown-menu" aria-labelledby="bystatus">
                             <a class="dropdown-item" href="#!">Show all</a>
                             <div class="dropdown-divider"></div>
@@ -43,7 +43,7 @@
                     </li>
                     <!-- end of by status dropdown -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#!" id="bypriority" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-sub-listing"></i>By Priority</a>
+                        <a class="nav-link dropdown-toggle" href="#!" id="bypriority" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-sub-listing"></i> By Priority</a>
                         <div class="dropdown-menu" aria-labelledby="bypriority">
                             <a class="dropdown-item" href="#!">Show all</a>
                             <div class="dropdown-divider"></div>
@@ -55,7 +55,7 @@
                     </li>
                 </ul>
                 <div class="nav-item nav-grid">
-                    <span class="m-r-15">View Mode: </span>
+                    <span class="m-r-15">View Mode </span>
                     <button type="button" id="listViewId" class="btn btn-sm btn-primary waves-effect waves-light m-r-10" data-toggle="tooltip" data-placement="top" title="List View">
                         <i class="icofont icofont-listine-dots"></i>
                     </button>
@@ -83,7 +83,7 @@
                     <div class="col-lg-12 col-xl-2">
                         <div class="user-body">
                             <div class="p-20 text-center">
-                                <a href="NewTreatment.aspx" class="btn btn-danger">Create New</a>
+                                <a href="NewTreatment.aspx" class="btn btn-danger btn-round btn-block"><i class="icofont icofont-plus"></i>Create New</a>
                             </div>
                             <ul class="page-list nav nav-tabs flex-column" id="pills-tab" role="tablist">
                                 <li class="nav-item mail-section">
@@ -177,12 +177,19 @@
             cursor: pointer;
         }
         .label-default {
-            background: linear-gradient(to right, #e0e0e0, #fffcfca1);
+            background: linear-gradient(to right, #e0e0e0, #f6f7fb);
         }
         .read-email-tr {
     box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
-    background-color: #fafafa;
+    background-color: #f6f7fb;
 }
+        .btn-danger {
+            background-color: rgb(255, 252, 252);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 1px 2px rgba(0, 0, 0, .23);
+    color: #01a9ac;
+    border-color: rgb(255, 252, 252);
+
+        }
     </style>
     <script>
         function hidePcoded() {
