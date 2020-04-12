@@ -161,6 +161,7 @@
     <Content Include="Pages\Setting\Auth\Login.aspx" />
     <Content Include="Pages\Setting\Auth\ResetPassword.aspx" />
     <Content Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx" />
+    <Content Include="Pages\Setting\UserManagment\MyNotifications.aspx" />
     <Content Include="Pages\Setting\UserManagment\Employees.aspx" />
     <Content Include="Pages\Setting\UserManagment\Groups.aspx" />
     <Content Include="Pages\Setting\UserManagment\PermissionGroups.aspx" />
@@ -2235,6 +2236,13 @@
     </Compile>
     <Compile Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx.designer.cs">
       <DependentUpon>TreatmentManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Setting\UserManagment\MyNotifications.aspx.cs">
+      <DependentUpon>MyNotifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Setting\UserManagment\MyNotifications.aspx.designer.cs">
+      <DependentUpon>MyNotifications.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setting\UserManagment\Employees.aspx.cs">
       <DependentUpon>Employees.aspx</DependentUpon>

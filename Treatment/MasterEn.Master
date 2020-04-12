@@ -393,8 +393,8 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="inbox.aspx">
-                                                        <i class="feather icon-mail"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Messages", "My Messages") %>
+                                                    <a href="../../../../Pages/Treatment/inbox.aspx">
+                                                        <i class="feather icon-mail"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Messages", "My Inbox") %>
                                                     </a>
                                                 </li>
                                                 <li>
