@@ -141,6 +141,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Entity\DataBase\Dropp All Tables.sql" />
     <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2812-4-2020%29.sql" />
     <Content Include="Entity\DataBase\Treatment Schema &amp; Data.sql" />
     <Content Include="Entity\ECMS.Context.tt">
@@ -517,7 +518,6 @@
     <Content Include="Theme\files\assets\images\light-box\v2.jpg" />
     <Content Include="Theme\files\assets\images\light-box\v3.jpg" />
     <Content Include="Theme\files\assets\images\light-box\v4.jpg" />
-    <Content Include="Theme\files\assets\images\logo-blue.png" />
     <Content Include="Theme\files\assets\images\logo.png" />
     <Content Include="Theme\files\assets\images\logo1.png" />
     <Content Include="Theme\files\assets\images\mega-menu\01.jpg" />
@@ -2468,6 +2468,7 @@
     <Content Include="Entity\ECMS.edmx.diagram">
       <DependentUpon>ECMS.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\ECMS-Publish.pubxml" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

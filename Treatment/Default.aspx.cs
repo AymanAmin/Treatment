@@ -29,9 +29,9 @@ namespace Treatment
         private void Treatment_Status()
         {
             txtAllTreatment.Text = (treatmentList.Count() + treatmentDList.Count()).ToString();
-            txtNewInboxTreatment.Text = treatmentDList.Count().ToString();
-            txtOutboxTreatment.Text = treatmentList.Count().ToString();
-            txtComplateTreatment.Text = (treatmentList.Where(x => x.Treatment_Status_Id == 3).Count() + treatmentDList.Where(x => x.Assignment_Status_Id == 3).Count()).ToString();
+            txtNewInboxTreatment.Text = treatmentDList.Where(x => x.Assignment_Status_Id != 3).Count().ToString();
+            txtOutboxTreatment.Text = treatmentList.Where(x => x.Treatment_Status_Id == 1).Count().ToString();
+            txtComplateTreatment.Text = (treatmentDList.Where(x => x.Assignment_Status_Id == 3).Count()).ToString();
             string str = "update : ";
             if (false)
                 str = "اخر تحديث :";
