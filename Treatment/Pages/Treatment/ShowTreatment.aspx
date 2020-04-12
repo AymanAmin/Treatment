@@ -497,6 +497,6 @@
         .label-default {
             background: linear-gradient(to right, #e0e0e0, #f6f7fb);
         }
-        #dd-w-0 { margin-top:-35%}
+        #dd-w-0 { }
     </style>
 </asp:Content>

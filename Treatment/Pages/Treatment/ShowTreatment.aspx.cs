@@ -129,7 +129,14 @@ namespace Treatment.Pages.Treatment
                                     CloseAssignment.CssClass = "btn btn-danger btn-xs waves-effect waves-light";
 
                                     requiredReply.Checked = false;
-                                } 
+                                }
+
+                                if (int.TryParse(Request["getNotificationId"], out notificationMasterId) && notificationMasterId > 0)
+                                {
+                                    //actionReply.Style["display"] = "none";
+                                    updatetReadNotification(notificationMasterId);
+                                }
+
                                 if (isTreatmentDetial.Assignment_Status_Id == 1)
                                 {
                                     return;
@@ -155,11 +162,10 @@ namespace Treatment.Pages.Treatment
                             }
                             else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
                         }
-                        else if (tabId == 4)
+                        else if (tabId == 4 && treatmentDetialId == 0)
                         {
                             if (int.TryParse(Request["getNotificationId"], out notificationMasterId) && notificationMasterId > 0)
                             {
-                                treatmentDetialId = 0;
                                 actionReply.Style["display"] = "none";
                                 updatetReadNotification(notificationMasterId);
                                 return;
@@ -342,7 +348,8 @@ namespace Treatment.Pages.Treatment
                     db.Entry(newReplyTreatment).State = EntityState.Modified;
                     db.SaveChanges();
                     string linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentId + "&getTabId=4&getTreatmentDetialId=" + newReplyTreatment.Parent + "&getNotificationId=";
-                    if (insertNotification(replyTreatement.Text, replyTreatement.Text, newReplyTreatment.Treatment_Master.Treatment_Id, linkNotif))
+                    int notifSendTo = (int)newReplyTreatment.Treatment_Master.From_Employee_Structure_Id;
+                    if (insertNotification(replyTreatement.Text, replyTreatement.Text, newReplyTreatment.Treatment_Master.Treatment_Id, linkNotif, notifSendTo))
                     {
 
                     }
@@ -700,7 +707,7 @@ namespace Treatment.Pages.Treatment
             return detialAssingmentNote;
         }
 
-        private bool insertNotification(string notificationDescriptionAr, string notificationDescriptionEn, int notificationMasterId, string notificationLink)
+        private bool insertNotification(string notificationDescriptionAr, string notificationDescriptionEn, int notificationMasterId, string notificationLink, int notificationSendTo)
         {
             try
             {
@@ -710,7 +717,7 @@ namespace Treatment.Pages.Treatment
                     notificationMaster = dbEcms.Notification_Master.Create();
                     notificationMaster.Notification_Date = DateTime.Now;
                     notificationMaster.Is_Read = false;
-                    notificationMaster.Employee_Structure_Id = currentStructureUserId;
+                    notificationMaster.Employee_Structure_Id = notificationSendTo;
                     notificationMaster.Master_Id = notificationMasterId;
                     notificationMaster.Notification_Description_Ar = notificationDescriptionAr;
                     notificationMaster.Notification_Description_En = notificationDescriptionEn;
