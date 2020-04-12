@@ -703,18 +703,18 @@
                 
 </script>
 
-            <script>
+<script>
 
-                $(function () {
-                    $('#listViewId').on('click', function () {
-                        $('#Body_Holder_gridViewTreatment').hide();
-                        $('#listViewTreatment').show();
-                    });
-                    $('#gridViewId').on('click', function () {
-                        $('#listViewTreatment').hide();
-                        $('#Body_Holder_gridViewTreatment').show();
-                    });
-                });
+    $(function () {
+        $('#listViewId').on('click', function () {
+            $('#Body_Holder_gridViewTreatment').hide();
+            $('#listViewTreatment').show();
+        });
+        $('#gridViewId').on('click', function () {
+            $('#listViewTreatment').hide();
+            $('#Body_Holder_gridViewTreatment').show();
+        });
+    });
 </script>
 
 

@@ -6,7 +6,7 @@
 
 <%@ Register Assembly="DevExpress.Web.Bootstrap.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.Bootstrap" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Employee</title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("Employees-Title", "User Management - Employee") %></title>
     <script type="text/javascript">
 
         function showmodel(x) {           // debugger;            if (!isNaN(x.id)){            $.ajax({
@@ -151,7 +151,7 @@
 
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label class="j-label">Arabic Name</label>
+                                    <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Employees-ArabicName", "Arabic Name") %></label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
                                         <asp:TextBox ID="Employee_Name_Ar" runat="server" class="form-control" placeholder="Enter Arabic Name" TextMode="SingleLine"></asp:TextBox>
@@ -162,7 +162,7 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label class="j-label">English Name</label>
+                                    <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Employees-EnglishName", "English Name") %></label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
                                         <asp:TextBox ID="Employee_Name_En" runat="server" class="form-control" placeholder="Enter English Name" TextMode="SingleLine"></asp:TextBox>
@@ -175,7 +175,7 @@
 
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label class="j-label">Email</label>
+                                    <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Employees-Email", "Email") %></label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
                                         <asp:TextBox ID="Employee_Email" runat="server" class="form-control" placeholder="Enter Employee Email" TextMode="SingleLine"></asp:TextBox>
@@ -187,7 +187,7 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label class="j-label">Phone</label>
+                                    <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Employees-Phone", "Phone") %></label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-ui-call"></i></span>
                                         <asp:TextBox ID="Employee_Phone" runat="server" class="form-control" placeholder="Enter Employee Phone" TextMode="SingleLine"></asp:TextBox>
@@ -201,10 +201,10 @@
                             <div class="row">
 
                                 <div class="col-sm-6">
-                                    <label>Structure</label>
+                                    <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Structure", "Structure") %></label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-chart-flow-alt-1"></i></span>
-                                        <asp:ListBox ID="Emp_Structure" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Enter Employee Structure"  DataSourceID="StructureDataSource" DataTextField="Structure_Name_Ar" DataValueField="Structure_Id"  SelectionMode="Multiple"></asp:ListBox>
+                                        <asp:ListBox ID="Emp_Structure" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Enter Employee Structure"  DataSourceID="StructureDataSource" DataTextField="Structure_Name_En" DataValueField="Structure_Id"  SelectionMode="Multiple"></asp:ListBox>
                                         <asp:EntityDataSource ID="StructureDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Structures">
                                         </asp:EntityDataSource>
                                     </div>
@@ -214,10 +214,10 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label class="j-label">Group</label>
+                                    <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Employees-Group", "Group") %></label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-group"></i></span>
-                                        <asp:DropDownList ID="Groups" runat="server" class="form-control" DataTextField="Group_Name_Ar" DataValueField="Group_Id" DataSourceID="GroupDataSource" ></asp:DropDownList>
+                                        <asp:DropDownList ID="Groups" runat="server" class="form-control" DataTextField="Group_Name_En" DataValueField="Group_Id" DataSourceID="GroupDataSource" ></asp:DropDownList>
                                         <asp:EntityDataSource ID="GroupDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Groups">
                                         </asp:EntityDataSource>
                                     </div>
@@ -230,7 +230,7 @@
                               <div class="row">
 
                                 <div class="col-sm-6">
-                                    <label>Language</label>
+                                    <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Language", "Language") %></label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-chart-flow-alt-1"></i></span>
                                          <asp:DropDownList ID="Language" runat="server" class="form-control" DataSourceID="LangDataSource" DataTextField="Language_Name" DataValueField="ID"  ></asp:DropDownList>
@@ -243,7 +243,7 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <label class="j-label">Type oF Calendar</label>
+                                    <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Employees-TypeoFCalendar", "Type oF Calendar") %></label>
                                     <div class="form-radio">
                                     <div class="group-add-on">
                                         <div class="radio radiofill radio-inline">
@@ -264,7 +264,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="col-sm-6">
-                                        <label>Active</label>
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Active", "Active") %></label>
                                         <div class="input-group">
                                             <input id="Active" runat="server" type="checkbox" class="js-single" />
                                         </div>

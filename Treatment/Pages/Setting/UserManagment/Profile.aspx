@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterEn.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Treatment.Pages.Setting.UserManagment.Profile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Profile</title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("Profile-Title", "User Management - Profile") %></title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
 
@@ -41,8 +41,8 @@
                                             </div>
                                             <div>
                                                 <div class="pull-right cover-btn">
-                                                    <a class="btn btn-primary btn-outline-primary btn-icon"><i class="icofont icofont-plus text-info h5"></i></a>
-                                                    <a class="btn btn-danger btn-outline-danger btn-icon"><i class="icofont icofont-ui-messaging text-danger h5"></i></a>
+                                                    <a href="../../../../Pages/Treatment/Inbox.aspx" class="btn btn-danger btn-outline-danger btn-icon"><i class="icofont icofont-inbox text-danger h5"></i></a>
+                                                    <a href="../../../../Pages/Treatment/NewTreatment.aspx" class="btn btn-primary btn-outline-primary btn-icon"><i class="icofont icofont-ui-messaging text-info h5"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -60,11 +60,11 @@
                         <div class="tab-header card">
                             <ul class="nav nav-tabs md-tabs tab-timeline" role="tablist" id="mytab">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#personal" role="tab">Personal Info</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-PersonalInfo", "Personal Info") %></a>
                                     <div class="slide"></div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#changePassWord" role="tab">change PassWord</a>
+                                    <a class="nav-link" data-toggle="tab" href="#changePassWord" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-ChangePassWord", "Change PassWord") %></a>
                                     <div class="slide"></div>
                                 </li>
                                
@@ -81,7 +81,7 @@
                         <!-- personal card start -->
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-header-text">About Me</h5>
+                                <h5 class="card-header-text"><% = Treatment.Classes.FieldNames.getFieldName("Profile-AboutMe", "About Me") %></h5>
                                 <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right">
                                     <i class="icofont icofont-edit"></i>
                                 </button>
@@ -97,23 +97,23 @@
                                                             <table class="table m-0">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <th scope="row">Arabic Name</th>
+                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-ArabicName", "Arabic Name") %></th>
                                                                         <td><label runat="server" id="ArabicName"> </label></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Email</th>
+                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Email", "Email") %></th>
                                                                         <td><label runat="server" id="Email"> </label></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Structure</th>
+                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Structure", "Structure") %></th>
                                                                         <td><label runat="server" id="Structure"> </label></td>
                                                                     </tr>
                                                                      <tr>
-                                                                        <th scope="row">Language</th>
+                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Language", "Language") %></th>
                                                                         <td><label runat="server" id="EmpLanguage"> </label></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Active</th>
+                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Active", "Active") %></th>
                                                                         <td><label runat="server" id="ActiveL"> </label></td>
                                                                     </tr>
                                                                 </tbody>
@@ -126,19 +126,19 @@
                                                             <table class="table">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <th scope="row">English Name</th>
+                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-EnglishName", "Active") %></th>
                                                                         <td><label runat="server" id="EnglishName"> </label></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Phone</th>
+                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-EnglishName", "Phone") %></th>
                                                                         <td><label runat="server" id="Phone"> </label></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Group</th>
+                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Group", "Group") %></th>
                                                                         <td><label runat="server" id="Group"> </label></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Type oF Calendar</th>
+                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-TypeoFCalendar", "Type oF Calendar") %></th>
                                                                         <td><label runat="server" id="CalendarType"> </label></td>
                                                                     </tr>
                                                                     <tr>
@@ -172,7 +172,7 @@
                                                                
                                                                 <tr>
                                                                     <td>
-                                                                        <label class="j-label">Email</label>
+                                                                        <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Email", "Email") %></label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
                                                                             <asp:TextBox ID="Employee_Email" runat="server" class="form-control" placeholder="Enter Employee Email" TextMode="SingleLine"></asp:TextBox>
@@ -185,7 +185,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                      <label>Language</label>
+                                                                      <label><% = Treatment.Classes.FieldNames.getFieldName("Profile-Language", "Language") %></label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-chart-flow-alt-1"></i></span>
                                                                              <asp:DropDownList ID="Language" runat="server" class="form-control" DataSourceID="LangDataSource" DataTextField="Language_Name" DataValueField="ID"  ></asp:DropDownList>
@@ -199,10 +199,10 @@
                                                                 </tr>
                                                                  <tr>
                                                                     <td>
-                                                                        <label>Profile</label>
+                                                                        <label><% = Treatment.Classes.FieldNames.getFieldName("Profile-Profile", "Profile") %></label>
                                                                         <div class="card-block">
                                                                             <div class="img-hover">
-                                                                                <asp:Image ID="Emp_Profile" class="img-fluid img-radius" alt="Signature.jpg" runat="server" ImageUrl="~/media/Signature/Signature.jpg" />
+                                                                                <asp:Image ID="Emp_Profile" class="img-fluid img-radius" alt="Profile.jpg" runat="server" ImageUrl="~/media/Profile/Profile.jpg" />
                                                                                 <div class="img-overlay img-radius">
                                                                                     <span>
                                                                                         <asp:FileUpload ID="EmpProfile" runat="server" class="form-control" />
@@ -222,7 +222,7 @@
                                                              
                                                                 <tr>
                                                                     <td>
-                                                                        <label >Phone</label>
+                                                                        <label ><% = Treatment.Classes.FieldNames.getFieldName("Profile-Phone", "Phone") %></label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-ui-call"></i></span>
                                                                             <asp:TextBox ID="Employee_Phone" runat="server" class="form-control" placeholder="Enter Employee Phone" TextMode="SingleLine"></asp:TextBox>
@@ -234,7 +234,7 @@
                                                                 </tr>
                                                               <tr>
                                                                     <td>
-                                                                    <label >Type oF Calendar</label>
+                                                                    <label ><% = Treatment.Classes.FieldNames.getFieldName("Profile-TypeoFCalendar", "Type oF Calendar") %></label>
                                                                     <div class="form-radio">
                                                                         <div class="group-add-on">
                                                                             <div class="radio radiofill radio-inline">
@@ -253,7 +253,7 @@
                                                                 </tr>
                                                                <tr>
                                                                     <td>
-                                                                        <label >Signature</label>
+                                                                        <label ><% = Treatment.Classes.FieldNames.getFieldName("Profile-Signature", "Signature") %></label>
                                                                         <div class="card-block">
                                                                             <div class="img-hover">
                                                                                 <asp:Image ID="Emp_Signature" class="img-fluid img-radius" alt="Signature.jpg" runat="server" ImageUrl="~/media/Signature/Signature.jpg" />
@@ -274,7 +274,7 @@
                                                 <!-- end of row -->
                                                 <div class="text-center">
                                                     <asp:Button  ID="EmpUpdate"  runat="server" Text="Save" class="btn btn-primary waves-effect waves-light m-r-20" ValidationGroup="Per" OnClick="EmpUpdate_Click"  />
-                                                    <a href="#!" id="edit-cancel" class="btn btn-default waves-effect btn-outline-danger">Cancel</a>
+                                                    <a href="#!" id="edit-cancel" class="btn btn-default waves-effect btn-outline-danger"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Cancel", "Cancel") %></a>
                                                 </div>
                                             </div>
                                             <!-- end of edit info -->
@@ -295,7 +295,7 @@
                         <!-- info card start -->
                          <div class="card">
                             <div class="card-header">
-                                <h5 class="card-header-text">Change PassWord</h5>
+                                <h5 class="card-header-text"><% = Treatment.Classes.FieldNames.getFieldName("Profile-ChangePassWord", "Change PassWord") %></h5>
                             </div>
                                 <!-- end of view-info -->
                                 <div class="edit-info-11">
@@ -308,7 +308,7 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
-                                                                       <label class="j-label">Old Pass Word</label>
+                                                                       <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Profile-OldPassWord", "Old Pass Word") %></label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
                                                                             <asp:TextBox ID="OldPassWord" runat="server" class="form-control" placeholder="Enter Old Pass Word" TextMode="SingleLine" type="password"></asp:TextBox>
@@ -320,7 +320,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                      <label class="j-label">New PassWord</label>
+                                                                      <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Profile-NewPassWord", "New PassWord") %></label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
                                                                             <asp:TextBox ID="NewPassWord" runat="server" class="form-control" placeholder="Enter New PassWord" TextMode="SingleLine" type="password"></asp:TextBox>
@@ -332,7 +332,7 @@
                                                                 </tr>
                                                               <tr>
                                                                     <td>
-                                                                         <label class="j-label">Try New PassWord</label>
+                                                                         <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Profile-TryNewPassWord", "Try New PassWord") %></label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
                                                                             <asp:TextBox ID="TryNewPassWord" runat="server" class="form-control" placeholder="Try New PassWord" TextMode="SingleLine" type="password"></asp:TextBox>
@@ -349,7 +349,7 @@
                                                 <!-- end of row -->
                                                 <div class="text-center">
                                                     <asp:Button  ID="ChangeButton"  runat="server" Text="Save" class="btn btn-primary waves-effect waves-light m-r-20" ValidationGroup="Per2" OnClick="ChangeButton_Click"  />
-                                                    <a href="#!" id="edit-cancel2" class="btn btn-default waves-effect btn-outline-danger">Cancel</a>
+                                                    <a href="#!" id="edit-cancel2" class="btn btn-default waves-effect btn-outline-danger"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Cancel", "Cancel") %></a>
                                                 </div>
                                             </div>
                                             <!-- end of edit info -->

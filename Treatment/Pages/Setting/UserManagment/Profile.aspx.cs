@@ -69,6 +69,7 @@ namespace Treatment.Pages.Setting.UserManagment
                 {
                     var Lang = db.LanguageMasters.First(x => x.ID == Employees.Language_id);
                     EmpLanguage.InnerText = Lang.Language_Name;
+                    Language.SelectedValue = Employees.Language_id.ToString();
                 }
 
                 var Emp_Stru = db.Employee_Structure.Where(x => x.Employee_Id == EmployeeId && x.Status_Structure==true ).ToList();

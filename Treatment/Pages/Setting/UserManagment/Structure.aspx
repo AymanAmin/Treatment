@@ -8,7 +8,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Structure </title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("Structure-Title", "User Management - Groups") %></title>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body_Holder" runat="server">
 
@@ -67,7 +67,7 @@
                                             <label class="j-label">Parent Form</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon3"><i class="icofont icofont-tree"></i></span>
-                                                <asp:DropDownList ID="Parent" runat="server" class="form-control form-control-primary" DataSourceID="TreeDataSourceView" DataTextField="Structure_Name_Ar" DataValueField="Structure_Id"></asp:DropDownList>
+                                                <asp:DropDownList ID="Parent" runat="server" class="form-control form-control-primary" DataSourceID="TreeDataSourceView" DataTextField="Structure_Name_En" DataValueField="Structure_Id"></asp:DropDownList>
                                             </div>
                                         </div>
 
@@ -83,7 +83,7 @@
                 </div>
                 <!-- Social Sign in card start -->
                 <div class="form-group col-sm-12" style="text-align: right;">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social">Add Structure</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social"><% = Treatment.Classes.FieldNames.getFieldName("Structure-AddStructure", "Add Structure") %></button>
                 </div>
                 <!-- Structure Tree -->
                 <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False" DataSourceID="TreeDataSourceView" EnableTheming="True" KeyFieldName="Structure_Id" ParentFieldName="Structure_Parent" PreviewFieldName="Structure_Name" Theme="Mulberry" OnNodeDeleting="ASPxTreeList1_NodeDeleting" OnNodeDeleted="ASPxTreeList1_NodeDeleted">
