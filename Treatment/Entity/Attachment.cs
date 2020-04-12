@@ -17,6 +17,7 @@ namespace Treatment.Entity
         public int Attachment_id { get; set; }
         public Nullable<int> Treatment_Id { get; set; }
         public string Attachment_Path { get; set; }
+        public string Attachment_Name { get; set; }
     
         public virtual Treatment_Master Treatment_Master { get; set; }
     }

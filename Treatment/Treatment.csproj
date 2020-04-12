@@ -141,6 +141,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2812-4-2020%29.sql" />
     <Content Include="Entity\DataBase\Treatment Schema &amp; Data.sql" />
     <Content Include="Entity\ECMS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -2135,6 +2136,9 @@
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Log_File.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Notification_Master.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Owner_Relationship.cs">

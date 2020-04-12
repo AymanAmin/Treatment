@@ -14,21 +14,26 @@ namespace Treatment.Pages.Treatment
     public partial class ShowTreatment : System.Web.UI.Page
     {
         ECMSEntities db;
-        int treatmentId = 0, recoverParentid = 0, treatmentDetialId = 0, tabId = 0;
+        int treatmentId = 0, recoverParentid = 0, treatmentDetialId = 0, tabId = 0, notificationMasterId = 0;
         string messageForm = "", messageReplyForm = "", messageAssignmentForm = "", yourHTMLStringTrack = "", detialAssingmentNote = "";
-        int currentStructureUserId = 0, currentUserId = 0, marginTreeTrack = 0;
+        int currentStructureUserId = 0, currentUserId = 0, marginTreeTrack = 0 ;
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
         List<Treatment_Detial> treeTreatmentDetial;
         List<Treatment_Detial> doneTreatmentDetial;
         Treatment_Detial oneTreatmentDetial;
         Treatment_Detial recoverTreatmentDetial;
-        bool isSecert = false, isPath = false;
+        bool isSecert = false, isPath = false, flayRequiredReply = false;
         protected void Page_Load(object sender, EventArgs e)
+        {
+            reloadPage();
+        }
+
+        private void reloadPage()
         {
             checkLogin();
             db = new ECMSEntities();
-            treatmentId = 0; recoverParentid = 0; treatmentDetialId = 0; tabId = 0;
+            treatmentId = 0; recoverParentid = 0; treatmentDetialId = 0; tabId = 0; notificationMasterId = 0;
             isSecert = false; isPath = false;
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = getStructure(currentUserId);
@@ -59,7 +64,6 @@ namespace Treatment.Pages.Treatment
 
             }
         }
-
         private void checkLogin()
         {
             if (SessionWrapper.LoggedUser != null)
@@ -87,7 +91,7 @@ namespace Treatment.Pages.Treatment
                     isTreatment = db.Treatment_Master.First(x => x.Treatment_Id == treatmentId);
                     if (int.TryParse(Request["getTabId"], out tabId) && tabId > 0)
                     {
-                        if (tabId != 2)
+                        if (tabId == 1 || tabId == 3)
                         {
                             if (int.TryParse(Request["getTreatmentDetialId"], out treatmentDetialId) && treatmentDetialId > 0)
                             {
@@ -109,7 +113,7 @@ namespace Treatment.Pages.Treatment
                                 }
                                 //else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
 
-                                bool flayRequiredReply = false;
+                                flayRequiredReply = false;
                                 bool.TryParse(isTreatmentDetial.Treatment_Master.Required_Reply.ToString(), out flayRequiredReply);
                                 if (flayRequiredReply)
                                 {
@@ -141,12 +145,23 @@ namespace Treatment.Pages.Treatment
                             }
                             else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
                         }
-                        else
+                        else if(tabId == 2)
                         {
                             if (isTreatment.From_Employee_Structure_Id == currentStructureUserId)
                             {
                                 treatmentDetialId = 0;
                                 actionReply.Style["display"] = "none";
+                                return;
+                            }
+                            else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
+                        }
+                        else if (tabId == 4)
+                        {
+                            if (int.TryParse(Request["getNotificationId"], out notificationMasterId) && notificationMasterId > 0)
+                            {
+                                treatmentDetialId = 0;
+                                actionReply.Style["display"] = "none";
+                                updatetReadNotification(notificationMasterId);
                                 return;
                             }
                             else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
@@ -187,8 +202,10 @@ namespace Treatment.Pages.Treatment
                 treatmentManagement.InnerText = showTreatment.Structure.Structure_Name_En;
                 treatmentClassification.InnerText = showTreatment.Treatment_Class.Treatment_Class_Name_En;
                 treatmentType.InnerText = showTreatment.Treatment_Type.Treatment_Type_Name_En;
-                treatmentSecret.InnerText = showTreatment.Treatment_Confidentiality.Treatment_Confidentiality_Name_En;
-                treatmentPriority.InnerText = showTreatment.Treatment_Priority.Treatment_Priority_Name_En;
+                treatmentSecret.InnerHtml = "<label class='" + showTreatment.Treatment_Confidentiality.Css_Class + "'>" + showTreatment.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label>";
+                treatmentPriority.InnerHtml = "<a href='#!' data-toggle='tooltip' data-placement='top' data-trigger='hover' title='" + showTreatment.Treatment_Priority.Treatment_Priority_Name_En + "'>" +
+                                                     "<i class='" + showTreatment.Treatment_Priority.Css_Class + "'></i>" +
+                                                "</a>&nbsp;" + showTreatment.Treatment_Priority.Treatment_Priority_Name_En;
                 treatmentSpeedUp.InnerText = showTreatment.Treatment_Delivery.Treatment_Delivery_Name_En;
                 treatmentStatus.InnerText = showTreatment.Treatment_Status.Treatment_Status_Name_En;
                 if ((bool)showTreatment.Required_Reply)
@@ -302,6 +319,7 @@ namespace Treatment.Pages.Treatment
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Reply was Sucessfully saved in system');", true);
                 clearReplyTreatment();
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
             }
             else
             {
@@ -323,6 +341,15 @@ namespace Treatment.Pages.Treatment
 
                     db.Entry(newReplyTreatment).State = EntityState.Modified;
                     db.SaveChanges();
+                    string linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentId + "&getTabId=4&getTreatmentDetialId=" + newReplyTreatment.Parent + "&getNotificationId=";
+                    if (insertNotification(replyTreatement.Text, replyTreatement.Text, newReplyTreatment.Treatment_Master.Treatment_Id, linkNotif))
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
                     //LogData = "data:" + JsonConvert.SerializeObject(newReplyTreatment, logFileModule.settings);
                     //logFileModule.logfile(5, "إضافة رد علي معاملة", "", LogData);
                 }
@@ -358,6 +385,7 @@ namespace Treatment.Pages.Treatment
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Assignment was Sucessfully saved in system');", true);
                 clearAssignmentTreatment();
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
             }
             else
             {
@@ -437,10 +465,13 @@ namespace Treatment.Pages.Treatment
                     db.SaveChanges();
                     //LogData = "data:" + JsonConvert.SerializeObject(newTreatment, logFileModule.settings);
                     //logFileModule.logfile(4, "إضافة معاملة", "", LogData);
-                    if (!closeAssignmentTreatment())
+                    if (!flayRequiredReply)
                     {
-                        messageAssignmentForm = "Erorr to save Close Assignment data in system";
-                        return false;
+                        if (!closeAssignmentTreatment())
+                        {
+                            messageAssignmentForm = "Erorr to save Close Assignment data in system";
+                            return false;
+                        }
                     }
                 }
                 catch { messageAssignmentForm = "Erorr to save data in system"; return false; }
@@ -504,6 +535,7 @@ namespace Treatment.Pages.Treatment
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Close Treatment was Sucessfully saved in system');", true);
                 actionReply.Style["display"] = "none";
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
             }
             else
             {
@@ -535,7 +567,7 @@ namespace Treatment.Pages.Treatment
                 {
                     List<Treatment_Detial> treatmentDetial = new List<Treatment_Detial>();
                     List<Treatment_Master> treatmentMaser = new List<Treatment_Master>();
-                    treatmentDetial = dbTrack.Treatment_Detial.Where(x => x.Treatment_Id == treatmentId && x.Assignment_Status_Id == 3).ToList<Treatment_Detial>();
+                    treatmentDetial = dbTrack.Treatment_Detial.Where(x => x.Treatment_Id == treatmentId && (x.Assignment_Status_Id == 3 || (x.Assignment_Status_Id == 2 && x.Treatment_Master.Required_Reply == true))).ToList<Treatment_Detial>();
                     for (int i = 0; i < treatmentDetial.Count; i++)
                     {
                         marginTreeTrack = 0;
@@ -581,7 +613,7 @@ namespace Treatment.Pages.Treatment
             try
             {
                 oneTreatmentDetial = new Treatment_Detial();
-                oneTreatmentDetial = db.Treatment_Detial.FirstOrDefault(x => x.Treatment_Detial_Id == trackTreatmentDetialId && x.Assignment_Status_Id == 3);
+                oneTreatmentDetial = db.Treatment_Detial.FirstOrDefault(x => x.Treatment_Detial_Id == trackTreatmentDetialId && (x.Assignment_Status_Id == 3 || (x.Assignment_Status_Id == 2 && x.Treatment_Master.Required_Reply == true)));
                 if (!doneTreatmentDetial.Exists(x => x.Treatment_Detial_Id == oneTreatmentDetial.Treatment_Detial_Id) && oneTreatmentDetial != null)
                 {
                     doneTreatmentDetial.Add(oneTreatmentDetial);
@@ -668,5 +700,46 @@ namespace Treatment.Pages.Treatment
             return detialAssingmentNote;
         }
 
+        private bool insertNotification(string notificationDescriptionAr, string notificationDescriptionEn, int notificationMasterId, string notificationLink)
+        {
+            try
+            {
+                using (ECMSEntities dbEcms = new ECMSEntities())
+                {
+                    Notification_Master notificationMaster = new Notification_Master();
+                    notificationMaster = dbEcms.Notification_Master.Create();
+                    notificationMaster.Notification_Date = DateTime.Now;
+                    notificationMaster.Is_Read = false;
+                    notificationMaster.Employee_Structure_Id = currentStructureUserId;
+                    notificationMaster.Master_Id = notificationMasterId;
+                    notificationMaster.Notification_Description_Ar = notificationDescriptionAr;
+                    notificationMaster.Notification_Description_En = notificationDescriptionEn;
+                    notificationMaster.Notification_Link = notificationLink;
+
+                    dbEcms.Notification_Master.Add(notificationMaster);
+                    dbEcms.SaveChanges();
+                }
+                return true; 
+            }
+            catch { return false; }
+        }
+
+        private bool updatetReadNotification(int notificationId)
+        {
+            try
+            {
+                using (ECMSEntities dbEcms = new ECMSEntities())
+                {
+                    Notification_Master notificationMaster = new Notification_Master();
+                    notificationMaster = dbEcms.Notification_Master.First(x => x.Notification_Id == notificationId);
+                    notificationMaster.Date_Read = DateTime.Now;
+                    notificationMaster.Is_Read = true;
+                    dbEcms.Entry(notificationMaster).State = EntityState.Modified;
+                    dbEcms.SaveChanges();
+                }
+                return true;
+            }
+            catch { return false; }
+        }
     }
 }

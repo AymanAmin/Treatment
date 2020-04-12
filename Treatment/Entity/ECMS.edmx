@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Assignment_Status">
           <Key>
             <PropertyRef Name="Assignment_Status_Id" />
@@ -20,6 +20,7 @@
           <Property Name="Attachment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Treatment_Id" Type="int" />
           <Property Name="Attachment_Path" Type="nvarchar(max)" />
+          <Property Name="Attachment_Name" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -84,6 +85,20 @@
           <Property Name="Form_Id" Type="int" />
           <Property Name="Log_Name" Type="nvarchar(max)" />
           <Property Name="Log_Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Notification_Master">
+          <Key>
+            <PropertyRef Name="Notification_Id" />
+          </Key>
+          <Property Name="Notification_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Notification_Date" Type="datetime" />
+          <Property Name="Notification_Description_Ar" Type="nvarchar(max)" />
+          <Property Name="Notification_Description_En" Type="nvarchar(max)" />
+          <Property Name="Is_Read" Type="bit" />
+          <Property Name="Date_Read" Type="datetime" />
+          <Property Name="Employee_Structure_Id" Type="int" />
+          <Property Name="Master_Id" Type="int" />
+          <Property Name="Notification_Link" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Owner_Relationship">
           <Key>
@@ -511,6 +526,7 @@
           <EntitySet Name="LanguageMaster" EntityType="Self.LanguageMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lanuage_Detials" EntityType="Self.Lanuage_Detials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log_File" EntityType="Self.Log_File" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification_Master" EntityType="Self.Notification_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Owner_Relationship" EntityType="Self.Owner_Relationship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission_Group" EntityType="Self.Permission_Group" Schema="dbo" store:Type="Tables" />
@@ -617,8 +633,7 @@
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ECMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -639,6 +654,7 @@
           <Property Name="Treatment_Id" Type="Int32" />
           <Property Name="Attachment_Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Attachment_Treatment" FromRole="Attachment" ToRole="Treatment_Master" />
+          <Property Name="Attachment_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -1279,7 +1295,22 @@
             <End Role="Treatment_Type" EntitySet="Treatment_Type" />
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
           </AssociationSet>
+          <EntitySet Name="Notification_Master" EntityType="ECMSModel.Notification_Master" />
         </EntityContainer>
+        <EntityType Name="Notification_Master">
+          <Key>
+            <PropertyRef Name="Notification_Id" />
+          </Key>
+          <Property Name="Notification_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Notification_Date" Type="DateTime" Precision="3" />
+          <Property Name="Notification_Description_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notification_Description_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Is_Read" Type="Boolean" />
+          <Property Name="Date_Read" Type="DateTime" Precision="3" />
+          <Property Name="Employee_Structure_Id" Type="Int32" />
+          <Property Name="Master_Id" Type="Int32" />
+          <Property Name="Notification_Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1298,6 +1329,7 @@
           <EntitySetMapping Name="Attachments">
             <EntityTypeMapping TypeName="ECMSModel.Attachment">
               <MappingFragment StoreEntitySet="Attachment">
+                <ScalarProperty Name="Attachment_Name" ColumnName="Attachment_Name" />
                 <ScalarProperty Name="Attachment_id" ColumnName="Attachment_id" />
                 <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
                 <ScalarProperty Name="Attachment_Path" ColumnName="Attachment_Path" />
@@ -1525,6 +1557,21 @@
                 <ScalarProperty Name="Treatment_Type_Id" ColumnName="Treatment_Type_Id" />
                 <ScalarProperty Name="Treatment_Type_Name_Ar" ColumnName="Treatment_Type_Name_Ar" />
                 <ScalarProperty Name="Treatment_Type_Name_En" ColumnName="Treatment_Type_Name_En" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notification_Master">
+            <EntityTypeMapping TypeName="ECMSModel.Notification_Master">
+              <MappingFragment StoreEntitySet="Notification_Master">
+                <ScalarProperty Name="Notification_Link" ColumnName="Notification_Link" />
+                <ScalarProperty Name="Master_Id" ColumnName="Master_Id" />
+                <ScalarProperty Name="Employee_Structure_Id" ColumnName="Employee_Structure_Id" />
+                <ScalarProperty Name="Date_Read" ColumnName="Date_Read" />
+                <ScalarProperty Name="Is_Read" ColumnName="Is_Read" />
+                <ScalarProperty Name="Notification_Description_En" ColumnName="Notification_Description_En" />
+                <ScalarProperty Name="Notification_Description_Ar" ColumnName="Notification_Description_Ar" />
+                <ScalarProperty Name="Notification_Date" ColumnName="Notification_Date" />
+                <ScalarProperty Name="Notification_Id" ColumnName="Notification_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

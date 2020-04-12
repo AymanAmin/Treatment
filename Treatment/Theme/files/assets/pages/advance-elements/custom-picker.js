@@ -253,7 +253,8 @@ $("#Body_Holder_replyDate").dateDropper({
     dropWidth: 200,
     dropPrimaryColor: "#1abc9c",
     dropBorder: "1px solid #1abc9c",
-    maxYear: "3000"
+    maxYear: "3000",
+    modal: true
 }),
 $("#dropper-animation").dateDropper( {
         dropWidth: 200,

@@ -388,7 +388,7 @@
                                         <label>Reply Date</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                                            <asp:TextBox ID="replyDate" runat="server" class="form-control" placeholder="Enter Treatment Date" TextMode="SingleLine"></asp:TextBox>
+                                            <asp:TextBox ID="replyDate" runat="server" class="form-control" data-dd-modal="true" placeholder="Enter Treatment Date" TextMode="SingleLine"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
@@ -497,5 +497,6 @@
         .label-default {
             background: linear-gradient(to right, #e0e0e0, #f6f7fb);
         }
+        #dd-w-0 { margin-top:-35%}
     </style>
 </asp:Content>

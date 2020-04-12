@@ -170,6 +170,9 @@
         .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li:hover > a {
             color: #01a9ac !important;
         }
+        .hover-notification:hover{
+            background-color: #f1f1f1 !important;
+        }
     </style>
 
     <script>
@@ -367,47 +370,7 @@
                                         </div>
                                     </li>-->
                                     <li class="header-notification">
-                                        <div class="dropdown-primary dropdown">
-                                            <div class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="feather icon-bell"></i>
-                                                <span class="badge bg-c-pink">5</span>
-                                            </div>
-                                            <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                                <li>
-                                                    <h6><% = Treatment.Classes.FieldNames.getFieldName("Master-Notifications", "Notifications") %>:</h6>
-                                                    <label class="label label-danger"><% = Treatment.Classes.FieldNames.getFieldName("Master-Notifications-New", "New") %></label>
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="Generic placeholder image" />
-                                                        <div class="media-body">
-                                                            <h5 class="notification-user">Mazin Awad</h5>
-                                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                            <span class="notification-time">10 minutes ago</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="Generic placeholder image" />
-                                                        <div class="media-body">
-                                                            <h5 class="notification-user">Ayman Amin</h5>
-                                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                            <span class="notification-time">20 minutes ago</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-5.jpg" alt="Generic placeholder image" />
-                                                        <div class="media-body">
-                                                            <h5 class="notification-user">Hassan Bakre</h5>
-                                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                            <span class="notification-time">30 minutes ago</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                        <div class="dropdown-primary dropdown" runat="server" id="panelNotification">
                                         </div>
                                     </li>
                                     <li class="user-profile header-notification">
@@ -594,7 +557,6 @@
             <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap-maxlength\js\bootstrap-maxlength.js"></script>
             <!-- Custom js -->
             <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\advance-elements\swithces.js"></script>
-
             <!-- notification js -->
             <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\bootstrap-growl.min.js"></script>
             <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\notification\notification.js"></script>
@@ -715,7 +677,13 @@
                 });
 
             </script>
+            
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#add-model-assignment').prepend($('#dd-w-0'));
+                });
 
+            </script>
             <script>
 
                 $(function () {
