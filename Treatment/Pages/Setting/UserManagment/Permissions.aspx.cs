@@ -68,7 +68,7 @@ namespace Treatment.Pages.Setting.UserManagment
 
                 /* Add it to log file */
                 LogData = "data:" + JsonConvert.SerializeObject(Per, logFileModule.settings);
-                logFileModule.logfile(10, "إضافة صلاحية جديدة", "", LogData);
+                logFileModule.logfile(10, "إضافة صلاحية جديدة", "add new permission", LogData);
 
                 //PriorityDataSource.DataBind();
             }

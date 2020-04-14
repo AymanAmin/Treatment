@@ -62,7 +62,7 @@ namespace Treatment.Pages.Setting.UserManagment
                 db.SaveChanges();
                 /* Add it to log file */
                 LogData = "data:" + JsonConvert.SerializeObject(group, logFileModule.settings);
-                logFileModule.logfile(10, "إنشاء مجموعة جديدة", "", LogData);
+                logFileModule.logfile(10, "إنشاء مجموعة جديدة", "create new group", LogData);
                 //PriorityDataSource.DataBind();
             }
             catch { return false; }
@@ -110,7 +110,7 @@ namespace Treatment.Pages.Setting.UserManagment
                 db.SaveChanges();
                 /* Add it to log file */
                 LogData = "data:" + JsonConvert.SerializeObject(Group_Id, logFileModule.settings);
-                logFileModule.logfile(10, "تعديل صلاحيات المجموعة", "", LogData);
+                logFileModule.logfile(10, "تعديل صلاحيات المجموعة", "update group permissions", LogData);
             }
             catch { }
         }

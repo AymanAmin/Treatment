@@ -71,7 +71,7 @@ namespace Treatment.Pages.Setting.Auth
 
                             /* Add it to log file */
                             LogData = "data:" + JsonConvert.SerializeObject(emp, logFileModule.settings);
-                            logFileModule.logfile(10, "تسجيل دخول", "", LogData);
+                            logFileModule.logfile(10, "تسجيل دخول", "login to system", LogData);
                         }
                         else
                             continue;

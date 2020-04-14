@@ -52,6 +52,7 @@
     <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxPivotGrid.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.ASPxThemes.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.ASPxTreeList.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.Bootstrap.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -168,6 +169,7 @@
     <Content Include="Pages\Setting\UserManagment\Permissions.aspx" />
     <Content Include="Pages\Setting\UserManagment\Profile.aspx" />
     <Content Include="Pages\Setting\UserManagment\Structure.aspx" />
+    <Content Include="Pages\Treatment\AdvancedSearch.aspx" />
     <Content Include="Pages\Treatment\inbox.aspx" />
     <Content Include="Pages\Treatment\NewTreatment.aspx" />
     <Content Include="Pages\Treatment\ShowTreatment.aspx" />
@@ -2285,6 +2287,13 @@
     </Compile>
     <Compile Include="Pages\Setting\UserManagment\Structure.aspx.designer.cs">
       <DependentUpon>Structure.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Treatment\AdvancedSearch.aspx.cs">
+      <DependentUpon>AdvancedSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Treatment\AdvancedSearch.aspx.designer.cs">
+      <DependentUpon>AdvancedSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Treatment\inbox.aspx.cs">
       <DependentUpon>inbox.aspx</DependentUpon>

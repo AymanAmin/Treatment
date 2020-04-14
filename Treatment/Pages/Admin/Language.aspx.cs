@@ -51,7 +51,7 @@ namespace Treatment.Pages.Admin
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(lang, logFileModule.settings);
-            logFileModule.logfile(10, "تم اضافة ترجمة جديدة", "", LogData);
+            logFileModule.logfile(10, " اضافة ترجمة جديدة", "Add a new translation", LogData);
         }
 
         protected void LanguageGridView_RowUpdated(object sender, DevExpress.Web.Data.ASPxDataUpdatedEventArgs e)
@@ -65,7 +65,7 @@ namespace Treatment.Pages.Admin
             
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(lang, logFileModule.settings);
-            logFileModule.logfile(10, "تم تعديل الترجمة", "", LogData);
+            logFileModule.logfile(10, " تعديل الترجمة", "update an existing translation", LogData);
         }
 
         protected void LanguageGridView_RowDeleted(object sender, DevExpress.Web.Data.ASPxDataDeletedEventArgs e)
@@ -82,7 +82,7 @@ namespace Treatment.Pages.Admin
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(lang, logFileModule.settings);
-            logFileModule.logfile(10, "تم حذف الترجمة", "", LogData);
+            logFileModule.logfile(10, " حذف الترجمة", "delete translation", LogData);
         }
     }
 }

@@ -84,7 +84,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Priority, logFileModule.settings);
-            logFileModule.logfile(10, "تم اضافة اولوية جديدة", "", LogData);
+            logFileModule.logfile(10, "اضافة اولوية جديدة", "add a new priority", LogData);
         }
 
         protected void PriorityGridView_RowUpdated(object sender, DevExpress.Web.Data.ASPxDataUpdatedEventArgs e)
@@ -95,7 +95,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Priority, logFileModule.settings);
-            logFileModule.logfile(10, "تم تعديل اولوية", "", LogData);
+            logFileModule.logfile(10, "تعديل اولوية", "update priority", LogData);
         }
 
         protected void PriorityGridView_RowDeleted(object sender, DevExpress.Web.Data.ASPxDataDeletedEventArgs e)
@@ -109,7 +109,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Priority, logFileModule.settings);
-            logFileModule.logfile(10, "تم حذف الاولوية", "", LogData);
+            logFileModule.logfile(10, "حذف الاولوية", "delete priority", LogData);
         }
 
         protected void ConfidentialityGridView_RowInserted(object sender, DevExpress.Web.Data.ASPxDataInsertedEventArgs e)
@@ -120,7 +120,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Confidentiality, logFileModule.settings);
-            logFileModule.logfile(10, "تم اضافة درجة سرية", "", LogData);
+            logFileModule.logfile(10, "اضافة درجة سرية", "add a secret level", LogData);
         }
 
         protected void ConfidentialityGridView_RowUpdated(object sender, DevExpress.Web.Data.ASPxDataUpdatedEventArgs e)
@@ -131,7 +131,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Confidentiality, logFileModule.settings);
-            logFileModule.logfile(10, "تم تعديل درجة السرية", "", LogData);
+            logFileModule.logfile(10, "تعديل درجة السرية", "update secret level", LogData);
         }
 
         protected void ConfidentialityGridView_RowDeleted(object sender, DevExpress.Web.Data.ASPxDataDeletedEventArgs e)
@@ -144,7 +144,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Confidentiality, logFileModule.settings);
-            logFileModule.logfile(10, "تم حذف درجة سرية", "", LogData);
+            logFileModule.logfile(10, "حذف درجة سرية", "delete secret level", LogData);
         }
 
         protected void TypeGridView_RowInserted(object sender, DevExpress.Web.Data.ASPxDataInsertedEventArgs e)
@@ -155,7 +155,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Type, logFileModule.settings);
-            logFileModule.logfile(10, "تم اضافة نوع جديد", "", LogData);
+            logFileModule.logfile(10, "اضافة نوع جديد", "add treatment type", LogData);
         }
 
         protected void TypeGridView_RowUpdated(object sender, DevExpress.Web.Data.ASPxDataUpdatedEventArgs e)
@@ -166,7 +166,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Type, logFileModule.settings);
-            logFileModule.logfile(10, "تم تعديل نوع", "", LogData);
+            logFileModule.logfile(10, " تعديل نوع", "update treatment type", LogData);
         }
 
         protected void TypeGridView_RowDeleted(object sender, DevExpress.Web.Data.ASPxDataDeletedEventArgs e)
@@ -178,7 +178,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Type, logFileModule.settings);
-            logFileModule.logfile(10, "تم حذف النوع ", "", LogData);
+            logFileModule.logfile(10, "حذف النوع", "delete treatment type", LogData);
         }
 
         protected void StatusGridView_RowInserted(object sender, DevExpress.Web.Data.ASPxDataInsertedEventArgs e)
@@ -189,7 +189,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Status, logFileModule.settings);
-            logFileModule.logfile(10, "تم اضافة حالة جديدة", "", LogData);
+            logFileModule.logfile(10, "اضافة حالة جديدة", "add treatment staus", LogData);
         }
 
         protected void StatusGridView_RowUpdated(object sender, DevExpress.Web.Data.ASPxDataUpdatedEventArgs e)
@@ -200,7 +200,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Status, logFileModule.settings);
-            logFileModule.logfile(10, "تم تعديل حالة", "", LogData);
+            logFileModule.logfile(10, "تعديل حالة", "update treatment status", LogData);
         }
 
         protected void StatusGridView_RowDeleted(object sender, DevExpress.Web.Data.ASPxDataDeletedEventArgs e)
@@ -212,7 +212,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Status, logFileModule.settings);
-            logFileModule.logfile(10, "تم حذف حالة ", "", LogData);
+            logFileModule.logfile(10, "حذف حالة ", "delete treatment status", LogData);
         }
 
         protected void ProcedureGridView_RowInserted(object sender, DevExpress.Web.Data.ASPxDataInsertedEventArgs e)
@@ -223,7 +223,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Procedure, logFileModule.settings);
-            logFileModule.logfile(10, "تم اضافة اجراء جديد", "", LogData);
+            logFileModule.logfile(10, "اضافة اجراء جديد", "add treatment procedure", LogData);
         }
 
         protected void ProcedureGridView_RowUpdated(object sender, DevExpress.Web.Data.ASPxDataUpdatedEventArgs e)
@@ -234,7 +234,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Procedure, logFileModule.settings);
-            logFileModule.logfile(10, "تم تعديل اجراء", "", LogData);
+            logFileModule.logfile(10, "تعديل اجراء", "update treatment procedure", LogData);
         }
 
         protected void ProcedureGridView_RowDeleted(object sender, DevExpress.Web.Data.ASPxDataDeletedEventArgs e)
@@ -246,7 +246,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Procedure, logFileModule.settings);
-            logFileModule.logfile(10, "تم حذف اجراء ", "", LogData);
+            logFileModule.logfile(10, "حذف اجراء ", "delete treatment procedure", LogData);
         }
 
         protected void DeliveryGridView_RowInserted(object sender, DevExpress.Web.Data.ASPxDataInsertedEventArgs e)
@@ -257,7 +257,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Delivery, logFileModule.settings);
-            logFileModule.logfile(10, "تم اضافة حالة تسليم جديدة", "", LogData);
+            logFileModule.logfile(10, "اضافة حالة تسليم جديدة", "add treatment delivery", LogData);
         }
 
         protected void DeliveryGridView_RowUpdated(object sender, DevExpress.Web.Data.ASPxDataUpdatedEventArgs e)
@@ -268,7 +268,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Delivery, logFileModule.settings);
-            logFileModule.logfile(10, "تم تعديل حالة التسليم", "", LogData);
+            logFileModule.logfile(10, "تعديل حالة التسليم", "update treatment delivery", LogData);
         }
 
         protected void DeliveryGridView_RowDeleted(object sender, DevExpress.Web.Data.ASPxDataDeletedEventArgs e)
@@ -280,7 +280,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Delivery, logFileModule.settings);
-            logFileModule.logfile(10, "تم حذف حالة التسليم ", "", LogData);
+            logFileModule.logfile(10, "حذف حالة التسليم", "delete treatment delivery", LogData);
         }
 
         protected void ClassGridView_RowInserted(object sender, DevExpress.Web.Data.ASPxDataInsertedEventArgs e)
@@ -291,7 +291,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Class, logFileModule.settings);
-            logFileModule.logfile(10, "تم اضافة تصنيف جديد", "", LogData);
+            logFileModule.logfile(10, "اضافة تصنيف جديد", "add treatment class", LogData);
         }
 
         protected void ClassGridView_RowUpdated(object sender, DevExpress.Web.Data.ASPxDataUpdatedEventArgs e)
@@ -302,7 +302,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Class, logFileModule.settings);
-            logFileModule.logfile(10, "تم تعديل تصنيف", "", LogData);
+            logFileModule.logfile(10, "تعديل تصنيف", "update treatment class", LogData);
         }
 
         protected void ClassGridView_RowDeleted(object sender, DevExpress.Web.Data.ASPxDataDeletedEventArgs e)
@@ -314,7 +314,7 @@ namespace Treatment.Pages.Setting.TreatmentManagement
 
             /*Add it to log file */
             LogData = "data:" + JsonConvert.SerializeObject(Class, logFileModule.settings);
-            logFileModule.logfile(10, "تم حذف تصنيف", "", LogData);
+            logFileModule.logfile(10, "حذف تصنيف", "delete treatment class", LogData);
         }
     }
 }

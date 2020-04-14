@@ -123,7 +123,11 @@ namespace Treatment
                 str += "<li class=''>";
                 str += "<a href = '../../../../' > ";
                 str += "<span class='pcoded-micon active' style='color:#01a9ac'><i class='feather icon-home'></i></span>";
-                str += "<span class='pcoded-mtext'>Dashboard</span>";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<span class='pcoded-mtext'>لوحة المعلومات</span>";
+                else
+                    str += "<span class='pcoded-mtext'>Dashboard</span>";
+
                 str += "</a>";
                 str += "</li>";
 
