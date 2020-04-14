@@ -23,8 +23,8 @@
                     $('#Body_Holder_Employee_Email').val(Emp.Employee_Email);
                     $('#Body_Holder_Employee_Phone').val(Emp.Employee_Phone);
                     $('#Body_Holder_Groups').val(Emp.Group_Id).trigger('change');
-                    $('#Body_Holder_Language').val(Emp.Language_id).trigger('change');
-                    $('#Body_Holder_Active').val(Emp.Employee_Active);
+                    $('#Body_Holder_Language').val(Emp.Language_id).trigger('change'); 
+                    $('input[id=Body_Holder_Active]').prop('checked', Emp.Employee_Active);
                     debugger;
                     if (Emp.Calendar_id == 1){
                         $("input[id=Body_Holder_DateofBirth][value=DateofBirth]").prop('checked', true);
@@ -263,10 +263,17 @@
 
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <div class="col-sm-6">
-                                        <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Active", "Active") %></label>
-                                        <div class="input-group">
-                                            <input id="Active" runat="server" type="checkbox" class="js-single" />
+                                    <div class="col-sm-6">                                         
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Active", "Active") %> </label>
+                                       <div class="input-group">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input id="Active" runat="server" type="checkbox"  name="Active"/>
+                                                <span class="cr">
+                                                    <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                </span>
+                                             </label>
+                                         </div>
                                         </div>
                                     </div>
                                 </div>
