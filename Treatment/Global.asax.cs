@@ -12,6 +12,7 @@ namespace Treatment
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            DevExpress.XtraReports.Web.ASPxWebDocumentViewer.StaticInitialize();
         }
     }
 }

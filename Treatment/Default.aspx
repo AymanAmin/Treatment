@@ -83,7 +83,7 @@
             chart.render();
         }
 
-        setTimeout(function () { document.getElementById("header-div").style.display = "none"; }, 10);
+        setTimeout(function () { document.getElementById("header-div").style.display = "none"; }, 1);
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>

@@ -1,0 +1,21 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterEn.Master" AutoEventWireup="true" CodeBehind="Report.aspx.cs" Inherits="Treatment.Pages.Reports.Report" %>
+
+<%@ Register Assembly="DevExpress.XtraReports.v17.2.Web, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title><% = Treatment.Classes.FieldNames.getFieldName("Report-Title", "ECMS - Report") %></title>
+    <script>
+        setTimeout(function () { document.getElementById("header-div").style.display = "none"; }, 1);
+    </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card user-activity-card feed-card">
+                <div class="card-block" style="width: 100%">
+                    <dx:ASPxDocumentViewer ID="TreatmentASPxDocumentViewer" runat="server" Height="1150px" Theme="Default" Width="100%">
+                    </dx:ASPxDocumentViewer>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>
