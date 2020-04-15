@@ -15,7 +15,7 @@
     <!-- Page-body start -->
     <div class="page-body">
         <!-- Article Editor card start -->
-        <div class="card">
+        <div class="card ScrollStyle ">
             <div class="card-header">
                 <div class="card-header-right">
                     <ul class="list-unstyled card-option">

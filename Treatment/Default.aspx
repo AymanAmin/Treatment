@@ -226,7 +226,7 @@
                     </div>
                 </div>
                 <div class="card-block">
-                    <div id="chart" style="width: 100%;"></div>
+                    <div id="chart" style="width:100%;"></div>
                 </div>
 
             </div>

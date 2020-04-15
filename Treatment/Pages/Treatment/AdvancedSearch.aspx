@@ -9,7 +9,7 @@
     <div class="page-body">
         <!-- Article Editor card start -->
 
-        <div class="card">
+        <div class="card ScrollStyle">
             <div class="card-header">
                 <div class="card-header-right">
                     <ul class="list-unstyled card-option">
@@ -116,7 +116,7 @@
 
         <!-- Start Result Data -->
 
-        <div class="card">
+        <div class="card ScrollStyle">
             <div class="card-header">
                 <h5><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-Total", "Total") %> : (<asp:Literal ID="Total" runat="server"></asp:Literal>)</h5>
                 <span class="text-muted">
@@ -153,4 +153,5 @@
         <!-- End Result Data -->
     </div>
     <!-- Page-body end -->
+    
 </asp:Content>

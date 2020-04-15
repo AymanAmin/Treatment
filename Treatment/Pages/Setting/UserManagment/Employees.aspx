@@ -7,7 +7,10 @@
     <title><% = Treatment.Classes.FieldNames.getFieldName("Employees-Title", "User Management - Employee") %></title>
     <script type="text/javascript">
 
-        function showmodel(x) {           // debugger;            if (!isNaN(x.id)){            $.ajax({
+        function showmodel(x) {
+           // debugger;
+            if (!isNaN(x.id)){
+            $.ajax({
                 url: "Employees.aspx/ViewUserCard",
                 type: "POST",
                 data: "{ Employee_Id:"+x.id+"}",
@@ -67,7 +70,8 @@
            // GetServiceInformation(x.id)
         }
 
-        function DeleteEmplooye(x) {            $.ajax({
+        function DeleteEmplooye(x) {
+            $.ajax({
                 url: "Employees.aspx/DeleteEmplooye",
                 type: "POST",
                 data: "{ Employee_Id:" + x.id + "}",
@@ -87,7 +91,7 @@
     <input id="AddEmp_show" type="hidden" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" />
     <div class="page-body">
          <!-- Article Editor card start -->
-        <div class="card"  runat="server">
+        <div class="card ScrollStyle"  runat="server">
             <div class="card-header">
                 <div class="card-header-right">
                     <ul class="list-unstyled card-option">

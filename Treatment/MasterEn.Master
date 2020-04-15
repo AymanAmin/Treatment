@@ -173,6 +173,10 @@
         .hover-notification:hover{
             background-color: #f1f1f1 !important;
         }
+
+        .ScrollStyle {
+            overflow-y: scroll;
+        }
     </style>
 
     <script>
