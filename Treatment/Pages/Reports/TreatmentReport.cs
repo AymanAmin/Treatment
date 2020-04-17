@@ -293,6 +293,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel6.SizeF = new System.Drawing.SizeF(158.5F, 23F);
+            this.xrLabel6.StyleName = "PageInfo";
             this.xrLabel6.Text = "xrLabel6";
             // 
             // xrLabel5
