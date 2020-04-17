@@ -140,7 +140,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Employee_Structure].[Employee].[Employee_Name_En]")});
             this.xrLabel8.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(63.8334F, 0F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(35.00002F, 0F);
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.OddStyleName = "DetailData3";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -331,7 +331,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             // xrPictureBox4
             // 
             this.xrPictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox4.Image")));
-            this.xrPictureBox4.LocationFloat = new DevExpress.Utils.PointFloat(610.0001F, 409.8333F);
+            this.xrPictureBox4.LocationFloat = new DevExpress.Utils.PointFloat(612.604F, 409.8333F);
             this.xrPictureBox4.Name = "xrPictureBox4";
             this.xrPictureBox4.SizeF = new System.Drawing.SizeF(175.0001F, 110.7917F);
             this.xrPictureBox4.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
@@ -378,13 +378,16 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             // 
             // xrLabel10
             // 
+            this.xrLabel10.AutoWidth = true;
             this.xrLabel10.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
             this.xrLabel10.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLabel10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Treatment_Master].[Treatment_Procedure].[Treatment_Procedure_Name_En]")});
             this.xrLabel10.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(34.66673F, 495.2084F);
+            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(35.00002F, 495.2084F);
             this.xrLabel10.Name = "xrLabel10";
             this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel10.SizeF = new System.Drawing.SizeF(225.4998F, 23F);
+            this.xrLabel10.SizeF = new System.Drawing.SizeF(225.1665F, 23F);
             this.xrLabel10.StyleName = "DetailCaptionBackground3";
             this.xrLabel10.StylePriority.UseBorderDashStyle = false;
             this.xrLabel10.StylePriority.UseBorders = false;
