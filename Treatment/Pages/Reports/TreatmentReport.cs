@@ -331,7 +331,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             // xrPictureBox4
             // 
             this.xrPictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox4.Image")));
-            this.xrPictureBox4.LocationFloat = new DevExpress.Utils.PointFloat(612.604F, 409.8333F);
+            this.xrPictureBox4.LocationFloat = new DevExpress.Utils.PointFloat(611.5624F, 382.7499F);
             this.xrPictureBox4.Name = "xrPictureBox4";
             this.xrPictureBox4.SizeF = new System.Drawing.SizeF(175.0001F, 110.7917F);
             this.xrPictureBox4.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
