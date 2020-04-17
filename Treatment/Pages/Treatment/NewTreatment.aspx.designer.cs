@@ -85,6 +85,24 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.ListBox treatmentCopyTo;
         
         /// <summary>
+        /// requiredReply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox requiredReply;
+        
+        /// <summary>
+        /// replyDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox replyDate;
+        
+        /// <summary>
         /// subjectTreatement control.
         /// </summary>
         /// <remarks>
@@ -184,31 +202,13 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.TextBox speech;
         
         /// <summary>
-        /// addAttachments control.
+        /// addAttachments1111 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload addAttachments;
-        
-        /// <summary>
-        /// requiredReply control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox requiredReply;
-        
-        /// <summary>
-        /// replyDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox replyDate;
+        protected global::System.Web.UI.WebControls.FileUpload addAttachments1111;
         
         /// <summary>
         /// ownerShip control.

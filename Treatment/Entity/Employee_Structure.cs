@@ -16,6 +16,8 @@ namespace Treatment.Entity
     {
         public Employee_Structure()
         {
+            this.Notification_Master = new HashSet<Notification_Master>();
+            this.Notification_Master1 = new HashSet<Notification_Master>();
             this.Treatment_Detial = new HashSet<Treatment_Detial>();
             this.Treatment_Master = new HashSet<Treatment_Master>();
         }
@@ -29,6 +31,8 @@ namespace Treatment.Entity
     
         public virtual Employee Employee { get; set; }
         public virtual Structure Structure { get; set; }
+        public virtual ICollection<Notification_Master> Notification_Master { get; set; }
+        public virtual ICollection<Notification_Master> Notification_Master1 { get; set; }
         public virtual ICollection<Treatment_Detial> Treatment_Detial { get; set; }
         public virtual ICollection<Treatment_Master> Treatment_Master { get; set; }
     }

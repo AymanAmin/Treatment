@@ -91,8 +91,7 @@ namespace Treatment.Pages.Treatment
                     newTreatment.Treatment_Mother = 0;
                     if (checkRequiredReply())
                         newTreatment.Required_Reply_Date = DateTime.Parse(replyDate.Text);
-
-                    /////////////////////////////////////// Start Insert To /////////////////////////////////////
+                    /////////////////////////////////////// Start Insert Send To /////////////////////////////////////
                     Treatment_Detial treatmentDetial;
                     for (int i = 0; i < treatmentTo.Items.Count; i++)
                     {
@@ -108,7 +107,7 @@ namespace Treatment.Pages.Treatment
                             newTreatment.Treatment_Detial.Add(treatmentDetial);
                         }
                     }
-                    /////////////////////////////////////// End Insert To /////////////////////////////////////
+                    /////////////////////////////////////// End Insert Send To /////////////////////////////////////
 
                     /////////////////////////////////////// Start Insert Copy To /////////////////////////////////////
                     for (int i = 0; i < treatmentCopyTo.Items.Count; i++)
@@ -127,12 +126,35 @@ namespace Treatment.Pages.Treatment
                     }
                     /////////////////////////////////////// End Insert Copy To /////////////////////////////////////
 
+                    /////////////////////////////////////// Start Add Attachment /////////////////////////////////////
+                    foreach (HttpPostedFile postfiles in addAttachments1111.PostedFiles)
+                    {
+                        if (postfiles.ContentLength > 0 && postfiles.FileName != "")
+                        {
+                            Attachment addAtachtmentTreatment = new Attachment();
+                            addAtachtmentTreatment.Attachment_Path = UploadFile(postfiles);
+                            addAtachtmentTreatment.Attachment_Name = postfiles.FileName;
+                            newTreatment.Attachments.Add(addAtachtmentTreatment);
+                        }
+                    }
+                    /////////////////////////////////////// End Add Attachment /////////////////////////////////////
                     db.Treatment_Master.Add(newTreatment);
                     db.SaveChanges();
-                    //LogData = "data:" + JsonConvert.SerializeObject(newTreatment, logFileModule.settings);
-                    //logFileModule.logfile(4, "إضافة معاملة", "", LogData);
+                    if (insertNotification(newTreatment.Treatment_Id)) { }
+                    db.Configuration.LazyLoadingEnabled = false;
+                    LogData = "data:" + JsonConvert.SerializeObject(newTreatment, logFileModule.settings);
+                    logFileModule.logfile(1009, "إضافة معاملة جديدة", "Create New Treatment", LogData);
+
                 }
-                catch { messageForm = "Erorr to save data in system";  return false; }
+                catch (Exception exceptionLog) 
+                {
+                    string exceptionStackTrace = exceptionLog.StackTrace;
+                    string exceptionGetType = exceptionLog.GetType().ToString();
+                    string exceptionMessage = exceptionLog.Message;
+                    logFileModule.logfile(1025, exceptionStackTrace, exceptionGetType, exceptionMessage);
+                    messageForm = "Erorr to save data in system";
+                    return false;
+                }
                 return true;
             }
             else
@@ -149,8 +171,14 @@ namespace Treatment.Pages.Treatment
                 Employee_Structure employeeStructure = db.Employee_Structure.First(x => x.Employee_Id == employeeId);
                 employeeStructureId = (int)employeeStructure.Employee_Structure_Id;
             }
-            catch (Exception)
+            catch (Exception exceptionLog)
             {
+                string exceptionStackTrace = exceptionLog.StackTrace;
+                string exceptionGetType = exceptionLog.GetType().ToString();
+                string exceptionMessage = exceptionLog.Message;
+
+                logFileModule.logfile(1025, exceptionStackTrace, exceptionGetType, exceptionMessage);
+                messageForm = "Erorr to get Data Structure";
             }
             return employeeStructureId;
         }
@@ -208,11 +236,15 @@ namespace Treatment.Pages.Treatment
                 messageForm = "Pleace Select Speed Up";
                 return false;
             }
-            /*else if (speech.Text.Trim() == "")
+            else if (checkRequiredReply())
             {
-                messageForm = "Pleace Enter Speech";
-                return false;
-            }*/
+                if (replyDate.Text.Trim() == "")
+                {
+                    messageForm = "Pleace Enter Date Required Reply";
+                    return false;
+                }
+                else return true;
+            }
             else return true;
         }
         private bool checkRequiredReply()
@@ -222,6 +254,67 @@ namespace Treatment.Pages.Treatment
             else
                 return false;
         }
+
+        public string UploadFile(HttpPostedFile fileAttach)
+        {
+            string Imagepath = " ";
+            if (this.Page.IsValid)
+            {
+                if (!UtilityClass.UploadFileIsValid(ref fileAttach, UtilityClass.ValidFileExtentions))
+                {
+                    //ltrMessage.Text = "<div class='alert alert-danger fade in'><strong>Images only allowed !</strong></div>";
+                    Imagepath = "false";
+                }
+                Imagepath = string.Empty;
+
+                Imagepath = UtilityClass.UploadFilePostedFile(ref fileAttach, Server.MapPath(@"~\media\Treatment\"));
+            }
+            return Imagepath;
+        }
+
+        private bool insertNotification(int treatmentIdNotf)
+        {
+            try
+            {
+                using (ECMSEntities dbEcms = new ECMSEntities())
+                {
+                    Treatment_Master treatmentMasterNotf = new Treatment_Master();
+                    treatmentMasterNotf = dbEcms.Treatment_Master.FirstOrDefault(x => x.Treatment_Id == treatmentIdNotf && x.Required_Reply == true);
+                    if (treatmentMasterNotf != null)
+                    {
+                        List<Treatment_Detial> listTreatmentDetialNotf = new List<Treatment_Detial>();
+                        listTreatmentDetialNotf = treatmentMasterNotf.Treatment_Detial.Where(x => x.Treatment_Copy_To == false).ToList<Treatment_Detial>();
+                        string linkNotif = "";
+                        for (int i = 0; i < listTreatmentDetialNotf.Count; i++)
+                        {
+
+                            linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentIdNotf + "&getTabId=4&getTreatmentDetialId=" + listTreatmentDetialNotf[i].Treatment_Detial_Id + "&getNotificationId=";
+                            Notification_Master notificationMaster = new Notification_Master();
+                            notificationMaster = dbEcms.Notification_Master.Create();
+                            notificationMaster.Notification_Date = DateTime.Now;
+                            notificationMaster.Is_Read = false;
+                            notificationMaster.From_Employee_Structure_Id = listTreatmentDetialNotf[i].To_Employee_Structure_Id;
+                            notificationMaster.To_Employee_Structure_Id = getStructure(currentUserId);
+                            notificationMaster.Master_Id = treatmentIdNotf;
+                            notificationMaster.Notification_Description_Ar = "لم يتم الرد علي المعاملة";
+                            notificationMaster.Notification_Description_En = "";
+                            notificationMaster.Notification_Link = linkNotif;
+
+                            notificationMaster.Is_Show_Reply = true;
+                            notificationMaster.Date_Show_Reply = treatmentMasterNotf.Required_Reply_Date;
+                            notificationMaster.Notification_Show_Id = 4;
+
+                            dbEcms.Notification_Master.Add(notificationMaster);
+                            dbEcms.SaveChanges();
+                        }
+                    }
+                }
+                return true;
+            }
+            catch { return false; }
+        }
+
+
     }
     
 }

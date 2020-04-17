@@ -149,17 +149,8 @@
   <ItemGroup>
     <Content Include="Entity\DataBase\Dropp All Tables.sql" />
     <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2812-4-2020%29.sql" />
+    <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2817-4-2020%29.sql" />
     <Content Include="Entity\DataBase\Treatment Schema &amp; Data.sql" />
-    <Content Include="Entity\ECMS.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECMS.edmx</DependentUpon>
-      <LastGenOutput>ECMS.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Entity\ECMS.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECMS.edmx</DependentUpon>
-      <LastGenOutput>ECMS.cs</LastGenOutput>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Pages\Admin\Language.aspx" />
     <Content Include="Pages\Admin\LogFile.aspx" />
@@ -2147,7 +2138,13 @@
     <Compile Include="Entity\Log_File.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\Notification_Employee.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Notification_Master.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Notification_Show.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Owner_Relationship.cs">
@@ -2499,8 +2496,18 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ECMS.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Entity\ECMS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ECMS.edmx</DependentUpon>
+      <LastGenOutput>ECMS.Context.cs</LastGenOutput>
+    </Content>
     <Content Include="Entity\ECMS.edmx.diagram">
       <DependentUpon>ECMS.edmx</DependentUpon>
+    </Content>
+    <Content Include="Entity\ECMS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ECMS.edmx</DependentUpon>
+      <LastGenOutput>ECMS.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\ECMS-Publish.pubxml" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />

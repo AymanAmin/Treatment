@@ -129,8 +129,11 @@ namespace Treatment.Pages.Treatment
                     inboxTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
 
                     var counterTreatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Is_Read == false).Count();
-                    yourHTMLstring = "<span class='label label-danger f-right'>"+counterTreatmentDetial.ToString()+"</span>";
-                    addNfNumTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
+                    if (counterTreatmentDetial > 0)
+                    {
+                        yourHTMLstring = "<span class='label label-danger f-right'>" + counterTreatmentDetial.ToString() + "</span>";
+                        addNfNumTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
+                    }
                     return true;
                 }
                 catch (Exception eee) { return false; }

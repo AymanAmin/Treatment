@@ -173,7 +173,6 @@
         .hover-notification:hover{
             background-color: #f1f1f1 !important;
         }
-
         .ScrollStyle {
             overflow-y: scroll;
         }
@@ -397,8 +396,8 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="../../../../Pages/Treatment/inbox.aspx">
-                                                        <i class="feather icon-mail"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Messages", "My Inbox") %>
+                                                    <a href="inbox.aspx">
+                                                        <i class="feather icon-mail"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Messages", "My Messages") %>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -677,6 +676,9 @@
                         $(this).select2({
                             dropdownParent: $(this).parent()
                         });
+                    });
+                    $("#Body_Holder_replyDate10").datepicker({
+                        dateFormat: "mm/dd/yy"
                     });
                 });
 
