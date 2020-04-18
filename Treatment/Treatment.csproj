@@ -2521,7 +2521,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="media\" />
+    <Folder Include="media\Treatment\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

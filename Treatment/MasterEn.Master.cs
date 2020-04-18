@@ -268,13 +268,24 @@ namespace Treatment
                 panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
                 Employee_Structure employeeStructure;
                 int employeeStructureId = 0;
+                int counter = 0;
                 for (int i = 0; i < notificationMaster.Count; i++)
                 {
+                    
                     employeeStructure = new Employee_Structure();
                     employeeStructureId = (int)notificationMaster[i].From_Employee_Structure_Id;
                     employeeStructure = db.Employee_Structure.FirstOrDefault(x => x.Employee_Structure_Id == employeeStructureId);
                     if (employeeStructure != null)
                     {
+                        if (counter == 5)
+                        {
+                            yourHTMLstring = "<li style='padding-top: 2%;padding-bottom: 1%; text-align:center;'>" +
+                                "<a href='#'>See all notifications</a>"+
+                                "</li>";
+                            panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
+
+                            break;
+                        }
                         yourHTMLstring = "<li style='padding-top: 2%;padding-bottom: 1%;'>" +
                                                 "<div class='media'>" +
                                                     "<img class='d-flex align-self-center img-radius' src='../../../../media/Profile/" + employeeStructure.Employee.Employee_Profile + "' alt='Avtar' />" +
@@ -290,10 +301,12 @@ namespace Treatment
                         if (!(bool)notificationMaster[i].Is_Show_Reply)
                         {
                             panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
+                            counter++;
                         }
                         else if (DateTime.Now >= notificationMaster[i].Date_Show_Reply)
                         {
                             panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
+                            counter++;
                         }
                     }
                 }

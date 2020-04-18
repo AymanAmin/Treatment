@@ -78,7 +78,7 @@ namespace Treatment
 
             for (int i = DateList.Count - 1; i >= 0; i--)
             {
-                int sent = MasterList.Where(x => x.Create_Date > DateList[i] && x.Create_Date < DateList[i].AddDays(30)).Count();
+                int sent = MasterList.Where(x => x.Create_Date > DateList[i] && x.Create_Date < DateList[i].AddDays(30) && x.Treatment_Status_Id == 1).Count();
                 int recived = 0;
                 for (int k = 0; k < DetialList.Count; k++)
                 {

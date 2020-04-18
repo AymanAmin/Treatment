@@ -80,7 +80,7 @@
                         <div class="col-sm-12">
                             <!-- Login card start -->
                                 <div class="text-center">
-                                    <img src="..\..\..\..\Theme\files\assets\images\logo.png" alt="logo.png" width="200" height="100">
+                                    <img src="..\..\..\..\Theme\files\assets\images\logo.png" alt="logo.png"/>
                                 </div>
                                 <div class="auth-box card">
                                     <div class="card-block">
@@ -89,6 +89,8 @@
                                                 <h3 class="text-center"><i class="feather icon-lock text-primary f-60 p-t-15 p-b-20 d-block"></i></h3>
                                             </div>
                                         </div>
+                                        <div class="sub-title text-center">
+                                            <asp:Literal ID="UserName" runat="server"></asp:Literal></div>
                                         <div class="form-group form-primary">
                                             <asp:TextBox ID="txtPassword" runat="server" class="form-control" placeholder="Your Password" TextMode="Password"></asp:TextBox>
                                             <span class="form-bar"></span>
@@ -98,13 +100,13 @@
                                                 <asp:Button ID="Unlock" runat="server" Text=" Unlock System" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" OnClick="Unlock_Click" />
                                             </div>
                                         </div>
-                                        <p class="text-inverse text-right">Back to <a href="Login.aspx">Login</a></p>
+                                        <p class="text-inverse text-right"><a href="../../../../Pages/Setting/Auth/Logout.ashx">Switch User</a></p>
                                         <div class="row">
                                             <div class="col-md-10">
                                                 <p class="text-inverse text-left m-b-0">Thank you.</p>
                                             </div>
                                             <div class="col-md-2">
-                                                <img src="..\..\..\..\Theme\files\assets\images\Logo.png" alt="small-logo.png" width="50" height="30"/>
+                                                <img src="..\..\..\..\Theme\files\assets\images\Logo.png" alt="small-logo.png"/>
                                             </div>
                                         </div>
                                     </div>

@@ -126,7 +126,7 @@
                                 <h4 class="text-white">
                                     <asp:Literal ID="txtNewInboxTreatment" Text="0" runat="server"></asp:Literal>
                                 </h4>
-                                <h6 class="text-white m-b-0"><% = Treatment.Classes.FieldNames.getFieldName("Default-NewInbox", "New Inbox") %></h6>
+                                <h6 class="text-white m-b-0"><% = Treatment.Classes.FieldNames.getFieldName("Default-Inbox", "Inbox") %></h6>
                             </div>
                             <div class="col-4 text-right">
                                 <canvas id="update-chart-2" height="50"></canvas>
