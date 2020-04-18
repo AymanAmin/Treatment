@@ -43,8 +43,8 @@ namespace Treatment.Pages.Treatment
             if (int.TryParse(Request["getTreatmentId"], out treatmentId) && treatmentId > 0)
             {
                 //treatmentDetialId = getTreatmentDetialId();
-                hiddenTreatmentId.Style["display"] = "none";
-                hiddenTreatmentId.Text = treatmentId.ToString();
+                //hiddenTreatmentId.Style["display"] = "none";
+                //hiddenTreatmentId.Text = treatmentId.ToString();
                 beforLoadTreatment();
                 doneTreatmentDetial = new List<Treatment_Detial>();
                 if (loadTreatment())
@@ -790,7 +790,7 @@ namespace Treatment.Pages.Treatment
                                 if (recoverTreatmentDetial.Treatment_Master.Treatment_Confidentiality_Id == 1)
                                     isSecert = false;
                                 else isSecert = true;
-                                if (tabId == 2) isSecert = true;
+                                if (tabId == 2) isSecert = false;
                                 treeTrackTreatment((int)recoverTreatmentDetial.Parent, isSecert, isPath);
                             }
                         }
@@ -823,11 +823,16 @@ namespace Treatment.Pages.Treatment
                     if (assDetial == null)
                         detialAssingmentNote = "";
                     else
-                        detialAssingmentNote = assDetial.Note;
+                        detialAssingmentNote = "Reply: " + assDetial.Note;
                 }
                 else
                 {
-                    detialAssingmentNote = assDetialParent.Treatment_Master.Treatment_Subject;
+                    detialAssingmentNote = "New: " + assDetialParent.Treatment_Master.Treatment_Subject;
+                    var assDetial1 = db.Treatment_Detial.FirstOrDefault(x => x.Treatment_Detial_Id == tdid);
+                    if (assDetial1.Note != null)
+                    {
+                        detialAssingmentNote += "</br>" + "Reply: " + assDetial1.Note;
+                    }
                 }
             }
             catch { detialAssingmentNote = ""; }
@@ -887,7 +892,7 @@ namespace Treatment.Pages.Treatment
                             notificationMaster.To_Employee_Structure_Id = getStructure(currentUserId);
                             notificationMaster.Master_Id = treatmentIdNotf;
                             notificationMaster.Notification_Description_Ar = "لم يتم الرد علي المعاملة";
-                            notificationMaster.Notification_Description_En = "";
+                            notificationMaster.Notification_Description_En = "No response";
                             notificationMaster.Notification_Link = linkNotif;
 
                             notificationMaster.Is_Show_Reply = true;
@@ -938,6 +943,12 @@ namespace Treatment.Pages.Treatment
                 Imagepath = UtilityClass.UploadFilePostedFile(ref fileAttach, Server.MapPath(@"~\media\Treatment\"));
             }
             return Imagepath;
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            string linkTreatment = "~/Pages/Reports/Report.aspx?getTreatmentId=" + treatmentId;
+            Response.Redirect(linkTreatment);
         }
     }
 }

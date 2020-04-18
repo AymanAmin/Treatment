@@ -280,7 +280,7 @@ namespace Treatment
                         if (counter == 5)
                         {
                             yourHTMLstring = "<li style='padding-top: 2%;padding-bottom: 1%; text-align:center;'>" +
-                                "<a href='#'>See all notifications</a>"+
+                                "<a href='../../../../Pages/Setting/UserManagment/MyNotifications.aspx' class='hover-notification'>See all notifications</a>" +
                                 "</li>";
                             panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
 
