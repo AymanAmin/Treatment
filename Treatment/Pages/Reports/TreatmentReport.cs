@@ -179,7 +179,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel14,
             this.xrPageInfo2,
             this.xrPictureBox2});
-            this.BottomMargin.HeightF = 146.4584F;
+            this.BottomMargin.HeightF = 146F;
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
