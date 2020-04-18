@@ -233,7 +233,7 @@
                     </div>
                 </div>
                 <!-- List view card start -->
-                <div class="card ScrollStyle">
+                <div class="card ScrollStyle" style="overflow-x: hidden">
                     <div class="card-header">
                         <h5><i class="icofont icofont-golf-cart"></i></h5>
                         <h5>Track</h5>
