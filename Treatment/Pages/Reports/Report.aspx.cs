@@ -21,7 +21,7 @@ namespace Treatment.Pages.Reports
             
             TreatmentReport report = new TreatmentReport();
             report.RequestParameters = false;
-            report.Parameters["TreatmentID"].Value = 1009;
+            report.Parameters["TreatmentID"].Value = Request.Form[3]; 
             report.Parameters["CurrentUser"].Value = SessionWrapper.LoggedUser.Employee_Name_En;
             try { report.Parameters["CurrentManagment"].Value = stList[0].Structure.Structure_Name_En; } catch { }
             TreatmentASPxDocumentViewer.Report = report;

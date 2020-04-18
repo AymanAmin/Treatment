@@ -217,6 +217,9 @@
                         </div>
                     </div>
                     <div class="card-block">
+                            <asp:TextBox ID="hiddenTreatmentId" runat="server"></asp:TextBox>
+
+                            <asp:Button ID="Button1" runat="server" Text="Print"  CssClass="btn btn-info m-b-15" PostBackUrl="~/Pages/Reports/Report.aspx" />
                         <div class="">
                             <div class="m-b-20" id="speech" runat="server">
                             </div>

@@ -115,6 +115,8 @@ namespace Treatment.Pages.Setting.UserManagment
                 if (ImagepathSignature != "") Emp.Employee_Signature = ImagepathSignature;
                 db.Entry(Emp).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
+                SessionWrapper.LoggedUser = Emp;
+                SessionWrapper.Language = db.Lanuage_Detials.Where(x => x.Language_Master_ID == lang).ToList();
 
             }
             catch { return false; }

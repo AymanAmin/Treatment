@@ -43,6 +43,8 @@ namespace Treatment.Pages.Treatment
             if (int.TryParse(Request["getTreatmentId"], out treatmentId) && treatmentId > 0)
             {
                 //treatmentDetialId = getTreatmentDetialId();
+                hiddenTreatmentId.Style["display"] = "none";
+                hiddenTreatmentId.Text = treatmentId.ToString();
                 beforLoadTreatment();
                 doneTreatmentDetial = new List<Treatment_Detial>();
                 if (loadTreatment())
