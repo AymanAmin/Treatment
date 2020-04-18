@@ -20,8 +20,16 @@ namespace Treatment.Entity
         public string Notification_Description_En { get; set; }
         public Nullable<bool> Is_Read { get; set; }
         public Nullable<System.DateTime> Date_Read { get; set; }
-        public Nullable<int> Employee_Structure_Id { get; set; }
+        public Nullable<int> From_Employee_Structure_Id { get; set; }
+        public Nullable<int> To_Employee_Structure_Id { get; set; }
         public Nullable<int> Master_Id { get; set; }
         public string Notification_Link { get; set; }
+        public Nullable<bool> Is_Show_Reply { get; set; }
+        public Nullable<System.DateTime> Date_Show_Reply { get; set; }
+        public Nullable<int> Notification_Show_Id { get; set; }
+    
+        public virtual Employee_Structure Employee_Structure { get; set; }
+        public virtual Employee_Structure Employee_Structure1 { get; set; }
+        public virtual Notification_Show Notification_Show { get; set; }
     }
 }

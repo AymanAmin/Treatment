@@ -139,6 +139,24 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl subject;
         
         /// <summary>
+        /// hiddenTreatmentId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox hiddenTreatmentId;
+        
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
         /// speech control.
         /// </summary>
         /// <remarks>
@@ -146,6 +164,15 @@ namespace Treatment.Pages.Treatment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl speech;
+        
+        /// <summary>
+        /// downloadAttachment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl downloadAttachment;
         
         /// <summary>
         /// actionReply control.
@@ -256,13 +283,13 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox requiredReply;
         
         /// <summary>
-        /// replyDate control.
+        /// replyDate10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox replyDate;
+        protected global::System.Web.UI.WebControls.TextBox replyDate10;
         
         /// <summary>
         /// requiredAssignment control.
@@ -281,6 +308,15 @@ namespace Treatment.Pages.Treatment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox keyworkAssignment;
+        
+        /// <summary>
+        /// addAttachments1111 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload addAttachments1111;
         
         /// <summary>
         /// SaveAssignment control.

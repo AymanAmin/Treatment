@@ -7,10 +7,7 @@
     <title><% = Treatment.Classes.FieldNames.getFieldName("Employees-Title", "User Management - Employee") %></title>
     <script type="text/javascript">
 
-        function showmodel(x) {
-           // debugger;
-            if (!isNaN(x.id)){
-            $.ajax({
+        function showmodel(x) {           // debugger;            if (!isNaN(x.id)){            $.ajax({
                 url: "Employees.aspx/ViewUserCard",
                 type: "POST",
                 data: "{ Employee_Id:"+x.id+"}",
@@ -24,8 +21,8 @@
                     $('#Body_Holder_Employee_Email').val(Emp.Employee_Email);
                     $('#Body_Holder_Employee_Phone').val(Emp.Employee_Phone);
                     $('#Body_Holder_Groups').val(Emp.Group_Id).trigger('change');
-                    $('#Body_Holder_Language').val(Emp.Language_id).trigger('change');
-                    $('#Body_Holder_Active').val(Emp.Employee_Active);
+                    $('#Body_Holder_Language').val(Emp.Language_id).trigger('change'); 
+                    $('input[id=Body_Holder_Active]').prop('checked', Emp.Employee_Active);
                     debugger;
                     if (Emp.Calendar_id == 1){
                         $("input[id=Body_Holder_DateofBirth][value=DateofBirth]").prop('checked', true);
@@ -59,8 +56,8 @@
                 $('#Body_Holder_Employee_Phone').val('');
                 $('#Body_Holder_Groups').val('').trigger('change');
                 $('#Body_Holder_Language').val('').trigger('change');
-                $("input[id=Body_Holder_DateofHegira][value=DateofHegira]").prop('checked', true);
-                $('#Body_Holder_Active').val(false);
+                $("input[id=Body_Holder_DateofBirth][value=DateofBirth]").prop('checked', true);
+                $('input[id=Body_Holder_Active]').prop('checked', true);
                 $('#Body_Holder_Emp_Structure').val('').trigger('change');
                 $('#Body_Holder_Emp_Profile').attr('src', "..\/..\/..\/..\/media\/Profile\/Profile.jpg");
                 $('#Body_Holder_Emp_Signature').attr('src', "..\/..\/..\/..\/media\/Signature\/Signature.jpg");
@@ -70,8 +67,7 @@
            // GetServiceInformation(x.id)
         }
 
-        function DeleteEmplooye(x) {
-            $.ajax({
+        function DeleteEmplooye(x) {            $.ajax({
                 url: "Employees.aspx/DeleteEmplooye",
                 type: "POST",
                 data: "{ Employee_Id:" + x.id + "}",
@@ -90,8 +86,78 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <input id="AddEmp_show" type="hidden" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" />
     <div class="page-body">
+          <!-- Article Editor card start -->
+
+        <div class="card">
+        <div class="card-header">
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li><i class="feather icon-maximize full-card"></i></li>
+                </ul>
+            </div>
+        </div>
+         <div class="card-block">
+                <!-- Start Search Form-->
+                <div class="row">
+                    <div class="form-group col-sm-3">
+                        <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Structure", "Structure") %></label>
+                        <div class="input-group">
+                             <span class="input-group-addon"><i class="icofont icofont-tack-pin"></i></span>
+                            <asp:DropDownList ID="StructureF" CssClass="js-example-basic-single col-sm-12" runat="server" >
+                            </asp:DropDownList> 
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Group", "Group") %></label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-ui-tag"></i></span>
+                            <asp:DropDownList ID="GroupF" CssClass="js-example-basic-single col-sm-12" runat="server" >
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Language", "Language") %></label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
+                            <asp:DropDownList ID="LanguageF" CssClass="js-example-basic-single col-sm-12" runat="server" >
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Active", "Active") %></label>
+                        <div class="input-group">
+                                <input id="ActiveF" runat="server" type="checkbox"  name="Active" class="js-single" checked="checked"/> 
+                        </div>
+                    </div>
+                   
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="form-group col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-search"></i></span>
+                            <asp:TextBox ID="Keyword" runat="server" class="form-control" placeholder="Name or Email or Phone..." TextMode="SingleLine"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-2 text-right">
+                        <asp:Button ID="btnSearch" runat="server" AutoPostback = "false" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click"  />
+                    </div>
+                </div>
+
+                <!-- End Search Form -->
+            </div>
+            <!-- Article Editor card end -->
+        </div>
+
+
+
+
+
+
+        <!------------------------------------------------------------------------------------------------- -->
+
          <!-- Article Editor card start -->
-        <div class="card ScrollStyle"  runat="server">
+        <div class="card"  runat="server">
             <div class="card-header">
                 <div class="card-header-right">
                     <ul class="list-unstyled card-option">
@@ -206,7 +272,7 @@
                                     <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Structure", "Structure") %></label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-chart-flow-alt-1"></i></span>
-                                        <asp:ListBox ID="Emp_Structure" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Enter Employee Structure"  DataSourceID="StructureDataSource" DataTextField="Structure_Name_En" DataValueField="Structure_Id"  SelectionMode="Multiple"></asp:ListBox>
+                                        <asp:ListBox ID="Emp_Structure" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Enter Employee Structure"  DataSourceID="StructureDataSource" DataTextField="Structure_Name_En" DataValueField="Structure_Id"  SelectionMode="Multiple" ></asp:ListBox>
                                         <asp:EntityDataSource ID="StructureDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Structures">
                                         </asp:EntityDataSource>
                                     </div>
@@ -265,10 +331,18 @@
 
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <div class="col-sm-6">
-                                        <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Active", "Active") %></label>
-                                        <div class="input-group">
-                                            <input id="Active" runat="server" type="checkbox" class="js-single" />
+                                    <div class="col-sm-6">                                         
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Active", "Active") %> </label>
+                                       <div class="input-group">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input id="Active" runat="server" type="checkbox"  name="Active"/>
+                                                <span class="cr">
+                                                    <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                </span>
+                                             </label>
+                                         </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -288,6 +362,7 @@
         </div>
         <!-- Modal Employee end-->
         <!-- End Employee Form-->
+               <span class="text-muted"><asp:Literal ID="FilterUsed" runat="server"></asp:Literal></span>
               <div class="form-group col-sm-12" style="text-align: right;">
                 <button runat="server" id="AddEmp" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" OnClick="showmodel(this)">Add Employees</button>
             </div>

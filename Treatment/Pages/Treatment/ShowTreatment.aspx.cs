@@ -15,7 +15,7 @@ namespace Treatment.Pages.Treatment
     {
         ECMSEntities db;
         int treatmentId = 0, recoverParentid = 0, treatmentDetialId = 0, tabId = 0, notificationMasterId = 0;
-        string messageForm = "", messageReplyForm = "", messageAssignmentForm = "", yourHTMLStringTrack = "", detialAssingmentNote = "";
+        string messageForm = "", messageReplyForm = "", messageAssignmentForm = "", yourHTMLStringTrack = "", detialAssingmentNote = "", _fileExt = "";
         int currentStructureUserId = 0, currentUserId = 0, marginTreeTrack = 0 ;
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
@@ -23,7 +23,10 @@ namespace Treatment.Pages.Treatment
         List<Treatment_Detial> doneTreatmentDetial;
         Treatment_Detial oneTreatmentDetial;
         Treatment_Detial recoverTreatmentDetial;
+        Treatment_Detial isTreatmentDetialParent;
         bool isSecert = false, isPath = false, flayRequiredReply = false;
+        List<Attachment> listAttachmentTrack;
+        string treatmentDetialDate = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             reloadPage();
@@ -40,6 +43,8 @@ namespace Treatment.Pages.Treatment
             if (int.TryParse(Request["getTreatmentId"], out treatmentId) && treatmentId > 0)
             {
                 //treatmentDetialId = getTreatmentDetialId();
+                hiddenTreatmentId.Style["display"] = "none";
+                hiddenTreatmentId.Text = treatmentId.ToString();
                 beforLoadTreatment();
                 doneTreatmentDetial = new List<Treatment_Detial>();
                 if (loadTreatment())
@@ -253,6 +258,14 @@ namespace Treatment.Pages.Treatment
                 {
 
                 }
+                if (loadDownloadAttachment())
+                {
+
+                }
+                else
+                {
+
+                }
                 if (changeReadAndStatus())
                 {
 
@@ -319,6 +332,55 @@ namespace Treatment.Pages.Treatment
             return true;
         }
 
+        private bool loadDownloadAttachment()
+        {
+            try
+            {
+                string yourHTMLstring = "";
+                List<Attachment> treatmentAttachment = new List<Attachment>();
+                treatmentAttachment = db.Attachments.Where(x => x.Treatment_Id == treatmentId).ToList<Attachment>();
+                for (int i = 0; i < treatmentAttachment.Count; i++)
+                {
+                    _fileExt = System.IO.Path.GetExtension(treatmentAttachment[i].Attachment_Name);
+                    yourHTMLstring = "<div class='col-md-6 col-xl-3'>" +
+                                        "<div class='card thumb-block'>" +
+                                            "<a href='../../../../media/Treatment/" + treatmentAttachment[i].Attachment_Path + "' target='_blank'>" +
+                                                getFileImages(_fileExt) +
+                                            "</a>"+
+                                            "<div class='card-footer text-center'>"+
+                                                "<a href='../../../../media/Treatment/" + treatmentAttachment[i].Attachment_Path + "' target='_blank'>" + treatmentAttachment[i].Attachment_Name + "</a>" +
+                                            "</div>"+
+                                        "</div>"+
+                                    "</div>";
+
+                    downloadAttachment.Controls.Add(new LiteralControl(yourHTMLstring));
+                }
+                
+            }
+            catch { messageForm = "Erorr to save data in system"; return false; }
+            return true;
+        }
+
+        private string getFileImages(string fileExtention)
+        {
+            string getImageExtention = "";
+            if (fileExtention == ".pdf")
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image'><i class='icofont icofont-file-pdf'></i></span>";
+            else if (fileExtention == ".png" || fileExtention == ".jpeg" || fileExtention == ".jpg" || fileExtention == ".jpe")
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: rgb(18, 132, 161);'><i class='icofont icofont-ui-image'></i></span>";
+            else if (fileExtention == ".doc" || fileExtention == ".docx")
+                getImageExtention = "<span class='jFiler-icon-file f-file f-video'><i class='icofont icofont-file-word'></i></span>";
+            else if (fileExtention == ".ppt" || fileExtention == ".pptx")
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: #ffc107;'><i class='icofont icofont-file-powerpoint'></i></span>";
+            else if (fileExtention == ".xls" || fileExtention == ".xlsx")
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: rgb(33, 200, 114);'><i class='icofont icofont-file-excel'></i></span>";
+            else if (fileExtention == ".txt")
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: rgb(191, 47, 139);'><i class='icofont icofont-file-text'></i></span>";
+            else
+                getImageExtention = "<span class='jFiler-icon-file f-file f-file-ext-doc' style='background-color: rgb(56, 78, 83);'>"+fileExtention+"</span>";
+           
+            return getImageExtention;
+        }
         protected void SaveReply_Click(object sender, EventArgs e)
         {
             if (saveReplyTreatment())
@@ -349,7 +411,7 @@ namespace Treatment.Pages.Treatment
                     db.SaveChanges();
                     string linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentId + "&getTabId=4&getTreatmentDetialId=" + newReplyTreatment.Parent + "&getNotificationId=";
                     int notifSendTo = (int)newReplyTreatment.Treatment_Master.From_Employee_Structure_Id;
-                    if (insertNotification(replyTreatement.Text, replyTreatement.Text, newReplyTreatment.Treatment_Master.Treatment_Id, linkNotif, notifSendTo))
+                    if (insertNotification(replyTreatement.Text, replyTreatement.Text, newReplyTreatment.Treatment_Master.Treatment_Id, linkNotif, notifSendTo,2))
                     {
 
                     }
@@ -357,8 +419,9 @@ namespace Treatment.Pages.Treatment
                     {
 
                     }
-                    //LogData = "data:" + JsonConvert.SerializeObject(newReplyTreatment, logFileModule.settings);
-                    //logFileModule.logfile(5, "إضافة رد علي معاملة", "", LogData);
+                    db.Configuration.LazyLoadingEnabled = false;
+                    LogData = "data:" + JsonConvert.SerializeObject(newReplyTreatment, logFileModule.settings);
+                    logFileModule.logfile(1009, "إضافة رد علي معاملة", "add Reply Treatment", LogData);
                 }
                 catch { messageReplyForm = "Erorr to save data in system"; return false; }
                 return true;
@@ -432,7 +495,7 @@ namespace Treatment.Pages.Treatment
                     newAssignmentTreatment.From_Employee_Structure_Id = currentStructureUserId;
                     newAssignmentTreatment.Required_Reply = requiredReply.Checked;
                     if(requiredReply.Checked)
-                        newAssignmentTreatment.Required_Reply_Date = DateTime.Parse(replyDate.Text);
+                        newAssignmentTreatment.Required_Reply_Date = DateTime.Parse(replyDate10.Text);
                     /////////////////////////////////////// Start Insert To /////////////////////////////////////
                     Treatment_Detial treatmentDetial;
                     for (int i = 0; i < treatmentTo.Items.Count; i++)
@@ -468,13 +531,28 @@ namespace Treatment.Pages.Treatment
                     }
                     /////////////////////////////////////// End Insert Copy To /////////////////////////////////////
 
+                    /////////////////////////////////////// Start Add Attachment /////////////////////////////////////
+                    foreach (HttpPostedFile postfiles in addAttachments1111.PostedFiles)
+                    {
+                        if (postfiles.ContentLength > 0 && postfiles.FileName != "")
+                        {
+                            Attachment addAtachtmentTreatment = new Attachment();
+                            addAtachtmentTreatment.Attachment_Path = UploadFile(postfiles);
+                            addAtachtmentTreatment.Attachment_Name = postfiles.FileName;
+                            newAssignmentTreatment.Attachments.Add(addAtachtmentTreatment);
+                        }
+                    }
+                    /////////////////////////////////////// End Add Attachment /////////////////////////////////////
+
                     db.Treatment_Master.Add(newAssignmentTreatment);
                     db.SaveChanges();
-                    //LogData = "data:" + JsonConvert.SerializeObject(newTreatment, logFileModule.settings);
-                    //logFileModule.logfile(4, "إضافة معاملة", "", LogData);
+                    if (insertNotification(newAssignmentTreatment.Treatment_Id)) { }
+                    //db.Configuration.LazyLoadingEnabled = false;
+                    //LogData = "data:" + JsonConvert.SerializeObject(newAssignmentTreatment, logFileModule.settings);
+                    logFileModule.logfile(1009, "إضافة إحالة", "add Assignment", LogData);
                     if (!flayRequiredReply)
                     {
-                        if (!closeAssignmentTreatment())
+                        if (!closeAssignmentTreatment(false))
                         {
                             messageAssignmentForm = "Erorr to save Close Assignment data in system";
                             return false;
@@ -538,7 +616,7 @@ namespace Treatment.Pages.Treatment
 
         protected void CloseAssignment_Click(object sender, EventArgs e)
         {
-            if (closeAssignmentTreatment())
+            if (closeAssignmentTreatment(true))
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Close Treatment was Sucessfully saved in system');", true);
                 actionReply.Style["display"] = "none";
@@ -550,17 +628,32 @@ namespace Treatment.Pages.Treatment
             }
         }
 
-        private bool closeAssignmentTreatment()
+        private bool closeAssignmentTreatment(bool flayInsertNotification)
         {
             try
             {
                 var closeAssignment = db.Treatment_Detial.First(x => x.Treatment_Detial_Id == treatmentDetialId);
                 closeAssignment.Treatment_Detial_Date = DateTime.Now;
                 closeAssignment.Assignment_Status_Id = 3;
+                closeAssignment.Note = "Done Close Treatment";
                 db.Entry(closeAssignment).State = EntityState.Modified;
                 db.SaveChanges();
-                //LogData = "data:" + JsonConvert.SerializeObject(newReplyTreatment, logFileModule.settings);
-                //logFileModule.logfile(5, "إضافة رد علي معاملة", "", LogData);
+                db.Configuration.LazyLoadingEnabled = false;
+                LogData = "data:" + JsonConvert.SerializeObject(closeAssignment, logFileModule.settings);
+                logFileModule.logfile(1009, " اغلاق المعاملة", "Close Treatment", LogData);
+                if (flayInsertNotification)
+                {
+                    string linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentId + "&getTabId=4&getTreatmentDetialId=" + closeAssignment.Parent + "&getNotificationId=";
+                    int notifSendTo = (int)closeAssignment.Treatment_Master.From_Employee_Structure_Id;
+                    if (insertNotification("تم إغلاق المعاملة", "Done Close Treatment", closeAssignment.Treatment_Master.Treatment_Id, linkNotif, notifSendTo, 3))
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
             }
             catch { messageReplyForm = "Erorr to save data in system"; return false; }
             return true;
@@ -582,7 +675,7 @@ namespace Treatment.Pages.Treatment
                         if (treatmentDetial[i].Treatment_Master.Treatment_Confidentiality_Id == 1)
                             isSecert = false;
                         else isSecert = true;
-                        if (tabId == 2) isSecert = true;
+                        if (tabId == 2) isSecert = false;
                         treeTrackTreatment(treatmentDetial[i].Treatment_Detial_Id, isSecert, isPath);
                     }
                     return true;
@@ -621,6 +714,16 @@ namespace Treatment.Pages.Treatment
             {
                 oneTreatmentDetial = new Treatment_Detial();
                 oneTreatmentDetial = db.Treatment_Detial.FirstOrDefault(x => x.Treatment_Detial_Id == trackTreatmentDetialId && (x.Assignment_Status_Id == 3 || (x.Assignment_Status_Id == 2 && x.Treatment_Master.Required_Reply == true)));
+                isTreatmentDetialParent = new Treatment_Detial();
+                isTreatmentDetialParent = db.Treatment_Detial.FirstOrDefault(x => x.Parent == trackTreatmentDetialId);
+                if (isTreatmentDetialParent == null)
+                {
+                    treatmentDetialDate = oneTreatmentDetial.Treatment_Detial_Date.ToString();
+                }
+                else
+                {
+                    treatmentDetialDate = isTreatmentDetialParent.Treatment_Master.Create_Date.ToString();
+                }
                 if (!doneTreatmentDetial.Exists(x => x.Treatment_Detial_Id == oneTreatmentDetial.Treatment_Detial_Id) && oneTreatmentDetial != null)
                 {
                     doneTreatmentDetial.Add(oneTreatmentDetial);
@@ -628,12 +731,36 @@ namespace Treatment.Pages.Treatment
                     yourHTMLStringTrack = "<div class='sortable-moves col-xs-12' style='margin-left: " + marginTreeTrack + "%;'>" +
                                             "<img class='img-fluid p-absolute' src='../../../../media/Profile/" + oneTreatmentDetial.Employee_Structure.Employee.Employee_Profile + "' alt=''>" +
                                             "<h6 class='d-inline-block'>" + oneTreatmentDetial.Employee_Structure.Employee.Employee_Name_En + "</h6>" +
-                                            "<span class='label label-default f-right'>" + oneTreatmentDetial.Treatment_Detial_Date + "</span>" +
+                                            "<span class='label label-default f-right'>" + treatmentDetialDate + "</span>" +
                                             "<div class='f-13 text-muted'>" + oneTreatmentDetial.Employee_Structure.Structure.Structure_Name_En + "</div>" +
                                             "<h6 class='d-inline-block'> From: " + oneTreatmentDetial.Treatment_Master.Employee_Structure.Employee.Employee_Name_En + "</h6></br>" +
                                             "<h6 class='d-inline-block'> Procedure: " + oneTreatmentDetial.Treatment_Master.Treatment_Procedure.Treatment_Procedure_Name_En + "</h6>";
                     if(innerIsPath || !innerIsSecert)
                         yourHTMLStringTrack += "<p>" + detialAssingmentNote + "</p>";
+                    if (isTreatmentDetialParent != null)
+                    {
+                        listAttachmentTrack = new List<Attachment>();
+                        listAttachmentTrack = isTreatmentDetialParent.Treatment_Master.Attachments.ToList<Attachment>();
+                        if (listAttachmentTrack.Count > 0)
+                        {
+                            yourHTMLStringTrack += "<div class='row' style='margin-right: 0%;'>";
+                            for (int i = 0; i < listAttachmentTrack.Count; i++)
+                            {
+                                _fileExt = System.IO.Path.GetExtension(listAttachmentTrack[i].Attachment_Name);
+                                yourHTMLStringTrack += "<div class='col-md-6 col-xl-3'>" +
+                                                    "<div class='card thumb-block'>" +
+                                                        "<a href='../../../../media/Treatment/" + listAttachmentTrack[i].Attachment_Path + "' target='_blank'>" +
+                                                            getFileImages(_fileExt) +
+                                                        "</a>" +
+                                                        "<div class='card-footer text-center'>" +
+                                                            "<a href='../../../../media/Treatment/" + listAttachmentTrack[i].Attachment_Path + "' target='_blank'>" + listAttachmentTrack[i].Attachment_Name + "</a>" +
+                                                        "</div>" +
+                                                    "</div>" +
+                                                "</div>";
+                            }
+                            yourHTMLStringTrack += "</div>";
+                        }
+                    }
                     yourHTMLStringTrack += "</div>";
                     trackTreatment.Controls.Add(new LiteralControl(yourHTMLStringTrack));
                 }
@@ -707,7 +834,7 @@ namespace Treatment.Pages.Treatment
             return detialAssingmentNote;
         }
 
-        private bool insertNotification(string notificationDescriptionAr, string notificationDescriptionEn, int notificationMasterId, string notificationLink, int notificationSendTo)
+        private bool insertNotification(string notificationDescriptionAr, string notificationDescriptionEn, int notificationMasterId, string notificationLink, int notificationSendTo, int notificationShowId)
         {
             try
             {
@@ -717,11 +844,15 @@ namespace Treatment.Pages.Treatment
                     notificationMaster = dbEcms.Notification_Master.Create();
                     notificationMaster.Notification_Date = DateTime.Now;
                     notificationMaster.Is_Read = false;
-                    notificationMaster.Employee_Structure_Id = notificationSendTo;
+                    notificationMaster.From_Employee_Structure_Id = currentStructureUserId;
+                    notificationMaster.To_Employee_Structure_Id = notificationSendTo;
                     notificationMaster.Master_Id = notificationMasterId;
                     notificationMaster.Notification_Description_Ar = notificationDescriptionAr;
                     notificationMaster.Notification_Description_En = notificationDescriptionEn;
                     notificationMaster.Notification_Link = notificationLink;
+
+                    notificationMaster.Is_Show_Reply = false;
+                    notificationMaster.Notification_Show_Id = notificationShowId;
 
                     dbEcms.Notification_Master.Add(notificationMaster);
                     dbEcms.SaveChanges();
@@ -730,6 +861,49 @@ namespace Treatment.Pages.Treatment
             }
             catch { return false; }
         }
+
+        private bool insertNotification(int treatmentIdNotf)
+        {
+            try
+            {
+                using (ECMSEntities dbEcms = new ECMSEntities())
+                {
+                    Treatment_Master treatmentMasterNotf = new Treatment_Master();
+                    treatmentMasterNotf = dbEcms.Treatment_Master.FirstOrDefault(x => x.Treatment_Id == treatmentIdNotf && x.Required_Reply == true);
+                    if (treatmentMasterNotf != null)
+                    {
+                        List<Treatment_Detial> listTreatmentDetialNotf = new List<Treatment_Detial>();
+                        listTreatmentDetialNotf = treatmentMasterNotf.Treatment_Detial.Where(x => x.Treatment_Copy_To == false).ToList<Treatment_Detial>();
+                        string linkNotif = "";
+                        for (int i = 0; i < listTreatmentDetialNotf.Count; i++)
+                        {
+
+                            linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentIdNotf + "&getTabId=4&getTreatmentDetialId=" + listTreatmentDetialNotf[i].Treatment_Detial_Id + "&getNotificationId=";
+                            Notification_Master notificationMaster = new Notification_Master();
+                            notificationMaster = dbEcms.Notification_Master.Create();
+                            notificationMaster.Notification_Date = DateTime.Now;
+                            notificationMaster.Is_Read = false;
+                            notificationMaster.From_Employee_Structure_Id = listTreatmentDetialNotf[i].To_Employee_Structure_Id;
+                            notificationMaster.To_Employee_Structure_Id = getStructure(currentUserId);
+                            notificationMaster.Master_Id = treatmentIdNotf;
+                            notificationMaster.Notification_Description_Ar = "لم يتم الرد علي المعاملة";
+                            notificationMaster.Notification_Description_En = "";
+                            notificationMaster.Notification_Link = linkNotif;
+
+                            notificationMaster.Is_Show_Reply = true;
+                            notificationMaster.Date_Show_Reply = treatmentMasterNotf.Required_Reply_Date;
+                            notificationMaster.Notification_Show_Id = 4;
+
+                            dbEcms.Notification_Master.Add(notificationMaster);
+                            dbEcms.SaveChanges();
+                        }
+                    }
+                }
+                return true;
+            }
+            catch { return false; }
+        }
+
 
         private bool updatetReadNotification(int notificationId)
         {
@@ -747,6 +921,23 @@ namespace Treatment.Pages.Treatment
                 return true;
             }
             catch { return false; }
+        }
+
+        public string UploadFile(HttpPostedFile fileAttach)
+        {
+            string Imagepath = " ";
+            if (this.Page.IsValid)
+            {
+                if (!UtilityClass.UploadFileIsValid(ref fileAttach, UtilityClass.ValidFileExtentions))
+                {
+                    //ltrMessage.Text = "<div class='alert alert-danger fade in'><strong>Images only allowed !</strong></div>";
+                    Imagepath = "false";
+                }
+                Imagepath = string.Empty;
+
+                Imagepath = UtilityClass.UploadFilePostedFile(ref fileAttach, Server.MapPath(@"~\media\Treatment\"));
+            }
+            return Imagepath;
         }
     }
 }
