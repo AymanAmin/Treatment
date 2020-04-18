@@ -199,6 +199,12 @@ namespace Treatment
                         str += "</li>";
                     }
                 }
+                str += "<ul class='pcoded-item pcoded-left-item'>";
+                str += "<li class=''>";
+                str += "<a href = '../../../../Pages/Setting/Auth/Logout.ashx' > ";
+                str += "<span class='pcoded-micon active' style='color:#452a74'><i class='icofont icofont-logout'></i></span>";
+                str += "<span class='pcoded-mtext'>Logout</span>";
+                str += "</a>";
                 str += "</li>";
                 str += "</ul>";
             }
