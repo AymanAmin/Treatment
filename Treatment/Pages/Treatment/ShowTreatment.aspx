@@ -10,7 +10,7 @@
         <div class="row">
             <!-- Task-detail-right start -->
             <div class="col-xl-4 col-lg-12 push-xl-8 task-detail-right">
-                <div class="card" runat="server" id="divRequiredReply">
+                <div class="card ScrollStyle" runat="server" id="divRequiredReply">
                     <div class="card-header">
                         <h5><i class="icofont icofont-clock-time"></i></h5>
                         <h5>Required Reply</h5>
@@ -34,7 +34,7 @@
                         <!-- end of counter -->
                     </div>
                 </div>
-                <div class="card">
+                <div class="card ScrollStyle">
                     <div class="card-header">
                         <h5><i class="icofont icofont-ui-note"></i></h5>
                         <h5>Treatment Details</h5>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="card ScrollStyle">
                     <div class="card-header">
                         <h5><i class="icofont icofont-users-alt-4"></i></h5>
                         <h5>Send To</h5>
@@ -116,7 +116,7 @@
                         
                     </div>
                 </div>
-               <!-- <div class="card">
+               <!-- <div class="card ScrollStyle">
                     <div class="card-header">
                         <h5><i class="icofont icofont-attachment"></i></h5>
                         <h5>Attached Files</h5>
@@ -203,7 +203,7 @@
             <!-- Task-detail-right start -->
             <!-- Task-detail-left start -->
             <div class="col-xl-8 col-lg-12 pull-xl-4">
-                <div class="card">
+                <div class="card ScrollStyle">
                     <div class="card-header">
                         <h5><i class="icofont icofont-presentation-alt"></i></h5>
                         <h5 id="subject" runat="server"></h5>
@@ -233,7 +233,7 @@
                     </div>
                 </div>
                 <!-- List view card start -->
-                <div class="card">
+                <div class="card ScrollStyle">
                     <div class="card-header">
                         <h5><i class="icofont icofont-golf-cart"></i></h5>
                         <h5>Track</h5>

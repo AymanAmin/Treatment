@@ -122,7 +122,7 @@ namespace Treatment
                 str += "<ul class='pcoded-item pcoded-left-item'>";
                 str += "<li class=''>";
                 str += "<a href = '../../../../' > ";
-                str += "<span class='pcoded-micon active' style='color:#01a9ac'><i class='feather icon-home'></i></span>";
+                str += "<span class='pcoded-micon active' style='color:#452a74'><i class='feather icon-home'></i></span>";
                 str += "<span class='pcoded-mtext'>Dashboard</span>";
                 str += "</a>";
                 str += "</li>";

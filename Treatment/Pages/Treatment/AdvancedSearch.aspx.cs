@@ -185,9 +185,9 @@ namespace Treatment.Pages.Treatment
 
                     // Check if inbox or not (اضفت كلمة انبوكس دي في دالة اللود فوق عشان افرق)
                     if(treatmentList[i].Treatment_Keywork == "inbox")
-                        str += "<td style='text-align:center;vertical-align:center;'><a href='../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentList[i].Treatment_Id + "&getTabId=1' style='font-size:25px;text-align:center;'><i style='color:#01a9ac;' class='icofont icofont-eye-alt'></i></a></td></tr>";
+                        str += "<td style='text-align:center;vertical-align:center;'><a href='../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentList[i].Treatment_Id + "&getTabId=1' style='font-size:25px;text-align:center;'><i style='color:#452a74;' class='icofont icofont-eye-alt'></i></a></td></tr>";
                     else 
-                        str += "<td style='text-align:center;vertical-align:center;'><a href='../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentList[i].Treatment_Id + "&getTabId=2' style='font-size:25px;text-align:center;'><i style='color:#01a9ac;' class='icofont icofont-eye-alt'></i></a></td></tr>";
+                        str += "<td style='text-align:center;vertical-align:center;'><a href='../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentList[i].Treatment_Id + "&getTabId=2' style='font-size:25px;text-align:center;'><i style='color:#452a74;' class='icofont icofont-eye-alt'></i></a></td></tr>";
                 }
             }
             catch (Exception er)

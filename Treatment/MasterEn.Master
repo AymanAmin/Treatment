@@ -128,7 +128,7 @@
 
         .dxbButton_Material {
             color: white;
-            background-color: #01a9ac;
+            background-color: #452a74;
         }
 
         .jFiler-input-dragDrop {
@@ -136,11 +136,11 @@
         }
 
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
-            background-color: #01a9ac;
+            background-color: #452a74;
         }
 
         .select2-container--default .select2-results__option--highlighted[aria-selected] {
-            background-color: #01a9ac;
+            background-color: #452a74;
             color: white;
         }
 
@@ -150,25 +150,25 @@
         }
 
         .nav-link.active {
-            border-left-color: #01a9ac !important;
+            border-left-color: #452a74 !important;
             border-left-style: solid !important;
             border-left-width: 3px !important;
             background-color: #fafafa !important;
-            color: #01a9ac;
+            color: #452a74;
         }
 
         .user-body .page-list li.mail-section a:hover {
-            color: #01a9ac !important;
+            color: #452a74 !important;
             background-color: #fafafa !important;
         }
 
         /* Menu item color (onhover - active)*/
         .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li.active > a {
-            color: #01a9ac !important;
+            color: #452a74 !important;
         }
 
         .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li:hover > a {
-            color: #01a9ac !important;
+            color: #452a74 !important;
         }
         .hover-notification:hover{
             background-color: #f1f1f1 !important;
@@ -305,17 +305,8 @@
 
                             <div class="navbar-container container-fluid">
                                 <ul class="nav-left">
-                                    <li class="header-search">
-                                        <div class="main-search morphsearch-search">
-                                            <div class="input-group">
-                                                <span class="input-group-addon search-close"><i class="feather icon-x"></i></span>
-                                                <input type="text" class="form-control" />
-                                                <span class="input-group-addon search-btn"><i class="feather icon-search"></i></span>
-                                            </div>
-                                        </div>
-                                    </li>
                                     <li>
-                                        <a href="#!" onclick="javascript:toggleFullScreen()">
+                                        <a href="#!" onclick="javascript:toggleFullScreen()"  style="color:#452a74" >
                                             <i class="feather icon-maximize full-screen"></i>
                                         </a>
                                     </li>
@@ -443,7 +434,7 @@
                                                     <div class="col-lg-8">
                                                         <div class="page-header-title">
                                                             <div class="d-inline">
-                                                                <!--<h4 style="color:#01a9ac;">-->
+                                                                <!--<h4 style="color:#452a74;">-->
                                                                 <h4>
                                                                     <asp:Literal ID="PageName" runat="server"></asp:Literal>
                                                                 </h4>
@@ -645,7 +636,8 @@
                     $(".pcoded-navbar").attr("navbar-theme", "themelight1");
 
                     // Change the color of nav-bar-custom
-                    document.getElementById("nav-bar-custom").style.backgroundColor = "#01a9ac";
+                    document.getElementById("nav-bar-custom").style.backgroundColor = "white";
+                    document.getElementById("nav-bar-custom").style.color = "#452a74";
 
                     //Menu Icon Color 
                     document.getElementById("colorIcon").click();
@@ -704,8 +696,6 @@
                     });
                 });
             </script>
-
-
 
         </div>
     </form>

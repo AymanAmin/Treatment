@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="card latest-update-card ScrollStyle">
                 <div class="card-header">
                     <h5><% = Treatment.Classes.FieldNames.getFieldName("MyNotifications-MyNotifications", "My Notifications") %></h5>
@@ -43,7 +43,7 @@
         </div>
 
         <!-- Activity -->
-        <div class="col-md-12">
+        <div class="col-md-4">
             <div class="card latest-update-card ScrollStyle">
                 <div class="card-header">
                     <h5><% = Treatment.Classes.FieldNames.getFieldName("MyNotifications-MyActivites", "My Activites") %></h5>

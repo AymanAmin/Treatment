@@ -87,7 +87,7 @@
                                             <div class="form-group col-sm-4 j-unit" style="margin-top: -2%">
                                                 <div class="col-sm-12 col-xl-12 m-b-30">
                                                     <h5 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-MainParent", "Main Parent") %></h5>
-                                                    <input runat="server" id="MainMenu" type="checkbox" style="color: #01a9ac" class="js-single" />
+                                                    <input runat="server" id="MainMenu" type="checkbox" style="color: #452a74" class="js-single" />
                                                 </div>
                                             </div>
 
