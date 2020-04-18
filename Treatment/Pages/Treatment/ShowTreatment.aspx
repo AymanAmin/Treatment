@@ -217,9 +217,7 @@
                         </div>
                     </div>
                     <div class="card-block">
-                            <asp:TextBox ID="hiddenTreatmentId" runat="server"></asp:TextBox>
-
-                            <asp:Button ID="Button1" runat="server" Text="Print"  CssClass="btn btn-info m-b-15" PostBackUrl="~/Pages/Reports/Report.aspx" />
+                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-info m-b-15" OnClick="LinkButton1_Click">Print</asp:LinkButton>
                         <div class="">
                             <div class="m-b-20" id="speech" runat="server">
                             </div>
@@ -233,7 +231,7 @@
                     </div>
                 </div>
                 <!-- List view card start -->
-                <div class="card ScrollStyle">
+                <div class="card ScrollStyle" style="overflow-x: hidden">
                     <div class="card-header">
                         <h5><i class="icofont icofont-golf-cart"></i></h5>
                         <h5>Track</h5>

@@ -371,7 +371,7 @@
                                     <li class="user-profile header-notification">
                                         <div class="dropdown-primary dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">
-                                                <img src="..\..\..\..\Theme\files\assets\images\user.png" class="img-radius" alt="User-Profile-Image" />
+                                                <img src="..\..\..\..\media\Profile\<% = Website.Classes.SessionWrapper.LoggedUser.Employee_Profile %>" class="img-radius" alt="User-Profile-Image" />
                                                 <span>
                                                     <asp:Literal ID="Emp_Name" runat="server" Text="Guest User"></asp:Literal></span>
                                                 <i class="feather icon-chevron-down"></i>

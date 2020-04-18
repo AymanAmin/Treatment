@@ -20,12 +20,17 @@ namespace Treatment.Pages.Reports
             List<Employee_Structure> stList = db.Employee_Structure.Where(x => x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id).ToList();
             try
             {
-                TreatmentReport report = new TreatmentReport();
-                report.RequestParameters = false;
-                report.Parameters["TreatmentID"].Value = Request.Form[3];
-                report.Parameters["CurrentUser"].Value = SessionWrapper.LoggedUser.Employee_Name_En;
-                try { report.Parameters["CurrentManagment"].Value = stList[0].Structure.Structure_Name_En; } catch { }
-                TreatmentASPxDocumentViewer.Report = report;
+                int treatmentId = 0;
+                if (int.TryParse(Request["getTreatmentId"], out treatmentId) && treatmentId > 0)
+                {
+                    TreatmentReport report = new TreatmentReport();
+                    report.RequestParameters = false;
+                    report.Parameters["TreatmentID"].Value = treatmentId;
+                    report.Parameters["CurrentUser"].Value = SessionWrapper.LoggedUser.Employee_Name_En;
+                    try { report.Parameters["CurrentManagment"].Value = stList[0].Structure.Structure_Name_En; }
+                    catch { }
+                    TreatmentASPxDocumentViewer.Report = report;
+                }
             }
             catch { }
             
