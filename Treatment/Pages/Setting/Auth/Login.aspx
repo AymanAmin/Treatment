@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>EMCS - Login </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
@@ -19,19 +19,75 @@
     <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app" />
     <meta name="author" content="#" />
     <!-- Favicon icon -->
-    <link rel="icon" href="~/Theme\files\assets\images\favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="~\Theme\files\assets\images\favicon.ico" type="image/x-icon" />
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet" />
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="~/Theme\files\bower_components\bootstrap\css\bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap\css\bootstrap.min.css" />
     <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="~/Theme\files\assets\icon\themify-icons\themify-icons.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\themify-icons\themify-icons.css" />
     <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="~/Theme\files\assets\icon\icofont\css\icofont.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\icofont\css\icofont.css" />
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="~/Theme\files\assets\css\style.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\style.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\jquery.mCustomScrollbar.css"/>
+
+    <!-- feather Awesome -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\feather\css\feather.css"/>
+    <!-- Notification.css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\pages\notification\notification.css" />
+
+     <!-- Animate.css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\animate.css\css\animate.css"/>
+
+    <script>
+        function notify(from, align, icon, type, animIn, animOut, Message_title, new_message) {
+            setTimeout(function () {
+            $.growl({
+                icon: icon,
+                title: Message_title,
+                message: new_message,
+                url: ''
+            }, {
+                element: 'body',
+                type: type,
+                allow_dismiss: true,
+                placement: {
+                    from: from,
+                    align: align
+                },
+                offset: {
+                    x: 30,
+                    y: 30
+                },
+                spacing: 10,
+                z_index: 999999,
+                delay: 2500,
+                timer: 10000,
+                url_target: '_blank',
+                mouse_over: false,
+                animate: {
+                    enter: animIn,
+                    exit: animOut
+                },
+                icon_type: 'class',
+                template: '<div data-growl="container" class="alert" role="alert">' +
+                '<button type="button" class="close" data-growl="dismiss">' +
+                '<span aria-hidden="true">&times;</span>' +
+                '<span class="sr-only">Close</span>' +
+                '</button>' +
+                '<span data-growl="icon"></span>' +
+                '<span data-growl="title"></span>' +
+                '<span data-growl="message"></span>' +
+                '<a href="#" data-growl="url"></a>' +
+                '</div>'
+            });
+            }, 1000);
+        }
+    </script>
 </head>
 <body class="fix-menu">
+
     <form id="form1" runat="server">
         <div>
             <!-- Pre-loader start -->
@@ -80,12 +136,17 @@
                         <div class="col-sm-12">
                             <!-- Authentication card start -->
 
-                            <div class="text-center">
-                                <img src="..\..\..\..\Theme\files\assets\images\logo.png" alt="logo.png"/>
-                            </div>
+
                             <div class="auth-box card">
                                 <div class="card-block">
                                     <div class="row m-b-20">
+
+                                        <div class="text-center col-md-12">
+                                            <img src="..\..\..\..\Theme\files\assets\images\logo.png" alt="logo.png" />
+                                            <br />
+                                            <br />
+                                        </div>
+                                        
                                         <div class="col-md-12">
                                             <h3 class="text-center">Login</h3>
                                         </div>
@@ -119,7 +180,7 @@
                                             <img src="..\..\..\..\Theme\files\assets\images\Logo.png" alt="small-logo.png" width="50" height="30" />
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <!-- end of form -->
@@ -194,6 +255,13 @@
     <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js"></script>
     <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\jquery-i18next\js\jquery-i18next.min.js"></script>
     <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\common-pages.js"></script>
+
+    <!-- notification js -->
+   <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\bootstrap-growl.min.js"></script>
+   <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\notification\notification.js"></script>
+
+
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
     <script>
