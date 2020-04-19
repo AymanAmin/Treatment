@@ -158,63 +158,6 @@
                 </div>
                 <!-- File upload card end -->
 
-                <!-- Start Grid View -->
-                <div class="row">
-                    <div class="form-group col-sm-12 table-responsive dt-responsive">
-                        <label><% = Treatment.Classes.FieldNames.getFieldName("Treatment-OwnerRelationship", "Owner Relationship") %></label>
-                        <dx:ASPxGridView ID="ownerShip" runat="server" DataSourceID="OwnerShipDataSource" Theme="Material" KeyFieldName="Owner_Id" Width="100%">
-                            <SettingsCommandButton>
-                                <NewButton Text=" ">
-                                    <Styles>
-                                        <Style CssClass="icofont icofont-plus text-primary h5">
-                            </Style>
-                                    </Styles>
-                                </NewButton>
-                                <UpdateButton Text=" ">
-                                    <Styles>
-                                        <Style CssClass="icofont icofont-save text-primary h5">
-                            </Style>
-                                    </Styles>
-                                </UpdateButton>
-                                <CancelButton Text=" ">
-                                    <Styles>
-                                        <Style CssClass="icofont icofont-ui-close text-warning h5">
-                            </Style>
-                                    </Styles>
-                                </CancelButton>
-                                <EditButton Text=" ">
-                                    <Styles>
-                                        <Style CssClass="icofont icofont-ui-edit text-info h5">
-                            </Style>
-                                    </Styles>
-                                </EditButton>
-                                <DeleteButton Text=" ">
-                                    <Styles>
-                                        <Style CssClass="icofont icofont-ui-delete text-danger h5">
-                            </Style>
-                                    </Styles>
-                                </DeleteButton>
-                            </SettingsCommandButton>
-                            <Columns>
-                                <dx:GridViewDataTextColumn Caption="Owner Name" FieldName="Owner_Name" ShowInCustomizationForm="True" VisibleIndex="0">
-                                </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn Caption="Owner Phone" FieldName="Owner_Phone" ShowInCustomizationForm="True" VisibleIndex="1">
-                                </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn Caption="Identity Type" FieldName="Identity_Type" ShowInCustomizationForm="True" VisibleIndex="2">
-                                </dx:GridViewDataTextColumn>
-                                <dx:GridViewDataTextColumn Caption="Identity Number" FieldName="Identity_Number" ShowInCustomizationForm="True" VisibleIndex="3">
-                                </dx:GridViewDataTextColumn>
-                                <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="4" ButtonRenderMode="Link" ButtonType="Link">
-                                </dx:GridViewCommandColumn>
-                            </Columns>
-                            <Styles>
-                                <Header HorizontalAlign="Center" VerticalAlign="Middle">
-                                </Header>
-                            </Styles>
-                        </dx:ASPxGridView>
-                    </div>
-                </div>
-                <!-- End Grid View -->
                 <div class="form-group col-sm-12 text-right">
                     <asp:Button ID="SaveTreatment" runat="server" Text="Save" CssClass="btn btn-primary" ValidationGroup="valFormGroup" OnClick="SaveTreatment_Click" />
                 </div>
