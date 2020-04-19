@@ -803,7 +803,7 @@ namespace Treatment.Pages.Treatment
                 if (treeTreatmentDetial[0].Treatment_Master.Treatment_Confidentiality_Id == 1)
                     isSecert = false;
                 else isSecert = true;
-                if (tabId == 2) isSecert = true;
+                if (tabId == 2) isSecert = false;
                 treeTrackTreatment(treeTreatmentDetial[0].Treatment_Detial_Id, isSecert, isPath);
                 // }   
 
