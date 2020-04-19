@@ -23,7 +23,7 @@ namespace Treatment.Pages.Setting.UserManagment
             if (!IsPostBack)
             {
                 int UserID = SessionWrapper.LoggedUser.Employee_Id;
-                List<Notification_Master> NotificationList = db.Notification_Master.Where(x => x.Employee_Structure_Id == UserID).ToList();
+                List<Notification_Master> NotificationList = db.Notification_Master.Where(x => x.From_Employee_Structure_Id == UserID).ToList();
                 NotificationList = NotificationList.OrderByDescending(x => x.Notification_Date).Take(500).ToList();
                 LoadNotification(NotificationList);
                 LoadActivity(UserID);
@@ -34,7 +34,7 @@ namespace Treatment.Pages.Setting.UserManagment
         {
             List<Treatment_Master> Treatment_List = db.Treatment_Master.ToList();
             int UserID = SessionWrapper.LoggedUser.Employee_Id;
-            List<Notification_Master> NotificationList = db.Notification_Master.Where(x => x.Employee_Structure_Id == UserID).ToList();
+            List<Notification_Master> NotificationList = db.Notification_Master.Where(x => x.From_Employee_Structure_Id == UserID).ToList();
             NotificationList = NotificationList.OrderByDescending(x => x.Notification_Date).Take(500).ToList();
             LoadNotification(NotificationList);
         }
@@ -45,7 +45,7 @@ namespace Treatment.Pages.Setting.UserManagment
             string str = string.Empty;
             for (int i = 0; i < List_Notify.Count; i++)
             {
-                int Structure_id = (int)List_Notify[i].Employee_Structure_Id;
+                int Structure_id = (int)List_Notify[i].From_Employee_Structure_Id;
                 Employee_Structure employeeStructure = db.Employee_Structure.FirstOrDefault(x => x.Employee_Structure_Id == Structure_id);
 
                 // get data based on language
@@ -139,9 +139,9 @@ namespace Treatment.Pages.Setting.UserManagment
         public string Date_Different(DateTime ReveviedDate)
         {
             
-            string Different = "Unkown time ago";
+            string Different = "Unkown time";
             if (SessionWrapper.LoggedUser.Language_id == 1)
-                Different = "منذ مدة غير معلومة";
+                Different = "غير معروف";
             try
             {
                 // Get the current DateTime.
@@ -157,21 +157,21 @@ namespace Treatment.Pages.Setting.UserManagment
                 if (Ago > 366)
                 {
                     if (SessionWrapper.LoggedUser.Language_id == 2)
-                        Different = Ago / 366 + " Years ago";
+                        Different = Ago / 366 + " Years";
                     else
                         Different = "منذ " + Ago / 366 + " سنة";
                 }
                 else if (Ago >= 30)
                 {
                     if (SessionWrapper.LoggedUser.Language_id == 2)
-                        Different = Ago / 30 + " Mounths ago";
+                        Different = Ago / 30 + " Mounths";
                     else
                         Different = "منذ " + Ago / 30 + " شهر";
                 }
                 else if (Ago >= 7)
                 {
                     if (SessionWrapper.LoggedUser.Language_id == 2)
-                        Different = Ago / 7 + " Weeks ago";
+                        Different = Ago / 7 + " Weeks";
                     else
                         Different = "منذ " + Ago / 7 + " اسبوع";
                 }
@@ -186,23 +186,23 @@ namespace Treatment.Pages.Setting.UserManagment
                         {
                             Ago = (int)elapsed.Seconds;
                             if (SessionWrapper.LoggedUser.Language_id == 2)
-                                Different = Ago + " Seconds ago";
+                                Different = Ago + " Seconds";
                             else
                                 Different = "منذ " + Ago  + " ثانية";
                         }
                         else if (SessionWrapper.LoggedUser.Language_id == 2)
-                            Different = Ago + " Minutes ago";
+                            Different = Ago + " Minutes";
                         else
                             Different = "منذ " + Ago + " دقيقة";
                     }
                     else if (SessionWrapper.LoggedUser.Language_id == 2)
-                        Different = Ago + " Hours ago";
+                        Different = Ago + " Hours";
                     else
                         Different = "منذ " + Ago + " ساعة";
 
                 }
                 else if (SessionWrapper.LoggedUser.Language_id == 2)
-                    Different = Ago + " days ago";
+                    Different = Ago + " days";
                 else
                     Different = "منذ " + Ago + " يوم";
             }

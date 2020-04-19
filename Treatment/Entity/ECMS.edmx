@@ -86,6 +86,14 @@
           <Property Name="Log_Name" Type="nvarchar(max)" />
           <Property Name="Log_Description" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Notification_Employee">
+          <Key>
+            <PropertyRef Name="NotificationShow_Employee_Id" />
+          </Key>
+          <Property Name="NotificationShow_Employee_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee_Id" Type="int" />
+          <Property Name="NotificationShow_Id" Type="int" />
+        </EntityType>
         <EntityType Name="Notification_Master">
           <Key>
             <PropertyRef Name="Notification_Id" />
@@ -96,9 +104,21 @@
           <Property Name="Notification_Description_En" Type="nvarchar(max)" />
           <Property Name="Is_Read" Type="bit" />
           <Property Name="Date_Read" Type="datetime" />
-          <Property Name="Employee_Structure_Id" Type="int" />
+          <Property Name="From_Employee_Structure_Id" Type="int" />
+          <Property Name="To_Employee_Structure_Id" Type="int" />
           <Property Name="Master_Id" Type="int" />
           <Property Name="Notification_Link" Type="nvarchar(max)" />
+          <Property Name="Is_Show_Reply" Type="bit" />
+          <Property Name="Date_Show_Reply" Type="datetime" />
+          <Property Name="Notification_Show_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Notification_Show">
+          <Key>
+            <PropertyRef Name="Notification_Show_Id" />
+          </Key>
+          <Property Name="Notification_Show_Id" Type="int" Nullable="false" />
+          <Property Name="Notification_Show_Name_Ar" Type="nvarchar(max)" />
+          <Property Name="Notification_Show_Name_En" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Owner_Relationship">
           <Key>
@@ -337,6 +357,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Notification_Employee_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Notification_Employee" Type="Self.Notification_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_Id" />
+            </Principal>
+            <Dependent Role="Notification_Employee">
+              <PropertyRef Name="Employee_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Employee_Notification_Show">
+          <End Role="Notification_Show" Type="Self.Notification_Show" Multiplicity="0..1" />
+          <End Role="Notification_Employee" Type="Self.Notification_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notification_Show">
+              <PropertyRef Name="Notification_Show_Id" />
+            </Principal>
+            <Dependent Role="Notification_Employee">
+              <PropertyRef Name="NotificationShow_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Master_Employee_Structure">
+          <End Role="Employee_Structure" Type="Self.Employee_Structure" Multiplicity="0..1" />
+          <End Role="Notification_Master" Type="Self.Notification_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_Structure">
+              <PropertyRef Name="Employee_Structure_Id" />
+            </Principal>
+            <Dependent Role="Notification_Master">
+              <PropertyRef Name="From_Employee_Structure_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Master_Employee_Structure1">
+          <End Role="Employee_Structure" Type="Self.Employee_Structure" Multiplicity="0..1" />
+          <End Role="Notification_Master" Type="Self.Notification_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_Structure">
+              <PropertyRef Name="Employee_Structure_Id" />
+            </Principal>
+            <Dependent Role="Notification_Master">
+              <PropertyRef Name="To_Employee_Structure_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Master_Notification_Show">
+          <End Role="Notification_Show" Type="Self.Notification_Show" Multiplicity="0..1" />
+          <End Role="Notification_Master" Type="Self.Notification_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notification_Show">
+              <PropertyRef Name="Notification_Show_Id" />
+            </Principal>
+            <Dependent Role="Notification_Master">
+              <PropertyRef Name="Notification_Show_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Owner_Relationship_Treatment">
           <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="0..1" />
           <End Role="Owner_Relationship" Type="Self.Owner_Relationship" Multiplicity="*" />
@@ -526,7 +606,9 @@
           <EntitySet Name="LanguageMaster" EntityType="Self.LanguageMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lanuage_Detials" EntityType="Self.Lanuage_Detials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log_File" EntityType="Self.Log_File" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification_Employee" EntityType="Self.Notification_Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notification_Master" EntityType="Self.Notification_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification_Show" EntityType="Self.Notification_Show" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Owner_Relationship" EntityType="Self.Owner_Relationship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission_Group" EntityType="Self.Permission_Group" Schema="dbo" store:Type="Tables" />
@@ -571,6 +653,26 @@
           <AssociationSet Name="FK_Log_File_Permission" Association="Self.FK_Log_File_Permission">
             <End Role="Permission" EntitySet="Permission" />
             <End Role="Log_File" EntitySet="Log_File" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Employee_Employee" Association="Self.FK_Notification_Employee_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Notification_Employee" EntitySet="Notification_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Employee_Notification_Show" Association="Self.FK_Notification_Employee_Notification_Show">
+            <End Role="Notification_Show" EntitySet="Notification_Show" />
+            <End Role="Notification_Employee" EntitySet="Notification_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Master_Employee_Structure" Association="Self.FK_Notification_Master_Employee_Structure">
+            <End Role="Employee_Structure" EntitySet="Employee_Structure" />
+            <End Role="Notification_Master" EntitySet="Notification_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Master_Employee_Structure1" Association="Self.FK_Notification_Master_Employee_Structure1">
+            <End Role="Employee_Structure" EntitySet="Employee_Structure" />
+            <End Role="Notification_Master" EntitySet="Notification_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Master_Notification_Show" Association="Self.FK_Notification_Master_Notification_Show">
+            <End Role="Notification_Show" EntitySet="Notification_Show" />
+            <End Role="Notification_Master" EntitySet="Notification_Master" />
           </AssociationSet>
           <AssociationSet Name="FK_Owner_Relationship_Treatment" Association="Self.FK_Owner_Relationship_Treatment">
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
@@ -677,6 +779,7 @@
           <NavigationProperty Name="LanguageMaster" Relationship="Self.FK_Employee_LanguageMaster" FromRole="Employee" ToRole="LanguageMaster" />
           <NavigationProperty Name="Employee_Structure" Relationship="Self.FK_Employee_Structure_Employee" FromRole="Employee" ToRole="Employee_Structure" />
           <NavigationProperty Name="Log_File" Relationship="Self.FK_Log_File_Employee" FromRole="Employee" ToRole="Log_File" />
+          <NavigationProperty Name="Notification_Employee" Relationship="Self.FK_Notification_Employee_Employee" FromRole="Employee" ToRole="Notification_Employee" />
         </EntityType>
         <EntityType Name="Employee_Structure">
           <Key>
@@ -690,6 +793,8 @@
           <Property Name="Default_Structure" Type="Boolean" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Structure_Employee" FromRole="Employee_Structure" ToRole="Employee" />
           <NavigationProperty Name="Structure" Relationship="Self.FK_Employee_Structure_Structure" FromRole="Employee_Structure" ToRole="Structure" />
+          <NavigationProperty Name="Notification_Master" Relationship="Self.FK_Notification_Master_Employee_Structure" FromRole="Employee_Structure" ToRole="Notification_Master" />
+          <NavigationProperty Name="Notification_Master1" Relationship="Self.FK_Notification_Master_Employee_Structure1" FromRole="Employee_Structure" ToRole="Notification_Master" />
           <NavigationProperty Name="Treatment_Detial" Relationship="Self.FK_Treatment_Detial_Employee_Structure" FromRole="Employee_Structure" ToRole="Treatment_Detial" />
           <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Employee_Structure" FromRole="Employee_Structure" ToRole="Treatment_Master" />
         </EntityType>
@@ -736,6 +841,16 @@
           <NavigationProperty Name="Employee" Relationship="Self.FK_Log_File_Employee" FromRole="Log_File" ToRole="Employee" />
           <NavigationProperty Name="Permission" Relationship="Self.FK_Log_File_Permission" FromRole="Log_File" ToRole="Permission" />
         </EntityType>
+        <EntityType Name="Notification_Employee">
+          <Key>
+            <PropertyRef Name="NotificationShow_Employee_Id" />
+          </Key>
+          <Property Name="NotificationShow_Employee_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_Id" Type="Int32" />
+          <Property Name="NotificationShow_Id" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Notification_Employee_Employee" FromRole="Notification_Employee" ToRole="Employee" />
+          <NavigationProperty Name="Notification_Show" Relationship="Self.FK_Notification_Employee_Notification_Show" FromRole="Notification_Employee" ToRole="Notification_Show" />
+        </EntityType>
         <EntityType Name="Notification_Master">
           <Key>
             <PropertyRef Name="Notification_Id" />
@@ -746,9 +861,26 @@
           <Property Name="Notification_Description_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Is_Read" Type="Boolean" />
           <Property Name="Date_Read" Type="DateTime" Precision="3" />
-          <Property Name="Employee_Structure_Id" Type="Int32" />
+          <Property Name="From_Employee_Structure_Id" Type="Int32" />
+          <Property Name="To_Employee_Structure_Id" Type="Int32" />
           <Property Name="Master_Id" Type="Int32" />
           <Property Name="Notification_Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Is_Show_Reply" Type="Boolean" />
+          <Property Name="Date_Show_Reply" Type="DateTime" Precision="3" />
+          <Property Name="Notification_Show_Id" Type="Int32" />
+          <NavigationProperty Name="Employee_Structure" Relationship="Self.FK_Notification_Master_Employee_Structure" FromRole="Notification_Master" ToRole="Employee_Structure" />
+          <NavigationProperty Name="Employee_Structure1" Relationship="Self.FK_Notification_Master_Employee_Structure1" FromRole="Notification_Master" ToRole="Employee_Structure" />
+          <NavigationProperty Name="Notification_Show" Relationship="Self.FK_Notification_Master_Notification_Show" FromRole="Notification_Master" ToRole="Notification_Show" />
+        </EntityType>
+        <EntityType Name="Notification_Show">
+          <Key>
+            <PropertyRef Name="Notification_Show_Id" />
+          </Key>
+          <Property Name="Notification_Show_Id" Type="Int32" Nullable="false" />
+          <Property Name="Notification_Show_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notification_Show_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Notification_Employee" Relationship="Self.FK_Notification_Employee_Notification_Show" FromRole="Notification_Show" ToRole="Notification_Employee" />
+          <NavigationProperty Name="Notification_Master" Relationship="Self.FK_Notification_Master_Notification_Show" FromRole="Notification_Show" ToRole="Notification_Master" />
         </EntityType>
         <EntityType Name="Owner_Relationship">
           <Key>
@@ -992,6 +1124,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Notification_Employee_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Notification_Employee" Type="Self.Notification_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_Id" />
+            </Principal>
+            <Dependent Role="Notification_Employee">
+              <PropertyRef Name="Employee_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employee_Structure_Structure">
           <End Role="Structure" Type="Self.Structure" Multiplicity="0..1" />
           <End Role="Employee_Structure" Type="Self.Employee_Structure" Multiplicity="*" />
@@ -1001,6 +1145,30 @@
             </Principal>
             <Dependent Role="Employee_Structure">
               <PropertyRef Name="Structure_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Master_Employee_Structure">
+          <End Role="Employee_Structure" Type="Self.Employee_Structure" Multiplicity="0..1" />
+          <End Role="Notification_Master" Type="Self.Notification_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_Structure">
+              <PropertyRef Name="Employee_Structure_Id" />
+            </Principal>
+            <Dependent Role="Notification_Master">
+              <PropertyRef Name="From_Employee_Structure_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Master_Employee_Structure1">
+          <End Role="Employee_Structure" Type="Self.Employee_Structure" Multiplicity="0..1" />
+          <End Role="Notification_Master" Type="Self.Notification_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee_Structure">
+              <PropertyRef Name="Employee_Structure_Id" />
+            </Principal>
+            <Dependent Role="Notification_Master">
+              <PropertyRef Name="To_Employee_Structure_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1061,6 +1229,30 @@
             </Principal>
             <Dependent Role="Log_File">
               <PropertyRef Name="Form_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Employee_Notification_Show">
+          <End Role="Notification_Show" Type="Self.Notification_Show" Multiplicity="0..1" />
+          <End Role="Notification_Employee" Type="Self.Notification_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notification_Show">
+              <PropertyRef Name="Notification_Show_Id" />
+            </Principal>
+            <Dependent Role="Notification_Employee">
+              <PropertyRef Name="NotificationShow_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Master_Notification_Show">
+          <End Role="Notification_Show" Type="Self.Notification_Show" Multiplicity="0..1" />
+          <End Role="Notification_Master" Type="Self.Notification_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Notification_Show">
+              <PropertyRef Name="Notification_Show_Id" />
+            </Principal>
+            <Dependent Role="Notification_Master">
+              <PropertyRef Name="Notification_Show_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1205,7 +1397,9 @@
           <EntitySet Name="LanguageMasters" EntityType="Self.LanguageMaster" />
           <EntitySet Name="Lanuage_Detials" EntityType="Self.Lanuage_Detials" />
           <EntitySet Name="Log_File" EntityType="Self.Log_File" />
+          <EntitySet Name="Notification_Employee" EntityType="Self.Notification_Employee" />
           <EntitySet Name="Notification_Master" EntityType="Self.Notification_Master" />
+          <EntitySet Name="Notification_Show" EntityType="Self.Notification_Show" />
           <EntitySet Name="Owner_Relationship" EntityType="Self.Owner_Relationship" />
           <EntitySet Name="Permissions" EntityType="Self.Permission" />
           <EntitySet Name="Permission_Group" EntityType="Self.Permission_Group" />
@@ -1243,9 +1437,21 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Log_File" EntitySet="Log_File" />
           </AssociationSet>
+          <AssociationSet Name="FK_Notification_Employee_Employee" Association="Self.FK_Notification_Employee_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Notification_Employee" EntitySet="Notification_Employee" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employee_Structure_Structure" Association="Self.FK_Employee_Structure_Structure">
             <End Role="Structure" EntitySet="Structures" />
             <End Role="Employee_Structure" EntitySet="Employee_Structure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Master_Employee_Structure" Association="Self.FK_Notification_Master_Employee_Structure">
+            <End Role="Employee_Structure" EntitySet="Employee_Structure" />
+            <End Role="Notification_Master" EntitySet="Notification_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Master_Employee_Structure1" Association="Self.FK_Notification_Master_Employee_Structure1">
+            <End Role="Employee_Structure" EntitySet="Employee_Structure" />
+            <End Role="Notification_Master" EntitySet="Notification_Master" />
           </AssociationSet>
           <AssociationSet Name="FK_Treatment_Detial_Employee_Structure" Association="Self.FK_Treatment_Detial_Employee_Structure">
             <End Role="Employee_Structure" EntitySet="Employee_Structure" />
@@ -1266,6 +1472,14 @@
           <AssociationSet Name="FK_Log_File_Permission" Association="Self.FK_Log_File_Permission">
             <End Role="Permission" EntitySet="Permissions" />
             <End Role="Log_File" EntitySet="Log_File" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Employee_Notification_Show" Association="Self.FK_Notification_Employee_Notification_Show">
+            <End Role="Notification_Show" EntitySet="Notification_Show" />
+            <End Role="Notification_Employee" EntitySet="Notification_Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Master_Notification_Show" Association="Self.FK_Notification_Master_Notification_Show">
+            <End Role="Notification_Show" EntitySet="Notification_Show" />
+            <End Role="Notification_Master" EntitySet="Notification_Master" />
           </AssociationSet>
           <AssociationSet Name="FK_Owner_Relationship_Treatment" Association="Self.FK_Owner_Relationship_Treatment">
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
@@ -1407,6 +1621,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Notification_Employee">
+            <EntityTypeMapping TypeName="ECMSModel.Notification_Employee">
+              <MappingFragment StoreEntitySet="Notification_Employee">
+                <ScalarProperty Name="NotificationShow_Employee_Id" ColumnName="NotificationShow_Employee_Id" />
+                <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
+                <ScalarProperty Name="NotificationShow_Id" ColumnName="NotificationShow_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Notification_Master">
             <EntityTypeMapping TypeName="ECMSModel.Notification_Master">
               <MappingFragment StoreEntitySet="Notification_Master">
@@ -1416,9 +1639,22 @@
                 <ScalarProperty Name="Notification_Description_En" ColumnName="Notification_Description_En" />
                 <ScalarProperty Name="Is_Read" ColumnName="Is_Read" />
                 <ScalarProperty Name="Date_Read" ColumnName="Date_Read" />
-                <ScalarProperty Name="Employee_Structure_Id" ColumnName="Employee_Structure_Id" />
+                <ScalarProperty Name="From_Employee_Structure_Id" ColumnName="From_Employee_Structure_Id" />
+                <ScalarProperty Name="To_Employee_Structure_Id" ColumnName="To_Employee_Structure_Id" />
                 <ScalarProperty Name="Master_Id" ColumnName="Master_Id" />
                 <ScalarProperty Name="Notification_Link" ColumnName="Notification_Link" />
+                <ScalarProperty Name="Is_Show_Reply" ColumnName="Is_Show_Reply" />
+                <ScalarProperty Name="Date_Show_Reply" ColumnName="Date_Show_Reply" />
+                <ScalarProperty Name="Notification_Show_Id" ColumnName="Notification_Show_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notification_Show">
+            <EntityTypeMapping TypeName="ECMSModel.Notification_Show">
+              <MappingFragment StoreEntitySet="Notification_Show">
+                <ScalarProperty Name="Notification_Show_Id" ColumnName="Notification_Show_Id" />
+                <ScalarProperty Name="Notification_Show_Name_Ar" ColumnName="Notification_Show_Name_Ar" />
+                <ScalarProperty Name="Notification_Show_Name_En" ColumnName="Notification_Show_Name_En" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

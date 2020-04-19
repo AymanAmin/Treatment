@@ -83,7 +83,7 @@
             chart.render();
         }
 
-        setTimeout(function () { document.getElementById("header-div").style.display = "none"; }, 10);
+        setTimeout(function () { document.getElementById("header-div").style.display = "none"; }, 1);
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -126,7 +126,7 @@
                                 <h4 class="text-white">
                                     <asp:Literal ID="txtNewInboxTreatment" Text="0" runat="server"></asp:Literal>
                                 </h4>
-                                <h6 class="text-white m-b-0"><% = Treatment.Classes.FieldNames.getFieldName("Default-NewInbox", "New Inbox") %></h6>
+                                <h6 class="text-white m-b-0"><% = Treatment.Classes.FieldNames.getFieldName("Default-Inbox", "Inbox") %></h6>
                             </div>
                             <div class="col-4 text-right">
                                 <canvas id="update-chart-2" height="50"></canvas>
@@ -226,7 +226,7 @@
                     </div>
                 </div>
                 <div class="card-block">
-                    <div id="chart" style="width: 100%;"></div>
+                    <div id="chart" style="width:100%;"></div>
                 </div>
 
             </div>

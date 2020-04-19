@@ -122,12 +122,8 @@ namespace Treatment
                 str += "<ul class='pcoded-item pcoded-left-item'>";
                 str += "<li class=''>";
                 str += "<a href = '../../../../' > ";
-                str += "<span class='pcoded-micon active' style='color:#01a9ac'><i class='feather icon-home'></i></span>";
-                if (SessionWrapper.LoggedUser.Language_id == 1)
-                    str += "<span class='pcoded-mtext'>لوحة المعلومات</span>";
-                else
-                    str += "<span class='pcoded-mtext'>Dashboard</span>";
-
+                str += "<span class='pcoded-micon active' style='color:#452a74'><i class='feather icon-home'></i></span>";
+                str += "<span class='pcoded-mtext'>Dashboard</span>";
                 str += "</a>";
                 str += "</li>";
 
@@ -203,6 +199,12 @@ namespace Treatment
                         str += "</li>";
                     }
                 }
+                str += "<ul class='pcoded-item pcoded-left-item'>";
+                str += "<li class=''>";
+                str += "<a href = '../../../../Pages/Setting/Auth/Logout.ashx' > ";
+                str += "<span class='pcoded-micon active' style='color:#452a74'><i class='icofont icofont-logout'></i></span>";
+                str += "<span class='pcoded-mtext'>Logout</span>";
+                str += "</a>";
                 str += "</li>";
                 str += "</ul>";
             }
@@ -228,14 +230,32 @@ namespace Treatment
         {
             try
             {
+                List<Notification_Employee> notificationEmployee = new List<Notification_Employee>();
+                notificationEmployee = db.Notification_Employee.Where(x => x.Employee_Id == currentUserId).ToList<Notification_Employee>();
+                int notfOne = 0, notfTow = 0, notfThir = 0, notfFour = 0;
+                if (notificationEmployee.Count > 0)
+                {
+                    for (int i = 0; i < notificationEmployee.Count; i++)
+                    {
+                        if (i == 0)
+                            notfOne = (int)notificationEmployee[i].NotificationShow_Id;
+                        if (i == 1)
+                            notfTow = (int)notificationEmployee[i].NotificationShow_Id;
+                        if (i == 2)
+                            notfThir = (int)notificationEmployee[i].NotificationShow_Id;
+                        if (i == 3)
+                            notfFour = (int)notificationEmployee[i].NotificationShow_Id;
+                    }
+                }
                 notificationMaster = new List<Notification_Master>();
-                notificationMaster = db.Notification_Master.Where(x => x.Employee_Structure_Id == currentStructureUserId && x.Is_Read == false).ToList<Notification_Master>();
+                notificationMaster = db.Notification_Master.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Is_Read == false && (x.Notification_Show_Id == notfOne || x.Notification_Show_Id == notfTow || x.Notification_Show_Id == notfThir || x.Notification_Show_Id == notfFour)).OrderByDescending(x => x.Notification_Id).ToList<Notification_Master>();
                 string yourHTMLstring = "";
                 yourHTMLstring = "<div class='dropdown-toggle' data-toggle='dropdown'>";
                 if (notificationMaster.Count > 0)
                 {
+                    int notShowNumnNotf = notificationMaster.Where(x => x.Is_Show_Reply == true && x.Date_Show_Reply > DateTime.Now).Count();
                     yourHTMLstring += "<i class='feather icon-bell'></i>" +
-                                      "<span class='badge bg-c-pink'>" + notificationMaster.Count + "</span>";
+                                      "<span class='badge bg-c-pink'>" + (notificationMaster.Count - notShowNumnNotf) + "</span>";
                 }
                 else
                 {
@@ -254,26 +274,46 @@ namespace Treatment
                 panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
                 Employee_Structure employeeStructure;
                 int employeeStructureId = 0;
+                int counter = 0;
                 for (int i = 0; i < notificationMaster.Count; i++)
                 {
+                    
                     employeeStructure = new Employee_Structure();
-                    employeeStructureId = (int)notificationMaster[i].Employee_Structure_Id;
+                    employeeStructureId = (int)notificationMaster[i].From_Employee_Structure_Id;
                     employeeStructure = db.Employee_Structure.FirstOrDefault(x => x.Employee_Structure_Id == employeeStructureId);
                     if (employeeStructure != null)
                     {
-                        yourHTMLstring = "<li>" +
-                                            "<div class='media'>" +
-                                                "<img class='d-flex align-self-center img-radius' src='../../../../media/Profile/" + employeeStructure.Employee.Employee_Profile + "' alt='Avtar' />" +
-                                                "<a href='" + notificationMaster[i].Notification_Link + notificationMaster[i].Notification_Id + "' class='hover-notification'>" +
-                                                    "<div class='media-body'>" +
-                                                        "<h5 class='notification-user'>" + employeeStructure.Employee.Employee_Name_En + "</h5>" +
-                                                        "<p class='notification-msg'>" + notificationMaster[i].Notification_Description_En + "</p>" +
-                                                        "<span class='notification-time'>" + dateAgo((DateTime)notificationMaster[i].Notification_Date) + "</span>" +
-                                                    "</div>" +
-                                                "</a>" +
-                                            "</div>" +
-                                        "</li>";
-                        panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
+                        if (counter == 5)
+                        {
+                            yourHTMLstring = "<li style='padding-top: 2%;padding-bottom: 1%; text-align:center;'>" +
+                                "<a href='../../../../Pages/Setting/UserManagment/MyNotifications.aspx' class='hover-notification'>See all notifications</a>" +
+                                "</li>";
+                            panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
+
+                            break;
+                        }
+                        yourHTMLstring = "<li style='padding-top: 2%;padding-bottom: 1%;'>" +
+                                                "<div class='media'>" +
+                                                    "<img class='d-flex align-self-center img-radius' src='../../../../media/Profile/" + employeeStructure.Employee.Employee_Profile + "' alt='Avtar' />" +
+                                                    "<a href='" + notificationMaster[i].Notification_Link + notificationMaster[i].Notification_Id + "' class='hover-notification'>" +
+                                                        "<div class='media-body'>" +
+                                                            "<h5 class='notification-user'>" + employeeStructure.Employee.Employee_Name_En + "</h5>" +
+                                                            "<p class='notification-msg'>" + notificationMaster[i].Notification_Description_En + "</p>" +
+                                                            "<span class='notification-time'>" + dateAgo((DateTime)notificationMaster[i].Notification_Date) + "</span>" +
+                                                        "</div>" +
+                                                    "</a>" +
+                                                "</div>" +
+                                            "</li>";
+                        if (!(bool)notificationMaster[i].Is_Show_Reply)
+                        {
+                            panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
+                            counter++;
+                        }
+                        else if (DateTime.Now >= notificationMaster[i].Date_Show_Reply)
+                        {
+                            panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
+                            counter++;
+                        }
                     }
                 }
                 yourHTMLstring = "</ul>";

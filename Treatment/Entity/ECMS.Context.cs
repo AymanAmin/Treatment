@@ -33,7 +33,9 @@ namespace Treatment.Entity
         public DbSet<LanguageMaster> LanguageMasters { get; set; }
         public DbSet<Lanuage_Detials> Lanuage_Detials { get; set; }
         public DbSet<Log_File> Log_File { get; set; }
+        public DbSet<Notification_Employee> Notification_Employee { get; set; }
         public DbSet<Notification_Master> Notification_Master { get; set; }
+        public DbSet<Notification_Show> Notification_Show { get; set; }
         public DbSet<Owner_Relationship> Owner_Relationship { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Permission_Group> Permission_Group { get; set; }

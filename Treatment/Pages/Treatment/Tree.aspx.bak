@@ -11,7 +11,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Body_Holder" runat="server">
     <div class="page-body">
         <!-- Article Editor card start -->
-        <div class="card">
+        <div class="card ScrollStyle ">
             <div class="card-header">
                 <h5>Treament Priority Form</h5>
                 <span>Add New </span>

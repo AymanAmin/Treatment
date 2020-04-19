@@ -637,7 +637,7 @@ $(document).ready(function() {
             "balloonText": "[[value]] miles",
             "legendValueText": "[[value]] mi",
             "legendPeriodValueText": "total: [[value.sum]] mi",
-            "lineColor": "#01a9ac",
+            "lineColor": "#452a74",
             "alphaField": "alpha"
         }, {
             "id": "g2",
@@ -654,7 +654,7 @@ $(document).ready(function() {
             "descriptionField": "townName",
             "bullet": "round",
             "bulletSizeField": "townSize",
-            "bulletBorderColor": "#01a9ac",
+            "bulletBorderColor": "#452a74",
             "bulletBorderAlpha": 1,
             "bulletBorderThickness": 2,
             "bulletColor": "#0ac282",
@@ -687,7 +687,7 @@ $(document).ready(function() {
     var ctx = document.getElementById('tot-lead').getContext("2d");
     var myChart = new Chart(ctx, {
         type: 'line',
-        data: valincomearrow('#01a9ac', [30, 15, 25, 35, 30, 20, 15, 20, 25, 40, 25, 30, 22, 31], '#01a9ac'),
+        data: valincomearrow('#452a74', [30, 15, 25, 35, 30, 20, 15, 20, 25, 40, 25, 30, 22, 31], '#452a74'),
         options: valincomearowbuildoption(),
     });
     var ctx = document.getElementById('tot-vendor').getContext("2d");
@@ -1031,7 +1031,7 @@ $(document).ready(function() {
         data: {
             datasets: [{
                 data: [10, 34, 5],
-                backgroundColor: ["#fe9365", "#01a9ac", "#fe5d70"],
+                backgroundColor: ["#fe9365", "#452a74", "#fe5d70"],
                 label: 'Dataset 1'
             }],
             labels: ["Satisfied", "Unsatisfied", "NA"]

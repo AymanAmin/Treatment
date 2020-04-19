@@ -10,7 +10,7 @@
         <div class="row">
             <!-- Task-detail-right start -->
             <div class="col-xl-4 col-lg-12 push-xl-8 task-detail-right">
-                <div class="card" runat="server" id="divRequiredReply">
+                <div class="card ScrollStyle" runat="server" id="divRequiredReply">
                     <div class="card-header">
                         <h5><i class="icofont icofont-clock-time"></i></h5>
                         <h5>Required Reply</h5>
@@ -34,7 +34,7 @@
                         <!-- end of counter -->
                     </div>
                 </div>
-                <div class="card">
+                <div class="card ScrollStyle">
                     <div class="card-header">
                         <h5><i class="icofont icofont-ui-note"></i></h5>
                         <h5>Treatment Details</h5>
@@ -52,46 +52,46 @@
                             <tbody>
                                 <tr>
                                     <td><i class="icofont icofont-calendar"></i>&nbsp;Date:</td>
-                                    <td class="text-right" id="treatmentDate" runat="server"></td>
+                                    <td class="text-left" id="treatmentDate" runat="server"></td>
                                 </tr>
                                 <tr>
                                     <td><i class="icofont icofont-edit-alt"></i>&nbsp;Procedure:</td>
-                                    <td class="text-right" id="treatmentProcedure" runat="server"></td>
+                                    <td class="text-left" id="treatmentProcedure" runat="server"></td>
                                 </tr>
                                 <tr>
                                     <td><i class="icofont icofont-stamp"></i>&nbsp;Management:</td>
-                                    <td class="text-right" id="treatmentManagement" runat="server"></td>
+                                    <td class="text-left" id="treatmentManagement" runat="server"></td>
                                 </tr>
                                 <tr>
                                     <td><i class="icofont icofont-tack-pin"></i>&nbsp;Classification:</td>
-                                    <td class="text-right" id="treatmentClassification" runat="server"></td>
+                                    <td class="text-left" id="treatmentClassification" runat="server"></td>
                                 </tr>
                                 <tr>
                                     <td><i class="icofont icofont-ui-tag"></i>&nbsp;Type:</td>
-                                    <td class="text-right" id="treatmentType" runat="server"></td>
+                                    <td class="text-left" id="treatmentType" runat="server"></td>
                                 </tr>
                                 <tr>
                                     <td><i class="icofont icofont-safety"></i>&nbsp;Secret:</td>
-                                    <td class="text-right" id="treatmentSecret" runat="server"></td>
+                                    <td class="text-left" id="treatmentSecret" runat="server"></td>
                                 </tr>
                                 <tr>
                                     <td><i class="icofont icofont-certificate-alt-2"></i>&nbsp;Priority:</td>
-                                    <td class="text-right" id="treatmentPriority" runat="server"></td>
+                                    <td class="text-left" id="treatmentPriority" runat="server"></td>
                                 </tr>
                                 <tr>
                                     <td><i class="icofont icofont-speed-meter"></i>&nbsp;Speed Up:</td>
-                                    <td class="text-right" id="treatmentSpeedUp" runat="server"></td>
+                                    <td class="text-left" id="treatmentSpeedUp" runat="server"></td>
                                 </tr>
                                 <tr>
                                     <td><i class="icofont icofont-ticket"></i>&nbsp;Status:</td>
-                                    <td class="text-right" id="treatmentStatus" runat="server"></td>
+                                    <td class="text-left" id="treatmentStatus" runat="server"></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="card ScrollStyle">
                     <div class="card-header">
                         <h5><i class="icofont icofont-users-alt-4"></i></h5>
                         <h5>Send To</h5>
@@ -116,7 +116,7 @@
                         
                     </div>
                 </div>
-                <div class="card">
+               <!-- <div class="card ScrollStyle">
                     <div class="card-header">
                         <h5><i class="icofont icofont-attachment"></i></h5>
                         <h5>Attached Files</h5>
@@ -198,11 +198,12 @@
                         </ul>
                     </div>
                 </div>
+                -->
             </div>
             <!-- Task-detail-right start -->
             <!-- Task-detail-left start -->
             <div class="col-xl-8 col-lg-12 pull-xl-4">
-                <div class="card">
+                <div class="card ScrollStyle">
                     <div class="card-header">
                         <h5><i class="icofont icofont-presentation-alt"></i></h5>
                         <h5 id="subject" runat="server"></h5>
@@ -216,83 +217,21 @@
                         </div>
                     </div>
                     <div class="card-block">
+                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-info m-b-15" OnClick="LinkButton1_Click">Print</asp:LinkButton>
                         <div class="">
                             <div class="m-b-20" id="speech" runat="server">
                             </div>
                             <div class="m-t-20 m-b-20">
                                 <h6 class="sub-title m-b-15">Uploaded files</h6>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6 col-xl-3">
-                                    <div class="card thumb-block">
-                                        <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\card-block\card10.png" class="img-fluid width-100" alt="task-u1.jpg" />
-                                            <div class="caption-hover">
-                                                <span>
-                                                    <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
-                                                    <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-download-alt"></i></a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer text-center">
-                                            <a href="#!">ayman.pdf </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-xl-3">
-                                    <div class="card thumb-block">
-                                        <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\card-block\card10.png" class="img-fluid width-100" alt="task-u2.jpg" />
-                                            <div class="caption-hover">
-                                                <span>
-                                                    <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
-                                                    <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-download-alt"></i></a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer text-center">
-                                            <a href="#!">mazin.pdf </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-xl-3">
-                                    <div class="card thumb-block">
-                                        <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\card-block\card10.png" class="img-fluid width-100" alt="task-u3.jpg" />
-                                            <div class="caption-hover">
-                                                <span>
-                                                    <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
-                                                    <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-download-alt"></i></a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer text-center">
-                                            <a href="#!">ahmed.pdf </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-xl-3">
-                                    <div class="card thumb-block">
-                                        <div class="thumb-img">
-                                            <img src="..\..\..\..\Theme\files\assets\images\card-block\card10.png" class="img-fluid width-100" alt="task-u4.jpg" />
-                                            <div class="caption-hover">
-                                                <span>
-                                                    <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-ui-zoom-in"></i></a>
-                                                    <a href="#" class="btn btn-primary btn-sm"><i class="icofont icofont-download-alt"></i></a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="card-footer text-center">
-                                            <a href="#!">omer.pdf </a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="row" id="downloadAttachment" runat="server">
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- List view card start -->
-                <div class="card">
+                <div class="card ScrollStyle" style="overflow-x: hidden">
                     <div class="card-header">
                         <h5><i class="icofont icofont-golf-cart"></i></h5>
                         <h5>Track</h5>
@@ -388,7 +327,7 @@
                                         <label>Reply Date</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                                            <asp:TextBox ID="replyDate" runat="server" class="form-control" data-dd-modal="true" placeholder="Enter Treatment Date" TextMode="SingleLine"></asp:TextBox>
+                                            <asp:TextBox ID="replyDate10" runat="server" class="form-control" data-dd-modal="true" placeholder="Enter Treatment Date" TextMode="SingleLine"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
@@ -410,6 +349,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- File upload card start -->
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("Treatment-AddAttachments", "Add Attachments") %></label>
+                                        <asp:FileUpload ID="addAttachments1111" runat="server" class="form-control" AllowMultiple="True" />
+                                    </div>
+                                </div>
+                                <!-- File upload card end -->
                                 <div class="form-group col-sm-12 text-right">
                                     <asp:Button ID="SaveAssignment" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="valFormAssignment" OnClick="SaveAssignment_Click" />
                                 </div>
@@ -497,6 +444,12 @@
         .label-default {
             background: linear-gradient(to right, #e0e0e0, #f6f7fb);
         }
-        #dd-w-0 { }
+        #dd-w-0 { margin-top:-23% }
+        .card-footer {
+            padding: 0.25rem 0.25rem;
+        }
+        .jFiler-icon-file i{
+            font-size:230% !important
+        }
     </style>
 </asp:Content>

@@ -5,9 +5,9 @@
     <script>setTimeout(function () { document.getElementById("header-div").style.display = "none"; }, 1);</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
-    <div class="row col-md-12">
-        <div class="col-xl-7 col-md-12">
-            <div class="card latest-update-card">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card latest-update-card ScrollStyle">
                 <div class="card-header">
                     <h5><% = Treatment.Classes.FieldNames.getFieldName("MyNotifications-MyNotifications", "My Notifications") %></h5>
                     <div class="card-header-right">
@@ -43,8 +43,8 @@
         </div>
 
         <!-- Activity -->
-        <div class="col-xl-5 col-md-12">
-            <div class="card latest-update-card">
+        <div class="col-md-4">
+            <div class="card latest-update-card ScrollStyle">
                 <div class="card-header">
                     <h5><% = Treatment.Classes.FieldNames.getFieldName("MyNotifications-MyActivites", "My Activites") %></h5>
                     <div class="card-header-right">
