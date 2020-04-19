@@ -2099,7 +2099,7 @@
     <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Models\App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\ddlFiller.cs" />
     <Compile Include="Classes\Emp_Structure.cs" />
     <Compile Include="Classes\Enums.cs" />
@@ -2522,7 +2522,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="media\Treatment\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

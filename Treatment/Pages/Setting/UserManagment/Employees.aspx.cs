@@ -20,6 +20,9 @@ namespace Treatment.Pages.Treatment
     {
         ECMSEntities db = new ECMSEntities();
          int EmployeeId = 0;
+        //LogFile Data
+        LogFileModule logFileModule = new LogFileModule();
+        String LogData = "";
         List<Employee> ALLEmployees = new List<Employee>();
         public string name { get; set; }
         protected void Page_Load(object sender, EventArgs e)
@@ -32,7 +35,17 @@ namespace Treatment.Pages.Treatment
             if (!IsPostBack)
             {
                 FillDropDownLists();
-                UserCard();
+            }
+            UserCard();
+            Emp_Language();
+        }
+
+        public void Emp_Language()
+        {
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+            {
+                Groups.DataTextField = "Group_Name_Ar";
+                Emp_Structure.DataTextField = "Structure_Name_Ar";
             }
         }
 
@@ -52,7 +65,9 @@ namespace Treatment.Pages.Treatment
 
             if (result)
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The new Employee was Sucessfully saved in system ! ');", true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The  Employee was Sucessfully saved in system ! ');", true);
+                UserCard();
+
             }
             else
             {
@@ -62,6 +77,7 @@ namespace Treatment.Pages.Treatment
 
         public bool AU_Emplooyees(int EmployeeID, string ArabicName, string EnglishName, string Email, string Phone, bool Active, int GroupID,int lang,int calander)
         {
+            db.Configuration.LazyLoadingEnabled = false;
             try
             {
                 Employee Emp = db.Employees.Create();
@@ -69,6 +85,7 @@ namespace Treatment.Pages.Treatment
                 Emp.Employee_Name_Ar = ArabicName;
                 Emp.Employee_Name_En = EnglishName;
                 Emp.Employee_Email = Email;
+                Employee_Structure Emp_Stu= new Employee_Structure(); ;
                 if (EmployeeID == 0)
                 {
                     string New_Password = StringCipher.RandomString(7);
@@ -90,10 +107,9 @@ namespace Treatment.Pages.Treatment
                 Emp.Calendar_id = calander;
                 string ImagepathProfile = UploadFile(1);
                 string ImagepathSignature = UploadFile(2);
-                if (ImagepathProfile != "") Emp.Employee_Profile = ImagepathProfile;
-                if (ImagepathSignature != "") Emp.Employee_Signature =ImagepathSignature;
+                if (ImagepathProfile != "") Emp.Employee_Profile = ImagepathProfile; else ImagepathProfile = "Profile.JPG";
+                if (ImagepathSignature != "") Emp.Employee_Signature =ImagepathSignature;else ImagepathSignature= "Signature.JPG";
                 /////////////////////////////////////// Employee_Structure /////////////////////////////////////
-                Employee_Structure Emp_Stu ;
                 for (int i = 0; i < Emp_Structure.Items.Count; i++)
                 {
                     int id = 0;
@@ -134,7 +150,15 @@ namespace Treatment.Pages.Treatment
                     db.Employees.Add(Emp);
                 }
                 db.SaveChanges();
-                UserCard();
+                /* Add it to log file */
+                LogData = "data:" + JsonConvert.SerializeObject(Emp, logFileModule.settings);
+                if (EmployeeID != 0){
+                    logFileModule.logfile(10, "تعديل بيانات موظف", "update Employee", LogData);
+                } else{
+                    logFileModule.logfile(10, "إضافة موظف", "Add Employee", LogData);
+                }
+                LogData = "data:" + JsonConvert.SerializeObject(Emp_Stu, logFileModule.settings);
+                logFileModule.logfile(10, "هيكلة موظف", "Employee Structure", LogData);
             }
             catch { return false; }
             return true;
@@ -240,7 +264,7 @@ namespace Treatment.Pages.Treatment
             string ImgTag = "";
             string img = "";
             string yourHTMLstring = "";
-
+            string Emp_Name = "";
             UCard.Controls.Clear();
             while (i < ALLEmployees.Count)
             {
@@ -253,6 +277,10 @@ namespace Treatment.Pages.Treatment
                 {
                     img = "Profile.jpg";
                 }
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    Emp_Name = ALLEmployees[i].Employee_Name_Ar.ToString();
+                else
+                    Emp_Name = ALLEmployees[i].Employee_Name_En.ToString();
 
                 ImgTag = "<img class='img-fluid img-radius'" + "src='../../../../media/Profile/" + img + "'alt='" + img + "'>";
                  yourHTMLstring = "<div class='col-lg-6 col-xl-3 col-md-6'>" +
@@ -269,7 +297,7 @@ namespace Treatment.Pages.Treatment
                                                                 "</div>" +
                                                             "</div>" +
                                                             "<div class='user-content'>" +
-                                                                "<h4 class=''>"+ ALLEmployees[i].Employee_Name_En.ToString() + "</h4> " +
+                                                                "<h4 class=''>"+ Emp_Name + "</h4> " +
                                                            " </div> " +
                                                    " </div>" +
                                                " </div> " +
@@ -310,7 +338,10 @@ namespace Treatment.Pages.Treatment
         [WebMethod]
         public static void DeleteEmplooye(int Employee_Id)
         {
-          try{ 
+            LogFileModule logFileModule = new LogFileModule();
+            String LogData = "";
+            try
+            { 
                 ECMSEntities db = new ECMSEntities();
                 var widgets = db.Employee_Structure.Where(x => x.Employee_Id == Employee_Id).ToList();
                 if (widgets.Count > 0)
@@ -323,7 +354,12 @@ namespace Treatment.Pages.Treatment
                 var DelEmp = db.Employees.First(x => x.Employee_Id == Employee_Id);
                 db.Employees.Remove(DelEmp);
                 db.SaveChanges();
-            }catch(Exception e)
+                /* Add it to log file */
+                LogData = "data:" + JsonConvert.SerializeObject(DelEmp, logFileModule.settings);
+                logFileModule.logfile(10, "حذف الموظف", "Delete Employee", LogData);
+             
+            }
+            catch(Exception e)
             {
             }
 
@@ -363,7 +399,10 @@ namespace Treatment.Pages.Treatment
                 ddlFiller.dropDDL(GroupF, "Group_Id", "Group_Name_En", GroupList, " - All -");
 
             // Group dropdown
-            List<LanguageMaster> LanguageList = db.LanguageMasters.ToList(); 
+            List<LanguageMaster> LanguageList = db.LanguageMasters.ToList();
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                ddlFiller.dropDDL(LanguageF, "ID", "Language_Name", LanguageList, " - الكل -");
+                else
                 ddlFiller.dropDDL(LanguageF, "ID", "Language_Name", LanguageList, " - All -");
         }
 

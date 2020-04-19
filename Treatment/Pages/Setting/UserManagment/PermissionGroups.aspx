@@ -80,13 +80,13 @@
                                     <EditButton Text=" ">
                                         <Styles>
                                             <Style CssClass=" icofont icofont-ui-edit text-primary h5">
-                                </Style>
+                                            </Style>
                                         </Styles>
                                     </EditButton>
                                     <DeleteButton Text=" ">
                                         <Styles>
                                             <Style CssClass="icofont icofont-ui-delete text-danger h5">
-                                </Style>
+                                            </Style>
                                         </Styles>
                                     </DeleteButton>
                                     <UpdateButton Text=" ">
