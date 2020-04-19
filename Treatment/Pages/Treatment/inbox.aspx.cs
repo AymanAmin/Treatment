@@ -199,9 +199,38 @@ namespace Treatment.Pages.Treatment
                     completeTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                     List<Treatment_Detial> treatmentDetial = new List<Treatment_Detial>();
                     treatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Assignment_Status_Id == 3).OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
+                    Treatment_Master oneTreatmentMaster;
+                    int motherTreatmentId = 0;
                     for (int i = 0; i < treatmentDetial.Count; i++)
                     {
+                        oneTreatmentMaster = new Treatment_Master();
+                        motherTreatmentId = (int)treatmentDetial[i].Treatment_Master.Treatment_Mother;
+                        if (motherTreatmentId == 0)
+                            oneTreatmentMaster = treatmentDetial[i].Treatment_Master;
+                        else
+                        {
+                            oneTreatmentMaster = db.Treatment_Master.First(x => x.Treatment_Id == motherTreatmentId);
+                        }
                         yourHTMLstring = "<tr class='unread'>" +
+                                      "<td>" +
+                                            "<div class='check-star'>" +
+                                                 "<div class='checkbox-fade fade-in-primary checkbox'>" +
+                                                      "<label>" +
+                                                           "<input type='checkbox' value=''>" +
+                                                                "<span class='cr'><i class='cr-icon icofont icofont-verification-check txt-primary'></i></span>" +
+                                                      "</label>" +
+                                                 "</div>" +
+                                                 "<a href='#!' data-toggle='tooltip' data-placement='top' data-trigger='hover' title='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Treatment_Priority_Name_En + "'>" +
+                                                     "<i class='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Css_Class + "'></i>" +
+                                                "</a>" +
+                                             "</div>" +
+                                       "</td>" +
+                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=3&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En + "</a></td>" +
+                                       "<td><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=3&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + treatmentDetial[i].Treatment_Master.Treatment_Subject + "</a></td>" +
+                                       "<td class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=3&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'><label class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label></a></td>" +
+                                       "<td class='email-time'>" + dateAgo((DateTime)treatmentDetial[i].Treatment_Master.Create_Date) + "</td>" +
+                                   "</tr>";
+                       /* yourHTMLstring = "<tr class='unread'>" +
                                       "<td>" +
                                             "<div class='check-star'>" +
                                                  "<div class='checkbox-fade fade-in-primary checkbox'>" +
@@ -217,7 +246,7 @@ namespace Treatment.Pages.Treatment
                                        "<td><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentDetial[i].Treatment_Master.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + treatmentDetial[i].Treatment_Master.Treatment_Subject + "</a></td>" +
                                        "<td class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentDetial[i].Treatment_Master.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'><label class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label></a></td>" +
                                        "<td class='email-time'>" + dateAgo((DateTime)treatmentDetial[i].Treatment_Detial_Date) + "</td>" +
-                                   " </tr>";
+                                   " </tr>";*/
                         completeTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                     }
 

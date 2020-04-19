@@ -29,16 +29,16 @@ namespace Website.Classes
                     return false;
 
                 MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                SmtpClient SmtpServer = new SmtpClient();
 
                 mail.From = new MailAddress(System_email, System_Name);
                 mail.To.Add(SendTo);
                 mail.Subject = Subject;
                 mail.Body = Message;
                 mail.IsBodyHtml = IsBodyHTML;
-                SmtpServer.Port = 587;
+                /*SmtpServer.Port = 465;
                 SmtpServer.Credentials = new System.Net.NetworkCredential(System_email, System_password);
-                SmtpServer.EnableSsl = true;
+                SmtpServer.EnableSsl = true;*/
 
                 SmtpServer.Send(mail);
 
@@ -135,7 +135,7 @@ namespace Website.Classes
             restEmail_Message += "</tr>";
             restEmail_Message += "<tr>";
             restEmail_Message += "<td style = 'padding-top: 24px; -ms-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; color: #9095a2; font-family: 'Postmates Std', 'Helvetica', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size: 16px; font-smoothing: always; font-style: normal; font-weight: 400; letter-spacing: -0.18px; line-height: 24px; mso-line-height-rule: exactly; text-decoration: none; vertical-align: top; width: 100%;'>";
-            restEmail_Message += "Your New password is :  <strong>"+NewPassword+"</strong>. Please Change this password as soon as possible.";
+            restEmail_Message += "Your New password is : <strong>"+NewPassword+"</strong>. Please Change this password as soon as possible.";
             restEmail_Message += "</td>";
             restEmail_Message += "</tr>";
             restEmail_Message += "<tr>";
@@ -153,16 +153,17 @@ namespace Website.Classes
             try
             {
                 MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                SmtpClient SmtpServer = new SmtpClient();
 
                 mail.From = new MailAddress(System_email, System_Name);
                 mail.To.Add(SendTo);
                 mail.Subject = "ECMS - Reset Password";
                 mail.Body = restEmail_Message;
+
                 mail.IsBodyHtml = true;
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential(System_email, System_password);
-                SmtpServer.EnableSsl = true;
+                //SmtpServer.Port = 465;
+                //SmtpServer.Credentials = new System.Net.NetworkCredential(System_email, System_password);
+                //SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
 

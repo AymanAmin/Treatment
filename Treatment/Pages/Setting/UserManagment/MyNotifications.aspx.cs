@@ -24,7 +24,7 @@ namespace Treatment.Pages.Setting.UserManagment
             {
                 int UserID = SessionWrapper.LoggedUser.Employee_Id;
                 List<Notification_Master> NotificationList = db.Notification_Master.Where(x => x.From_Employee_Structure_Id == UserID).ToList();
-                NotificationList = NotificationList.OrderByDescending(x => x.Notification_Date).Take(500).ToList();
+                NotificationList = NotificationList.OrderByDescending(x => x.Notification_Date).Take(100).ToList();
                 LoadNotification(NotificationList);
                 LoadActivity(UserID);
             }
@@ -35,7 +35,7 @@ namespace Treatment.Pages.Setting.UserManagment
             List<Treatment_Master> Treatment_List = db.Treatment_Master.ToList();
             int UserID = SessionWrapper.LoggedUser.Employee_Id;
             List<Notification_Master> NotificationList = db.Notification_Master.Where(x => x.From_Employee_Structure_Id == UserID).ToList();
-            NotificationList = NotificationList.OrderByDescending(x => x.Notification_Date).Take(500).ToList();
+            NotificationList = NotificationList.OrderByDescending(x => x.Notification_Date).Take(100).ToList();
             LoadNotification(NotificationList);
         }
 
@@ -82,7 +82,7 @@ namespace Treatment.Pages.Setting.UserManagment
             string CssClass = string.Empty;
             string str = string.Empty;
             List<Log_File> activites = db.Log_File.Where(x => x.Login_Id == UserID && x.Log_Name != "تسجيل دخول").ToList();
-            activites = activites.OrderByDescending(x => x.Log_Date).Take(500).ToList();
+            activites = activites.OrderByDescending(x => x.Log_Date).Take(100).ToList();
             List<Permission> Permisions_List = db.Permissions.ToList();
 
             int counter = 0;

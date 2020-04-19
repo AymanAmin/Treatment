@@ -16,6 +16,8 @@ namespace Treatment.Pages.Setting.Auth
         ECMSEntities db = new ECMSEntities();
         List<Permission> List_permission = new List<Permission>();
 
+        string Error_message = " Incorrect email or password entered. Please try again.";
+
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
 
@@ -32,7 +34,9 @@ namespace Treatment.Pages.Setting.Auth
             if (result)
                 Response.Redirect("~/");
             else
-                return;
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  Validation : ','  " + Error_message + " ! ');", true);
+            }
        }
 
         private bool auth_Login(string username, string password)

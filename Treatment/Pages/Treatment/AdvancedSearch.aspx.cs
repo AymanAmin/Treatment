@@ -140,6 +140,7 @@ namespace Treatment.Pages.Treatment
             string NoData = "No Data";
             string preparedBy = string.Empty;
             string excption_message = "Server Error cann't load data";
+            List<Treatment_Detial> List_Fill_D = db.Treatment_Detial.ToList();
 
             if (SessionWrapper.LoggedUser.Language_id == 1)
             {
@@ -184,10 +185,33 @@ namespace Treatment.Pages.Treatment
                         str += "<td style='text-align:center;vertical-align:center;'><label class='" + treatmentList[i].Treatment_Confidentiality.Css_Class + "'>" + treatmentList[i].Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label></td>";
 
                     // Check if inbox or not (اضفت كلمة انبوكس دي في دالة اللود فوق عشان افرق)
-                    if(treatmentList[i].Treatment_Keywork == "inbox")
-                        str += "<td style='text-align:center;vertical-align:center;'><a href='../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentList[i].Treatment_Id + "&getTabId=1' style='font-size:25px;text-align:center;'><i style='color:#452a74;' class='icofont icofont-eye-alt'></i></a></td></tr>";
-                    else 
-                        str += "<td style='text-align:center;vertical-align:center;'><a href='../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentList[i].Treatment_Id + "&getTabId=2' style='font-size:25px;text-align:center;'><i style='color:#452a74;' class='icofont icofont-eye-alt'></i></a></td></tr>";
+                    if (treatmentList[i].Treatment_Keywork == "inbox")
+                    {
+                        Treatment_Detial Treat = List_Fill_D.FirstOrDefault(x => x.Treatment_Id == treatmentList[i].Treatment_Id);
+                        if (Treat != null)
+                            if (Treat.Assignment_Status_Id == 3)
+                            {
+                                if (treatmentList[i].Treatment_Mother == 0)
+                                    str += "<td style='text-align:center;vertical-align:center;'><a href='../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentList[i].Treatment_Id + "&getTabId=3&getTreatmentDetialId=" + Treat.Treatment_Detial_Id + "' style='font-size:25px;text-align:center;'><i style='color:#452a74;' class='icofont icofont-eye-alt'></i></a></td></tr>";
+                                else
+                                    str += "<td style='text-align:center;vertical-align:center;'><a href='../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentList[i].Treatment_Mother + "&getTabId=3&getTreatmentDetialId=" + Treat.Treatment_Detial_Id + "' style='font-size:25px;text-align:center;'><i style='color:#452a74;' class='icofont icofont-eye-alt'></i></a></td></tr>";
+                            }
+                            else
+                            {
+                                if (treatmentList[i].Treatment_Mother == 0)
+                                    str += "<td style='text-align:center;vertical-align:center;'><a href='../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentList[i].Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + Treat.Treatment_Detial_Id + "' style='font-size:25px;text-align:center;'><i style='color:#452a74;' class='icofont icofont-eye-alt'></i></a></td></tr>";
+                                else
+                                    str += "<td style='text-align:center;vertical-align:center;'><a href='../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentList[i].Treatment_Mother + "&getTabId=1&getTreatmentDetialId=" + Treat.Treatment_Detial_Id + "' style='font-size:25px;text-align:center;'><i style='color:#452a74;' class='icofont icofont-eye-alt'></i></a></td></tr>";
+
+                            }
+                    }
+                    else
+                    {
+                        if (treatmentList[i].Treatment_Mother == 0)
+                            str += "<td style='text-align:center;vertical-align:center;'><a href='../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentList[i].Treatment_Id + "&getTabId=2' style='font-size:25px;text-align:center;'><i style='color:#452a74;' class='icofont icofont-eye-alt'></i></a></td></tr>";
+                        else
+                            str += "<td style='text-align:center;vertical-align:center;'><a href='../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentList[i].Treatment_Mother + "&getTabId=2' style='font-size:25px;text-align:center;'><i style='color:#452a74;' class='icofont icofont-eye-alt'></i></a></td></tr>";
+                    }
                 }
             }
             catch (Exception er)
