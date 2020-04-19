@@ -15,7 +15,7 @@
                     <p class="text-sm-left"><span>In Class Css use <code>icofont icofont-star text-success</code> And change <code>success</code> Based on color.</span>
                     <br />
                     <span>In Class Card use <code>card card-border-success</code> And change <code>success</code> Based on color.</span><br />
-                    <br /></p><dx:ASPxGridView ID="PriorityGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="PriorityDataSource" EnableTheming="True" KeyFieldName="Treatment_Priority_Id" Theme="Mulberry">
+                    <br /></p><dx:ASPxGridView ID="PriorityGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="PriorityDataSource" EnableTheming="True" KeyFieldName="Treatment_Priority_Id" Theme="Mulberry" OnRowDeleted="PriorityGridView_RowDeleted" OnRowInserted="PriorityGridView_RowInserted" OnRowUpdated="PriorityGridView_RowUpdated">
                         <SettingsCommandButton>
                             <NewButton Text=" ">
                                 <Styles>
@@ -60,6 +60,11 @@
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="CSS Class" FieldName="Css_Class" VisibleIndex="3">
                             </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Priority_Id" VisibleIndex="0" Width="10%">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
+                            </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
                     <asp:EntityDataSource ID="PriorityDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="Treatment_Priority" EntityTypeFilter="Treatment_Priority">
@@ -71,7 +76,7 @@
                 <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Confidentiality">
                     <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentConfidentiality", "Treatment Confidentiality") %></h4>
                     <p class="text-sm-left"><span>In Class Css use <code>label label-success</code> And change <code>success</code> Based on color.</span></p><br />
-                    <dx:ASPxGridView ID="ConfidentialityGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="ConfidentialityDataSource" EnableTheming="True" KeyFieldName="Treatment_Confidentiality_Id" Theme="Mulberry">
+                    <dx:ASPxGridView ID="ConfidentialityGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="ConfidentialityDataSource" EnableTheming="True" KeyFieldName="Treatment_Confidentiality_Id" Theme="Mulberry" OnRowDeleted="ConfidentialityGridView_RowDeleted" OnRowInserted="ConfidentialityGridView_RowInserted" OnRowUpdated="ConfidentialityGridView_RowUpdated">
                         <SettingsBehavior ConfirmDelete="True" />
                         <SettingsCommandButton>
                             <NewButton Text=" ">
@@ -115,6 +120,11 @@
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="CSS Class" FieldName="Css_Class" VisibleIndex="3">
                             </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Confidentiality_Id" VisibleIndex="0">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
+                            </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
                     <asp:EntityDataSource ID="ConfidentialityDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="Treatment_Confidentiality" EntityTypeFilter="Treatment_Confidentiality">
@@ -122,10 +132,10 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Type">
                     <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentType", "Treatment Type") %></h4>
-                    <dx:ASPxGridView ID="TypeGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="TypeDataSource" EnableTheming="True" KeyFieldName="Treatment_Type_Id" Theme="Mulberry">
+                    <dx:ASPxGridView ID="TypeGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="TypeDataSource" EnableTheming="True" KeyFieldName="Treatment_Type_Id" Theme="Mulberry" OnRowDeleted="TypeGridView_RowDeleted" OnRowInserted="TypeGridView_RowInserted" OnRowUpdated="TypeGridView_RowUpdated">
                         <SettingsEditing UseFormLayout="False">
                         </SettingsEditing>
                         <SettingsBehavior ConfirmDelete="True" />
@@ -186,6 +196,11 @@
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Actions" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
                             </dx:GridViewCommandColumn>
+                            <dx:GridViewDataTextColumn FieldName="Treatment_Type_Id" VisibleIndex="0" Caption="ID">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
+                            </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
                     <asp:EntityDataSource ID="TypeDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="Treatment_Type" EntityTypeFilter="Treatment_Type">
@@ -193,11 +208,11 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
-                <div class="p-20 z-depth-1 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Status">
+            <div class="col-lg-12">
+                <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Status">
 
                     <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentStatus", "Treatment Status") %> </h4>
-                    <dx:ASPxGridView ID="StatusGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="StatusDataSource" EnableTheming="True" KeyFieldName="Treatment_Status_Id" Theme="Mulberry">
+                    <dx:ASPxGridView ID="StatusGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="StatusDataSource" EnableTheming="True" KeyFieldName="Treatment_Status_Id" Theme="Mulberry" OnRowDeleted="StatusGridView_RowDeleted" OnRowInserted="StatusGridView_RowInserted" OnRowUpdated="StatusGridView_RowUpdated">
                         <SettingsCommandButton>
                             <NewButton Text=" ">
                                 <Styles>
@@ -238,6 +253,11 @@
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Action" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
                             </dx:GridViewCommandColumn>
+                            <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Status_Id" VisibleIndex="0">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
+                            </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
                     <asp:EntityDataSource ID="StatusDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="Treatment_Status" EntityTypeFilter="Treatment_Status">
@@ -245,10 +265,10 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Procedure">
                     <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentProcedure", "Treatment Procedure") %> </h4>
-                    <dx:ASPxGridView ID="ProcedureGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="ProcedureDataSource" EnableTheming="True" KeyFieldName="Treatment_Procedure_Id" Theme="Mulberry">
+                    <dx:ASPxGridView ID="ProcedureGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="ProcedureDataSource" EnableTheming="True" KeyFieldName="Treatment_Procedure_Id" Theme="Mulberry" OnRowDeleted="ProcedureGridView_RowDeleted" OnRowInserted="ProcedureGridView_RowInserted" OnRowUpdated="ProcedureGridView_RowUpdated">
                         <SettingsCommandButton>
                             <NewButton Text=" ">
                                 <Styles>
@@ -289,6 +309,11 @@
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
                             </dx:GridViewCommandColumn>
+                            <dx:GridViewDataTextColumn FieldName="Treatment_Procedure_Id" VisibleIndex="0" Caption="ID">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
+                            </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
                     <asp:EntityDataSource ID="ProcedureDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="Treatment_Procedure" EntityTypeFilter="Treatment_Procedure">
@@ -296,10 +321,10 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
-                <div class="p-20 z-depth-4 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Delivery">
+            <div class="col-lg-12">
+                <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Delivery">
                     <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentDelivery", "Treatment Delivery") %></h4>
-                    <dx:ASPxGridView ID="DeliveryGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="DeliveryDataSource" EnableTheming="True" KeyFieldName="Treatment_Delivery_Id" Theme="Mulberry">
+                    <dx:ASPxGridView ID="DeliveryGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="DeliveryDataSource" EnableTheming="True" KeyFieldName="Treatment_Delivery_Id" Theme="Mulberry" OnRowDeleted="DeliveryGridView_RowDeleted" OnRowInserted="DeliveryGridView_RowInserted" OnRowUpdated="DeliveryGridView_RowUpdated">
                         <SettingsCommandButton>
                             <NewButton Text=" ">
                                 <Styles>
@@ -340,6 +365,11 @@
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Delivery_Name_En" VisibleIndex="2">
                             </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Delivery_Id" VisibleIndex="0">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
+                            </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>
                     <asp:EntityDataSource ID="DeliveryDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="Treatment_Delivery" EntityTypeFilter="Treatment_Delivery">
@@ -347,10 +377,10 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Class">
                     <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentClass", "Treatment Class") %></h4>
-                    <dx:ASPxGridView ID="ClassGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="ClassDataSource" EnableTheming="True" KeyFieldName="Treatment_Class_Id" Theme="Mulberry">
+                    <dx:ASPxGridView ID="ClassGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="ClassDataSource" EnableTheming="True" KeyFieldName="Treatment_Class_Id" Theme="Mulberry" OnRowDeleted="ClassGridView_RowDeleted" OnRowInserted="ClassGridView_RowInserted" OnRowUpdated="ClassGridView_RowUpdated">
                         <SettingsCommandButton>
                             <NewButton Text=" ">
                                 <Styles>
@@ -390,6 +420,11 @@
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Class_Name_Ar" VisibleIndex="1">
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Class_Name_En" VisibleIndex="2">
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Class_Id" VisibleIndex="0">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                         </Columns>
                     </dx:ASPxGridView>

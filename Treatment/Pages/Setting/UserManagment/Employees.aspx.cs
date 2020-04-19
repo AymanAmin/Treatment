@@ -20,10 +20,20 @@ namespace Treatment.Pages.Treatment
     {
         ECMSEntities db = new ECMSEntities();
          int EmployeeId = 0;
+        List<Employee> ALLEmployees = new List<Employee>();
         public string name { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-             UserCard();          
+            if (SessionWrapper.LoggedUser == null)
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+
+            ALLEmployees = db.Employees.ToList();
+
+            if (!IsPostBack)
+            {
+                FillDropDownLists();
+                UserCard();
+            }
         }
 
         protected void Save_Click(object sender, EventArgs e)
@@ -168,6 +178,62 @@ namespace Treatment.Pages.Treatment
             return Imagepath;
         }
 
+
+
+
+        private void Fillter()
+        {
+            string val_Fillter = string.Empty;
+            
+             if (StructureF.SelectedIndex !=0)
+             {
+                 int id = int.Parse(StructureF.SelectedValue.ToString());
+                ALLEmployees = (from s in ALLEmployees
+                 join sl in db.Employee_Structure on s.Employee_Id equals sl.Employee_Id
+                 where sl.Structure_Id == id
+                 select s).ToList();
+                //ALLEmployees = ALLEmployees.Where(x => x.Employee_Signature.Where(f=> f.)).ToList();
+                 val_Fillter += "<strong>" + FieldNames.getFieldName("Employees-Structure", "Structure") + " : </strong>" + StructureF.SelectedItem + " , ";
+             }
+
+            if (GroupF.SelectedIndex !=0)
+           {
+               int id = int.Parse(GroupF.SelectedValue.ToString());
+               ALLEmployees = ALLEmployees.Where(x => x.Group_Id==id).ToList();
+               val_Fillter += "<strong>" + FieldNames.getFieldName("Employees-Group", "Group") + " : </strong>" + GroupF.SelectedItem + " , ";
+           }
+
+            if (LanguageF.SelectedIndex != 0)
+            {
+                int id = int.Parse(LanguageF.SelectedValue.ToString());
+                ALLEmployees = ALLEmployees.Where(x => x.Language_id == id).ToList();
+                val_Fillter += "<strong>" + FieldNames.getFieldName("Employees-Language", "Language") + " : </strong>" + LanguageF.SelectedItem + " , ";
+            }
+
+            if (ActiveF.Value != null)
+            {
+                ALLEmployees = ALLEmployees.Where(x => x.Employee_Active == ActiveF.Checked).ToList();
+                val_Fillter += "<strong>" + FieldNames.getFieldName("Employees-Active", "Active") + " : </strong>" + ActiveF.Checked + " , ";
+            }
+            if (Keyword.Text.Trim() != "")
+            {
+                ALLEmployees = ALLEmployees.Where(x => (x.Employee_Name_Ar != null && x.Employee_Name_Ar.Contains(Keyword.Text.Trim())) || (x.Employee_Name_En != null && x.Employee_Name_En.Contains(Keyword.Text.Trim())) || (x.Employee_Email != null && x.Employee_Email.Contains(Keyword.Text.Trim())) || (x.Employee_Phone != null && x.Employee_Phone.Contains(Keyword.Text.Trim()))).ToList();
+                val_Fillter += "<strong>" + FieldNames.getFieldName("AdvancedSearch-Keyword", "Keyword") + " : </strong>" + Keyword.Text + " , ";
+            }
+
+            // Create the details of fillter text
+            if (val_Fillter != string.Empty)
+            {
+                val_Fillter = val_Fillter.Substring(0, val_Fillter.Length - 3);
+                FilterUsed.Text = val_Fillter + "";
+            }
+            else
+                FilterUsed.Text = "";
+
+            UserCard();
+        }
+
+
         public void UserCard()
         {
             int i = 0;
@@ -176,13 +242,12 @@ namespace Treatment.Pages.Treatment
             string yourHTMLstring = "";
 
             UCard.Controls.Clear();
-            var Employees = db.Employees.ToList();
-            while (i < Employees.Count)
+            while (i < ALLEmployees.Count)
             {
 
-                if (Employees[i].Employee_Profile !="" && Employees[i].Employee_Profile !=null)
+                if (ALLEmployees[i].Employee_Profile !="" && ALLEmployees[i].Employee_Profile !=null)
                 {
-                    img = Employees[i].Employee_Profile.ToString();
+                    img = ALLEmployees[i].Employee_Profile.ToString();
                 }
                 else
                 {
@@ -198,13 +263,13 @@ namespace Treatment.Pages.Treatment
                                                                 ImgTag +
                                                                 "<div class='img-overlay img-radius'>" +
                                                                  "   <span>" +
-                                                                       " <a class='btn btn-primary btn-outline-primary btn-icon'  id='" + Employees[i].Employee_Id.ToString()+ "'OnClick='showmodel(this)'><i class='icofont icofont-ui-edit text-info h5'></i></a> " +
-                                                                       " <a class='btn btn-danger btn-outline-danger btn-icon'  id='" + Employees[i].Employee_Id.ToString()+ "'OnClick='DeleteEmplooye(this)'><i class='icofont icofont-ui-delete text-danger h5'></i></a> " +
+                                                                       " <a class='btn btn-primary btn-outline-primary btn-icon'  id='" + ALLEmployees[i].Employee_Id.ToString()+ "'OnClick='showmodel(this)'><i class='icofont icofont-ui-edit text-info h5'></i></a> " +
+                                                                       " <a class='btn btn-danger btn-outline-danger btn-icon'  id='" + ALLEmployees[i].Employee_Id.ToString()+ "'OnClick='DeleteEmplooye(this)'><i class='icofont icofont-ui-delete text-danger h5'></i></a> " +
                                                                     "</span>" +
                                                                 "</div>" +
                                                             "</div>" +
                                                             "<div class='user-content'>" +
-                                                                "<h4 class=''>"+ Employees[i].Employee_Name_En.ToString() + "</h4> " +
+                                                                "<h4 class=''>"+ ALLEmployees[i].Employee_Name_En.ToString() + "</h4> " +
                                                            " </div> " +
                                                    " </div>" +
                                                " </div> " +
@@ -267,21 +332,47 @@ namespace Treatment.Pages.Treatment
         public void ViewDataEmp()
         {
             if (EmployeeId >0 ) {
-                var Employees = db.Employees.First(x => x.Employee_Id == EmployeeId);
+                var Employeess = db.Employees.First(x => x.Employee_Id == EmployeeId);
                // if (Employees.Employee_Profile != "" && Employees.Employee_Profile!=null) Emp_Profile.ImageUrl = "../../../../media/Profile/" + Employees.Employee_Profile;
                // if (Employees.Employee_Signature != "" && Employees.Employee_Signature != null) Emp_Signature.ImageUrl = "../../../../media/Signature/" + Employees.Employee_Signature;
-                Employee_Name_Ar.Text = Employees.Employee_Name_Ar;
-                Employee_Name_En.Text = Employees.Employee_Name_En;
-                Employee_Email.Text = Employees.Employee_Email;
-                Employee_Phone.Text = Employees.Employee_Phone;
-                Groups.SelectedValue = Employees.Group_Id.ToString();
-                Active.Checked = bool.Parse(Employees.Employee_Active.ToString());
+                Employee_Name_Ar.Text = Employeess.Employee_Name_Ar;
+                Employee_Name_En.Text = Employeess.Employee_Name_En;
+                Employee_Email.Text = Employeess.Employee_Email;
+                Employee_Phone.Text = Employeess.Employee_Phone;
+                Groups.SelectedValue = Employeess.Group_Id.ToString();
+                Active.Checked = bool.Parse(Employeess.Employee_Active.ToString());
             }
 
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "showmodel();", true);
         }
 
+        private void FillDropDownLists()
+        {
+            // Structure dropdown
+            List<Structure> StructuresList = db.Structures.ToList();
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                ddlFiller.dropDDL(StructureF, "Structure_Id", "Structure_Name_Ar", StructuresList, " - الكل -");
+            else
+                ddlFiller.dropDDL(StructureF, "Structure_Id", "Structure_Name_En", StructuresList, " - All -");
+
+            // Group dropdown
+            List<Group> GroupList = db.Groups.ToList();
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                ddlFiller.dropDDL(GroupF, "Group_Id", "Group_Name_Ar", GroupList, " - الكل -");
+            else
+                ddlFiller.dropDDL(GroupF, "Group_Id", "Group_Name_En", GroupList, " - All -");
+
+            // Group dropdown
+            List<LanguageMaster> LanguageList = db.LanguageMasters.ToList(); 
+                ddlFiller.dropDDL(LanguageF, "ID", "Language_Name", LanguageList, " - All -");
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            Fillter();
+        }
 
 
+       
     }
 }

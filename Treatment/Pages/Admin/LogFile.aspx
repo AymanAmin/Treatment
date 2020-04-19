@@ -137,7 +137,7 @@ document.getElementsByClassName(&quot;dx-wrap dxgv&quot;)[0].innerHTML = tables 
                         <Columns>
                             <dx:GridViewDataTextColumn FieldName="Log_Id" ReadOnly="True" VisibleIndex="0" Caption="ID">
                             </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataDateColumn FieldName="Log_Date" VisibleIndex="3" Caption="Date" PropertiesDateEdit-EditFormat="DateTime" PropertiesDateEdit-DisplayFormatInEditMode="True">
+                            <dx:GridViewDataDateColumn FieldName="Log_Date" VisibleIndex="3" Caption="Date" PropertiesDateEdit-EditFormat="DateTime" PropertiesDateEdit-DisplayFormatInEditMode="True" SortIndex="0" SortOrder="Descending">
                                 <PropertiesDateEdit DisplayFormatString="MM/dd/yyyy h:mm tt">
                                 </PropertiesDateEdit>
                             </dx:GridViewDataDateColumn>
@@ -176,7 +176,7 @@ document.getElementsByClassName(&quot;dx-wrap dxgv&quot;)[0].innerHTML = tables 
                         </Templates>
                         <SettingsDetail ShowDetailRow="true" />
                     </dx:ASPxGridView>
-                    <asp:EntityDataSource ID="LogFileDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Log_File" EntityTypeFilter="Log_File">
+                    <asp:EntityDataSource ID="LogFileDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Log_File" EntityTypeFilter="Log_File"  Select="">
                     </asp:EntityDataSource>
                     <asp:EntityDataSource ID="LogFileDataSourceDetails" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Log_File" EntityTypeFilter="Log_File" Select="" Where="it.Log_Id = @Log_ID_value">
                         <WhereParameters>

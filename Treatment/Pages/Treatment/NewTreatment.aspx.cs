@@ -14,14 +14,25 @@ namespace Treatment.Pages.Treatment
     {
         ECMSEntities db = new ECMSEntities();
         string messageForm = "";
-        int currentStructureUserId = 15; 
-
         int currentUserId = 0; 
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            checkLogin();
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
+        }
+        private void checkLogin()
+        {
+            if (SessionWrapper.LoggedUser != null)
+            {
+                if (SessionWrapper.IsLocked)
+                    Response.Redirect("~/Pages/Setting/admin/LockScreen.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+            }
         }
 
         protected void SaveTreatment_Click(object sender, EventArgs e)

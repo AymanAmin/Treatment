@@ -31,13 +31,13 @@
         function Pie_ChartColumn(Total, Recived, Sent, categories) {
             var options = {
                 series: [{
-                    name: 'Total',
+                    name: '<% = Treatment.Classes.FieldNames.getFieldName("Default-Total", "Total") %>',
                     data: Total
                 }, {
-                    name: 'Recived',
+                    name: '<% = Treatment.Classes.FieldNames.getFieldName("Default-Recived", "Recived") %>',
                     data: Recived
                 }, {
-                    name: 'Sent',
+                    name: '<% = Treatment.Classes.FieldNames.getFieldName("Default-Sent", "Sent") %>',
                     data: Sent
                 }],
                 chart: {
@@ -64,7 +64,7 @@
                 },
                 yaxis: {
                     title: {
-                        text: '# (Treatment)'
+                        text: '# (<% = Treatment.Classes.FieldNames.getFieldName("Default-Treatment", "Treatment") %>)'
                     }
                 },
                 fill: {
@@ -73,7 +73,7 @@
                 tooltip: {
                     y: {
                         formatter: function (val) {
-                            return "# " + val + " Treatment"
+                            return "# " + val + " <% = Treatment.Classes.FieldNames.getFieldName("Default-Treatment", "Treatment") %>"
                         }
                     }
                 }
@@ -206,8 +206,6 @@
                     <div class="card-header-right">
                         <ul class="list-unstyled card-option">
                             <li><i class="feather icon-maximize full-card"></i></li>
-                            <li><i class="feather icon-minus minimize-card"></i></li>
-                            <li><i class="feather icon-trash-2 close-card"></i></li>
                         </ul>
                     </div>
                 </div>
@@ -221,6 +219,11 @@
             <div class="card">
                 <div class="card-header">
                     <h5><% = Treatment.Classes.FieldNames.getFieldName("Default-TreatmentPerStatus", "Treatment Per Status") %></h5>
+                    <div class="card-header-right">
+                        <ul class="list-unstyled card-option">
+                            <li><i class="feather icon-maximize full-card"></i></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="card-block">
                     <div id="chart" style="width: 100%;"></div>

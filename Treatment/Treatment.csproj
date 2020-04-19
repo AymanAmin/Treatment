@@ -52,6 +52,7 @@
     <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxPivotGrid.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.ASPxThemes.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.ASPxTreeList.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.Bootstrap.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -141,6 +142,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Entity\DataBase\Dropp All Tables.sql" />
+    <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2812-4-2020%29.sql" />
+    <Content Include="Entity\DataBase\Treatment Schema &amp; Data.sql" />
     <Content Include="Entity\ECMS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ECMS.edmx</DependentUpon>
@@ -158,12 +162,14 @@
     <Content Include="Pages\Setting\Auth\Login.aspx" />
     <Content Include="Pages\Setting\Auth\ResetPassword.aspx" />
     <Content Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx" />
+    <Content Include="Pages\Setting\UserManagment\MyNotifications.aspx" />
     <Content Include="Pages\Setting\UserManagment\Employees.aspx" />
     <Content Include="Pages\Setting\UserManagment\Groups.aspx" />
     <Content Include="Pages\Setting\UserManagment\PermissionGroups.aspx" />
     <Content Include="Pages\Setting\UserManagment\Permissions.aspx" />
     <Content Include="Pages\Setting\UserManagment\Profile.aspx" />
     <Content Include="Pages\Setting\UserManagment\Structure.aspx" />
+    <Content Include="Pages\Treatment\AdvancedSearch.aspx" />
     <Content Include="Pages\Treatment\inbox.aspx" />
     <Content Include="Pages\Treatment\NewTreatment.aspx" />
     <Content Include="Pages\Treatment\ShowTreatment.aspx" />
@@ -515,7 +521,6 @@
     <Content Include="Theme\files\assets\images\light-box\v2.jpg" />
     <Content Include="Theme\files\assets\images\light-box\v3.jpg" />
     <Content Include="Theme\files\assets\images\light-box\v4.jpg" />
-    <Content Include="Theme\files\assets\images\logo-blue.png" />
     <Content Include="Theme\files\assets\images\logo.png" />
     <Content Include="Theme\files\assets\images\logo1.png" />
     <Content Include="Theme\files\assets\images\mega-menu\01.jpg" />
@@ -2136,6 +2141,9 @@
     <Compile Include="Entity\Log_File.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\Notification_Master.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Owner_Relationship.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
@@ -2188,12 +2196,14 @@
     <Compile Include="Classes\EmployeDTO.cs" />
     <Compile Include="Pages\Admin\Language.aspx.cs">
       <DependentUpon>Language.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Admin\Language.aspx.designer.cs">
       <DependentUpon>Language.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\LogFile.aspx.cs">
       <DependentUpon>LogFile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Admin\LogFile.aspx.designer.cs">
       <DependentUpon>LogFile.aspx</DependentUpon>
@@ -2228,6 +2238,13 @@
     </Compile>
     <Compile Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx.designer.cs">
       <DependentUpon>TreatmentManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Setting\UserManagment\MyNotifications.aspx.cs">
+      <DependentUpon>MyNotifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Setting\UserManagment\MyNotifications.aspx.designer.cs">
+      <DependentUpon>MyNotifications.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setting\UserManagment\Employees.aspx.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
@@ -2270,6 +2287,13 @@
     </Compile>
     <Compile Include="Pages\Setting\UserManagment\Structure.aspx.designer.cs">
       <DependentUpon>Structure.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Treatment\AdvancedSearch.aspx.cs">
+      <DependentUpon>AdvancedSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Treatment\AdvancedSearch.aspx.designer.cs">
+      <DependentUpon>AdvancedSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Treatment\inbox.aspx.cs">
       <DependentUpon>inbox.aspx</DependentUpon>
@@ -2461,6 +2485,7 @@
     <Content Include="Entity\ECMS.edmx.diagram">
       <DependentUpon>ECMS.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\ECMS-Publish.pubxml" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -30,7 +30,7 @@ namespace Treatment.Pages.Setting.Auth
                 {
                     /* Add it to log file */
                     LogData = "data:" + JsonConvert.SerializeObject(SessionWrapper.LoggedUser, logFileModule.settings);
-                    logFileModule.logfile(10, "الدخول بعد الايقاف المؤقت", "", LogData);
+                    logFileModule.logfile(10, "الدخول بعد الايقاف المؤقت", "entry after pause", LogData);
 
                     SessionWrapper.IsLocked = false;
                     Response.Redirect("~/");

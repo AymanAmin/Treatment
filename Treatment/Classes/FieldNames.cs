@@ -12,11 +12,12 @@ namespace Treatment.Classes
         public static string getFieldName(string fieldname, string DefaultValue)
         {
             string name = DefaultValue;
-            int LanguageID = 2;
+            
             if (SessionWrapper.Language != null)
             {
                 try
                 {
+                    int LanguageID = (int)SessionWrapper.LoggedUser.Language_id;
                     List<Lanuage_Detials> list = SessionWrapper.Language;
                     Lanuage_Detials lang = list.Where(x => x.Language_Detial_FieldName == fieldname && x.Language_Master_ID == LanguageID).First();
                     name = lang.Language_Detial_Value;

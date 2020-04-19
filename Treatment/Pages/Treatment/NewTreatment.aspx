@@ -222,6 +222,7 @@
             </div>
             <!-- Article Editor card end -->
         </div>
+        </div>
         <!-- Page-body end -->
         <!-- Start Treatment Data Source-->
         <asp:EntityDataSource ID="EntityDataSourceStandardProcedure" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntitySetName="Permissions"></asp:EntityDataSource>

@@ -55,7 +55,7 @@ namespace Treatment.Pages.Setting.Auth
                     /* Add it to log file */
                     
                     LogData = "data:" + JsonConvert.SerializeObject(emp, logFileModule.settings);
-                    logFileModule.logfile(10, "إعادة تعين كلمة السر", "", LogData);
+                    logFileModule.logfile(10, "إعادة تعين كلمة السر", "reset your password", LogData);
 
                     return true;
                 }

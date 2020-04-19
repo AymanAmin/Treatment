@@ -90,8 +90,10 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\style.css" />
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\jquery.mCustomScrollbar.css" />
-    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css" />
 
+    <!-- RTL Style.css
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\bootstrap_rtl.css"/> -->
     <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {
             background-color: transparent;
@@ -161,17 +163,21 @@
         }
 
         /* Menu item color (onhover - active)*/
-      .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li.active > a{
+        .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li.active > a {
             color: #01a9ac !important;
         }
-         .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li:hover > a {
-            color:#01a9ac !important;
+
+        .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li:hover > a {
+            color: #01a9ac !important;
+        }
+        .hover-notification:hover{
+            background-color: #f1f1f1 !important;
         }
     </style>
 
     <script>
 
-        
+
 
         /* Close Model */
         function HideTheModel() {
@@ -286,7 +292,7 @@
                                     <i class="feather icon-menu"></i>
                                 </a>
                                 <a href="../../../../">
-                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\logo.png" alt="Theme-Logo"/>
+                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\logo.png" alt="Theme-Logo" />
                                 </a>
                                 <a class="mobile-options">
                                     <i class="feather icon-more-horizontal"></i>
@@ -364,47 +370,7 @@
                                         </div>
                                     </li>-->
                                     <li class="header-notification">
-                                        <div class="dropdown-primary dropdown">
-                                            <div class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="feather icon-bell"></i>
-                                                <span class="badge bg-c-pink">5</span>
-                                            </div>
-                                            <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                                <li>
-                                                    <h6><% = Treatment.Classes.FieldNames.getFieldName("Master-Notifications", "Notifications") %>:</h6>
-                                                    <label class="label label-danger"><% = Treatment.Classes.FieldNames.getFieldName("Master-Notifications-New", "New") %></label>
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="Generic placeholder image" />
-                                                        <div class="media-body">
-                                                            <h5 class="notification-user">Mazin Awad</h5>
-                                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                            <span class="notification-time">10 minutes ago</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="Generic placeholder image" />
-                                                        <div class="media-body">
-                                                            <h5 class="notification-user">Ayman Amin</h5>
-                                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                            <span class="notification-time">20 minutes ago</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <img class="d-flex align-self-center img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-5.jpg" alt="Generic placeholder image" />
-                                                        <div class="media-body">
-                                                            <h5 class="notification-user">Hassan Bakre</h5>
-                                                            <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                            <span class="notification-time">30 minutes ago</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                        <div class="dropdown-primary dropdown" runat="server" id="panelNotification">
                                         </div>
                                     </li>
                                     <li class="user-profile header-notification">
@@ -427,8 +393,8 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="inbox.aspx">
-                                                        <i class="feather icon-mail"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Messages", "My Messages") %>
+                                                    <a href="../../../../Pages/Treatment/inbox.aspx">
+                                                        <i class="feather icon-mail"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Messages", "My Inbox") %>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -466,6 +432,8 @@
                                         <div class="page-wrapper">
 
                                             <!-- Page-header start -->
+                                            <!--RTL Style">
+                                            <div class="page-header horizontal-layout-icon menu-rtl" id="header-div">-->
                                             <div class="page-header" id="header-div">
                                                 <div class="row align-items-end">
                                                     <div class="col-lg-8">
@@ -481,7 +449,7 @@
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <div class="page-header-breadcrumb">
-                                                            <ul class="breadcrumb-title" >
+                                                            <ul class="breadcrumb-title">
                                                                 <asp:Label ID="breadcrumb" runat="server" Text="Label"></asp:Label>
 
                                                             </ul>
@@ -509,7 +477,7 @@
                 </div>
             </div>
 
-            <input id="colorIcon" type="radio" name="radio" value="st5" onclick="handlemenutype(this.value)" hidden="hidden"/>
+            <input id="colorIcon" type="radio" name="radio" value="st5" onclick="handlemenutype(this.value)" hidden="hidden" />
 
             <!-- Warning Section Starts -->
             <!-- Older IE warning message -->
@@ -589,7 +557,6 @@
             <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\bootstrap-maxlength\js\bootstrap-maxlength.js"></script>
             <!-- Custom js -->
             <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\advance-elements\swithces.js"></script>
-
             <!-- notification js -->
             <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\bootstrap-growl.min.js"></script>
             <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\notification\notification.js"></script>
@@ -644,20 +611,32 @@
 
 
 
-           <!-- data-table js -->
+            <!-- data-table js -->
             <script src="..\..\..\..\Theme\files\bower_components\datatables.net\js\jquery.dataTables.min.js"></script>
             <script src="..\..\..\..\Theme\files\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js"></script>
             <script src="..\..\..\..\Theme\files\bower_components\datatables.net-responsive\js\dataTables.responsive.min.js"></script>
             <script src="..\..\..\..\Theme\files\bower_components\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js"></script>
-             
+
             <!-- echart js -->
             <script src="..\..\..\..\Theme\files\assets\pages\chart\echarts\js\echarts-all.js" type="text/javascript"></script>
-             <!-- user-profile -->
-             <script src="..\..\..\..\Theme\files\assets\pages\user-profile.js"></script>
+            <!-- user-profile -->
+            <script src="..\..\..\..\Theme\files\assets\pages\user-profile.js"></script>
 
-            
+            <!-- Change To arabic
+            <script src="..\..\..\..\Theme\files\assets\js\menu\menu-rtl.js"></script> -->
+
+
             <script>
+
                 $(document).ready(function () {
+                    //var lang_id = <% = Website.Classes.SessionWrapper.LoggedUser.Language_id %>;
+                    /*if(lang_id == 1)
+                    {
+                        $("#pcoded").pcodedmenu({
+                            verticalMenuplacement: 'right',
+                        });
+                    //}*/
+
                     // themelight1 Theme for Menu
                     $(".pcoded-navbar").attr("navbar-theme", "themelight1");
 
@@ -677,10 +656,6 @@
                     $(".pcoded-navbar .pcoded-hasmenu").attr("dropdown-icon", "style3")
                 });
 
-                $(document).ready(function() {
-                     
-                });
-
 
                 window.dataLayer = window.dataLayer || [];
                 function gtag() { dataLayer.push(arguments); }
@@ -688,23 +663,42 @@
 
                 gtag('config', 'UA-23581568-13');
             </script>
-            <script>
-                initSample();
-            </script>
-
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('select:not(.normal)').each(function () {
-                        $(this).select2({
-                            dropdownParent: $(this).parent()
-                        });
-                    });
-                });
-                
+<script>
+    initSample();
 </script>
 
-<script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('select:not(.normal)').each(function () {
+        $(this).select2({
+            dropdownParent: $(this).parent()
+        });
+    });
+});
+</script>
 
+
+<script>
+$(function () {
+    $('#listViewId').on('click', function () {
+        $('#Body_Holder_gridViewTreatment').hide();
+        $('#listViewTreatment').show();
+    });
+    $('#gridViewId').on('click', function () {
+        $('#listViewTreatment').hide();
+        $('#Body_Holder_gridViewTreatment').show();
+    });
+});
+</script>
+
+            
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#add-model-assignment').prepend($('#dd-w-0'));
+    });
+
+</script>
+<script>
     $(function () {
         $('#listViewId').on('click', function () {
             $('#Body_Holder_gridViewTreatment').hide();

@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
 <head runat="server">
     <title>EMCS - Login </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->

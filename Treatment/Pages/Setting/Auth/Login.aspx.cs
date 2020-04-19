@@ -16,7 +16,6 @@ namespace Treatment.Pages.Setting.Auth
         ECMSEntities db = new ECMSEntities();
         List<Permission> List_permission = new List<Permission>();
 
-        //LogFile Data
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
 
@@ -53,7 +52,6 @@ namespace Treatment.Pages.Setting.Auth
                             SessionWrapper.LoggedUser = emp;
                             SessionWrapper.IsLocked = false;
                             SessionWrapper.Language = db.Lanuage_Detials.Where(x => x.Language_Master_ID == emp.Language_id).ToList();
-
                             List<Permission_Group> Per_group = db.Permission_Group.Where(x => x.Group_Id == emp.Group_Id).ToList();
                             List_permission.Clear();
                             for (int j = 0; j < Per_group.Count; j++)
@@ -62,11 +60,21 @@ namespace Treatment.Pages.Setting.Auth
                                 if (per != null)
                                     List_permission.Add(per);
                             }
+                            // Set User info in session
+                            SessionWrapper.LoggedUser = emp;
+
+                            // Set LockScreen as false in session
+                            SessionWrapper.IsLocked = false;
+
+                            // Selecet Language Based on User language and set in session
+                            SessionWrapper.Language = db.Lanuage_Detials.Where(x => x.Language_Master_ID == emp.Language_id).ToList();
+
+                            // Set Permission List in session
                             SessionWrapper.Permssions = List_permission;
 
                             /* Add it to log file */
                             LogData = "data:" + JsonConvert.SerializeObject(emp, logFileModule.settings);
-                            logFileModule.logfile(10, "تسجيل دخول", "", LogData);
+                            logFileModule.logfile(10, "تسجيل دخول", "login to system", LogData);
                         }
                         else
                             continue;

@@ -72,7 +72,7 @@
                     <div class="form-group col-sm-12" style="text-align: right; margin-top: -2%">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-model"><% = Treatment.Classes.FieldNames.getFieldName("PermissionGroups-AddGroup", "Add Group") %></button>
                     </div>
-                    <div class="form-group col-sm-7 blockquote">
+                    <div class="form-group col-sm-12 blockquote">
                         <div class="dt-responsive table-responsive">
                             <dx:ASPxGridView ID="GroupGridView" Style="width: 100%; text-align: center; margin-top: 0%" runat="server" AutoGenerateColumns="False" DataSourceID="GroupDataSource" KeyFieldName="Group_Id" Theme="Mulberry">
                                 <Settings />
@@ -105,6 +105,9 @@
                                 </SettingsCommandButton>
                                 <Columns>
                                     <dx:GridViewDataTextColumn FieldName="Group_Id" ReadOnly="True" ShowInCustomizationForm="True" VisibleIndex="0" Caption="ID">
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <CellStyle HorizontalAlign="Center">
+                                        </CellStyle>
                                     </dx:GridViewDataTextColumn>
                                     <dx:GridViewDataTextColumn FieldName="Group_Name_Ar" ShowInCustomizationForm="True" VisibleIndex="1" Caption="Arabic Name">
                                     </dx:GridViewDataTextColumn>
@@ -137,6 +140,10 @@
                                     <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowSelectCheckbox="True" VisibleIndex="0">
                                     </dx:GridViewCommandColumn>
                                     <dx:GridViewDataTextColumn FieldName="Permission_Id" ReadOnly="True" VisibleIndex="1" Caption="Permission ID">
+                                        <FilterCellStyle HorizontalAlign="Center">
+                                        </FilterCellStyle>
+                                        <CellStyle HorizontalAlign="Center">
+                                        </CellStyle>
                                     </dx:GridViewDataTextColumn>
                                     <dx:GridViewDataTextColumn FieldName="Permission_Name_Ar" VisibleIndex="2" Caption="Permission Arabic Name">
                                     </dx:GridViewDataTextColumn>

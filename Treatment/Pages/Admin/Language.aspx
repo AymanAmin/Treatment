@@ -12,7 +12,7 @@
     <div class="box-list" style="background-color: white;">
         <div class="row">
     <div class="p-10 z-depth-3 waves-effect dt-responsive table-responsive">
-        <dx:ASPxGridView Style="width: 100%" ID="LanguageGridView" runat="server" AutoGenerateColumns="False" DataSourceID="LanguageDataSource" EnableTheming="True" KeyFieldName="Language_Detial_ID" Theme="MetropolisBlue">
+        <dx:ASPxGridView Style="width: 100%" ID="LanguageGridView" runat="server" AutoGenerateColumns="False" DataSourceID="LanguageDataSource" EnableTheming="True" KeyFieldName="Language_Detial_ID" Theme="MetropolisBlue" OnRowDeleted="LanguageGridView_RowDeleted" OnRowInserted="LanguageGridView_RowInserted" OnRowUpdated="LanguageGridView_RowUpdated">
             <SettingsPager PageSize="50">
             </SettingsPager>
             <Settings ShowFilterRow="True" ShowGroupPanel="True" />

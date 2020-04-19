@@ -148,6 +148,33 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl speech;
         
         /// <summary>
+        /// actionReply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl actionReply;
+        
+        /// <summary>
+        /// NewAssignment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton NewAssignment;
+        
+        /// <summary>
+        /// ReplyAssignment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton ReplyAssignment;
+        
+        /// <summary>
         /// CloseAssignment control.
         /// </summary>
         /// <remarks>
@@ -218,6 +245,24 @@ namespace Treatment.Pages.Treatment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox treatmentCopyTo;
+        
+        /// <summary>
+        /// requiredReply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox requiredReply;
+        
+        /// <summary>
+        /// replyDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox replyDate;
         
         /// <summary>
         /// requiredAssignment control.

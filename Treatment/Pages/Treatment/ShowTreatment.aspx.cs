@@ -13,42 +13,50 @@ namespace Treatment.Pages.Treatment
 {
     public partial class ShowTreatment : System.Web.UI.Page
     {
-        ECMSEntities db = new ECMSEntities();
-        int treatmentId = 0, oneTreatmentDetialId = 0, recoverParentid = 0, treatmentDetialId = 0;
-        string messageForm = "", messageReplyForm = "", messageAssignmentForm = "", yourHTMLStringTrack = "";
-        int currentStructureUserId = 0, currentUserId = 0;
+        ECMSEntities db;
+        int treatmentId = 0, recoverParentid = 0, treatmentDetialId = 0, tabId = 0, notificationMasterId = 0;
+        string messageForm = "", messageReplyForm = "", messageAssignmentForm = "", yourHTMLStringTrack = "", detialAssingmentNote = "";
+        int currentStructureUserId = 0, currentUserId = 0, marginTreeTrack = 0 ;
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
         List<Treatment_Detial> treeTreatmentDetial;
         List<Treatment_Detial> doneTreatmentDetial;
         Treatment_Detial oneTreatmentDetial;
         Treatment_Detial recoverTreatmentDetial;
+        bool isSecert = false, isPath = false, flayRequiredReply = false;
         protected void Page_Load(object sender, EventArgs e)
         {
+            reloadPage();
+        }
+
+        private void reloadPage()
+        {
+            checkLogin();
+            db = new ECMSEntities();
+            treatmentId = 0; recoverParentid = 0; treatmentDetialId = 0; tabId = 0; notificationMasterId = 0;
+            isSecert = false; isPath = false;
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = getStructure(currentUserId);
             if (int.TryParse(Request["getTreatmentId"], out treatmentId) && treatmentId > 0)
             {
-                if (int.TryParse(Request["getTreatmentDetialId"], out treatmentDetialId) && treatmentDetialId > 0)
+                //treatmentDetialId = getTreatmentDetialId();
+                beforLoadTreatment();
+                doneTreatmentDetial = new List<Treatment_Detial>();
+                if (loadTreatment())
                 {
-                    oneTreatmentDetialId = getTreatmentDetialId();
-                    doneTreatmentDetial = new List<Treatment_Detial>();
-                    if (loadTreatment())
-                    {
 
-                    }
-                    else
-                    {
+                }
+                else
+                {
 
-                    }
-                    if (showTrackTreatment())
-                    {
+                }
+                if (showTrackTreatment())
+                {
 
-                    }
-                    else
-                    {
+                }
+                else
+                {
 
-                    }
                 }
             }
             else
@@ -56,18 +64,136 @@ namespace Treatment.Pages.Treatment
 
             }
         }
-
-        private int getTreatmentDetialId()
+        private void checkLogin()
         {
-            int gtdi = 0;
+            if (SessionWrapper.LoggedUser != null)
+            {
+                if (SessionWrapper.IsLocked)
+                    Response.Redirect("~/Pages/Setting/admin/LockScreen.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+            }
+        }
+
+        private void beforLoadTreatment()
+        {
+            if (treatmentId == 0)
+            {
+                Response.Redirect("~/Pages/Treatment/Inbox.aspx");
+            }
+            else
+            {
+                Treatment_Master isTreatment;
+                try
+                {
+                    isTreatment = db.Treatment_Master.First(x => x.Treatment_Id == treatmentId);
+                    if (int.TryParse(Request["getTabId"], out tabId) && tabId > 0)
+                    {
+                        if (tabId == 1 || tabId == 3)
+                        {
+                            if (int.TryParse(Request["getTreatmentDetialId"], out treatmentDetialId) && treatmentDetialId > 0)
+                            {
+                                Treatment_Detial isTreatmentDetial = db.Treatment_Detial.First(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Treatment_Detial_Id == treatmentDetialId);
+
+                                Treatment_Master isTreatmentMasterDetial = db.Treatment_Master.FirstOrDefault(x => x.From_Employee_Structure_Id == currentStructureUserId && x.Treatment_Id == treatmentId);
+                                if (isTreatmentMasterDetial != null)
+                                    tabId = 2;
+                                int sercuid = getSecretLevel();
+                                if (sercuid == 1)
+                                {
+                                    secretLevel.SelectedValue = sercuid.ToString();
+                                    secretLevel.Enabled = true;
+                                }
+                                else if (sercuid == 2 || sercuid == 3)
+                                {
+                                    secretLevel.SelectedValue = sercuid.ToString();
+                                    secretLevel.Enabled = false;
+                                }
+                                //else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
+
+                                flayRequiredReply = false;
+                                bool.TryParse(isTreatmentDetial.Treatment_Master.Required_Reply.ToString(), out flayRequiredReply);
+                                if (flayRequiredReply)
+                                {
+                                    CloseAssignment.Enabled = false;
+                                    CloseAssignment.CssClass = "btn btn-disabled btn-xs waves-effect waves-light";
+                                    requiredReply.Attributes["readonly"] = "readonly";
+                                    requiredReply.Attributes["disabled"] = "disabled";
+                                    requiredReply.Checked = true;
+                                }
+                                else 
+                                {
+                                    CloseAssignment.Enabled = true;
+                                    CloseAssignment.CssClass = "btn btn-danger btn-xs waves-effect waves-light";
+
+                                    requiredReply.Checked = false;
+                                }
+
+                                if (int.TryParse(Request["getNotificationId"], out notificationMasterId) && notificationMasterId > 0)
+                                {
+                                    //actionReply.Style["display"] = "none";
+                                    updatetReadNotification(notificationMasterId);
+                                }
+
+                                if (isTreatmentDetial.Assignment_Status_Id == 1)
+                                {
+                                    return;
+                                }
+                                else if (isTreatmentDetial.Assignment_Status_Id == 2)
+                                {
+                                    return;
+                                }
+                                else if (isTreatmentDetial.Assignment_Status_Id == 3)
+                                {
+                                    actionReply.Style["display"] = "none";
+                                }
+                            }
+                            else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
+                        }
+                        else if(tabId == 2)
+                        {
+                            if (isTreatment.From_Employee_Structure_Id == currentStructureUserId)
+                            {
+                                treatmentDetialId = 0;
+                                actionReply.Style["display"] = "none";
+                                return;
+                            }
+                            else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
+                        }
+                        else if (tabId == 4 && treatmentDetialId == 0)
+                        {
+                            if (int.TryParse(Request["getNotificationId"], out notificationMasterId) && notificationMasterId > 0)
+                            {
+                                actionReply.Style["display"] = "none";
+                                updatetReadNotification(notificationMasterId);
+                                return;
+                            }
+                            else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
+                        }
+                    }
+                    else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
+
+                }
+                catch (Exception)
+                {
+                    Response.Redirect("~/Pages/Treatment/Inbox.aspx");
+                }
+            }
+        }
+
+        private int getSecretLevel()
+        {
+            int getSecretLevelId = 0;
             try
             {
-                gtdi = db.Treatment_Detial.First(x => x.Treatment_Id == treatmentId && x.To_Employee_Structure_Id == currentStructureUserId).Treatment_Detial_Id;
+                getSecretLevelId = (int)db.Treatment_Detial.First(x => x.Treatment_Detial_Id == treatmentDetialId).Treatment_Master.Treatment_Confidentiality_Id;
             }
             catch (Exception)
             {
             }
-            return gtdi;
+            return getSecretLevelId;
         }
 
         private bool loadTreatment()
@@ -82,32 +208,36 @@ namespace Treatment.Pages.Treatment
                 treatmentManagement.InnerText = showTreatment.Structure.Structure_Name_En;
                 treatmentClassification.InnerText = showTreatment.Treatment_Class.Treatment_Class_Name_En;
                 treatmentType.InnerText = showTreatment.Treatment_Type.Treatment_Type_Name_En;
-                treatmentSecret.InnerText = showTreatment.Treatment_Confidentiality.Treatment_Confidentiality_Name_En;
-                treatmentPriority.InnerText = showTreatment.Treatment_Priority.Treatment_Priority_Name_En;
+                treatmentSecret.InnerHtml = "<label class='" + showTreatment.Treatment_Confidentiality.Css_Class + "'>" + showTreatment.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label>";
+                treatmentPriority.InnerHtml = "<a href='#!' data-toggle='tooltip' data-placement='top' data-trigger='hover' title='" + showTreatment.Treatment_Priority.Treatment_Priority_Name_En + "'>" +
+                                                     "<i class='" + showTreatment.Treatment_Priority.Css_Class + "'></i>" +
+                                                "</a>&nbsp;" + showTreatment.Treatment_Priority.Treatment_Priority_Name_En;
                 treatmentSpeedUp.InnerText = showTreatment.Treatment_Delivery.Treatment_Delivery_Name_En;
                 treatmentStatus.InnerText = showTreatment.Treatment_Status.Treatment_Status_Name_En;
                 if ((bool)showTreatment.Required_Reply)
                 {
                     DateTime yourDate = (DateTime)showTreatment.Required_Reply_Date;
                     var ts = new TimeSpan(yourDate.Ticks - DateTime.Now.Ticks);
-                    string requiredReplyDate = "<div class='row m-l-20'>"+
-                                                "<div class='col-xs-3'>"+
-                                                    "<h2>" + ts.Days + "&nbsp;&nbsp;&nbsp;</h2>"+
-                                                    "<p>Days&nbsp;&nbsp;&nbsp;&nbsp;</p>"+
-                                                "</div>"+
-                                                "<div class='col-xs-3'>"+
-                                                    "<h2>" + ts.Hours + "&nbsp;&nbsp;&nbsp;</h2>" +
-                                                    "<p>Hours&nbsp;&nbsp;&nbsp;&nbsp;</p>"+
-                                                "</div>"+
-                                                "<div class='col-xs-3'>"+
-                                                    "<h2>" + ts.Minutes + "&nbsp;&nbsp;&nbsp;</h2>" +
-                                                    "<p>Minutes&nbsp;&nbsp;&nbsp;&nbsp;</p>"+
-                                                "</div>"+
-                                                "<div class='col-xs-3'>"+
-                                                    "<h2>" + ts.Seconds + "&nbsp;&nbsp;&nbsp;</h2>" +
-                                                    "<p>Seconds&nbsp;&nbsp;&nbsp;&nbsp;</p>"+
-                                                "</div>"+
+                    string requiredReplyDate = "";
+                    if (ts.Hours > 0)
+                        requiredReplyDate = "<div class='row m-l-20'>" +
+                                                    "<div class='col-xs-3'>" +
+                                                        "<h2>" + ts.Days + "&nbsp;&nbsp;&nbsp;</h2>" +
+                                                        "<p>Days&nbsp;&nbsp;&nbsp;&nbsp;</p>" +
+                                                    "</div>" +
+                                                    "<div class='col-xs-3'>" +
+                                                        "<h2>" + ts.Hours + "&nbsp;&nbsp;&nbsp;</h2>" +
+                                                        "<p>Hours&nbsp;&nbsp;&nbsp;&nbsp;</p>" +
+                                                    "</div>" +
+                                                "</div>";
+                    else
+                        requiredReplyDate = "<div class='row m-l-20'>" +
+                                                "<div class='col-xs-3'>" +
+                                                    "<h2>" + yourDate.ToShortDateString().ToString() + "&nbsp;&nbsp;&nbsp;</h2>" +
+                                                    "<p>Date&nbsp;&nbsp;&nbsp;&nbsp;</p>" +
+                                                "</div>" +
                                             "</div>";
+
                     counterDateAgo.InnerHtml = requiredReplyDate;
                 }
                 else
@@ -147,18 +277,18 @@ namespace Treatment.Pages.Treatment
                     treatmentDetial = db.Treatment_Detial.Where(x => x.Treatment_Id == treatmentId).ToList<Treatment_Detial>();
                     for (int i = 0; i < treatmentDetial.Count; i++)
                     {
-                        yourHTMLstring = "<div class='media'>"+
-                                            "<div class='media-left media-middle photo-table'>"+
-                                               "<a href='#'>"+
+                        yourHTMLstring = "<div class='media'>" +
+                                            "<div class='media-left media-middle photo-table'>" +
+                                               "<a href='#'>" +
                                                     "<img class='img-radius' src='../../../../media/Profile/" + treatmentDetial[i].Employee_Structure.Employee.Employee_Profile + "' alt='employee'>" +
-                                                "</a>"+
-                                            "</div>"+
+                                                "</a>" +
+                                            "</div>" +
                                             "<div class='media-body col-xs-12'>" +
                                                 "<h6 class='d-inline-block'>" + treatmentDetial[i].Employee_Structure.Employee.Employee_Name_En + "</h6>" +
                                                 "<div class='f-13 text-muted m-b-10'>" + treatmentDetial[i].Employee_Structure.Structure.Structure_Name_En + "</div>" +
-                                            "</div>"+
+                                            "</div>" +
                                         "</div>";
-                        if((bool)treatmentDetial[i].Treatment_Copy_To)
+                        if ((bool)treatmentDetial[i].Treatment_Copy_To)
                             copyToTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                         else
                             sendToTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
@@ -195,6 +325,7 @@ namespace Treatment.Pages.Treatment
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Reply was Sucessfully saved in system');", true);
                 clearReplyTreatment();
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
             }
             else
             {
@@ -208,7 +339,7 @@ namespace Treatment.Pages.Treatment
             {
                 try
                 {
-                    var newReplyTreatment = db.Treatment_Detial.First(x => x.Treatment_Id == treatmentId && x.To_Employee_Structure_Id == currentStructureUserId);
+                    var newReplyTreatment = db.Treatment_Detial.First(x => x.Treatment_Detial_Id == treatmentDetialId);
                     newReplyTreatment.Treatment_Detial_Date = DateTime.Now;
                     newReplyTreatment.Note = replyTreatement.Text;
                     newReplyTreatment.Key_Word = keyworkTreatment.Text;
@@ -216,6 +347,16 @@ namespace Treatment.Pages.Treatment
 
                     db.Entry(newReplyTreatment).State = EntityState.Modified;
                     db.SaveChanges();
+                    string linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentId + "&getTabId=4&getTreatmentDetialId=" + newReplyTreatment.Parent + "&getNotificationId=";
+                    int notifSendTo = (int)newReplyTreatment.Treatment_Master.From_Employee_Structure_Id;
+                    if (insertNotification(replyTreatement.Text, replyTreatement.Text, newReplyTreatment.Treatment_Master.Treatment_Id, linkNotif, notifSendTo))
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
                     //LogData = "data:" + JsonConvert.SerializeObject(newReplyTreatment, logFileModule.settings);
                     //logFileModule.logfile(5, "إضافة رد علي معاملة", "", LogData);
                 }
@@ -242,14 +383,16 @@ namespace Treatment.Pages.Treatment
         {
             replyTreatement.Text = "";
             keyworkTreatment.Text = "";
+            actionReply.Style["display"] = "none";
         }
 
         protected void SaveAssignment_Click(object sender, EventArgs e)
         {
             if (saveAssignmentTreatment())
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Treatment was Sucessfully saved in system');", true);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Assignment was Sucessfully saved in system');", true);
                 clearAssignmentTreatment();
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
             }
             else
             {
@@ -265,6 +408,7 @@ namespace Treatment.Pages.Treatment
             keyworkAssignment.Text = "";
             standardProcedure.ClearSelection();
             secretLevel.ClearSelection();
+            actionReply.Style["display"] = "none";
         }
 
         private bool saveAssignmentTreatment()
@@ -282,11 +426,13 @@ namespace Treatment.Pages.Treatment
                     newAssignmentTreatment.Treatment_Keywork = keyworkAssignment.Text;
                     newAssignmentTreatment.Treatment_Subject = requiredAssignment.Text;
                     newAssignmentTreatment.Treatment_Status_Id = 2;
-                    newAssignmentTreatment.Treatment_Priority_id = 2;
+                    newAssignmentTreatment.Treatment_Priority_id = db.Treatment_Master.FirstOrDefault(x => x.Treatment_Id == treatmentId).Treatment_Priority_id;
                     newAssignmentTreatment.Treatment_Mother = treatmentId;
                     newAssignmentTreatment.Treatment_Number = getAssignmentNumber();
                     newAssignmentTreatment.From_Employee_Structure_Id = currentStructureUserId;
-
+                    newAssignmentTreatment.Required_Reply = requiredReply.Checked;
+                    if(requiredReply.Checked)
+                        newAssignmentTreatment.Required_Reply_Date = DateTime.Parse(replyDate.Text);
                     /////////////////////////////////////// Start Insert To /////////////////////////////////////
                     Treatment_Detial treatmentDetial;
                     for (int i = 0; i < treatmentTo.Items.Count; i++)
@@ -295,7 +441,7 @@ namespace Treatment.Pages.Treatment
                         {
                             treatmentDetial = new Treatment_Detial();
                             treatmentDetial.To_Employee_Structure_Id = getStructure(int.Parse(treatmentTo.Items[i].Value));
-                            treatmentDetial.Parent = oneTreatmentDetialId;
+                            treatmentDetial.Parent = treatmentDetialId;
                             treatmentDetial.Assignment_Status_Id = 1;
                             treatmentDetial.Is_Read = false;
                             treatmentDetial.Is_Delete = false;
@@ -312,7 +458,7 @@ namespace Treatment.Pages.Treatment
                         {
                             treatmentDetial = new Treatment_Detial();
                             treatmentDetial.To_Employee_Structure_Id = getStructure(int.Parse(treatmentCopyTo.Items[i].Value));
-                            treatmentDetial.Parent = oneTreatmentDetialId;
+                            treatmentDetial.Parent = treatmentDetialId;
                             treatmentDetial.Assignment_Status_Id = 1;
                             treatmentDetial.Is_Read = false;
                             treatmentDetial.Is_Delete = false;
@@ -326,6 +472,14 @@ namespace Treatment.Pages.Treatment
                     db.SaveChanges();
                     //LogData = "data:" + JsonConvert.SerializeObject(newTreatment, logFileModule.settings);
                     //logFileModule.logfile(4, "إضافة معاملة", "", LogData);
+                    if (!flayRequiredReply)
+                    {
+                        if (!closeAssignmentTreatment())
+                        {
+                            messageAssignmentForm = "Erorr to save Close Assignment data in system";
+                            return false;
+                        }
+                    }
                 }
                 catch { messageAssignmentForm = "Erorr to save data in system"; return false; }
                 return true;
@@ -386,8 +540,9 @@ namespace Treatment.Pages.Treatment
         {
             if (closeAssignmentTreatment())
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Assignment was Sucessfully saved in system');", true);
-                clearReplyTreatment();
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Close Treatment was Sucessfully saved in system');", true);
+                actionReply.Style["display"] = "none";
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
             }
             else
             {
@@ -399,7 +554,7 @@ namespace Treatment.Pages.Treatment
         {
             try
             {
-                var closeAssignment = db.Treatment_Detial.First(x => x.Treatment_Id == treatmentId && x.To_Employee_Structure_Id == currentStructureUserId);
+                var closeAssignment = db.Treatment_Detial.First(x => x.Treatment_Detial_Id == treatmentDetialId);
                 closeAssignment.Treatment_Detial_Date = DateTime.Now;
                 closeAssignment.Assignment_Status_Id = 3;
                 db.Entry(closeAssignment).State = EntityState.Modified;
@@ -413,17 +568,22 @@ namespace Treatment.Pages.Treatment
 
         private bool showTrackTreatment()
         {
-            using(ECMSEntities dbTrack = new ECMSEntities())
+            using (ECMSEntities dbTrack = new ECMSEntities())
             {
                 try
                 {
-                    string yourHTMLstring = "";
                     List<Treatment_Detial> treatmentDetial = new List<Treatment_Detial>();
                     List<Treatment_Master> treatmentMaser = new List<Treatment_Master>();
-                    treatmentDetial = dbTrack.Treatment_Detial.Where(x => x.Treatment_Id == treatmentId).ToList<Treatment_Detial>();
+                    treatmentDetial = dbTrack.Treatment_Detial.Where(x => x.Treatment_Id == treatmentId && (x.Assignment_Status_Id == 3 || (x.Assignment_Status_Id == 2 && x.Treatment_Master.Required_Reply == true))).ToList<Treatment_Detial>();
                     for (int i = 0; i < treatmentDetial.Count; i++)
                     {
-                        treeTrackTreatment(treatmentDetial[i].Treatment_Detial_Id);
+                        marginTreeTrack = 0;
+                        isPath = getIsPath(treatmentDetial[i].Treatment_Detial_Id);
+                        if (treatmentDetial[i].Treatment_Master.Treatment_Confidentiality_Id == 1)
+                            isSecert = false;
+                        else isSecert = true;
+                        if (tabId == 2) isSecert = true;
+                        treeTrackTreatment(treatmentDetial[i].Treatment_Detial_Id, isSecert, isPath);
                     }
                     return true;
                 }
@@ -431,23 +591,60 @@ namespace Treatment.Pages.Treatment
             }
         }
 
-        private void treeTrackTreatment(int trackTreatmentDetialId)
+        private bool getIsPath(int rootTreatmentDetialId)
+        {
+            try
+            {
+                List<Treatment_Detial> treatmentDetial = new List<Treatment_Detial>();
+                List<Treatment_Master> treatmentMaser = new List<Treatment_Master>();
+                Treatment_Detial pathTreatmentDetial;
+                treatmentMaser = db.Treatment_Master.Where(x => x.Treatment_Mother == treatmentId || x.Treatment_Id == treatmentId).ToList<Treatment_Master>();
+                int parentDeId = treatmentDetialId;
+                for (int i = 0; i < treatmentMaser.Count+10; i++)
+                {
+                    pathTreatmentDetial = new Treatment_Detial();
+                    pathTreatmentDetial = db.Treatment_Detial.FirstOrDefault(x => x.Treatment_Detial_Id == parentDeId);
+                    parentDeId = (int)pathTreatmentDetial.Parent;
+                    if (pathTreatmentDetial.Treatment_Detial_Id == rootTreatmentDetialId)
+                        return true;
+                    else if (parentDeId == 0)
+                        return false;
+                }
+                return false;
+            }
+            catch { messageReplyForm = "Erorr to Show Data"; return false; }
+        }
+
+        private void treeTrackTreatment(int trackTreatmentDetialId, bool innerIsSecert, bool innerIsPath)
         {
             try
             {
                 oneTreatmentDetial = new Treatment_Detial();
-                oneTreatmentDetial = db.Treatment_Detial.First(x => x.Treatment_Detial_Id == trackTreatmentDetialId);
-                if (!doneTreatmentDetial.Exists(x => x.Treatment_Detial_Id == oneTreatmentDetial.Treatment_Detial_Id))
+                oneTreatmentDetial = db.Treatment_Detial.FirstOrDefault(x => x.Treatment_Detial_Id == trackTreatmentDetialId && (x.Assignment_Status_Id == 3 || (x.Assignment_Status_Id == 2 && x.Treatment_Master.Required_Reply == true)));
+                if (!doneTreatmentDetial.Exists(x => x.Treatment_Detial_Id == oneTreatmentDetial.Treatment_Detial_Id) && oneTreatmentDetial != null)
                 {
                     doneTreatmentDetial.Add(oneTreatmentDetial);
-                    yourHTMLStringTrack = "<div class='sortable-moves col-xs-12'>" +
+                    detialAssingmentNote = getNoteAssignment(oneTreatmentDetial.Treatment_Detial_Id);
+                    yourHTMLStringTrack = "<div class='sortable-moves col-xs-12' style='margin-left: " + marginTreeTrack + "%;'>" +
                                             "<img class='img-fluid p-absolute' src='../../../../media/Profile/" + oneTreatmentDetial.Employee_Structure.Employee.Employee_Profile + "' alt=''>" +
                                             "<h6 class='d-inline-block'>" + oneTreatmentDetial.Employee_Structure.Employee.Employee_Name_En + "</h6>" +
+                                            "<span class='label label-default f-right'>" + oneTreatmentDetial.Treatment_Detial_Date + "</span>" +
                                             "<div class='f-13 text-muted'>" + oneTreatmentDetial.Employee_Structure.Structure.Structure_Name_En + "</div>" +
-                                            "<p>" + oneTreatmentDetial.Note + "</p>" +
-                                        "</div>";
+                                            "<h6 class='d-inline-block'> From: " + oneTreatmentDetial.Treatment_Master.Employee_Structure.Employee.Employee_Name_En + "</h6></br>" +
+                                            "<h6 class='d-inline-block'> Procedure: " + oneTreatmentDetial.Treatment_Master.Treatment_Procedure.Treatment_Procedure_Name_En + "</h6>";
+                    if(innerIsPath || !innerIsSecert)
+                        yourHTMLStringTrack += "<p>" + detialAssingmentNote + "</p>";
+                    yourHTMLStringTrack += "</div>";
                     trackTreatment.Controls.Add(new LiteralControl(yourHTMLStringTrack));
                 }
+                else marginTreeTrack -= 5;
+
+                if (oneTreatmentDetial == null)
+                {
+                    oneTreatmentDetial = new Treatment_Detial();
+                    oneTreatmentDetial = db.Treatment_Detial.FirstOrDefault(x => x.Treatment_Detial_Id == trackTreatmentDetialId);
+                }
+
                 treeTreatmentDetial = new List<Treatment_Detial>();
                 treeTreatmentDetial = db.Treatment_Detial.Where(x => x.Parent == trackTreatmentDetialId).ToList().Except(doneTreatmentDetial).ToList<Treatment_Detial>();
                 if (treeTreatmentDetial.Count == 0)
@@ -459,20 +656,97 @@ namespace Treatment.Pages.Treatment
                         if (treeTreatmentDetial.Count == 0)
                         {
                             recoverTreatmentDetial = new Treatment_Detial();
-                            recoverTreatmentDetial = db.Treatment_Detial.First(x => x.Treatment_Detial_Id == recoverParentid);
-                            treeTrackTreatment((int)recoverTreatmentDetial.Parent);
+                            recoverTreatmentDetial = db.Treatment_Detial.FirstOrDefault(x => x.Treatment_Detial_Id == recoverParentid);
+                            if (recoverTreatmentDetial != null)
+                            {
+                                marginTreeTrack -= 5;
+                                if (recoverTreatmentDetial.Treatment_Master.Treatment_Confidentiality_Id == 1)
+                                    isSecert = false;
+                                else isSecert = true;
+                                if (tabId == 2) isSecert = true;
+                                treeTrackTreatment((int)recoverTreatmentDetial.Parent, isSecert, isPath);
+                            }
                         }
+                        marginTreeTrack -= 5;
                     }
                 }
-                for (int i = 0; i < treeTreatmentDetial.Count; i++)
-                {
-                    treeTrackTreatment(treeTreatmentDetial[i].Treatment_Detial_Id);
-                }   
+                //for (int i = 0; i < treeTreatmentDetial.Count; i++)
+                //{
+                marginTreeTrack += 5;
+                if (treeTreatmentDetial[0].Treatment_Master.Treatment_Confidentiality_Id == 1)
+                    isSecert = false;
+                else isSecert = true;
+                if (tabId == 2) isSecert = true;
+                treeTrackTreatment(treeTreatmentDetial[0].Treatment_Detial_Id, isSecert, isPath);
+                // }   
 
             }
             catch { messageReplyForm = "Erorr to Show Data"; }
         }
 
+        private string getNoteAssignment(int tdid)
+        {
+            detialAssingmentNote = "";
+            try
+            {
+                var assDetialParent = db.Treatment_Detial.FirstOrDefault(x => x.Parent == tdid);
+                if (assDetialParent == null)
+                {
+                    var assDetial = db.Treatment_Detial.FirstOrDefault(x => x.Treatment_Detial_Id == tdid);
+                    if (assDetial == null)
+                        detialAssingmentNote = "";
+                    else
+                        detialAssingmentNote = assDetial.Note;
+                }
+                else
+                {
+                    detialAssingmentNote = assDetialParent.Treatment_Master.Treatment_Subject;
+                }
+            }
+            catch { detialAssingmentNote = ""; }
+            return detialAssingmentNote;
+        }
 
+        private bool insertNotification(string notificationDescriptionAr, string notificationDescriptionEn, int notificationMasterId, string notificationLink, int notificationSendTo)
+        {
+            try
+            {
+                using (ECMSEntities dbEcms = new ECMSEntities())
+                {
+                    Notification_Master notificationMaster = new Notification_Master();
+                    notificationMaster = dbEcms.Notification_Master.Create();
+                    notificationMaster.Notification_Date = DateTime.Now;
+                    notificationMaster.Is_Read = false;
+                    notificationMaster.Employee_Structure_Id = notificationSendTo;
+                    notificationMaster.Master_Id = notificationMasterId;
+                    notificationMaster.Notification_Description_Ar = notificationDescriptionAr;
+                    notificationMaster.Notification_Description_En = notificationDescriptionEn;
+                    notificationMaster.Notification_Link = notificationLink;
+
+                    dbEcms.Notification_Master.Add(notificationMaster);
+                    dbEcms.SaveChanges();
+                }
+                return true; 
+            }
+            catch { return false; }
+        }
+
+        private bool updatetReadNotification(int notificationId)
+        {
+            try
+            {
+                using (ECMSEntities dbEcms = new ECMSEntities())
+                {
+                    Notification_Master notificationMaster = new Notification_Master();
+                    notificationMaster = dbEcms.Notification_Master.First(x => x.Notification_Id == notificationId);
+                    notificationMaster.Date_Read = DateTime.Now;
+                    notificationMaster.Is_Read = true;
+                    dbEcms.Entry(notificationMaster).State = EntityState.Modified;
+                    dbEcms.SaveChanges();
+                }
+                return true;
+            }
+            catch { return false; }
+        }
     }
 }

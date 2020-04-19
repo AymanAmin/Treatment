@@ -11,14 +11,16 @@ namespace Treatment
 {
     public partial class MasterEn : System.Web.UI.MasterPage
     {
-        ECMSEntities db = new ECMSEntities();
+        ECMSEntities db;
         List<Permission> ListPermissions = new List<Permission>();
         Permission CurrentPageNow = new Permission();
         List<int> CurrentPageSequences = new List<int>();
         bool isDashBoard = false;
+        int currentStructureUserId = 0, currentUserId = 0;
+        List<Notification_Master> notificationMaster;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            db = new ECMSEntities();
             //ListPermissions = db.Permissions.ToList();
             if (SessionWrapper.LoggedUser != null)
             {
@@ -29,17 +31,26 @@ namespace Treatment
             {
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
             }
+            //Change Layout to RTL
+            if (SessionWrapper.LoggedUser.Language_id != null)
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "RTL_Layout();", true);
             ListPermissions = SessionWrapper.Permssions;
             Employee_Name();
             LoadBreadcrumb(ListPermissions);
             LoadMenu(ListPermissions);
+            currentUserId = SessionWrapper.LoggedUser.Employee_Id;
+            currentStructureUserId = getStructure(currentUserId);
+            loadNotification();
             // ViewData(60);
         }
 
         private void Employee_Name()
         {
-            if (SessionWrapper.LoggedUser != null)
+            if (SessionWrapper.LoggedUser.Language_id == 2)
                 Emp_Name.Text = SessionWrapper.LoggedUser.Employee_Name_En;
+            else
+                Emp_Name.Text = SessionWrapper.LoggedUser.Employee_Name_Ar;
         }
 
         private void LoadBreadcrumb(List<Permission> ListPermission)
@@ -48,7 +59,9 @@ namespace Treatment
 
             List<string> breadcrumbs = new List<string>();
 
-            string Current_PageName = "DashBoard";
+            string Current_PageName = "لوحة المعلومات";
+            if (SessionWrapper.LoggedUser.Language_id == 2)
+            Current_PageName = "DashBoard";
 
             string LocalPath =  String.Concat(HttpContext.Current.Request.Url.LocalPath.Skip(1));
             int found = LocalPath.IndexOf(".aspx");
@@ -63,22 +76,32 @@ namespace Treatment
 
                 if (CurrentPage != null)
                 {
-                    Current_PageName = CurrentPage.Permission_Name_En;
+                    if (SessionWrapper.LoggedUser.Language_id == 2)
+                        Current_PageName = CurrentPage.Permission_Name_En;
+                    else
+                        Current_PageName = CurrentPage.Permission_Name_Ar;
                     do
                     {
                         //Add id for currnet sequense to set menu as active
                         CurrentPageSequences.Add(CurrentPage.Permission_Id);
 
-                        breadcrumbs.Add(CurrentPage.Permission_Name_En);
+                        if (SessionWrapper.LoggedUser.Language_id == 2)
+                            breadcrumbs.Add(CurrentPage.Permission_Name_En);
+                        else
+                            breadcrumbs.Add(CurrentPage.Permission_Name_Ar);
+
                         CurrentPage = ListPermission.Where(x => x.Permission_Id == CurrentPage.Parent).First();
                     }
                     while (CurrentPage.Parent != 0);
                     //Add Last Id (the Perant Id for list
                     CurrentPageSequences.Add(CurrentPage.Permission_Id);
 
-                    breadcrumbs.Add(CurrentPage.Permission_Name_En);
+                    if (SessionWrapper.LoggedUser.Language_id == 2)
+                        breadcrumbs.Add(CurrentPage.Permission_Name_En);
+                    else
+                        breadcrumbs.Add(CurrentPage.Permission_Name_Ar);
 
-                    
+
 
                     for (int i = breadcrumbs.Count - 1; i > 0; i--)
                     {
@@ -100,7 +123,11 @@ namespace Treatment
                 str += "<li class=''>";
                 str += "<a href = '../../../../' > ";
                 str += "<span class='pcoded-micon active' style='color:#01a9ac'><i class='feather icon-home'></i></span>";
-                str += "<span class='pcoded-mtext'>Dashboard</span>";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<span class='pcoded-mtext'>لوحة المعلومات</span>";
+                else
+                    str += "<span class='pcoded-mtext'>Dashboard</span>";
+
                 str += "</a>";
                 str += "</li>";
 
@@ -114,7 +141,10 @@ namespace Treatment
                             str += "<li id='" + Permission_List[First_Level].Permission_Id + "' class='pcoded-hasmenu'>";
                         str += "<a href = 'javascript:void(0)'>";
                         str += "<span class='pcoded-micon'><i class='"+ Permission_List[First_Level].Permission_Icon+ "'></i></span>";
-                        str += "<span class='pcoded-mtext'>"+ Permission_List[First_Level].Permission_Name_En + "</span>";
+                        if (SessionWrapper.LoggedUser.Language_id == 2)
+                            str += "<span class='pcoded-mtext'>"+ Permission_List[First_Level].Permission_Name_En + "</span>";
+                        else
+                            str += "<span class='pcoded-mtext'>" + Permission_List[First_Level].Permission_Name_Ar + "</span>";
                         str += "</a>";
                         str += "<ul class='pcoded-submenu'>";
                         List<Permission> Second_List = Permission_List.Where(x => x.Parent == Permission_List[First_Level].Permission_Id).ToList();
@@ -129,7 +159,10 @@ namespace Treatment
                                     str += "<li id='" + Second_List[Second_Level].Permission_Id + "' class='pcoded-hasmenu'>";
                                 str += "<a href = 'javascript:void(0)'>";
                                 str += "<span class='pcoded-micon'><i class='"+ Second_List[Second_Level].Permission_Icon+ "'></i></span>";
-                                str += "<span class='pcoded-mtext'>"+ Second_List[Second_Level].Permission_Name_En + "</span>";
+                                if (SessionWrapper.LoggedUser.Language_id == 2)
+                                    str += "<span class='pcoded-mtext'>"+ Second_List[Second_Level].Permission_Name_En + "</span>";
+                                else
+                                    str += "<span class='pcoded-mtext'>" + Second_List[Second_Level].Permission_Name_Ar + "</span>";
                                 str += "</a>";
                                 str += "<ul class='pcoded-submenu'>";
                                 for (int Third_Level = 0; Third_Level < Third_List.Count; Third_Level++)
@@ -140,7 +173,10 @@ namespace Treatment
                                         str += "<li class=''>";
                                     str += "<a href = '../../../../" + Third_List[Third_Level].Url_Path + "' > ";
                                     str += "<span class='pcoded-micon'><i class='"+ Third_List[Third_Level].Permission_Icon+ "'></i></span>";
-                                    str += "<span class='pcoded-mtext'>"+ Third_List[Third_Level].Permission_Name_En + "</span>";
+                                    if (SessionWrapper.LoggedUser.Language_id == 2)
+                                        str += "<span class='pcoded-mtext'>"+ Third_List[Third_Level].Permission_Name_En + "</span>";
+                                    else
+                                        str += "<span class='pcoded-mtext'>" + Third_List[Third_Level].Permission_Name_Ar + "</span>";
                                     str += "</a>";
                                     str += "</li>";
                                 }
@@ -155,7 +191,10 @@ namespace Treatment
                                     str += "<li class=''>";
                                 str += "<a href = '../../../../" + Second_List[Second_Level].Url_Path + "' > ";
                                 str += "<span class='pcoded-micon'><i class='" + Second_List[Second_Level].Permission_Icon + "'></i></span>";
-                                str += "<span class='pcoded-mtext'>" + Second_List[Second_Level].Permission_Name_En + "</span>";
+                                if (SessionWrapper.LoggedUser.Language_id == 2)
+                                    str += "<span class='pcoded-mtext'>" + Second_List[Second_Level].Permission_Name_En + "</span>";
+                                else
+                                    str += "<span class='pcoded-mtext'>" + Second_List[Second_Level].Permission_Name_Ar + "</span>";
                                 str += "</a>";
                                 str += "</li>";
                             }
@@ -171,9 +210,121 @@ namespace Treatment
             Menu.Text = str;
         }
 
+        private int getStructure(int employeeId)
+        {
+            int employeeStructureId = 0;
+            try
+            {
+                Employee_Structure employeeStructure = db.Employee_Structure.First(x => x.Employee_Id == employeeId);
+                employeeStructureId = (int)employeeStructure.Employee_Structure_Id;
+            }
+            catch (Exception)
+            {
+            }
+            return employeeStructureId;
+        }
 
-      
+        private void loadNotification()
+        {
+            try
+            {
+                notificationMaster = new List<Notification_Master>();
+                notificationMaster = db.Notification_Master.Where(x => x.Employee_Structure_Id == currentStructureUserId && x.Is_Read == false).ToList<Notification_Master>();
+                string yourHTMLstring = "";
+                yourHTMLstring = "<div class='dropdown-toggle' data-toggle='dropdown'>";
+                if (notificationMaster.Count > 0)
+                {
+                    yourHTMLstring += "<i class='feather icon-bell'></i>" +
+                                      "<span class='badge bg-c-pink'>" + notificationMaster.Count + "</span>";
+                }
+                else
+                {
+                    yourHTMLstring += "<i class='feather icon-bell'></i>";
+                }
+                yourHTMLstring += "</div>";
+                //panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
+                yourHTMLstring += "<ul class='show-notification notification-view dropdown-menu' data-dropdown-in='fadeIn' data-dropdown-out='fadeOut'>";
+                yourHTMLstring += "<li>" +
+                                    "<h6>" + Treatment.Classes.FieldNames.getFieldName("Master-Notifications", "Notifications") + "</h6>";
+                if (notificationMaster.Count > 0)
+                {
+                    yourHTMLstring += "<label class='label label-danger'>" + Treatment.Classes.FieldNames.getFieldName("Master-Notifications-New", "New") + "</label>";
+                } 
+                yourHTMLstring += "</li>";
+                panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
+                Employee_Structure employeeStructure;
+                int employeeStructureId = 0;
+                for (int i = 0; i < notificationMaster.Count; i++)
+                {
+                    employeeStructure = new Employee_Structure();
+                    employeeStructureId = (int)notificationMaster[i].Employee_Structure_Id;
+                    employeeStructure = db.Employee_Structure.FirstOrDefault(x => x.Employee_Structure_Id == employeeStructureId);
+                    if (employeeStructure != null)
+                    {
+                        yourHTMLstring = "<li>" +
+                                            "<div class='media'>" +
+                                                "<img class='d-flex align-self-center img-radius' src='../../../../media/Profile/" + employeeStructure.Employee.Employee_Profile + "' alt='Avtar' />" +
+                                                "<a href='" + notificationMaster[i].Notification_Link + notificationMaster[i].Notification_Id + "' class='hover-notification'>" +
+                                                    "<div class='media-body'>" +
+                                                        "<h5 class='notification-user'>" + employeeStructure.Employee.Employee_Name_En + "</h5>" +
+                                                        "<p class='notification-msg'>" + notificationMaster[i].Notification_Description_En + "</p>" +
+                                                        "<span class='notification-time'>" + dateAgo((DateTime)notificationMaster[i].Notification_Date) + "</span>" +
+                                                    "</div>" +
+                                                "</a>" +
+                                            "</div>" +
+                                        "</li>";
+                        panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
+                    }
+                }
+                yourHTMLstring = "</ul>";
+                panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private string dateAgo(DateTime yourDate)
+        {
+            const int SECOND = 1;
+            const int MINUTE = 60 * SECOND;
+            const int HOUR = 60 * MINUTE;
+            const int DAY = 24 * HOUR;
+            const int MONTH = 30 * DAY;
 
-     
+            var ts = new TimeSpan(DateTime.Now.Ticks - yourDate.Ticks);
+            double delta = Math.Abs(ts.TotalSeconds);
+
+            if (delta < 1 * MINUTE)
+                return ts.Seconds == 1 ? "one second ago" : ts.Seconds + " seconds ago";
+
+            if (delta < 2 * MINUTE)
+                return "a minute ago";
+
+            if (delta < 45 * MINUTE)
+                return ts.Minutes + " minutes ago";
+
+            if (delta < 90 * MINUTE)
+                return "an hour ago";
+
+            if (delta < 24 * HOUR)
+                return ts.Hours + " hours ago";
+
+            if (delta < 48 * HOUR)
+                return "yesterday";
+
+            if (delta < 30 * DAY)
+                return ts.Days + " days ago";
+
+            if (delta < 12 * MONTH)
+            {
+                int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
+                return months <= 1 ? "one month ago" : months + " months ago";
+            }
+            else
+            {
+                int years = Convert.ToInt32(Math.Floor((double)ts.Days / 365));
+                return years <= 1 ? "one year ago" : years + " years ago";
+            }
+        }
     }
 }

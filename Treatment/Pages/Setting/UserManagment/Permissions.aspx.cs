@@ -8,6 +8,7 @@ using Treatment.Entity;
 using Website.Classes;
 using Newtonsoft.Json;
 using Treatment.Classes;
+using DevExpress.Web;
 
 namespace Treatment.Pages.Setting.UserManagment
 {
@@ -67,7 +68,7 @@ namespace Treatment.Pages.Setting.UserManagment
 
                 /* Add it to log file */
                 LogData = "data:" + JsonConvert.SerializeObject(Per, logFileModule.settings);
-                logFileModule.logfile(10, "إضافة صلاحية جديدة", "", LogData);
+                logFileModule.logfile(10, "إضافة صلاحية جديدة", "add new permission", LogData);
 
                 //PriorityDataSource.DataBind();
             }
@@ -89,9 +90,15 @@ namespace Treatment.Pages.Setting.UserManagment
 
                 // Save Button
                 Save.Text = FieldNames.getFieldName("Permissions-Save", "Save");
+
+                //Change DropDown 
             }
             catch { }
         }
 
+        protected void PermissionTreeList_AutoFilterCellEditorInitialize(object sender, DevExpress.Web.ASPxTreeList.ASPxTreeListEditorEventArgs e)
+        {
+            
+        }
     }
 }
