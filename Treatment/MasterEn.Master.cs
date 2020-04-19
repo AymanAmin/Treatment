@@ -123,7 +123,10 @@ namespace Treatment
                 str += "<li class=''>";
                 str += "<a href = '../../../../' > ";
                 str += "<span class='pcoded-micon active' style='color:#452a74'><i class='feather icon-home'></i></span>";
-                str += "<span class='pcoded-mtext'>Dashboard</span>";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<span class='pcoded-mtext'>لوحة المعلومات</span>";
+                else
+                    str += "<span class='pcoded-mtext'>Dashboard</span>";
                 str += "</a>";
                 str += "</li>";
 
@@ -203,7 +206,11 @@ namespace Treatment
                 str += "<li class=''>";
                 str += "<a href = '../../../../Pages/Setting/Auth/Logout.ashx' > ";
                 str += "<span class='pcoded-micon active' style='color:#452a74'><i class='icofont icofont-logout'></i></span>";
-                str += "<span class='pcoded-mtext'>Logout</span>";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<span class='pcoded-mtext'>تسجيل خروج</span>";
+                else
+                    str += "<span class='pcoded-mtext'>Logout</span>";
+
                 str += "</a>";
                 str += "</li>";
                 str += "</ul>";
