@@ -86,75 +86,74 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social"><% = Treatment.Classes.FieldNames.getFieldName("Structure-AddStructure", "Add Structure") %></button>
                 </div>
                 <!-- Structure Tree -->
-                <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False" DataSourceID="TreeDataSourceView" EnableTheming="True" KeyFieldName="Structure_Id" ParentFieldName="Structure_Parent" PreviewFieldName="Structure_Name" Theme="Mulberry" OnNodeDeleting="ASPxTreeList1_NodeDeleting" OnNodeDeleted="ASPxTreeList1_NodeDeleted">
-                    <Columns>
-                        <dx:TreeListTextColumn Caption="Arabic Name" FieldName="Structure_Name_Ar" VisibleIndex="0">
+                <div class="row table-responsive">
+                    <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False" DataSourceID="TreeDataSourceView" EnableTheming="True" KeyFieldName="Structure_Id" ParentFieldName="Structure_Parent" PreviewFieldName="Structure_Name" Theme="Mulberry" OnNodeDeleting="ASPxTreeList1_NodeDeleting" OnNodeDeleted="ASPxTreeList1_NodeDeleted">
+                        <Columns>
+                            <dx:TreeListTextColumn Caption="Arabic Name" FieldName="Structure_Name_Ar" VisibleIndex="0">
 
-                            <PropertiesTextEdit>
-                                <ValidationSettings SetFocusOnError="True">
-                                    <ErrorFrameStyle Font-Bold="True" Font-Italic="True" Font-Strikeout="True" Font-Underline="True" CssClass="j-input j-error-view">
-                                    </ErrorFrameStyle>
-                                    <RequiredField ErrorText="places Enter Arabic Name" IsRequired="True" />
-                                </ValidationSettings>
-                                <Style CssClass="input-group">
+                                <PropertiesTextEdit>
+                                    <ValidationSettings SetFocusOnError="True">
+                                        <ErrorFrameStyle Font-Bold="True" Font-Italic="True" Font-Strikeout="True" Font-Underline="True" CssClass="j-input j-error-view">
+                                        </ErrorFrameStyle>
+                                        <RequiredField ErrorText="places Enter Arabic Name" IsRequired="True" />
+                                    </ValidationSettings>
+                                    <Style CssClass="input-group">
                                         </Style>
-                            </PropertiesTextEdit>
-                        </dx:TreeListTextColumn>
-                        <dx:TreeListCommandColumn VisibleIndex="2">
-                            <EditButton Visible="True" Text=" ">
-                                <Styles>
-                                    <Style CssClass=" icofont icofont-ui-edit text-info h6" VerticalAlign="Middle" Font-Underline="false">
+                                </PropertiesTextEdit>
+                            </dx:TreeListTextColumn>
+                            <dx:TreeListCommandColumn VisibleIndex="2">
+                                <EditButton Visible="True" Text=" ">
+                                    <Styles>
+                                        <Style CssClass=" icofont icofont-ui-edit text-info h6" VerticalAlign="Middle" Font-Underline="false">
                                 </Style>
-                                </Styles>
-                            </EditButton>
-                            <NewButton Visible="True" Text=" ">
-                                <Styles>
+                                    </Styles>
+                                </EditButton>
+                                <NewButton Visible="True" Text=" ">
+                                    <Styles>
 
-                                    <Style CssClass="icofont icofont-plus text-primary h6" VerticalAlign="Middle" Font-Underline="false">
+                                        <Style CssClass="icofont icofont-plus text-primary h6" VerticalAlign="Middle" Font-Underline="false">
                                     
                                          </Style>
-                                </Styles>
-                            </NewButton>
-                            <DeleteButton Visible="True" Text=" ">
-                                <Styles>
+                                    </Styles>
+                                </NewButton>
+                                <DeleteButton Visible="True" Text=" ">
+                                    <Styles>
 
-                                    <Style CssClass="icofont icofont-ui-delete text-danger h6" VerticalAlign="Middle" Font-Underline="false">
+                                        <Style CssClass="icofont icofont-ui-delete text-danger h6" VerticalAlign="Middle" Font-Underline="false">
                                     
                                 </Style>
-                                </Styles>
-                            </DeleteButton>
-                            <UpdateButton Text=" ">
-                                <Styles>
-                                    <Style CssClass="icofont icofont-save text-primary h6" VerticalAlign="Middle" Font-Underline="false">
+                                    </Styles>
+                                </DeleteButton>
+                                <UpdateButton Text=" ">
+                                    <Styles>
+                                        <Style CssClass="icofont icofont-save text-primary h6" VerticalAlign="Middle" Font-Underline="false">
                                             </Style>
-                                </Styles>
-                            </UpdateButton>
-                            <CancelButton Text=" ">
-                                <Styles>
-                                    <Style CssClass="icofont icofont-ui-close text-warning h6">
+                                    </Styles>
+                                </UpdateButton>
+                                <CancelButton Text=" ">
+                                    <Styles>
+                                        <Style CssClass="icofont icofont-ui-close text-warning h6">
                                             </Style>
-                                </Styles>
-                            </CancelButton>
-                        </dx:TreeListCommandColumn>
-                        <dx:TreeListTextColumn AutoFilterCondition="Default" FieldName="Structure_Name_En" ShowInFilterControl="Default" VisibleIndex="1" Caption="English Name">
-                            <PropertiesTextEdit>
-                                <ValidationSettings SetFocusOnError="True">
-                                    <ErrorFrameStyle CssClass="j-input j-error-view">
-                                    </ErrorFrameStyle>
-                                    <RequiredField ErrorText="places Enter English Name" IsRequired="True" />
-                                </ValidationSettings>
-                                <Style CssClass="input-group">
+                                    </Styles>
+                                </CancelButton>
+                            </dx:TreeListCommandColumn>
+                            <dx:TreeListTextColumn AutoFilterCondition="Default" FieldName="Structure_Name_En" ShowInFilterControl="Default" VisibleIndex="1" Caption="English Name">
+                                <PropertiesTextEdit>
+                                    <ValidationSettings SetFocusOnError="True">
+                                        <ErrorFrameStyle CssClass="j-input j-error-view">
+                                        </ErrorFrameStyle>
+                                        <RequiredField ErrorText="places Enter English Name" IsRequired="True" />
+                                    </ValidationSettings>
+                                    <Style CssClass="input-group">
                                         </Style>
-                            </PropertiesTextEdit>
-                        </dx:TreeListTextColumn>
-                    </Columns>
-                    <SettingsBehavior AutoExpandAllNodes="True" />
-                    <SettingsPager Mode="ShowPager">
-                    </SettingsPager>
+                                </PropertiesTextEdit>
+                            </dx:TreeListTextColumn>
+                        </Columns>
+                        <SettingsBehavior AutoExpandAllNodes="True" />
 
-                    <SettingsCustomizationWindow PopupHorizontalAlign="RightSides" PopupVerticalAlign="BottomSides"></SettingsCustomizationWindow>
+                        <SettingsCustomizationWindow PopupHorizontalAlign="RightSides" PopupVerticalAlign="BottomSides"></SettingsCustomizationWindow>
 
-                    <SettingsEditing AllowNodeDragDrop="True" Mode="Inline" />
+                        <SettingsEditing AllowNodeDragDrop="True" Mode="Inline" />
 
 
 
@@ -168,7 +167,26 @@
 
 
 
-                </dx:ASPxTreeList>
+                        <SettingsPopupEditForm VerticalOffset="-1"></SettingsPopupEditForm>
+
+                        <SettingsPopup>
+                            <EditForm VerticalOffset="-1"></EditForm>
+                        </SettingsPopup>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </dx:ASPxTreeList>
+                </div>
                 <asp:EntityDataSource ID="TreeDataSourceView" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="Structures" EntityTypeFilter="Structure">
                 </asp:EntityDataSource>
                 <!-- Structure Tree End -->
