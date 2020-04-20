@@ -157,6 +157,7 @@
       <DependentUpon>ECMS.edmx</DependentUpon>
       <LastGenOutput>ECMS.cs</LastGenOutput>
     </Content>
+    <Content Include="Pages\Eminutes\Home.aspx" />
     <Content Include="scripts\DataBase\Dropp All Tables.sql" />
     <Content Include="scripts\DataBase\Treatment Schema &amp; Data%2812-4-2020%29.sql" />
     <Content Include="scripts\DataBase\Treatment Schema &amp; Data%2817-4-2020%29.sql" />
@@ -2099,6 +2100,13 @@
     <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EminutesMaster.Master.cs">
+      <DependentUpon>EminutesMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EminutesMaster.Master.designer.cs">
+      <DependentUpon>EminutesMaster.Master</DependentUpon>
+    </Compile>
     <Compile Include="Models\App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\ddlFiller.cs" />
     <Compile Include="Classes\Emp_Structure.cs" />
@@ -2220,6 +2228,13 @@
     </Compile>
     <Compile Include="Pages\Admin\LogFile.aspx.designer.cs">
       <DependentUpon>LogFile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Reports\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
@@ -2509,6 +2524,7 @@
     <Content Include="Entity\ECMS.edmx.diagram">
       <DependentUpon>ECMS.edmx</DependentUpon>
     </Content>
+    <Content Include="EminutesMaster.Master" />
     <None Include="Properties\PublishProfiles\ECMS-Publish.pubxml" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">
