@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,9 @@ namespace Treatment.Pages.Setting.UserManagment
     public partial class Profile : System.Web.UI.Page
     {
         ECMSEntities db = new ECMSEntities();
+        //LogFile Data
+        LogFileModule logFileModule = new LogFileModule();
+        String LogData = "";
         int EmployeeId = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -48,7 +52,10 @@ namespace Treatment.Pages.Setting.UserManagment
 
                 ArabicName.InnerText = Employees.Employee_Name_Ar;
                 EnglishName.InnerText = Employees.Employee_Name_En;
-                Name.InnerText = Employees.Employee_Name_En;
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    Name.InnerText = Employees.Employee_Name_Ar;
+                else
+                    Name.InnerText = Employees.Employee_Name_En;
 
                 Employee_Email.Text = Employees.Employee_Email;
                 Email.InnerText = Employees.Employee_Email;
@@ -62,7 +69,14 @@ namespace Treatment.Pages.Setting.UserManagment
                 if (Employees.Group_Id != null && Employees.Group_Id >0)
                 {
                     var Gro = db.Groups.First(x => x.Group_Id == Employees.Group_Id);
-                    Group.InnerText = Gro.Group_Name_En;
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                    {
+                        Group.InnerText = Gro.Group_Name_Ar;
+                    }
+                    else
+                    {
+                        Group.InnerText = Gro.Group_Name_En;
+                    }
                 }
 
                 if (Employees.Language_id != null && Employees.Language_id > 0)
@@ -75,7 +89,16 @@ namespace Treatment.Pages.Setting.UserManagment
                 var Emp_Stru = db.Employee_Structure.Where(x => x.Employee_Id == EmployeeId && x.Status_Structure==true ).ToList();
                while(i < Emp_Stru.Count)
                 {
-                    EmpStru += " - " + Emp_Stru[i].Structure.Structure_Name_En;
+                    int str_id = int.Parse(Emp_Stru[i].Structure_Id.ToString());
+                    var Stru_Name = db.Structures.First(s => s.Structure_Id == str_id);
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                    {
+                        EmpStru += " - " + Stru_Name.Structure_Name_Ar;
+                    }
+                    else
+                    {
+                        EmpStru += " - " + Stru_Name.Structure_Name_En;
+                    }
                     i++;
                 }
 
@@ -83,6 +106,13 @@ namespace Treatment.Pages.Setting.UserManagment
                    Position.InnerText = EmpStru;
             }
 
+
+            //----------------------------Notification Employee-------------------------------------------
+            List<Notification_Employee> Notification_Employee_List = db.Notification_Employee.Where(x => x.Employee_Id == EmployeeId).ToList();
+            for (int y = 0; y < Notification_Employee_List.Count; y++)
+            {
+                NotificationGridView.Selection.SelectRowByKey(Notification_Employee_List[y].NotificationShow_Id);
+            }
         }
 
         protected void EmpUpdate_Click(object sender, EventArgs e)
@@ -104,6 +134,7 @@ namespace Treatment.Pages.Setting.UserManagment
         {
             try
             {
+                db.Configuration.LazyLoadingEnabled = false;
                 Employee Emp = db.Employees.First(x => x.Employee_Id == EmployeeID);
                 Emp.Employee_Email = Email;
                 Emp.Employee_Phone = Phone;
@@ -111,10 +142,13 @@ namespace Treatment.Pages.Setting.UserManagment
                 Emp.Calendar_id = calander;
                 string ImagepathProfile = UploadFile(1);
                 string ImagepathSignature = UploadFile(2);
-                if (ImagepathProfile != "") Emp.Employee_Profile = ImagepathProfile;
-                if (ImagepathSignature != "") Emp.Employee_Signature = ImagepathSignature;
+                if (ImagepathProfile != "") Emp.Employee_Profile = ImagepathProfile; else Emp.Employee_Profile = "Profile.JPG";
+                if (ImagepathSignature != "") Emp.Employee_Signature = ImagepathSignature; else Emp.Employee_Signature = "Signature.JPG";
                 db.Entry(Emp).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
+                /* Add it to log file */
+                LogData = "data:" + JsonConvert.SerializeObject(Emp, logFileModule.settings);
+                logFileModule.logfile(10, "تعديل بيانات الموظف", "Update Employee Info", LogData);
                 SessionWrapper.LoggedUser = Emp;
                 SessionWrapper.Language = db.Lanuage_Detials.Where(x => x.Language_Master_ID == lang).ToList();
 
@@ -167,11 +201,16 @@ namespace Treatment.Pages.Setting.UserManagment
             {
                 if (NewPassWord.Text.Equals(TryNewPassWord.Text))
                 {
-                   Employee Emp = db.Employees.First(x => x.Employee_Id == EmployeeId);
+                    db.Configuration.LazyLoadingEnabled = false;
+                    Employee Emp = db.Employees.First(x => x.Employee_Id == EmployeeId);
                     string EncryptedPassword = StringCipher.Encrypt(NewPassWord.Text, "Password");
                     Emp.Employee_Password = EncryptedPassword;
                     db.Entry(Emp).State = System.Data.EntityState.Modified;
                     db.SaveChanges();
+                    /* Add it to log file */
+                    LogData = "data:" + JsonConvert.SerializeObject(Emp, logFileModule.settings);
+                    logFileModule.logfile(10, "تعديل كلمة المرور", "Change PassWord", LogData);
+
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The Change PassWord was Sucessfully saved in system ! ');", true);
                 }
                 else
@@ -183,6 +222,29 @@ namespace Treatment.Pages.Setting.UserManagment
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','The Old PassWord is rong');", true);
             }
+        }
+
+        protected void NotificationSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+                var Notification_Ids = NotificationGridView.GetSelectedFieldValues("Notification_Show_Id");
+                db.Database.ExecuteSqlCommand("Delete Notification_Employee where Employee_Id = " + EmployeeId);
+                for (int i = 0; i < Notification_Ids.Count; i++)
+                {
+                    Notification_Employee Notif_Empl = db.Notification_Employee.Create();
+                    Notif_Empl.Employee_Id = EmployeeId;
+                    Notif_Empl.NotificationShow_Id = int.Parse(Notification_Ids[i].ToString());
+                    db.Notification_Employee.Add(Notif_Empl);
+                }
+                db.SaveChanges();
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The Update Notification was Sucessfully saved in system ! ');", true);
+                /* Add it to log file */
+                LogData = "data:" + JsonConvert.SerializeObject(Notification_Ids, logFileModule.settings);
+                logFileModule.logfile(10, "تعديل تنبيهات موظف", "update Notification Employee", LogData);
+            }
+            catch { }
         }
     }
 }

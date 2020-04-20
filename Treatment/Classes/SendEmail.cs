@@ -29,16 +29,16 @@ namespace Website.Classes
                     return false;
 
                 MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                SmtpClient SmtpServer = new SmtpClient();
 
                 mail.From = new MailAddress(System_email, System_Name);
                 mail.To.Add(SendTo);
                 mail.Subject = Subject;
                 mail.Body = Message;
                 mail.IsBodyHtml = IsBodyHTML;
-                SmtpServer.Port = 25;
+                /*SmtpServer.Port = 465;
                 SmtpServer.Credentials = new System.Net.NetworkCredential(System_email, System_password);
-                SmtpServer.EnableSsl = true;
+                SmtpServer.EnableSsl = true;*/
 
                 SmtpServer.Send(mail);
 
@@ -153,16 +153,17 @@ namespace Website.Classes
             try
             {
                 MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                SmtpClient SmtpServer = new SmtpClient();
 
                 mail.From = new MailAddress(System_email, System_Name);
                 mail.To.Add(SendTo);
                 mail.Subject = "ECMS - Reset Password";
                 mail.Body = restEmail_Message;
+
                 mail.IsBodyHtml = true;
-                SmtpServer.Port = 25;
-                SmtpServer.Credentials = new System.Net.NetworkCredential(System_email, System_password);
-                SmtpServer.EnableSsl = true;
+                //SmtpServer.Port = 465;
+                //SmtpServer.Credentials = new System.Net.NetworkCredential(System_email, System_password);
+                //SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
 

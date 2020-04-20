@@ -175,6 +175,7 @@
         }
         .ScrollStyle {
             overflow-y: auto;
+            overflow-x: hidden;
             
         }
     </style>
@@ -659,6 +660,34 @@
 
                 gtag('config', 'UA-23581568-13');
             </script>
+<script>
+    initSample();
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('select:not(.normal)').each(function () {
+        $(this).select2({
+            dropdownParent: $(this).parent()
+        });
+    });
+});
+</script>
+
+
+<script>
+$(function () {
+    $('#listViewId').on('click', function () {
+        $('#Body_Holder_gridViewTreatment').hide();
+        $('#listViewTreatment').show();
+    });
+    $('#gridViewId').on('click', function () {
+        $('#listViewTreatment').hide();
+        $('#Body_Holder_gridViewTreatment').show();
+    });
+});
+</script>
+
             <script>
                 initSample();
             </script>
@@ -675,27 +704,23 @@
                     });
                 });
 
-            </script>
-            
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#add-model-assignment').prepend($('#dd-w-0'));
-                });
+    $(document).ready(function () {
+        $('#add-model-assignment').prepend($('#dd-w-0'));
+    });
 
-            </script>
-            <script>
-
-                $(function () {
-                    $('#listViewId').on('click', function () {
-                        $('#Body_Holder_gridViewTreatment').hide();
-                        $('#listViewTreatment').show();
-                    });
-                    $('#gridViewId').on('click', function () {
-                        $('#listViewTreatment').hide();
-                        $('#Body_Holder_gridViewTreatment').show();
-                    });
-                });
-            </script>
+</script>
+<script>
+    $(function () {
+        $('#listViewId').on('click', function () {
+            $('#Body_Holder_gridViewTreatment').hide();
+            $('#listViewTreatment').show();
+        });
+        $('#gridViewId').on('click', function () {
+            $('#listViewTreatment').hide();
+            $('#Body_Holder_gridViewTreatment').show();
+        });
+    });
+</script>
 
         </div>
     </form>

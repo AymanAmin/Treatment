@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterEn.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Treatment.Pages.Setting.UserManagment.Profile" %>
 
+<%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title><% = Treatment.Classes.FieldNames.getFieldName("Profile-Title", "User Management - Profile") %></title>
 </asp:Content>
@@ -60,14 +62,17 @@
                         <div class="tab-header card">
                             <ul class="nav nav-tabs md-tabs tab-timeline" role="tablist" id="mytab">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-PersonalInfo", "Personal Info") %></a>
+                                    <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-personal", "personal Info") %></a>
                                     <div class="slide"></div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#changePassWord" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-ChangePassWord", "Change PassWord") %></a>
+                                    <a class="nav-link" data-toggle="tab" href="#changePassWord" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-changePassWord", "change PassWord") %></a>
                                     <div class="slide"></div>
                                 </li>
-                               
+                               <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#EmployeeNotification" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-EmployeeNotification", "Notification") %></a>
+                                    <div class="slide"></div>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -126,11 +131,11 @@
                                                             <table class="table">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-EnglishName", "Active") %></th>
+                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-EnglishName", "English Name") %></th>
                                                                         <td><label runat="server" id="EnglishName"> </label></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-EnglishName", "Phone") %></th>
+                                                                        <th scope="row"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Phone", "Phone") %></th>
                                                                         <td><label runat="server" id="Phone"> </label></td>
                                                                     </tr>
                                                                     <tr>
@@ -274,7 +279,7 @@
                                                 <!-- end of row -->
                                                 <div class="text-center">
                                                     <asp:Button  ID="EmpUpdate"  runat="server" Text="Save" class="btn btn-primary waves-effect waves-light m-r-20" ValidationGroup="Per" OnClick="EmpUpdate_Click"  />
-                                                    <a href="#!" id="edit-cancel" class="btn btn-default waves-effect btn-outline-danger"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Cancel", "Cancel") %></a>
+                                                    <a href="#!" id="edit-cancel" class="btn btn-default waves-effect btn-outline-danger"><% = Treatment.Classes.FieldNames.getFieldName("Profile-cancel", "Cancel") %></a>
                                                 </div>
                                             </div>
                                             <!-- end of edit info -->
@@ -335,7 +340,7 @@
                                                                          <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Profile-TryNewPassWord", "Try New PassWord") %></label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
-                                                                            <asp:TextBox ID="TryNewPassWord" runat="server" class="form-control" placeholder="Try New PassWord" TextMode="SingleLine" type="password"></asp:TextBox>
+                                                                            <asp:TextBox ID="TryNewPassWord" runat="server" class="form-control" placeholder="Try New PassWord" TextMode="SingleLine" type="password" ValidationGroup="Per2"></asp:TextBox>
                                                                         </div>
                                                                         <div class="col-sm-12">
                                                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Try New PassWord" ValidationGroup="Per2" ControlToValidate="TryNewPassWord" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
@@ -358,9 +363,57 @@
                                     </div>
                                     <!-- end of row -->
                                 </div>
-                                <!-- end of edit-info -->
                          </div>
+                        <!-- end Change PassWord-->
                     </div>
+                    <!-- Start Notification_Employee -->
+                    <div class="tab-pane" id="EmployeeNotification" role="tabpanel">
+                        <!-- info card start -->
+                         <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-header-text"><% = Treatment.Classes.FieldNames.getFieldName("Profile-EmployeeNotification", "Employee Notification") %></h5>
+                            </div>
+                                <!-- end of view-info -->
+                                <div class="edit-info-11">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="general-info">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <dx:ASPxGridView ID="NotificationGridView" runat="server" AutoGenerateColumns="False" DataSourceID="NotificationDataSource" KeyFieldName="Notification_Show_Id" Theme="Mulberry">
+                                                            <Columns>
+                                                                <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowSelectCheckbox="True" VisibleIndex="0">
+                                                                </dx:GridViewCommandColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="Notification_Show_Name_Ar" VisibleIndex="3" Caption="Notification Arabic Name">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn FieldName="Notification_Show_Name_En" VisibleIndex="2" Caption="Notification English Name">
+                                                                </dx:GridViewDataTextColumn>
+                                                                <dx:GridViewDataTextColumn Caption="Notification ID" FieldName="Notification_Show_Id" VisibleIndex="1">
+                                                                </dx:GridViewDataTextColumn>
+                                                            </Columns>
+                                                        </dx:ASPxGridView> 
+                                                        <asp:EntityDataSource ID="NotificationDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Notification_Show" EntityTypeFilter="Notification_Show">
+                                                        </asp:EntityDataSource>
+                                                    </div>
+                                                </div>
+                                                <!-- end of row -->
+                                                <div class="text-center">
+                                                    <asp:Button  ID="NotificationSave"  runat="server" Text="Save" class="btn btn-primary waves-effect waves-light m-r-20" OnClick="NotificationSave_Click"    />
+                                                    <a href="#!" id="edit-cancel3" class="btn btn-default waves-effect btn-outline-danger"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Cancel", "Cancel") %></a>
+                                                </div>
+                                            </div>
+                                            <!-- end of edit info -->
+                                        </div>
+                                        <!-- end of col-lg-12 -->
+                                    </div>
+                                    <!-- end of row -->
+                                </div>
+                         </div>
+                        <!-- end Change PassWord-->
+                    </div>
+
+                    <!-- End Notification_Employee -->
+
                 </div>
 
             </div>

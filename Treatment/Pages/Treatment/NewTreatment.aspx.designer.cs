@@ -211,15 +211,6 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.FileUpload addAttachments1111;
         
         /// <summary>
-        /// ownerShip control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView ownerShip;
-        
-        /// <summary>
         /// SaveTreatment control.
         /// </summary>
         /// <remarks>
