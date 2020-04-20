@@ -53,6 +53,9 @@ namespace Treatment.Pages.Setting.Auth
                         if (password == DecryptedPassword && (bool)emp_list[i].Employee_Active)
                         {
                             Employee emp = emp_list[i];
+                            SessionWrapper.LoggedUser = emp;
+                            SessionWrapper.IsLocked = false;
+                            SessionWrapper.Language = db.Lanuage_Detials.Where(x => x.Language_Master_ID == emp.Language_id).ToList();
                             List<Permission_Group> Per_group = db.Permission_Group.Where(x => x.Group_Id == emp.Group_Id).ToList();
                             List_permission.Clear();
                             for (int j = 0; j < Per_group.Count; j++)
