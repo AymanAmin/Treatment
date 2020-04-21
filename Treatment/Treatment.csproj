@@ -157,7 +157,10 @@
       <DependentUpon>ECMS.edmx</DependentUpon>
       <LastGenOutput>ECMS.cs</LastGenOutput>
     </Content>
+    <Content Include="Pages\Eminutes\Board.aspx" />
     <Content Include="Pages\Eminutes\Home.aspx" />
+    <Content Include="Pages\Eminutes\Meeting.aspx" />
+    <Content Include="Pages\Eminutes\ScheduleOfWork.aspx" />
     <Content Include="scripts\DataBase\Dropp All Tables.sql" />
     <Content Include="scripts\DataBase\Treatment Schema &amp; Data%2812-4-2020%29.sql" />
     <Content Include="scripts\DataBase\Treatment Schema &amp; Data%2817-4-2020%29.sql" />
@@ -2229,12 +2232,33 @@
     <Compile Include="Pages\Admin\LogFile.aspx.designer.cs">
       <DependentUpon>LogFile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Eminutes\Board.aspx.cs">
+      <DependentUpon>Board.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\Board.aspx.designer.cs">
+      <DependentUpon>Board.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Eminutes\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Eminutes\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\Meeting.aspx.cs">
+      <DependentUpon>Meeting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\Meeting.aspx.designer.cs">
+      <DependentUpon>Meeting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\ScheduleOfWork.aspx.cs">
+      <DependentUpon>ScheduleOfWork.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\ScheduleOfWork.aspx.designer.cs">
+      <DependentUpon>ScheduleOfWork.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Reports\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>

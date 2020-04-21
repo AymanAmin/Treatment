@@ -56,12 +56,19 @@ namespace Treatment.Pages.Setting.UserManagment
                     emp_name = employeeStructure.Employee.Employee_Name_Ar;
                     Notification_Description = List_Notify[i].Notification_Description_Ar;
                 }
-                str += "<div class='row p-b-30'>" +
+                string icon = "<i class='icofont icofont-reply-all bg-simple-c-blue update-icon'></i>";
+                if (List_Notify[i].Notification_Show_Id == 1)
+                    icon = "<i class='icofont icofont-send-mail bg-simple-c-orange update-icon'></i>";
+                else if (List_Notify[i].Notification_Show_Id == 2)
+                    icon = "<i class='icofont icofont-reply bg-simple-c-green update-icon'></i>";
+                else if (List_Notify[i].Notification_Show_Id == 3)
+                    icon = "<i class='icofont icofont-inbox bg-simple-c-red update-icon'></i>";
 
+                str += "<div class='row p-b-30'>" +
                               "<div class='col-auto text-right update-meta'>" +
                               "<a href='" + List_Notify[i].Notification_Link + List_Notify[i].Notification_Id + "'>" +
                                 "<p class='text-muted m-b-0 d-inline'>" + Date_Different((DateTime)List_Notify[i].Notification_Date) + "</p>" +
-                                "<i class='feather icon-inbox bg-info update-icon'></i>" +
+                                icon +
                                 "</a>" +
                             "</div>" +
                             "<div class='col'>" +
@@ -70,7 +77,6 @@ namespace Treatment.Pages.Setting.UserManagment
                                 "<p class='text-muted m-b-0'>" + Notification_Description + "</p>" +
                                 "</a>" +
                             "</div>" +
-
                         "</div>";
             }
 
@@ -123,8 +129,8 @@ namespace Treatment.Pages.Setting.UserManagment
 
                 }
                 str += "<div class='row m-b-25'>" +
-                                  "<div class='col-auto p-r-0' style='margin-top:3%'>" +
-                                    "<i class='" + CssClass + " bg-info feed-icon' style='font-size:160%;background-color: " + per.Url_Path + " !important'></i>" +
+                                "<div class='col-auto p-r-0' style='margin-top:3%'>" +
+                                "<a class='btn btn-lg txt-muted btn-icon' href='#' role='button' style='font-size:100%;border-color:" + per.Url_Path + ";color: " + per.Url_Path + " !important'><i class='" + CssClass + "'></i></a>" +
                                 "</div>" +
                                 "<div class='col'>" +
                                 "<h6 class='m-b-5'>"+ per_name + "</h6>" +

@@ -35,7 +35,22 @@
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\style.css" />
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\jquery.mCustomScrollbar.css" />
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\pcoded-horizontal.min.css" />
-    <title></title>
+    <!-- Calender css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\fullcalendar\css\fullcalendar.css" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\fullcalendar\css\fullcalendar.print.css" media='print' />
+
+    <!-- jquery file upload Frame work -->
+    <link href="~\Theme\files\assets\pages\jquery.filer\css\jquery.filer.css" type="text/css" rel="stylesheet"/>
+    <link href="~\Theme\files\assets\pages\jquery.filer\css\themes\jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Data Table Css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\pages\data-table\css\buttons.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-responsive-bs4\css\responsive.bootstrap4.min.css"/>
+
+    <!-- Switch component css -->
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\switchery\css\switchery.min.css"/>
+    <title>E-Minutes</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -93,7 +108,7 @@
                                 <i class="feather icon-menu"></i>
                             </a>
                             <a href="index-1.htm">
-                                <img class="img-fluid" src="..\files\assets\images\logo.png" alt="Theme-Logo"/>
+                                <img class="img-fluid" src="..\..\..\Theme\files\assets\images\logo.png" alt="Theme-Logo"/>
                             </a>
                             <a class="mobile-options">
                                 <i class="feather icon-more-horizontal"></i>
@@ -131,7 +146,7 @@
                                             </li>
                                             <li>
                                                 <div class="media">
-                                                    <img class="d-flex align-self-center img-radius" src="..\files\assets\images\avatar-4.jpg" alt="Generic placeholder image"/>
+                                                    <img class="d-flex align-self-center img-radius" src="..\..\..\Theme\files\assets\images\avatar-4.jpg" alt="Generic placeholder image"/>
                                                     <div class="media-body">
                                                         <h5 class="notification-user">John Doe</h5>
                                                         <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -141,7 +156,7 @@
                                             </li>
                                             <li>
                                                 <div class="media">
-                                                    <img class="d-flex align-self-center img-radius" src="..\files\assets\images\avatar-3.jpg" alt="Generic placeholder image"/>
+                                                    <img class="d-flex align-self-center img-radius" src="..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="Generic placeholder image"/>
                                                     <div class="media-body">
                                                         <h5 class="notification-user">Joseph William</h5>
                                                         <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -151,7 +166,7 @@
                                             </li>
                                             <li>
                                                 <div class="media">
-                                                    <img class="d-flex align-self-center img-radius" src="..\files\assets\images\avatar-4.jpg" alt="Generic placeholder image"/>
+                                                    <img class="d-flex align-self-center img-radius" src="..\..\..\Theme\files\assets\images\avatar-4.jpg" alt="Generic placeholder image"/>
                                                     <div class="media-body">
                                                         <h5 class="notification-user">Sara Soudein</h5>
                                                         <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
@@ -173,7 +188,7 @@
                                 <li class="user-profile header-notification">
                                     <div class="dropdown-primary dropdown">
                                         <div class="dropdown-toggle" data-toggle="dropdown">
-                                            <img src="..\files\assets\images\avatar-4.jpg" class="img-radius" alt="User-Profile-Image"/>
+                                            <img src="..\..\..\Theme\files\assets\images\avatar-4.jpg" class="img-radius" alt="User-Profile-Image"/>
                                             <span>John Doe</span>
                                             <i class="feather icon-chevron-down"></i>
                                         </div>
@@ -1302,7 +1317,7 @@
                                             </ul>
                                         </li>
                                         <li class="">
-                                            <a href="..\files\extra-pages\landingpage\index.htm" target="_blank" data-i18n="nav.landing-page.main"><span class="pcoded-micon"><i class="ti-mobile"></i></span><span class="pcoded-mtext">Landing Page</span> <span class="pcoded-mcaret"></span></a>
+                                            <a href="..\..\..\Theme\files\extra-pages\landingpage\index.htm" target="_blank" data-i18n="nav.landing-page.main"><span class="pcoded-micon"><i class="ti-mobile"></i></span><span class="pcoded-mtext">Landing Page</span> <span class="pcoded-mcaret"></span></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -1563,35 +1578,35 @@
                                                     </a>
                                                     <ul class="pcoded-submenu">
                                                         <li class="">
-                                                            <a href="..\files\extra-pages\email-templates\email-welcome.htm" data-i18n="nav.email.email-template.welcome-email">
+                                                            <a href="..\..\..\Theme\files\extra-pages\email-templates\email-welcome.htm" data-i18n="nav.email.email-template.welcome-email">
                                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                                 <span class="pcoded-mtext">Welcome Email</span>
                                                                 <span class="pcoded-mcaret"></span>
                                                             </a>
                                                         </li>
                                                         <li class="">
-                                                            <a href="..\files\extra-pages\email-templates\email-password.htm" data-i18n="nav.email.email-template.reset-password">
+                                                            <a href="..\..\..\Theme\files\extra-pages\email-templates\email-password.htm" data-i18n="nav.email.email-template.reset-password">
                                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                                 <span class="pcoded-mtext">Reset Password</span>
                                                                 <span class="pcoded-mcaret"></span>
                                                             </a>
                                                         </li>
                                                         <li class="">
-                                                            <a href="..\files\extra-pages\email-templates\email-newsletter.htm" data-i18n="nav.email.email-template.newsletter-email">
+                                                            <a href="..\..\..\Theme\files\extra-pages\email-templates\email-newsletter.htm" data-i18n="nav.email.email-template.newsletter-email">
                                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                                 <span class="pcoded-mtext">Newsletter Email</span>
                                                                 <span class="pcoded-mcaret"></span>
                                                             </a>
                                                         </li>
                                                         <li class="">
-                                                            <a href="..\files\extra-pages\email-templates\email-launch.htm" data-i18n="nav.email.email-template.app-launch">
+                                                            <a href="..\..\..\Theme\files\extra-pages\email-templates\email-launch.htm" data-i18n="nav.email.email-template.app-launch">
                                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                                 <span class="pcoded-mtext">App Launch</span>
                                                                 <span class="pcoded-mcaret"></span>
                                                             </a>
                                                         </li>
                                                         <li class="">
-                                                            <a href="..\files\extra-pages\email-templates\email-activation.htm" data-i18n="nav.email.email-template.activation-code">
+                                                            <a href="..\..\..\Theme\files\extra-pages\email-templates\email-activation.htm" data-i18n="nav.email.email-template.activation-code">
                                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                                 <span class="pcoded-mtext">Activation Code</span>
                                                                 <span class="pcoded-mcaret"></span>
@@ -2075,7 +2090,7 @@
                                     <div class="main-friend-list">
                                         <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
                                             <a class="media-left" href="#!">
-                                                <img class="media-object img-radius img-radius" src="..\files\assets\images\avatar-3.jpg" alt="Generic placeholder image "/>
+                                                <img class="media-object img-radius img-radius" src="..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="Generic placeholder image "/>
                                                 <div class="live-status bg-success"></div>
                                             </a>
                                             <div class="media-body">
@@ -2084,7 +2099,7 @@
                                         </div>
                                         <div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe" data-toggle="tooltip" data-placement="left" title="Lary Doe">
                                             <a class="media-left" href="#!">
-                                                <img class="media-object img-radius" src="..\files\assets\images\avatar-2.jpg" alt="Generic placeholder image"/>
+                                                <img class="media-object img-radius" src="..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="Generic placeholder image"/>
                                                 <div class="live-status bg-success"></div>
                                             </a>
                                             <div class="media-body">
@@ -2093,7 +2108,7 @@
                                         </div>
                                         <div class="media userlist-box" data-id="3" data-status="online" data-username="Alice" data-toggle="tooltip" data-placement="left" title="Alice">
                                             <a class="media-left" href="#!">
-                                                <img class="media-object img-radius" src="..\files\assets\images\avatar-4.jpg" alt="Generic placeholder image"/>
+                                                <img class="media-object img-radius" src="..\..\..\Theme\files\assets\images\avatar-4.jpg" alt="Generic placeholder image"/>
                                                 <div class="live-status bg-success"></div>
                                             </a>
                                             <div class="media-body">
@@ -2102,7 +2117,7 @@
                                         </div>
                                         <div class="media userlist-box" data-id="4" data-status="online" data-username="Alia" data-toggle="tooltip" data-placement="left" title="Alia">
                                             <a class="media-left" href="#!">
-                                                <img class="media-object img-radius" src="..\files\assets\images\avatar-3.jpg" alt="Generic placeholder image"/>
+                                                <img class="media-object img-radius" src="..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="Generic placeholder image"/>
                                                 <div class="live-status bg-success"></div>
                                             </a>
                                             <div class="media-body">
@@ -2111,7 +2126,7 @@
                                         </div>
                                         <div class="media userlist-box" data-id="5" data-status="online" data-username="Suzen" data-toggle="tooltip" data-placement="left" title="Suzen">
                                             <a class="media-left" href="#!">
-                                                <img class="media-object img-radius" src="..\files\assets\images\avatar-2.jpg" alt="Generic placeholder image"/>
+                                                <img class="media-object img-radius" src="..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="Generic placeholder image"/>
                                                 <div class="live-status bg-success"></div>
                                             </a>
                                             <div class="media-body">
@@ -2132,7 +2147,7 @@
                         </div>
                         <div class="media chat-messages">
                             <a class="media-left photo-table" href="#!">
-                                <img class="media-object img-radius img-radius m-t-5" src="..\files\assets\images\avatar-3.jpg" alt="Generic placeholder image"/>
+                                <img class="media-object img-radius img-radius m-t-5" src="..\..\..\Theme\files\assets\images\avatar-3.jpg" alt="Generic placeholder image"/>
                             </a>
                             <div class="media-body chat-menu-content">
                                 <div class="">
@@ -2150,7 +2165,7 @@
                             </div>
                             <div class="media-right photo-table">
                                 <a href="#!">
-                                    <img class="media-object img-radius img-radius m-t-5" src="..\files\assets\images\avatar-4.jpg" alt="Generic placeholder image"/>
+                                    <img class="media-object img-radius img-radius m-t-5" src="..\..\..\Theme\files\assets\images\avatar-4.jpg" alt="Generic placeholder image"/>
                                 </a>
                             </div>
                         </div>
@@ -2173,11 +2188,11 @@
                                     <div class="page-wrapper">
                                         <!-- Page-header start -->
                                         <div class="page-header m-t-50">
-                                            <div class="row align-items-end">
+                                            <div  id="header_page" class="row align-items-end">
                                                 <div class="col-lg-8">
                                                     <div class="page-header-title">
                                                         <div class="d-inline">
-                                                            <h4>Horizontal fixed Layout</h4>
+                                                            <h4 id="header_page_name">Horizontal fixed Layout</h4>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2293,6 +2308,47 @@
     <script src="..\..\..\..\Theme\files\assets\js\menu\menu-hori-fixed.js"></script>
     <script src="..\..\..\..\Theme\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\script.js"></script>
+
+    <!--classic JS-->
+    <script type="text/javascript" src="..\..\..\..\Theme\files\assets\js\classie.js"></script>
+    <!-- Custom js -->
+    <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\full-calender\calendar.js"></script>
+    <!-- calender js -->
+    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\moment\js\moment.min.js"></script>
+    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\fullcalendar\js\fullcalendar.min.js"></script>
+
+    <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\issue-list\issue-list.js"></script>
+
+    <!-- data-table js -->
+    <script src="..\..\..\..\Theme\files\bower_components\datatables.net\js\jquery.dataTables.min.js"></script>
+    <script src="..\..\..\..\Theme\files\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js"></script>
+    <script src="..\..\..\..\Theme\files\assets\pages\data-table\js\jszip.min.js"></script>
+    <script src="..\..\..\..\Theme\files\assets\pages\data-table\js\pdfmake.min.js"></script>
+    <script src="..\..\..\..\Theme\files\assets\pages\data-table\js\vfs_fonts.js"></script>
+    <script src="..\..\..\..\Theme\files\bower_components\datatables.net-buttons\js\buttons.print.min.js"></script>
+    <script src="..\..\..\..\Theme\files\bower_components\datatables.net-buttons\js\buttons.html5.min.js"></script>
+    <script src="..\..\..\..\Theme\files\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js"></script>
+    <script src="..\..\..\..\Theme\files\bower_components\datatables.net-responsive\js\dataTables.responsive.min.js"></script>
+    <script src="..\..\..\..\Theme\files\bower_components\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\sparkline\jquery.sparkline.js"></script>
+
+    <!-- Switch component js -->
+    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\switchery\js\switchery.min.js"></script>
+
+    <script>
+        // Multiple swithces
+        var elem = Array.prototype.slice.call(document.querySelectorAll('.js-small'));
+
+        elem.forEach(function(html) {
+            var switchery = new Switchery(html, {
+                color: '#1abc9c',
+                jackColor: '#fff',
+                size: 'small'
+            });
+        });
+
+    </script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
     <script>

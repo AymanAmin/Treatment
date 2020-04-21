@@ -163,8 +163,13 @@ namespace Treatment.Pages.Treatment
                         str += "<td style='font-size:25px;text-align:center;color:#00c3da;vertical-align:center;'><i class='icofont icofont-inbox'></i></td>";
                     else
                         str += "<td style='font-size:25px;text-align:center;color:orange;vertical-align:center;'><i class='icofont icofont-send-mail'></i></td>";
+                    string subject = treatmentList[i].Treatment_Subject;
 
-                    str += "<td style='vertical-align:center;'>" + treatmentList[i].Treatment_Subject + "</td>";
+                    if (subject.Length > 26)
+                        str += "<td style='vertical-align:center;'>" + subject.Substring(0,25) + "...</td>";
+                    else
+                        str += "<td style='vertical-align:center;'>" + subject + "</td>";
+
                     if (SessionWrapper.LoggedUser.Language_id == 1)
                         try { preparedBy = structureList.FirstOrDefault(x => x.Structure_Id == treatmentList[i].Prepared_Administration_Id).Structure_Name_Ar; } catch { preparedBy = " - "; }
                     else
