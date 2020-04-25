@@ -50,6 +50,13 @@
 
     <!-- Switch component css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\switchery\css\switchery.min.css"/>
+
+    <style>
+        .changeIconColor {
+            background-color:white;
+            color:black;
+        }
+    </style>
     <title>E-Minutes</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
