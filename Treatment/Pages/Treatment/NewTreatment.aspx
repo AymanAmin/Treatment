@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterEn.Master" AutoEventWireup="true" CodeBehind="NewTreatment.aspx.cs" Inherits="Treatment.Pages.Treatment.NewTreatment" %>
 
+<%@ Register Assembly="DevExpress.Web.ASPxTreeList.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxTreeList" TagPrefix="dx" %>
+
 <%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -58,15 +60,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-sm-6">
+                    <div class="form-group col-sm-12">
                         <label><% = Treatment.Classes.FieldNames.getFieldName("Treatment-SendTo", "Send To") %></label><i class="icofont icofont-star-alt-1 text-danger"></i>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-paper-plane"></i></span>
+                            <span class="input-group-addon" data-toggle="modal" data-target="#tabbed-form"><i class="icofont icofont-paper-plane"></i></span>
                             <asp:ListBox ID="treatmentTo" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Send To" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
                         </div>
                         <asp:RequiredFieldValidator ID="valTreatmentTo" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Send To" ValidationGroup="valFormGroup" ControlToValidate="treatmentTo" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
                     </div>
-                    <div class="form-group col-sm-6">
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12">
                         <label><% = Treatment.Classes.FieldNames.getFieldName("Treatment-CopyTo", "Copy To") %></label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-ui-copy"></i></span>
@@ -164,6 +168,93 @@
                 <!-- End Treatment Form-->
             </div>
             <!-- Article Editor card end -->
+
+            <!-- tabbed form modal start -->
+            <div id="tabbed-form" class="modal fade mixed-form" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="text-center m-b-10">
+                        <img src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="logo.png" />
+                    </div>
+                    <!-- Modal content-->
+                    <div class="modal-content card">
+                        <div class="modal-body card-block">
+                            <div class="login-card-modal">
+                                <div class="tabbed-modal">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs nav-justified" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#sign_in" role="tab">
+                                                <h6><strong>Structure</strong></h6>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#regi" role="tab">
+                                                <h6><strong>Employees</strong></h6>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="sign_in" role="tabpanel">
+                                            <div class="auth-box m-t-15">
+                                                <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False" DataSourceID="EntityDataSourceStructure" EnableTheming="True" Theme="Moderno" Width="100%" KeyFieldName="Structure_Id" ParentFieldName="Structure_Parent" PreviewFieldName="Structure_Name_En">
+                                                    <Columns>
+                                                        <dx:TreeListTextColumn AutoFilterCondition="Default" FieldName="Structure_Name_En" ShowInFilterControl="Default" VisibleIndex="1" Caption="English Name">
+                                                            <PropertiesTextEdit>
+                                                                <ValidationSettings SetFocusOnError="True">
+                                                                    <ErrorFrameStyle CssClass="j-input j-error-view">
+                                                                    </ErrorFrameStyle>
+                                                                    <RequiredField ErrorText="places Enter English Name" IsRequired="True" />
+                                                                </ValidationSettings>
+                                                                <Style CssClass="input-group">
+                                                                </Style>
+                                                            </PropertiesTextEdit>
+                                                        </dx:TreeListTextColumn>
+                                                    </Columns>
+                                                    <SettingsBehavior AllowAutoFilter="True" AutoExpandAllNodes="True"></SettingsBehavior>
+
+                                                    <SettingsCustomizationWindow PopupHorizontalAlign="RightSides" PopupVerticalAlign="BottomSides"></SettingsCustomizationWindow>
+
+                                                    <SettingsSelection Enabled="True" />
+
+                                                    <SettingsPopupEditForm VerticalOffset="-1"></SettingsPopupEditForm>
+
+                                                    <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
+
+                                                    <SettingsPopup>
+                                                        <EditForm VerticalOffset="-1"></EditForm>
+                                                    </SettingsPopup>
+                                                </dx:ASPxTreeList>
+                                                <div class="form-group col-sm-2 text-right m-t-15 f-right">
+                                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center">OK</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="regi" role="tabpanel">
+                                            <div class="auth-box">
+                                                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="EntityDataSourceEmployee" EnableTheming="True" Theme="Moderno" Width="100%">
+                                                    <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
+                                                    <SettingsSearchPanel Visible="True" />
+                                                    <Columns>
+                                                        <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowSelectCheckbox="True" VisibleIndex="0">
+                                                        </dx:GridViewCommandColumn>
+                                                        <dx:GridViewDataTextColumn Caption="Employee Name" FieldName="Employee_Name_En" Name="Employee_Name_En" VisibleIndex="1">
+                                                        </dx:GridViewDataTextColumn>
+                                                    </Columns>
+                                                </dx:ASPxGridView>
+                                                <div class="form-group col-sm-2 text-right m-t-15 f-right">
+                                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center">OK</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- tabbed form modal end -->
         </div>
     </div>
     <!-- Page-body end -->
