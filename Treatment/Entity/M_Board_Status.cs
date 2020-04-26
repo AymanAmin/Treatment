@@ -12,14 +12,10 @@ namespace Treatment.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Attachment
+    public partial class M_Board_Status
     {
-        public int Attachment_id { get; set; }
-        public Nullable<int> Treatment_Id { get; set; }
-        public string Attachment_Path { get; set; }
-        public string Attachment_Name { get; set; }
-        public Nullable<int> Attachment_Type { get; set; }
-    
-        public virtual Treatment_Master Treatment_Master { get; set; }
+        public int Board_Status_Id { get; set; }
+        public string Board_Status_Name_Ar { get; set; }
+        public string Board_Status_Name_En { get; set; }
     }
 }

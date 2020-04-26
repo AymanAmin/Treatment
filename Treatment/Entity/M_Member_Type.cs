@@ -12,14 +12,17 @@ namespace Treatment.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Attachment
+    public partial class M_Member_Type
     {
-        public int Attachment_id { get; set; }
-        public Nullable<int> Treatment_Id { get; set; }
-        public string Attachment_Path { get; set; }
-        public string Attachment_Name { get; set; }
-        public Nullable<int> Attachment_Type { get; set; }
+        public M_Member_Type()
+        {
+            this.M_Board_Member = new HashSet<M_Board_Member>();
+        }
     
-        public virtual Treatment_Master Treatment_Master { get; set; }
+        public int Member_Type_Id { get; set; }
+        public string Member_Type_Name_Ar { get; set; }
+        public string Member_Type_Name_En { get; set; }
+    
+        public virtual ICollection<M_Board_Member> M_Board_Member { get; set; }
     }
 }

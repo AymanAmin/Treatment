@@ -12,14 +12,15 @@ namespace Treatment.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Attachment
+    public partial class M_Attendees
     {
-        public int Attachment_id { get; set; }
-        public Nullable<int> Treatment_Id { get; set; }
-        public string Attachment_Path { get; set; }
-        public string Attachment_Name { get; set; }
-        public Nullable<int> Attachment_Type { get; set; }
+        public int Attendees_Id { get; set; }
+        public Nullable<int> Board_Member_Id { get; set; }
+        public Nullable<int> Meeting_Id { get; set; }
+        public Nullable<int> Attendess_Status { get; set; }
+        public Nullable<System.DateTime> Create_Date { get; set; }
     
-        public virtual Treatment_Master Treatment_Master { get; set; }
+        public virtual M_Board_Member M_Board_Member { get; set; }
+        public virtual M_Meeting M_Meeting { get; set; }
     }
 }

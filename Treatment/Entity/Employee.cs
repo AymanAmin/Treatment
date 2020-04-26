@@ -19,6 +19,7 @@ namespace Treatment.Entity
             this.Employee_Structure = new HashSet<Employee_Structure>();
             this.Log_File = new HashSet<Log_File>();
             this.Notification_Employee = new HashSet<Notification_Employee>();
+            this.M_Board_Member = new HashSet<M_Board_Member>();
         }
     
         public int Employee_Id { get; set; }
@@ -39,5 +40,6 @@ namespace Treatment.Entity
         public virtual ICollection<Employee_Structure> Employee_Structure { get; set; }
         public virtual ICollection<Log_File> Log_File { get; set; }
         public virtual ICollection<Notification_Employee> Notification_Employee { get; set; }
+        public virtual ICollection<M_Board_Member> M_Board_Member { get; set; }
     }
 }

@@ -28,6 +28,8 @@ namespace Treatment.Entity
         public Nullable<bool> Status_Structure { get; set; }
         public Nullable<bool> Type_Delegation { get; set; }
         public Nullable<bool> Default_Structure { get; set; }
+        public Nullable<System.DateTime> Date_Delegation { get; set; }
+        public Nullable<int> Employee_Delegation { get; set; }
     
         public virtual Employee Employee { get; set; }
         public virtual Structure Structure { get; set; }

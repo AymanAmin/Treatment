@@ -2111,6 +2111,39 @@
     <Compile Include="EminutesMaster.Master.designer.cs">
       <DependentUpon>EminutesMaster.Master</DependentUpon>
     </Compile>
+    <Compile Include="Entity\M_Attendees.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Classification.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Location.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Member.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Status.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Type.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Meeting.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Member_Type.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Recommendation.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Topic.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\App_Start\WebApiConfig.cs" />
     <Compile Include="Classes\ddlFiller.cs" />
     <Compile Include="Classes\Emp_Structure.cs" />

@@ -18,6 +18,7 @@ namespace Treatment.Entity
         {
             this.Employee_Structure = new HashSet<Employee_Structure>();
             this.Treatment_Master = new HashSet<Treatment_Master>();
+            this.M_Topic = new HashSet<M_Topic>();
         }
     
         public int Structure_Id { get; set; }
@@ -27,5 +28,6 @@ namespace Treatment.Entity
     
         public virtual ICollection<Employee_Structure> Employee_Structure { get; set; }
         public virtual ICollection<Treatment_Master> Treatment_Master { get; set; }
+        public virtual ICollection<M_Topic> M_Topic { get; set; }
     }
 }

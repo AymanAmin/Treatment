@@ -13,6 +13,15 @@ namespace Treatment.Pages.Eminutes.BoardManagment {
     public partial class BoardInfo {
         
         /// <summary>
+        /// LtrMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LtrMessage;
+        
+        /// <summary>
         /// txtArabicName control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace Treatment.Pages.Eminutes.BoardManagment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtArabicName;
+        
+        /// <summary>
+        /// RFVtxtArabicName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtArabicName;
         
         /// <summary>
         /// txtEnglishName control.
@@ -31,31 +49,13 @@ namespace Treatment.Pages.Eminutes.BoardManagment {
         protected global::System.Web.UI.WebControls.TextBox txtEnglishName;
         
         /// <summary>
-        /// txtStatusofBoard control.
+        /// RFVtxtEnglishName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList txtStatusofBoard;
-        
-        /// <summary>
-        /// txtStartDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStartDate;
-        
-        /// <summary>
-        /// txtEndDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEndDate;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtEnglishName;
         
         /// <summary>
         /// txtTypeofBoard control.
@@ -67,6 +67,69 @@ namespace Treatment.Pages.Eminutes.BoardManagment {
         protected global::System.Web.UI.WebControls.DropDownList txtTypeofBoard;
         
         /// <summary>
+        /// RFVtxtTypeofBoard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtTypeofBoard;
+        
+        /// <summary>
+        /// txtStartDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtStartDate;
+        
+        /// <summary>
+        /// txtEndDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtEndDate;
+        
+        /// <summary>
+        /// txtStatusofBoard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList txtStatusofBoard;
+        
+        /// <summary>
+        /// RFVtxtStatusofBoard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtStatusofBoard;
+        
+        /// <summary>
+        /// txtParent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList txtParent;
+        
+        /// <summary>
+        /// RFVtxtParent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtParent;
+        
+        /// <summary>
         /// txtClassification control.
         /// </summary>
         /// <remarks>
@@ -74,6 +137,15 @@ namespace Treatment.Pages.Eminutes.BoardManagment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList txtClassification;
+        
+        /// <summary>
+        /// RFVtxtClassification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtClassification;
         
         /// <summary>
         /// txtArabicDescription control.
@@ -85,6 +157,15 @@ namespace Treatment.Pages.Eminutes.BoardManagment {
         protected global::System.Web.UI.WebControls.TextBox txtArabicDescription;
         
         /// <summary>
+        /// RFVtxtArabicDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtArabicDescription;
+        
+        /// <summary>
         /// txtEnglishDescription control.
         /// </summary>
         /// <remarks>
@@ -92,6 +173,15 @@ namespace Treatment.Pages.Eminutes.BoardManagment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEnglishDescription;
+        
+        /// <summary>
+        /// RFVtxtEnglishDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtEnglishDescription;
         
         /// <summary>
         /// Save control.

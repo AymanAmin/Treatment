@@ -12,14 +12,16 @@ namespace Treatment.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Attachment
+    public partial class M_Recommendation
     {
-        public int Attachment_id { get; set; }
-        public Nullable<int> Treatment_Id { get; set; }
-        public string Attachment_Path { get; set; }
-        public string Attachment_Name { get; set; }
-        public Nullable<int> Attachment_Type { get; set; }
+        public int Recommendation_Id { get; set; }
+        public Nullable<int> Board_Member_Id { get; set; }
+        public Nullable<int> Meeting_Id { get; set; }
+        public Nullable<int> Recommendation_Status { get; set; }
+        public Nullable<System.DateTime> Create_Date { get; set; }
+        public string Recommendation_Description { get; set; }
     
-        public virtual Treatment_Master Treatment_Master { get; set; }
+        public virtual M_Board_Member M_Board_Member { get; set; }
+        public virtual M_Meeting M_Meeting { get; set; }
     }
 }

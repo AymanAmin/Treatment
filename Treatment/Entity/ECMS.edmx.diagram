@@ -57,6 +57,31 @@
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Procedure" ManuallyRouted="false" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Status" ManuallyRouted="false" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Type" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ECMSModel.M_Attendees" Width="1.5" PointX="25.375" PointY="24.125" />
+        <EntityTypeShape EntityType="ECMSModel.M_Board" Width="1.5" PointX="18.625" PointY="25.25" />
+        <EntityTypeShape EntityType="ECMSModel.M_Board_Classification" Width="1.5" PointX="16.375" PointY="26.5" />
+        <EntityTypeShape EntityType="ECMSModel.M_Board_Location" Width="1.5" PointX="20.875" PointY="29.625" />
+        <EntityTypeShape EntityType="ECMSModel.M_Board_Member" Width="1.5" PointX="20.875" PointY="19.875" />
+        <EntityTypeShape EntityType="ECMSModel.M_Board_Type" Width="1.5" PointX="16.375" PointY="32.5" />
+        <EntityTypeShape EntityType="ECMSModel.M_Meeting" Width="1.5" PointX="23.125" PointY="26.75" />
+        <EntityTypeShape EntityType="ECMSModel.M_Member_Type" Width="1.5" PointX="18.625" PointY="20.375" />
+        <EntityTypeShape EntityType="ECMSModel.M_Recommendation" Width="1.5" PointX="28.375" PointY="24" />
+        <EntityTypeShape EntityType="ECMSModel.M_Topic" Width="1.5" PointX="25.375" PointY="19.375" />
+        <AssociationConnector Association="ECMSModel.FK_M_Board_Member_Employee" />
+        <AssociationConnector Association="ECMSModel.FK_M_Attendees_M_Board_Member" />
+        <AssociationConnector Association="ECMSModel.FK_M_Attendees_M_Meeting" />
+        <AssociationConnector Association="ECMSModel.FK_M_Board_Location_M_Board" />
+        <AssociationConnector Association="ECMSModel.FK_M_Board_M_Board_Classification" />
+        <AssociationConnector Association="ECMSModel.FK_M_Board_M_Board_Type" />
+        <AssociationConnector Association="ECMSModel.FK_M_Board_Member_M_Board" />
+        <AssociationConnector Association="ECMSModel.FK_M_Meeting_M_Board" />
+        <AssociationConnector Association="ECMSModel.FK_M_Meeting_M_Board_Location" />
+        <AssociationConnector Association="ECMSModel.FK_M_Board_Member_M_Member_Type" />
+        <AssociationConnector Association="ECMSModel.FK_M_Recommendation_M_Board_Member" />
+        <AssociationConnector Association="ECMSModel.FK_M_Recommendation_M_Meeting" />
+        <AssociationConnector Association="ECMSModel.FK_M_Topic_M_Meeting" />
+        <AssociationConnector Association="ECMSModel.FK_M_Topic_Structure" />
+        <EntityTypeShape EntityType="ECMSModel.M_Board_Status" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

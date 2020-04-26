@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Assignment_Status">
           <Key>
             <PropertyRef Name="Assignment_Status_Id" />
@@ -21,6 +21,7 @@
           <Property Name="Treatment_Id" Type="int" />
           <Property Name="Attachment_Path" Type="nvarchar(max)" />
           <Property Name="Attachment_Name" Type="nvarchar(max)" />
+          <Property Name="Attachment_Type" Type="int" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -47,8 +48,10 @@
           <Property Name="Structure_Id" Type="int" />
           <Property Name="Employee_Id" Type="int" />
           <Property Name="Status_Structure" Type="bit" />
-          <Property Name="Type_Delegation" Type="bit" />
           <Property Name="Default_Structure" Type="bit" />
+          <Property Name="Type_Delegation" Type="bit" />
+          <Property Name="Date_Delegation" Type="datetime" />
+          <Property Name="Employee_Delegation" Type="int" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -85,6 +88,129 @@
           <Property Name="Form_Id" Type="int" />
           <Property Name="Log_Name" Type="nvarchar(max)" />
           <Property Name="Log_Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="M_Attendees">
+          <Key>
+            <PropertyRef Name="Attendees_Id" />
+          </Key>
+          <Property Name="Attendees_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Board_Member_Id" Type="int" />
+          <Property Name="Meeting_Id" Type="int" />
+          <Property Name="Attendess_Status" Type="int" />
+          <Property Name="Create_Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="M_Board">
+          <Key>
+            <PropertyRef Name="Board_Id" />
+          </Key>
+          <Property Name="Board_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Board_Name_Ar" Type="nvarchar(max)" />
+          <Property Name="Board_Name_En" Type="nvarchar(max)" />
+          <Property Name="Create_Date" Type="datetime" />
+          <Property Name="Start_Date" Type="datetime" />
+          <Property Name="End_Date" Type="datetime" />
+          <Property Name="Board_Description_Ar" Type="ntext" />
+          <Property Name="Board_Description_En" Type="ntext" />
+          <Property Name="Parent" Type="int" />
+          <Property Name="Board_Status" Type="int" />
+          <Property Name="Board_Type_Id" Type="int" />
+          <Property Name="Board_Classification_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="M_Board_Classification">
+          <Key>
+            <PropertyRef Name="Board_Classification_Id" />
+          </Key>
+          <Property Name="Board_Classification_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Board_Classification_Name_Ar" Type="nvarchar(max)" />
+          <Property Name="Board_Classification_Name_En" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="M_Board_Location">
+          <Key>
+            <PropertyRef Name="Board_Location_Id" />
+          </Key>
+          <Property Name="Board_Location_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Board_Location_Name_Ar" Type="nvarchar(max)" />
+          <Property Name="Board_Location_Name_En" Type="nvarchar(max)" />
+          <Property Name="Board_Id" Type="int" />
+          <Property Name="Board_Location_Description_Ar" Type="ntext" />
+          <Property Name="Board_Location_Description_En" Type="ntext" />
+        </EntityType>
+        <EntityType Name="M_Board_Member">
+          <Key>
+            <PropertyRef Name="Board_Member_Id" />
+          </Key>
+          <Property Name="Board_Member_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Board_Id" Type="int" />
+          <Property Name="Employee_Id" Type="int" />
+          <Property Name="Member_Type_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="M_Board_Status">
+          <Key>
+            <PropertyRef Name="Board_Status_Id" />
+          </Key>
+          <Property Name="Board_Status_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Board_Status_Name_Ar" Type="nvarchar(max)" />
+          <Property Name="Board_Status_Name_En" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="M_Board_Type">
+          <Key>
+            <PropertyRef Name="Board_Type_Id" />
+          </Key>
+          <Property Name="Board_Type_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Board_Type_Name_Ar" Type="nvarchar(max)" />
+          <Property Name="Board_Type_Name_En" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="M_Meeting">
+          <Key>
+            <PropertyRef Name="Meeting_Id" />
+          </Key>
+          <Property Name="Meeting_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Board_Id" Type="int" />
+          <Property Name="Meeting_Name_Ar" Type="nvarchar(max)" />
+          <Property Name="Meeting_Name_En" Type="nvarchar(max)" />
+          <Property Name="Create_Date" Type="datetime" />
+          <Property Name="Meeting_Date" Type="datetime" />
+          <Property Name="Meeting_Time" Type="time" Precision="7" />
+          <Property Name="Meeting_Status" Type="int" />
+          <Property Name="Meeting_Minutes" Type="ntext" />
+          <Property Name="Board_Location_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="M_Member_Type">
+          <Key>
+            <PropertyRef Name="Member_Type_Id" />
+          </Key>
+          <Property Name="Member_Type_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Member_Type_Name_Ar" Type="nvarchar(max)" />
+          <Property Name="Member_Type_Name_En" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="M_Recommendation">
+          <Key>
+            <PropertyRef Name="Recommendation_Id" />
+          </Key>
+          <Property Name="Recommendation_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Board_Member_Id" Type="int" />
+          <Property Name="Meeting_Id" Type="int" />
+          <Property Name="Recommendation_Status" Type="int" />
+          <Property Name="Create_Date" Type="datetime" />
+          <Property Name="Recommendation_Description" Type="ntext" />
+        </EntityType>
+        <EntityType Name="M_Topic">
+          <Key>
+            <PropertyRef Name="Topic_Id" />
+          </Key>
+          <Property Name="Topic_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Meeting_Id" Type="int" />
+          <Property Name="Topic_Name_Ar" Type="nvarchar(max)" />
+          <Property Name="Topic_Name_En" Type="nvarchar(max)" />
+          <Property Name="Create_Date" Type="datetime" />
+          <Property Name="Topic_Description_Ar" Type="ntext" />
+          <Property Name="Topic_Description_En" Type="ntext" />
+          <Property Name="Topic_Status" Type="int" />
+          <Property Name="Topic_Recommendation_Ar" Type="ntext" />
+          <Property Name="Topic_Recommendation_En" Type="ntext" />
+          <Property Name="Topic_Recommendation_Doc_Ar" Type="ntext" />
+          <Property Name="Topic_Recommendation_Doc_En" Type="ntext" />
+          <Property Name="Structure_Id" Type="int" />
         </EntityType>
         <EntityType Name="Notification_Employee">
           <Key>
@@ -261,18 +387,6 @@
           <Property Name="Treatment_Type_Name_Ar" Type="nvarchar(max)" />
           <Property Name="Treatment_Type_Name_En" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK_Attachment_Treatment">
-          <End Role="Treatment_Master" Type="Self.Treatment_Master" Multiplicity="0..1" />
-          <End Role="Attachment" Type="Self.Attachment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Treatment_Master">
-              <PropertyRef Name="Treatment_Id" />
-            </Principal>
-            <Dependent Role="Attachment">
-              <PropertyRef Name="Treatment_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Employee_Group">
           <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
@@ -354,6 +468,174 @@
             </Principal>
             <Dependent Role="Log_File">
               <PropertyRef Name="Form_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Attendees_M_Board_Member">
+          <End Role="M_Board_Member" Type="Self.M_Board_Member" Multiplicity="0..1" />
+          <End Role="M_Attendees" Type="Self.M_Attendees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board_Member">
+              <PropertyRef Name="Board_Member_Id" />
+            </Principal>
+            <Dependent Role="M_Attendees">
+              <PropertyRef Name="Board_Member_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Attendees_M_Meeting">
+          <End Role="M_Meeting" Type="Self.M_Meeting" Multiplicity="0..1" />
+          <End Role="M_Attendees" Type="Self.M_Attendees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Meeting">
+              <PropertyRef Name="Meeting_Id" />
+            </Principal>
+            <Dependent Role="M_Attendees">
+              <PropertyRef Name="Meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Board_Location_M_Board">
+          <End Role="M_Board" Type="Self.M_Board" Multiplicity="0..1" />
+          <End Role="M_Board_Location" Type="Self.M_Board_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board">
+              <PropertyRef Name="Board_Id" />
+            </Principal>
+            <Dependent Role="M_Board_Location">
+              <PropertyRef Name="Board_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Board_M_Board_Classification">
+          <End Role="M_Board_Classification" Type="Self.M_Board_Classification" Multiplicity="0..1" />
+          <End Role="M_Board" Type="Self.M_Board" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board_Classification">
+              <PropertyRef Name="Board_Classification_Id" />
+            </Principal>
+            <Dependent Role="M_Board">
+              <PropertyRef Name="Board_Classification_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Board_M_Board_Type">
+          <End Role="M_Board_Type" Type="Self.M_Board_Type" Multiplicity="0..1" />
+          <End Role="M_Board" Type="Self.M_Board" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board_Type">
+              <PropertyRef Name="Board_Type_Id" />
+            </Principal>
+            <Dependent Role="M_Board">
+              <PropertyRef Name="Board_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Board_Member_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="M_Board_Member" Type="Self.M_Board_Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_Id" />
+            </Principal>
+            <Dependent Role="M_Board_Member">
+              <PropertyRef Name="Employee_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Board_Member_M_Board">
+          <End Role="M_Board" Type="Self.M_Board" Multiplicity="0..1" />
+          <End Role="M_Board_Member" Type="Self.M_Board_Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board">
+              <PropertyRef Name="Board_Id" />
+            </Principal>
+            <Dependent Role="M_Board_Member">
+              <PropertyRef Name="Board_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Board_Member_M_Member_Type">
+          <End Role="M_Member_Type" Type="Self.M_Member_Type" Multiplicity="0..1" />
+          <End Role="M_Board_Member" Type="Self.M_Board_Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Member_Type">
+              <PropertyRef Name="Member_Type_Id" />
+            </Principal>
+            <Dependent Role="M_Board_Member">
+              <PropertyRef Name="Member_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Meeting_M_Board">
+          <End Role="M_Board" Type="Self.M_Board" Multiplicity="0..1" />
+          <End Role="M_Meeting" Type="Self.M_Meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board">
+              <PropertyRef Name="Board_Id" />
+            </Principal>
+            <Dependent Role="M_Meeting">
+              <PropertyRef Name="Board_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Meeting_M_Board_Location">
+          <End Role="M_Board_Location" Type="Self.M_Board_Location" Multiplicity="0..1" />
+          <End Role="M_Meeting" Type="Self.M_Meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board_Location">
+              <PropertyRef Name="Board_Location_Id" />
+            </Principal>
+            <Dependent Role="M_Meeting">
+              <PropertyRef Name="Board_Location_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Recommendation_M_Board_Member">
+          <End Role="M_Board_Member" Type="Self.M_Board_Member" Multiplicity="0..1" />
+          <End Role="M_Recommendation" Type="Self.M_Recommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board_Member">
+              <PropertyRef Name="Board_Member_Id" />
+            </Principal>
+            <Dependent Role="M_Recommendation">
+              <PropertyRef Name="Board_Member_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Recommendation_M_Meeting">
+          <End Role="M_Meeting" Type="Self.M_Meeting" Multiplicity="0..1" />
+          <End Role="M_Recommendation" Type="Self.M_Recommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Meeting">
+              <PropertyRef Name="Meeting_Id" />
+            </Principal>
+            <Dependent Role="M_Recommendation">
+              <PropertyRef Name="Meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Topic_M_Meeting">
+          <End Role="M_Meeting" Type="Self.M_Meeting" Multiplicity="0..1" />
+          <End Role="M_Topic" Type="Self.M_Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Meeting">
+              <PropertyRef Name="Meeting_Id" />
+            </Principal>
+            <Dependent Role="M_Topic">
+              <PropertyRef Name="Meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Topic_Structure">
+          <End Role="Structure" Type="Self.Structure" Multiplicity="0..1" />
+          <End Role="M_Topic" Type="Self.M_Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Structure">
+              <PropertyRef Name="Structure_Id" />
+            </Principal>
+            <Dependent Role="M_Topic">
+              <PropertyRef Name="Structure_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -597,6 +879,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ECMSModelStoreContainer">
           <EntitySet Name="Assignment_Status" EntityType="Self.Assignment_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attachment" EntityType="Self.Attachment" Schema="dbo" store:Type="Tables" />
@@ -606,6 +919,17 @@
           <EntitySet Name="LanguageMaster" EntityType="Self.LanguageMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lanuage_Detials" EntityType="Self.Lanuage_Detials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log_File" EntityType="Self.Log_File" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Attendees" EntityType="Self.M_Attendees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Board" EntityType="Self.M_Board" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Board_Classification" EntityType="Self.M_Board_Classification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Board_Location" EntityType="Self.M_Board_Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Board_Member" EntityType="Self.M_Board_Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Board_Status" EntityType="Self.M_Board_Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Board_Type" EntityType="Self.M_Board_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Meeting" EntityType="Self.M_Meeting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Member_Type" EntityType="Self.M_Member_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Recommendation" EntityType="Self.M_Recommendation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Topic" EntityType="Self.M_Topic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notification_Employee" EntityType="Self.Notification_Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notification_Master" EntityType="Self.Notification_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notification_Show" EntityType="Self.Notification_Show" Schema="dbo" store:Type="Tables" />
@@ -622,10 +946,6 @@
           <EntitySet Name="Treatment_Procedure" EntityType="Self.Treatment_Procedure" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatment_Status" EntityType="Self.Treatment_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatment_Type" EntityType="Self.Treatment_Type" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Attachment_Treatment" Association="Self.FK_Attachment_Treatment">
-            <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-            <End Role="Attachment" EntitySet="Attachment" />
-          </AssociationSet>
           <AssociationSet Name="FK_Employee_Group" Association="Self.FK_Employee_Group">
             <End Role="Group" EntitySet="Group" />
             <End Role="Employee" EntitySet="Employee" />
@@ -653,6 +973,62 @@
           <AssociationSet Name="FK_Log_File_Permission" Association="Self.FK_Log_File_Permission">
             <End Role="Permission" EntitySet="Permission" />
             <End Role="Log_File" EntitySet="Log_File" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Attendees_M_Board_Member" Association="Self.FK_M_Attendees_M_Board_Member">
+            <End Role="M_Board_Member" EntitySet="M_Board_Member" />
+            <End Role="M_Attendees" EntitySet="M_Attendees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Attendees_M_Meeting" Association="Self.FK_M_Attendees_M_Meeting">
+            <End Role="M_Meeting" EntitySet="M_Meeting" />
+            <End Role="M_Attendees" EntitySet="M_Attendees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Board_Location_M_Board" Association="Self.FK_M_Board_Location_M_Board">
+            <End Role="M_Board" EntitySet="M_Board" />
+            <End Role="M_Board_Location" EntitySet="M_Board_Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Board_M_Board_Classification" Association="Self.FK_M_Board_M_Board_Classification">
+            <End Role="M_Board_Classification" EntitySet="M_Board_Classification" />
+            <End Role="M_Board" EntitySet="M_Board" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Board_M_Board_Type" Association="Self.FK_M_Board_M_Board_Type">
+            <End Role="M_Board_Type" EntitySet="M_Board_Type" />
+            <End Role="M_Board" EntitySet="M_Board" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Board_Member_Employee" Association="Self.FK_M_Board_Member_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="M_Board_Member" EntitySet="M_Board_Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Board_Member_M_Board" Association="Self.FK_M_Board_Member_M_Board">
+            <End Role="M_Board" EntitySet="M_Board" />
+            <End Role="M_Board_Member" EntitySet="M_Board_Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Board_Member_M_Member_Type" Association="Self.FK_M_Board_Member_M_Member_Type">
+            <End Role="M_Member_Type" EntitySet="M_Member_Type" />
+            <End Role="M_Board_Member" EntitySet="M_Board_Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Meeting_M_Board" Association="Self.FK_M_Meeting_M_Board">
+            <End Role="M_Board" EntitySet="M_Board" />
+            <End Role="M_Meeting" EntitySet="M_Meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Meeting_M_Board_Location" Association="Self.FK_M_Meeting_M_Board_Location">
+            <End Role="M_Board_Location" EntitySet="M_Board_Location" />
+            <End Role="M_Meeting" EntitySet="M_Meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Recommendation_M_Board_Member" Association="Self.FK_M_Recommendation_M_Board_Member">
+            <End Role="M_Board_Member" EntitySet="M_Board_Member" />
+            <End Role="M_Recommendation" EntitySet="M_Recommendation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Recommendation_M_Meeting" Association="Self.FK_M_Recommendation_M_Meeting">
+            <End Role="M_Meeting" EntitySet="M_Meeting" />
+            <End Role="M_Recommendation" EntitySet="M_Recommendation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Topic_M_Meeting" Association="Self.FK_M_Topic_M_Meeting">
+            <End Role="M_Meeting" EntitySet="M_Meeting" />
+            <End Role="M_Topic" EntitySet="M_Topic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Topic_Structure" Association="Self.FK_M_Topic_Structure">
+            <End Role="Structure" EntitySet="Structure" />
+            <End Role="M_Topic" EntitySet="M_Topic" />
           </AssociationSet>
           <AssociationSet Name="FK_Notification_Employee_Employee" Association="Self.FK_Notification_Employee_Employee">
             <End Role="Employee" EntitySet="Employee" />
@@ -735,8 +1111,7 @@
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ECMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -758,6 +1133,7 @@
           <Property Name="Attachment_Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Attachment_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Attachment_Treatment" FromRole="Attachment" ToRole="Treatment_Master" />
+          <Property Name="Attachment_Type" Type="Int32" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -780,6 +1156,7 @@
           <NavigationProperty Name="Employee_Structure" Relationship="Self.FK_Employee_Structure_Employee" FromRole="Employee" ToRole="Employee_Structure" />
           <NavigationProperty Name="Log_File" Relationship="Self.FK_Log_File_Employee" FromRole="Employee" ToRole="Log_File" />
           <NavigationProperty Name="Notification_Employee" Relationship="Self.FK_Notification_Employee_Employee" FromRole="Employee" ToRole="Notification_Employee" />
+          <NavigationProperty Name="M_Board_Member" Relationship="ECMSModel.FK_M_Board_Member_Employee" FromRole="Employee" ToRole="M_Board_Member" />
         </EntityType>
         <EntityType Name="Employee_Structure">
           <Key>
@@ -797,6 +1174,8 @@
           <NavigationProperty Name="Notification_Master1" Relationship="Self.FK_Notification_Master_Employee_Structure1" FromRole="Employee_Structure" ToRole="Notification_Master" />
           <NavigationProperty Name="Treatment_Detial" Relationship="Self.FK_Treatment_Detial_Employee_Structure" FromRole="Employee_Structure" ToRole="Treatment_Detial" />
           <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Employee_Structure" FromRole="Employee_Structure" ToRole="Treatment_Master" />
+          <Property Name="Date_Delegation" Type="DateTime" Precision="3" />
+          <Property Name="Employee_Delegation" Type="Int32" />
         </EntityType>
         <EntityType Name="Group">
           <Key>
@@ -927,6 +1306,7 @@
           <Property Name="Structure_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employee_Structure" Relationship="Self.FK_Employee_Structure_Structure" FromRole="Structure" ToRole="Employee_Structure" />
           <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Prepared_Administration" FromRole="Structure" ToRole="Treatment_Master" />
+          <NavigationProperty Name="M_Topic" Relationship="ECMSModel.FK_M_Topic_Structure" FromRole="Structure" ToRole="M_Topic" />
         </EntityType>
         <EntityType Name="Treatment_Class">
           <Key>
@@ -1525,7 +1905,421 @@
             <End Role="Treatment_Type" EntitySet="Treatment_Type" />
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
           </AssociationSet>
+          <EntitySet Name="M_Attendees" EntityType="ECMSModel.M_Attendees" />
+          <EntitySet Name="M_Board" EntityType="ECMSModel.M_Board" />
+          <EntitySet Name="M_Board_Classification" EntityType="ECMSModel.M_Board_Classification" />
+          <EntitySet Name="M_Board_Location" EntityType="ECMSModel.M_Board_Location" />
+          <EntitySet Name="M_Board_Member" EntityType="ECMSModel.M_Board_Member" />
+          <EntitySet Name="M_Board_Type" EntityType="ECMSModel.M_Board_Type" />
+          <EntitySet Name="M_Meeting" EntityType="ECMSModel.M_Meeting" />
+          <EntitySet Name="M_Member_Type" EntityType="ECMSModel.M_Member_Type" />
+          <EntitySet Name="M_Recommendation" EntityType="ECMSModel.M_Recommendation" />
+          <EntitySet Name="M_Topic" EntityType="ECMSModel.M_Topic" />
+          <AssociationSet Name="FK_M_Board_Member_Employee" Association="ECMSModel.FK_M_Board_Member_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="M_Board_Member" EntitySet="M_Board_Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Attendees_M_Board_Member" Association="ECMSModel.FK_M_Attendees_M_Board_Member">
+            <End Role="M_Board_Member" EntitySet="M_Board_Member" />
+            <End Role="M_Attendees" EntitySet="M_Attendees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Attendees_M_Meeting" Association="ECMSModel.FK_M_Attendees_M_Meeting">
+            <End Role="M_Meeting" EntitySet="M_Meeting" />
+            <End Role="M_Attendees" EntitySet="M_Attendees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Board_Location_M_Board" Association="ECMSModel.FK_M_Board_Location_M_Board">
+            <End Role="M_Board" EntitySet="M_Board" />
+            <End Role="M_Board_Location" EntitySet="M_Board_Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Board_M_Board_Classification" Association="ECMSModel.FK_M_Board_M_Board_Classification">
+            <End Role="M_Board_Classification" EntitySet="M_Board_Classification" />
+            <End Role="M_Board" EntitySet="M_Board" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Board_M_Board_Type" Association="ECMSModel.FK_M_Board_M_Board_Type">
+            <End Role="M_Board_Type" EntitySet="M_Board_Type" />
+            <End Role="M_Board" EntitySet="M_Board" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Board_Member_M_Board" Association="ECMSModel.FK_M_Board_Member_M_Board">
+            <End Role="M_Board" EntitySet="M_Board" />
+            <End Role="M_Board_Member" EntitySet="M_Board_Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Meeting_M_Board" Association="ECMSModel.FK_M_Meeting_M_Board">
+            <End Role="M_Board" EntitySet="M_Board" />
+            <End Role="M_Meeting" EntitySet="M_Meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Meeting_M_Board_Location" Association="ECMSModel.FK_M_Meeting_M_Board_Location">
+            <End Role="M_Board_Location" EntitySet="M_Board_Location" />
+            <End Role="M_Meeting" EntitySet="M_Meeting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Board_Member_M_Member_Type" Association="ECMSModel.FK_M_Board_Member_M_Member_Type">
+            <End Role="M_Member_Type" EntitySet="M_Member_Type" />
+            <End Role="M_Board_Member" EntitySet="M_Board_Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Recommendation_M_Board_Member" Association="ECMSModel.FK_M_Recommendation_M_Board_Member">
+            <End Role="M_Board_Member" EntitySet="M_Board_Member" />
+            <End Role="M_Recommendation" EntitySet="M_Recommendation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Recommendation_M_Meeting" Association="ECMSModel.FK_M_Recommendation_M_Meeting">
+            <End Role="M_Meeting" EntitySet="M_Meeting" />
+            <End Role="M_Recommendation" EntitySet="M_Recommendation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Topic_M_Meeting" Association="ECMSModel.FK_M_Topic_M_Meeting">
+            <End Role="M_Meeting" EntitySet="M_Meeting" />
+            <End Role="M_Topic" EntitySet="M_Topic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_Topic_Structure" Association="ECMSModel.FK_M_Topic_Structure">
+            <End Role="Structure" EntitySet="Structures" />
+            <End Role="M_Topic" EntitySet="M_Topic" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="M_Board_Status" EntityType="ECMSModel.M_Board_Status" />
         </EntityContainer>
+        <EntityType Name="M_Attendees">
+          <Key>
+            <PropertyRef Name="Attendees_Id" />
+          </Key>
+          <Property Name="Attendees_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Board_Member_Id" Type="Int32" />
+          <Property Name="Meeting_Id" Type="Int32" />
+          <Property Name="Attendess_Status" Type="Int32" />
+          <Property Name="Create_Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="M_Board_Member" Relationship="ECMSModel.FK_M_Attendees_M_Board_Member" FromRole="M_Attendees" ToRole="M_Board_Member" />
+          <NavigationProperty Name="M_Meeting" Relationship="ECMSModel.FK_M_Attendees_M_Meeting" FromRole="M_Attendees" ToRole="M_Meeting" />
+        </EntityType>
+        <EntityType Name="M_Board">
+          <Key>
+            <PropertyRef Name="Board_Id" />
+          </Key>
+          <Property Name="Board_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Board_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Board_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Create_Date" Type="DateTime" Precision="3" />
+          <Property Name="Start_Date" Type="DateTime" Precision="3" />
+          <Property Name="End_Date" Type="DateTime" Precision="3" />
+          <Property Name="Board_Description_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Board_Description_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Parent" Type="Int32" />
+          <Property Name="Board_Status" Type="Int32" />
+          <Property Name="Board_Type_Id" Type="Int32" />
+          <Property Name="Board_Classification_Id" Type="Int32" />
+          <NavigationProperty Name="M_Board_Location" Relationship="ECMSModel.FK_M_Board_Location_M_Board" FromRole="M_Board" ToRole="M_Board_Location" />
+          <NavigationProperty Name="M_Board_Classification" Relationship="ECMSModel.FK_M_Board_M_Board_Classification" FromRole="M_Board" ToRole="M_Board_Classification" />
+          <NavigationProperty Name="M_Board_Type" Relationship="ECMSModel.FK_M_Board_M_Board_Type" FromRole="M_Board" ToRole="M_Board_Type" />
+          <NavigationProperty Name="M_Board_Member" Relationship="ECMSModel.FK_M_Board_Member_M_Board" FromRole="M_Board" ToRole="M_Board_Member" />
+          <NavigationProperty Name="M_Meeting" Relationship="ECMSModel.FK_M_Meeting_M_Board" FromRole="M_Board" ToRole="M_Meeting" />
+        </EntityType>
+        <EntityType Name="M_Board_Classification">
+          <Key>
+            <PropertyRef Name="Board_Classification_Id" />
+          </Key>
+          <Property Name="Board_Classification_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Board_Classification_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Board_Classification_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_Board_M_Board_Classification" FromRole="M_Board_Classification" ToRole="M_Board" />
+        </EntityType>
+        <EntityType Name="M_Board_Location">
+          <Key>
+            <PropertyRef Name="Board_Location_Id" />
+          </Key>
+          <Property Name="Board_Location_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Board_Location_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Board_Location_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Board_Id" Type="Int32" />
+          <Property Name="Board_Location_Description_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Board_Location_Description_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_Board_Location_M_Board" FromRole="M_Board_Location" ToRole="M_Board" />
+          <NavigationProperty Name="M_Meeting" Relationship="ECMSModel.FK_M_Meeting_M_Board_Location" FromRole="M_Board_Location" ToRole="M_Meeting" />
+        </EntityType>
+        <EntityType Name="M_Board_Member">
+          <Key>
+            <PropertyRef Name="Board_Member_Id" />
+          </Key>
+          <Property Name="Board_Member_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Board_Id" Type="Int32" />
+          <Property Name="Employee_Id" Type="Int32" />
+          <Property Name="Member_Type_Id" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="ECMSModel.FK_M_Board_Member_Employee" FromRole="M_Board_Member" ToRole="Employee" />
+          <NavigationProperty Name="M_Attendees" Relationship="ECMSModel.FK_M_Attendees_M_Board_Member" FromRole="M_Board_Member" ToRole="M_Attendees" />
+          <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_Board_Member_M_Board" FromRole="M_Board_Member" ToRole="M_Board" />
+          <NavigationProperty Name="M_Member_Type" Relationship="ECMSModel.FK_M_Board_Member_M_Member_Type" FromRole="M_Board_Member" ToRole="M_Member_Type" />
+          <NavigationProperty Name="M_Recommendation" Relationship="ECMSModel.FK_M_Recommendation_M_Board_Member" FromRole="M_Board_Member" ToRole="M_Recommendation" />
+        </EntityType>
+        <EntityType Name="M_Board_Type">
+          <Key>
+            <PropertyRef Name="Board_Type_Id" />
+          </Key>
+          <Property Name="Board_Type_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Board_Type_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Board_Type_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_Board_M_Board_Type" FromRole="M_Board_Type" ToRole="M_Board" />
+        </EntityType>
+        <EntityType Name="M_Meeting">
+          <Key>
+            <PropertyRef Name="Meeting_Id" />
+          </Key>
+          <Property Name="Meeting_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Board_Id" Type="Int32" />
+          <Property Name="Meeting_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Meeting_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Create_Date" Type="DateTime" Precision="3" />
+          <Property Name="Meeting_Date" Type="DateTime" Precision="3" />
+          <Property Name="Meeting_Time" Type="Time" Precision="7" />
+          <Property Name="Meeting_Status" Type="Int32" />
+          <Property Name="Meeting_Minutes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Board_Location_Id" Type="Int32" />
+          <NavigationProperty Name="M_Attendees" Relationship="ECMSModel.FK_M_Attendees_M_Meeting" FromRole="M_Meeting" ToRole="M_Attendees" />
+          <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_Meeting_M_Board" FromRole="M_Meeting" ToRole="M_Board" />
+          <NavigationProperty Name="M_Board_Location" Relationship="ECMSModel.FK_M_Meeting_M_Board_Location" FromRole="M_Meeting" ToRole="M_Board_Location" />
+          <NavigationProperty Name="M_Recommendation" Relationship="ECMSModel.FK_M_Recommendation_M_Meeting" FromRole="M_Meeting" ToRole="M_Recommendation" />
+          <NavigationProperty Name="M_Topic" Relationship="ECMSModel.FK_M_Topic_M_Meeting" FromRole="M_Meeting" ToRole="M_Topic" />
+        </EntityType>
+        <EntityType Name="M_Member_Type">
+          <Key>
+            <PropertyRef Name="Member_Type_Id" />
+          </Key>
+          <Property Name="Member_Type_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Member_Type_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Member_Type_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="M_Board_Member" Relationship="ECMSModel.FK_M_Board_Member_M_Member_Type" FromRole="M_Member_Type" ToRole="M_Board_Member" />
+        </EntityType>
+        <EntityType Name="M_Recommendation">
+          <Key>
+            <PropertyRef Name="Recommendation_Id" />
+          </Key>
+          <Property Name="Recommendation_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Board_Member_Id" Type="Int32" />
+          <Property Name="Meeting_Id" Type="Int32" />
+          <Property Name="Recommendation_Status" Type="Int32" />
+          <Property Name="Create_Date" Type="DateTime" Precision="3" />
+          <Property Name="Recommendation_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="M_Board_Member" Relationship="ECMSModel.FK_M_Recommendation_M_Board_Member" FromRole="M_Recommendation" ToRole="M_Board_Member" />
+          <NavigationProperty Name="M_Meeting" Relationship="ECMSModel.FK_M_Recommendation_M_Meeting" FromRole="M_Recommendation" ToRole="M_Meeting" />
+        </EntityType>
+        <EntityType Name="M_Topic">
+          <Key>
+            <PropertyRef Name="Topic_Id" />
+          </Key>
+          <Property Name="Topic_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Meeting_Id" Type="Int32" />
+          <Property Name="Topic_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Topic_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Create_Date" Type="DateTime" Precision="3" />
+          <Property Name="Topic_Description_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Topic_Description_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Topic_Status" Type="Int32" />
+          <Property Name="Topic_Recommendation_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Topic_Recommendation_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Topic_Recommendation_Doc_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Topic_Recommendation_Doc_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Structure_Id" Type="Int32" />
+          <NavigationProperty Name="M_Meeting" Relationship="ECMSModel.FK_M_Topic_M_Meeting" FromRole="M_Topic" ToRole="M_Meeting" />
+          <NavigationProperty Name="Structure" Relationship="ECMSModel.FK_M_Topic_Structure" FromRole="M_Topic" ToRole="Structure" />
+        </EntityType>
+        <Association Name="FK_M_Board_Member_Employee">
+          <End Type="ECMSModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Board_Member" Role="M_Board_Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Employee_Id" />
+            </Principal>
+            <Dependent Role="M_Board_Member">
+              <PropertyRef Name="Employee_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Attendees_M_Board_Member">
+          <End Type="ECMSModel.M_Board_Member" Role="M_Board_Member" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Attendees" Role="M_Attendees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board_Member">
+              <PropertyRef Name="Board_Member_Id" />
+            </Principal>
+            <Dependent Role="M_Attendees">
+              <PropertyRef Name="Board_Member_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Attendees_M_Meeting">
+          <End Type="ECMSModel.M_Meeting" Role="M_Meeting" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Attendees" Role="M_Attendees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Meeting">
+              <PropertyRef Name="Meeting_Id" />
+            </Principal>
+            <Dependent Role="M_Attendees">
+              <PropertyRef Name="Meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Board_Location_M_Board">
+          <End Type="ECMSModel.M_Board" Role="M_Board" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Board_Location" Role="M_Board_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board">
+              <PropertyRef Name="Board_Id" />
+            </Principal>
+            <Dependent Role="M_Board_Location">
+              <PropertyRef Name="Board_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Board_M_Board_Classification">
+          <End Type="ECMSModel.M_Board_Classification" Role="M_Board_Classification" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Board" Role="M_Board" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board_Classification">
+              <PropertyRef Name="Board_Classification_Id" />
+            </Principal>
+            <Dependent Role="M_Board">
+              <PropertyRef Name="Board_Classification_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Board_M_Board_Type">
+          <End Type="ECMSModel.M_Board_Type" Role="M_Board_Type" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Board" Role="M_Board" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board_Type">
+              <PropertyRef Name="Board_Type_Id" />
+            </Principal>
+            <Dependent Role="M_Board">
+              <PropertyRef Name="Board_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Board_Member_M_Board">
+          <End Type="ECMSModel.M_Board" Role="M_Board" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Board_Member" Role="M_Board_Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board">
+              <PropertyRef Name="Board_Id" />
+            </Principal>
+            <Dependent Role="M_Board_Member">
+              <PropertyRef Name="Board_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Meeting_M_Board">
+          <End Type="ECMSModel.M_Board" Role="M_Board" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Meeting" Role="M_Meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board">
+              <PropertyRef Name="Board_Id" />
+            </Principal>
+            <Dependent Role="M_Meeting">
+              <PropertyRef Name="Board_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Meeting_M_Board_Location">
+          <End Type="ECMSModel.M_Board_Location" Role="M_Board_Location" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Meeting" Role="M_Meeting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board_Location">
+              <PropertyRef Name="Board_Location_Id" />
+            </Principal>
+            <Dependent Role="M_Meeting">
+              <PropertyRef Name="Board_Location_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Board_Member_M_Member_Type">
+          <End Type="ECMSModel.M_Member_Type" Role="M_Member_Type" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Board_Member" Role="M_Board_Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Member_Type">
+              <PropertyRef Name="Member_Type_Id" />
+            </Principal>
+            <Dependent Role="M_Board_Member">
+              <PropertyRef Name="Member_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Recommendation_M_Board_Member">
+          <End Type="ECMSModel.M_Board_Member" Role="M_Board_Member" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Recommendation" Role="M_Recommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board_Member">
+              <PropertyRef Name="Board_Member_Id" />
+            </Principal>
+            <Dependent Role="M_Recommendation">
+              <PropertyRef Name="Board_Member_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Recommendation_M_Meeting">
+          <End Type="ECMSModel.M_Meeting" Role="M_Meeting" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Recommendation" Role="M_Recommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Meeting">
+              <PropertyRef Name="Meeting_Id" />
+            </Principal>
+            <Dependent Role="M_Recommendation">
+              <PropertyRef Name="Meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Topic_M_Meeting">
+          <End Type="ECMSModel.M_Meeting" Role="M_Meeting" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Topic" Role="M_Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Meeting">
+              <PropertyRef Name="Meeting_Id" />
+            </Principal>
+            <Dependent Role="M_Topic">
+              <PropertyRef Name="Meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Topic_Structure">
+          <End Type="ECMSModel.Structure" Role="Structure" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_Topic" Role="M_Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Structure">
+              <PropertyRef Name="Structure_Id" />
+            </Principal>
+            <Dependent Role="M_Topic">
+              <PropertyRef Name="Structure_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="M_Board_Status">
+          <Key>
+            <PropertyRef Name="Board_Status_Id" />
+          </Key>
+          <Property Name="Board_Status_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Board_Status_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Board_Status_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1544,6 +2338,7 @@
           <EntitySetMapping Name="Attachments">
             <EntityTypeMapping TypeName="ECMSModel.Attachment">
               <MappingFragment StoreEntitySet="Attachment">
+                <ScalarProperty Name="Attachment_Type" ColumnName="Attachment_Type" />
                 <ScalarProperty Name="Attachment_id" ColumnName="Attachment_id" />
                 <ScalarProperty Name="Treatment_Id" ColumnName="Treatment_Id" />
                 <ScalarProperty Name="Attachment_Path" ColumnName="Attachment_Path" />
@@ -1572,6 +2367,8 @@
           <EntitySetMapping Name="Employee_Structure">
             <EntityTypeMapping TypeName="ECMSModel.Employee_Structure">
               <MappingFragment StoreEntitySet="Employee_Structure">
+                <ScalarProperty Name="Employee_Delegation" ColumnName="Employee_Delegation" />
+                <ScalarProperty Name="Date_Delegation" ColumnName="Date_Delegation" />
                 <ScalarProperty Name="Employee_Structure_Id" ColumnName="Employee_Structure_Id" />
                 <ScalarProperty Name="Structure_Id" ColumnName="Structure_Id" />
                 <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
@@ -1809,6 +2606,147 @@
                 <ScalarProperty Name="Treatment_Type_Id" ColumnName="Treatment_Type_Id" />
                 <ScalarProperty Name="Treatment_Type_Name_Ar" ColumnName="Treatment_Type_Name_Ar" />
                 <ScalarProperty Name="Treatment_Type_Name_En" ColumnName="Treatment_Type_Name_En" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Attendees">
+            <EntityTypeMapping TypeName="ECMSModel.M_Attendees">
+              <MappingFragment StoreEntitySet="M_Attendees">
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Attendess_Status" ColumnName="Attendess_Status" />
+                <ScalarProperty Name="Meeting_Id" ColumnName="Meeting_Id" />
+                <ScalarProperty Name="Board_Member_Id" ColumnName="Board_Member_Id" />
+                <ScalarProperty Name="Attendees_Id" ColumnName="Attendees_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Board">
+            <EntityTypeMapping TypeName="ECMSModel.M_Board">
+              <MappingFragment StoreEntitySet="M_Board">
+                <ScalarProperty Name="Board_Classification_Id" ColumnName="Board_Classification_Id" />
+                <ScalarProperty Name="Board_Type_Id" ColumnName="Board_Type_Id" />
+                <ScalarProperty Name="Board_Status" ColumnName="Board_Status" />
+                <ScalarProperty Name="Parent" ColumnName="Parent" />
+                <ScalarProperty Name="Board_Description_En" ColumnName="Board_Description_En" />
+                <ScalarProperty Name="Board_Description_Ar" ColumnName="Board_Description_Ar" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Board_Name_En" ColumnName="Board_Name_En" />
+                <ScalarProperty Name="Board_Name_Ar" ColumnName="Board_Name_Ar" />
+                <ScalarProperty Name="Board_Id" ColumnName="Board_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Board_Classification">
+            <EntityTypeMapping TypeName="ECMSModel.M_Board_Classification">
+              <MappingFragment StoreEntitySet="M_Board_Classification">
+                <ScalarProperty Name="Board_Classification_Name_En" ColumnName="Board_Classification_Name_En" />
+                <ScalarProperty Name="Board_Classification_Name_Ar" ColumnName="Board_Classification_Name_Ar" />
+                <ScalarProperty Name="Board_Classification_Id" ColumnName="Board_Classification_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Board_Location">
+            <EntityTypeMapping TypeName="ECMSModel.M_Board_Location">
+              <MappingFragment StoreEntitySet="M_Board_Location">
+                <ScalarProperty Name="Board_Location_Description_En" ColumnName="Board_Location_Description_En" />
+                <ScalarProperty Name="Board_Location_Description_Ar" ColumnName="Board_Location_Description_Ar" />
+                <ScalarProperty Name="Board_Id" ColumnName="Board_Id" />
+                <ScalarProperty Name="Board_Location_Name_En" ColumnName="Board_Location_Name_En" />
+                <ScalarProperty Name="Board_Location_Name_Ar" ColumnName="Board_Location_Name_Ar" />
+                <ScalarProperty Name="Board_Location_Id" ColumnName="Board_Location_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Board_Member">
+            <EntityTypeMapping TypeName="ECMSModel.M_Board_Member">
+              <MappingFragment StoreEntitySet="M_Board_Member">
+                <ScalarProperty Name="Member_Type_Id" ColumnName="Member_Type_Id" />
+                <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
+                <ScalarProperty Name="Board_Id" ColumnName="Board_Id" />
+                <ScalarProperty Name="Board_Member_Id" ColumnName="Board_Member_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Board_Type">
+            <EntityTypeMapping TypeName="ECMSModel.M_Board_Type">
+              <MappingFragment StoreEntitySet="M_Board_Type">
+                <ScalarProperty Name="Board_Type_Name_En" ColumnName="Board_Type_Name_En" />
+                <ScalarProperty Name="Board_Type_Name_Ar" ColumnName="Board_Type_Name_Ar" />
+                <ScalarProperty Name="Board_Type_Id" ColumnName="Board_Type_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Meeting">
+            <EntityTypeMapping TypeName="ECMSModel.M_Meeting">
+              <MappingFragment StoreEntitySet="M_Meeting">
+                <ScalarProperty Name="Board_Location_Id" ColumnName="Board_Location_Id" />
+                <ScalarProperty Name="Meeting_Minutes" ColumnName="Meeting_Minutes" />
+                <ScalarProperty Name="Meeting_Status" ColumnName="Meeting_Status" />
+                <ScalarProperty Name="Meeting_Time" ColumnName="Meeting_Time" />
+                <ScalarProperty Name="Meeting_Date" ColumnName="Meeting_Date" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Meeting_Name_En" ColumnName="Meeting_Name_En" />
+                <ScalarProperty Name="Meeting_Name_Ar" ColumnName="Meeting_Name_Ar" />
+                <ScalarProperty Name="Board_Id" ColumnName="Board_Id" />
+                <ScalarProperty Name="Meeting_Id" ColumnName="Meeting_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Member_Type">
+            <EntityTypeMapping TypeName="ECMSModel.M_Member_Type">
+              <MappingFragment StoreEntitySet="M_Member_Type">
+                <ScalarProperty Name="Member_Type_Name_En" ColumnName="Member_Type_Name_En" />
+                <ScalarProperty Name="Member_Type_Name_Ar" ColumnName="Member_Type_Name_Ar" />
+                <ScalarProperty Name="Member_Type_Id" ColumnName="Member_Type_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Recommendation">
+            <EntityTypeMapping TypeName="ECMSModel.M_Recommendation">
+              <MappingFragment StoreEntitySet="M_Recommendation">
+                <ScalarProperty Name="Recommendation_Description" ColumnName="Recommendation_Description" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Recommendation_Status" ColumnName="Recommendation_Status" />
+                <ScalarProperty Name="Meeting_Id" ColumnName="Meeting_Id" />
+                <ScalarProperty Name="Board_Member_Id" ColumnName="Board_Member_Id" />
+                <ScalarProperty Name="Recommendation_Id" ColumnName="Recommendation_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Topic">
+            <EntityTypeMapping TypeName="ECMSModel.M_Topic">
+              <MappingFragment StoreEntitySet="M_Topic">
+                <ScalarProperty Name="Structure_Id" ColumnName="Structure_Id" />
+                <ScalarProperty Name="Topic_Recommendation_Doc_En" ColumnName="Topic_Recommendation_Doc_En" />
+                <ScalarProperty Name="Topic_Recommendation_Doc_Ar" ColumnName="Topic_Recommendation_Doc_Ar" />
+                <ScalarProperty Name="Topic_Recommendation_En" ColumnName="Topic_Recommendation_En" />
+                <ScalarProperty Name="Topic_Recommendation_Ar" ColumnName="Topic_Recommendation_Ar" />
+                <ScalarProperty Name="Topic_Status" ColumnName="Topic_Status" />
+                <ScalarProperty Name="Topic_Description_En" ColumnName="Topic_Description_En" />
+                <ScalarProperty Name="Topic_Description_Ar" ColumnName="Topic_Description_Ar" />
+                <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+                <ScalarProperty Name="Topic_Name_En" ColumnName="Topic_Name_En" />
+                <ScalarProperty Name="Topic_Name_Ar" ColumnName="Topic_Name_Ar" />
+                <ScalarProperty Name="Meeting_Id" ColumnName="Meeting_Id" />
+                <ScalarProperty Name="Topic_Id" ColumnName="Topic_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ECMSModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ECMSModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ECMSModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ECMSModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ECMSModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ECMSModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ECMSModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="M_Board_Status">
+            <EntityTypeMapping TypeName="ECMSModel.M_Board_Status">
+              <MappingFragment StoreEntitySet="M_Board_Status">
+                <ScalarProperty Name="Board_Status_Name_En" ColumnName="Board_Status_Name_En" />
+                <ScalarProperty Name="Board_Status_Name_Ar" ColumnName="Board_Status_Name_Ar" />
+                <ScalarProperty Name="Board_Status_Id" ColumnName="Board_Status_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
