@@ -61,7 +61,11 @@
                                 <label class="col-sm-3 col-form-label">Type of Board</label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-ui-volume primary"></i></span>
-                                    <asp:DropDownList ID="txtTypeofBoard" runat="server" class="form-control form-txt-primary "></asp:DropDownList>
+                                    <asp:DropDownList ID="txtTypeofBoard" runat="server" class="form-control form-txt-primary ">
+                                        <asp:ListItem Value="0">Select Type</asp:ListItem>
+                                        <asp:ListItem Value="1">Type 1</asp:ListItem>
+                                        <asp:ListItem Value="2">Type 2</asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                             </div>
                            

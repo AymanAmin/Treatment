@@ -51,6 +51,9 @@
     <!-- Switch component css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\switchery\css\switchery.min.css"/>
 
+    <!-- Select 2 css -->
+    <link rel="stylesheet" href="~\Theme\files\bower_components\select2\css\select2.min.css" />
+
      <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {
             background-color: transparent;
@@ -85,7 +88,7 @@
 
         .dxbButton_Material {
             color: white;
-            background-color: #452a74;
+            background-color: #01a9ac;
         }
 
         .jFiler-input-dragDrop {
@@ -93,11 +96,11 @@
         }
 
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
-            background-color: #452a74;
+            background-color: #01a9ac;
         }
 
         .select2-container--default .select2-results__option--highlighted[aria-selected] {
-            background-color: #452a74;
+            background-color: #01a9ac;
             color: white;
         }
 
@@ -107,25 +110,25 @@
         }
 
         .nav-link.active {
-            border-left-color: #452a74 !important;
+            border-left-color: #01a9ac !important;
             border-left-style: solid !important;
             border-left-width: 3px !important;
             background-color: #fafafa !important;
-            color: #452a74;
+            color: #01a9ac;
         }
 
         .user-body .page-list li.mail-section a:hover {
-            color: #452a74 !important;
+            color: #01a9ac !important;
             background-color: #fafafa !important;
         }
 
         /* Menu item color (onhover - active)*/
         .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li.active > a {
-            color: #452a74 !important;
+            color: #01a9ac !important;
         }
 
         .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li:hover > a {
-            color: #452a74 !important;
+            color: #01a9ac !important;
         }
         .hover-notification:hover{
             background-color: #f1f1f1 !important;
@@ -2428,10 +2431,21 @@
     <!-- Switch component js -->
     <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\switchery\js\switchery.min.js"></script>
 
-     <!-- Custom js -->
-     <script type="text/javascript" src=".\..\..\..\Theme\files\assets\pages\advance-elements\select2-custom.js"></script>
     <!-- Select 2 js -->
     <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\select2\js\select2.full.min.js"></script>
+     <!-- Custom js -->
+     <script type="text/javascript" src=".\..\..\..\Theme\files\assets\pages\advance-elements\select2-custom.js"></script>
+    
+
+    <script type="text/javascript">
+$(document).ready(function () {
+    $('select:not(.normal)').each(function () {
+        $(this).select2({
+            dropdownParent: $(this).parent()
+        });
+    });
+});
+</script>
 
     <script>
         // Multiple swithces
@@ -2446,6 +2460,28 @@
         });
 
     </script>
+
+    <script>
+                initSample();
+            </script>
+
+    <script type="text/javascript">
+                $(document).ready(function () {
+                    $('select:not(.normal)').each(function () {
+                        $(this).select2({
+                            dropdownParent: $(this).parent()
+                        });
+                    });
+                    $("#Body_Holder_replyDate10").datepicker({
+                        dateFormat: "mm/dd/yy"
+                    });
+                });
+
+    $(document).ready(function () {
+        $('#add-model-assignment').prepend($('#dd-w-0'));
+    });
+
+</script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
