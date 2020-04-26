@@ -51,10 +51,96 @@
     <!-- Switch component css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\switchery\css\switchery.min.css"/>
 
-    <style>
+     <style>
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            background-color: transparent;
+            color: black;
+            padding: 0px 0px 4px 14px;
+            line-height: 30px;
+        }
+
+        .select2-container--default .select2-selection--single {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+            .select2-container--default .select2-selection--single .select2-selection__arrow b {
+                border-color: #342222 transparent transparent transparent;
+            }
+
+        .select2-container--default .select2-selection--multiple {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+            .select2-container--default .select2-selection--multiple .select2-search__field {
+                width: 100% !important;
+            }
+
+        .input-group {
+            margin-bottom: 0.25em;
+        }
+
+        .dxbButton_Material {
+            color: white;
+            background-color: #452a74;
+        }
+
+        .jFiler-input-dragDrop {
+            width: 100%;
+        }
+
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #452a74;
+        }
+
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background-color: #452a74;
+            color: white;
+        }
+
+        .validation-messages {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .nav-link.active {
+            border-left-color: #452a74 !important;
+            border-left-style: solid !important;
+            border-left-width: 3px !important;
+            background-color: #fafafa !important;
+            color: #452a74;
+        }
+
+        .user-body .page-list li.mail-section a:hover {
+            color: #452a74 !important;
+            background-color: #fafafa !important;
+        }
+
+        /* Menu item color (onhover - active)*/
+        .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li.active > a {
+            color: #452a74 !important;
+        }
+
+        .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li:hover > a {
+            color: #452a74 !important;
+        }
+        .hover-notification:hover{
+            background-color: #f1f1f1 !important;
+        }
+        .ScrollStyle {
+            overflow-y: auto;
+            overflow-x: hidden;
+            
+        }
+        .form-txt-primary, .primary{
+            color:#01a9ac;
+        }
         .changeIconColor {
             background-color:white;
-            color:black;
+            color:#01a9ac;
         }
     </style>
     <title>E-Minutes</title>
@@ -2341,6 +2427,11 @@
 
     <!-- Switch component js -->
     <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\switchery\js\switchery.min.js"></script>
+
+     <!-- Custom js -->
+     <script type="text/javascript" src=".\..\..\..\Theme\files\assets\pages\advance-elements\select2-custom.js"></script>
+    <!-- Select 2 js -->
+    <script type="text/javascript" src="..\..\..\..\Theme\files\bower_components\select2\js\select2.full.min.js"></script>
 
     <script>
         // Multiple swithces
