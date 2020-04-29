@@ -54,6 +54,9 @@
     <!-- Select 2 css -->
     <link rel="stylesheet" href="~\Theme\files\bower_components\select2\css\select2.min.css" />
 
+    <!-- radial chart -->
+    <link rel="stylesheet" href="~\Theme\files\assets\pages\chart\radial\css\radial.css" type="text/css" media="all"/>
+
      <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {
             background-color: transparent;

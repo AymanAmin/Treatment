@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title><% = Treatment.Classes.FieldNames.getFieldName("Board-Title", "Eminutes - Board") %></title>
     <script>
-         setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Council: Department of Software"; }, 1);
+        setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Council: Department of Software"; }, 1);
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_PlaceHolder" runat="server">
@@ -19,24 +19,29 @@
                         <table class="table table-border table-xs">
                             <tbody>
                                 <tr>
-                                    <td><i class="icofont icofont-contrast"></i>English Name:</td>
-                                    <td class="text-right f-left"><span class="f-left"><a href="#">Council: Department of Software</a></span></td>
+                                    <td><i class="icofont icofont-contrast"></i>&nbsp;English Name:</td>
+                                    <td class="text-right f-left"><span class="f-left">
+                                        <asp:Literal ID="txtEnglishName" runat="server"></asp:Literal></span></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-meeting-add"></i>Arabic Name:</td>
-                                    <td class="text-right f-left">مجلس: هندسة البرمجيات</td>
+                                    <td><i class="icofont icofont-meeting-add"></i>&nbsp;Arabic Name:</td>
+                                    <td class="text-right f-left">
+                                        <asp:Literal ID="txtArabicName" runat="server"></asp:Literal></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-id-card"></i>Created:</td>
-                                    <td class="text-right f-left">25 Feb, 2015</td>
+                                    <td><i class="icofont icofont-id-card"></i>&nbsp;Created Date:</td>
+                                    <td class="text-right f-left">
+                                        <asp:Literal ID="txtCreatedDate" runat="server"></asp:Literal></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-spinner-alt-5"></i>Type:</td>
-                                    <td class="text-right f-left">Permanent</td>
+                                    <td><i class="icofont icofont-spinner-alt-5"></i>&nbsp;Type:</td>
+                                    <td class="text-right f-left">
+                                        <asp:Literal ID="txtType" runat="server"></asp:Literal></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-spinner-alt-5"></i>Classification:</td>
-                                    <td class="text-right f-left">Academic</td>
+                                    <td><i class="icofont icofont-spinner-alt-5"></i>&nbsp;Classification:</td>
+                                    <td class="text-right f-left">
+                                        <asp:Literal ID="txtClassification" runat="server"></asp:Literal></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -63,10 +68,8 @@
                         <h5>Meeting Members :</h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
-                                <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                <li><i class="fa fa-window-maximize full-card"></i></li>
-                                <li><i class="fa fa-minus minimize-card"></i></li>
-                                <li><i class="fa fa-refresh reload-card"></i></li>
+                                <li><i class="feather full-card icon-maximize"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
                             </ul>
                         </div>
                     </div>
@@ -303,11 +306,8 @@
                         <h5>Laws Regulations</h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
-                                <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                <li><i class="fa fa-window-maximize full-card"></i></li>
-                                <li><i class="fa fa-minus minimize-card"></i></li>
-                                <li><i class="fa fa-refresh reload-card"></i></li>
-                                <li><i class="fa fa-trash close-card"></i></li>
+                                <li><i class="feather full-card icon-maximize"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
                             </ul>
                         </div>
                     </div>
@@ -342,145 +342,7 @@
             <!--End Laws regulations-->
 
             <!--Board Branch-->
-            <div class="col-md-12">
-                <div class="card card-border-default">
-                    <div class="card-header">
-                        <a href="#" class="card-title"><strong>Branch 1 Council: Department of Software</strong> </a>
-                        <span class="label label-default f-right" style="background: linear-gradient(to right, #452a74, #fafafa)">28 January, 2015 </span>
-                    </div>
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <p class="task-detail">A collection of textile samples lay spread out on the table One morning, when Gregor Samsa woke from troubled.</p>
-                                <p class="task-due"><strong>Next Meeting : </strong><strong class="label label-info">28 January, 2015</strong></p>
-                            </div>
-                            <!-- end of col-sm-8 -->
-                        </div>
-                        <!-- end of row -->
-                    </div>
-                    <div class="card-footer">
-                        <div class="task-list-table">
-                            <a href="#!">
-                                <img class="img-fluid img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-1.jpg" alt="1"></a>
-                            <a href="#!">
-                                <img class="img-fluid img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="1"></a>
-                            <a href="#!"><i class="icofont icofont-plus"></i></a>
-                        </div>
-                        <div class="task-board">
-                            <div class="dropdown-secondary dropdown">
-                                <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Normal</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-danger"></span>Highest priority</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-warning"></span>High priority</a>
-                                    <a class="dropdown-item waves-light waves-effect active" href="#!"><span class="point-marker bg-success"></span>Normal priority</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-info"></span>Low priority</a>
-                                </div>
-                                <!-- end of dropdown menu -->
-                            </div>
-                            <div class="dropdown-secondary dropdown">
-                                <button class="btn btn-default btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Open</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item waves-light waves-effect active" href="#!">Open</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">On hold</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Resolved</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Closed</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Dublicate</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Invalid</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Wontfix</a>
-                                </div>
-                                <!-- end of dropdown menu -->
-                            </div>
-                            <!-- end of dropdown-secondary -->
-                            <div class="dropdown-secondary dropdown">
-                                <button class="btn btn-default btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-navigation-menu"></i></button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown3" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-ui-alarm"></i>Check in</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-attachment"></i>Attach screenshot</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-spinner-alt-5"></i>Reassign</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-ui-edit"></i>Edit task</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-close-line"></i>Remove</a>
-                                </div>
-                                <!-- end of dropdown menu -->
-                            </div>
-                            <!-- end of seconadary -->
-                        </div>
-                        <!-- end of pull-right class -->
-                    </div>
-                    <!-- end of card-footer -->
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="card card-border-default">
-                    <div class="card-header">
-                        <a href="#" class="card-title"><strong>Branch 2 Council: Department of Software</strong> </a>
-                        <span class="label label-default f-right" style="background: linear-gradient(to right, #452a74, #fafafa)">28 January, 2015 </span>
-                    </div>
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <p class="task-detail">A collection of textile samples lay spread out on the table One morning, when Gregor Samsa woke from troubled.</p>
-                                <p class="task-due"><strong>Next Meeting : </strong><strong class="label label-info">28 January, 2015</strong></p>
-                            </div>
-                            <!-- end of col-sm-8 -->
-                        </div>
-                        <!-- end of row -->
-                    </div>
-                    <div class="card-footer">
-                        <div class="task-list-table">
-                            <a href="#!">
-                                <img class="img-fluid img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-1.jpg" alt="1"></a>
-                            <a href="#!">
-                                <img class="img-fluid img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="1"></a>
-                            <a href="#!"><i class="icofont icofont-plus"></i></a>
-                        </div>
-                        <div class="task-board">
-                            <div class="dropdown-secondary dropdown">
-                                <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Normal</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-danger"></span>Highest priority</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-warning"></span>High priority</a>
-                                    <a class="dropdown-item waves-light waves-effect active" href="#!"><span class="point-marker bg-success"></span>Normal priority</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-info"></span>Low priority</a>
-                                </div>
-                                <!-- end of dropdown menu -->
-                            </div>
-                            <div class="dropdown-secondary dropdown">
-                                <button class="btn btn-default btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Open</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item waves-light waves-effect active" href="#!">Open</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">On hold</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Resolved</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Closed</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Dublicate</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Invalid</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Wontfix</a>
-                                </div>
-                                <!-- end of dropdown menu -->
-                            </div>
-                            <!-- end of dropdown-secondary -->
-                            <div class="dropdown-secondary dropdown">
-                                <button class="btn btn-default btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-navigation-menu"></i></button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown3" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-ui-alarm"></i>Check in</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-attachment"></i>Attach screenshot</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-spinner-alt-5"></i>Reassign</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-ui-edit"></i>Edit task</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-close-line"></i>Remove</a>
-                                </div>
-                                <!-- end of dropdown menu -->
-                            </div>
-                            <!-- end of seconadary -->
-                        </div>
-                        <!-- end of pull-right class -->
-                    </div>
-                    <!-- end of card-footer -->
-                </div>
-            </div>
+            <asp:Literal ID="SubBoard" runat="server"></asp:Literal>
             <!--End Board Branch-->
 
         </div>
