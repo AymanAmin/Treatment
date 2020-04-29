@@ -24,6 +24,19 @@ namespace Website.Classes
                 ddlst.SelectedIndex = 0;
             }
         }
+
+        public static void dropDDLBox<T>(ListBox ddlst, string selectID, string selectName, List<T> Entitylst)
+        {
+            using (ECMSEntities db = new ECMSEntities())
+            {
+                ddlst.Items.Clear();
+
+                ddlst.DataValueField = selectID;
+                ddlst.DataTextField = selectName;
+                ddlst.DataSource = Entitylst;
+                ddlst.DataBind();
+            }
+        }
     }
 
 }

@@ -7,6 +7,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <title><% = Treatment.Classes.FieldNames.getFieldName("Treatment-Title", "REU - Create Treatment") %></title>
+    <script type="text/javascript">
+    function getEmployee(x) {            $.ajax({
+                url: "NewTreatment.aspx/getEmployeeTable",
+                type: "POST",
+                data: "{ Employee_Id:" + x.id + "}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (resultData) {
+                    notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight', '  Save Status : ', '  The new Employee was Sucessfully saved in system ! ');
+                    window.location = window.location;
+                }
+            });
+        }
+    </script>
     <!-- ckeditor.css-->
     <link rel="stylesheet" href="~/Theme\files\bower_components\ckeditor\samples\css\samples.css" />
     <link rel="stylesheet" href="~/Theme\files\bower_components\ckeditor\samples\toolbarconfigurator/lib/codemirror/neo.css" />
@@ -64,7 +78,7 @@
                         <label><% = Treatment.Classes.FieldNames.getFieldName("Treatment-SendTo", "Send To") %></label><i class="icofont icofont-star-alt-1 text-danger"></i>
                         <div class="input-group">
                             <span class="input-group-addon" data-toggle="modal" data-target="#tabbed-form"><i class="icofont icofont-paper-plane"></i></span>
-                            <asp:ListBox ID="treatmentTo" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Send To" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
+                            <asp:ListBox ID="treatmentTo" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Send To" SelectionMode="Multiple"></asp:ListBox>
                         </div>
                         <asp:RequiredFieldValidator ID="valTreatmentTo" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Send To" ValidationGroup="valFormGroup" ControlToValidate="treatmentTo" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
                     </div>
@@ -197,18 +211,9 @@
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="sign_in" role="tabpanel">
                                             <div class="auth-box m-t-15">
-                                                <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False" DataSourceID="EntityDataSourceStructure" EnableTheming="True" Theme="Moderno" Width="100%" KeyFieldName="Structure_Id" ParentFieldName="Structure_Parent" PreviewFieldName="Structure_Name_En">
+                                                <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False"  EnableTheming="True" Theme="Moderno" Width="100%" KeyFieldName="Structure_Id" ParentFieldName="Structure_Parent" PreviewFieldName="Structure_Name_En">
                                                     <Columns>
-                                                        <dx:TreeListTextColumn AutoFilterCondition="Default" FieldName="Structure_Name_En" ShowInFilterControl="Default" VisibleIndex="1" Caption="English Name">
-                                                            <PropertiesTextEdit>
-                                                                <ValidationSettings SetFocusOnError="True">
-                                                                    <ErrorFrameStyle CssClass="j-input j-error-view">
-                                                                    </ErrorFrameStyle>
-                                                                    <RequiredField ErrorText="places Enter English Name" IsRequired="True" />
-                                                                </ValidationSettings>
-                                                                <Style CssClass="input-group">
-                                                                </Style>
-                                                            </PropertiesTextEdit>
+                                                        <dx:TreeListTextColumn AutoFilterCondition="Default" FieldName="Structure_Name_En" ShowInFilterControl="Default" VisibleIndex="1" Caption="Structure Name">
                                                         </dx:TreeListTextColumn>
                                                     </Columns>
                                                     <SettingsBehavior AllowAutoFilter="True" AutoExpandAllNodes="True"></SettingsBehavior>
@@ -226,24 +231,26 @@
                                                     </SettingsPopup>
                                                 </dx:ASPxTreeList>
                                                 <div class="form-group col-sm-2 text-right m-t-15 f-right">
-                                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center">OK</button>
+                                                    <asp:Button ID="Button2" runat="server" Text="OK" CssClass="btn btn-primary btn-md btn-block waves-effect text-center"  AutoPostback = "false"/>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="regi" role="tabpanel">
                                             <div class="auth-box">
-                                                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="EntityDataSourceEmployee" EnableTheming="True" Theme="Moderno" Width="100%">
+                                                <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False"  EnableTheming="True" Theme="Moderno" Width="100%" KeyFieldName="ddlKey">
                                                     <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
                                                     <SettingsSearchPanel Visible="True" />
                                                     <Columns>
-                                                        <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowSelectCheckbox="True" VisibleIndex="0">
+                                                        <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowSelectCheckbox="True" VisibleIndex="0" Name="checkboxEmpID">
                                                         </dx:GridViewCommandColumn>
-                                                        <dx:GridViewDataTextColumn Caption="Employee Name" FieldName="Employee_Name_En" Name="Employee_Name_En" VisibleIndex="1">
+                                                        <dx:GridViewDataTextColumn Caption="Employee Name" FieldName="employeeName" Name="Employee_Name_En" VisibleIndex="1">
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn Caption="Job Title" FieldName="jobTitle" Name="jobTitle" VisibleIndex="2">
                                                         </dx:GridViewDataTextColumn>
                                                     </Columns>
                                                 </dx:ASPxGridView>
                                                 <div class="form-group col-sm-2 text-right m-t-15 f-right">
-                                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center">OK</button>
+                                                    <asp:Button ID="Button1" runat="server" Text="OK" CssClass="btn btn-primary btn-md btn-block waves-effect text-center"  AutoPostback = "false"/>
                                                 </div>
                                             </div>
                                         </div>
