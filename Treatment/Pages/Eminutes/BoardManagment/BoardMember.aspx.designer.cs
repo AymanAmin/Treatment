@@ -7,37 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Treatment.Pages.Eminutes {
+namespace Treatment.Pages.Eminutes.BoardManagment {
     
     
-    public partial class Board {
+    public partial class BoardMember {
         
         /// <summary>
-        /// txtEnglishName control.
+        /// txtEmployees control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtEnglishName;
+        protected global::System.Web.UI.WebControls.DropDownList txtEmployees;
         
         /// <summary>
-        /// txtArabicName control.
+        /// RFVtxtEmployees control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtArabicName;
-        
-        /// <summary>
-        /// txtCreatedDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtCreatedDate;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtEmployees;
         
         /// <summary>
         /// txtType control.
@@ -46,24 +37,33 @@ namespace Treatment.Pages.Eminutes {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtType;
+        protected global::System.Web.UI.WebControls.DropDownList txtType;
         
         /// <summary>
-        /// txtClassification control.
+        /// RFVtxtType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtClassification;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtType;
         
         /// <summary>
-        /// SubBoard control.
+        /// Save control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal SubBoard;
+        protected global::System.Web.UI.WebControls.Button Save;
+        
+        /// <summary>
+        /// BoardMembers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal BoardMembers;
     }
 }
