@@ -33,37 +33,37 @@ namespace Treatment.Pages.Eminutes
                     "<div class='card card-border-" + color + "'>" +
                     "<div class='card-header'>" +
                         "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "' class='card-title'><strong>" + list_board[i].Board_Name_En + "</strong> </a>" +
-                        "<span class='label label-default f-right' style='background: linear-gradient(to right, #452a74, #fafafa)'>" + date.ToLongDateString() + "</span>" +
+                        "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "'><span class='label label-" + color + " f-right' >" + date.ToLongDateString() + "</span></a>" +
                     "</div>" +
                     "<div class='card-block'>" +
                         "<div class='row'>" +
                             "<div class='col-sm-12'>" +
-                               "<p class='task-detail'>" + list_board[i].Board_Description_En + ".</p>" +
-                                "<p class='task-due'><strong>Next Meeting : </strong><strong class='label label-info'>" + date + "</strong></p>" +
+                                "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "'><p class='task-detail'>" + list_board[i].Board_Description_En + ".</p></a>" +
+                                "<a href='Meeting.aspx?MeetingId=1'><p class='task-due'><strong>Next Meeting : </strong> " + date + "</p></a>" +
                            "</div>" +
                         "</div>" +
                     "</div>" +
                     "<div class='card-footer'>" +
-                        "<div class='task-list-table'>";
+                    "<div class='task-list-table'>";
                 // Add Member Profile Pic
                 List<M_Board_Member> List_board_member = list_board[i].M_Board_Member.Where(x => x.Member_Type_Id != 3).ToList();
                 for (int k = 0; k < List_board_member.Count; k++)
                 {
                     str += " <a href = '#'>" +
-                           "<img class='img-fluid img-radius' data-toggle='tooltip' data-placement='top' title='" + List_board_member[k].Employee.Employee_Name_En + "' src='../../../../media/Profile/" + List_board_member[k].Employee.Employee_Profile + "' alt=''/></a>";                   
+                           "<img class='img-fluid img-radius' data-toggle='tooltip' data-placement='top' title='" + List_board_member[k].Employee.Employee_Name_En + "' src='../../../../media/Profile/" + List_board_member[k].Employee.Employee_Profile + "' alt=''/></a>";
                     //str += "<a href = '#'><i class='icofont icofont-plus'></i></a>";
                 }
 
                 str += "</div>" +
                         "<div class='task-board'>" +
                             "<div class='dropdown-secondary dropdown'>" +
-                                "<a href='BoardManagment/BoardMember.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' > Edit Member </a>&nbsp;" +
+                                "<a href='BoardManagment/BoardMember.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#6a5590;'> Edit Member </a>&nbsp;" +
                             "</div>" +
                             "<div class='dropdown-secondary dropdown'>" +
-                                "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light'> Add Meeting </a>&nbsp;" +
+                                "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#583f82;'> Add Meeting </a>&nbsp;" +
                             "</div>" +
                             "<div class='dropdown-secondary dropdown'>" +
-                                "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light'> Manage Board </a>&nbsp;" +
+                                "<a href='BoardManagment/BoardInfo.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#452a74;'> Edit Board  </a>&nbsp;" +
                             "</div>" +
 
                         "</div>" +

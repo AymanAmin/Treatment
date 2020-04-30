@@ -13,7 +13,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-header-text"><i class="icofont icofont-ui-note m-r-10"></i>Board Properties</h5>
+                        <h5 class="card-header-text"><span> 
+                             <asp:Literal ID="txtEditBoard" runat="server"></asp:Literal> Board Properties </span></h5>
                     </div>
                     <div class="card-block task-details">
                         <table class="table table-border table-xs">
@@ -46,17 +47,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer">
-                        <div>
-                            <span>
-                                <a href="#!" class="text-muted m-r-10 f-16"><i class="icofont icofont-random"></i></a>
-                            </span>
-                            <span class="m-r-10">
-                                <a href="#!" class="text-muted f-16"><i class="icofont icofont-options"></i></a>
-                            </span>
-
-                        </div>
-                    </div>
+                    <!--<div class="card-footer">
+                    </div>-->
                 </div>
             </div>
             <!-- End Board Properties -->
@@ -75,74 +67,22 @@
                     </div>
                     <div class="card-block">
                         <div class="col">
-                            <p class="text-muted m-b-10">SuperVisor</p>
-                            <div class="table-responsive">
+                            <p id="Div_SuperVisor" runat="server" class="text-muted m-b-10">SuperVisor</p>
+                            <div id="Div_SuperVisor_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
-                                    <tr>
-                                        <td class="b-none">
-                                            <a href="#!" class="align-middle">
-                                                <img src="..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>Jeny William</h6>
-                                                    <p class="text-muted m-b-0">Graphic Designer</p>
-                                                </div>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <asp:Literal ID="txtSuperVisor" runat="server"></asp:Literal>
                                 </table>
                             </div>
-                            <p class="text-muted m-b-10">Secretarial</p>
-                            <div class="table-responsive">
+                            <p id="Div_Secretarial" runat="server" class="text-muted m-b-10">Secretarial</p>
+                            <div id="Div_Secretarial_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
-                                    <tr>
-                                        <td class="b-none">
-                                            <a href="#!" class="align-middle">
-                                                <img src="..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>Jeny William</h6>
-                                                    <p class="text-muted m-b-0">Graphic Designer</p>
-                                                </div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="b-none">
-                                            <a href="#!" class="align-middle">
-                                                <img src="..\..\..\Theme\files\assets\images\avatar-1.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>John Deo</h6>
-                                                    <p class="text-muted m-b-0">Web Designer</p>
-                                                </div>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <asp:Literal ID="txtSecretarial" runat="server"></asp:Literal>
                                 </table>
                             </div>
-                            <p class="text-muted m-b-10">Members</p>
-                            <div class="table-responsive">
+                            <p id="Div_Members" runat="server" class="text-muted m-b-10">Members</p>
+                            <div id="Div_Members_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
-                                    <tr>
-                                        <td class="b-none">
-                                            <a href="#!" class="align-middle">
-                                                <img src="..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>Jeny William</h6>
-                                                    <p class="text-muted m-b-0">Graphic Designer</p>
-                                                </div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="b-none">
-                                            <a href="#!" class="align-middle">
-                                                <img src="..\..\..\Theme\files\assets\images\avatar-1.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>John Deo</h6>
-                                                    <p class="text-muted m-b-0">Web Designer</p>
-                                                </div>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                   <asp:Literal ID="txtMembers" runat="server"></asp:Literal>
                                 </table>
                             </div>
                         </div>

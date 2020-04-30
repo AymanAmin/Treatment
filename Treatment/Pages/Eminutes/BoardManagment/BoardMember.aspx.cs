@@ -101,12 +101,17 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 str += "<span class='f-15 " + color + "'>"+ ListMember[i].M_Member_Type.Member_Type_Name_En + "</span>";
                 str += "<br />";
                 str += "<span class='f-20 " + color + "'>"+ ListMember[i].Employee.Employee_Name_En + "</span>";
-                str += "<br />";
+                List<Employee_Structure> emp_struc = ListMember[i].Employee.Employee_Structure.ToList();
+                if (emp_struc.Count > 0)
+                {
+                    str += "<br />";
+                    str += "<p  class='f-15 " + color + "'>" + emp_struc[0].Structure.Structure_Name_En + "</p>";
+                }
                 str += "<br />";
                 //str += "<button class='btn btn-info btn-icon' type='button' data-toggle='modal' data-target='#add-model'>&nbsp;<i class='icofont icofont-edit'></i></button>&nbsp;";
                 str += "<a href ='DeleteMembers.ashx?BoardId=" + board_id + "&MemberTableId="+ ListMember[i].Board_Member_Id+ "&EmpId="+ ListMember[i].Employee_Id+ "' class='btn btn-warning btn-round'>&nbsp;<i class='icofont icofont-ui-delete'> Remove</i></a>";
-                //str += "<br />";
-                //str += "<p>" + ListMember[i].Employee + "</p>";
+                
+                
                 str += "</div>";
                 str += "</div>";
                 str += "</div>";
