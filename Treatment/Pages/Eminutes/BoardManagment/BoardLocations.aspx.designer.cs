@@ -7,28 +7,37 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Treatment.Pages.Eminutes {
+namespace Treatment.Pages.Eminutes.BoardManagment {
     
     
-    public partial class Board {
+    public partial class BoardLocations {
         
         /// <summary>
-        /// txtEditBoard control.
+        /// LtrMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtEditBoard;
+        protected global::System.Web.UI.WebControls.Literal LtrMessage;
         
         /// <summary>
-        /// txtEnglishName control.
+        /// txtBoard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtEnglishName;
+        protected global::System.Web.UI.WebControls.DropDownList txtBoard;
+        
+        /// <summary>
+        /// RFVtxtBoard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtBoard;
         
         /// <summary>
         /// txtArabicName control.
@@ -37,133 +46,97 @@ namespace Treatment.Pages.Eminutes {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtArabicName;
+        protected global::System.Web.UI.WebControls.TextBox txtArabicName;
         
         /// <summary>
-        /// txtCreatedDate control.
+        /// RFVtxtArabicName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtCreatedDate;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtArabicName;
         
         /// <summary>
-        /// txtType control.
+        /// txtEnglishName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtType;
+        protected global::System.Web.UI.WebControls.TextBox txtEnglishName;
         
         /// <summary>
-        /// txtClassification control.
+        /// RFVtxtEnglishName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtClassification;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtEnglishName;
         
         /// <summary>
-        /// txtMeetingMembers control.
+        /// txtMapLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtMeetingMembers;
+        protected global::System.Web.UI.WebControls.TextBox txtMapLocation;
         
         /// <summary>
-        /// Div_SuperVisor control.
+        /// txtArabicDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_SuperVisor;
+        protected global::System.Web.UI.WebControls.TextBox txtArabicDescription;
         
         /// <summary>
-        /// Div_SuperVisor_Table control.
+        /// RFVtxtArabicDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_SuperVisor_Table;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtArabicDescription;
         
         /// <summary>
-        /// txtSuperVisor control.
+        /// txtEnglishDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtSuperVisor;
+        protected global::System.Web.UI.WebControls.TextBox txtEnglishDescription;
         
         /// <summary>
-        /// Div_Secretarial control.
+        /// RFVtxtEnglishDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_Secretarial;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtEnglishDescription;
         
         /// <summary>
-        /// Div_Secretarial_Table control.
+        /// Save control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_Secretarial_Table;
+        protected global::System.Web.UI.WebControls.Button Save;
         
         /// <summary>
-        /// txtSecretarial control.
+        /// Cancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtSecretarial;
-        
-        /// <summary>
-        /// Div_Members control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_Members;
-        
-        /// <summary>
-        /// Div_Members_Table control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_Members_Table;
-        
-        /// <summary>
-        /// txtMembers control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtMembers;
-        
-        /// <summary>
-        /// txtEditLocations control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtEditLocations;
+        protected global::System.Web.UI.WebControls.Button Cancel;
         
         /// <summary>
         /// txtLocations control.
@@ -173,14 +146,5 @@ namespace Treatment.Pages.Eminutes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal txtLocations;
-        
-        /// <summary>
-        /// SubBoard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal SubBoard;
     }
 }

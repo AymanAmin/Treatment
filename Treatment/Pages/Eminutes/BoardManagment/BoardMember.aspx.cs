@@ -40,6 +40,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
         {
             try
             {
+                string message = "";
                 int board_id = int.Parse(Request["BoardId"]);
                 int EmployeeId = int.Parse(txtEmployees.SelectedValue);
 
@@ -53,6 +54,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                     member.Employee_Id = EmployeeId;
                     member.Member_Type_Id = int.Parse(txtType.SelectedValue);
                     db.M_Board_Member.Add(member);
+                    message = "Member Added successfully..";
                 }
                 else
                 {
@@ -63,15 +65,17 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                     member.Member_Type_Id = int.Parse(txtType.SelectedValue);
                     member.Board_Member_Id = IsMemberExisted.Board_Member_Id;
                     db.Entry(member).State = System.Data.EntityState.Modified;
+                    message = "Member updated successfully..";
                 }
                 db.SaveChanges();
+                LtrMessage.Text = "<div class='alert alert-success' role='alert'>"+ message + "</div>";
 
                 // Reload data
                 List<M_Board_Member> ListMember = db.M_Board_Member.Where(x => x.Board_Id == board_id).ToList();
                 fillDropDown();
                 LoadMember(ListMember , board_id);
             }
-            catch { }
+            catch { LtrMessage.Text = "<div class='alert alert-danger' role='alert'>System Error...</div>"; }
         }
 
         private void LoadMember(List<M_Board_Member> ListMember, int board_id)

@@ -15,7 +15,14 @@
                     <div class="card-header">
                         <h5 class="card-header-text"><span> 
                              <asp:Literal ID="txtEditBoard" runat="server"></asp:Literal> Board Properties </span></h5>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                                <li><i class="feather full-card icon-maximize"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
+                            </ul>
+                        </div>
                     </div>
+                    
                     <div class="card-block task-details">
                         <table class="table table-border table-xs">
                             <tbody>
@@ -57,7 +64,8 @@
             <div class="col-md-12">
                 <div class="card table-card">
                     <div class="card-header">
-                        <h5>Meeting Members :</h5>
+                        <h5><span> 
+                             <asp:Literal ID="txtMeetingMembers" runat="server"></asp:Literal> Meeting Members </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>
@@ -95,42 +103,20 @@
             <div class="col-md-12">
                 <div class="card user-activity-card feed-card">
                     <div class="card-header">
-                        <h5>Locations</h5>
+                        <h5><span> 
+                             <asp:Literal ID="txtEditLocations" runat="server"></asp:Literal> Locations </span></h5>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                                <li><i class="feather full-card icon-maximize"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
+                            </ul>
+                        </div>
                     </div>
+                    
                     <div class="card-block">
 
-                        <div class="row m-b-25">
-                            <div class="col-auto p-r-0">
-                                <i class="feather icon-map-pin bg-simple-c-green feed-icon"></i>
-                            </div>
-                            <div class="col">
-                                <h6 class="m-b-5">Saudi Araiba , Riyadh</h6>
-                                <p class="text-muted m-b-0">Alnamuzajea branch, floor two, quality department.</p>
-                                <!--<p class="text-muted m-b-0"><i class="feather icon-clock m-r-10"></i>2 min ago</p>-->
-                            </div>
-                        </div>
-
-                        <div class="row m-b-25">
-                            <div class="col-auto p-r-0">
-                                <i class="feather icon-map-pin bg-simple-c-green feed-icon"></i>
-                            </div>
-                            <div class="col">
-                                <h6 class="m-b-5">Saudi Araiba , Riyadh 2</h6>
-                                <p class="text-muted m-b-0">Alnamuzajea branch, floor two, quality department.</p>
-                                <!--<p class="text-muted m-b-0"><i class="feather icon-clock m-r-10"></i>2 min ago</p>-->
-                            </div>
-                        </div>
-
-                        <div class="row m-b-25">
-                            <div class="col-auto p-r-0">
-                                <i class="feather icon-map-pin bg-simple-c-green feed-icon"></i>
-                            </div>
-                            <div class="col">
-                                <h6 class="m-b-5">Saudi Araiba , Riyadh 3</h6>
-                                <p class="text-muted m-b-0">Alnamuzajea branch, floor two, quality department.</p>
-                                <!--<p class="text-muted m-b-0"><i class="feather icon-clock m-r-10"></i>2 min ago</p>-->
-                            </div>
-                        </div>
+                        <asp:Literal ID="txtLocations" runat="server"></asp:Literal>
+                        
                     </div>
                 </div>
             </div>
@@ -145,11 +131,8 @@
                         <h5>Board Meeting</h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
-                                <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                <li><i class="fa fa-window-maximize full-card"></i></li>
-                                <li><i class="fa fa-minus minimize-card"></i></li>
-                                <li><i class="fa fa-refresh reload-card"></i></li>
-                                <li><i class="fa fa-trash close-card"></i></li>
+                                <li><i class="feather full-card icon-maximize"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
                             </ul>
                         </div>
                     </div>

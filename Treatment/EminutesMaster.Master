@@ -206,7 +206,7 @@
                             <a class="mobile-menu" id="mobile-collapse" href="#!">
                                 <i class="feather icon-menu"></i>
                             </a>
-                            <a href="index-1.htm">
+                            <a href="../../../../Pages/Eminutes/Home.aspx">
                                 <img class="img-fluid" src="..\..\..\Theme\files\assets\images\logo.png" alt="Theme-Logo"/>
                             </a>
                             <a class="mobile-options">

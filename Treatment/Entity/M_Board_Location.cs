@@ -25,6 +25,7 @@ namespace Treatment.Entity
         public Nullable<int> Board_Id { get; set; }
         public string Board_Location_Description_Ar { get; set; }
         public string Board_Location_Description_En { get; set; }
+        public string Board_Location_OnMap { get; set; }
     
         public virtual M_Board M_Board { get; set; }
         public virtual ICollection<M_Meeting> M_Meeting { get; set; }

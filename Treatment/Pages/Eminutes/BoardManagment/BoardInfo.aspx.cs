@@ -70,7 +70,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                         LtrMessage.Text = "<div class='alert alert-warning' role='alert'>Please Select start date & end date...</div>";
                         return;
                     }
-                    else if (!(txtTypeofBoard.SelectedValue == "1"))
+                    else if ((txtTypeofBoard.SelectedValue == "2"))
                     {
                         board.Start_Date = DateTime.Parse(txtStartDate.Value.ToString());
                         board.End_Date = DateTime.Parse(txtEndDate.Value.ToString());
@@ -107,12 +107,17 @@ namespace Treatment.Pages.Eminutes.BoardManagment
 
                 board.Create_Date = DateTime.Now;
 
-                if (txtTypeofBoard.SelectedValue == "2" && (txtStartDate.Value.ToString() == "" || txtStartDate.Value.ToString() == ""))
+                if (txtTypeofBoard.SelectedValue == "1")
+                {
+                    board.Start_Date = null;
+                    board.End_Date = null;
+                }
+                else if ((txtStartDate.Value.ToString() == "" || txtEndDate.Value.ToString() == ""))
                 {
                     LtrMessage.Text = "<div class='alert alert-warning' role='alert'>Please Select start date & end date...</div>";
                     return false;
                 }
-                else if (!(txtTypeofBoard.SelectedValue == "1"))
+                else
                 {
                     board.Start_Date = DateTime.Parse(txtStartDate.Value.ToString());
                     board.End_Date = DateTime.Parse(txtEndDate.Value.ToString());
@@ -171,14 +176,15 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 txtClassification.SelectedValue = boardinfo.Board_Classification_Id.ToString();
                 txtParent.SelectedValue = boardinfo.Parent.ToString();
 
-                DateTime startDate = DateTime.Parse(boardinfo.Start_Date.ToString());
-                DateTime endDate = DateTime.Parse(boardinfo.End_Date.ToString());
+                try
+                {
+                    DateTime startDate = DateTime.Parse(boardinfo.Start_Date.ToString());
+                    DateTime endDate = DateTime.Parse(boardinfo.End_Date.ToString());
 
-                //startDate = DateTime.ParseExact(startDate.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                //endDate = DateTime.ParseExact(endDate.ToString(), "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    txtStartDate.Value = string.Format("{0:yyyy-MM-dd}", startDate);
+                    txtEndDate.Value = string.Format("{0:yyyy-MM-dd}", endDate);
 
-                txtStartDate.Value = startDate.ToString("yyyy-mm-dd");
-                txtEndDate.Value = endDate.ToString("yyyy-mm-dd");
+                }catch { }
             }
             catch { }
         }

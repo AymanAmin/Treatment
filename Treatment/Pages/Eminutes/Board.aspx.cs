@@ -42,6 +42,11 @@ namespace Treatment.Pages.Eminutes
                 List<M_Board_Member> list_member = db.M_Board_Member.Where(x => x.Board_Id == board_id).ToList();
                 if (list_member.Count > 0)
                     LoadMember(list_member);
+
+                //Load Locations
+                List<M_Board_Location> Locations = db.M_Board_Location.Where(x => x.Board_Id == board_id).ToList();
+                if (Locations.Count > 0)
+                    LoadLocations(Locations);
             }
             else
             {
@@ -58,11 +63,19 @@ namespace Treatment.Pages.Eminutes
             txtType.Text = Current_Board.M_Board_Type.Board_Type_Name_En;
             txtClassification.Text = Current_Board.M_Board_Classification.Board_Classification_Name_En;
 
-            //Edit Board info if you are supervisor
+            //Edit Board info if you are supervisor 
             if (true)
+            {
                 txtEditBoard.Text = "<a href='../../../../Pages/Eminutes/BoardManagment/BoardInfo.aspx?BoardId=" + Current_Board.Board_Id + "' class='text-muted m-r-10 f-16'> <i class='icofont icofont-edit'></i></a>";
+                txtMeetingMembers.Text = "<a href='../../../../Pages/Eminutes/BoardManagment/BoardMember.aspx?BoardId=" + Current_Board.Board_Id + "' class='text-muted m-r-10 f-16'> <i class='icofont icofont-edit'></i></a>";
+                txtEditLocations.Text = "<a href='../../../../Pages/Eminutes/BoardManagment/BoardLocations.aspx?BoardId=" + Current_Board.Board_Id + "' class='text-muted m-r-10 f-16'> <i class='icofont icofont-edit'></i></a>";
+            }
             else
+            {
                 txtEditBoard.Text = " <i class='icofont icofont-ui-note m-r-10'></i>";
+                txtMeetingMembers.Text = " <i class='icofont icofont-ui-note m-r-10'></i>";
+                txtEditLocations.Text = " <i class='icofont icofont-ui-note m-r-10'></i>";
+            }
         }
 
         private void LoadSubBoard(List<M_Board> list_board)
@@ -182,6 +195,26 @@ namespace Treatment.Pages.Eminutes
             else
                 txtMembers.Text = members;
 
+        }
+
+        private void LoadLocations(List<M_Board_Location> Locations)
+        {
+            string str = string.Empty;
+            for (int i = 0; i < Locations.Count; i++)
+            {
+                str += "<div class='row m-b-25'>";
+                str += "<div class='col-auto p-r-0'>";
+                str += "<i class='feather icon-map-pin bg-simple-c-green feed-icon'></i>";
+                str += "</div>";
+                str += "<div class='col'>";
+                str += "<h6 class='m-b-5'>"+ Locations[i].Board_Location_Name_En + "</h6>";
+                str += "<p class='text-muted m-b-0'>" + Locations[i].Board_Location_Description_En + "</p>";
+                if (Locations[i].Board_Location_OnMap != null && Locations[i].Board_Location_OnMap != string.Empty)
+                    str += "<a href ='" + Locations[i].Board_Location_OnMap + "' target='_blank'><p class='text-muted m-b-0'><i class='feather icon-map-pin m-r-10'></i>Open On Map</p></a>";
+                str += "</div>";
+                str += "</div>";
+            }
+            txtLocations.Text = str;
         }
     }
 }

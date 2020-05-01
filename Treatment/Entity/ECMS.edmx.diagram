@@ -82,6 +82,7 @@
         <AssociationConnector Association="ECMSModel.FK_M_Topic_M_Meeting" />
         <AssociationConnector Association="ECMSModel.FK_M_Topic_Structure" />
         <EntityTypeShape EntityType="ECMSModel.M_Board_Status" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="ECMSModel.FK_M_Board_Status_M_Board_Status" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

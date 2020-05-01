@@ -159,6 +159,7 @@
     </Content>
     <Content Include="Pages\Eminutes\Board.aspx" />
     <Content Include="Pages\Eminutes\BoardManagment\BoardInfo.aspx" />
+    <Content Include="Pages\Eminutes\BoardManagment\BoardLocations.aspx" />
     <Content Include="Pages\Eminutes\BoardManagment\BoardMember.aspx" />
     <Content Include="Pages\Eminutes\Home.aspx" />
     <Content Include="Pages\Eminutes\Meeting.aspx" />
@@ -2280,6 +2281,13 @@
     </Compile>
     <Compile Include="Pages\Eminutes\BoardManagment\BoardInfo.aspx.designer.cs">
       <DependentUpon>BoardInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\BoardManagment\BoardLocations.aspx.cs">
+      <DependentUpon>BoardLocations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\BoardManagment\BoardLocations.aspx.designer.cs">
+      <DependentUpon>BoardLocations.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Eminutes\BoardManagment\BoardMember.aspx.cs">
       <DependentUpon>BoardMember.aspx</DependentUpon>

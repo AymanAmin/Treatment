@@ -134,6 +134,7 @@
           <Property Name="Board_Id" Type="int" />
           <Property Name="Board_Location_Description_Ar" Type="ntext" />
           <Property Name="Board_Location_Description_En" Type="ntext" />
+          <Property Name="Board_Location_OnMap" Type="ntext" />
         </EntityType>
         <EntityType Name="M_Board_Member">
           <Key>
@@ -284,6 +285,8 @@
           <Property Name="Structure_Name_Ar" Type="nvarchar(max)" />
           <Property Name="Structure_Parent" Type="int" />
           <Property Name="Structure_Name_En" Type="nvarchar(max)" />
+          <Property Name="Is_Job_Title" Type="bit" />
+          <Property Name="Is_Manager" Type="bit" />
         </EntityType>
         <EntityType Name="Treatment_Class">
           <Key>
@@ -564,6 +567,18 @@
             </Principal>
             <Dependent Role="M_Board_Member">
               <PropertyRef Name="Member_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_Board_Status_M_Board_Status">
+          <End Role="M_Board_Status" Type="Self.M_Board_Status" Multiplicity="1" />
+          <End Role="M_Board_Status1" Type="Self.M_Board_Status" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board_Status">
+              <PropertyRef Name="Board_Status_Id" />
+            </Principal>
+            <Dependent Role="M_Board_Status1">
+              <PropertyRef Name="Board_Status_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1006,6 +1021,10 @@
             <End Role="M_Member_Type" EntitySet="M_Member_Type" />
             <End Role="M_Board_Member" EntitySet="M_Board_Member" />
           </AssociationSet>
+          <AssociationSet Name="FK_M_Board_Status_M_Board_Status" Association="Self.FK_M_Board_Status_M_Board_Status">
+            <End Role="M_Board_Status" EntitySet="M_Board_Status" />
+            <End Role="M_Board_Status1" EntitySet="M_Board_Status" />
+          </AssociationSet>
           <AssociationSet Name="FK_M_Meeting_M_Board" Association="Self.FK_M_Meeting_M_Board">
             <End Role="M_Board" EntitySet="M_Board" />
             <End Role="M_Meeting" EntitySet="M_Meeting" />
@@ -1307,6 +1326,8 @@
           <NavigationProperty Name="Employee_Structure" Relationship="Self.FK_Employee_Structure_Structure" FromRole="Structure" ToRole="Employee_Structure" />
           <NavigationProperty Name="Treatment_Master" Relationship="Self.FK_Treatment_Prepared_Administration" FromRole="Structure" ToRole="Treatment_Master" />
           <NavigationProperty Name="M_Topic" Relationship="ECMSModel.FK_M_Topic_Structure" FromRole="Structure" ToRole="M_Topic" />
+          <Property Name="Is_Job_Title" Type="Boolean" />
+          <Property Name="Is_Manager" Type="Boolean" />
         </EntityType>
         <EntityType Name="Treatment_Class">
           <Key>
@@ -2002,6 +2023,10 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="M_Board_Status" EntityType="ECMSModel.M_Board_Status" />
+          <AssociationSet Name="FK_M_Board_Status_M_Board_Status" Association="ECMSModel.FK_M_Board_Status_M_Board_Status">
+            <End Role="M_Board_Status" EntitySet="M_Board_Status" />
+            <End Role="M_Board_Status1" EntitySet="M_Board_Status" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="M_Attendees">
           <Key>
@@ -2058,6 +2083,7 @@
           <Property Name="Board_Location_Description_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_Board_Location_M_Board" FromRole="M_Board_Location" ToRole="M_Board" />
           <NavigationProperty Name="M_Meeting" Relationship="ECMSModel.FK_M_Meeting_M_Board_Location" FromRole="M_Board_Location" ToRole="M_Meeting" />
+          <Property Name="Board_Location_OnMap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="M_Board_Member">
           <Key>
@@ -2319,7 +2345,21 @@
           <Property Name="Board_Status_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Board_Status_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Board_Status_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="M_Board_Status1" Relationship="ECMSModel.FK_M_Board_Status_M_Board_Status" FromRole="M_Board_Status" ToRole="M_Board_Status1" />
+          <NavigationProperty Name="M_Board_Status2" Relationship="ECMSModel.FK_M_Board_Status_M_Board_Status" FromRole="M_Board_Status1" ToRole="M_Board_Status" />
         </EntityType>
+        <Association Name="FK_M_Board_Status_M_Board_Status">
+          <End Type="ECMSModel.M_Board_Status" Role="M_Board_Status" Multiplicity="1" />
+          <End Type="ECMSModel.M_Board_Status" Role="M_Board_Status1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board_Status">
+              <PropertyRef Name="Board_Status_Id" />
+            </Principal>
+            <Dependent Role="M_Board_Status1">
+              <PropertyRef Name="Board_Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2491,6 +2531,8 @@
           <EntitySetMapping Name="Structures">
             <EntityTypeMapping TypeName="ECMSModel.Structure">
               <MappingFragment StoreEntitySet="Structure">
+                <ScalarProperty Name="Is_Manager" ColumnName="Is_Manager" />
+                <ScalarProperty Name="Is_Job_Title" ColumnName="Is_Job_Title" />
                 <ScalarProperty Name="Structure_Id" ColumnName="Structure_Id" />
                 <ScalarProperty Name="Structure_Name_Ar" ColumnName="Structure_Name_Ar" />
                 <ScalarProperty Name="Structure_Parent" ColumnName="Structure_Parent" />
@@ -2650,6 +2692,7 @@
           <EntitySetMapping Name="M_Board_Location">
             <EntityTypeMapping TypeName="ECMSModel.M_Board_Location">
               <MappingFragment StoreEntitySet="M_Board_Location">
+                <ScalarProperty Name="Board_Location_OnMap" ColumnName="Board_Location_OnMap" />
                 <ScalarProperty Name="Board_Location_Description_En" ColumnName="Board_Location_Description_En" />
                 <ScalarProperty Name="Board_Location_Description_Ar" ColumnName="Board_Location_Description_Ar" />
                 <ScalarProperty Name="Board_Id" ColumnName="Board_Id" />

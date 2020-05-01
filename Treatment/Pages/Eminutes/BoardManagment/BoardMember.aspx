@@ -13,6 +13,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_PlaceHolder" runat="server">
     <div class="row">
+        <div class="col-sm-12">
+            <asp:Literal ID="LtrMessage" runat="server"></asp:Literal>
+        </div>
         <div id="add-model" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="login-card card-block login-card-modal">
@@ -62,7 +65,7 @@
             </div>
         </div>
         <div class="col-md-12" style="text-align: right">
-            <button class="btn btn-success btn-round" type="button" data-toggle="modal" data-target="#add-model" >Add Member</button>
+            <button class="btn btn-success btn-round" type="button" data-toggle="modal" data-target="#add-model">Add Member</button>
         </div>
         <div class="col-md-12">&nbsp;</div>
     </div>
@@ -70,7 +73,7 @@
         <!-- user-radial-card  start -->
 
         <asp:Literal ID="BoardMembers" runat="server"></asp:Literal>
-        
+
         <!-- user-radial-card  end -->
     </div>
 </asp:Content>
