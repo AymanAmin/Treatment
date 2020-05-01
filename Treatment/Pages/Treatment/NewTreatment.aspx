@@ -8,17 +8,14 @@
 
     <title><% = Treatment.Classes.FieldNames.getFieldName("Treatment-Title", "REU - Create Treatment") %></title>
     <script type="text/javascript">
-    function getEmployee(x) {            $.ajax({
-                url: "NewTreatment.aspx/getEmployeeTable",
-                type: "POST",
-                data: "{ Employee_Id:" + x.id + "}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (resultData) {
-                    notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight', '  Save Status : ', '  The new Employee was Sucessfully saved in system ! ');
-                    window.location = window.location;
-                }
-            });
+        function getEmployee() {
+            <% getEmployeeTable(); %>
+            <% getEmployeeTree(); %>
+        }
+
+        function getEmployeeCopy() {
+            <% getEmployeeTableCopy(); %>
+            <% getEmployeeTreeCopy(); %>
         }
     </script>
     <!-- ckeditor.css-->
@@ -87,8 +84,8 @@
                     <div class="form-group col-sm-12">
                         <label><% = Treatment.Classes.FieldNames.getFieldName("Treatment-CopyTo", "Copy To") %></label>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-ui-copy"></i></span>
-                            <asp:ListBox ID="treatmentCopyTo" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Copy To" runat="server" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
+                            <span class="input-group-addon" data-toggle="modal" data-target="#tabbed-form-copy"><i class="icofont icofont-ui-copy"></i></span>
+                            <asp:ListBox ID="treatmentCopyTo" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Copy To" runat="server" SelectionMode="Multiple"></asp:ListBox>
                         </div>
                     </div>
                 </div>
@@ -183,7 +180,7 @@
             </div>
             <!-- Article Editor card end -->
 
-            <!-- tabbed form modal start -->
+            <!-- tabbed form modal start  Sent To-->
             <div id="tabbed-form" class="modal fade mixed-form" role="dialog">
                 <div class="modal-dialog modal-lg">
                     <div class="text-center m-b-10">
@@ -211,12 +208,12 @@
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="sign_in" role="tabpanel">
                                             <div class="auth-box m-t-15">
-                                                <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False"  EnableTheming="True" Theme="Moderno" Width="100%" KeyFieldName="Structure_Id" ParentFieldName="Structure_Parent" PreviewFieldName="Structure_Name_En">
+                                                <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False"  EnableTheming="True" Theme="Moderno" Width="100%">
                                                     <Columns>
                                                         <dx:TreeListTextColumn AutoFilterCondition="Default" FieldName="Structure_Name_En" ShowInFilterControl="Default" VisibleIndex="1" Caption="Structure Name">
                                                         </dx:TreeListTextColumn>
                                                     </Columns>
-                                                    <SettingsBehavior AllowAutoFilter="True" AutoExpandAllNodes="True"></SettingsBehavior>
+                                                    <SettingsBehavior AllowAutoFilter="True" AutoExpandAllNodes="True" AllowFocusedNode="True"></SettingsBehavior>
 
                                                     <SettingsCustomizationWindow PopupHorizontalAlign="RightSides" PopupVerticalAlign="BottomSides"></SettingsCustomizationWindow>
 
@@ -231,7 +228,7 @@
                                                     </SettingsPopup>
                                                 </dx:ASPxTreeList>
                                                 <div class="form-group col-sm-2 text-right m-t-15 f-right">
-                                                    <asp:Button ID="Button2" runat="server" Text="OK" CssClass="btn btn-primary btn-md btn-block waves-effect text-center"  AutoPostback = "false"/>
+                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployee()" >OK</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -250,7 +247,7 @@
                                                     </Columns>
                                                 </dx:ASPxGridView>
                                                 <div class="form-group col-sm-2 text-right m-t-15 f-right">
-                                                    <asp:Button ID="Button1" runat="server" Text="OK" CssClass="btn btn-primary btn-md btn-block waves-effect text-center"  AutoPostback = "false"/>
+                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployee()">OK</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -261,7 +258,87 @@
                     </div>
                 </div>
             </div>
-            <!-- tabbed form modal end -->
+            <!-- tabbed form modal end Sent To-->
+
+            <!-- tabbed form modal start  Copy To-->
+            <div id="tabbed-form-copy" class="modal fade mixed-form" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="text-center m-b-10">
+                        <img src="..\..\..\..\Theme\files\assets\images\auth\logo.png" alt="logo.png" />
+                    </div>
+                    <!-- Modal content-->
+                    <div class="modal-content card">
+                        <div class="modal-body card-block">
+                            <div class="login-card-modal">
+                                <div class="tabbed-modal">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs nav-justified" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#sign_in_copy" role="tab">
+                                                <h6><strong>Structure</strong></h6>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#regi_copy" role="tab">
+                                                <h6><strong>Employees</strong></h6>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="sign_in_copy" role="tabpanel">
+                                            <div class="auth-box m-t-15">
+                                                <dx:ASPxTreeList ID="ASPxTreeList2" runat="server" AutoGenerateColumns="False"  EnableTheming="True" Theme="Moderno" Width="100%">
+                                                    <Columns>
+                                                        <dx:TreeListTextColumn AutoFilterCondition="Default" FieldName="Structure_Name_En" ShowInFilterControl="Default" VisibleIndex="1" Caption="Structure Name">
+                                                        </dx:TreeListTextColumn>
+                                                    </Columns>
+                                                    <SettingsBehavior AllowAutoFilter="True" AutoExpandAllNodes="True" AllowFocusedNode="True"></SettingsBehavior>
+
+                                                    <SettingsCustomizationWindow PopupHorizontalAlign="RightSides" PopupVerticalAlign="BottomSides"></SettingsCustomizationWindow>
+
+                                                    <SettingsSelection Enabled="True" />
+
+                                                    <SettingsPopupEditForm VerticalOffset="-1"></SettingsPopupEditForm>
+
+                                                    <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
+
+                                                    <SettingsPopup>
+                                                        <EditForm VerticalOffset="-1"></EditForm>
+                                                    </SettingsPopup>
+                                                </dx:ASPxTreeList>
+                                                <div class="form-group col-sm-2 text-right m-t-15 f-right">
+                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployeeCopy()">OK</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="regi_copy" role="tabpanel">
+                                            <div class="auth-box">
+                                                <dx:ASPxGridView ID="ASPxGridView2" runat="server" AutoGenerateColumns="False"  EnableTheming="True" Theme="Moderno" Width="100%" KeyFieldName="ddlKey">
+                                                    <SettingsDataSecurity AllowDelete="False" AllowEdit="False" AllowInsert="False" />
+                                                    <SettingsSearchPanel Visible="True" />
+                                                    <Columns>
+                                                        <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowSelectCheckbox="True" VisibleIndex="0" Name="checkboxEmpID">
+                                                        </dx:GridViewCommandColumn>
+                                                        <dx:GridViewDataTextColumn Caption="Employee Name" FieldName="employeeName" Name="Employee_Name_En" VisibleIndex="1">
+                                                        </dx:GridViewDataTextColumn>
+                                                        <dx:GridViewDataTextColumn Caption="Job Title" FieldName="jobTitle" Name="jobTitle" VisibleIndex="2">
+                                                        </dx:GridViewDataTextColumn>
+                                                    </Columns>
+                                                </dx:ASPxGridView>
+                                                <div class="form-group col-sm-2 text-right m-t-15 f-right">
+                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployeeCopy()">OK</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- tabbed form modal end Copy To-->
         </div>
     </div>
     <!-- Page-body end -->
@@ -279,7 +356,7 @@
     <asp:EntityDataSource ID="EntityDataSourceTreatmentType" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Treatment_Type" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
     <asp:EntityDataSource ID="EntityDataSourceEmployee" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Employees" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
     <asp:EntityDataSource ID="EntityDataSourceStructure" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EntitySetName="Structures" EnableDelete="True" EnableInsert="True" EnableUpdate="True"></asp:EntityDataSource>
-    <!-- End Treatment Data Source-->
+        <!-- End Treatment Data Source-->
 
     <!-- ckeditor.css-->
     <script src="..\..\..\..\Theme\files\bower_components\ckeditor\ckeditor.js"></script>

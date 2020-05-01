@@ -21,22 +21,19 @@ namespace Treatment.Pages.Treatment
         int currentUserId = 0, currentStructureUserId = 0; 
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
+        List<Structure> ListStructure = new List<Structure>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                checkLogin();
-                currentUserId = SessionWrapper.LoggedUser.Employee_Id;
-                currentStructureUserId = getStructure(currentUserId);
-                treatmentDate.Text = DateTime.Now.Date.ToShortDateString();
-                fillAllStructure();
-            }
-            else
-            {
-                getEmployeeTable();
-                getEmployeeTree();
-                //fillAllStructure();
-            }
+            checkLogin();
+            currentUserId = SessionWrapper.LoggedUser.Employee_Id;
+            currentStructureUserId = getStructure(currentUserId);
+            treatmentDate.Text = DateTime.Now.Date.ToShortDateString();
+            fillAllStructure();
+            getEmployeeTable();
+            getEmployeeTableCopy();
+            getEmployeeTree();
+            getEmployeeTreeCopy();
         }
         private void checkLogin()
         {
@@ -58,7 +55,6 @@ namespace Treatment.Pages.Treatment
             Employee_Structure oneEmployeeStructure;
             using (ECMSEntities dbEcms = new ECMSEntities())
             {
-                ////////////////////////////////////////////////// Start get same level structure/////////////////////////////////////////
                 try
                 {
                     oneEmployeeStructure = new Employee_Structure();
@@ -69,35 +65,37 @@ namespace Treatment.Pages.Treatment
                         int parentCurrentJobTitle = (int)oneEmployeeStructure.Structure.Structure_Parent;
                         int structureIdCurrent = (int)oneEmployeeStructure.Structure.Structure_Id;
                         flayIsManager = (bool)oneEmployeeStructure.Structure.Is_Manager;
-                        if (parentCurrentJobTitle != 0)
+                        int strurId = 0;
+                        bool flayAdd = false;
+                        int parentCurrent = -1;
+                        if ((bool)oneEmployeeStructure.Structure.Is_Manager)
                         {
-                            int strurId = 0;
-                            bool flayAdd = false;
-                            int parentCurrent = -1;
-                            if ((bool)oneEmployeeStructure.Structure.Is_Manager)
-                            {
-                                Structure oneStructure = dbEcms.Structures.First(x => x.Structure_Id == parentCurrentJobTitle);
+                            Structure oneStructure = dbEcms.Structures.FirstOrDefault(x => x.Structure_Id == parentCurrentJobTitle);
+                            if (oneStructure != null)
                                 parentCurrent = (int)oneStructure.Structure_Parent;
-                            }
-                            List<Structure> ListGetSameLevel = dbEcms.Structures.Where(x => (x.Structure_Parent == parentCurrent && x.Structure_Id != parentCurrentJobTitle) || (x.Structure_Parent == parentCurrentJobTitle && x.Structure_Id != structureIdCurrent)).ToList<Structure>();
-                            for (int i = 0; i < ListGetSameLevel.Count; i++)
+                        }
+                        List<Structure> ListGetSameLevel = dbEcms.Structures.Where(x => (x.Structure_Id == parentCurrent) || (((x.Structure_Parent == parentCurrent && x.Is_Job_Title == false) || x.Structure_Parent == parentCurrentJobTitle) && x.Structure_Id != structureIdCurrent)).ToList<Structure>();
+                        for (int i = 0; i < ListGetSameLevel.Count; i++)
+                        {
+                            strurId = ListGetSameLevel[i].Structure_Id;
+                            oneEmployeeStructure = new Employee_Structure();
+                            addEmployeeStructure = new Employee_Structure();
+                            oneEmployeeStructure = dbEcms.Employee_Structure.FirstOrDefault(x => x.Structure.Structure_Parent == strurId && x.Structure.Is_Job_Title == true && x.Structure.Is_Manager == true);
+
+                            if (oneEmployeeStructure != null && flayIsManager)
                             {
-                                strurId = ListGetSameLevel[i].Structure_Id;
+                                flayAdd = true;
+                            }
+                            else
+                            {
                                 oneEmployeeStructure = new Employee_Structure();
-                                addEmployeeStructure = new Employee_Structure();
-                                oneEmployeeStructure = dbEcms.Employee_Structure.FirstOrDefault(x => x.Structure.Structure_Parent == strurId && x.Structure.Is_Job_Title == true && x.Structure.Is_Manager == true);
-                                if (oneEmployeeStructure != null && flayIsManager)
-                                {
+                                oneEmployeeStructure = dbEcms.Employee_Structure.FirstOrDefault(x => x.Structure.Structure_Id == strurId && x.Structure.Is_Job_Title == true && x.Structure.Is_Manager == false);
+                                if (oneEmployeeStructure != null)
                                     flayAdd = true;
-                                }
-                                else
-                                {
-                                    oneEmployeeStructure = new Employee_Structure();
-                                    oneEmployeeStructure = dbEcms.Employee_Structure.FirstOrDefault(x => x.Structure.Structure_Id == strurId && x.Structure.Is_Job_Title == true && x.Structure.Is_Manager == false);
-                                    if (oneEmployeeStructure != null)
-                                        flayAdd = true;
-                                }
-                                if (flayAdd)
+                            }
+                            if (flayAdd)
+                            {
+                                if (oneEmployeeStructure.Structure_Id != structureIdCurrent)
                                 {
                                     addEmployeeStructure.Structure = oneEmployeeStructure.Structure;
                                     addEmployeeStructure.Employee = oneEmployeeStructure.Employee;
@@ -106,15 +104,12 @@ namespace Treatment.Pages.Treatment
                                     addEmployeeStructure.Structure_Id = oneEmployeeStructure.Structure_Id;
                                     ListEmployeeStructure.Add(addEmployeeStructure);
                                 }
-                                flayAdd = false;
                             }
+                            flayAdd = false;
                         }
                     }
                 }
-                catch(Exception eees){}
-                ////////////////////////////////////////////////// End get same level structure/////////////////////////////////////////
-
-
+                catch (Exception eees) { }
             }
             return ListEmployeeStructure;
         }
@@ -144,7 +139,7 @@ namespace Treatment.Pages.Treatment
                             if (oneStructure != null)
                             {
                                 int getParentStructure = (int)oneStructure.Structure_Parent;
-                                ListStructure = dbEcms.Structures.Where(x => x.Is_Job_Title == false && (x.Structure_Parent == getIdStructure || x.Structure_Parent == getParentStructure)).ToList<Structure>();
+                                ListStructure = dbEcms.Structures.Where(x => x.Is_Job_Title == false && (x.Structure_Parent == getIdStructure || x.Structure_Parent == getParentStructure || x.Structure_Id == getParentStructure)).ToList<Structure>();
                             }
                         }
                     }
@@ -167,6 +162,7 @@ namespace Treatment.Pages.Treatment
                      };
 
             ddlFiller.dropDDLBox(treatmentTo, "ddlKey", "ddlValue", dc.ToList());
+            ddlFiller.dropDDLBox(treatmentCopyTo, "ddlKey", "ddlValue", dc.ToList());
             ////////////////////////////////////////////////////////////////////////////////////////////////
 
             var dc1 = from c in ListEmployeeStructure10
@@ -181,38 +177,107 @@ namespace Treatment.Pages.Treatment
             ASPxGridView1.DataSource = dc1.ToList();
             ASPxGridView1.DataBind();
 
-            ////////////////////////////////////////////////////////////////////////////////////////////////
-            List<Structure> ListStructure = new List<Structure>();
-            ListStructure = loadTreeStructure();
-            var dc2 = from c in ListStructure
-                      select new
-                      {
-                          c.Structure_Id,
-                          c.Structure_Name_Ar,
-                          c.Structure_Name_En,
-                          c.Structure_Parent
-                      };
-            ASPxTreeList1.DataSource = ListStructure;
+            ASPxGridView2.DataSource = dc1.ToList();
+            ASPxGridView2.DataBind();
 
+            ////////////////////////////////////////////////////////////////////////////////////////////////
+            
+            ListStructure = loadTreeStructure();
+            ASPxTreeList1.DataSource = ListStructure;
+            ASPxTreeList1.KeyFieldName = "Structure_Id";
+            ASPxTreeList1.ParentFieldName = "Structure_Parent";
+            ASPxTreeList1.PreviewFieldName = "Structure_Name_En";
             ASPxTreeList1.DataBind();
+
+            ASPxTreeList2.DataSource = ListStructure;
+            ASPxTreeList2.KeyFieldName = "Structure_Id";
+            ASPxTreeList2.ParentFieldName = "Structure_Parent";
+            ASPxTreeList2.PreviewFieldName = "Structure_Name_En";
+            ASPxTreeList2.DataBind();
         }
 
         public void getEmployeeTable()
         {
-
+            string keyValueGrid = "";
             for (int i = 0; i < ASPxGridView1.VisibleRowCount; i++)
             {
                 if (ASPxGridView1.Selection.IsRowSelected(i))
                 {
-                    string keyValueGrid = ASPxGridView1.GetRowValues(i, "ddlKey").ToString();
+                    keyValueGrid = ASPxGridView1.GetRowValues(i, "ddlKey").ToString();
                     treatmentTo.Items.FindByValue(keyValueGrid).Selected = true;
+                }
+            }
+        }
+
+        public void getEmployeeTableCopy()
+        {
+            string keyValueGrid = "";
+            for (int i = 0; i < ASPxGridView2.VisibleRowCount; i++)
+            {
+                if (ASPxGridView2.Selection.IsRowSelected(i))
+                {
+                    keyValueGrid = ASPxGridView2.GetRowValues(i, "ddlKey").ToString();
+                    treatmentCopyTo.Items.FindByValue(keyValueGrid).Selected = true;
                 }
             }
         }
 
         public void getEmployeeTree()
         {
-            var listSelectedNodes = ASPxTreeList1.GetAllNodes();
+            int keyValueTree = 0;
+            string keySelectTree = "";
+            var listSelectedNodes = ASPxTreeList1.GetSelectedNodes();
+            Structure oneStructure;
+            Employee_Structure oneEmpStru;
+            foreach (var oneSelectNode in listSelectedNodes)
+            {
+                oneStructure = new Structure();
+                oneEmpStru = new Employee_Structure();
+                keyValueTree = int.Parse(oneSelectNode.Key);
+                oneStructure = db.Structures.FirstOrDefault(x => x.Structure_Parent == keyValueTree && x.Is_Job_Title == true && x.Is_Manager == true);
+                if (oneStructure != null)
+                {
+                    keyValueTree = oneStructure.Structure_Id;
+                    oneEmpStru = db.Employee_Structure.FirstOrDefault(x => x.Structure_Id == keyValueTree && x.Status_Structure == true);
+                    if (oneEmpStru != null)
+                    {
+                        if (currentStructureUserId != oneEmpStru.Employee_Structure_Id)
+                        {
+                            keySelectTree = oneEmpStru.Employee_Structure_Id.ToString();
+                            treatmentTo.Items.FindByValue(keySelectTree).Selected = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        public void getEmployeeTreeCopy()
+        {
+            int keyValueTree = 0;
+            string keySelectTree = "";
+            var listSelectedNodes = ASPxTreeList2.GetSelectedNodes();
+            Structure oneStructure;
+            Employee_Structure oneEmpStru;
+            foreach (var oneSelectNode in listSelectedNodes)
+            {
+                oneStructure = new Structure();
+                oneEmpStru = new Employee_Structure();
+                keyValueTree = int.Parse(oneSelectNode.Key);
+                oneStructure = db.Structures.FirstOrDefault(x => x.Structure_Parent == keyValueTree && x.Is_Job_Title == true && x.Is_Manager == true);
+                if (oneStructure != null)
+                {
+                    keyValueTree = oneStructure.Structure_Id;
+                    oneEmpStru = db.Employee_Structure.FirstOrDefault(x => x.Structure_Id == keyValueTree && x.Status_Structure == true);
+                    if (oneEmpStru != null)
+                    {
+                        if (currentStructureUserId != oneEmpStru.Employee_Structure_Id)
+                        {
+                            keySelectTree = oneEmpStru.Employee_Structure_Id.ToString();
+                            treatmentCopyTo.Items.FindByValue(keySelectTree).Selected = true;
+                        }
+                    }
+                }
+            }
         }
 
         protected void SaveTreatment_Click(object sender, EventArgs e)
@@ -268,59 +333,65 @@ namespace Treatment.Pages.Treatment
                     newTreatment.Required_Reply = checkRequiredReply();
                     newTreatment.Treatment_Status_Id = 1;
                     newTreatment.Treatment_Number = getTreatmentNumber();
-                    newTreatment.From_Employee_Structure_Id = getStructure(currentUserId);
+                    newTreatment.From_Employee_Structure_Id = currentStructureUserId;
                     newTreatment.Treatment_Mother = 0;
                     if (checkRequiredReply())
                         newTreatment.Required_Reply_Date = DateTime.Parse(replyDate.Text);
                     /////////////////////////////////////// Start Insert Send To /////////////////////////////////////
                     Treatment_Detial treatmentDetial;
-                    for (int i = 0; i < treatmentTo.Items.Count; i++)
+                    var selectedItemsTreatmentTo = from li in treatmentTo.Items.Cast<ListItem>()
+                                                   where li.Selected == true
+                                                   select li;
+                    foreach (var itemTreatmentTo in selectedItemsTreatmentTo)
                     {
-                        if (treatmentTo.Items[i].Selected)
-                        {
-                            treatmentDetial = new Treatment_Detial();
-                            treatmentDetial.To_Employee_Structure_Id = getStructure(int.Parse(treatmentTo.Items[i].Value));
-                            treatmentDetial.Parent = 0;
-                            treatmentDetial.Assignment_Status_Id = 1;
-                            treatmentDetial.Is_Read = false;
-                            treatmentDetial.Is_Delete = false;
-                            treatmentDetial.Treatment_Copy_To = false;
-                            newTreatment.Treatment_Detial.Add(treatmentDetial);
-                        }
+                        treatmentDetial = new Treatment_Detial();
+                        treatmentDetial.To_Employee_Structure_Id = int.Parse(itemTreatmentTo.Value);
+                        treatmentDetial.Parent = 0;
+                        treatmentDetial.Assignment_Status_Id = 1;
+                        treatmentDetial.Is_Read = false;
+                        treatmentDetial.Is_Delete = false;
+                        treatmentDetial.Treatment_Copy_To = false;
+                        newTreatment.Treatment_Detial.Add(treatmentDetial);
+
                     }
                     /////////////////////////////////////// End Insert Send To /////////////////////////////////////
 
                     /////////////////////////////////////// Start Insert Copy To /////////////////////////////////////
-                    for (int i = 0; i < treatmentCopyTo.Items.Count; i++)
+                    var selectedItemsTreatmentCopyTo = from li in treatmentCopyTo.Items.Cast<ListItem>()
+                                                       where li.Selected == true
+                                                       select li;
+                    foreach (var itemTreatmentCopyTo in selectedItemsTreatmentCopyTo)
                     {
-                        if (treatmentCopyTo.Items[i].Selected)
-                        {
-                            treatmentDetial = new Treatment_Detial();
-                            treatmentDetial.To_Employee_Structure_Id = getStructure(int.Parse(treatmentCopyTo.Items[i].Value));
-                            treatmentDetial.Parent = 0;
-                            treatmentDetial.Assignment_Status_Id = 1;
-                            treatmentDetial.Is_Read = false;
-                            treatmentDetial.Is_Delete = false;
-                            treatmentDetial.Treatment_Copy_To = true;
-                            newTreatment.Treatment_Detial.Add(treatmentDetial);
-                        }
+                        treatmentDetial = new Treatment_Detial();
+                        treatmentDetial.To_Employee_Structure_Id = int.Parse(itemTreatmentCopyTo.Value);
+                        treatmentDetial.Parent = 0;
+                        treatmentDetial.Assignment_Status_Id = 1;
+                        treatmentDetial.Is_Read = false;
+                        treatmentDetial.Is_Delete = false;
+                        treatmentDetial.Treatment_Copy_To = true;
+                        newTreatment.Treatment_Detial.Add(treatmentDetial);
                     }
                     /////////////////////////////////////// End Insert Copy To /////////////////////////////////////
 
+                    
+                    db.Treatment_Master.Add(newTreatment);
+                    db.SaveChanges();
                     /////////////////////////////////////// Start Add Attachment /////////////////////////////////////
+                    Attachment addAtachtmentTreatment;
                     foreach (HttpPostedFile postfiles in addAttachments1111.PostedFiles)
                     {
                         if (postfiles.ContentLength > 0 && postfiles.FileName != "")
                         {
-                            Attachment addAtachtmentTreatment = new Attachment();
+                            addAtachtmentTreatment = new Attachment();
                             addAtachtmentTreatment.Attachment_Path = UploadFile(postfiles);
                             addAtachtmentTreatment.Attachment_Name = postfiles.FileName;
-                            newTreatment.Attachments.Add(addAtachtmentTreatment);
+                            addAtachtmentTreatment.Treatment_Id = newTreatment.Treatment_Id;
+                            addAtachtmentTreatment.Attachment_Type = 1;
+                            db.Attachments.Add(addAtachtmentTreatment);
+                            db.SaveChanges();
                         }
                     }
                     /////////////////////////////////////// End Add Attachment /////////////////////////////////////
-                    db.Treatment_Master.Add(newTreatment);
-                    db.SaveChanges();
                     if (insertNotification(newTreatment.Treatment_Id)) { }
                     LogData = "data:" + JsonConvert.SerializeObject(newTreatment, logFileModule.settings);
                     logFileModule.logfile(1009, "إضافة معاملة جديدة", "Create New Treatment", LogData);
@@ -331,7 +402,8 @@ namespace Treatment.Pages.Treatment
                     string exceptionStackTrace = exceptionLog.StackTrace;
                     string exceptionGetType = exceptionLog.GetType().ToString();
                     string exceptionMessage = exceptionLog.Message;
-                    logFileModule.logfile(1025, exceptionStackTrace, exceptionGetType, exceptionMessage);
+                    string exceptionData = "data:{\"StackTrace\":\""+exceptionStackTrace+"\",\"GetType\":\""+exceptionGetType+"\",\"Message\":\""+exceptionMessage+"\"}";
+                    logFileModule.logfile(1025, "حدث خطأ في حفظ المعاملة", "An error occurred in saving the transaction", exceptionData);
                     messageForm = "Erorr to save data in system";
                     return false;
                 }
@@ -386,11 +458,11 @@ namespace Treatment.Pages.Treatment
                 messageForm = "Pleace Enter Treatment Date";
                 return false;
             }
-            else if (treatmentTo.SelectedValue == "")
+           /* else if (treatmentTo.GetSelectedIndices().Count() == 0)
             {
                 messageForm = "Pleace Select Send To";
                 return false;
-            }
+            }*/
             else if (typeTreatment.SelectedValue == "")
             {
                 messageForm = "Pleace Select Type Treatment";
@@ -477,7 +549,7 @@ namespace Treatment.Pages.Treatment
                             notificationMaster.To_Employee_Structure_Id = getStructure(currentUserId);
                             notificationMaster.Master_Id = treatmentIdNotf;
                             notificationMaster.Notification_Description_Ar = "لم يتم الرد علي المعاملة";
-                            notificationMaster.Notification_Description_En = "";
+                            notificationMaster.Notification_Description_En = "The transaction was not answered";
                             notificationMaster.Notification_Link = linkNotif;
 
                             notificationMaster.Is_Show_Reply = true;

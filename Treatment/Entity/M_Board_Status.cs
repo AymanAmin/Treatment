@@ -17,5 +17,8 @@ namespace Treatment.Entity
         public int Board_Status_Id { get; set; }
         public string Board_Status_Name_Ar { get; set; }
         public string Board_Status_Name_En { get; set; }
+    
+        public virtual M_Board_Status M_Board_Status1 { get; set; }
+        public virtual M_Board_Status M_Board_Status2 { get; set; }
     }
 }

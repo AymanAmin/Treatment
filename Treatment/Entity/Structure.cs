@@ -17,17 +17,19 @@ namespace Treatment.Entity
         public Structure()
         {
             this.Employee_Structure = new HashSet<Employee_Structure>();
-            this.Treatment_Master = new HashSet<Treatment_Master>();
             this.M_Topic = new HashSet<M_Topic>();
+            this.Treatment_Master = new HashSet<Treatment_Master>();
         }
     
         public int Structure_Id { get; set; }
         public string Structure_Name_Ar { get; set; }
         public Nullable<int> Structure_Parent { get; set; }
         public string Structure_Name_En { get; set; }
+        public Nullable<bool> Is_Job_Title { get; set; }
+        public Nullable<bool> Is_Manager { get; set; }
     
         public virtual ICollection<Employee_Structure> Employee_Structure { get; set; }
-        public virtual ICollection<Treatment_Master> Treatment_Master { get; set; }
         public virtual ICollection<M_Topic> M_Topic { get; set; }
+        public virtual ICollection<Treatment_Master> Treatment_Master { get; set; }
     }
 }
