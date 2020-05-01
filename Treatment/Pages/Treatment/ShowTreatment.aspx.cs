@@ -14,7 +14,7 @@ namespace Treatment.Pages.Treatment
     public partial class ShowTreatment : System.Web.UI.Page
     {
         ECMSEntities db;
-        int treatmentId = 0, recoverParentid = 0, treatmentDetialId = 0, tabId = 0, notificationMasterId = 0;
+        int treatmentId = 0, recoverParentid = 0, treatmentDetialId = 0, tabId = 0, notificationMasterId = 0, attachmentMasterId = 0;
         string messageForm = "", messageReplyForm = "", messageAssignmentForm = "", yourHTMLStringTrack = "", detialAssingmentNote = "", _fileExt = "";
         int currentStructureUserId = 0, currentUserId = 0, marginTreeTrack = 0 ;
         LogFileModule logFileModule = new LogFileModule();
@@ -56,6 +56,14 @@ namespace Treatment.Pages.Treatment
 
                 }
                 if (showTrackTreatment())
+                {
+
+                }
+                else
+                {
+
+                }
+                if (fillAllStructure())
                 {
 
                 }
@@ -239,7 +247,6 @@ namespace Treatment.Pages.Treatment
                         requiredReplyDate = "<div class='row m-l-20'>" +
                                                 "<div class='col-xs-3'>" +
                                                     "<h2>" + yourDate.ToShortDateString().ToString() + "&nbsp;&nbsp;&nbsp;</h2>" +
-                                                    "<p>Date&nbsp;&nbsp;&nbsp;&nbsp;</p>" +
                                                 "</div>" +
                                             "</div>";
 
@@ -480,6 +487,7 @@ namespace Treatment.Pages.Treatment
             {
                 try
                 {
+                    db.Configuration.LazyLoadingEnabled = false;
                     var newAssignmentTreatment = db.Treatment_Master.Create();
                     newAssignmentTreatment.Create_Date = DateTime.Now;
                     newAssignmentTreatment.Update_Date = DateTime.Now;
@@ -531,24 +539,29 @@ namespace Treatment.Pages.Treatment
                     }
                     /////////////////////////////////////// End Insert Copy To /////////////////////////////////////
 
+
+                    db.Treatment_Master.Add(newAssignmentTreatment);
+                    db.SaveChanges();
+
                     /////////////////////////////////////// Start Add Attachment /////////////////////////////////////
+                    Attachment addAtachtmentTreatment;
                     foreach (HttpPostedFile postfiles in addAttachments1111.PostedFiles)
                     {
                         if (postfiles.ContentLength > 0 && postfiles.FileName != "")
                         {
-                            Attachment addAtachtmentTreatment = new Attachment();
+                            addAtachtmentTreatment = new Attachment();
                             addAtachtmentTreatment.Attachment_Path = UploadFile(postfiles);
                             addAtachtmentTreatment.Attachment_Name = postfiles.FileName;
-                            newAssignmentTreatment.Attachments.Add(addAtachtmentTreatment);
+                            addAtachtmentTreatment.Treatment_Id = newAssignmentTreatment.Treatment_Id;
+                            addAtachtmentTreatment.Attachment_Type = 2;
+                            db.Attachments.Add(addAtachtmentTreatment);
+                            db.SaveChanges();
                         }
                     }
                     /////////////////////////////////////// End Add Attachment /////////////////////////////////////
-
-                    db.Treatment_Master.Add(newAssignmentTreatment);
-                    db.SaveChanges();
                     if (insertNotification(newAssignmentTreatment.Treatment_Id)) { }
-                    //db.Configuration.LazyLoadingEnabled = false;
-                    //LogData = "data:" + JsonConvert.SerializeObject(newAssignmentTreatment, logFileModule.settings);
+
+                    LogData = "data:" + JsonConvert.SerializeObject(newAssignmentTreatment, logFileModule.settings);
                     logFileModule.logfile(1009, "إضافة إحالة", "add Assignment", LogData);
                     if (!flayRequiredReply)
                     {
@@ -573,7 +586,7 @@ namespace Treatment.Pages.Treatment
             int employeeStructureId = 0;
             try
             {
-                Employee_Structure employeeStructure = db.Employee_Structure.First(x => x.Employee_Id == employeeId);
+                Employee_Structure employeeStructure = db.Employee_Structure.First(x => x.Employee_Id == employeeId & x.Default_Structure == true);
                 employeeStructureId = (int)employeeStructure.Employee_Structure_Id;
             }
             catch (Exception)
@@ -739,8 +752,9 @@ namespace Treatment.Pages.Treatment
                         yourHTMLStringTrack += "<p>" + detialAssingmentNote + "</p>";
                     if (isTreatmentDetialParent != null)
                     {
+                        attachmentMasterId = (int)isTreatmentDetialParent.Treatment_Id;
                         listAttachmentTrack = new List<Attachment>();
-                        listAttachmentTrack = isTreatmentDetialParent.Treatment_Master.Attachments.ToList<Attachment>();
+                        listAttachmentTrack = db.Attachments.Where(x => x.Attachment_Type == 2 && x.Treatment_Id == attachmentMasterId).ToList<Attachment>();
                         if (listAttachmentTrack.Count > 0)
                         {
                             yourHTMLStringTrack += "<div class='row' style='margin-right: 0%;'>";
@@ -892,7 +906,7 @@ namespace Treatment.Pages.Treatment
                             notificationMaster.To_Employee_Structure_Id = getStructure(currentUserId);
                             notificationMaster.Master_Id = treatmentIdNotf;
                             notificationMaster.Notification_Description_Ar = "لم يتم الرد علي المعاملة";
-                            notificationMaster.Notification_Description_En = "No response";
+                            notificationMaster.Notification_Description_En = "The transaction was not answered";
                             notificationMaster.Notification_Link = linkNotif;
 
                             notificationMaster.Is_Show_Reply = true;
@@ -949,6 +963,92 @@ namespace Treatment.Pages.Treatment
         {
             string linkTreatment = "~/Pages/Reports/Report.aspx?getTreatmentId=" + treatmentId;
             Response.Redirect(linkTreatment);
+        }
+
+        private List<Employee_Structure> loadSendEmployeeStructure()
+        {
+            List<Employee_Structure> ListEmployeeStructure = new List<Employee_Structure>();
+            Employee_Structure addEmployeeStructure;
+            Employee_Structure oneEmployeeStructure;
+            using (ECMSEntities dbEcms = new ECMSEntities())
+            {
+                try
+                {
+                    oneEmployeeStructure = new Employee_Structure();
+                    oneEmployeeStructure = dbEcms.Employee_Structure.FirstOrDefault(x => x.Employee_Structure_Id == currentStructureUserId && x.Structure.Is_Job_Title == true);
+                    if (oneEmployeeStructure != null)
+                    {
+                        bool flayIsManager = false;
+                        int parentCurrentJobTitle = (int)oneEmployeeStructure.Structure.Structure_Parent;
+                        int structureIdCurrent = (int)oneEmployeeStructure.Structure.Structure_Id;
+                        flayIsManager = (bool)oneEmployeeStructure.Structure.Is_Manager;
+                        int strurId = 0;
+                        bool flayAdd = false;
+                        int parentCurrent = -1;
+                        if ((bool)oneEmployeeStructure.Structure.Is_Manager)
+                        {
+                            Structure oneStructure = dbEcms.Structures.FirstOrDefault(x => x.Structure_Id == parentCurrentJobTitle);
+                            if (oneStructure != null)
+                                parentCurrent = (int)oneStructure.Structure_Parent;
+                        }
+                        List<Structure> ListGetSameLevel = dbEcms.Structures.Where(x => (x.Structure_Id == parentCurrent) || (((x.Structure_Parent == parentCurrent && x.Is_Job_Title == false) || x.Structure_Parent == parentCurrentJobTitle) && x.Structure_Id != structureIdCurrent)).ToList<Structure>();
+                        for (int i = 0; i < ListGetSameLevel.Count; i++)
+                        {
+                            strurId = ListGetSameLevel[i].Structure_Id;
+                            oneEmployeeStructure = new Employee_Structure();
+                            addEmployeeStructure = new Employee_Structure();
+                            oneEmployeeStructure = dbEcms.Employee_Structure.FirstOrDefault(x => x.Structure.Structure_Parent == strurId && x.Structure.Is_Job_Title == true && x.Structure.Is_Manager == true);
+                            if (oneEmployeeStructure != null && flayIsManager)
+                            {
+                                flayAdd = true;
+                            }
+                            else
+                            {
+                                oneEmployeeStructure = new Employee_Structure();
+                                oneEmployeeStructure = dbEcms.Employee_Structure.FirstOrDefault(x => x.Structure.Structure_Id == strurId && x.Structure.Is_Job_Title == true && x.Structure.Is_Manager == false);
+                                if (oneEmployeeStructure != null)
+                                    flayAdd = true;
+                            }
+                            if (flayAdd)
+                            {
+                                if (oneEmployeeStructure.Structure_Id != structureIdCurrent)
+                                {
+                                    addEmployeeStructure.Structure = oneEmployeeStructure.Structure;
+                                    addEmployeeStructure.Employee = oneEmployeeStructure.Employee;
+                                    addEmployeeStructure.Employee_Structure_Id = oneEmployeeStructure.Employee_Structure_Id;
+                                    addEmployeeStructure.Employee_Id = oneEmployeeStructure.Employee_Id;
+                                    addEmployeeStructure.Structure_Id = oneEmployeeStructure.Structure_Id;
+                                    ListEmployeeStructure.Add(addEmployeeStructure);
+                                }
+                            }
+                            flayAdd = false;
+                        }
+                    }
+                }
+                catch (Exception eees) { }
+            }
+            return ListEmployeeStructure;
+        }
+
+        private bool fillAllStructure()
+        {
+            try
+            {
+                List<Employee_Structure> ListEmployeeStructure10 = new List<Employee_Structure>();
+                ListEmployeeStructure10 = loadSendEmployeeStructure();
+                var dc = from c in ListEmployeeStructure10
+                         where c.Employee_Id != currentUserId
+                         select new
+                         {
+                             ddlKey = c.Employee_Structure_Id,
+                             ddlValue = c.Employee.Employee_Name_En + " '" + c.Structure.Structure_Name_En + "'",
+                         };
+
+                ddlFiller.dropDDLBox(treatmentTo, "ddlKey", "ddlValue", dc.ToList());
+                ddlFiller.dropDDLBox(treatmentCopyTo, "ddlKey", "ddlValue", dc.ToList());
+                return true;
+            }
+            catch (Exception eees) { return false; }
         }
     }
 }

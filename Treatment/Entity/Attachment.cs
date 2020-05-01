@@ -19,7 +19,5 @@ namespace Treatment.Entity
         public string Attachment_Path { get; set; }
         public string Attachment_Name { get; set; }
         public Nullable<int> Attachment_Type { get; set; }
-    
-        public virtual Treatment_Master Treatment_Master { get; set; }
     }
 }

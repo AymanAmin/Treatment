@@ -298,19 +298,21 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
+                                    <div class="form-group col-sm-12">
                                         <label>Send To</label><i class="icofont icofont-star-alt-1 text-danger"></i>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-paper-plane"></i></span>
-                                            <asp:ListBox ID="treatmentTo" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Send To" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
+                                            <asp:ListBox ID="treatmentTo" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Send To" SelectionMode="Multiple"></asp:ListBox>
                                         </div>
                                         <asp:RequiredFieldValidator ID="valTreatmentTo" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Send To" ValidationGroup="valFormAssignment" ControlToValidate="treatmentTo" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
                                     </div>
-                                    <div class="form-group col-sm-6">
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
                                         <label>Copy To</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-ui-copy"></i></span>
-                                            <asp:ListBox ID="treatmentCopyTo" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Copy To" runat="server" DataSourceID="EntityDataSourceEmployee" DataTextField="Employee_Name_En" DataValueField="Employee_Id" SelectionMode="Multiple"></asp:ListBox>
+                                            <asp:ListBox ID="treatmentCopyTo" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Copy To" runat="server" SelectionMode="Multiple"></asp:ListBox>
                                         </div>
                                     </div>
                                 </div>

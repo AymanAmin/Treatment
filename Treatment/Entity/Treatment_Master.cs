@@ -16,7 +16,6 @@ namespace Treatment.Entity
     {
         public Treatment_Master()
         {
-            this.Attachments = new HashSet<Attachment>();
             this.Owner_Relationship = new HashSet<Owner_Relationship>();
             this.Treatment_Detial = new HashSet<Treatment_Detial>();
         }
@@ -42,7 +41,6 @@ namespace Treatment.Entity
         public string Treatment_Keywork { get; set; }
         public Nullable<int> Treatment_Mother { get; set; }
     
-        public virtual ICollection<Attachment> Attachments { get; set; }
         public virtual Employee_Structure Employee_Structure { get; set; }
         public virtual ICollection<Owner_Relationship> Owner_Relationship { get; set; }
         public virtual Structure Structure { get; set; }

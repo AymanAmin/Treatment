@@ -147,16 +147,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entity\ECMS.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECMS.edmx</DependentUpon>
-      <LastGenOutput>ECMS.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Entity\ECMS.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECMS.edmx</DependentUpon>
-      <LastGenOutput>ECMS.cs</LastGenOutput>
-    </Content>
     <Content Include="Pages\Eminutes\Board.aspx" />
     <Content Include="Pages\Eminutes\BoardManagment\BoardInfo.aspx" />
     <Content Include="Pages\Eminutes\BoardManagment\BoardLocations.aspx" />
@@ -2113,49 +2103,6 @@
     <Compile Include="EminutesMaster.Master.designer.cs">
       <DependentUpon>EminutesMaster.Master</DependentUpon>
     </Compile>
-    <Compile Include="Entity\M_Attendees.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Board.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Board_Classification.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Board_Location.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Board_Member.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Board_Status.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Board_Type.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Meeting.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Member_Type.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Recommendation.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Topic.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\App_Start\WebApiConfig.cs" />
-    <Compile Include="Classes\ddlFiller.cs" />
-    <Compile Include="Classes\Emp_Structure.cs" />
-    <Compile Include="Classes\Enums.cs" />
-    <Compile Include="Classes\FieldNames.cs" />
-    <Compile Include="Classes\LogFileModule.cs" />
-    <Compile Include="Classes\SessionWrapper.cs" />
-    <Compile Include="Classes\StringCipher.cs" />
-    <Compile Include="Classes\UtilityClass.cs" />
-    <Compile Include="Classes\SendEmail.cs" />
     <Compile Include="Entity\Assignment_Status.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
@@ -2193,6 +2140,39 @@
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Log_File.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Attendees.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Classification.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Location.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Member.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Status.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Type.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Meeting.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Member_Type.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Recommendation.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Topic.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Notification_Employee.cs">
@@ -2243,6 +2223,16 @@
     <Compile Include="Entity\Treatment_Type.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\App_Start\WebApiConfig.cs" />
+    <Compile Include="Classes\ddlFiller.cs" />
+    <Compile Include="Classes\Emp_Structure.cs" />
+    <Compile Include="Classes\Enums.cs" />
+    <Compile Include="Classes\FieldNames.cs" />
+    <Compile Include="Classes\LogFileModule.cs" />
+    <Compile Include="Classes\SessionWrapper.cs" />
+    <Compile Include="Classes\StringCipher.cs" />
+    <Compile Include="Classes\UtilityClass.cs" />
+    <Compile Include="Classes\SendEmail.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2601,15 +2591,25 @@
     <Content Include="MasterEn.Master" />
     <Content Include="Pages\Setting\Auth\Logout.ashx" />
     <Content Include="Pages\Treatment\Tree.aspx.bak" />
+    <Content Include="EminutesMaster.Master" />
+    <Content Include="Pages\Eminutes\BoardManagment\DeleteMembers.ashx" />
     <EntityDeploy Include="Entity\ECMS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ECMS.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Entity\ECMS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ECMS.edmx</DependentUpon>
+      <LastGenOutput>ECMS.Context.cs</LastGenOutput>
+    </Content>
     <Content Include="Entity\ECMS.edmx.diagram">
       <DependentUpon>ECMS.edmx</DependentUpon>
     </Content>
-    <Content Include="EminutesMaster.Master" />
-    <Content Include="Pages\Eminutes\BoardManagment\DeleteMembers.ashx" />
+    <Content Include="Entity\ECMS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ECMS.edmx</DependentUpon>
+      <LastGenOutput>ECMS.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\ECMS-Publish.pubxml" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">
