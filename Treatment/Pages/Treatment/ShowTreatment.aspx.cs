@@ -27,6 +27,8 @@ namespace Treatment.Pages.Treatment
         bool isSecert = false, isPath = false, flayRequiredReply = false;
         List<Attachment> listAttachmentTrack;
         string treatmentDetialDate = "";
+            
+        List<Structure> ListStructure = new List<Structure>();
         protected void Page_Load(object sender, EventArgs e)
         {
             reloadPage();
@@ -65,7 +67,10 @@ namespace Treatment.Pages.Treatment
                 }
                 if (fillAllStructure())
                 {
-
+                    getEmployeeTable();
+                    getEmployeeTableCopy();
+                    getEmployeeTree();
+                    getEmployeeTreeCopy();
                 }
                 else
                 {
@@ -1046,9 +1051,158 @@ namespace Treatment.Pages.Treatment
 
                 ddlFiller.dropDDLBox(treatmentTo, "ddlKey", "ddlValue", dc.ToList());
                 ddlFiller.dropDDLBox(treatmentCopyTo, "ddlKey", "ddlValue", dc.ToList());
+                ////////////////////////////////////////////////////////////////////////////////////////////////
+
+                var dc1 = from c in ListEmployeeStructure10
+                          where c.Employee_Id != currentUserId
+                          select new
+                          {
+                              ddlKey = c.Employee_Structure_Id,
+                              employeeName = c.Employee.Employee_Name_En,
+                              jobTitle = c.Structure.Structure_Name_En
+                          };
+
+                ASPxGridView1.DataSource = dc1.ToList();
+                ASPxGridView1.DataBind();
+
+                ASPxGridView2.DataSource = dc1.ToList();
+                ASPxGridView2.DataBind();
+
+                ////////////////////////////////////////////////////////////////////////////////////////////////
+                ListStructure = loadTreeStructure();
+                ASPxTreeList1.DataSource = ListStructure;
+                ASPxTreeList1.KeyFieldName = "Structure_Id";
+                ASPxTreeList1.ParentFieldName = "Structure_Parent";
+                ASPxTreeList1.PreviewFieldName = "Structure_Name_En";
+                ASPxTreeList1.DataBind();
+
+                ASPxTreeList2.DataSource = ListStructure;
+                ASPxTreeList2.KeyFieldName = "Structure_Id";
+                ASPxTreeList2.ParentFieldName = "Structure_Parent";
+                ASPxTreeList2.PreviewFieldName = "Structure_Name_En";
+                ASPxTreeList2.DataBind();
                 return true;
             }
             catch (Exception eees) { return false; }
+        }
+
+        public void getEmployeeTable()
+        {
+            string keyValueGrid = "";
+            for (int i = 0; i < ASPxGridView1.VisibleRowCount; i++)
+            {
+                if (ASPxGridView1.Selection.IsRowSelected(i))
+                {
+                    keyValueGrid = ASPxGridView1.GetRowValues(i, "ddlKey").ToString();
+                    treatmentTo.Items.FindByValue(keyValueGrid).Selected = true;
+                }
+            }
+        }
+
+        public void getEmployeeTableCopy()
+        {
+            string keyValueGrid = "";
+            for (int i = 0; i < ASPxGridView2.VisibleRowCount; i++)
+            {
+                if (ASPxGridView2.Selection.IsRowSelected(i))
+                {
+                    keyValueGrid = ASPxGridView2.GetRowValues(i, "ddlKey").ToString();
+                    treatmentCopyTo.Items.FindByValue(keyValueGrid).Selected = true;
+                }
+            }
+        }
+
+        public void getEmployeeTree()
+        {
+            int keyValueTree = 0;
+            string keySelectTree = "";
+            var listSelectedNodes = ASPxTreeList1.GetSelectedNodes();
+            Structure oneStructure;
+            Employee_Structure oneEmpStru;
+            foreach (var oneSelectNode in listSelectedNodes)
+            {
+                oneStructure = new Structure();
+                oneEmpStru = new Employee_Structure();
+                keyValueTree = int.Parse(oneSelectNode.Key);
+                oneStructure = db.Structures.FirstOrDefault(x => x.Structure_Parent == keyValueTree && x.Is_Job_Title == true && x.Is_Manager == true);
+                if (oneStructure != null)
+                {
+                    keyValueTree = oneStructure.Structure_Id;
+                    oneEmpStru = db.Employee_Structure.FirstOrDefault(x => x.Structure_Id == keyValueTree && x.Status_Structure == true);
+                    if (oneEmpStru != null)
+                    {
+                        if (currentStructureUserId != oneEmpStru.Employee_Structure_Id)
+                        {
+                            keySelectTree = oneEmpStru.Employee_Structure_Id.ToString();
+                            treatmentTo.Items.FindByValue(keySelectTree).Selected = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        public void getEmployeeTreeCopy()
+        {
+            int keyValueTree = 0;
+            string keySelectTree = "";
+            var listSelectedNodes = ASPxTreeList2.GetSelectedNodes();
+            Structure oneStructure;
+            Employee_Structure oneEmpStru;
+            foreach (var oneSelectNode in listSelectedNodes)
+            {
+                oneStructure = new Structure();
+                oneEmpStru = new Employee_Structure();
+                keyValueTree = int.Parse(oneSelectNode.Key);
+                oneStructure = db.Structures.FirstOrDefault(x => x.Structure_Parent == keyValueTree && x.Is_Job_Title == true && x.Is_Manager == true);
+                if (oneStructure != null)
+                {
+                    keyValueTree = oneStructure.Structure_Id;
+                    oneEmpStru = db.Employee_Structure.FirstOrDefault(x => x.Structure_Id == keyValueTree && x.Status_Structure == true);
+                    if (oneEmpStru != null)
+                    {
+                        if (currentStructureUserId != oneEmpStru.Employee_Structure_Id)
+                        {
+                            keySelectTree = oneEmpStru.Employee_Structure_Id.ToString();
+                            treatmentCopyTo.Items.FindByValue(keySelectTree).Selected = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private List<Structure> loadTreeStructure()
+        {
+            List<Structure> ListStructure = new List<Structure>();
+            Structure getStructure;
+            Structure oneStructure;
+            Employee_Structure oneEmployeeStructure;
+            using (ECMSEntities dbEcms = new ECMSEntities())
+            {
+                try
+                {
+                    oneEmployeeStructure = new Employee_Structure();
+                    oneEmployeeStructure = dbEcms.Employee_Structure.FirstOrDefault(x => x.Employee_Structure_Id == currentStructureUserId && x.Structure.Is_Job_Title == true && x.Structure.Is_Manager == true);
+                    if (oneEmployeeStructure != null)
+                    {
+                        int structureIdCurrent = (int)oneEmployeeStructure.Structure_Id;
+                        getStructure = new Structure();
+                        getStructure = dbEcms.Structures.FirstOrDefault(x => x.Structure_Id == structureIdCurrent);
+                        if (getStructure != null)
+                        {
+                            int getIdStructure = (int)getStructure.Structure_Parent;
+                            oneStructure = new Structure();
+                            oneStructure = dbEcms.Structures.FirstOrDefault(x => x.Structure_Id == getIdStructure);
+                            if (oneStructure != null)
+                            {
+                                int getParentStructure = (int)oneStructure.Structure_Parent;
+                                ListStructure = dbEcms.Structures.Where(x => x.Is_Job_Title == false && (x.Structure_Parent == getIdStructure || x.Structure_Parent == getParentStructure || x.Structure_Id == getParentStructure)).ToList<Structure>();
+                            }
+                        }
+                    }
+                }
+                catch (Exception eees) { }
+            }
+            return ListStructure;
         }
     }
 }
