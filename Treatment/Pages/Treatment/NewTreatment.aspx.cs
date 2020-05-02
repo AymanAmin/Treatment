@@ -18,7 +18,7 @@ namespace Treatment.Pages.Treatment
     {
         ECMSEntities db = new ECMSEntities();
         string messageForm = "";
-        int currentUserId = 0, currentStructureUserId = 0; 
+        int currentUserId = 0, currentStructureUserId = 0, treatmentId = 0; 
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
         List<Structure> ListStructure = new List<Structure>();
@@ -29,6 +29,8 @@ namespace Treatment.Pages.Treatment
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = getStructure(currentUserId);
             treatmentDate.Text = DateTime.Now.Date.ToShortDateString();
+            if (!IsPostBack)
+                fillDropDownListBox();
             fillAllStructure();
             getEmployeeTable();
             getEmployeeTableCopy();
@@ -149,7 +151,7 @@ namespace Treatment.Pages.Treatment
             return ListStructure;
         }
 
-        private void fillAllStructure()
+        private void fillDropDownListBox()
         {
             List<Employee_Structure> ListEmployeeStructure10 = new List<Employee_Structure>();
             ListEmployeeStructure10 = loadSendEmployeeStructure();
@@ -163,8 +165,12 @@ namespace Treatment.Pages.Treatment
 
             ddlFiller.dropDDLBox(treatmentTo, "ddlKey", "ddlValue", dc.ToList());
             ddlFiller.dropDDLBox(treatmentCopyTo, "ddlKey", "ddlValue", dc.ToList());
-            ////////////////////////////////////////////////////////////////////////////////////////////////
+        }
 
+        private void fillAllStructure()
+        {
+            List<Employee_Structure> ListEmployeeStructure10 = new List<Employee_Structure>();
+            ListEmployeeStructure10 = loadSendEmployeeStructure();
             var dc1 = from c in ListEmployeeStructure10
                       where c.Employee_Id != currentUserId
                       select new
@@ -286,6 +292,7 @@ namespace Treatment.Pages.Treatment
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Treatment was Sucessfully saved in system');", true);
                 clearTreatment();
+                Response.Redirect("~/Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentId + "&getTabId=2");
             }
             else
             {
@@ -376,6 +383,7 @@ namespace Treatment.Pages.Treatment
                     
                     db.Treatment_Master.Add(newTreatment);
                     db.SaveChanges();
+                    treatmentId = newTreatment.Treatment_Id;
                     /////////////////////////////////////// Start Add Attachment /////////////////////////////////////
                     Attachment addAtachtmentTreatment;
                     foreach (HttpPostedFile postfiles in addAttachments1111.PostedFiles)
@@ -458,11 +466,11 @@ namespace Treatment.Pages.Treatment
                 messageForm = "Pleace Enter Treatment Date";
                 return false;
             }
-           /* else if (treatmentTo.GetSelectedIndices().Count() == 0)
+            else if (treatmentTo.GetSelectedIndices().Count() == 0)
             {
                 messageForm = "Pleace Select Send To";
                 return false;
-            }*/
+            }
             else if (typeTreatment.SelectedValue == "")
             {
                 messageForm = "Pleace Select Type Treatment";

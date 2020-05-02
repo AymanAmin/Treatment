@@ -72,6 +72,8 @@ namespace Treatment.Pages.Treatment
                 {
 
                 }
+                if (!IsPostBack)
+                    fillDropDownListBox();
                 if (fillAllStructure())
                 {
                     getEmployeeTable();
@@ -516,38 +518,39 @@ namespace Treatment.Pages.Treatment
                     newAssignmentTreatment.Required_Reply = requiredReply.Checked;
                     if(requiredReply.Checked)
                         newAssignmentTreatment.Required_Reply_Date = DateTime.Parse(replyDate10.Text);
-                    /////////////////////////////////////// Start Insert To /////////////////////////////////////
+                    /////////////////////////////////////// Start Insert Send To /////////////////////////////////////
                     Treatment_Detial treatmentDetial;
-                    for (int i = 0; i < treatmentTo.Items.Count; i++)
+                    var selectedItemsTreatmentTo = from li in treatmentTo.Items.Cast<ListItem>()
+                                                   where li.Selected == true
+                                                   select li;
+                    foreach (var itemTreatmentTo in selectedItemsTreatmentTo)
                     {
-                        if (treatmentTo.Items[i].Selected)
-                        {
-                            treatmentDetial = new Treatment_Detial();
-                            treatmentDetial.To_Employee_Structure_Id = getStructure(int.Parse(treatmentTo.Items[i].Value));
-                            treatmentDetial.Parent = treatmentDetialId;
-                            treatmentDetial.Assignment_Status_Id = 1;
-                            treatmentDetial.Is_Read = false;
-                            treatmentDetial.Is_Delete = false;
-                            treatmentDetial.Treatment_Copy_To = false;
-                            newAssignmentTreatment.Treatment_Detial.Add(treatmentDetial);
-                        }
+                        treatmentDetial = new Treatment_Detial();
+                        treatmentDetial.To_Employee_Structure_Id = int.Parse(itemTreatmentTo.Value);
+                        treatmentDetial.Parent = 0;
+                        treatmentDetial.Assignment_Status_Id = 1;
+                        treatmentDetial.Is_Read = false;
+                        treatmentDetial.Is_Delete = false;
+                        treatmentDetial.Treatment_Copy_To = false;
+                        newAssignmentTreatment.Treatment_Detial.Add(treatmentDetial);
+
                     }
-                    /////////////////////////////////////// End Insert To /////////////////////////////////////
+                    /////////////////////////////////////// End Insert Send To /////////////////////////////////////
 
                     /////////////////////////////////////// Start Insert Copy To /////////////////////////////////////
-                    for (int i = 0; i < treatmentCopyTo.Items.Count; i++)
+                    var selectedItemsTreatmentCopyTo = from li in treatmentCopyTo.Items.Cast<ListItem>()
+                                                       where li.Selected == true
+                                                       select li;
+                    foreach (var itemTreatmentCopyTo in selectedItemsTreatmentCopyTo)
                     {
-                        if (treatmentCopyTo.Items[i].Selected)
-                        {
-                            treatmentDetial = new Treatment_Detial();
-                            treatmentDetial.To_Employee_Structure_Id = getStructure(int.Parse(treatmentCopyTo.Items[i].Value));
-                            treatmentDetial.Parent = treatmentDetialId;
-                            treatmentDetial.Assignment_Status_Id = 1;
-                            treatmentDetial.Is_Read = false;
-                            treatmentDetial.Is_Delete = false;
-                            treatmentDetial.Treatment_Copy_To = true;
-                            newAssignmentTreatment.Treatment_Detial.Add(treatmentDetial);
-                        }
+                        treatmentDetial = new Treatment_Detial();
+                        treatmentDetial.To_Employee_Structure_Id = int.Parse(itemTreatmentCopyTo.Value);
+                        treatmentDetial.Parent = 0;
+                        treatmentDetial.Assignment_Status_Id = 1;
+                        treatmentDetial.Is_Read = false;
+                        treatmentDetial.Is_Delete = false;
+                        treatmentDetial.Treatment_Copy_To = true;
+                        newAssignmentTreatment.Treatment_Detial.Add(treatmentDetial);
                     }
                     /////////////////////////////////////// End Insert Copy To /////////////////////////////////////
 
@@ -573,7 +576,7 @@ namespace Treatment.Pages.Treatment
                     /////////////////////////////////////// End Add Attachment /////////////////////////////////////
                     if (insertNotification(newAssignmentTreatment.Treatment_Id)) { }
 
-                    LogData = "data:" + JsonConvert.SerializeObject(newAssignmentTreatment, logFileModule.settings);
+                    //LogData = "data:" + JsonConvert.SerializeObject(newAssignmentTreatment, logFileModule.settings);
                     logFileModule.logfile(1009, "إضافة إحالة", "add Assignment", LogData);
                     if (!flayRequiredReply)
                     {
@@ -626,7 +629,7 @@ namespace Treatment.Pages.Treatment
         }
         private bool validationAssignmentForm()
         {
-            if (treatmentTo.SelectedValue == "")
+            if (treatmentTo.GetSelectedIndices().Count() == 0)
             {
                 messageAssignmentForm = "Pleace Select Send To";
                 return false;
@@ -1042,23 +1045,28 @@ namespace Treatment.Pages.Treatment
             return ListEmployeeStructure;
         }
 
+        private void fillDropDownListBox()
+        {
+            List<Employee_Structure> ListEmployeeStructure10 = new List<Employee_Structure>();
+            ListEmployeeStructure10 = loadSendEmployeeStructure();
+            var dc = from c in ListEmployeeStructure10
+                     where c.Employee_Id != currentUserId
+                     select new
+                     {
+                         ddlKey = c.Employee_Structure_Id,
+                         ddlValue = c.Employee.Employee_Name_En + " '" + c.Structure.Structure_Name_En + "'",
+                     };
+
+            ddlFiller.dropDDLBox(treatmentTo, "ddlKey", "ddlValue", dc.ToList());
+            ddlFiller.dropDDLBox(treatmentCopyTo, "ddlKey", "ddlValue", dc.ToList());
+        }
+
         private bool fillAllStructure()
         {
             try
             {
                 List<Employee_Structure> ListEmployeeStructure10 = new List<Employee_Structure>();
                 ListEmployeeStructure10 = loadSendEmployeeStructure();
-                var dc = from c in ListEmployeeStructure10
-                         where c.Employee_Id != currentUserId
-                         select new
-                         {
-                             ddlKey = c.Employee_Structure_Id,
-                             ddlValue = c.Employee.Employee_Name_En + " '" + c.Structure.Structure_Name_En + "'",
-                         };
-
-                ddlFiller.dropDDLBox(treatmentTo, "ddlKey", "ddlValue", dc.ToList());
-                ddlFiller.dropDDLBox(treatmentCopyTo, "ddlKey", "ddlValue", dc.ToList());
-                ////////////////////////////////////////////////////////////////////////////////////////////////
 
                 var dc1 = from c in ListEmployeeStructure10
                           where c.Employee_Id != currentUserId
