@@ -31,7 +31,14 @@ namespace Treatment.Pages.Treatment
         List<Structure> ListStructure = new List<Structure>();
         protected void Page_Load(object sender, EventArgs e)
         {
+
             reloadPage();
+            if (!IsPostBack)
+            {
+                if (Session["newTreatmentAss"] != null)
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "newTreatmentAss();", true);
+                Session["newTreatmentAss"] = null;
+            }
         }
 
         private void reloadPage()
@@ -1097,6 +1104,8 @@ namespace Treatment.Pages.Treatment
                     treatmentTo.Items.FindByValue(keyValueGrid).Selected = true;
                 }
             }
+            if(ASPxGridView1.VisibleRowCount > 0)
+                Session["newTreatmentAss"] = true;
         }
 
         public void getEmployeeTableCopy()
@@ -1110,6 +1119,8 @@ namespace Treatment.Pages.Treatment
                     treatmentCopyTo.Items.FindByValue(keyValueGrid).Selected = true;
                 }
             }
+            if (ASPxGridView2.VisibleRowCount > 0)
+                Session["newTreatmentAss"] = true;
         }
 
         public void getEmployeeTree()
@@ -1135,6 +1146,7 @@ namespace Treatment.Pages.Treatment
                         {
                             keySelectTree = oneEmpStru.Employee_Structure_Id.ToString();
                             treatmentTo.Items.FindByValue(keySelectTree).Selected = true;
+                            Session["newTreatmentAss"] = true;
                         }
                     }
                 }
@@ -1164,6 +1176,7 @@ namespace Treatment.Pages.Treatment
                         {
                             keySelectTree = oneEmpStru.Employee_Structure_Id.ToString();
                             treatmentCopyTo.Items.FindByValue(keySelectTree).Selected = true;
+                            Session["newTreatmentAss"] = true;
                         }
                     }
                 }

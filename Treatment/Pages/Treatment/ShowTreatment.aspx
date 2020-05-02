@@ -21,12 +21,12 @@
             newTreatmentAss();
         }
         function newTreatmentAss() {
-            debugger;
-            setTimeout(function () { document.getElementById("NewAssignment").click(); }, 1000);
+            alert("Before");
+            setTimeout(function () { document.getElementById("NewAssignment").click(); }, 2000);
             // Click on the checkbox
         }
     </script>
-    <script>setTimeout(function () { document.getElementById("header-div").style.display = "none"; }, 1);</script>
+    <script>setTimeout(function () { document.getElementById("header-div").style.display = "none"; }, 3);</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <!-- Page-body start -->
