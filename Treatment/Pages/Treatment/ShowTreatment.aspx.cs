@@ -33,7 +33,7 @@ namespace Treatment.Pages.Treatment
         {
 
             reloadPage();
-            if (!IsPostBack)
+            if (IsPostBack)
             {
                 if (Session["newTreatmentAss"] != null)
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "newTreatmentAss();", true);
@@ -1102,10 +1102,11 @@ namespace Treatment.Pages.Treatment
                 {
                     keyValueGrid = ASPxGridView1.GetRowValues(i, "ddlKey").ToString();
                     treatmentTo.Items.FindByValue(keyValueGrid).Selected = true;
+                    
+                     Session["newTreatmentAss"] = true;
                 }
             }
-            if(ASPxGridView1.VisibleRowCount > 0)
-                Session["newTreatmentAss"] = true;
+            //if(ASPxGridView1.VisibleRowCount > 0)
         }
 
         public void getEmployeeTableCopy()
@@ -1117,10 +1118,10 @@ namespace Treatment.Pages.Treatment
                 {
                     keyValueGrid = ASPxGridView2.GetRowValues(i, "ddlKey").ToString();
                     treatmentCopyTo.Items.FindByValue(keyValueGrid).Selected = true;
+                    Session["newTreatmentAss"] = true;
                 }
             }
-            if (ASPxGridView2.VisibleRowCount > 0)
-                Session["newTreatmentAss"] = true;
+            //if (ASPxGridView2.VisibleRowCount > 0)
         }
 
         public void getEmployeeTree()

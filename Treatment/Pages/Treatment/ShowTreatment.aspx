@@ -10,19 +10,19 @@
         function getEmployee() {
             <% getEmployeeTable(); %>
             <% getEmployeeTree(); %>
-            debugger;
-            newTreatmentAss();
+            //debugger;
+            //newTreatmentAss();
         }
 
         function getEmployeeCopy() {
             <% getEmployeeTableCopy(); %>
             <% getEmployeeTreeCopy(); %>
-            debugger;
-            newTreatmentAss();
+            //debugger;
+            //newTreatmentAss();
         }
         function newTreatmentAss() {
-            alert("Before");
-            setTimeout(function () { document.getElementById("NewAssignment").click(); }, 2000);
+            //alert("Before");
+            setTimeout(function () { document.getElementById("Body_Holder_NewAssignment").click(); }, 0);
             // Click on the checkbox
         }
     </script>
