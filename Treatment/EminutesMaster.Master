@@ -329,6 +329,9 @@
                 <div class="pcoded-main-container">
                     <nav class="pcoded-navbar">
                         <div class="pcoded-inner-navbar">
+
+                            <asp:Literal ID="Menu" runat="server"></asp:Literal>
+
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">

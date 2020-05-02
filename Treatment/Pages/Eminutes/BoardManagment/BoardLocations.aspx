@@ -106,7 +106,7 @@
                             <table id="issue-list-table" class="table dt-responsive width-100">
                                 <thead class="text-left">
                                     <tr>
-                                        <th>Extend</th>
+                                        <th>Expand</th>
                                         <th>Actions</th>
                                         <th>Arabic Name</th>
                                         <th>English Name</th>
