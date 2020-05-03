@@ -48,7 +48,7 @@ namespace Treatment.Pages.Treatment
             treatmentId = 0; recoverParentid = 0; treatmentDetialId = 0; tabId = 0; notificationMasterId = 0;
             isSecert = false; isPath = false;
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
-            currentStructureUserId = getStructure(currentUserId);
+            currentStructureUserId = SessionWrapper.EmpStructure;
             if (int.TryParse(Request["getTreatmentId"], out treatmentId) && treatmentId > 0)
             {
                 //treatmentDetialId = getTreatmentDetialId();
