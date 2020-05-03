@@ -36,8 +36,8 @@ namespace Treatment.Entity
     
         public virtual ICollection<M_Board_Location> M_Board_Location { get; set; }
         public virtual M_Board_Classification M_Board_Classification { get; set; }
+        public virtual M_Board_Type M_Board_Type { get; set; }
         public virtual ICollection<M_Board_Member> M_Board_Member { get; set; }
         public virtual ICollection<M_Meeting> M_Meeting { get; set; }
-        public virtual M_Board_Type M_Board_Type { get; set; }
     }
 }

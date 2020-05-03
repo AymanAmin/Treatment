@@ -29,24 +29,27 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
 
         public void ini()
         {
-            if (MeetingID == 0)
+            try
             {
-                CDate.Text = DateTime.Now.Date.ToString();
-            }
-
-            if (BoardID != 0)
-            {
-                var Board = db.M_Board.First(x => x.Board_Id == BoardID);
-                /*if (SessionWrapper.LoggedUser.Language_id == 1)
+                if (MeetingID == 0)
                 {
-                    BoardName.Text = Board.Board_Name_Ar;
+                    CDate.Text = DateTime.Now.Date.ToString();
                 }
-                else
-                {
-                }*/
-                BoardName.Text = Board.Board_Name_En;
-            }                   
 
+                if (BoardID != 0)
+                {
+                    var Board = db.M_Board.First(x => x.Board_Id == BoardID);
+                    /*if (SessionWrapper.LoggedUser.Language_id == 1)
+                    {
+                        BoardName.Text = Board.Board_Name_Ar;
+                    }
+                    else
+                    {
+                    }*/
+                    BoardName.Text = Board.Board_Name_En;
+                }
+            }
+            catch (Exception e) { }
         }
 
         protected void Save_Click(object sender, EventArgs e)

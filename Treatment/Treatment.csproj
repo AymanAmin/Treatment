@@ -2118,6 +2118,21 @@
     <Compile Include="Entity\Attachment.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\ECMS.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ECMS.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ECMS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ECMS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ECMS.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Employee.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
@@ -2149,6 +2164,9 @@
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\M_Board_Member.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Status.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\M_Board_Type.cs">
@@ -2227,21 +2245,6 @@
     <Compile Include="Classes\StringCipher.cs" />
     <Compile Include="Classes\UtilityClass.cs" />
     <Compile Include="Classes\SendEmail.cs" />
-    <Compile Include="Entity\ECMS.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ECMS.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\ECMS.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\ECMS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ECMS.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2590,6 +2593,7 @@
     <Content Include="MasterEn.Master" />
     <Content Include="Pages\Setting\Auth\Logout.ashx" />
     <Content Include="Pages\Treatment\Tree.aspx.bak" />
+    <Content Include="EminutesMaster.Master" />
     <EntityDeploy Include="Entity\ECMS.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ECMS.Designer.cs</LastGenOutput>
@@ -2597,7 +2601,6 @@
     <Content Include="Entity\ECMS.edmx.diagram">
       <DependentUpon>ECMS.edmx</DependentUpon>
     </Content>
-    <Content Include="EminutesMaster.Master" />
     <None Include="Properties\PublishProfiles\ECMS-Publish.pubxml" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">

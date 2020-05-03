@@ -25,6 +25,8 @@ namespace Treatment.Entity
         public string Structure_Name_Ar { get; set; }
         public Nullable<int> Structure_Parent { get; set; }
         public string Structure_Name_En { get; set; }
+        public Nullable<bool> Is_Job_Title { get; set; }
+        public Nullable<bool> Is_Manager { get; set; }
     
         public virtual ICollection<Employee_Structure> Employee_Structure { get; set; }
         public virtual ICollection<M_Topic> M_Topic { get; set; }

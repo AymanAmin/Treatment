@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title><% = Treatment.Classes.FieldNames.getFieldName("Board-Title", "Eminutes - Board") %></title>
     <script>
-         setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Council: Department of Software"; }, 1);
+        setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Council: Department of Software"; }, 1);
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_PlaceHolder" runat="server">
@@ -13,45 +13,49 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-header-text"><i class="icofont icofont-ui-note m-r-10"></i>Board Properties</h5>
+                        <h5 class="card-header-text"><span> 
+                             <asp:Literal ID="txtEditBoard" runat="server"></asp:Literal> Board Properties </span></h5>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                                <li><i class="feather full-card icon-maximize"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
+                            </ul>
+                        </div>
                     </div>
+                    
                     <div class="card-block task-details">
                         <table class="table table-border table-xs">
                             <tbody>
                                 <tr>
-                                    <td><i class="icofont icofont-contrast"></i>English Name:</td>
-                                    <td class="text-right f-left"><span class="f-left"><a href="#">Council: Department of Software</a></span></td>
+                                    <td><i class="icofont icofont-contrast"></i>&nbsp;English Name:</td>
+                                    <td class="text-right f-left"><span class="f-left">
+                                        <asp:Literal ID="txtEnglishName" runat="server"></asp:Literal></span></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-meeting-add"></i>Arabic Name:</td>
-                                    <td class="text-right f-left">مجلس: هندسة البرمجيات</td>
+                                    <td><i class="icofont icofont-meeting-add"></i>&nbsp;Arabic Name:</td>
+                                    <td class="text-right f-left">
+                                        <asp:Literal ID="txtArabicName" runat="server"></asp:Literal></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-id-card"></i>Created:</td>
-                                    <td class="text-right f-left">25 Feb, 2015</td>
+                                    <td><i class="icofont icofont-id-card"></i>&nbsp;Created Date:</td>
+                                    <td class="text-right f-left">
+                                        <asp:Literal ID="txtCreatedDate" runat="server"></asp:Literal></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-spinner-alt-5"></i>Type:</td>
-                                    <td class="text-right f-left">Permanent</td>
+                                    <td><i class="icofont icofont-spinner-alt-5"></i>&nbsp;Type:</td>
+                                    <td class="text-right f-left">
+                                        <asp:Literal ID="txtType" runat="server"></asp:Literal></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-spinner-alt-5"></i>Classification:</td>
-                                    <td class="text-right f-left">Academic</td>
+                                    <td><i class="icofont icofont-spinner-alt-5"></i>&nbsp;Classification:</td>
+                                    <td class="text-right f-left">
+                                        <asp:Literal ID="txtClassification" runat="server"></asp:Literal></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer">
-                        <div>
-                            <span>
-                                <a href="#!" class="text-muted m-r-10 f-16"><i class="icofont icofont-random"></i></a>
-                            </span>
-                            <span class="m-r-10">
-                                <a href="#!" class="text-muted f-16"><i class="icofont icofont-options"></i></a>
-                            </span>
-
-                        </div>
-                    </div>
+                    <!--<div class="card-footer">
+                    </div>-->
                 </div>
             </div>
             <!-- End Board Properties -->
@@ -60,86 +64,33 @@
             <div class="col-md-12">
                 <div class="card table-card">
                     <div class="card-header">
-                        <h5>Meeting Members :</h5>
+                        <h5><span> 
+                             <asp:Literal ID="txtMeetingMembers" runat="server"></asp:Literal> Meeting Members </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
-                                <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                <li><i class="fa fa-window-maximize full-card"></i></li>
-                                <li><i class="fa fa-minus minimize-card"></i></li>
-                                <li><i class="fa fa-refresh reload-card"></i></li>
+                                <li><i class="feather full-card icon-maximize"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
                             </ul>
                         </div>
                     </div>
                     <div class="card-block">
                         <div class="col">
-                            <p class="text-muted m-b-10">SuperVisor</p>
-                            <div class="table-responsive">
+                            <p id="Div_SuperVisor" runat="server" class="text-muted m-b-10">SuperVisor</p>
+                            <div id="Div_SuperVisor_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
-                                    <tr>
-                                        <td class="b-none">
-                                            <a href="#!" class="align-middle">
-                                                <img src="..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>Jeny William</h6>
-                                                    <p class="text-muted m-b-0">Graphic Designer</p>
-                                                </div>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <asp:Literal ID="txtSuperVisor" runat="server"></asp:Literal>
                                 </table>
                             </div>
-                            <p class="text-muted m-b-10">Secretarial</p>
-                            <div class="table-responsive">
+                            <p id="Div_Secretarial" runat="server" class="text-muted m-b-10">Secretarial</p>
+                            <div id="Div_Secretarial_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
-                                    <tr>
-                                        <td class="b-none">
-                                            <a href="#!" class="align-middle">
-                                                <img src="..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>Jeny William</h6>
-                                                    <p class="text-muted m-b-0">Graphic Designer</p>
-                                                </div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="b-none">
-                                            <a href="#!" class="align-middle">
-                                                <img src="..\..\..\Theme\files\assets\images\avatar-1.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>John Deo</h6>
-                                                    <p class="text-muted m-b-0">Web Designer</p>
-                                                </div>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <asp:Literal ID="txtSecretarial" runat="server"></asp:Literal>
                                 </table>
                             </div>
-                            <p class="text-muted m-b-10">Members</p>
-                            <div class="table-responsive">
+                            <p id="Div_Members" runat="server" class="text-muted m-b-10">Members</p>
+                            <div id="Div_Members_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
-                                    <tr>
-                                        <td class="b-none">
-                                            <a href="#!" class="align-middle">
-                                                <img src="..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>Jeny William</h6>
-                                                    <p class="text-muted m-b-0">Graphic Designer</p>
-                                                </div>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="b-none">
-                                            <a href="#!" class="align-middle">
-                                                <img src="..\..\..\Theme\files\assets\images\avatar-1.jpg" alt="user image" class="img-radius img-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>John Deo</h6>
-                                                    <p class="text-muted m-b-0">Web Designer</p>
-                                                </div>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                   <asp:Literal ID="txtMembers" runat="server"></asp:Literal>
                                 </table>
                             </div>
                         </div>
@@ -152,42 +103,20 @@
             <div class="col-md-12">
                 <div class="card user-activity-card feed-card">
                     <div class="card-header">
-                        <h5>Locations</h5>
+                        <h5><span> 
+                             <asp:Literal ID="txtEditLocations" runat="server"></asp:Literal> Locations </span></h5>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                                <li><i class="feather full-card icon-maximize"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
+                            </ul>
+                        </div>
                     </div>
+                    
                     <div class="card-block">
 
-                        <div class="row m-b-25">
-                            <div class="col-auto p-r-0">
-                                <i class="feather icon-map-pin bg-simple-c-green feed-icon"></i>
-                            </div>
-                            <div class="col">
-                                <h6 class="m-b-5">Saudi Araiba , Riyadh</h6>
-                                <p class="text-muted m-b-0">Alnamuzajea branch, floor two, quality department.</p>
-                                <!--<p class="text-muted m-b-0"><i class="feather icon-clock m-r-10"></i>2 min ago</p>-->
-                            </div>
-                        </div>
-
-                        <div class="row m-b-25">
-                            <div class="col-auto p-r-0">
-                                <i class="feather icon-map-pin bg-simple-c-green feed-icon"></i>
-                            </div>
-                            <div class="col">
-                                <h6 class="m-b-5">Saudi Araiba , Riyadh 2</h6>
-                                <p class="text-muted m-b-0">Alnamuzajea branch, floor two, quality department.</p>
-                                <!--<p class="text-muted m-b-0"><i class="feather icon-clock m-r-10"></i>2 min ago</p>-->
-                            </div>
-                        </div>
-
-                        <div class="row m-b-25">
-                            <div class="col-auto p-r-0">
-                                <i class="feather icon-map-pin bg-simple-c-green feed-icon"></i>
-                            </div>
-                            <div class="col">
-                                <h6 class="m-b-5">Saudi Araiba , Riyadh 3</h6>
-                                <p class="text-muted m-b-0">Alnamuzajea branch, floor two, quality department.</p>
-                                <!--<p class="text-muted m-b-0"><i class="feather icon-clock m-r-10"></i>2 min ago</p>-->
-                            </div>
-                        </div>
+                        <asp:Literal ID="txtLocations" runat="server"></asp:Literal>
+                        
                     </div>
                 </div>
             </div>
@@ -202,11 +131,8 @@
                         <h5>Board Meeting</h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
-                                <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                <li><i class="fa fa-window-maximize full-card"></i></li>
-                                <li><i class="fa fa-minus minimize-card"></i></li>
-                                <li><i class="fa fa-refresh reload-card"></i></li>
-                                <li><i class="fa fa-trash close-card"></i></li>
+                                <li><i class="feather full-card icon-maximize"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
                             </ul>
                         </div>
                     </div>
@@ -303,11 +229,8 @@
                         <h5>Laws Regulations</h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
-                                <li><i class="fa fa fa-wrench open-card-option"></i></li>
-                                <li><i class="fa fa-window-maximize full-card"></i></li>
-                                <li><i class="fa fa-minus minimize-card"></i></li>
-                                <li><i class="fa fa-refresh reload-card"></i></li>
-                                <li><i class="fa fa-trash close-card"></i></li>
+                                <li><i class="feather full-card icon-maximize"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li>
                             </ul>
                         </div>
                     </div>
@@ -342,145 +265,7 @@
             <!--End Laws regulations-->
 
             <!--Board Branch-->
-            <div class="col-md-12">
-                <div class="card card-border-default">
-                    <div class="card-header">
-                        <a href="#" class="card-title"><strong>Branch 1 Council: Department of Software</strong> </a>
-                        <span class="label label-default f-right" style="background: linear-gradient(to right, #452a74, #fafafa)">28 January, 2015 </span>
-                    </div>
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <p class="task-detail">A collection of textile samples lay spread out on the table One morning, when Gregor Samsa woke from troubled.</p>
-                                <p class="task-due"><strong>Next Meeting : </strong><strong class="label label-info">28 January, 2015</strong></p>
-                            </div>
-                            <!-- end of col-sm-8 -->
-                        </div>
-                        <!-- end of row -->
-                    </div>
-                    <div class="card-footer">
-                        <div class="task-list-table">
-                            <a href="#!">
-                                <img class="img-fluid img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-1.jpg" alt="1"></a>
-                            <a href="#!">
-                                <img class="img-fluid img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="1"></a>
-                            <a href="#!"><i class="icofont icofont-plus"></i></a>
-                        </div>
-                        <div class="task-board">
-                            <div class="dropdown-secondary dropdown">
-                                <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Normal</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-danger"></span>Highest priority</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-warning"></span>High priority</a>
-                                    <a class="dropdown-item waves-light waves-effect active" href="#!"><span class="point-marker bg-success"></span>Normal priority</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-info"></span>Low priority</a>
-                                </div>
-                                <!-- end of dropdown menu -->
-                            </div>
-                            <div class="dropdown-secondary dropdown">
-                                <button class="btn btn-default btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Open</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item waves-light waves-effect active" href="#!">Open</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">On hold</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Resolved</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Closed</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Dublicate</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Invalid</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Wontfix</a>
-                                </div>
-                                <!-- end of dropdown menu -->
-                            </div>
-                            <!-- end of dropdown-secondary -->
-                            <div class="dropdown-secondary dropdown">
-                                <button class="btn btn-default btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-navigation-menu"></i></button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown3" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-ui-alarm"></i>Check in</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-attachment"></i>Attach screenshot</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-spinner-alt-5"></i>Reassign</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-ui-edit"></i>Edit task</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-close-line"></i>Remove</a>
-                                </div>
-                                <!-- end of dropdown menu -->
-                            </div>
-                            <!-- end of seconadary -->
-                        </div>
-                        <!-- end of pull-right class -->
-                    </div>
-                    <!-- end of card-footer -->
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div class="card card-border-default">
-                    <div class="card-header">
-                        <a href="#" class="card-title"><strong>Branch 2 Council: Department of Software</strong> </a>
-                        <span class="label label-default f-right" style="background: linear-gradient(to right, #452a74, #fafafa)">28 January, 2015 </span>
-                    </div>
-                    <div class="card-block">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <p class="task-detail">A collection of textile samples lay spread out on the table One morning, when Gregor Samsa woke from troubled.</p>
-                                <p class="task-due"><strong>Next Meeting : </strong><strong class="label label-info">28 January, 2015</strong></p>
-                            </div>
-                            <!-- end of col-sm-8 -->
-                        </div>
-                        <!-- end of row -->
-                    </div>
-                    <div class="card-footer">
-                        <div class="task-list-table">
-                            <a href="#!">
-                                <img class="img-fluid img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-1.jpg" alt="1"></a>
-                            <a href="#!">
-                                <img class="img-fluid img-radius" src="..\..\..\..\Theme\files\assets\images\avatar-2.jpg" alt="1"></a>
-                            <a href="#!"><i class="icofont icofont-plus"></i></a>
-                        </div>
-                        <div class="task-board">
-                            <div class="dropdown-secondary dropdown">
-                                <button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light" type="button" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Normal</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown1" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-danger"></span>Highest priority</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-warning"></span>High priority</a>
-                                    <a class="dropdown-item waves-light waves-effect active" href="#!"><span class="point-marker bg-success"></span>Normal priority</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-info"></span>Low priority</a>
-                                </div>
-                                <!-- end of dropdown menu -->
-                            </div>
-                            <div class="dropdown-secondary dropdown">
-                                <button class="btn btn-default btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Open</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item waves-light waves-effect active" href="#!">Open</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">On hold</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Resolved</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Closed</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Dublicate</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Invalid</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!">Wontfix</a>
-                                </div>
-                                <!-- end of dropdown menu -->
-                            </div>
-                            <!-- end of dropdown-secondary -->
-                            <div class="dropdown-secondary dropdown">
-                                <button class="btn btn-default btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-navigation-menu"></i></button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown3" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-ui-alarm"></i>Check in</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-attachment"></i>Attach screenshot</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-spinner-alt-5"></i>Reassign</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-ui-edit"></i>Edit task</a>
-                                    <a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-close-line"></i>Remove</a>
-                                </div>
-                                <!-- end of dropdown menu -->
-                            </div>
-                            <!-- end of seconadary -->
-                        </div>
-                        <!-- end of pull-right class -->
-                    </div>
-                    <!-- end of card-footer -->
-                </div>
-            </div>
+            <asp:Literal ID="SubBoard" runat="server"></asp:Literal>
             <!--End Board Branch-->
 
         </div>

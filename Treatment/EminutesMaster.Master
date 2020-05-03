@@ -54,6 +54,7 @@
     <!-- Select 2 css -->
     <link rel="stylesheet" href="~\Theme\files\bower_components\select2\css\select2.min.css" />
 
+<<<<<<< HEAD
     <!-- ckeditor.css-->
     <link rel="stylesheet" href="~\Theme\files\bower_components\ckeditor\samples\css\samples.css" />
     <link rel="stylesheet" href="~\Theme\files\bower_components\ckeditor\samples\toolbarconfigurator/lib/codemirror/neo.css" />
@@ -63,6 +64,10 @@
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap-daterangepicker\css\daterangepicker.css" />
     <!-- Date-Dropper css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datedropper\css\datedropper.min.css" />
+=======
+    <!-- radial chart -->
+    <link rel="stylesheet" href="~\Theme\files\assets\pages\chart\radial\css\radial.css" type="text/css" media="all"/>
+>>>>>>> 72282600bee7204e3f9507dcd24d8212a2300021
 
      <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -213,7 +218,7 @@
                             <a class="mobile-menu" id="mobile-collapse" href="#!">
                                 <i class="feather icon-menu"></i>
                             </a>
-                            <a href="index-1.htm">
+                            <a href="../../../../Pages/Eminutes/Home.aspx">
                                 <img class="img-fluid" src="..\..\..\Theme\files\assets\images\logo.png" alt="Theme-Logo"/>
                             </a>
                             <a class="mobile-options">
@@ -336,6 +341,9 @@
                 <div class="pcoded-main-container">
                     <nav class="pcoded-navbar">
                         <div class="pcoded-inner-navbar">
+
+                            <asp:Literal ID="Menu" runat="server"></asp:Literal>
+
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
