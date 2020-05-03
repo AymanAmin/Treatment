@@ -297,9 +297,9 @@
                                         </div>
                                         <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                             <li>
-                                                <a href="#!">
-                                                    <i class="feather icon-settings"></i>Settings
-                                            </a>
+                                                <a href="../../../../">
+                                                        <i class="feather icon-repeat"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-ECMS", "ECMS") %>
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="user-profile.htm">

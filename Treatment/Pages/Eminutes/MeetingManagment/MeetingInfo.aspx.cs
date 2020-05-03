@@ -23,8 +23,16 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
             if (!IsPostBack)
             {
                 if (MeetingID == 0) ini(); else ViewMeeting(MeetingID);
+
+                fillDropDown();
             }
             
+        }
+
+        private void fillDropDown()
+        {
+            List<M_Board_Location> ListLocations  = db.M_Board_Location.Where(x => x.Board_Id == BoardID).ToList();
+            ddlFiller.dropDDL(MeetingLocation, "Board_Location_Id", "Board_Location_Name_En", ListLocations, "Select Locations");
         }
 
         public void ini()

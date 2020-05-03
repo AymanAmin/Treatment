@@ -123,7 +123,7 @@
             <div class="col-md-12" >
                 <div class="card">
                     <div class="card-header">
-                        <h5><% = Treatment.Classes.FieldNames.getFieldName("Meeting-ViewVotes", "View Votes") %></h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("Meeting-ShowRecommendation", "Show Recommendation") %></h5>
                         <div class="card-header-right">
                             <i class="icofont icofont-spinner-alt-5"></i>
                         </div>
@@ -142,7 +142,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5><% = Treatment.Classes.FieldNames.getFieldName("Meeting-Votes", "Votes") %></h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("Meeting-Recommendation", "Recommendation") %></h5>
                         <div class="card-header-right">
                             <i class="icofont icofont-spinner-alt-5"></i>
                         </div>

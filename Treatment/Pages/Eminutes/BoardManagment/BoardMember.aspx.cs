@@ -99,7 +99,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 str += "<div class='card'>";
                 str += "<div class='card-block user-radial-card'>";
                 str += "<div data-label='100%' class='radial-bar radial-bar-100 radial-bar-lg " + radialClass + "'>";
-                str += "<img src = '../../../../media/Profile/" + ListMember[i].Employee.Employee_Profile + "' alt='User-Image'>";
+                str += "<img src = '../../../../media/Profile/" + ListMember[i].Employee.Employee_Profile + "' style='width:100%;' alt='User-Image'>";
                 str += "</div>";
                 str += "<br />";
                 str += "<span class='f-15 " + color + "'>"+ ListMember[i].M_Member_Type.Member_Type_Name_En + "</span>";

@@ -76,6 +76,16 @@ namespace Treatment.Pages.Setting.Auth
                             // Set Permission List in session
                             SessionWrapper.Permssions = List_permission;
 
+                            // Set Structure List in session
+                            Employee_Structure emp_structure = emp.Employee_Structure.FirstOrDefault(x => x.Default_Structure == true);
+                            if(emp_structure != null)
+                                SessionWrapper.Structure = emp_structure.Employee_Structure_Id;
+                            else
+                            {
+                                Employee_Structure emp_structure2 = emp.Employee_Structure.FirstOrDefault();
+                                SessionWrapper.Structure = emp_structure.Employee_Structure_Id;
+                            }
+
                             /* Add it to log file */
                             LogData = "data:" + JsonConvert.SerializeObject(emp, logFileModule.settings);
                             logFileModule.logfile(10, "تسجيل دخول", "login to system", LogData);

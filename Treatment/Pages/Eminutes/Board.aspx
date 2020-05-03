@@ -133,7 +133,7 @@
                     <div class="card-header">
                         <h5><span>
                             <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-                            Locations </span></h5>
+                            Meetings </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>

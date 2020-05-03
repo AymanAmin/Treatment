@@ -118,7 +118,7 @@
                                 <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("MeetingInfo-MeetingLocation", "Meeting Location") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-location-pin primary"></i></span>
-                                    <asp:DropDownList ID="MeetingLocation" runat="server" class="form-control form-txt-primary " DataSourceID="LocationDataSource" DataTextField="Board_Location_Name_En" DataValueField="Board_Location_Id"></asp:DropDownList>
+                                    <asp:DropDownList ID="MeetingLocation" runat="server" class="form-control form-txt-primary " ></asp:DropDownList>
                                     <asp:EntityDataSource ID="LocationDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="M_Board_Location">
                                     </asp:EntityDataSource>
                                 </div>

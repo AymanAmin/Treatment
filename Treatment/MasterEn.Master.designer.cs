@@ -40,6 +40,24 @@ namespace Treatment {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelNotification;
         
         /// <summary>
+        /// EmpStructures control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl EmpStructures;
+        
+        /// <summary>
+        /// txtStructure control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal txtStructure;
+        
+        /// <summary>
         /// Emp_Name control.
         /// </summary>
         /// <remarks>

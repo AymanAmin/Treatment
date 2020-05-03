@@ -42,6 +42,7 @@ namespace Treatment
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = getStructure(currentUserId);
             loadNotification();
+            LoadStructure();
             // ViewData(60);
         }
 
@@ -330,6 +331,24 @@ namespace Treatment
             {
             }
         }
+
+        private void LoadStructure()
+        {
+            List<Employee_Structure> ListStructure = db.Employee_Structure.Where(x => x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id || x.Employee_Delegation == SessionWrapper.LoggedUser.Employee_Id).ToList();
+            string str = string.Empty;
+            for (int i = 0; i < ListStructure.Count; i++)
+            {
+                str += "<li>";
+                str += "<a href = '../../../../Pages/Treatment/ChangeStructure.ashx?EmpStructureId="+ ListStructure[i].Employee_Structure_Id+ "'> ";
+                str += "<i class='feather icon-grid'></i> " + ListStructure[i].Structure.Structure_Name_En ;
+                str += "</a>";
+                str += "</li>";
+            }
+            txtStructure.Text = str;
+
+        }
+
+
         private string dateAgo(DateTime yourDate)
         {
             const int SECOND = 1;

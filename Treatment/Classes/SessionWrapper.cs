@@ -63,6 +63,8 @@ namespace Website.Classes
 
         #region Language
 
+        #region Structure
+
 
         public static Employee LoggedUser
         {
@@ -128,6 +130,24 @@ namespace Website.Classes
                 }
             }
         }
+
+        public static int Structure
+        {
+            get { return GetFromSession<int>("Structure"); }
+            set
+            {
+                if (value == null)
+                {
+                    HttpContext.Current.Session.Remove("Structure");
+                }
+                else
+                {
+                    SetInSession<int>("Structure", value);
+                }
+            }
+        }
+
+        #endregion
 
         #endregion
 

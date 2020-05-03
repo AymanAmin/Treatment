@@ -165,10 +165,10 @@
     <Content Include="Pages\Eminutes\Meeting.aspx" />
     <Content Include="Pages\Eminutes\MeetingManagment\MeetingInfo.aspx" />
     <Content Include="Pages\Eminutes\ScheduleOfWork.aspx" />
-    <Content Include="scripts\DataBase\Dropp All Tables.sql" />
-    <Content Include="scripts\DataBase\Treatment Schema &amp; Data%2812-4-2020%29.sql" />
-    <Content Include="scripts\DataBase\Treatment Schema &amp; Data%2817-4-2020%29.sql" />
-    <Content Include="scripts\DataBase\Treatment Schema &amp; Data.sql" />
+    <Content Include="Entity\DataBase\Dropp All Tables.sql" />
+    <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2812-4-2020%29.sql" />
+    <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2817-4-2020%29.sql" />
+    <Content Include="Entity\DataBase\Treatment Schema &amp; Data.sql" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Admin\Language.aspx" />
     <Content Include="Pages\Admin\LogFile.aspx" />
@@ -2428,6 +2428,9 @@
     <Compile Include="Pages\Treatment\AdvancedSearch.aspx.designer.cs">
       <DependentUpon>AdvancedSearch.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Treatment\ChangeStructure.ashx.cs">
+      <DependentUpon>ChangeStructure.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Treatment\inbox.aspx.cs">
       <DependentUpon>inbox.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2621,6 +2624,7 @@
       <DependentUpon>ECMS.edmx</DependentUpon>
     </Content>
     <Content Include="Pages\Eminutes\BoardManagment\DeleteMembers.ashx" />
+    <Content Include="Pages\Treatment\ChangeStructure.ashx" />
     <None Include="Properties\PublishProfiles\ECMS-Publish.pubxml" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">

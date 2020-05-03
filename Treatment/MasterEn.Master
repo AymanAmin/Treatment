@@ -373,6 +373,21 @@
                                         <div class="dropdown-primary dropdown" runat="server" id="panelNotification">
                                         </div>
                                     </li>
+
+                                    <!-- Structure List -->
+                                    <li class="header-notification">
+                                        <div class="dropdown-primary dropdown" runat="server" id="EmpStructures">
+                                            <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
+                                                <i class="feather icon-grid"></i>
+                                            </div>
+                                        
+                                        <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                            <asp:Literal ID="txtStructure" runat="server"></asp:Literal>
+                                        </ul>
+                                            </div>
+                                    </li>
+                                    <!-- End Structure List -->
+
                                     <li class="user-profile header-notification">
                                         <div class="dropdown-primary dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">
@@ -383,8 +398,8 @@
                                             </div>
                                             <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                                 <li>
-                                                    <a href="#!">
-                                                        <i class="feather icon-settings"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Settings", "Settings") %>
+                                                    <a href="../../../../Pages/Eminutes/Home.aspx">
+                                                        <i class="feather icon-repeat"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-EMinutes", "E-Minutes") %>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -411,6 +426,7 @@
 
                                         </div>
                                     </li>
+
                                 </ul>
                             </div>
                         </div>
