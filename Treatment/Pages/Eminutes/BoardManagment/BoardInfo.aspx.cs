@@ -66,8 +66,8 @@ namespace Treatment.Pages.Eminutes.BoardManagment
             List<M_Board_Type> ListBoardType = db.M_Board_Type.ToList();
             ddlFiller.dropDDL(txtTypeofBoard, "Board_Type_Id", "Board_Type_Name_En", ListBoardType, "Select Type");
 
-            List<M_Board_Status> ListBoardStatus = db.M_Board_Status.ToList();
-            ddlFiller.dropDDL(txtStatusofBoard, "Board_Status_Id", "Board_Status_Name_En", ListBoardStatus, "Select Status");
+           /* List<M_Board_Status> ListBoardStatus = db.M_Board_Status.ToList();
+            ddlFiller.dropDDL(txtStatusofBoard, "Board_Status_Id", "Board_Status_Name_En", ListBoardStatus, "Select Status");*/
 
             List<M_Board_Classification> ListBoardClassification = db.M_Board_Classification.ToList();
             ddlFiller.dropDDL(txtClassification, "Board_Classification_Id", "Board_Classification_Name_En", ListBoardClassification, "Select Classification");

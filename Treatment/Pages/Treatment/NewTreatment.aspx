@@ -94,6 +94,7 @@
                             <asp:TextBox ID="replyDate" runat="server" class="form-control" placeholder="Enter Treatment Date" TextMode="SingleLine"></asp:TextBox>
                         </div>
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-12">

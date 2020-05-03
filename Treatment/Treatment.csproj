@@ -161,6 +161,7 @@
     <Content Include="Pages\Eminutes\BoardManagment\BoardInfo.aspx" />
     <Content Include="Pages\Eminutes\Home.aspx" />
     <Content Include="Pages\Eminutes\Meeting.aspx" />
+    <Content Include="Pages\Eminutes\MeetingManagment\MeetingInfo.aspx" />
     <Content Include="Pages\Eminutes\ScheduleOfWork.aspx" />
     <Content Include="scripts\DataBase\Dropp All Tables.sql" />
     <Content Include="scripts\DataBase\Treatment Schema &amp; Data%2812-4-2020%29.sql" />
@@ -2111,69 +2112,11 @@
     <Compile Include="EminutesMaster.Master.designer.cs">
       <DependentUpon>EminutesMaster.Master</DependentUpon>
     </Compile>
-    <Compile Include="Entity\M_Attendees.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Board.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Board_Classification.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Board_Location.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Board_Member.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Board_Status.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Board_Type.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Meeting.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Member_Type.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Recommendation.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\M_Topic.cs">
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\App_Start\WebApiConfig.cs" />
-    <Compile Include="Classes\ddlFiller.cs" />
-    <Compile Include="Classes\Emp_Structure.cs" />
-    <Compile Include="Classes\Enums.cs" />
-    <Compile Include="Classes\FieldNames.cs" />
-    <Compile Include="Classes\LogFileModule.cs" />
-    <Compile Include="Classes\SessionWrapper.cs" />
-    <Compile Include="Classes\StringCipher.cs" />
-    <Compile Include="Classes\UtilityClass.cs" />
-    <Compile Include="Classes\SendEmail.cs" />
     <Compile Include="Entity\Assignment_Status.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Attachment.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\ECMS.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ECMS.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\ECMS.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ECMS.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entity\ECMS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ECMS.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entity\Employee.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
@@ -2191,6 +2134,39 @@
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Log_File.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Attendees.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Classification.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Location.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Member.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Board_Type.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Meeting.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Meeting_Status.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Member_Type.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Recommendation.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_Topic.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Notification_Employee.cs">
@@ -2240,6 +2216,31 @@
     </Compile>
     <Compile Include="Entity\Treatment_Type.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\App_Start\WebApiConfig.cs" />
+    <Compile Include="Classes\ddlFiller.cs" />
+    <Compile Include="Classes\Emp_Structure.cs" />
+    <Compile Include="Classes\Enums.cs" />
+    <Compile Include="Classes\FieldNames.cs" />
+    <Compile Include="Classes\LogFileModule.cs" />
+    <Compile Include="Classes\SessionWrapper.cs" />
+    <Compile Include="Classes\StringCipher.cs" />
+    <Compile Include="Classes\UtilityClass.cs" />
+    <Compile Include="Classes\SendEmail.cs" />
+    <Compile Include="Entity\ECMS.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ECMS.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ECMS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ECMS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ECMS.edmx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2293,6 +2294,13 @@
     </Compile>
     <Compile Include="Pages\Eminutes\Meeting.aspx.designer.cs">
       <DependentUpon>Meeting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\MeetingManagment\MeetingInfo.aspx.cs">
+      <DependentUpon>MeetingInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\MeetingManagment\MeetingInfo.aspx.designer.cs">
+      <DependentUpon>MeetingInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Eminutes\ScheduleOfWork.aspx.cs">
       <DependentUpon>ScheduleOfWork.aspx</DependentUpon>

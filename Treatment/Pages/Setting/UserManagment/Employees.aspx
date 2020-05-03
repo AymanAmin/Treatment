@@ -23,7 +23,6 @@
                     $('#Body_Holder_Groups').val(Emp.Group_Id).trigger('change');
                     $('#Body_Holder_Language').val(Emp.Language_id).trigger('change'); 
                     $('input[id=Body_Holder_Active]').prop('checked', Emp.Employee_Active);
-                    debugger;
                     if (Emp.Calendar_id == 1){
                         $("input[id=Body_Holder_DateofBirth][value=DateofBirth]").prop('checked', true);
                     } else {
@@ -31,7 +30,6 @@
                     }
                     var Struc = Emp.Structures;
                     $('#Body_Holder_Emp_Structure').val(Struc).trigger('change');
-                    debugger;
                     if (Emp.Employee_Profile == "" || Emp.Employee_Profile == null) {
                         var Profile = "..\/..\/..\/..\/media\/Profile\/Profile.jpg";
                     } else {

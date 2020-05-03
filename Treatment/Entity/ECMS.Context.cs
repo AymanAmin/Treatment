@@ -36,6 +36,16 @@ namespace Treatment.Entity
         public DbSet<LanguageMaster> LanguageMasters { get; set; }
         public DbSet<Lanuage_Detials> Lanuage_Detials { get; set; }
         public DbSet<Log_File> Log_File { get; set; }
+        public DbSet<M_Attendees> M_Attendees { get; set; }
+        public DbSet<M_Board> M_Board { get; set; }
+        public DbSet<M_Board_Classification> M_Board_Classification { get; set; }
+        public DbSet<M_Board_Location> M_Board_Location { get; set; }
+        public DbSet<M_Board_Member> M_Board_Member { get; set; }
+        public DbSet<M_Board_Type> M_Board_Type { get; set; }
+        public DbSet<M_Meeting> M_Meeting { get; set; }
+        public DbSet<M_Member_Type> M_Member_Type { get; set; }
+        public DbSet<M_Recommendation> M_Recommendation { get; set; }
+        public DbSet<M_Topic> M_Topic { get; set; }
         public DbSet<Notification_Employee> Notification_Employee { get; set; }
         public DbSet<Notification_Master> Notification_Master { get; set; }
         public DbSet<Notification_Show> Notification_Show { get; set; }
@@ -52,17 +62,7 @@ namespace Treatment.Entity
         public DbSet<Treatment_Procedure> Treatment_Procedure { get; set; }
         public DbSet<Treatment_Status> Treatment_Status { get; set; }
         public DbSet<Treatment_Type> Treatment_Type { get; set; }
-        public DbSet<M_Attendees> M_Attendees { get; set; }
-        public DbSet<M_Board> M_Board { get; set; }
-        public DbSet<M_Board_Classification> M_Board_Classification { get; set; }
-        public DbSet<M_Board_Location> M_Board_Location { get; set; }
-        public DbSet<M_Board_Member> M_Board_Member { get; set; }
-        public DbSet<M_Board_Type> M_Board_Type { get; set; }
-        public DbSet<M_Meeting> M_Meeting { get; set; }
-        public DbSet<M_Member_Type> M_Member_Type { get; set; }
-        public DbSet<M_Recommendation> M_Recommendation { get; set; }
-        public DbSet<M_Topic> M_Topic { get; set; }
-        public DbSet<M_Board_Status> M_Board_Status { get; set; }
+        public DbSet<M_Meeting_Status> M_Meeting_Status { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

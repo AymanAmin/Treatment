@@ -134,7 +134,7 @@ namespace Treatment.Pages.Treatment
                             Attachment addAtachtmentTreatment = new Attachment();
                             addAtachtmentTreatment.Attachment_Path = UploadFile(postfiles);
                             addAtachtmentTreatment.Attachment_Name = postfiles.FileName;
-                            newTreatment.Attachments.Add(addAtachtmentTreatment);
+                            //newTreatment.Attachments.Add(addAtachtmentTreatment);
                         }
                     }
                     /////////////////////////////////////// End Add Attachment /////////////////////////////////////

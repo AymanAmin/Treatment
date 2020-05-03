@@ -12,10 +12,17 @@ namespace Treatment.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class M_Board_Status
+    public partial class M_Meeting_Status
     {
-        public int Board_Status_Id { get; set; }
-        public string Board_Status_Name_Ar { get; set; }
-        public string Board_Status_Name_En { get; set; }
+        public M_Meeting_Status()
+        {
+            this.M_Meeting = new HashSet<M_Meeting>();
+        }
+    
+        public int Meeting_Status_Id { get; set; }
+        public string Meeting_Status__Name_Ar { get; set; }
+        public string Meeting_Status__Name_En { get; set; }
+    
+        public virtual ICollection<M_Meeting> M_Meeting { get; set; }
     }
 }

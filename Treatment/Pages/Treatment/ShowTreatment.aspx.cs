@@ -539,7 +539,7 @@ namespace Treatment.Pages.Treatment
                             Attachment addAtachtmentTreatment = new Attachment();
                             addAtachtmentTreatment.Attachment_Path = UploadFile(postfiles);
                             addAtachtmentTreatment.Attachment_Name = postfiles.FileName;
-                            newAssignmentTreatment.Attachments.Add(addAtachtmentTreatment);
+                           // newAssignmentTreatment.Attachments.Add(addAtachtmentTreatment);
                         }
                     }
                     /////////////////////////////////////// End Add Attachment /////////////////////////////////////
@@ -740,7 +740,7 @@ namespace Treatment.Pages.Treatment
                     if (isTreatmentDetialParent != null)
                     {
                         listAttachmentTrack = new List<Attachment>();
-                        listAttachmentTrack = isTreatmentDetialParent.Treatment_Master.Attachments.ToList<Attachment>();
+                        //listAttachmentTrack = isTreatmentDetialParent.Treatment_Master.Attachments.ToList<Attachment>();
                         if (listAttachmentTrack.Count > 0)
                         {
                             yourHTMLStringTrack += "<div class='row' style='margin-right: 0%;'>";
