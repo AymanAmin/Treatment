@@ -176,6 +176,14 @@
           <Property Name="Meeting_Minutes" Type="ntext" />
           <Property Name="Board_Location_Id" Type="int" />
         </EntityType>
+        <EntityType Name="M_Meeting_Status">
+          <Key>
+            <PropertyRef Name="Meeting_Status_Id" />
+          </Key>
+          <Property Name="Meeting_Status_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Meeting_Status__Name_Ar" Type="nvarchar(max)" />
+          <Property Name="Meeting_Status__Name_En" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="M_Member_Type">
           <Key>
             <PropertyRef Name="Member_Type_Id" />
@@ -942,6 +950,7 @@
           <EntitySet Name="M_Board_Status" EntityType="Self.M_Board_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Board_Type" EntityType="Self.M_Board_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Meeting" EntityType="Self.M_Meeting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Meeting_Status" EntityType="Self.M_Meeting_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Member_Type" EntityType="Self.M_Member_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Recommendation" EntityType="Self.M_Recommendation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Topic" EntityType="Self.M_Topic" Schema="dbo" store:Type="Tables" />
@@ -2341,7 +2350,16 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="M_Meeting_Status" EntityType="ECMSModel.M_Meeting_Status" />
         </EntityContainer>
+        <EntityType Name="M_Meeting_Status">
+          <Key>
+            <PropertyRef Name="Meeting_Status_Id" />
+          </Key>
+          <Property Name="Meeting_Status_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Meeting_Status__Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Meeting_Status__Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2775,6 +2793,15 @@
           <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ECMSModel.Store.sp_helpdiagrams" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ECMSModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ECMSModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="M_Meeting_Status">
+            <EntityTypeMapping TypeName="ECMSModel.M_Meeting_Status">
+              <MappingFragment StoreEntitySet="M_Meeting_Status">
+                <ScalarProperty Name="Meeting_Status__Name_En" ColumnName="Meeting_Status__Name_En" />
+                <ScalarProperty Name="Meeting_Status__Name_Ar" ColumnName="Meeting_Status__Name_Ar" />
+                <ScalarProperty Name="Meeting_Status_Id" ColumnName="Meeting_Status_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

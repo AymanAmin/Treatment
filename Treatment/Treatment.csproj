@@ -2166,6 +2166,9 @@
     <Compile Include="Entity\M_Meeting.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\M_Meeting_Status.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\M_Member_Type.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>

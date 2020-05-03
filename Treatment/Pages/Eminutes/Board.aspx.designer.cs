@@ -175,6 +175,24 @@ namespace Treatment.Pages.Eminutes {
         protected global::System.Web.UI.WebControls.Literal txtLocations;
         
         /// <summary>
+        /// Literal1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal1;
+        
+        /// <summary>
+        /// txtMeetings control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal txtMeetings;
+        
+        /// <summary>
         /// SubBoard control.
         /// </summary>
         /// <remarks>
