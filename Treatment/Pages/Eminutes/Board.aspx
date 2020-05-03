@@ -13,8 +13,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-header-text"><span> 
-                             <asp:Literal ID="txtEditBoard" runat="server"></asp:Literal> Board Properties </span></h5>
+                        <h5 class="card-header-text"><span>
+                            <asp:Literal ID="txtEditBoard" runat="server"></asp:Literal>
+                            Board Properties </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>
@@ -22,7 +23,7 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <div class="card-block task-details">
                         <table class="table table-border table-xs">
                             <tbody>
@@ -64,8 +65,9 @@
             <div class="col-md-12">
                 <div class="card table-card">
                     <div class="card-header">
-                        <h5><span> 
-                             <asp:Literal ID="txtMeetingMembers" runat="server"></asp:Literal> Meeting Members </span></h5>
+                        <h5><span>
+                            <asp:Literal ID="txtMeetingMembers" runat="server"></asp:Literal>
+                            Meeting Members </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>
@@ -90,7 +92,7 @@
                             <p id="Div_Members" runat="server" class="text-muted m-b-10">Members</p>
                             <div id="Div_Members_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
-                                   <asp:Literal ID="txtMembers" runat="server"></asp:Literal>
+                                    <asp:Literal ID="txtMembers" runat="server"></asp:Literal>
                                 </table>
                             </div>
                         </div>
@@ -103,8 +105,9 @@
             <div class="col-md-12">
                 <div class="card user-activity-card feed-card">
                     <div class="card-header">
-                        <h5><span> 
-                             <asp:Literal ID="txtEditLocations" runat="server"></asp:Literal> Locations </span></h5>
+                        <h5><span>
+                            <asp:Literal ID="txtEditLocations" runat="server"></asp:Literal>
+                            Locations </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>
@@ -112,11 +115,11 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <div class="card-block">
 
                         <asp:Literal ID="txtLocations" runat="server"></asp:Literal>
-                        
+
                     </div>
                 </div>
             </div>
@@ -126,9 +129,11 @@
         <div class="col-xl-8 col-lg-12 pull-xl-4">
             <!--Meeting-->
             <div class="col-md-12">
-                <div class="card table-card">
+                <div class="card user-activity-card feed-card">
                     <div class="card-header">
-                        <h5>Board Meeting</h5>
+                        <h5><span>
+                            <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+                            Locations </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>
@@ -136,91 +141,33 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="card-block">
+                        <!-- start of table -->
                         <div class="table-responsive">
-                            <table class="table table-hover table-borderless">
-                                <thead>
+                            <table id="issue-list-table" class="table dt-responsive width-100">
+                                <thead class="text-left">
                                     <tr>
+                                        <th>Expand</th>
+                                        <th>Actions</th>
                                         <th>Status</th>
-                                        <th>Name</th>
-                                        <th>Location</th>
+                                        <th>English Name</th>
+                                        <th>Arabic Name</th>
                                         <th>Date</th>
+                                        <th>Time</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <label class="label label-success">open</label></td>
-                                        <td>Website down for one week</td>
-                                        <td>Saudi Arabia, Riyadh</td>
-                                        <td>Today 2:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="label label-primary">progress</label></td>
-                                        <td>Loosing control on server</td>
-                                        <td>Saudi Arabia, Riyadh</td>
-                                        <td>Yesterday</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="label label-danger">closed</label></td>
-                                        <td>Authorizations keys</td>
-                                        <td>Saudi Arabia, Riyadh</td>
-                                        <td>27, Aug</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="label label-success">open</label></td>
-                                        <td>Restoring default settings</td>
-                                        <td>Saudi Arabia, Riyadh</td>
-                                        <td>Today 9:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="label label-primary">progress</label></td>
-                                        <td>Loosing control on server</td>
-                                        <td>Saudi Arabia, Riyadh</td>
-                                        <td>Yesterday</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="label label-success">open</label></td>
-                                        <td>Restoring default settings</td>
-                                        <td>Saudi Arabia, Riyadh</td>
-                                        <td>Today 9:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="label label-danger">closed</label></td>
-                                        <td>Authorizations keys</td>
-                                        <td>Saudi Arabia, Riyadh</td>
-                                        <td>27, Aug</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="label label-success">open</label></td>
-                                        <td>Restoring default settings</td>
-                                        <td>Saudi Arabia, Riyadh</td>
-                                        <td>Today 9:00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label class="label label-primary">progress</label></td>
-                                        <td>Loosing control on server</td>
-                                        <td>Saudi Arabia, Riyadh</td>
-                                        <td>Yesterday</td>
-                                    </tr>
+                                <tbody class="text-left">
+                                    <asp:Literal ID="txtMeetings" runat="server"></asp:Literal>
                                 </tbody>
                             </table>
-                            <div class="text-right m-r-20">
-                                <a href="#!" class=" b-b-primary text-primary">View all Projects</a>
-                            </div>
                         </div>
+                        <!-- end of table -->
                     </div>
+                    <!--End Meeting-->
                 </div>
             </div>
-            <!--End Meeting-->
+
 
             <!--Laws regulations-->
             <div class="col-md-12">

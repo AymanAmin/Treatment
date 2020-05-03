@@ -2299,7 +2299,49 @@
             <End Role="Treatment_Type" EntitySet="Treatment_Type" />
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
           </AssociationSet>
+<<<<<<< HEAD
+=======
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="M_Meeting_Status" EntityType="ECMSModel.M_Meeting_Status" />
+>>>>>>> 38aafd28634a3107e1498a3fea299fff15d35349
         </EntityContainer>
+        <EntityType Name="M_Meeting_Status">
+          <Key>
+            <PropertyRef Name="Meeting_Status_Id" />
+          </Key>
+          <Property Name="Meeting_Status_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Meeting_Status__Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Meeting_Status__Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2735,6 +2777,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+<<<<<<< HEAD
+=======
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ECMSModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ECMSModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ECMSModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ECMSModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ECMSModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ECMSModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ECMSModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="M_Meeting_Status">
+            <EntityTypeMapping TypeName="ECMSModel.M_Meeting_Status">
+              <MappingFragment StoreEntitySet="M_Meeting_Status">
+                <ScalarProperty Name="Meeting_Status__Name_En" ColumnName="Meeting_Status__Name_En" />
+                <ScalarProperty Name="Meeting_Status__Name_Ar" ColumnName="Meeting_Status__Name_Ar" />
+                <ScalarProperty Name="Meeting_Status_Id" ColumnName="Meeting_Status_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+>>>>>>> 38aafd28634a3107e1498a3fea299fff15d35349
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

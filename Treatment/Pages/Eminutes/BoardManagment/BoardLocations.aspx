@@ -102,6 +102,7 @@
                     <hr />
 
                     <div class="row col-md-12">
+                        <!-- start of table -->
                         <div class="table-responsive">
                             <table id="issue-list-table" class="table dt-responsive width-100">
                                 <thead class="text-left">
