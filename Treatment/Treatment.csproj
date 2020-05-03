@@ -159,6 +159,8 @@
     </Content>
     <Content Include="Pages\Eminutes\Board.aspx" />
     <Content Include="Pages\Eminutes\BoardManagment\BoardInfo.aspx" />
+    <Content Include="Pages\Eminutes\BoardManagment\BoardLocations.aspx" />
+    <Content Include="Pages\Eminutes\BoardManagment\BoardMember.aspx" />
     <Content Include="Pages\Eminutes\Home.aspx" />
     <Content Include="Pages\Eminutes\Meeting.aspx" />
     <Content Include="Pages\Eminutes\MeetingManagment\MeetingInfo.aspx" />
@@ -2284,6 +2286,23 @@
     <Compile Include="Pages\Eminutes\BoardManagment\BoardInfo.aspx.designer.cs">
       <DependentUpon>BoardInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Eminutes\BoardManagment\BoardLocations.aspx.cs">
+      <DependentUpon>BoardLocations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\BoardManagment\BoardLocations.aspx.designer.cs">
+      <DependentUpon>BoardLocations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\BoardManagment\BoardMember.aspx.cs">
+      <DependentUpon>BoardMember.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\BoardManagment\BoardMember.aspx.designer.cs">
+      <DependentUpon>BoardMember.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\BoardManagment\DeleteMembers.ashx.cs">
+      <DependentUpon>DeleteMembers.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Eminutes\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2601,6 +2620,7 @@
     <Content Include="Entity\ECMS.edmx.diagram">
       <DependentUpon>ECMS.edmx</DependentUpon>
     </Content>
+    <Content Include="Pages\Eminutes\BoardManagment\DeleteMembers.ashx" />
     <None Include="Properties\PublishProfiles\ECMS-Publish.pubxml" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">

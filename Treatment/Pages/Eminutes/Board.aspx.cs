@@ -210,7 +210,7 @@ namespace Treatment.Pages.Eminutes
                 str += "<i class='feather icon-map-pin bg-simple-c-green feed-icon'></i>";
                 str += "</div>";
                 str += "<div class='col'>";
-                str += "<h6 class='m-b-5'>"+ Locations[i].Board_Location_Name_En + "</h6>";
+                str += "<h6 class='m-b-5'>" + Locations[i].Board_Location_Name_En + "</h6>";
                 str += "<p class='text-muted m-b-0'>" + Locations[i].Board_Location_Description_En + "</p>";
                 if (Locations[i].Board_Location_OnMap != null && Locations[i].Board_Location_OnMap != string.Empty)
                     str += "<a href ='" + Locations[i].Board_Location_OnMap + "' target='_blank'><p class='text-muted m-b-0'><i class='feather icon-map-pin m-r-10'></i>Open On Map</p></a>";
@@ -233,17 +233,18 @@ namespace Treatment.Pages.Eminutes
                 str += "<a href= '../../../../Pages/Eminutes/Meeting.aspx?MeetingID=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:red;'> <i class='icofont icofont-ui-delete'> </i></a></td>";
                 try { statusid = (int)ListMeetings[i].Meeting_Status; } catch { }
                 M_Meeting_Status status = db.M_Meeting_Status.FirstOrDefault(x => x.Meeting_Status_Id == statusid);
-                if(status != null)
-                    str += "<td>" + status.Meeting_Status__Name_En + "</td>";
+                if (status != null)
+                    if (status.Meeting_Status_Id == 1)
+                        str += "<td><label class='label label-success'>" + status.Meeting_Status__Name_En + "</label></td>";
+                    else
+                        str += "<td> <label class='label label-danger'>" + status.Meeting_Status__Name_En + "</label></td>";
                 else
-                    str += "<td> Unknow </td>";
+                    str += "<td> <label class='label label-info'>Unknow </label></td>";
                 str += "<td>" + ListMeetings[i].Meeting_Name_En + "</td>";
                 str += "<td>" + ListMeetings[i].Meeting_Name_Ar + "</td>";
                 DateTime date = DateTime.Parse(ListMeetings[i].Meeting_Date.ToString());
                 str += "<td>" + date.ToShortDateString() + "</td>";
                 str += "<td>" + ListMeetings[i].Meeting_Time.ToString() + "</td>";
-                
-
                 str += "</tr>";
             }
             txtMeetings.Text = str;

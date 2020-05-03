@@ -3,7 +3,7 @@
     <title><% = Treatment.Classes.FieldNames.getFieldName("MeetingInfo-Title", "Meeting Screen") %></title>
       <!-- ckeditor.css-->
     <link rel="stylesheet" href="~\Theme\files\bower_components\ckeditor\samples\css\samples.css" />
-    <link rel="stylesheet" href="~\Theme\files\bower_components\ckeditor\samples\toolbarconfigurator/lib/codemirror/neo.css" />
+    <link rel="stylesheet" href="~\Theme\files\bower_components\ckeditor\samples\toolbarconfigurator\lib\codemirror\neo.css" />
      <!-- Date-time picker css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\pages\advance-elements\css\bootstrap-datetimepicker.css"/>
     <!-- Date-range picker css  -->
