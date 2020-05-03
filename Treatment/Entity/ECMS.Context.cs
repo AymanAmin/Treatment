@@ -12,6 +12,9 @@ namespace Treatment.Entity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class ECMSEntities : DbContext
     {
@@ -61,9 +64,6 @@ namespace Treatment.Entity
         public DbSet<Treatment_Procedure> Treatment_Procedure { get; set; }
         public DbSet<Treatment_Status> Treatment_Status { get; set; }
         public DbSet<Treatment_Type> Treatment_Type { get; set; }
-<<<<<<< HEAD
-=======
-        public DbSet<M_Meeting_Status> M_Meeting_Status { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -167,6 +167,5 @@ namespace Treatment.Entity
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
->>>>>>> 38aafd28634a3107e1498a3fea299fff15d35349
     }
 }

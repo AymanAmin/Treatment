@@ -902,6 +902,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ECMSModelStoreContainer">
           <EntitySet Name="Assignment_Status" EntityType="Self.Assignment_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attachment" EntityType="Self.Attachment" Schema="dbo" store:Type="Tables" />
@@ -2299,8 +2330,6 @@
             <End Role="Treatment_Type" EntitySet="Treatment_Type" />
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
           </AssociationSet>
-<<<<<<< HEAD
-=======
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -2331,17 +2360,7 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="M_Meeting_Status" EntityType="ECMSModel.M_Meeting_Status" />
->>>>>>> 38aafd28634a3107e1498a3fea299fff15d35349
         </EntityContainer>
-        <EntityType Name="M_Meeting_Status">
-          <Key>
-            <PropertyRef Name="Meeting_Status_Id" />
-          </Key>
-          <Property Name="Meeting_Status_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Meeting_Status__Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Meeting_Status__Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2777,8 +2796,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-<<<<<<< HEAD
-=======
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ECMSModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ECMSModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ECMSModel.Store.sp_dropdiagram" />
@@ -2786,16 +2803,6 @@
           <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ECMSModel.Store.sp_helpdiagrams" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ECMSModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ECMSModel.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="M_Meeting_Status">
-            <EntityTypeMapping TypeName="ECMSModel.M_Meeting_Status">
-              <MappingFragment StoreEntitySet="M_Meeting_Status">
-                <ScalarProperty Name="Meeting_Status__Name_En" ColumnName="Meeting_Status__Name_En" />
-                <ScalarProperty Name="Meeting_Status__Name_Ar" ColumnName="Meeting_Status__Name_Ar" />
-                <ScalarProperty Name="Meeting_Status_Id" ColumnName="Meeting_Status_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
->>>>>>> 38aafd28634a3107e1498a3fea299fff15d35349
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

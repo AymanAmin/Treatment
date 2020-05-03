@@ -54,20 +54,12 @@
     <!-- Select 2 css -->
     <link rel="stylesheet" href="~\Theme\files\bower_components\select2\css\select2.min.css" />
 
-<<<<<<< HEAD
-    <!-- ckeditor.css-->
-    <link rel="stylesheet" href="~\Theme\files\bower_components\ckeditor\samples\css\samples.css" />
-    <link rel="stylesheet" href="~\Theme\files\bower_components\ckeditor\samples\toolbarconfigurator/lib/codemirror/neo.css" />
      <!-- Date-time picker css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\pages\advance-elements\css\bootstrap-datetimepicker.css" />
     <!-- Date-range picker css  -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap-daterangepicker\css\daterangepicker.css" />
     <!-- Date-Dropper css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datedropper\css\datedropper.min.css" />
-=======
-    <!-- radial chart -->
-    <link rel="stylesheet" href="~\Theme\files\assets\pages\chart\radial\css\radial.css" type="text/css" media="all"/>
->>>>>>> 72282600bee7204e3f9507dcd24d8212a2300021
 
      <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {

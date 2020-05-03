@@ -18,11 +18,20 @@ namespace Treatment.Pages.Eminutes
         int User_Id = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            MeetingID = 5;
-             User_Id = 2;
+            if (Request["BoardId"] == null)
+                Response.Redirect("~/Pages/Eminutes/Home.aspx");
+            else
+                BoardID = int.Parse(Request["BoardId"].ToString());
+
+            if (Request["MeetingID"] == null)
+                Response.Redirect("~/Pages/Eminutes/Home.aspx");
+            else
+                MeetingID = int.Parse(Request["MeetingID"].ToString());
+
+            User_Id = 2;
             MeetingInfo(MeetingID);
             ViewTopic(MeetingID);
-            MeetingMember(1);
+            MeetingMember(BoardID);
             ViewVotes(MeetingID);
         }
 
@@ -159,8 +168,11 @@ namespace Treatment.Pages.Eminutes
                         int BoMe_Id = 0;
                         int.TryParse(BoardMember[i].Board_Member_Id.ToString(), out BoMe_Id);
                         var Employee = db.Employees.First(x => x.Employee_Id == emp_id);
-                        var MemberAttendees = db.M_Attendees.First(x => x.Board_Member_Id == BoMe_Id && x.Meeting_Id == MeetingID);
+                        var MemberAttendees = db.M_Attendees.FirstOrDefault(x => x.Board_Member_Id == BoMe_Id && x.Meeting_Id == MeetingID);
+                        if(MemberAttendees !=  null)
+
                         if (MemberAttendees.Attendess_Status == 1) AttendeesCheck = "checked='checked'"; else AttendeesCheck = "";
+                        else {AttendeesCheck = "";}
                         ImgTag = "<img class='img-radius img-40 align-top m-r-15'" + "src='../../../../media/Profile/" + Employee.Employee_Profile + "'alt='" + Employee.Employee_Profile + "'>";
                         yourHTMLstring += "<tr>" +
                                "<td class='b-none'>" +

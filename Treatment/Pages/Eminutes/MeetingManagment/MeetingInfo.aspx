@@ -2,14 +2,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title><% = Treatment.Classes.FieldNames.getFieldName("MeetingInfo-Title", "Meeting Screen") %></title>
       <!-- ckeditor.css-->
-    <link rel="stylesheet" href="~/Theme\files\bower_components\ckeditor\samples\css\samples.css" />
-    <link rel="stylesheet" href="~/Theme\files\bower_components\ckeditor\samples\toolbarconfigurator/lib/codemirror/neo.css" />
+    <link rel="stylesheet" href="~\Theme\files\bower_components\ckeditor\samples\css\samples.css" />
+    <link rel="stylesheet" href="~\Theme\files\bower_components\ckeditor\samples\toolbarconfigurator/lib/codemirror/neo.css" />
      <!-- Date-time picker css -->
-    <link rel="stylesheet" type="text/css" href="~/Theme\files\assets\pages\advance-elements\css\bootstrap-datetimepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\pages\advance-elements\css\bootstrap-datetimepicker.css"/>
     <!-- Date-range picker css  -->
-    <link rel="stylesheet" type="text/css" href="~/Theme\files\bower_components\bootstrap-daterangepicker\css\daterangepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap-daterangepicker\css\daterangepicker.css"/>
     <!-- Date-Dropper css -->
-    <link rel="stylesheet" type="text/css" href="~/Theme\files\bower_components\datedropper\css\datedropper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datedropper\css\datedropper.min.css"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_PlaceHolder" runat="server">
     <div class="row">
