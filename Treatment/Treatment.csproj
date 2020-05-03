@@ -153,6 +153,7 @@
     <Content Include="Pages\Eminutes\BoardManagment\BoardMember.aspx" />
     <Content Include="Pages\Eminutes\Home.aspx" />
     <Content Include="Pages\Eminutes\Meeting.aspx" />
+    <Content Include="Pages\Eminutes\MeetingManagment\MeetingInfo.aspx" />
     <Content Include="Pages\Eminutes\ScheduleOfWork.aspx" />
     <Content Include="scripts\DataBase\Dropp All Tables.sql" />
     <Content Include="scripts\DataBase\Treatment Schema &amp; Data%2812-4-2020%29.sql" />
@@ -2305,6 +2306,13 @@
     </Compile>
     <Compile Include="Pages\Eminutes\Meeting.aspx.designer.cs">
       <DependentUpon>Meeting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\MeetingManagment\MeetingInfo.aspx.cs">
+      <DependentUpon>MeetingInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\MeetingManagment\MeetingInfo.aspx.designer.cs">
+      <DependentUpon>MeetingInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Eminutes\ScheduleOfWork.aspx.cs">
       <DependentUpon>ScheduleOfWork.aspx</DependentUpon>
