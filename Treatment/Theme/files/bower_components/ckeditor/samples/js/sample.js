@@ -19,20 +19,26 @@ var initSample = ( function() {
 
 	return function() {
 	    var editorElement = CKEDITOR.document.getById('Body_Holder_speech');
-
+        var editorElement2 = CKEDITOR.document.getById('Body_PlaceHolder_Minutes');
 		// :(((
 		if ( isBBCodeBuiltIn ) {
 			editorElement.setHtml(
 				'Hello world!\n\n' +
 				'I\'m an instance of [url=https://ckeditor.com]CKEditor[/url].'
-			);
+            );
+            editorElement2.setHtml(
+                'Hello world!\n\n' +
+                'I\'m an instance of [url=https://ckeditor.com]CKEditor[/url].'
+            );
 		}
 
 		// Depending on the wysiwygarea plugin availability initialize classic or inline editor.
 		if ( wysiwygareaAvailable ) {
-		    CKEDITOR.replace('Body_Holder_speech');
+            CKEDITOR.replace('Body_Holder_speech');
+            CKEDITOR.replace('Body_PlaceHolder_Minutes');
 		} else {
-			editorElement.setAttribute( 'contenteditable', 'true' );
+            editorElement.setAttribute('contenteditable', 'true');
+            editorElement2.setAttribute('contenteditable', 'true');
 			CKEDITOR.inline( 'editor' );
 
 			// TODO we can consider displaying some info box that
