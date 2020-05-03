@@ -77,13 +77,13 @@ namespace Treatment.Pages.Setting.Auth
                             SessionWrapper.Permssions = List_permission;
 
                             // Set Structure List in session
-                            Employee_Structure emp_structure = emp.Employee_Structure.FirstOrDefault(x => x.Default_Structure == true);
+                            Employee_Structure emp_structure = db.Employee_Structure.FirstOrDefault(x => x.Default_Structure == true && x.Employee_Id == emp.Employee_Id || x.Employee_Delegation == emp.Employee_Id);
                             if(emp_structure != null)
-                                SessionWrapper.Structure = emp_structure.Employee_Structure_Id;
+                                SessionWrapper.EmpStructure = emp_structure.Employee_Structure_Id;
                             else
                             {
                                 Employee_Structure emp_structure2 = emp.Employee_Structure.FirstOrDefault();
-                                SessionWrapper.Structure = emp_structure.Employee_Structure_Id;
+                                SessionWrapper.EmpStructure = emp_structure.Employee_Structure_Id;
                             }
 
                             /* Add it to log file */
