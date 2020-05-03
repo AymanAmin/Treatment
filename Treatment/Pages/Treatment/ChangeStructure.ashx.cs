@@ -20,7 +20,7 @@ namespace Treatment.Pages.Treatment
         public void ProcessRequest(HttpContext context)
         {
             if(context.Request["EmpStructureId"] == null)
-                context.Response.Redirect("../../../../");
+                context.Response.Redirect("~/");
 
             string str = context.Request["EmpStructureId"].ToString();
 
