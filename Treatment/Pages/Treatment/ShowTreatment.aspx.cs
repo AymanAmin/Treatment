@@ -422,6 +422,7 @@ namespace Treatment.Pages.Treatment
             {
                 try
                 {
+                    //db.Configuration.LazyLoadingEnabled = false;
                     var newReplyTreatment = db.Treatment_Detial.First(x => x.Treatment_Detial_Id == treatmentDetialId);
                     newReplyTreatment.Treatment_Detial_Date = DateTime.Now;
                     newReplyTreatment.Note = replyTreatement.Text;
@@ -440,9 +441,9 @@ namespace Treatment.Pages.Treatment
                     {
 
                     }
-                    db.Configuration.LazyLoadingEnabled = false;
-                    LogData = "data:" + JsonConvert.SerializeObject(newReplyTreatment, logFileModule.settings);
-                    logFileModule.logfile(1009, "إضافة رد علي معاملة", "add Reply Treatment", LogData);
+                    
+                    //LogData = "data:" + JsonConvert.SerializeObject(newReplyTreatment, logFileModule.settings);
+                    //logFileModule.logfile(1009, "إضافة رد علي معاملة", "add Reply Treatment", LogData);
                 }
                 catch { messageReplyForm = "Erorr to save data in system"; return false; }
                 return true;
@@ -501,7 +502,7 @@ namespace Treatment.Pages.Treatment
             {
                 try
                 {
-                    db.Configuration.LazyLoadingEnabled = false;
+                    //db.Configuration.LazyLoadingEnabled = false;
                     var newAssignmentTreatment = db.Treatment_Master.Create();
                     newAssignmentTreatment.Create_Date = DateTime.Now;
                     newAssignmentTreatment.Update_Date = DateTime.Now;
@@ -577,8 +578,8 @@ namespace Treatment.Pages.Treatment
                     if (insertNotification(newAssignmentTreatment.Treatment_Id)) { }
 
                     //LogData = "data:" + JsonConvert.SerializeObject(newAssignmentTreatment, logFileModule.settings);
-                    LogData = "";
-                    logFileModule.logfile(1009, "إضافة إحالة", "add Assignment", LogData);
+                    //LogData = "";
+                    //logFileModule.logfile(1009, "إضافة إحالة", "add Assignment", LogData);
                     if (!flayRequiredReply)
                     {
                         if (!closeAssignmentTreatment(false))
@@ -661,15 +662,15 @@ namespace Treatment.Pages.Treatment
         {
             try
             {
+                //db.Configuration.LazyLoadingEnabled = false;
                 var closeAssignment = db.Treatment_Detial.First(x => x.Treatment_Detial_Id == treatmentDetialId);
                 closeAssignment.Treatment_Detial_Date = DateTime.Now;
                 closeAssignment.Assignment_Status_Id = 3;
                 closeAssignment.Note = "Done Close Treatment";
                 db.Entry(closeAssignment).State = EntityState.Modified;
                 db.SaveChanges();
-                db.Configuration.LazyLoadingEnabled = false;
-                LogData = "data:" + JsonConvert.SerializeObject(closeAssignment, logFileModule.settings);
-                logFileModule.logfile(1009, " اغلاق المعاملة", "Close Treatment", LogData);
+                //LogData = "data:" + JsonConvert.SerializeObject(closeAssignment, logFileModule.settings);
+                //logFileModule.logfile(1009, " اغلاق المعاملة", "Close Treatment", LogData);
                 if (flayInsertNotification)
                 {
                     string linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentId + "&getTabId=4&getTreatmentDetialId=" + closeAssignment.Parent + "&getNotificationId=";
