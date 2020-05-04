@@ -527,7 +527,7 @@ namespace Treatment.Pages.Treatment
                     {
                         treatmentDetial = new Treatment_Detial();
                         treatmentDetial.To_Employee_Structure_Id = int.Parse(itemTreatmentTo.Value);
-                        treatmentDetial.Parent = 0;
+                        treatmentDetial.Parent = treatmentDetialId;
                         treatmentDetial.Assignment_Status_Id = 1;
                         treatmentDetial.Is_Read = false;
                         treatmentDetial.Is_Delete = false;
@@ -545,7 +545,7 @@ namespace Treatment.Pages.Treatment
                     {
                         treatmentDetial = new Treatment_Detial();
                         treatmentDetial.To_Employee_Structure_Id = int.Parse(itemTreatmentCopyTo.Value);
-                        treatmentDetial.Parent = 0;
+                        treatmentDetial.Parent = treatmentDetialId;
                         treatmentDetial.Assignment_Status_Id = 1;
                         treatmentDetial.Is_Read = false;
                         treatmentDetial.Is_Delete = false;
