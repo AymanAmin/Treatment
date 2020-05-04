@@ -19,7 +19,13 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
         protected void Page_Load(object sender, EventArgs e)
         {
             BoardID = 1;
-           // MeetingID = 1;
+            // MeetingID = 1;
+
+            if (Request["BoardId"] == null)
+                Response.Redirect("~/Pages/Eminutes/Home.aspx");
+
+            BoardID = int.Parse(Request["BoardId"].ToString());
+
             if (!IsPostBack)
             {
                 if (MeetingID == 0) ini(); else ViewMeeting(MeetingID);

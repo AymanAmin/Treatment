@@ -11,7 +11,7 @@
         })
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Body_PlaceHolder" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <div class="row">
         <div class="col-sm-12">
             <asp:Literal ID="LtrMessage" runat="server"></asp:Literal>

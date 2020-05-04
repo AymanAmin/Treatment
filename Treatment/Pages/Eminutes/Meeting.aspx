@@ -25,7 +25,7 @@
           }
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Body_PlaceHolder" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
 
     <div class="row">
         <div class="col-xl-4 col-lg-12 push-xl-8 task-detail-right">

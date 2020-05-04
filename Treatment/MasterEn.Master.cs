@@ -21,6 +21,8 @@ namespace Treatment
         protected void Page_Load(object sender, EventArgs e)
         {
             db = new ECMSEntities();
+
+            Session["IsECMS"] = true;
             //ListPermissions = db.Permissions.ToList();
             if (SessionWrapper.LoggedUser != null)
             {

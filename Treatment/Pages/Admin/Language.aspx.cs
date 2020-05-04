@@ -18,6 +18,13 @@ namespace Treatment.Pages.Admin
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["IsECMS"] != null)
+                if (!(bool)Session["IsECMS"])
+                    this.MasterPageFile = "~/EminutesMaster.Master";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

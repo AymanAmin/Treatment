@@ -11,7 +11,7 @@
     <!-- Date-Dropper css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datedropper\css\datedropper.min.css"/>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Body_PlaceHolder" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <div class="row">
         <div class="col-sm-12">
             <!-- Basic Form Inputs card start -->

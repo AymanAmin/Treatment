@@ -6,7 +6,7 @@
         setTimeout(function () { document.getElementById("header_page").style.display = "none"; }, 1);
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Body_PlaceHolder" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <div class="row">
         <asp:Literal ID="txtBoard" runat="server"></asp:Literal>
     </div>

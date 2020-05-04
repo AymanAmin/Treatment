@@ -16,6 +16,13 @@ namespace Treatment.Pages.Setting.UserManagment
     {
         ECMSEntities db = new ECMSEntities();
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["IsECMS"] != null)
+                if (!(bool)Session["IsECMS"])
+                    this.MasterPageFile = "~/EminutesMaster.Master";
+        }
+
         //LogFile Data
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";

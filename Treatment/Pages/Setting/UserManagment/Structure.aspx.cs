@@ -12,6 +12,13 @@ namespace Treatment.Pages.Treatment
     public partial class Tree : System.Web.UI.Page
     {
         ECMSEntities db = new ECMSEntities();
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (Session["IsECMS"] != null)
+                if (!(bool)Session["IsECMS"])
+                    this.MasterPageFile = "~/EminutesMaster.Master";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             

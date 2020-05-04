@@ -19,7 +19,7 @@ var initSample = ( function() {
 
 	return function() {
 	    var editorElement = CKEDITOR.document.getById('Body_Holder_speech');
-        var editorElement2 = CKEDITOR.document.getById('Body_PlaceHolder_Minutes');
+        var editorElement2 = CKEDITOR.document.getById('Body_Holder_Minutes');
 		// :(((
 		if ( isBBCodeBuiltIn ) {
 			editorElement.setHtml(
@@ -35,7 +35,7 @@ var initSample = ( function() {
 		// Depending on the wysiwygarea plugin availability initialize classic or inline editor.
 		if ( wysiwygareaAvailable ) {
             CKEDITOR.replace('Body_Holder_speech');
-            CKEDITOR.replace('Body_PlaceHolder_Minutes');
+            CKEDITOR.replace('Body_Holder_Minutes');
 		} else {
             editorElement.setAttribute('contenteditable', 'true');
             editorElement2.setAttribute('contenteditable', 'true');

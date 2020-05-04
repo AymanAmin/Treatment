@@ -577,17 +577,18 @@ namespace Treatment.Pages.Treatment
                     if (insertNotification(newAssignmentTreatment.Treatment_Id)) { }
 
                     //LogData = "data:" + JsonConvert.SerializeObject(newAssignmentTreatment, logFileModule.settings);
+                    LogData = "";
                     logFileModule.logfile(1009, "إضافة إحالة", "add Assignment", LogData);
                     if (!flayRequiredReply)
                     {
                         if (!closeAssignmentTreatment(false))
                         {
-                            messageAssignmentForm = "Erorr to save Close Assignment data in system";
+                            messageAssignmentForm = "Error to save Close Assignment data in system";
                             return false;
                         }
                     }
                 }
-                catch { messageAssignmentForm = "Erorr to save data in system"; return false; }
+                catch { messageAssignmentForm = "Error to save data in system"; return false; }
                 return true;
             }
             else
