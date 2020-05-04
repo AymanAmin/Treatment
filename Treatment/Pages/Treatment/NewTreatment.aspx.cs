@@ -27,7 +27,7 @@ namespace Treatment.Pages.Treatment
         {
             checkLogin();
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
-            currentStructureUserId = getStructure(currentUserId);
+            currentStructureUserId = SessionWrapper.EmpStructure;
             treatmentDate.Text = DateTime.Now.Date.ToShortDateString();
             if (!IsPostBack)
                 fillDropDownListBox();
@@ -442,6 +442,7 @@ namespace Treatment.Pages.Treatment
             }
             return employeeStructureId;
         }
+
         private string getTreatmentNumber()
         {
             string treatmentNumber = "";

@@ -20,7 +20,7 @@ namespace Treatment.Pages.Treatment
         {
             checkLogin();
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
-            currentStructureUserId = getStructure(currentUserId);
+            currentStructureUserId = SessionWrapper.EmpStructure;
             if (loadListViewInboxTreatment())
             {
 
