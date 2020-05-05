@@ -164,6 +164,13 @@ namespace Treatment.Pages.Treatment
                                     updatetReadNotification(notificationMasterId);
                                 }
 
+                                if (isTreatmentDetial.Treatment_Copy_To == true)
+                                {
+                                    //if(isTreatmentDetial.Assignment_Status_Id == 3)
+                                    closeAssignmentTreatment(false);
+                                    actionReply.Style["display"] = "none";
+                                }
+
                                 if (isTreatmentDetial.Assignment_Status_Id == 1)
                                 {
                                     return;
@@ -176,6 +183,8 @@ namespace Treatment.Pages.Treatment
                                 {
                                     actionReply.Style["display"] = "none";
                                 }
+
+                                
                             }
                             else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
                         }
@@ -664,24 +673,27 @@ namespace Treatment.Pages.Treatment
             {
                 //db.Configuration.LazyLoadingEnabled = false;
                 var closeAssignment = db.Treatment_Detial.First(x => x.Treatment_Detial_Id == treatmentDetialId);
-                closeAssignment.Treatment_Detial_Date = DateTime.Now;
-                closeAssignment.Assignment_Status_Id = 3;
-                closeAssignment.Note = "Done Close Treatment";
-                db.Entry(closeAssignment).State = EntityState.Modified;
-                db.SaveChanges();
-                //LogData = "data:" + JsonConvert.SerializeObject(closeAssignment, logFileModule.settings);
-                //logFileModule.logfile(1009, " اغلاق المعاملة", "Close Treatment", LogData);
-                if (flayInsertNotification)
+                if (closeAssignment.Assignment_Status_Id != 3)
                 {
-                    string linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentId + "&getTabId=4&getTreatmentDetialId=" + closeAssignment.Parent + "&getNotificationId=";
-                    int notifSendTo = (int)closeAssignment.Treatment_Master.From_Employee_Structure_Id;
-                    if (insertNotification("تم إغلاق المعاملة", "Done Close Treatment", closeAssignment.Treatment_Master.Treatment_Id, linkNotif, notifSendTo, 3))
+                    closeAssignment.Treatment_Detial_Date = DateTime.Now;
+                    closeAssignment.Assignment_Status_Id = 3;
+                    closeAssignment.Note = "Done Close Treatment";
+                    db.Entry(closeAssignment).State = EntityState.Modified;
+                    db.SaveChanges();
+                    //LogData = "data:" + JsonConvert.SerializeObject(closeAssignment, logFileModule.settings);
+                    //logFileModule.logfile(1009, " اغلاق المعاملة", "Close Treatment", LogData);
+                    if (flayInsertNotification)
                     {
+                        string linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentId + "&getTabId=4&getTreatmentDetialId=" + closeAssignment.Parent + "&getNotificationId=";
+                        int notifSendTo = (int)closeAssignment.Treatment_Master.From_Employee_Structure_Id;
+                        if (insertNotification("تم إغلاق المعاملة", "Done Close Treatment", closeAssignment.Treatment_Master.Treatment_Id, linkNotif, notifSendTo, 3))
+                        {
 
-                    }
-                    else
-                    {
+                        }
+                        else
+                        {
 
+                        }
                     }
                 }
             }
