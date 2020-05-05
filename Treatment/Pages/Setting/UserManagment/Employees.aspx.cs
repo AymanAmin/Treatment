@@ -115,8 +115,8 @@ namespace Treatment.Pages.Treatment
                 Emp.Calendar_id = calander;
                 string ImagepathProfile = UploadFile(1);
                 string ImagepathSignature = UploadFile(2);
-                if (ImagepathProfile != "") Emp.Employee_Profile = ImagepathProfile; else ImagepathProfile = "Profile.JPG";
-                if (ImagepathSignature != "") Emp.Employee_Signature =ImagepathSignature;else ImagepathSignature= "Signature.JPG";
+                if (ImagepathProfile != "" ) Emp.Employee_Profile = ImagepathProfile; else if(EmployeeID == 0) ImagepathProfile = "Profile.JPG";
+                if (ImagepathSignature != "") Emp.Employee_Signature =ImagepathSignature;else if (EmployeeID == 0) ImagepathSignature = "Signature.JPG";
                 /////////////////////////////////////// Employee_Structure /////////////////////////////////////
                 for (int i = 0; i < Emp_Structure.Items.Count; i++)
                 {
@@ -182,7 +182,6 @@ namespace Treatment.Pages.Treatment
                     {
                         if (!UtilityClass.UploadFileIsValid(ref EmpProfile, UtilityClass.ValidImagesExtentions))
                         {
-                            //ltrMessage.Text = "<div class='alert alert-danger fade in'><strong>Images only allowed !</strong></div>";
                             Imagepath = "false";
                         }
                         Imagepath = string.Empty;
@@ -195,7 +194,6 @@ namespace Treatment.Pages.Treatment
                     {
                         if (!UtilityClass.UploadFileIsValid(ref EmpSignature, UtilityClass.ValidImagesExtentions))
                         {
-                            //ltrMessage.Text = "<div class='alert alert-danger fade in'><strong>Images only allowed !</strong></div>";
                             Imagepath = "false";
                         }
                         Imagepath = string.Empty;
@@ -274,6 +272,7 @@ namespace Treatment.Pages.Treatment
             string yourHTMLstring = "";
             string Emp_Name = "";
             UCard.Controls.Clear();
+            ALLEmployees = db.Employees.ToList();
             while (i < ALLEmployees.Count)
             {
 

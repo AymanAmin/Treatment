@@ -176,6 +176,7 @@ namespace Treatment.Pages.Treatment
                                 {
                                     actionReply.Style["display"] = "none";
                                 }
+                                
                             }
                             else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
                         }

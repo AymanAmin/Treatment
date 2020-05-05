@@ -101,7 +101,7 @@
                                         </Style>
                                 </PropertiesTextEdit>
                             </dx:TreeListTextColumn>
-                            <dx:TreeListCommandColumn VisibleIndex="2">
+                            <dx:TreeListCommandColumn VisibleIndex="4">
                                 <EditButton Visible="True" Text=" ">
                                     <Styles>
                                         <Style CssClass=" icofont icofont-ui-edit text-info h6" VerticalAlign="Middle" Font-Underline="false">
@@ -148,6 +148,10 @@
                                         </Style>
                                 </PropertiesTextEdit>
                             </dx:TreeListTextColumn>
+                            <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Is Job Title" FieldName="Is_Job_Title" ShowInFilterControl="Default" VisibleIndex="2">
+                            </dx:TreeListTextColumn>
+                            <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Is Manager" FieldName="Is_Manager" Name="Is_Manager" ShowInFilterControl="Default" VisibleIndex="3">
+                            </dx:TreeListTextColumn>
                         </Columns>
                         <SettingsBehavior AutoExpandAllNodes="True" />
 
@@ -155,36 +159,10 @@
 
                         <SettingsEditing AllowNodeDragDrop="True" Mode="Inline" />
 
-
-
-
-
-
-
-
-
-
-
-
-
                         <SettingsPopupEditForm VerticalOffset="-1"></SettingsPopupEditForm>
-
                         <SettingsPopup>
                             <EditForm VerticalOffset="-1"></EditForm>
                         </SettingsPopup>
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </dx:ASPxTreeList>
                 </div>
                 <asp:EntityDataSource ID="TreeDataSourceView" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="Structures" EntityTypeFilter="Structure">
