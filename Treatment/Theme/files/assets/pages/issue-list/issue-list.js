@@ -1,6 +1,8 @@
 'use strict';
 $(document).ready(function() {
     $('#issue-list-table').DataTable();
+    $('#issue-list-table1').DataTable();
+    $('#issue-list-table2').DataTable();
 
 
     var progression1 = 0;

@@ -14,9 +14,9 @@ namespace Treatment.Pages.Treatment
     public partial class ShowTreatment : System.Web.UI.Page
     {
         ECMSEntities db;
-        int treatmentId = 0, recoverParentid = 0, treatmentDetialId = 0, tabId = 0, notificationMasterId = 0, attachmentMasterId = 0;
+        int treatmentId = 0, recoverParentid = 0, treatmentDetialId = 0, treatmentDetialParentBorderId = 0, tabId = 0, notificationMasterId = 0, attachmentMasterId = 0;
         string messageForm = "", messageReplyForm = "", messageAssignmentForm = "", yourHTMLStringTrack = "", detialAssingmentNote = "", _fileExt = "";
-        int currentStructureUserId = 0, currentUserId = 0, marginTreeTrack = 0 ;
+        int currentStructureUserId = 0, currentUserId = 0, marginTreeTrack = 0, DelegationStructureUserId = 0;
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
         List<Treatment_Detial> treeTreatmentDetial;
@@ -24,10 +24,10 @@ namespace Treatment.Pages.Treatment
         Treatment_Detial oneTreatmentDetial;
         Treatment_Detial recoverTreatmentDetial;
         Treatment_Detial isTreatmentDetialParent;
-        bool isSecert = false, isPath = false, flayRequiredReply = false;
+        bool isSecert = false, isPath = false, flayRequiredReply = false, flayBorder = false;
         List<Attachment> listAttachmentTrack;
-        string treatmentDetialDate = "";
-            
+        string treatmentDetialDate = "", isTrackBorder = "";
+        List<Employee_Structure> ListDelegationEmpStru = new List<Employee_Structure>();
         List<Structure> ListStructure = new List<Structure>();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,6 +49,7 @@ namespace Treatment.Pages.Treatment
             isSecert = false; isPath = false;
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = SessionWrapper.EmpStructure;
+            ListDelegationEmpStru = db.Employee_Structure.Where(x => x.Employee_Delegation == currentStructureUserId && x.Type_Delegation == true).ToList<Employee_Structure>();
             if (int.TryParse(Request["getTreatmentId"], out treatmentId) && treatmentId > 0)
             {
                 //treatmentDetialId = getTreatmentDetialId();
@@ -104,6 +105,54 @@ namespace Treatment.Pages.Treatment
             }
         }
 
+        private int getIsDelegationDetailId()
+        {
+            Treatment_Detial treatmentDetialDel = new Treatment_Detial();
+            //int delegationCurrent = 0;
+            try
+            {
+                treatmentDetialDel = db.Treatment_Detial.FirstOrDefault(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Treatment_Detial_Id == treatmentDetialId);
+                if (treatmentDetialDel != null)
+                    return currentStructureUserId;
+                int delgEmpStrId = 0;
+                for (int i = 0; i < ListDelegationEmpStru.Count; i++)
+                {
+                    treatmentDetialDel = new Treatment_Detial();
+                    delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
+                    treatmentDetialDel = db.Treatment_Detial.FirstOrDefault(x => x.To_Employee_Structure_Id == delgEmpStrId && x.Treatment_Detial_Id == treatmentDetialId);
+                    if (treatmentDetialDel != null)
+                        return delgEmpStrId;
+                }
+            }
+            catch (Exception eexs) { }
+
+            return 0;
+        }
+
+        private int getIsDelegationMasterId()
+        {
+            Treatment_Master TreatmentMasterDel = new Treatment_Master();
+            //int delegationCurrent = 0;
+            try
+            {
+                TreatmentMasterDel = db.Treatment_Master.FirstOrDefault(x => x.From_Employee_Structure_Id == currentStructureUserId && x.Treatment_Id == treatmentId);
+                if (TreatmentMasterDel != null)
+                    return currentStructureUserId;
+                int delgEmpStrId = 0;
+                for (int i = 0; i < ListDelegationEmpStru.Count; i++)
+                {
+                    TreatmentMasterDel = new Treatment_Master();
+                    delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
+                    TreatmentMasterDel = db.Treatment_Master.FirstOrDefault(x => x.From_Employee_Structure_Id == delgEmpStrId && x.Treatment_Id == treatmentId);
+                    if (TreatmentMasterDel != null)
+                        return delgEmpStrId;
+                }
+            }
+            catch (Exception eexs) { }
+
+            return 0;
+        }
+
         private void beforLoadTreatment()
         {
             if (treatmentId == 0)
@@ -118,13 +167,17 @@ namespace Treatment.Pages.Treatment
                     isTreatment = db.Treatment_Master.First(x => x.Treatment_Id == treatmentId);
                     if (int.TryParse(Request["getTabId"], out tabId) && tabId > 0)
                     {
-                        if (tabId == 1 || tabId == 3)
+                        if (tabId == 1 || tabId == 3 || tabId == 4)
                         {
                             if (int.TryParse(Request["getTreatmentDetialId"], out treatmentDetialId) && treatmentDetialId > 0)
                             {
-                                Treatment_Detial isTreatmentDetial = db.Treatment_Detial.First(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Treatment_Detial_Id == treatmentDetialId);
+                                DelegationStructureUserId = getIsDelegationDetailId();
+                                if(DelegationStructureUserId == 0)
+                                    Response.Redirect("~/Pages/Treatment/Inbox.aspx");
 
-                                Treatment_Master isTreatmentMasterDetial = db.Treatment_Master.FirstOrDefault(x => x.From_Employee_Structure_Id == currentStructureUserId && x.Treatment_Id == treatmentId);
+                                Treatment_Detial isTreatmentDetial = db.Treatment_Detial.First(x => x.To_Employee_Structure_Id == DelegationStructureUserId && x.Treatment_Detial_Id == treatmentDetialId);
+                                treatmentDetialParentBorderId = (int)isTreatmentDetial.Parent;
+                                Treatment_Master isTreatmentMasterDetial = db.Treatment_Master.FirstOrDefault(x => x.From_Employee_Structure_Id == DelegationStructureUserId && x.Treatment_Id == treatmentId);
                                 if (isTreatmentMasterDetial != null)
                                     tabId = 2;
                                 int sercuid = getSecretLevel();
@@ -186,11 +239,31 @@ namespace Treatment.Pages.Treatment
 
                                 
                             }
+                            else if (tabId == 4 && treatmentDetialId == 0)
+                            {
+                                DelegationStructureUserId = getIsDelegationMasterId();
+                                if (DelegationStructureUserId == 0)
+                                    Response.Redirect("~/Pages/Treatment/Inbox.aspx");
+                                if (isTreatment.From_Employee_Structure_Id == DelegationStructureUserId)
+                                {
+                                    if (int.TryParse(Request["getNotificationId"], out notificationMasterId) && notificationMasterId > 0)
+                                    {
+                                        actionReply.Style["display"] = "none";
+                                        updatetReadNotification(notificationMasterId);
+                                        return;
+                                    }
+                                    else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
+                                }
+                                else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
+                            }
                             else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
                         }
                         else if(tabId == 2)
                         {
-                            if (isTreatment.From_Employee_Structure_Id == currentStructureUserId)
+                            DelegationStructureUserId = getIsDelegationMasterId();
+                            if (DelegationStructureUserId == 0)
+                                Response.Redirect("~/Pages/Treatment/Inbox.aspx");
+                            if (isTreatment.From_Employee_Structure_Id == DelegationStructureUserId)
                             {
                                 treatmentDetialId = 0;
                                 actionReply.Style["display"] = "none";
@@ -198,16 +271,7 @@ namespace Treatment.Pages.Treatment
                             }
                             else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
                         }
-                        else if (tabId == 4 && treatmentDetialId == 0)
-                        {
-                            if (int.TryParse(Request["getNotificationId"], out notificationMasterId) && notificationMasterId > 0)
-                            {
-                                actionReply.Style["display"] = "none";
-                                updatetReadNotification(notificationMasterId);
-                                return;
-                            }
-                            else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
-                        }
+                        
                     }
                     else Response.Redirect("~/Pages/Treatment/Inbox.aspx");
 
@@ -770,7 +834,21 @@ namespace Treatment.Pages.Treatment
                 {
                     doneTreatmentDetial.Add(oneTreatmentDetial);
                     detialAssingmentNote = getNoteAssignment(oneTreatmentDetial.Treatment_Detial_Id);
-                    yourHTMLStringTrack = "<div class='sortable-moves col-xs-12' style='margin-left: " + marginTreeTrack + "%;'>" +
+                    //////////////////// color border///////////////
+                    if (treatmentDetialId == oneTreatmentDetial.Treatment_Detial_Id)
+                    {
+                        isTrackBorder = "3px solid #0ac282";
+                        flayBorder = true;
+                    }
+                    else
+                        isTrackBorder = "0px solid #0ac282";
+                    if (treatmentDetialParentBorderId == oneTreatmentDetial.Treatment_Detial_Id && treatmentDetialParentBorderId != 0)
+                        isTrackBorder = "3px solid #fe9365";
+                    else if(!flayBorder)
+                        isTrackBorder = "0px solid #fe9365";
+                    flayBorder = false;
+                    ///////////////////// color border/////////////////
+                    yourHTMLStringTrack = "<div class='sortable-moves col-xs-12' style='margin-left: " + marginTreeTrack + "%;border-left:" + isTrackBorder + "'>" +
                                             "<img class='img-fluid p-absolute' src='../../../../media/Profile/" + oneTreatmentDetial.Employee_Structure.Employee.Employee_Profile + "' alt=''>" +
                                             "<h6 class='d-inline-block'>" + oneTreatmentDetial.Employee_Structure.Employee.Employee_Name_En + "</h6>" +
                                             "<span class='label label-default f-right'>" + treatmentDetialDate + "</span>" +
@@ -918,6 +996,7 @@ namespace Treatment.Pages.Treatment
                 {
                     Treatment_Master treatmentMasterNotf = new Treatment_Master();
                     treatmentMasterNotf = dbEcms.Treatment_Master.FirstOrDefault(x => x.Treatment_Id == treatmentIdNotf && x.Required_Reply == true);
+                    
                     if (treatmentMasterNotf != null)
                     {
                         List<Treatment_Detial> listTreatmentDetialNotf = new List<Treatment_Detial>();
@@ -926,7 +1005,7 @@ namespace Treatment.Pages.Treatment
                         for (int i = 0; i < listTreatmentDetialNotf.Count; i++)
                         {
 
-                            linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentIdNotf + "&getTabId=4&getTreatmentDetialId=" + listTreatmentDetialNotf[i].Treatment_Detial_Id + "&getNotificationId=";
+                            linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentId + "&getTabId=4&getTreatmentDetialId=" + listTreatmentDetialNotf[i].Treatment_Detial_Id + "&getNotificationId=";
                             Notification_Master notificationMaster = new Notification_Master();
                             notificationMaster = dbEcms.Notification_Master.Create();
                             notificationMaster.Notification_Date = DateTime.Now;
