@@ -28,11 +28,14 @@ namespace Treatment.Pages.Treatment
         protected void Save_Click(object sender, EventArgs e)
         {
             int parent = 0;
+            bool IsJob = false;
+            bool Is_Manager = false;
 
             int.TryParse(Parent.SelectedValue.ToString(), out parent);
+             IsJob = IsJobTitle.Checked;
+             Is_Manager = IsManager.Checked;
 
-
-            bool result = insert_tree_record(Name_Ar.Text, Name_En.Text, parent);
+            bool result = insert_tree_record(Name_Ar.Text, Name_En.Text, parent, IsJob, Is_Manager);
             if (result)
             {
                 ASPxTreeList1.DataBind();
@@ -42,7 +45,7 @@ namespace Treatment.Pages.Treatment
             }
         }
 
-        private bool insert_tree_record(string Name_Ar,string Name_En, int parent_id)
+        private bool insert_tree_record(string Name_Ar,string Name_En, int parent_id,bool IsJob,bool IsManager)
         {
             try
             {
@@ -50,6 +53,8 @@ namespace Treatment.Pages.Treatment
                 stru.Structure_Name_Ar = Name_Ar;
                 stru.Structure_Name_En = Name_En;
                 stru.Structure_Parent = parent_id;
+                stru.Is_Job_Title = IsJob;
+                stru.Is_Manager = IsManager;
                 db.Structures.Add(stru);
                 db.SaveChanges();
             }

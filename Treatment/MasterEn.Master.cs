@@ -38,6 +38,7 @@ namespace Treatment
                 if (SessionWrapper.LoggedUser.Language_id == 1)
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "RTL_Layout();", true);
             ListPermissions = SessionWrapper.Permssions;
+
             Employee_Name();
             LoadBreadcrumb(ListPermissions);
             LoadMenu(ListPermissions);
@@ -349,7 +350,6 @@ namespace Treatment
             txtStructure.Text = str;
 
         }
-
 
         private string dateAgo(DateTime yourDate)
         {

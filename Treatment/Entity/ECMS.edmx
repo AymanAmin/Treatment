@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ECMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Assignment_Status">
           <Key>
             <PropertyRef Name="Assignment_Status_Id" />
@@ -255,6 +255,14 @@
           <Property Name="Notification_Show_Name_Ar" Type="nvarchar(max)" />
           <Property Name="Notification_Show_Name_En" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="OurSystems">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="System_Name_Ar" Type="nvarchar(max)" />
+          <Property Name="System_Name_En" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Owner_Relationship">
           <Key>
             <PropertyRef Name="Owner_Id" />
@@ -276,6 +284,7 @@
           <Property Name="Parent" Type="int" />
           <Property Name="Url_Path" Type="nvarchar(max)" />
           <Property Name="Permission_Icon" Type="nvarchar(max)" />
+          <Property Name="System_Id" Type="int" />
         </EntityType>
         <EntityType Name="Permission_Group">
           <Key>
@@ -758,6 +767,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Permission_OurSystems">
+          <End Role="OurSystems" Type="Self.OurSystems" Multiplicity="0..1" />
+          <End Role="Permission" Type="Self.Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OurSystems">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Permission">
+              <PropertyRef Name="System_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Treatment_Detial_Assignment_Status">
           <End Role="Assignment_Status" Type="Self.Assignment_Status" Multiplicity="0..1" />
           <End Role="Treatment_Detial" Type="Self.Treatment_Detial" Multiplicity="*" />
@@ -957,6 +978,7 @@
           <EntitySet Name="Notification_Employee" EntityType="Self.Notification_Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notification_Master" EntityType="Self.Notification_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notification_Show" EntityType="Self.Notification_Show" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OurSystems" EntityType="Self.OurSystems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Owner_Relationship" EntityType="Self.Owner_Relationship" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission_Group" EntityType="Self.Permission_Group" Schema="dbo" store:Type="Tables" />
@@ -1090,6 +1112,10 @@
             <End Role="Permission" EntitySet="Permission" />
             <End Role="Permission_Group" EntitySet="Permission_Group" />
           </AssociationSet>
+          <AssociationSet Name="FK_Permission_OurSystems" Association="Self.FK_Permission_OurSystems">
+            <End Role="OurSystems" EntitySet="OurSystems" />
+            <End Role="Permission" EntitySet="Permission" />
+          </AssociationSet>
           <AssociationSet Name="FK_Treatment_Detial_Assignment_Status" Association="Self.FK_Treatment_Detial_Assignment_Status">
             <End Role="Assignment_Status" EntitySet="Assignment_Status" />
             <End Role="Treatment_Detial" EntitySet="Treatment_Detial" />
@@ -1139,8 +1165,7 @@
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ECMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1473,6 +1498,8 @@
           <Property Name="Permission_Icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Log_File" Relationship="Self.FK_Log_File_Permission" FromRole="Permission" ToRole="Log_File" />
           <NavigationProperty Name="Permission_Group" Relationship="Self.FK_Permission_Group_Permission" FromRole="Permission" ToRole="Permission_Group" />
+          <Property Name="System_Id" Type="Int32" />
+          <NavigationProperty Name="OurSystem" Relationship="ECMSModel.FK_Permission_OurSystems" FromRole="Permission" ToRole="OurSystem" />
         </EntityType>
         <EntityType Name="Permission_Group">
           <Key>
@@ -2360,7 +2387,33 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="OurSystems" EntityType="ECMSModel.OurSystem" />
+          <AssociationSet Name="FK_Permission_OurSystems" Association="ECMSModel.FK_Permission_OurSystems">
+            <End Role="OurSystem" EntitySet="OurSystems" />
+            <End Role="Permission" EntitySet="Permissions" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="OurSystem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="System_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="System_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Permissions" Relationship="ECMSModel.FK_Permission_OurSystems" FromRole="OurSystem" ToRole="Permission" />
+        </EntityType>
+        <Association Name="FK_Permission_OurSystems">
+          <End Type="ECMSModel.OurSystem" Role="OurSystem" Multiplicity="0..1" />
+          <End Type="ECMSModel.Permission" Role="Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OurSystem">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Permission">
+              <PropertyRef Name="System_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2655,6 +2708,7 @@
           <EntitySetMapping Name="Permissions">
             <EntityTypeMapping TypeName="ECMSModel.Permission">
               <MappingFragment StoreEntitySet="Permission">
+                <ScalarProperty Name="System_Id" ColumnName="System_Id" />
                 <ScalarProperty Name="Permission_Id" ColumnName="Permission_Id" />
                 <ScalarProperty Name="Permission_Name_Ar" ColumnName="Permission_Name_Ar" />
                 <ScalarProperty Name="Permission_Name_En" ColumnName="Permission_Name_En" />
@@ -2803,6 +2857,15 @@
           <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ECMSModel.Store.sp_helpdiagrams" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ECMSModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ECMSModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="OurSystems">
+            <EntityTypeMapping TypeName="ECMSModel.OurSystem">
+              <MappingFragment StoreEntitySet="OurSystems">
+                <ScalarProperty Name="System_Name_En" ColumnName="System_Name_En" />
+                <ScalarProperty Name="System_Name_Ar" ColumnName="System_Name_Ar" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

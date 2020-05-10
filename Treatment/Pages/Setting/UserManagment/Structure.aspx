@@ -43,7 +43,7 @@
                                     <!-- Tree Form -->
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <label class="j-label">Name Arabic</label>
+                                            <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Structure-NameArabic", "Name Arabic") %></label>
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-underline"></i></span>
                                                 <asp:TextBox ID="Name_Ar" runat="server" class="form-control" placeholder="Enter Name in Arabic" TextMode="SingleLine"></asp:TextBox>
@@ -54,7 +54,7 @@
                                         </div>
 
                                         <div class="col-sm-12">
-                                            <label class="j-label">Name English</label>
+                                            <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Structure-NameEnglish", "Name English") %></label>
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon2"><i class="icofont icofont-underline"></i></span>
                                                 <asp:TextBox ID="Name_En" runat="server" class="form-control" placeholder="Enter Name in English"></asp:TextBox>
@@ -64,12 +64,26 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
-                                            <label class="j-label">Parent Form</label>
+                                            <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Structure-ParentForm", "Parent Form") %></label>
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon3"><i class="icofont icofont-tree"></i></span>
                                                 <asp:DropDownList ID="Parent" runat="server" class="form-control form-control-primary" DataSourceID="TreeDataSourceView" DataTextField="Structure_Name_En" DataValueField="Structure_Id"></asp:DropDownList>
                                             </div>
                                         </div>
+                                        <div class="col-sm-12">
+                                            <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Structure-IsManager", "Is Manager") %></label>
+                                            <div class="">
+                                                <input id="IsManager" runat="server" type="checkbox"  name="Active" class="js-switch"/> 
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Structure-IsJobTitle", "Is Job Title") %></label>
+                                            <div class="">
+                                                <input id="IsJobTitle" runat="server" type="checkbox"  name="Active" class="js-switch"/> 
+                                            </div>
+                                        </div>
+
+                                    
 
                                         <div class="col-sm-12" style="text-align: center;">
                                             <asp:Button ID="Save" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="Per" OnClick="Save_Click" />
@@ -87,7 +101,7 @@
                 </div>
                 <!-- Structure Tree -->
                 <div class="row table-responsive">
-                    <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False" DataSourceID="TreeDataSourceView" EnableTheming="True" KeyFieldName="Structure_Id" ParentFieldName="Structure_Parent" PreviewFieldName="Structure_Name" Theme="Mulberry" OnNodeDeleting="ASPxTreeList1_NodeDeleting" OnNodeDeleted="ASPxTreeList1_NodeDeleted">
+                    <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False" DataSourceID="TreeDataSourceView" EnableTheming="True" KeyFieldName="Structure_Id" ParentFieldName="Structure_Parent" PreviewFieldName="Structure_Name" Theme="MetropolisBlue" OnNodeDeleting="ASPxTreeList1_NodeDeleting" OnNodeDeleted="ASPxTreeList1_NodeDeleted">
                         <Columns>
                             <dx:TreeListTextColumn Caption="Arabic Name" FieldName="Structure_Name_Ar" VisibleIndex="0">
 
@@ -148,10 +162,15 @@
                                         </Style>
                                 </PropertiesTextEdit>
                             </dx:TreeListTextColumn>
-                            <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Is Job Title" FieldName="Is_Job_Title" ShowInFilterControl="Default" VisibleIndex="2">
-                            </dx:TreeListTextColumn>
-                            <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Is Manager" FieldName="Is_Manager" Name="Is_Manager" ShowInFilterControl="Default" VisibleIndex="3">
-                            </dx:TreeListTextColumn>
+                            <dx:TreeListCheckColumn AutoFilterCondition="Default" Caption="Is Job Title" FieldName="Is_Job_Title" ShowInFilterControl="Default" VisibleIndex="2">
+                                <PropertiesCheckEdit>
+                                    <CheckBoxStyle CssClass="js-single" />
+                                    <Style CssClass="js-single">
+                                    </Style>
+                                </PropertiesCheckEdit>
+                            </dx:TreeListCheckColumn>
+                            <dx:TreeListCheckColumn AutoFilterCondition="Default" Caption="Is Manager" FieldName="Is_Manager" Name="Is_Manager" ShowInFilterControl="Default" VisibleIndex="3">
+                            </dx:TreeListCheckColumn>
                         </Columns>
                         <SettingsBehavior AutoExpandAllNodes="True" />
 

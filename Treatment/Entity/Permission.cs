@@ -26,8 +26,10 @@ namespace Treatment.Entity
         public Nullable<int> Parent { get; set; }
         public string Url_Path { get; set; }
         public string Permission_Icon { get; set; }
+        public Nullable<int> System_Id { get; set; }
     
         public virtual ICollection<Log_File> Log_File { get; set; }
         public virtual ICollection<Permission_Group> Permission_Group { get; set; }
+        public virtual OurSystem OurSystem { get; set; }
     }
 }

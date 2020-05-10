@@ -58,6 +58,15 @@ namespace Treatment.Pages.Setting.UserManagment {
         protected global::System.Web.UI.WebControls.DropDownList txtParent;
         
         /// <summary>
+        /// txtSystem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList txtSystem;
+        
+        /// <summary>
         /// txtClass_Icon control.
         /// </summary>
         /// <remarks>
@@ -110,5 +119,14 @@ namespace Treatment.Pages.Setting.UserManagment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.EntityDataSource PermissionDataSource;
+        
+        /// <summary>
+        /// SystemDataSource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource SystemDataSource;
     }
 }

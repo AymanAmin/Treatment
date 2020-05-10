@@ -10,6 +10,11 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
+    <style>
+        .text-c-lite-green {
+            color:#34d3eb;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <div class="row">

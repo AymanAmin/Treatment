@@ -19,6 +19,8 @@ namespace Treatment.Pages.Eminutes.BoardManagment
         {
             int board_id = 0;
             M_Board boardinfo = null;
+            txtStatusofBoard.Enabled = false;
+            
             if (Request["BoardId"] != null)
             {
                 board_id = int.Parse(Request["BoardId"].ToString());
@@ -34,7 +36,9 @@ namespace Treatment.Pages.Eminutes.BoardManagment
 
             if (!IsPostBack)
             {
+               
                 fillDropDown();
+                txtStatusofBoard.SelectedValue = "1";
                 if (boardinfo != null)
                     LoadInfo(boardinfo);
             }
@@ -59,18 +63,18 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                     board.Board_Description_En = txtEnglishDescription.Text;
 
                     board.Board_Type_Id = int.Parse(txtTypeofBoard.SelectedValue.ToString());
-                    board.Board_Status = int.Parse(txtStatusofBoard.SelectedValue.ToString());
+                    board.Board_Status = 2; // int.Parse(txtStatusofBoard.SelectedValue.ToString());
                     board.Board_Classification_Id = int.Parse(txtClassification.SelectedValue.ToString());
                     board.Parent = int.Parse(txtParent.SelectedValue.ToString());
 
                     board.Create_Date = DateTime.Now;
 
-                    if (txtTypeofBoard.SelectedValue == "2" && (txtStartDate.Value.ToString() == "" || txtStartDate.Value.ToString() == ""))
+                    if (txtTypeofBoard.SelectedValue == "3" && (txtStartDate.Value.ToString() == "" || txtStartDate.Value.ToString() == ""))
                     {
                         LtrMessage.Text = "<div class='alert alert-warning' role='alert'>Please Select start date & end date...</div>";
                         return;
                     }
-                    else if ((txtTypeofBoard.SelectedValue == "2"))
+                    else if ((txtTypeofBoard.SelectedValue == "3"))
                     {
                         board.Start_Date = DateTime.Parse(txtStartDate.Value.ToString());
                         board.End_Date = DateTime.Parse(txtEndDate.Value.ToString());
@@ -107,7 +111,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
 
                 board.Create_Date = DateTime.Now;
 
-                if (txtTypeofBoard.SelectedValue == "1")
+                if (txtTypeofBoard.SelectedValue == "1" || txtTypeofBoard.SelectedValue == "2")
                 {
                     board.Start_Date = null;
                     board.End_Date = null;
@@ -137,8 +141,8 @@ namespace Treatment.Pages.Eminutes.BoardManagment
             List<M_Board_Type> ListBoardType = db.M_Board_Type.ToList();
             ddlFiller.dropDDL(txtTypeofBoard, "Board_Type_Id", "Board_Type_Name_En", ListBoardType, "Select Type");
 
-           /* List<M_Board_Status> ListBoardStatus = db.M_Board_Status.ToList();
-            ddlFiller.dropDDL(txtStatusofBoard, "Board_Status_Id", "Board_Status_Name_En", ListBoardStatus, "Select Status");*/
+            List<M_Board_Status> ListBoardStatus = db.M_Board_Status.ToList();
+            ddlFiller.dropDDL(txtStatusofBoard, "Board_Status_Id", "Board_Status_Name_En", ListBoardStatus, "Select Status");
 
             List<M_Board_Classification> ListBoardClassification = db.M_Board_Classification.ToList();
             ddlFiller.dropDDL(txtClassification, "Board_Classification_Id", "Board_Classification_Name_En", ListBoardClassification, "Select Classification");

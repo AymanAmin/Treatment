@@ -70,6 +70,7 @@ namespace Treatment.Pages.Setting.UserManagment
                 Per.Parent = parent_id;
                 Per.Url_Path = url;
                 Per.Permission_Icon = icon;
+                Per.System_Id = int.Parse(txtSystem.SelectedValue.ToString());
                 db.Permissions.Add(Per);
                 db.SaveChanges();
 
@@ -77,9 +78,10 @@ namespace Treatment.Pages.Setting.UserManagment
                 LogData = "data:" + JsonConvert.SerializeObject(Per, logFileModule.settings);
                 logFileModule.logfile(10, "إضافة صلاحية جديدة", "add new permission", LogData);
 
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The Permission add successfully ! ');", true);
                 //PriorityDataSource.DataBind();
             }
-            catch { return false; }
+            catch { Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','System Error');", true); return false; }
             return true;
         }
 
@@ -92,8 +94,10 @@ namespace Treatment.Pages.Setting.UserManagment
                 PermissionTreeList.Columns[1].Caption = FieldNames.getFieldName("Permissions-EnglishName", "English Name");
                 PermissionTreeList.Columns[2].Caption = FieldNames.getFieldName("Permissions-URLPath", "URL Path");
                 PermissionTreeList.Columns[3].Caption = FieldNames.getFieldName("Permissions-Icon", "Icon");
-                PermissionTreeList.Columns[4].Caption = FieldNames.getFieldName("Permissions-Action", "Action");
-                PermissionTreeList.Columns[5].Caption = FieldNames.getFieldName("Permissions-Parent", "Parent");
+                
+                PermissionTreeList.Columns[4].Caption = FieldNames.getFieldName("Permissions-Parent", "Parent");
+                PermissionTreeList.Columns[5].Caption = FieldNames.getFieldName("Permissions-System", "System");
+                PermissionTreeList.Columns[6].Caption = FieldNames.getFieldName("Permissions-Action", "Action");
 
                 // Save Button
                 Save.Text = FieldNames.getFieldName("Permissions-Save", "Save");

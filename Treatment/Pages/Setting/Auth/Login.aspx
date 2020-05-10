@@ -141,11 +141,11 @@
                                 <div class="card-block">
                                     <div class="row m-b-20">
 
-                                        <div class="text-center col-md-12">
+                                        <!--<div class="text-center col-md-12">
                                             <img src="..\..\..\..\Theme\files\assets\images\logo.png" alt="logo.png" />
                                             <br />
                                             <br />
-                                        </div>
+                                        </div>-->
                                         
                                         <div class="col-md-12">
                                             <h3 class="text-center">Login</h3>
@@ -177,7 +177,7 @@
                                             <p class="text-inverse text-left m-b-0">Thank you.</p>
                                         </div>
                                         <div class="col-md-2">
-                                            <img src="..\..\..\..\Theme\files\assets\images\Logo.png" alt="small-logo.png" width="50" height="30" />
+                                            <img src="..\..\..\..\Theme\files\assets\images\Logo.jpg" alt="small-logo.jpg" width="100%" />
                                         </div>
                                     </div>
 
