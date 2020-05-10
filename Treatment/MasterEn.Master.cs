@@ -43,7 +43,7 @@ namespace Treatment
             LoadBreadcrumb(ListPermissions);
             LoadMenu(ListPermissions);
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
-            currentStructureUserId = getStructure(currentUserId);
+            currentStructureUserId = SessionWrapper.EmpStructure;
             loadNotification();
             LoadStructure();
             // ViewData(60);
@@ -221,20 +221,6 @@ namespace Treatment
             }
             catch { }
             Menu.Text = str;
-        }
-
-        private int getStructure(int employeeId)
-        {
-            int employeeStructureId = 0;
-            try
-            {
-                Employee_Structure employeeStructure = db.Employee_Structure.First(x => x.Employee_Id == employeeId);
-                employeeStructureId = (int)employeeStructure.Employee_Structure_Id;
-            }
-            catch (Exception)
-            {
-            }
-            return employeeStructureId;
         }
 
         private void loadNotification()
