@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <title><% = Treatment.Classes.FieldNames.getFieldName("Treatment-Title", "REU - Create Treatment") %></title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("Treatment-Title", "ECMS - Create Treatment") %></title>
     <script type="text/javascript">
         function getEmployee() {
             <% getEmployeeTable(); %>

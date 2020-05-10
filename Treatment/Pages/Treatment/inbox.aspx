@@ -3,12 +3,12 @@
 <%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>REU - Inbox</title>
+    <title>ECMS - Inbox</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <!-- Page-body start -->
     <div class="page-body">
-        <!-- Nav Filter tab start -->
+        <!-- Nav Filter tab start 
         <div class="col-lg-12 filter-bar">
             <nav class="navbar navbar-light bg-faded m-b-30 p-10">
                 <ul class="nav navbar-nav">
@@ -27,7 +27,6 @@
                             <a class="dropdown-item" href="#!">This year</a>
                         </div>
                     </li>
-                    <!-- end of by date dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#!" id="bystatus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-chart-histogram-alt"></i> By Status</a>
                         <div class="dropdown-menu" aria-labelledby="bystatus">
@@ -41,7 +40,6 @@
                             <a class="dropdown-item" href="#!">Wontfix</a>
                         </div>
                     </li>
-                    <!-- end of by status dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#!" id="bypriority" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-sub-listing"></i> By Priority</a>
                         <div class="dropdown-menu" aria-labelledby="bypriority">
@@ -69,11 +67,10 @@
                         <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-search"></i></span>
                     </div>
                 </div>
-                <!-- end of by priority dropdown -->
 
             </nav>
         </div>
-        <!-- Nav Filter tab end -->
+       -->
 
         <!-- Start View Inbox list  -->
         <div class="card" id="listViewTreatment">
@@ -116,7 +113,6 @@
                                         <div class="table-responsive" runat="server" id="inboxTreatment">
                                             <!-- Create Table Send Treatment in Code behind Function loadListViewTreatment()-->
                                         </div>
-                                        <hr style="margin-top: -2%;">
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +125,6 @@
                                         <div class="table-responsive" runat="server" id="sendTreatment">
                                             <!-- Create Table Send Treatment in Code behind Function loadListViewTreatment()-->
                                         </div>
-                                        <hr style="margin-top: -2%;">
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +137,6 @@
                                         <div class="table-responsive" runat="server" id="completeTreatment">
                                             <!-- Create Table Complete Treatment in Code behind Function loadListViewTreatment()-->
                                         </div>
-                                        <hr style="margin-top: -2%;">
                                     </div>
                                 </div>
                             </div>
@@ -190,6 +184,9 @@
     border-color: rgb(255, 252, 252);
 
         }
+        .email-card .user-body .page-list li.mail-section a.active, .email-card .user-body .page-list li.mail-section a:hover {
+    color: #452a74 !important;
+}
     </style>
     <script>
         function hidePcoded() {

@@ -66,9 +66,10 @@
 
     <!-- Data Table Css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css" />
-
-
-    <link rel="icon" href="~\Theme\files\assets\images\favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\pages\data-table\css\buttons.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-responsive-bs4\css\responsive.bootstrap4.min.css"/>
+   
+     <link rel="icon" href="~\Theme\files\assets\images\favicon.ico" type="image/x-icon" />
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap\css\bootstrap.min.css" />
     <!-- Required Fremwork -->
@@ -79,8 +80,6 @@
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap-daterangepicker\css\daterangepicker.css" />
     <!-- Date-Dropper css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datedropper\css\datedropper.min.css" />
-    <!-- Data Table Css -->
-    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\datatables.net-bs4\css\dataTables.bootstrap4.min.css" />
     <!-- themify-icons line icon -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\themify-icons\themify-icons.css" />
     <!-- ico font -->
@@ -575,12 +574,19 @@
             <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 
 
-
             <!-- data-table js -->
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\issue-list\issue-list.js"></script>
             <script src="..\..\..\..\Theme\files\bower_components\datatables.net\js\jquery.dataTables.min.js"></script>
+            <script src="..\..\..\..\Theme\files\bower_components\datatables.net-buttons\js\dataTables.buttons.min.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\pages\data-table\js\jszip.min.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\pages\data-table\js\pdfmake.min.js"></script>
+            <script src="..\..\..\..\Theme\files\assets\pages\data-table\js\vfs_fonts.js"></script>
+            <script src="..\..\..\..\Theme\files\bower_components\datatables.net-buttons\js\buttons.print.min.js"></script>
+            <script src="..\..\..\..\Theme\files\bower_components\datatables.net-buttons\js\buttons.html5.min.js"></script>
             <script src="..\..\..\..\Theme\files\bower_components\datatables.net-bs4\js\dataTables.bootstrap4.min.js"></script>
             <script src="..\..\..\..\Theme\files\bower_components\datatables.net-responsive\js\dataTables.responsive.min.js"></script>
             <script src="..\..\..\..\Theme\files\bower_components\datatables.net-responsive-bs4\js\responsive.bootstrap4.min.js"></script>
+            <script type="text/javascript" src="..\..\..\..\Theme\files\assets\pages\sparkline\jquery.sparkline.js"></script>
 
             <!-- echart js -->
             <script src="..\..\..\..\Theme\files\assets\pages\chart\echarts\js\echarts-all.js" type="text/javascript"></script>
