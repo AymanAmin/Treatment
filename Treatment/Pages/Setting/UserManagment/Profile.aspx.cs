@@ -148,8 +148,8 @@ namespace Treatment.Pages.Setting.UserManagment
                 Emp.Calendar_id = calander;
                 string ImagepathProfile = UploadFile(1);
                 string ImagepathSignature = UploadFile(2);
-                if (ImagepathProfile != "") Emp.Employee_Profile = ImagepathProfile; else Emp.Employee_Profile = "Profile.JPG";
-                if (ImagepathSignature != "") Emp.Employee_Signature = ImagepathSignature; else Emp.Employee_Signature = "Signature.JPG";
+                if (ImagepathProfile != "") Emp.Employee_Profile = ImagepathProfile;
+                if (ImagepathSignature != "") Emp.Employee_Signature = ImagepathSignature; 
                 db.Entry(Emp).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
                 /* Add it to log file */

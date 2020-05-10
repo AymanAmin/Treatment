@@ -46,7 +46,7 @@ namespace Treatment.Pages.Eminutes
                     "<div class='card-footer'>" +
                     "<div class='task-list-table'>";
                 // Add Member Profile Pic
-                List<M_Board_Member> List_board_member = list_board[i].M_Board_Member.Where(x => x.Member_Type_Id != 3).ToList();
+                List<M_Board_Member> List_board_member = list_board[i].M_Board_Member.Where(x => x.Member_Type_Id != 4).ToList();
                 for (int k = 0; k < List_board_member.Count; k++)
                 {
                     str += " <a href = '#'>" +

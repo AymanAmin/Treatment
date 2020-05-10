@@ -301,7 +301,7 @@
                                     <i class="feather icon-menu"></i>
                                 </a>
                                 <a href="../../../../">
-                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\logo.png" alt="Theme-Logo" />
+                                    <img class="img-fluid" src="..\..\..\..\Theme\files\assets\images\logo.jpg" width="49%" alt="Theme-Logo" />
                                 </a>
                                 <a class="mobile-options">
                                     <i class="feather icon-more-horizontal"></i>
@@ -317,58 +317,7 @@
                                     </li>
                                 </ul>
                                 <ul class="nav-right">
-                                    <!--<li class="header-notification">
-                                        <div class="dropdown-primary dropdown">
-                                            <div class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="feather icon-map"></i>
-                                            </div>
-                                            <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                                <li>
-                                                    <h6><% = Treatment.Classes.FieldNames.getFieldName("Master-language", "Language") %>:</h6>
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <div class="media-body">
-                                                            <h5 class="notification-user">Arabic</h5>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <div class="media-body">
-                                                            <h5 class="notification-user">English</h5>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="header-notification">
-                                        <div class="dropdown-primary dropdown">
-                                            <div class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="feather icon-calendar"></i>
-                                            </div>
-                                            <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                                <li>
-                                                    <h6><% = Treatment.Classes.FieldNames.getFieldName("Master-Calendar", "Calendar") %>:</h6>
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <div class="media-body">
-                                                            <h5 class="notification-user">Hijri Calendar</h5>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="media">
-                                                        <div class="media-body">
-                                                            <h5 class="notification-user">Gregorian Calendar</h5>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>-->
+                                  
                                     <li class="header-notification">
                                         <div class="dropdown-primary dropdown" runat="server" id="panelNotification">
                                         </div>

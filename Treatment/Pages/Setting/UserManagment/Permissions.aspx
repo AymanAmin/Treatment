@@ -68,6 +68,15 @@
                                                 </div>
                                             </div>
 
+                                            <div class="form-group col-sm-6 j-unit">
+                                                <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-System", "System") %></label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon" id="basic-addon6"><i class="icofont icofont-tree"></i></span>
+                                                    <asp:DropDownList ID="txtSystem" runat="server" class="form-control form-control-primary" DataSourceID="SystemDataSource" DataTextField="System_Name_En" DataValueField="ID">
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+
                                             <div class="form-group col-sm-6 j-unit" style="margin-top: -1%">
                                                 <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-ClassIcon", "Class Icon") %> (<a href="https://icofont.com/icons" target="_blank"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-ClickHere", "Click Here") %></a>)</label>
                                                 <div class="input-group">
@@ -107,67 +116,52 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-model"><% = Treatment.Classes.FieldNames.getFieldName("Permissions-AddPermission", "Add Permission") %></button>
                     </div>
                     <div class="form-group col-sm-12 dt-responsive table-responsive">
-                        <dx:ASPxTreeList ID="PermissionTreeList" Style="width: 100%; text-align: center" runat="server" AutoGenerateColumns="False" DataSourceID="PermissionDataSource" EnableTheming="True" KeyFieldName="Permission_Id" Theme="Mulberry" ParentFieldName="Parent" OnAutoFilterCellEditorInitialize="PermissionTreeList_AutoFilterCellEditorInitialize">
+                        <dx:ASPxTreeList ID="PermissionTreeList" Style="width: 100%; text-align: center" runat="server" AutoGenerateColumns="False" DataSourceID="PermissionDataSource" EnableTheming="True" KeyFieldName="Permission_Id" Theme="Mulberry" OnAutoFilterCellEditorInitialize="PermissionTreeList_AutoFilterCellEditorInitialize" ParentFieldName="Parent" PreviewFieldName="Permission_Name_En">
+
                             <Columns>
                                 <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Arabic Name" FieldName="Permission_Name_Ar" ShowInFilterControl="Default" VisibleIndex="1">
-                                    <PropertiesTextEdit>
-                                        <Style CssClass="form-control">
-                                        </Style>
-                                    </PropertiesTextEdit>
                                 </dx:TreeListTextColumn>
                                 <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="English Name" FieldName="Permission_Name_En" ShowInFilterControl="Default" VisibleIndex="0">
-                                    <PropertiesTextEdit>
-                                        <Style CssClass="form-control">
-                                        </Style>
-                                    </PropertiesTextEdit>
                                 </dx:TreeListTextColumn>
-                                <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Path" FieldName="Url_Path" ShowInFilterControl="Default" VisibleIndex="4">
-                                    <PropertiesTextEdit>
-                                        <Style CssClass="form-control">
-                                        </Style>
-                                    </PropertiesTextEdit>
+                                <dx:TreeListTextColumn AutoFilterCondition="Default" FieldName="Url_Path" ShowInFilterControl="Default" VisibleIndex="5" Caption="URL Path">
                                 </dx:TreeListTextColumn>
-                                <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Icon" FieldName="Permission_Icon" ShowInFilterControl="Default" VisibleIndex="5">
-                                    <PropertiesTextEdit>
-                                        <Style CssClass="form-control">
-                                        </Style>
-                                    </PropertiesTextEdit>
+                                <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Icon" FieldName="Permission_Icon" ShowInFilterControl="Default" VisibleIndex="4">
                                 </dx:TreeListTextColumn>
-                                <dx:TreeListCommandColumn Caption="Action" VisibleIndex="6">
+                                <dx:TreeListComboBoxColumn AutoFilterCondition="Default" FieldName="Parent" ShowInFilterControl="Default" VisibleIndex="2" Caption="Parent">
+                                    <PropertiesComboBox DataSourceID="PermissionDataSource" TextField="Permission_Name_En" ValueField="Permission_Id">
+                                    </PropertiesComboBox>
+                                </dx:TreeListComboBoxColumn>
+                                <dx:TreeListComboBoxColumn AutoFilterCondition="Default" Caption="System" FieldName="System_Id" ShowInFilterControl="Default" VisibleIndex="3">
+                                    <PropertiesComboBox DataSourceID="SystemDataSource" TextField="System_Name_En" ValueField="ID">
+                                    </PropertiesComboBox>
+                                </dx:TreeListComboBoxColumn>
+                                <dx:TreeListCommandColumn VisibleIndex="6" Caption="Action">
                                     <EditButton Visible="True" Text=" ">
                                         <Styles>
-                                            <Style CssClass=" icofont icofont-ui-edit text-primary h5" VerticalAlign="Middle">
-                                </Style>
+                                            <Style CssClass="icofont icofont-ui-edit text-primary h5">
+                                            </Style>
                                         </Styles>
                                     </EditButton>
                                     <DeleteButton Visible="True" Text=" ">
                                         <Styles>
-                                            <Style CssClass="icofont icofont-ui-delete text-danger h5" VerticalAlign="Middle">
-                                </Style>
+                                            <Style CssClass="icofont icofont-ui-delete text-danger h5">
+                                            </Style>
                                         </Styles>
                                     </DeleteButton>
-
                                     <UpdateButton Text=" ">
                                         <Styles>
                                             <Style CssClass="icofont icofont-save text-primary h5" VerticalAlign="Middle">
-                                </Style>
+                                            </Style>
                                         </Styles>
                                     </UpdateButton>
 
                                     <CancelButton Text=" ">
                                         <Styles>
                                             <Style CssClass="icofont icofont-ui-close text-warning h5" VerticalAlign="Middle">
-                                </Style>
+                                            </Style>
                                         </Styles>
                                     </CancelButton>
-
                                 </dx:TreeListCommandColumn>
-                                <dx:TreeListComboBoxColumn AutoFilterCondition="Default" Caption="ParentID" FieldName="Parent" ShowInFilterControl="Default" VisibleIndex="3">
-                                    <PropertiesComboBox DataSourceID="PermissionDataSource" TextField="Permission_Name_En" ValueField="Permission_Id" ValueType="System.Int32">
-                                        <Style CssClass="form-control">
-                                        </Style>
-                                    </PropertiesComboBox>
-                                </dx:TreeListComboBoxColumn>
                             </Columns>
                             <SettingsBehavior AllowAutoFilter="True" AutoExpandAllNodes="True"></SettingsBehavior>
 
@@ -185,6 +179,8 @@
                         </dx:ASPxTreeList>
                         <asp:EntityDataSource ID="PermissionDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="Permissions">
                         </asp:EntityDataSource>
+                        <asp:EntityDataSource ID="SystemDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableDelete="True" EnableFlattening="False" EnableInsert="True" EnableUpdate="True" EntitySetName="OurSystems" EntityTypeFilter="OurSystem">
+                        </asp:EntityDataSource>
                     </div>
                 </div>
 
@@ -195,6 +191,5 @@
 
     </div>
 
-    </label>
 
 </asp:Content>

@@ -60,7 +60,8 @@ namespace Treatment.Pages.Setting.Auth
                             List_permission.Clear();
                             for (int j = 0; j < Per_group.Count; j++)
                             {
-                                Permission per = db.Permissions.Find(Per_group[j].Permission_Id);
+                                int per_id = (int)Per_group[j].Permission_Id;
+                                Permission per = db.Permissions.Where(x => x.Permission_Id == per_id && x.System_Id != 3).FirstOrDefault();
                                 if (per != null)
                                     List_permission.Add(per);
                             }
@@ -86,8 +87,14 @@ namespace Treatment.Pages.Setting.Auth
                                 SessionWrapper.EmpStructure = emp_structure.Employee_Structure_Id;
                             }
 
+                            Employee Log_Emp = new Employee();
+                            Log_Emp.Employee_Id = emp.Employee_Id;
+                            Log_Emp.Employee_Name_Ar = emp.Employee_Name_Ar;
+                            Log_Emp.Employee_Name_En = emp.Employee_Name_En;
+                            Log_Emp.Employee_Email = emp.Employee_Email;
+                            Log_Emp.Employee_Phone = emp.Employee_Phone;
                             /* Add it to log file */
-                            LogData = "data:" + JsonConvert.SerializeObject(emp, logFileModule.settings);
+                            LogData = "data:" + JsonConvert.SerializeObject(Log_Emp, logFileModule.settings);
                             logFileModule.logfile(10, "تسجيل دخول", "login to system", LogData);
                         }
                         else
@@ -98,7 +105,7 @@ namespace Treatment.Pages.Setting.Auth
                 }
                 return false;
             }
-            catch (Exception er) { return false; }
+            catch (Exception er) { Session.Abandon(); return false; }
         }       
     }
 }

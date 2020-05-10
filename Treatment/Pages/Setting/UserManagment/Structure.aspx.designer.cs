@@ -58,6 +58,24 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.DropDownList Parent;
         
         /// <summary>
+        /// IsManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox IsManager;
+        
+        /// <summary>
+        /// IsJobTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox IsJobTitle;
+        
+        /// <summary>
         /// Save control.
         /// </summary>
         /// <remarks>

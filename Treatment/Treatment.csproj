@@ -147,6 +147,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2810-5-2020%29.sql" />
     <Content Include="Entity\ECMS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ECMS.edmx</DependentUpon>
@@ -168,7 +169,6 @@
     <Content Include="Entity\DataBase\Dropp All Tables.sql" />
     <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2812-4-2020%29.sql" />
     <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2817-4-2020%29.sql" />
-    <Content Include="Entity\DataBase\Treatment Schema &amp; Data.sql" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Admin\Language.aspx" />
     <Content Include="Pages\Admin\LogFile.aspx" />
@@ -2196,6 +2196,9 @@
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Notification_Show.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OurSystem.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Owner_Relationship.cs">

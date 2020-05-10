@@ -69,7 +69,7 @@ namespace Treatment.Pages.Setting.UserManagment
                 else if (List_Notify[i].Notification_Show_Id == 2)
                     icon = "<i class='icofont icofont-reply bg-simple-c-green update-icon'></i>";
                 else if (List_Notify[i].Notification_Show_Id == 3)
-                    icon = "<i class='icofont icofont-inbox bg-simple-c-red update-icon'></i>";
+                    icon = "<i class='icofont icofont-inbox bg-simple-c-pink update-icon'></i>";
 
                 str += "<div class='row p-b-30'>" +
                               "<div class='col-auto text-right update-meta'>" +
@@ -137,7 +137,7 @@ namespace Treatment.Pages.Setting.UserManagment
                 }
                 str += "<div class='row m-b-25'>" +
                                 "<div class='col-auto p-r-0' style='margin-top:3%'>" +
-                                "<a class='btn btn-lg txt-muted btn-icon' href='#' role='button' style='font-size:100%;border-color:" + per.Url_Path + ";color: " + per.Url_Path + " !important'><i class='" + CssClass + "'></i></a>" +
+                                "<a class='btn btn-lg txt-muted btn-icon' href='#' role='button' style='font-size:150%;border-color:" + per.Url_Path + ";color: " + per.Url_Path + " !important'>&nbsp;<i class='" + CssClass + "'></i></a>" +
                                 "</div>" +
                                 "<div class='col'>" +
                                 "<h6 class='m-b-5'>"+ per_name + "</h6>" +
