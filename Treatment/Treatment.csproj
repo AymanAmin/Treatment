@@ -177,6 +177,7 @@
     <Content Include="Pages\Setting\Auth\Login.aspx" />
     <Content Include="Pages\Setting\Auth\ResetPassword.aspx" />
     <Content Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx" />
+    <Content Include="Pages\Setting\UserManagment\ChangeStructure.aspx" />
     <Content Include="Pages\Setting\UserManagment\MyNotifications.aspx" />
     <Content Include="Pages\Setting\UserManagment\Employees.aspx" />
     <Content Include="Pages\Setting\UserManagment\Groups.aspx" />
@@ -185,6 +186,7 @@
     <Content Include="Pages\Setting\UserManagment\Profile.aspx" />
     <Content Include="Pages\Setting\UserManagment\Structure.aspx" />
     <Content Include="Pages\Treatment\AdvancedSearch.aspx" />
+    <Content Include="Pages\Treatment\Delegation.aspx" />
     <Content Include="Pages\Treatment\inbox.aspx" />
     <Content Include="Pages\Treatment\NewTreatment.aspx" />
     <Content Include="Pages\Treatment\ShowTreatment.aspx" />
@@ -2372,6 +2374,13 @@
     <Compile Include="Pages\Setting\TreatmentManagement\TreatmentManagement.aspx.designer.cs">
       <DependentUpon>TreatmentManagement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Setting\UserManagment\ChangeStructure.aspx.cs">
+      <DependentUpon>ChangeStructure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Setting\UserManagment\ChangeStructure.aspx.designer.cs">
+      <DependentUpon>ChangeStructure.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Setting\UserManagment\MyNotifications.aspx.cs">
       <DependentUpon>MyNotifications.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2430,6 +2439,13 @@
     </Compile>
     <Compile Include="Pages\Treatment\ChangeStructure.ashx.cs">
       <DependentUpon>ChangeStructure.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Treatment\Delegation.aspx.cs">
+      <DependentUpon>Delegation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Treatment\Delegation.aspx.designer.cs">
+      <DependentUpon>Delegation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Treatment\inbox.aspx.cs">
       <DependentUpon>inbox.aspx</DependentUpon>

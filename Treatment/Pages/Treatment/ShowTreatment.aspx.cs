@@ -49,7 +49,7 @@ namespace Treatment.Pages.Treatment
             isSecert = false; isPath = false;
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = SessionWrapper.EmpStructure;
-            ListDelegationEmpStru = db.Employee_Structure.Where(x => x.Employee_Delegation == currentStructureUserId && x.Type_Delegation == true).ToList<Employee_Structure>();
+            ListDelegationEmpStru = getAllEmployeeStructure();
             if (int.TryParse(Request["getTreatmentId"], out treatmentId) && treatmentId > 0)
             {
                 //treatmentDetialId = getTreatmentDetialId();
@@ -103,6 +103,29 @@ namespace Treatment.Pages.Treatment
             {
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
             }
+        }
+
+        private List<Employee_Structure> getAllEmployeeStructure()
+        {
+            List<Employee_Structure> listEpSt = new List<Employee_Structure>();
+            List<Employee_Structure> listEpSt1;
+            try
+            {
+                listEpSt = db.Employee_Structure.Where(x => x.Employee_Delegation == currentStructureUserId).ToList<Employee_Structure>();
+                int delgaEpStId = 0;
+                for (int i = 0; i < listEpSt.Count; i++)
+                {
+                    if ((bool)listEpSt[i].Status_Structure)
+                    {
+                        delgaEpStId = listEpSt[i].Employee_Structure_Id;
+                        listEpSt1 = new List<Employee_Structure>();
+                        listEpSt1 = db.Employee_Structure.Where(x => x.Employee_Delegation == delgaEpStId).ToList<Employee_Structure>();
+                        listEpSt.AddRange(listEpSt1);
+                    }
+                }
+            }
+            catch (Exception ee) { }
+            return listEpSt;
         }
 
         private int getIsDelegationDetailId()

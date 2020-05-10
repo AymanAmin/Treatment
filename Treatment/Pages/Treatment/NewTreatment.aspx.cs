@@ -37,6 +37,7 @@ namespace Treatment.Pages.Treatment
             getEmployeeTree();
             getEmployeeTreeCopy();
         }
+
         private void checkLogin()
         {
             if (SessionWrapper.LoggedUser != null)

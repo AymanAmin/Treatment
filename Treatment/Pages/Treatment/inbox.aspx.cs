@@ -22,7 +22,8 @@ namespace Treatment.Pages.Treatment
             checkLogin();
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = SessionWrapper.EmpStructure;
-            ListDelegationEmpStru = dbSentTo.Employee_Structure.Where(x => x.Employee_Delegation == currentStructureUserId && x.Type_Delegation == true).ToList<Employee_Structure>();
+            ListDelegationEmpStru = getAllEmployeeStructure();
+
             if (loadListViewInboxTreatment())
             {
 
@@ -57,6 +58,28 @@ namespace Treatment.Pages.Treatment
             }*/
         }
 
+        private List<Employee_Structure> getAllEmployeeStructure()
+        {
+            List<Employee_Structure> listEpSt = new List<Employee_Structure>();
+            List<Employee_Structure> listEpSt1;
+            try
+            {
+                listEpSt = dbSentTo.Employee_Structure.Where(x => x.Employee_Delegation == currentStructureUserId).ToList<Employee_Structure>();
+                int delgaEpStId = 0;
+                for (int i = 0; i < listEpSt.Count; i++)
+                {
+                    if ((bool)listEpSt[i].Status_Structure)
+                    {
+                        delgaEpStId = listEpSt[i].Employee_Structure_Id;
+                        listEpSt1 = new List<Employee_Structure>();
+                        listEpSt1 = dbSentTo.Employee_Structure.Where(x => x.Employee_Delegation == delgaEpStId).ToList<Employee_Structure>();
+                        listEpSt.AddRange(listEpSt1);
+                    }
+                }
+            }
+            catch (Exception ee) { }
+            return listEpSt;
+        }
         private void checkLogin()
         {
             if (SessionWrapper.LoggedUser != null)
@@ -69,6 +92,7 @@ namespace Treatment.Pages.Treatment
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
             }
         }
+
         private int getStructure(int employeeId)
         {
             int employeeStructureId = 0;
@@ -117,7 +141,6 @@ namespace Treatment.Pages.Treatment
                 }
                 catch (Exception eexs) { }
             }
-
             return treatmentDetial.OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
         }
 
@@ -141,7 +164,6 @@ namespace Treatment.Pages.Treatment
                 }
                 catch (Exception eexs) { }
             }
-
             return treatmentMaster.OrderByDescending(x => x.Treatment_Id).ToList<Treatment_Master>();
         }
 
@@ -165,7 +187,6 @@ namespace Treatment.Pages.Treatment
                 }
                 catch (Exception eexs) { }
             }
-
             return treatmentDetial.OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
         }
 
@@ -248,6 +269,7 @@ namespace Treatment.Pages.Treatment
                 returnSubString = stringName;
             return returnSubString;
         }
+
         private string getReadEmail(bool flayReadEmail)
         {
             string strReadEmail = "";
@@ -257,6 +279,7 @@ namespace Treatment.Pages.Treatment
                 strReadEmail = "unread";
             return strReadEmail;
         }
+
         private bool loadListViewSendTreatment()
         {
             using (ECMSEntities db = new ECMSEntities())
@@ -437,9 +460,8 @@ namespace Treatment.Pages.Treatment
                 }
                 catch (Exception eee) { return false; }
             }
-
-
         }
+
         private string dateAgo(DateTime yourDate)
         {
             const int SECOND = 1;
