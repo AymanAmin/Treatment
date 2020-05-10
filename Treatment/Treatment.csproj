@@ -180,7 +180,6 @@
     <Content Include="Pages\Setting\UserManagment\ChangeStructure.aspx" />
     <Content Include="Pages\Setting\UserManagment\MyNotifications.aspx" />
     <Content Include="Pages\Setting\UserManagment\Employees.aspx" />
-    <Content Include="Pages\Setting\UserManagment\Groups.aspx" />
     <Content Include="Pages\Setting\UserManagment\PermissionGroups.aspx" />
     <Content Include="Pages\Setting\UserManagment\Permissions.aspx" />
     <Content Include="Pages\Setting\UserManagment\Profile.aspx" />
@@ -2397,13 +2396,6 @@
     </Compile>
     <Compile Include="Pages\Setting\UserManagment\Employees.aspx.designer.cs">
       <DependentUpon>Employees.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Setting\UserManagment\Groups.aspx.cs">
-      <DependentUpon>Groups.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Setting\UserManagment\Groups.aspx.designer.cs">
-      <DependentUpon>Groups.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setting\UserManagment\PermissionGroups.aspx.cs">
       <DependentUpon>PermissionGroups.aspx</DependentUpon>

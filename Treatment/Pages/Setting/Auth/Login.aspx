@@ -174,10 +174,11 @@
                                     <hr />
                                     <div class="row">
                                         <div class="col-md-10">
-                                            <p class="text-inverse text-left m-b-0">Thank you.</p>
+                                            <p class="text-inverse text-left m-b-0">Welcome...</p>
                                         </div>
+
                                         <div class="col-md-2">
-                                            <img src="..\..\..\..\Theme\files\assets\images\Logo.jpg" alt="small-logo.jpg" width="100%" />
+                                            <img src="..\..\..\..\Theme\files\assets\images\favicon.ico" alt="small-logo.jpg" width="100%" />
                                         </div>
                                     </div>
 
