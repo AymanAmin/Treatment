@@ -20,9 +20,11 @@ namespace Treatment
         {
             if (SessionWrapper.LoggedUser == null)
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+
+            int EmpStructureID = SessionWrapper.EmpStructure;
             int UserID = SessionWrapper.LoggedUser.Employee_Id;
-            treatmentList = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == UserID).ToList();
-            treatmentDList = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == UserID).ToList();
+            treatmentList = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == EmpStructureID).ToList();
+            treatmentDList = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == EmpStructureID).ToList();
             Treatment_Status();
             Charts(treatmentList, treatmentDList);
         }

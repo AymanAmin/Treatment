@@ -26,6 +26,7 @@ namespace Treatment.Pages.Treatment
         protected void Page_Load(object sender, EventArgs e)
         {
             checkLogin();
+           
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = SessionWrapper.EmpStructure;
             treatmentDate.Text = DateTime.Now.Date.ToShortDateString();
@@ -36,6 +37,33 @@ namespace Treatment.Pages.Treatment
             getEmployeeTableCopy();
             getEmployeeTree();
             getEmployeeTreeCopy();
+            Prepared_Management();
+
+
+        }
+
+        private void Prepared_Management()
+        {
+            string Value = string.Empty;
+            preparedManagement.Enabled = false;
+            Employee_Structure EmpStructure = db.Employee_Structure.Find(SessionWrapper.EmpStructure);
+            if (EmpStructure != null)
+            {
+                Structure structure = db.Structures.Find(EmpStructure.Structure_Id);
+                if (structure != null)
+                {
+                    if (structure.Is_Job_Title != null && (bool)structure.Is_Job_Title)
+                    {
+                        Structure ParentStructure = db.Structures.Find(structure.Structure_Parent);
+                        if (ParentStructure != null)
+                        {
+                            Value = ParentStructure.Structure_Id.ToString();
+                        }
+                    }
+                    //Value = ParentStructure.Structure_Id.ToString();
+                }
+            }
+            if (Value != string.Empty) preparedManagement.SelectedValue = Value; else { preparedManagement.Enabled = true; }
         }
 
         private void checkLogin()

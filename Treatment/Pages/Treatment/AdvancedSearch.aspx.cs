@@ -23,10 +23,11 @@ namespace Treatment.Pages.Treatment
             if (SessionWrapper.LoggedUser == null)
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
 
+            int EmpStructureID = SessionWrapper.EmpStructure;
             int UserID = SessionWrapper.LoggedUser.Employee_Id;
-            treatmentList = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == UserID).ToList();
+            treatmentList = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == EmpStructureID).ToList();
 
-            treatmentDList = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == UserID).ToList();
+            treatmentDList = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == EmpStructureID).ToList();
             for(int i =0; i < treatmentDList.Count;i++)
             {
                 Treatment_Master treat = treatmentList.FirstOrDefault(x => x.Treatment_Id == treatmentDList[i].Treatment_Id);
