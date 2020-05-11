@@ -876,7 +876,7 @@ namespace Treatment.Pages.Treatment
                     yourHTMLStringTrack = "<div class='sortable-moves col-xs-12' style='margin-left: " + marginTreeTrack + "%;border-left:" + isTrackBorder + "'>" +
                                             "<img class='img-fluid p-absolute' src='../../../../media/Profile/" + oneTreatmentDetial.Employee_Structure.Employee.Employee_Profile + "' alt=''>" +
                                             "<h6 class='d-inline-block'>" + oneTreatmentDetial.Employee_Structure.Employee.Employee_Name_En + "</h6>" +
-                                            "<span class='label label-default f-right'>" + treatmentDetialDate + "</span>" +
+                                            "<span class='label label-default f-right' style='background: linear-gradient(to right, #452a74, #f6f7fb);'>" + treatmentDetialDate + "</span>" +
                                             "<div class='f-13 text-muted'>" + oneTreatmentDetial.Employee_Structure.Structure.Structure_Name_En + "</div>" +
                                             "<h6 class='d-inline-block'> From: " + oneTreatmentDetial.Treatment_Master.Employee_Structure.Employee.Employee_Name_En + "</h6></br>" +
                                             "<h6 class='d-inline-block'> Procedure: " + oneTreatmentDetial.Treatment_Master.Treatment_Procedure.Treatment_Procedure_Name_En + "</h6>";
