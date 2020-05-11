@@ -22,7 +22,10 @@ namespace Treatment
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
 
             int EmpStructureID = SessionWrapper.EmpStructure;
-            int UserID = SessionWrapper.LoggedUser.Employee_Id;
+            //int UserID = SessionWrapper.LoggedUser.Employee_Id;
+            Employee_Structure Emp_Struct = db.Employee_Structure.Find(EmpStructureID);
+            if (Emp_Struct.Employee_Delegation != null && Emp_Struct.Employee_Delegation != 0)
+                EmpStructureID = (int)Emp_Struct.Employee_Delegation;
             treatmentList = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == EmpStructureID).ToList();
             treatmentDList = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == EmpStructureID).ToList();
             Treatment_Status();

@@ -323,7 +323,7 @@ namespace Treatment
 
         private void LoadStructure()
         {
-            List<Employee_Structure> ListStructure = db.Employee_Structure.Where(x => x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id || x.Employee_Delegation == SessionWrapper.LoggedUser.Employee_Id).ToList();
+            List<Employee_Structure> ListStructure = db.Employee_Structure.Where(x => (x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id || x.Employee_Delegation == SessionWrapper.LoggedUser.Employee_Id) && x.Type_Delegation == true).ToList();
             string str = string.Empty;
             for (int i = 0; i < ListStructure.Count; i++)
             {
