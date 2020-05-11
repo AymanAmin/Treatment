@@ -96,6 +96,9 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 else
                 { color = "text-c-green"; radialClass = "radial-bar-success"; }
 
+                // Set Color of text black as Mazin Said
+                color = "text-c-black";
+
                 // Create Card
                 str += "<div class='col-md-6 col-lg-3'>";
                 str += "<div class='card'>";

@@ -100,7 +100,7 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social"><% = Treatment.Classes.FieldNames.getFieldName("Structure-AddStructure", "Add Structure") %></button>
                 </div>
                 <!-- Structure Tree -->
-                <div class="row table-responsive">
+                <div class="row table-responsive" style="padding:1%">
                     <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False" DataSourceID="TreeDataSourceView" EnableTheming="True" KeyFieldName="Structure_Id" ParentFieldName="Structure_Parent" PreviewFieldName="Structure_Name" Theme="MetropolisBlue" OnNodeDeleting="ASPxTreeList1_NodeDeleting" OnNodeDeleted="ASPxTreeList1_NodeDeleted">
                         <Columns>
                             <dx:TreeListTextColumn Caption="Arabic Name" FieldName="Structure_Name_Ar" VisibleIndex="0">
@@ -172,7 +172,7 @@
                             <dx:TreeListCheckColumn AutoFilterCondition="Default" Caption="Is Manager" FieldName="Is_Manager" Name="Is_Manager" ShowInFilterControl="Default" VisibleIndex="3">
                             </dx:TreeListCheckColumn>
                         </Columns>
-                        <SettingsBehavior AutoExpandAllNodes="True" />
+                        <SettingsBehavior AutoExpandAllNodes="True" AllowFocusedNode="True" />
 
                         <SettingsCustomizationWindow PopupHorizontalAlign="RightSides" PopupVerticalAlign="BottomSides"></SettingsCustomizationWindow>
 
