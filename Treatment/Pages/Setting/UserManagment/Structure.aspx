@@ -8,7 +8,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title><% = Treatment.Classes.FieldNames.getFieldName("Structure-Title", "User Management - Groups") %></title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("Structure-Title", "User Management - Structure") %></title>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body_Holder" runat="server">
 

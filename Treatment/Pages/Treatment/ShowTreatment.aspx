@@ -5,7 +5,7 @@
 <%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>ECMS - Show Treatment</title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Title", "ECMS - Show Treatment") %></title>
     <script type="text/javascript">
         function getEmployee() {
             <% getEmployeeTable(); %>
@@ -37,7 +37,7 @@
                 <div class="card ScrollStyle" runat="server" id="divRequiredReply">
                     <div class="card-header">
                         <h5><i class="icofont icofont-clock-time"></i></h5>
-                        <h5>Required Reply</h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-RequiredReply", "Required Reply") %></h5>
                         <span></span>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
@@ -61,7 +61,7 @@
                 <div class="card ScrollStyle">
                     <div class="card-header">
                         <h5><i class="icofont icofont-ui-note"></i></h5>
-                        <h5>Treatment Details</h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-TreatmentDetails", "Treatment Details") %></h5>
                         <span></span>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
@@ -75,39 +75,39 @@
                         <table class="table table-border table-xs table-responsive dt-responsive">
                             <tbody>
                                 <tr>
-                                    <td><i class="icofont icofont-calendar"></i>&nbsp;Date:</td>
+                                    <td><i class="icofont icofont-calendar"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Date", "Date") %>:</td>
                                     <td class="text-left" id="treatmentDate" runat="server"></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-edit-alt"></i>&nbsp;Procedure:</td>
+                                    <td><i class="icofont icofont-edit-alt"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Procedure", "Procedure") %>:</td>
                                     <td class="text-left" id="treatmentProcedure" runat="server"></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-stamp"></i>&nbsp;Management:</td>
+                                    <td><i class="icofont icofont-stamp"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Management", "Management") %>:</td>
                                     <td class="text-left" id="treatmentManagement" runat="server"></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-tack-pin"></i>&nbsp;Classification:</td>
+                                    <td><i class="icofont icofont-tack-pin"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Classification", "Classification") %>:</td>
                                     <td class="text-left" id="treatmentClassification" runat="server"></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-ui-tag"></i>&nbsp;Type:</td>
+                                    <td><i class="icofont icofont-ui-tag"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Type", "Type") %>:</td>
                                     <td class="text-left" id="treatmentType" runat="server"></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-safety"></i>&nbsp;Secret:</td>
+                                    <td><i class="icofont icofont-safety"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Secret", "Secret") %>:</td>
                                     <td class="text-left" id="treatmentSecret" runat="server"></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-certificate-alt-2"></i>&nbsp;Priority:</td>
+                                    <td><i class="icofont icofont-certificate-alt-2"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Priority", "Priority") %>:</td>
                                     <td class="text-left" id="treatmentPriority" runat="server"></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-speed-meter"></i>&nbsp;Speed Up:</td>
+                                    <td><i class="icofont icofont-speed-meter"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-SpeedUp", "Speed Up") %>:</td>
                                     <td class="text-left" id="treatmentSpeedUp" runat="server"></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-ticket"></i>&nbsp;Status:</td>
+                                    <td><i class="icofont icofont-ticket"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Status", "Status") %>:</td>
                                     <td class="text-left" id="treatmentStatus" runat="server"></td>
                                 </tr>
                             </tbody>
@@ -118,7 +118,7 @@
                 <div class="card ScrollStyle">
                     <div class="card-header">
                         <h5><i class="icofont icofont-users-alt-4"></i></h5>
-                        <h5>Send To</h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-SendTo", "Send To") %></h5>
                         <span></span>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
@@ -133,7 +133,7 @@
                     </div>
                     <div class="card-header" style="margin-top:-8%">
                         <h5><i class="icofont icofont-users-alt-4"></i></h5>
-                        <h5>Copy To</h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-CopyTo", "Copy To") %></h5>
                         <span></span>
                     </div>
                     <div class="card-block user-box assign-user" id="copyToTreatment" runat="server">
@@ -241,12 +241,12 @@
                         </div>
                     </div>
                     <div class="card-block">
-                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-info m-b-15" OnClick="LinkButton1_Click">Print</asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-info m-b-15" OnClick="LinkButton1_Click"><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Print", "Print") %></asp:LinkButton>
                         <div class="">
                             <div class="m-b-20" id="speech" runat="server">
                             </div>
                             <div class="m-t-20 m-b-20">
-                                <h6 class="sub-title m-b-15">Uploaded files</h6>
+                                <h6 class="sub-title m-b-15"><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Uploadedfiles", "Uploaded files") %></h6>
                             </div>
                             <div class="row" id="downloadAttachment" runat="server">
 
@@ -258,17 +258,17 @@
                 <div class="card ScrollStyle" style="overflow-x: hidden">
                     <div class="card-header">
                         <h5><i class="icofont icofont-golf-cart"></i></h5>
-                        <h5>Track</h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Track", "Track") %></h5>
                         <span class="text-center" id="actionReply" runat="server">
                             <div class="mail-body-header">
                                 <button type="button" id="NewAssignment" runat="server" class="btn btn-success btn-xs waves-effect waves-light" data-toggle="modal" data-target="#add-model-assignment">
-                                    <i class="icofont icofont-paper-plane"></i>New
+                                    <i class="icofont icofont-paper-plane"></i><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-New", "New") %>
                                 </button>
 
                                 <button type="button" id="ReplyAssignment" runat="server" class="btn btn-warning btn-xs waves-effect waves-light" data-toggle="modal" data-target="#add-model-reply">
-                                    <i class="icofont icofont-reply-all"></i>Reply
+                                    <i class="icofont icofont-reply-all"></i><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Reply", "Reply") %>
                                 </button>
-                                <asp:LinkButton ID="CloseAssignment" runat="server" OnClick="CloseAssignment_Click"><i class="icofont icofont-close"></i>Close</asp:LinkButton>
+                                <asp:LinkButton ID="CloseAssignment" runat="server" OnClick="CloseAssignment_Click"><i class="icofont icofont-close"></i><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Close", "Close") %></asp:LinkButton>
                             </div>
                         </span>
                         <div class="card-header-right">
@@ -299,12 +299,12 @@
                             <div class="auth-box card-block">
                                 <div class="row m-b-10">
                                     <div class="col-md-12">
-                                        <h3 class="text-center txt-primary">Add Assignment</h3>
+                                        <h3 class="text-center txt-primary"><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-AddAssignment", "Add Assignment") %></h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-6">
-                                        <label>Standard Procedure</label>
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-StandardProcedure", "Standard Procedure") %></label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-edit-alt"></i></span>
                                             <asp:DropDownList ID="standardProcedure" CssClass="js-example-basic-single form-control" runat="server" DataSourceID="EntityDataSourceTreatmentProcedure" DataTextField="Treatment_Procedure_Name_En" DataValueField="Treatment_Procedure_Id">
@@ -312,7 +312,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-6">
-                                        <label>Secret Level</label><i class="icofont icofont-star-alt-1 text-danger"></i>
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-SecretLevel", "Secret Level") %></label><i class="icofont icofont-star-alt-1 text-danger"></i>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
                                             <asp:DropDownList ID="secretLevel" CssClass="js-example-basic-single col-sm-12" runat="server" DataSourceID="EntityDataSourceTreatmentConfidentiality" DataTextField="Treatment_Confidentiality_Name_En" DataValueField="Treatment_Confidentiality_Id">
@@ -323,7 +323,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-12">
-                                        <label>Send To</label><i class="icofont icofont-star-alt-1 text-danger"></i>
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-SendTo", "Send To") %></label><i class="icofont icofont-star-alt-1 text-danger"></i>
                                         <div class="input-group">
                                             <span class="input-group-addon" data-toggle="modal" data-target="#tabbed-form"><i class="icofont icofont-paper-plane"></i></span>
                                             <asp:ListBox ID="treatmentTo" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Send To" SelectionMode="Multiple"></asp:ListBox>
@@ -333,7 +333,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-12">
-                                        <label>Copy To</label>
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-CopyTo", "Copy To") %></label>
                                         <div class="input-group">
                                             <span class="input-group-addon" data-toggle="modal" data-target="#tabbed-form-copy"><i class="icofont icofont-ui-copy"></i></span>
                                             <asp:ListBox ID="treatmentCopyTo" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Copy To" runat="server" SelectionMode="Multiple"></asp:ListBox>
@@ -342,7 +342,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-3">
-                                        <label>Required Reply</label>
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-RequiredReply", "Required Reply") %></label>
                                         <div class="input-group">
                                             <label class="j-checkbox-toggle">
                                                 <input ID="requiredReply" runat="server" type="checkbox" class="js-single" />
@@ -350,7 +350,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-4">
-                                        <label>Reply Date</label>
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-ReplyDate", "Reply Date") %></label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
                                             <asp:TextBox ID="replyDate10" runat="server" class="form-control" data-dd-modal="true" placeholder="Enter Treatment Date" TextMode="SingleLine"></asp:TextBox>
@@ -359,7 +359,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-12">
-                                        <label>Required</label>
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Required", "Required") %></label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-presentation-alt"></i></span>
                                             <asp:TextBox ID="requiredAssignment" runat="server" placeholder="Enter Required" TextMode="MultiLine" Rows="2" class="form-control"></asp:TextBox>
@@ -368,7 +368,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-12">
-                                        <label>Keywork</label>
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Keywork", "Keywork") %></label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-keyboard-alt"></i></span>
                                             <asp:TextBox ID="keyworkAssignment" runat="server" placeholder="Enter Keywork" TextMode="MultiLine" Rows="2" class="form-control"></asp:TextBox>
@@ -378,7 +378,7 @@
                                 <!-- File upload card start -->
                                 <div class="row">
                                     <div class="form-group col-sm-12">
-                                        <label><% = Treatment.Classes.FieldNames.getFieldName("Treatment-AddAttachments", "Add Attachments") %></label>
+                                        <label><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-AddAttachments", "Add Attachments") %></label>
                                         <asp:FileUpload ID="addAttachments1111" runat="server" class="form-control" AllowMultiple="True" />
                                     </div>
                                 </div>
@@ -408,13 +408,13 @@
                         <div class="auth-box card-block">
                             <div class="row m-b-10">
                                 <div class="col-md-12 m-t-10">
-                                    <h3 class="text-center txt-primary">Reply</h3>
+                                    <h3 class="text-center txt-primary"><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Employees", "") %>Reply</h3>
                                 </div>
                             </div>
                             <div class="col-sm-12 ">
                                 <div class="row">
                                     <div class="form-group col-sm-12">
-                                        <label class="j-label">Reply</label><i class="icofont icofont-star-alt-1 text-danger"></i>
+                                        <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Reply", "Reply") %></label><i class="icofont icofont-star-alt-1 text-danger"></i>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-reply-all"></i></span>
                                             <asp:TextBox ID="replyTreatement" runat="server" placeholder="Enter Reply" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
@@ -424,7 +424,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-12">
-                                        <label class="j-label">Keywork</label>
+                                        <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Keywork", "Keywork") %></label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-keyboard-alt"></i></span>
                                             <asp:TextBox ID="keyworkTreatment" runat="server" placeholder="Enter Keywork" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
@@ -457,12 +457,12 @@
                                     <ul class="nav nav-tabs nav-justified" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link active" data-toggle="tab" href="#sign_in" role="tab">
-                                                <h6><strong>Structure</strong></h6>
+                                                <h6><strong><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Structure", "Structure") %></strong></h6>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#regi" role="tab">
-                                                <h6><strong>Employees</strong></h6>
+                                                <h6><strong><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Employees", "Employees") %></strong></h6>
                                             </a>
                                         </li>
                                     </ul>
@@ -534,12 +534,12 @@
                                     <ul class="nav nav-tabs nav-justified" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link active" data-toggle="tab" href="#sign_in_copy" role="tab">
-                                                <h6><strong>Structure</strong></h6>
+                                                <h6><strong><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Structure", "Structure") %></strong></h6>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#regi_copy" role="tab">
-                                                <h6><strong>Employees</strong></h6>
+                                                <h6><strong><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Employees", "Employees") %></strong></h6>
                                             </a>
                                         </li>
                                     </ul>

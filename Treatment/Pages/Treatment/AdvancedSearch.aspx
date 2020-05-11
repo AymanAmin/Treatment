@@ -22,14 +22,14 @@
 
                 <div class="row">
                     <div class="form-group col-sm-3">
-                        <label><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-After", "After") %></label>
+                        <label><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-AfterDate", "After Date") %></label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-ui-calendar"></i></span>
                             <input id="StartTreatmentDate" runat="server" class="form-control" type="date"/>
                         </div>
                     </div>
                     <div class="form-group col-sm-3">
-                        <label><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-Before", "Before") %></label>
+                        <label><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-BeforeDate", "Before Date") %></label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-ui-calendar"></i></span>
                             <input id="EndTreatmentDate" runat="server" class="form-control" type="date"/>

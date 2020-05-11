@@ -3,7 +3,7 @@
 <%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>ECMS - Inbox</title>
+    <title><% = Treatment.Classes.FieldNames.getFieldName("inbox-Title", "ECMS - Inbox") %></title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <!-- Page-body start -->
@@ -80,22 +80,22 @@
                     <div class="col-lg-12 col-xl-2">
                         <div class="user-body">
                             <div class="p-20 text-center">
-                                <a href="NewTreatment.aspx" class="btn btn-danger btn-round btn-block"><i class="icofont icofont-plus"></i>Create New</a>
+                                <a href="NewTreatment.aspx" class="btn btn-danger btn-round btn-block"><i class="icofont icofont-plus"></i><% = Treatment.Classes.FieldNames.getFieldName("inbox-CreateNew", "Create New") %></a>
                             </div>
                             <ul class="page-list nav nav-tabs flex-column" id="pills-tab" role="tablist">
                                 <li class="nav-item mail-section">
                                     <a class="nav-link active" data-toggle="pill" href="#e-inbox" role="tab" style="font-size: 120%; color: #ccd0d5" id="addNfNumTreatment" runat="server">
-                                        <i class="icofont icofont-inbox"></i>Inbox
+                                        <i class="icofont icofont-inbox"></i><% = Treatment.Classes.FieldNames.getFieldName("inbox-Inbox", "Inbox") %>
                                     </a>
                                 </li>
                                 <li class="nav-item mail-section">
                                     <a class="nav-link" data-toggle="pill" href="#e-send" role="tab" style="font-size: 120%; color: #ccd0d5">
-                                        <i class="icofont icofont-paper-plane"></i>Sent
+                                        <i class="icofont icofont-paper-plane"></i><% = Treatment.Classes.FieldNames.getFieldName("inbox-Sent", "Sent") %>
                                     </a>
                                 </li>
                                 <li class="nav-item mail-section">
                                     <a class="nav-link" data-toggle="pill" href="#e-completed" role="tab" style="font-size: 120%; color: #ccd0d5">
-                                        <i class="icofont icofont-license"></i>Completed
+                                        <i class="icofont icofont-license"></i><% = Treatment.Classes.FieldNames.getFieldName("inbox-Completed", "Completed") %>
                                     </a>
                                 </li>
                             </ul>

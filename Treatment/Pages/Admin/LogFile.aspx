@@ -73,7 +73,7 @@
                                 AutoPostBack="true" OnCheckedChanged="chkSingleExpanded_CheckedChanged" Theme="DevEx" Checked="True" CheckState="Checked" />
                         </div>
                     </div>
-                    <dx:ASPxGridView Style="width: 100%" ID="LogFileGridView" runat="server" DataSourceID="LogFileDataSource" EnableTheming="True" Theme="MetropolisBlue" AutoGenerateColumns="False" KeyFieldName="Log_Id" OnHtmlDataCellPrepared="LogFileGridView_HtmlDataCellPrepared" >
+                    <dx:ASPxGridView Style="width: 100%" ID="LogFileGridView" runat="server" DataSourceID="LogFileDataSource" EnableTheming="True" Theme="MetropolisBlue" AutoGenerateColumns="False" KeyFieldName="Log_Id" OnHtmlDataCellPrepared="LogFileGridView_HtmlDataCellPrepared">
                         <ClientSideEvents EndCallback="function(s, e) {
 var div_target = document.getElementsByClassName(&quot;dx-wrap dxgv&quot;)[0];
 	var str = div_target.innerHTML;
@@ -176,7 +176,7 @@ document.getElementsByClassName(&quot;dx-wrap dxgv&quot;)[0].innerHTML = tables 
                         </Templates>
                         <SettingsDetail ShowDetailRow="true" />
                     </dx:ASPxGridView>
-                    <asp:EntityDataSource ID="LogFileDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Log_File" EntityTypeFilter="Log_File"  Select="">
+                    <asp:EntityDataSource ID="LogFileDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Log_File" EntityTypeFilter="Log_File" Select="">
                     </asp:EntityDataSource>
                     <asp:EntityDataSource ID="LogFileDataSourceDetails" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Log_File" EntityTypeFilter="Log_File" Select="" Where="it.Log_Id = @Log_ID_value">
                         <WhereParameters>

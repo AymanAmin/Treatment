@@ -62,15 +62,15 @@
                         <div class="tab-header card">
                             <ul class="nav nav-tabs md-tabs tab-timeline" role="tablist" id="mytab">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-personal", "personal Info") %></a>
+                                    <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Personal", "Personal Info") %></a>
                                     <div class="slide"></div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#changePassWord" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-changePassWord", "change PassWord") %></a>
+                                    <a class="nav-link" data-toggle="tab" href="#changePassWord" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-ChangePassword", "Change Password") %></a>
                                     <div class="slide"></div>
                                 </li>
                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#EmployeeNotification" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-EmployeeNotification", "Notification") %></a>
+                                    <a class="nav-link" data-toggle="tab" href="#EmployeeNotification" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Notification", "Notification") %></a>
                                     <div class="slide"></div>
                                 </li>
                             </ul>
