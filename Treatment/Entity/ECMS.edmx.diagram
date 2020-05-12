@@ -85,6 +85,7 @@
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Type" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ECMSModel.OurSystem" Width="1.5" PointX="2.25" PointY="36.125" />
         <AssociationConnector Association="ECMSModel.FK_Permission_OurSystems" />
+        <EntityTypeShape EntityType="ECMSModel.M_Topic_Status" Width="1.5" PointX="13.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

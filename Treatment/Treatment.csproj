@@ -172,6 +172,7 @@
     <Content Include="Global.asax" />
     <Content Include="Pages\Admin\Language.aspx" />
     <Content Include="Pages\Admin\LogFile.aspx" />
+    <Content Include="Pages\Eminutes\TopicManagment\TopicInfo.aspx" />
     <Content Include="Pages\Reports\Report.aspx" />
     <Content Include="Pages\Setting\Auth\LockScreen.aspx" />
     <Content Include="Pages\Setting\Auth\Login.aspx" />
@@ -2190,6 +2191,9 @@
     <Compile Include="Entity\M_Topic.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\M_Topic_Status.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Notification_Employee.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
@@ -2321,6 +2325,9 @@
     <Compile Include="Pages\Eminutes\Meeting.aspx.designer.cs">
       <DependentUpon>Meeting.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Eminutes\MeetingManagment\DeteteMeeting.ashx.cs">
+      <DependentUpon>DeteteMeeting.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Eminutes\MeetingManagment\MeetingInfo.aspx.cs">
       <DependentUpon>MeetingInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2334,6 +2341,16 @@
     </Compile>
     <Compile Include="Pages\Eminutes\ScheduleOfWork.aspx.designer.cs">
       <DependentUpon>ScheduleOfWork.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\TopicManagment\deleteTopic.ashx.cs">
+      <DependentUpon>deleteTopic.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\TopicManagment\TopicInfo.aspx.cs">
+      <DependentUpon>TopicInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\TopicManagment\TopicInfo.aspx.designer.cs">
+      <DependentUpon>TopicInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Reports\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
@@ -2636,6 +2653,8 @@
     </Content>
     <Content Include="Pages\Eminutes\BoardManagment\DeleteMembers.ashx" />
     <Content Include="Pages\Treatment\ChangeStructure.ashx" />
+    <Content Include="Pages\Eminutes\MeetingManagment\DeteteMeeting.ashx" />
+    <Content Include="Pages\Eminutes\TopicManagment\deleteTopic.ashx" />
     <None Include="Properties\PublishProfiles\ECMS-Publish.pubxml" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">

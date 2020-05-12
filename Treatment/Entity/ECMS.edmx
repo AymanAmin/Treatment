@@ -221,6 +221,14 @@
           <Property Name="Topic_Recommendation_Doc_En" Type="ntext" />
           <Property Name="Structure_Id" Type="int" />
         </EntityType>
+        <EntityType Name="M_Topic_Status">
+          <Key>
+            <PropertyRef Name="M_Topic_Status_Id" />
+          </Key>
+          <Property Name="M_Topic_Status_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="M_Topic_Status_Name_Ar" Type="nvarchar(max)" />
+          <Property Name="M_Topic_Status_Name_En" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Notification_Employee">
           <Key>
             <PropertyRef Name="NotificationShow_Employee_Id" />
@@ -975,6 +983,7 @@
           <EntitySet Name="M_Member_Type" EntityType="Self.M_Member_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Recommendation" EntityType="Self.M_Recommendation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Topic" EntityType="Self.M_Topic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Topic_Status" EntityType="Self.M_Topic_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notification_Employee" EntityType="Self.Notification_Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notification_Master" EntityType="Self.Notification_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notification_Show" EntityType="Self.Notification_Show" Schema="dbo" store:Type="Tables" />
@@ -2392,6 +2401,7 @@
             <End Role="OurSystem" EntitySet="OurSystems" />
             <End Role="Permission" EntitySet="Permissions" />
           </AssociationSet>
+          <EntitySet Name="M_Topic_Status" EntityType="ECMSModel.M_Topic_Status" />
         </EntityContainer>
         <EntityType Name="OurSystem">
           <Key>
@@ -2414,6 +2424,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="M_Topic_Status">
+          <Key>
+            <PropertyRef Name="M_Topic_Status_Id" />
+          </Key>
+          <Property Name="M_Topic_Status_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="M_Topic_Status_Name_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="M_Topic_Status_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2863,6 +2881,15 @@
                 <ScalarProperty Name="System_Name_En" ColumnName="System_Name_En" />
                 <ScalarProperty Name="System_Name_Ar" ColumnName="System_Name_Ar" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Topic_Status">
+            <EntityTypeMapping TypeName="ECMSModel.M_Topic_Status">
+              <MappingFragment StoreEntitySet="M_Topic_Status">
+                <ScalarProperty Name="M_Topic_Status_Name_En" ColumnName="M_Topic_Status_Name_En" />
+                <ScalarProperty Name="M_Topic_Status_Name_Ar" ColumnName="M_Topic_Status_Name_Ar" />
+                <ScalarProperty Name="M_Topic_Status_Id" ColumnName="M_Topic_Status_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

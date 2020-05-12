@@ -37,88 +37,114 @@ namespace Treatment.Pages.Setting.UserManagment
 
             if (!IsPostBack)
             {
-              ViewEmpLoyeeData();
+                fillDropDown();
+                ViewEmpLoyeeData();
+            }
+        }
+
+        private void fillDropDown()
+        {
+            List<Structure> ListDefaultStructure = new List<Structure>();
+            ListDefaultStructure = db.Structures.Where(x => x.Is_Job_Title == true).ToList();
+            ListDefaultStructure = (from s in ListDefaultStructure
+                                    join sl in db.Employee_Structure on s.Structure_Id equals sl.Structure_Id
+                                    where sl.Employee_Id == EmployeeId
+                                    select s).ToList();
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+            {
+                ddlFiller.dropDDL(DefaultStructure, "Structure_Id", "Structure_Name_Ar", ListDefaultStructure, "إختر");
+            }
+            else
+            {
+                ddlFiller.dropDDL(DefaultStructure, "Structure_Id", "Structure_Name_En", ListDefaultStructure, "Select Structure");
             }
         }
 
 
         public void ViewEmpLoyeeData()
         {
-            int i = 0;
-            String EmpStru = "";
-            if (EmployeeId > 0)
+            try
             {
-                var Employees = db.Employees.First(x => x.Employee_Id == EmployeeId);
-                if (Employees.Employee_Profile != "" && Employees.Employee_Profile != null)
+                int i = 0;
+                String EmpStru = "";
+                if (EmployeeId > 0)
                 {
-                    Emp_Profile.ImageUrl = "../../../../media/Profile/" + Employees.Employee_Profile;
-                    Emp_Profile1.ImageUrl = "../../../../media/Profile/" + Employees.Employee_Profile;
-                }
-                if (Employees.Employee_Signature != "" && Employees.Employee_Signature != null) Emp_Signature.ImageUrl = "../../../../media/Signature/" + Employees.Employee_Signature;
+                    var Employees = db.Employees.First(x => x.Employee_Id == EmployeeId);
+                    var Stru = db.Employee_Structure.FirstOrDefault(x => x.Employee_Id == EmployeeId && x.Default_Structure == true);
+                    if (Employees.Employee_Profile != "" && Employees.Employee_Profile != null)
+                    {
+                        Emp_Profile.ImageUrl = "../../../../media/Profile/" + Employees.Employee_Profile;
+                        Emp_Profile1.ImageUrl = "../../../../media/Profile/" + Employees.Employee_Profile;
+                    }
+                    if (Employees.Employee_Signature != "" && Employees.Employee_Signature != null) Emp_Signature.ImageUrl = "../../../../media/Signature/" + Employees.Employee_Signature;
 
-                ArabicName.InnerText = Employees.Employee_Name_Ar;
-                EnglishName.InnerText = Employees.Employee_Name_En;
-                if (SessionWrapper.LoggedUser.Language_id == 1)
-                    Name.InnerText = Employees.Employee_Name_Ar;
-                else
-                    Name.InnerText = Employees.Employee_Name_En;
-
-                Employee_Email.Text = Employees.Employee_Email;
-                Email.InnerText = Employees.Employee_Email;
-
-                Employee_Phone.Text = Employees.Employee_Phone;
-                Phone.InnerText = Employees.Employee_Phone;
-
-                if (Employees.Calendar_id == 1) CalendarType.InnerText = "Birth Date"; else CalendarType.InnerText = "Hegira Date";
-                ActiveL.InnerText= bool.Parse(Employees.Employee_Active.ToString()).ToString();
-
-                if (Employees.Group_Id != null && Employees.Group_Id >0)
-                {
-                    var Gro = db.Groups.First(x => x.Group_Id == Employees.Group_Id);
+                    ArabicName.InnerText = Employees.Employee_Name_Ar;
+                    EnglishName.InnerText = Employees.Employee_Name_En;
                     if (SessionWrapper.LoggedUser.Language_id == 1)
-                    {
-                        Group.InnerText = Gro.Group_Name_Ar;
-                    }
+                        Name.InnerText = Employees.Employee_Name_Ar;
                     else
-                    {
-                        Group.InnerText = Gro.Group_Name_En;
-                    }
-                }
+                        Name.InnerText = Employees.Employee_Name_En;
 
-                if (Employees.Language_id != null && Employees.Language_id > 0)
-                {
-                    var Lang = db.LanguageMasters.First(x => x.ID == Employees.Language_id);
-                    EmpLanguage.InnerText = Lang.Language_Name;
-                    Language.SelectedValue = Employees.Language_id.ToString();
-                }
+                    Employee_Email.Text = Employees.Employee_Email;
+                    Email.InnerText = Employees.Employee_Email;
 
-                var Emp_Stru = db.Employee_Structure.Where(x => x.Employee_Id == EmployeeId && x.Status_Structure==true ).ToList();
-               while(i < Emp_Stru.Count)
-                {
-                    int str_id = int.Parse(Emp_Stru[i].Structure_Id.ToString());
-                    var Stru_Name = db.Structures.First(s => s.Structure_Id == str_id);
-                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                    Employee_Phone.Text = Employees.Employee_Phone;
+                    Phone.InnerText = Employees.Employee_Phone;
+
+                    DefaultStructure.SelectedValue = Stru.Structure_Id.ToString();
+
+                    if (Employees.Calendar_id == 1) CalendarType.InnerText = "Birth Date"; else CalendarType.InnerText = "Hegira Date";
+                    ActiveL.InnerText = bool.Parse(Employees.Employee_Active.ToString()).ToString();
+
+                    if (Employees.Group_Id != null && Employees.Group_Id > 0)
                     {
-                        EmpStru += " - " + Stru_Name.Structure_Name_Ar;
+                        var Gro = db.Groups.First(x => x.Group_Id == Employees.Group_Id);
+                        if (SessionWrapper.LoggedUser.Language_id == 1)
+                        {
+                            Group.InnerText = Gro.Group_Name_Ar;
+                        }
+                        else
+                        {
+                            Group.InnerText = Gro.Group_Name_En;
+                        }
                     }
-                    else
+
+                    if (Employees.Language_id != null && Employees.Language_id > 0)
                     {
-                        EmpStru += " - " + Stru_Name.Structure_Name_En;
+                        var Lang = db.LanguageMasters.First(x => x.ID == Employees.Language_id);
+                        EmpLanguage.InnerText = Lang.Language_Name;
+                        Language.SelectedValue = Employees.Language_id.ToString();
                     }
-                    i++;
-                }
+
+                    var Emp_Stru = db.Employee_Structure.Where(x => x.Employee_Id == EmployeeId && x.Status_Structure == true).ToList();
+                    while (i < Emp_Stru.Count)
+                    {
+                        int str_id = int.Parse(Emp_Stru[i].Structure_Id.ToString());
+                        var Stru_Name = db.Structures.First(s => s.Structure_Id == str_id);
+                        if (SessionWrapper.LoggedUser.Language_id == 1)
+                        {
+                            EmpStru += " - " + Stru_Name.Structure_Name_Ar;
+                        }
+                        else
+                        {
+                            EmpStru += " - " + Stru_Name.Structure_Name_En;
+                        }
+                        i++;
+                    }
 
                     Structure.InnerText = EmpStru;
-                   Position.InnerText = EmpStru;
-            }
+                    Position.InnerText = EmpStru;
+                }
 
 
-            //----------------------------Notification Employee-------------------------------------------
-            List<Notification_Employee> Notification_Employee_List = db.Notification_Employee.Where(x => x.Employee_Id == EmployeeId).ToList();
-            for (int y = 0; y < Notification_Employee_List.Count; y++)
-            {
-                NotificationGridView.Selection.SelectRowByKey(Notification_Employee_List[y].NotificationShow_Id);
+                //----------------------------Notification Employee-------------------------------------------
+                List<Notification_Employee> Notification_Employee_List = db.Notification_Employee.Where(x => x.Employee_Id == EmployeeId).ToList();
+                for (int y = 0; y < Notification_Employee_List.Count; y++)
+                {
+                    NotificationGridView.Selection.SelectRowByKey(Notification_Employee_List[y].NotificationShow_Id);
+                }
             }
+            catch (Exception e) { }
         }
 
         protected void EmpUpdate_Click(object sender, EventArgs e)
@@ -149,7 +175,27 @@ namespace Treatment.Pages.Setting.UserManagment
                 string ImagepathProfile = UploadFile(1);
                 string ImagepathSignature = UploadFile(2);
                 if (ImagepathProfile != "") Emp.Employee_Profile = ImagepathProfile;
-                if (ImagepathSignature != "") Emp.Employee_Signature = ImagepathSignature; 
+                if (ImagepathSignature != "") Emp.Employee_Signature = ImagepathSignature;
+                //----------------------------Employee Structure-------------------------------------------
+
+                var Emp_Stru = db.Employee_Structure.Where(x => x.Employee_Id == EmployeeID).ToList();
+                for (int i = 0; i < Emp_Stru.Count; i++)
+                {
+                    int E_S = 0;
+                    int.TryParse(Emp_Stru[i].Structure_Id.ToString(), out E_S);
+                    Employee_Structure stu = db.Employee_Structure.First(x => x.Employee_Id == EmployeeID && x.Structure_Id == E_S);
+                    if (E_S.ToString() == DefaultStructure.SelectedValue)
+                    {
+                        stu.Default_Structure = true;
+                    }
+                    else
+                    {
+                        stu.Default_Structure = false;
+                    }
+                    Emp.Employee_Structure.Add(stu);
+                }
+
+                //----------------------------End Employee Structure-------------------------------------------
                 db.Entry(Emp).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
                 /* Add it to log file */
@@ -157,7 +203,6 @@ namespace Treatment.Pages.Setting.UserManagment
                 logFileModule.logfile(10, "تعديل بيانات الموظف", "Update Employee Info", LogData);
                 SessionWrapper.LoggedUser = Emp;
                 SessionWrapper.Language = db.Lanuage_Detials.Where(x => x.Language_Master_ID == lang).ToList();
-
             }
             catch { return false; }
             return true;

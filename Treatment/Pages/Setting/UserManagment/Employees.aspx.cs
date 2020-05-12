@@ -38,8 +38,6 @@ namespace Treatment.Pages.Treatment
             if (SessionWrapper.LoggedUser == null)
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
 
-            ALLEmployees = db.Employees.ToList();
-
             if (!IsPostBack)
             {
                 FillDropDownLists();
@@ -85,9 +83,10 @@ namespace Treatment.Pages.Treatment
 
         public bool AU_Emplooyees(int EmployeeID, string ArabicName, string EnglishName, string Email, string Phone, bool Active, int GroupID,int lang,int calander)
         {
-            db.Configuration.LazyLoadingEnabled = false;
+            
             try
             {
+                db.Configuration.LazyLoadingEnabled = false;
                 Employee Emp = db.Employees.Create();
                 if(EmployeeID != 0) Emp = db.Employees.First(x=>x.Employee_Id== EmployeeID);
                 Emp.Employee_Name_Ar = ArabicName;
@@ -118,6 +117,7 @@ namespace Treatment.Pages.Treatment
                 if (ImagepathProfile != "" ) Emp.Employee_Profile = ImagepathProfile; else if(EmployeeID == 0) ImagepathProfile = "Profile.JPG";
                 if (ImagepathSignature != "") Emp.Employee_Signature =ImagepathSignature;else if (EmployeeID == 0) ImagepathSignature = "Signature.JPG";
                 /////////////////////////////////////// Employee_Structure /////////////////////////////////////
+                Boolean DefaultStructure = false;
                 for (int i = 0; i < Emp_Structure.Items.Count; i++)
                 {
                     int id = 0;
@@ -127,18 +127,20 @@ namespace Treatment.Pages.Treatment
                     if(Emp_Stru_found.Count > 0 ) IsFound = true;
                     if (Emp_Structure.Items[i].Selected)
                     {
-                        if (!IsFound) { 
+                        if (!IsFound) {
                             Emp_Stu = new Employee_Structure();
-                            Emp_Stu.Structure_Id= int.Parse(Emp_Structure.Items[i].Value);
+                            Emp_Stu.Structure_Id = int.Parse(Emp_Structure.Items[i].Value);
                             Emp_Stu.Status_Structure = true;
-                            Emp_Stu.Type_Delegation = true;
+                            Emp_Stu.Type_Delegation = false;
+                            if (!DefaultStructure) { Emp_Stu.Default_Structure = true; DefaultStructure = true; } else { Emp_Stu.Default_Structure = false; }
                             Emp.Employee_Structure.Add(Emp_Stu);
                         }
                         else
                         {
                             Emp_Stu = db.Employee_Structure.First(x => x.Employee_Id == EmployeeID && x.Structure_Id == id);
                             Emp_Stu.Status_Structure = true;
-                            Emp_Stu.Type_Delegation = true;
+                            Emp_Stu.Type_Delegation = false;
+                            if (!DefaultStructure) { Emp_Stu.Default_Structure = true; DefaultStructure = true; } else { Emp_Stu.Default_Structure = false; }
                             Emp.Employee_Structure.Add(Emp_Stu);
                         }
                     }
@@ -147,6 +149,7 @@ namespace Treatment.Pages.Treatment
                         Emp_Stu = db.Employee_Structure.First(x => x.Employee_Id == EmployeeID && x.Structure_Id == id);
                         Emp_Stu.Status_Structure = false;
                         Emp_Stu.Type_Delegation = false;
+                        Emp_Stu.Default_Structure = false;
                         Emp.Employee_Structure.Add(Emp_Stu);
                     }
                 }
@@ -334,7 +337,7 @@ namespace Treatment.Pages.Treatment
                     Language_id =x.Language_id,
                     Calendar_id =x.Calendar_id,
                     Group_Id = x.Group_Id,
-                    Structures = x.Employee_Structure.Where(f => f.Status_Structure==true && f.Type_Delegation==true).Select(c=> c.Structure_Id)
+                    Structures = x.Employee_Structure.Where(f => f.Status_Structure==true && f.Type_Delegation==false).Select(c=> c.Structure_Id)
                     }).FirstOrDefault();
              
                  JavaScriptSerializer js = new JavaScriptSerializer();

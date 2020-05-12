@@ -65,6 +65,7 @@ namespace Treatment.Entity
         public DbSet<Treatment_Status> Treatment_Status { get; set; }
         public DbSet<Treatment_Type> Treatment_Type { get; set; }
         public DbSet<OurSystem> OurSystems { get; set; }
+        public DbSet<M_Topic_Status> M_Topic_Status { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

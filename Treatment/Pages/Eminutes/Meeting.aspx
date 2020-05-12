@@ -99,23 +99,12 @@
 
         </div>
 
+  
+
         <div class="col-xl-8 col-lg-12 pull-xl-4">
             <!--Subjects-->
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5><% = Treatment.Classes.FieldNames.getFieldName("Meeting-Subjects", "Subjects") %></h5>
-                        <div class="card-header-right">
-                            <i class="icofont icofont-spinner-alt-5"></i>
-                        </div>
-                    </div>
-                    <div class="card-block">
-                        <div class="table-responsive" runat="server" id="Topics">
-                         
-                        </div>
-                        <!-- end of table -->
-                    </div>
-                </div>
+            <div class="col-md-12" runat="server" id="Topics">
+              
             </div>
             <!--End Subjects-->
 

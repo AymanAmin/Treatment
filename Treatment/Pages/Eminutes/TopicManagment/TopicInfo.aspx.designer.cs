@@ -7,234 +7,234 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Treatment.Pages.Eminutes {
+namespace Treatment.Pages.Eminutes.TopicManagment {
     
     
-    public partial class Board {
+    public partial class TopicInfo {
         
         /// <summary>
-        /// txtEditBoard control.
+        /// LtrMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtEditBoard;
+        protected global::System.Web.UI.WebControls.Literal LtrMessage;
         
         /// <summary>
-        /// txtEnglishName control.
+        /// MeetingName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtEnglishName;
+        protected global::System.Web.UI.WebControls.TextBox MeetingName;
         
         /// <summary>
-        /// txtArabicName control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtArabicName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// txtCreatedDate control.
+        /// ArabicName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtCreatedDate;
+        protected global::System.Web.UI.WebControls.TextBox ArabicName;
         
         /// <summary>
-        /// txtType control.
+        /// RFVtxtArabicName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtType;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtArabicName;
         
         /// <summary>
-        /// txtClassification control.
+        /// EnglishName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtClassification;
+        protected global::System.Web.UI.WebControls.TextBox EnglishName;
         
         /// <summary>
-        /// txtMeetingMembers control.
+        /// RFVtxtEnglishName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtMeetingMembers;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtEnglishName;
         
         /// <summary>
-        /// Div_HolderOfAuthority control.
+        /// TopicStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_HolderOfAuthority;
+        protected global::System.Web.UI.WebControls.DropDownList TopicStatus;
         
         /// <summary>
-        /// Div_HolderOfAuthority_Table control.
+        /// TopicStatusDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_HolderOfAuthority_Table;
+        protected global::System.Web.UI.WebControls.EntityDataSource TopicStatusDataSource;
         
         /// <summary>
-        /// txtHolderOfAuthority control.
+        /// RFVtxtStatusofTopic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtHolderOfAuthority;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtStatusofTopic;
         
         /// <summary>
-        /// Div_SuperVisor control.
+        /// Structure control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_SuperVisor;
+        protected global::System.Web.UI.WebControls.DropDownList Structure;
         
         /// <summary>
-        /// Div_SuperVisor_Table control.
+        /// ArabicDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_SuperVisor_Table;
+        protected global::System.Web.UI.WebControls.TextBox ArabicDescription;
         
         /// <summary>
-        /// txtSuperVisor control.
+        /// RequiredFieldValidator2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtSuperVisor;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// Div_Secretarial control.
+        /// EnglishDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_Secretarial;
+        protected global::System.Web.UI.WebControls.TextBox EnglishDescription;
         
         /// <summary>
-        /// Div_Secretarial_Table control.
+        /// RequiredFieldValidator3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_Secretarial_Table;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
-        /// txtSecretarial control.
+        /// ArabicRecommendation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtSecretarial;
+        protected global::System.Web.UI.WebControls.TextBox ArabicRecommendation;
         
         /// <summary>
-        /// Div_Members control.
+        /// RFVtxtArabicDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_Members;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtArabicDescription;
         
         /// <summary>
-        /// Div_Members_Table control.
+        /// EnglishRecommendation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div_Members_Table;
+        protected global::System.Web.UI.WebControls.TextBox EnglishRecommendation;
         
         /// <summary>
-        /// txtMembers control.
+        /// RFVtxtEnglishDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtMembers;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtEnglishDescription;
         
         /// <summary>
-        /// txtEditLocations control.
+        /// ArabicRecommendationDoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtEditLocations;
+        protected global::System.Web.UI.WebControls.TextBox ArabicRecommendationDoc;
         
         /// <summary>
-        /// txtLocations control.
+        /// RequiredFieldValidator4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtLocations;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
-        /// Literal1 control.
+        /// EnglishRecommendationDoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
+        protected global::System.Web.UI.WebControls.TextBox EnglishRecommendationDoc;
         
         /// <summary>
-        /// txtAddMeeting control.
+        /// RequiredFieldValidator5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtAddMeeting;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
         
         /// <summary>
-        /// txtMeetings control.
+        /// Save control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal txtMeetings;
+        protected global::System.Web.UI.WebControls.Button Save;
         
         /// <summary>
-        /// SubBoard control.
+        /// Cancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal SubBoard;
+        protected global::System.Web.UI.WebControls.Button Cancel;
     }
 }

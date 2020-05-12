@@ -18,19 +18,20 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
         String LogData = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            BoardID = 1;
+            //BoardID = 1;
             // MeetingID = 1;
 
             if (Request["BoardId"] == null)
                 Response.Redirect("~/Pages/Eminutes/Home.aspx");
 
             BoardID = int.Parse(Request["BoardId"].ToString());
+            if (Request["MeetingID"] != null)
+                MeetingID = int.Parse(Request["MeetingID"].ToString());
 
             if (!IsPostBack)
             {
-                if (MeetingID == 0) ini(); else ViewMeeting(MeetingID);
-
                 fillDropDown();
+                if (MeetingID == 0) ini(); else ViewMeeting(MeetingID);
             }
             
         }
@@ -85,6 +86,8 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The  Meeting was Sucessfully saved in system ! ');", true);
                 if(MeetingID==0)ClearForm();
+
+                Response.Redirect("~/Pages/Eminutes/Board.aspx?BoardId=" + BoardID);
             }
             else
             {
@@ -94,9 +97,10 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
 
         public bool SaveMeeting(int Meeting_Id, int Board_Id, string Meeting_Name_Ar, string Meeting_Name_En, DateTime Meeting_Date, DateTime Meeting_Time, int Meeting_Status_Id, string Meeting_Minutes, int Board_Location_Id)
         {
-            db.Configuration.LazyLoadingEnabled = false;
+            
             try
             {
+                db.Configuration.LazyLoadingEnabled = false;
                 M_Meeting Meeting = db.M_Meeting.Create();
                 if (Meeting_Id != 0) Meeting = db.M_Meeting.First(x => x.Meeting_Id == Meeting_Id);
                 Meeting.Board_Id = Board_Id;
@@ -144,7 +148,7 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
             BoardName.Text = BName.Board_Name_En;
             ArabicName.Text= Meet.Meeting_Name_Ar;
             EnglishName.Text= Meet.Meeting_Name_En;
-            MeetingDate.Value= Meet.Meeting_Date.ToString();
+            MeetingDate.Value = Meet.Meeting_Date.ToString();
             timepicker.Text= Meet.Meeting_Time.ToString();
             MeetingStatus.SelectedValue= Meet.Meeting_Status.ToString();
             Minutes.Text= Meet.Meeting_Minutes;

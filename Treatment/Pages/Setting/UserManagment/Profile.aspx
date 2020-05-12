@@ -9,7 +9,7 @@
 
     <div class="page-body">
         <!-- Article Editor card start -->
-        <div class="card" runat="server">
+        <%--<div class="card" runat="server">--%>
             <div class="card-header">
                 <div class="card-header-right">
                     <ul class="list-unstyled card-option">
@@ -62,15 +62,15 @@
                         <div class="tab-header card">
                             <ul class="nav nav-tabs md-tabs tab-timeline" role="tablist" id="mytab">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Personal", "Personal Info") %></a>
+                                    <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-personal", "personal Info") %></a>
                                     <div class="slide"></div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#changePassWord" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-ChangePassword", "Change Password") %></a>
+                                    <a class="nav-link" data-toggle="tab" href="#changePassWord" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-changePassWord", "change PassWord") %></a>
                                     <div class="slide"></div>
                                 </li>
                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#EmployeeNotification" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Notification", "Notification") %></a>
+                                    <a class="nav-link" data-toggle="tab" href="#EmployeeNotification" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-EmployeeNotification", "Notification") %></a>
                                     <div class="slide"></div>
                                 </li>
                             </ul>
@@ -174,7 +174,21 @@
                                                     <div class="col-lg-6">
                                                         <table class="table">
                                                             <tbody>
-                                                               
+                                                                <tr>
+                                                                    <td>
+                                                                        <label><% = Treatment.Classes.FieldNames.getFieldName("Profile-Profile", "Profile") %></label>
+                                                                        <div class="card-block" style="max-width:250px;">
+                                                                            <div class="img-hover">
+                                                                                <asp:Image ID="Emp_Profile" class="img-fluid img-radius" alt="Profile.jpg" runat="server" ImageUrl="~/media/Profile/Profile.jpg" />
+                                                                                <div class="img-overlay img-radius">
+                                                                                    <span>
+                                                                                        <asp:FileUpload ID="EmpProfile" runat="server" class="form-control" />
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Email", "Email") %></label>
@@ -202,21 +216,20 @@
                                                                           </div>
                                                                     </td>
                                                                 </tr>
-                                                                 <tr>
+
+                                                                  <tr>
                                                                     <td>
-                                                                        <label><% = Treatment.Classes.FieldNames.getFieldName("Profile-Profile", "Profile") %></label>
-                                                                        <div class="card-block">
-                                                                            <div class="img-hover">
-                                                                                <asp:Image ID="Emp_Profile" class="img-fluid img-radius" alt="Profile.jpg" runat="server" ImageUrl="~/media/Profile/Profile.jpg" />
-                                                                                <div class="img-overlay img-radius">
-                                                                                    <span>
-                                                                                        <asp:FileUpload ID="EmpProfile" runat="server" class="form-control" />
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
+                                                                      <label><% = Treatment.Classes.FieldNames.getFieldName("Profile-DefaultStructure", "Default Structure") %></label>
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="icofont icofont-chart-flow-alt-1"></i></span>
+                                                                             <asp:DropDownList ID="DefaultStructure" runat="server" class="form-control"  DataTextField="Language_Name" DataValueField="ID"  ></asp:DropDownList>
                                                                         </div>
+                                                                         <div class="col-sm-12">
+                                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Language" ValidationGroup="Per" ControlToValidate="Language" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                                          </div>
                                                                     </td>
                                                                 </tr>
+                                                                
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -224,7 +237,21 @@
                                                     <div class="col-lg-6">
                                                         <table class="table">
                                                             <tbody>
-                                                             
+                                                              <tr>
+                                                                    <td>
+                                                                        <label ><% = Treatment.Classes.FieldNames.getFieldName("Profile-Signature", "Signature") %></label>
+                                                                        <div class="card-block" style="max-width:250px;">
+                                                                            <div class="img-hover">
+                                                                                <asp:Image ID="Emp_Signature" class="img-fluid img-radius" alt="Signature.jpg" runat="server" ImageUrl="~/media/Signature/Signature.jpg" />
+                                                                                <div class="img-overlay img-radius">
+                                                                                    <span>
+                                                                                        <asp:FileUpload ID="EmpSignature" runat="server" class="form-control" />
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <label ><% = Treatment.Classes.FieldNames.getFieldName("Profile-Phone", "Phone") %></label>
@@ -256,21 +283,7 @@
                                                                     </div>
                                                                     </td>
                                                                 </tr>
-                                                               <tr>
-                                                                    <td>
-                                                                        <label ><% = Treatment.Classes.FieldNames.getFieldName("Profile-Signature", "Signature") %></label>
-                                                                        <div class="card-block">
-                                                                            <div class="img-hover">
-                                                                                <asp:Image ID="Emp_Signature" class="img-fluid img-radius" alt="Signature.jpg" runat="server" ImageUrl="~/media/Signature/Signature.jpg" />
-                                                                                <div class="img-overlay img-radius">
-                                                                                    <span>
-                                                                                        <asp:FileUpload ID="EmpSignature" runat="server" class="form-control" />
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
+                                                              
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -380,7 +393,7 @@
                                             <div class="general-info">
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <dx:ASPxGridView ID="NotificationGridView" runat="server" AutoGenerateColumns="False" DataSourceID="NotificationDataSource" KeyFieldName="Notification_Show_Id" Theme="Mulberry">
+                                                        <dx:ASPxGridView ID="NotificationGridView" runat="server" AutoGenerateColumns="False" DataSourceID="NotificationDataSource" KeyFieldName="Notification_Show_Id" Theme="Moderno" EnableTheming="True">
                                                             <Columns>
                                                                 <dx:GridViewCommandColumn SelectAllCheckboxMode="Page" ShowSelectCheckbox="True" VisibleIndex="0">
                                                                 </dx:GridViewCommandColumn>
@@ -397,10 +410,6 @@
                                                     </div>
                                                 </div>
                                                 <!-- end of row -->
-                                                <div class="text-center">
-                                                    <asp:Button  ID="NotificationSave"  runat="server" Text="Save" class="btn btn-primary waves-effect waves-light m-r-20" OnClick="NotificationSave_Click"    />
-                                                    <a href="#!" id="edit-cancel3" class="btn btn-default waves-effect btn-outline-danger"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Cancel", "Cancel") %></a>
-                                                </div>
                                             </div>
                                             <!-- end of edit info -->
                                         </div>
@@ -409,6 +418,14 @@
                                     <!-- end of row -->
                                 </div>
                          </div>
+                          <div class="row"> 
+                            <div class="col-lg-12">
+                                <div class="text-center">
+                                    <asp:Button  ID="NotificationSave"  runat="server" Text="Save" class="btn btn-primary waves-effect waves-light m-r-20" OnClick="NotificationSave_Click"    />
+                                    <a href="#!" id="edit-cancel3" class="btn btn-default waves-effect btn-outline-danger"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Cancel", "Cancel") %></a>
+                                </div>
+                            </div>
+                          </div>
                         <!-- end Change PassWord-->
                     </div>
 

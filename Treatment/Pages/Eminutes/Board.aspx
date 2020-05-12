@@ -77,13 +77,19 @@
                     </div>
                     <div class="card-block">
                         <div class="col">
-                            <p id="Div_SuperVisor" runat="server" class="text-muted m-b-10">SuperVisor</p>
+                            <p id="Div_HolderOfAuthority" runat="server" class="text-muted m-b-10">Holder of authority</p>
+                            <div id="Div_HolderOfAuthority_Table" runat="server" class="table-responsive">
+                                <table class="table table-hover">
+                                    <asp:Literal ID="txtHolderOfAuthority" runat="server"></asp:Literal>
+                                </table>
+                            </div>
+                            <p id="Div_SuperVisor" runat="server" class="text-muted m-b-10">Chairman</p>
                             <div id="Div_SuperVisor_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
                                     <asp:Literal ID="txtSuperVisor" runat="server"></asp:Literal>
                                 </table>
                             </div>
-                            <p id="Div_Secretarial" runat="server" class="text-muted m-b-10">Secretarial</p>
+                            <p id="Div_Secretarial" runat="server" class="text-muted m-b-10">The Secretary</p>
                             <div id="Div_Secretarial_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
                                     <asp:Literal ID="txtSecretarial" runat="server"></asp:Literal>
@@ -136,9 +142,11 @@
                             Meetings </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
+                                <li><asp:Literal ID="txtAddMeeting" runat="server"></asp:Literal></li>
                                 <li><i class="feather full-card icon-maximize"></i></li>
-                                <li><i class="feather icon-minus minimize-card"></i></li>
+                                <li><i class="feather icon-minus minimize-card"></i></li> 
                             </ul>
+                            
                         </div>
                     </div>
 

@@ -121,6 +121,24 @@ namespace Treatment.Pages.Setting.UserManagment {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CalendarType;
         
         /// <summary>
+        /// Emp_Profile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Emp_Profile;
+        
+        /// <summary>
+        /// EmpProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload EmpProfile;
+        
+        /// <summary>
         /// Employee_Email control.
         /// </summary>
         /// <remarks>
@@ -166,22 +184,40 @@ namespace Treatment.Pages.Setting.UserManagment {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
         
         /// <summary>
-        /// Emp_Profile control.
+        /// DefaultStructure control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Emp_Profile;
+        protected global::System.Web.UI.WebControls.DropDownList DefaultStructure;
         
         /// <summary>
-        /// EmpProfile control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload EmpProfile;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
+        /// Emp_Signature control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image Emp_Signature;
+        
+        /// <summary>
+        /// EmpSignature control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload EmpSignature;
         
         /// <summary>
         /// Employee_Phone control.
@@ -218,24 +254,6 @@ namespace Treatment.Pages.Setting.UserManagment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton DateofBirth;
-        
-        /// <summary>
-        /// Emp_Signature control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Emp_Signature;
-        
-        /// <summary>
-        /// EmpSignature control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload EmpSignature;
         
         /// <summary>
         /// EmpUpdate control.

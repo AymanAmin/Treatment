@@ -100,14 +100,23 @@ namespace Treatment.Pages.Eminutes
                 int i = 0;
                 string yourHTMLstring = "";
                 var Topic = db.M_Topic.Where(x => x.Meeting_Id == Meeting_Id).ToList();
-                yourHTMLstring = "<table id ='issue-list-table' class='table dt-responsive width-100'>" +
-                                    "<thead class='text-left'>" +
-                                        "<tr>" +
+                yourHTMLstring =  "<div class='card'>" +
+                                          "<div class='card-header'>" +
+                                              "<h5>Subjects</h5>" +
+                                              "<div class='card-header-right'>" +
+                                                 "<!--<i class='icofont icofont-spinner-alt-5'></i>-->" +
+                                                  "<a class='btn btn-success btn-round' href='TopicManagment/TopicInfo.aspx?BoardID=" + BoardID + "&MeetingID=" + Meeting_Id + "' > Add Topic </a>" +
+                                               "</div>" +
+                                          "</div>";
+                yourHTMLstring += "<div class='card-block'>"+
+                                    "<div class='table-responsive'>"+
+                                    "<table id ='issue-list-table' class='table dt-responsive width-100'>" +
+                                      "<thead class='text-left'>" +
+                                            "<tr>" +
                                             "<th>" + "Extend" + "</th>" +
                                             "<th>" + "Subject Title" + "</th>" +
                                             "<th>" + "Status" + "</th>" +
-                                            "<th>" + "View" + "</th>" +
-                                            "<th>" + "Update" + "</th>" +
+                                            "<th>" + "Action" + "</th>" +
                                             "<th>" + "Description" + "</th>" +
                                             "<th>" + "Recommendation" + "</th>" +
                                             "<th>" + "Recommendation document" + "</th>" +
@@ -117,24 +126,42 @@ namespace Treatment.Pages.Eminutes
                                     "<tbody class='text-left'>";
                 while (i < Topic.Count)
                 {
+                    int statusid = 0;
                     int str_id = 0;
+                    string StruName = "";
+                    if(Topic[i].Structure_Id != null) { 
                     int.TryParse(Topic[i].Structure_Id.ToString(), out str_id);
-                    var Structure = db.Structures.First(x => x.Structure_Id == str_id);
+                    var Structure = db.Structures.FirstOrDefault(x => x.Structure_Id == str_id);
+                        StruName = Structure.Structure_Name_En;
+                    }
                     yourHTMLstring += "<tr>" +
                     "<td class='txt-primary'>" + "Extend" + "</td>" +
-                    "<td>" + Topic[i].Topic_Name_En + "</td>" +
-                    "<td><span class='label label-danger'>" + "Close" + "</span></td>" +
-                    "<td><a href='#' ><i class='icofont icofont-eye-alt text-info h5'></i></a></td>" +
-                    "<td><a href='#' ><i class='icofont icofont-ui-edit text-info h5'></i></a></td>" +
-                    "<td>" + Topic[i].Topic_Description_En + "<br/>" + "</td>" +
+                    "<td>" + Topic[i].Topic_Name_En + "</td>";
+                    try { statusid = (int)Topic[i].Topic_Status; } catch { }
+                    M_Topic_Status status = db.M_Topic_Status.FirstOrDefault(x => x.M_Topic_Status_Id == statusid);
+                    if (status != null)
+                        if (status.M_Topic_Status_Id == 1)
+                            yourHTMLstring += "<td><label class='label label-success'>" + status.M_Topic_Status_Name_En + "</label></td>";
+                        else
+                            yourHTMLstring += "<td> <label class='label label-danger'>" + status.M_Topic_Status_Name_En + "</label></td>";
+                    else
+                        yourHTMLstring += "<td> <label class='label label-info'>Unknow </label></td>";
+                    //"<td><span class='label label-danger'>" + "Close" + "</span></td>" +
+                    yourHTMLstring += "<td><a href='TopicManagment/TopicInfo.aspx?BoardID="+BoardID+ "&MeetingID=" + Meeting_Id +"&TopicID="+ Topic[i].Topic_Id+ "'  ><i class='icofont icofont-ui-edit text-info h6'></i> &nbsp;&nbsp; </a>" +
+                    "<a href='TopicManagment/deleteTopic.ashx?BoardId="+BoardID + "&MeetingId=" + Meeting_Id + "&TopicId=" + Topic[i].Topic_Id + "'><i class='icofont icofont-ui-delete text-danger h6'></i></a></td>" +
+                    "<td>" + Topic[i].Topic_Description_En +  "</td>" +
                     "<td>" + Topic[i].Topic_Recommendation_En + "</td>" +
                     "<td>" + Topic[i].Topic_Recommendation_Doc_En + "</td>" +
-                    "<td>" + Structure.Structure_Name_En + "</td>" +
+                    "<td>" + StruName+ "</td>" +
                     "</tr>";
                     i += 1;
                 }
                 yourHTMLstring += "</tbody>" +
-                               "</table>";
+                               "</table>"+
+                                "</div>"+
+                        //<!--end of table -->
+                    "</div>"+
+              "</div>";
                 Topics.Controls.Add(new LiteralControl(yourHTMLstring));
             }
             catch (Exception x) { }

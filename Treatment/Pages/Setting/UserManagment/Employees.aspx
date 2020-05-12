@@ -265,13 +265,12 @@
 
                             </div>
                             <div class="row">
-
                                 <div class="col-sm-6">
                                     <label><% = Treatment.Classes.FieldNames.getFieldName("Employees-Structure", "Structure") %></label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-chart-flow-alt-1"></i></span>
                                         <asp:ListBox ID="Emp_Structure" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Enter Employee Structure"  DataSourceID="StructureDataSource" DataTextField="Structure_Name_En" DataValueField="Structure_Id"  SelectionMode="Multiple" ></asp:ListBox>
-                                        <asp:EntityDataSource ID="StructureDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Structures">
+                                        <asp:EntityDataSource ID="StructureDataSource" runat="server" ConnectionString="name=ECMSEntities" DefaultContainerName="ECMSEntities" EnableFlattening="False" EntitySetName="Structures" Where="it.[Is_Job_Title]==true">
                                         </asp:EntityDataSource>
                                     </div>
                                      <div class="col-sm-12">

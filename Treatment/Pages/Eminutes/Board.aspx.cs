@@ -143,6 +143,7 @@ namespace Treatment.Pages.Eminutes
             string supervisor = string.Empty;
             string secretarial = string.Empty;
             string members = string.Empty;
+            string holder_of_authority = string.Empty;
 
             list_member = list_member.OrderBy(x => x.Member_Type_Id).ToList();
 
@@ -180,6 +181,8 @@ namespace Treatment.Pages.Eminutes
                     supervisor += str;
                 else if (list_member[i].Member_Type_Id == 2)
                     secretarial += str;
+                else if (list_member[i].Member_Type_Id == 3)
+                    holder_of_authority += str;
                 else
                     members += str;
             }
@@ -192,6 +195,11 @@ namespace Treatment.Pages.Eminutes
             { Div_Secretarial.Visible = false; Div_Secretarial_Table.Visible = false; }
             else
                 txtSecretarial.Text = secretarial;
+
+            if (holder_of_authority == string.Empty)
+            { Div_HolderOfAuthority.Visible = false; Div_HolderOfAuthority_Table.Visible = false; }
+            else
+                txtHolderOfAuthority.Text = holder_of_authority;
 
             if (members == string.Empty)
             { Div_Members.Visible = false; Div_Members_Table.Visible = false; }
@@ -222,6 +230,7 @@ namespace Treatment.Pages.Eminutes
 
         private void LoadMeetings(int BoardId)
         {
+            txtAddMeeting.Text = "<a class='btn btn-success btn-round' href='MeetingManagment/MeetingInfo.aspx?BoardID=" + BoardId + "' > Add Meeting </a>";
             int statusid = 1;
             List<M_Meeting> ListMeetings = db.M_Meeting.Where(x => x.Board_Id == BoardId).ToList();
             string str = string.Empty;
@@ -229,8 +238,8 @@ namespace Treatment.Pages.Eminutes
             {
                 str += "<tr>";
                 str += "<td class='txt-primary'>Expand</td>";
-                str += "<td> <a href= '../../../../Pages/Eminutes/Meeting.aspx?MeetingID=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:#00c3da;'> <i class='icofont icofont-eye-alt'></i>&nbsp;&nbsp; </a>";
-                str += "<a href= '../../../../Pages/Eminutes/Meeting.aspx?MeetingID=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:red;'> <i class='icofont icofont-ui-delete'> </i></a></td>";
+                str += "<td> <a href= '../../../../Pages/Eminutes/Meeting.aspx?MeetingID=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:#00c3da;'> <i class='icofont icofont-eye-alt h6'></i>&nbsp;&nbsp;&nbsp; </a>";
+                str += "<a href= '../../../../Pages/Eminutes/Meeting.aspx?MeetingID=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:red;'> <i class='icofont icofont-ui-delete h6'> </i></a></td>";
                 try { statusid = (int)ListMeetings[i].Meeting_Status; } catch { }
                 M_Meeting_Status status = db.M_Meeting_Status.FirstOrDefault(x => x.Meeting_Status_Id == statusid);
                 if (status != null)
