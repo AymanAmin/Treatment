@@ -71,20 +71,23 @@ namespace Treatment.Pages.Setting.UserManagment
                 else if (List_Notify[i].Notification_Show_Id == 3)
                     icon = "<i class='icofont icofont-inbox bg-simple-c-pink update-icon'></i>";
 
-                str += "<div class='row p-b-30'>" +
-                              "<div class='col-auto text-right update-meta'>" +
-                              "<a href='" + List_Notify[i].Notification_Link + List_Notify[i].Notification_Id + "'>" +
-                                "<p class='text-muted m-b-0 d-inline'>" + Date_Different((DateTime)List_Notify[i].Notification_Date) + "</p>" +
-                                icon +
-                                "</a>" +
-                            "</div>" +
-                            "<div class='col'>" +
-                            "<a href='" + List_Notify[i].Notification_Link + List_Notify[i].Notification_Id + "'>" +
-                                "<h6>" + emp_name + "</h6>" +
-                                "<p class='text-muted m-b-0'>" + Notification_Description + "</p>" +
-                                "</a>" +
-                            "</div>" +
-                        "</div>";
+                str += "<div class='row p-b-30'>";
+                if(SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<div class='col-auto text-right update-meta' style='text-align: center !important'>";
+                else
+                    str += "<div class='col-auto text-right update-meta'>";
+                str += "<a href='" + List_Notify[i].Notification_Link + List_Notify[i].Notification_Id + "'>" +
+                  "<p class='text-muted m-b-0 d-inline'>" + Date_Different((DateTime)List_Notify[i].Notification_Date) + "</p>" +
+                  icon +
+                  "</a>" +
+                 "</div>" +
+                "<div class='col'>" +
+                    "<a href='" + List_Notify[i].Notification_Link + List_Notify[i].Notification_Id + "'>" +
+                  "<h6>" + emp_name + "</h6>" +
+                  "<p class='text-muted m-b-0'>" + Notification_Description + "</p>" +
+                  "</a>" +
+                "</div>" +
+                "</div>";
             }
 
             Notifications.Text = str;
@@ -135,14 +138,26 @@ namespace Treatment.Pages.Setting.UserManagment
                         per_name = per.Permission_Name_Ar;
 
                 }
+                string space = string.Empty;
+                string marginRight_RTL = string.Empty;
+                if (SessionWrapper.LoggedUser.Language_id != 1)
+                {
+                    space = "&nbsp;";
+                    
+                }
+                else
+                {
+                    marginRight_RTL = "margin-right:20% !important;";
+                }
+
                 str += "<div class='row m-b-25'>" +
-                                "<div class='col-auto p-r-0' style='margin-top:3%'>" +
-                                "<a class='btn btn-lg txt-muted btn-icon' href='#' role='button' style='font-size:150%;border-color:" + per.Url_Path + ";color: " + per.Url_Path + " !important'>&nbsp;<i class='" + CssClass + "'></i></a>" +
+                                "<div class='col-auto p-r-0' style='margin-top:3%;'>" +
+                                "<a class='btn btn-lg txt-muted btn-icon' href='#' role='button' style='font-size:150%;border-color:" + per.Url_Path + ";color: " + per.Url_Path + " !important;" + marginRight_RTL + "'>" + space + "<i class='" + CssClass + "'></i></a>" +
                                 "</div>" +
                                 "<div class='col'>" +
                                 "<h6 class='m-b-5'>"+ per_name + "</h6>" +
                                 "<p class='text-muted m-b-0'>" + "<span style='color:green'>" + activity_verb + "</span>" + Log_Name + " </p>" +
-                                "<p class='text-muted m-b-0'><i class='feather icon-clock m-r-10'></i>" + Date_Different((DateTime)activites[i].Log_Date) + "</p>" +
+                                "<p class='text-muted m-b-0'> <i class='feather icon-clock m-r-10'></i> " + Date_Different((DateTime)activites[i].Log_Date) + "</p>" +
                                 "</div>" +
                             "</div>";
             }

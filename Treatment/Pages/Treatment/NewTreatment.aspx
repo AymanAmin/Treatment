@@ -38,7 +38,7 @@
                 <!-- Start Treatment Form-->
                 <div class="row">
                     <div class="form-group col-sm-3">
-                        <label><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-Date", "Treatment Date") %></label><i class="icofont icofont-star-alt-1 text-danger"></i>
+                        <label><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-Treatment Date", "Treatment Date") %></label><i class="icofont icofont-star-alt-1 text-danger"></i>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
                             <asp:TextBox ID="treatmentDate" runat="server" class="form-control" placeholder="Enter Treatment Date" TextMode="SingleLine"></asp:TextBox>

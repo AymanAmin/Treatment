@@ -22,10 +22,23 @@ namespace Treatment
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
 
             int EmpStructureID = SessionWrapper.EmpStructure;
+            int masterID = 0;
             //int UserID = SessionWrapper.LoggedUser.Employee_Id;
-            Employee_Structure Emp_Struct = db.Employee_Structure.Find(EmpStructureID);
-            if (Emp_Struct.Employee_Delegation != null && Emp_Struct.Employee_Delegation != 0)
-                EmpStructureID = (int)Emp_Struct.Employee_Delegation;
+            List<Employee_Structure> List_Emp_Struct = db.Employee_Structure.Where(x=> x.Employee_Structure_Id == EmpStructureID || x.Employee_Delegation == EmpStructureID).ToList();
+            for(int i = 0; i < List_Emp_Struct.Count; i++)
+            {
+                /*if(List_Emp_Struct[i].Employee_Delegation == EmpStructureID)
+                {
+
+                }*/
+                if (List_Emp_Struct[i].Employee_Delegation == null || List_Emp_Struct[i].Employee_Delegation == 0)
+                {
+                    EmpStructureID = List_Emp_Struct[i].Employee_Structure_Id;
+                    break;
+                }
+
+            }
+
             treatmentList = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == EmpStructureID).ToList();
             treatmentDList = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == EmpStructureID).ToList();
             Treatment_Status();
@@ -37,9 +50,8 @@ namespace Treatment
             txtNewInboxTreatment.Text = treatmentDList.Where(x => x.Assignment_Status_Id != 3).Count().ToString();
             txtOutboxTreatment.Text = treatmentList.Where(x => x.Treatment_Status_Id == 1).Count().ToString();
             txtComplateTreatment.Text = (treatmentDList.Where(x => x.Assignment_Status_Id == 3).Count()).ToString();
-            string str = "update : ";
-            if (false)
-                str = "اخر تحديث :";
+            string str = FieldNames.getFieldName("Default-Update", "Update") + " : ";
+
             txtLastUpdateOne.Text = str + DateTime.Now.ToShortTimeString();
             txtLastUpdateTwo.Text = str + DateTime.Now.ToShortTimeString();
             txtLastUpdateThree.Text = str + DateTime.Now.ToShortTimeString();
@@ -93,7 +105,10 @@ namespace Treatment
                 Total += (sent + recived).ToString();
                 Recived += recived.ToString();
                 Sent += sent.ToString();
-                categories += "'" + DateList[i].ToString("MMM", CultureInfo.InvariantCulture) + "'";
+                string mounth = DateList[i].ToString("MMM", CultureInfo.InvariantCulture);
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    mounth = ArabicDate(mounth);
+                categories += "'" + mounth + "'";
                 if (i > 0)
                 {
                     Total += ",";
@@ -111,6 +126,36 @@ namespace Treatment
 
             /* Call javascript funcations   */
             Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", Pie_Function + "  " + Treatment_Per_Mounth_Function, true);
+        }
+
+        private string ArabicDate(string DateName)
+        {
+            if (DateName == "Jan")
+                DateName = "يناير";
+            else if (DateName == "Feb")
+                DateName = "فبراير";
+            else if (DateName == "Mar")
+                DateName = "مارس";
+            else if (DateName == "Apr")
+                DateName = "ابريل";
+            else if (DateName == "May")
+                DateName = "مايو";
+            else if (DateName == "Jun")
+                DateName = "يونيو";
+            else if (DateName == "Jul")
+                DateName = "يوليو";
+            else if (DateName == "Aug")
+                DateName = "أغسطس";
+            else if (DateName == "Sep")
+                DateName = "سبتمبر";
+            else if (DateName == "Oct")
+                DateName = "اكتوبر";
+            else if (DateName == "Nov")
+                DateName = "نوفمبر";
+            else if (DateName == "Dec")
+                DateName = "ديسمبر";
+
+            return DateName;
         }
     }
 }

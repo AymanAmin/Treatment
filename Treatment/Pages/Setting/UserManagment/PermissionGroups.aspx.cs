@@ -34,6 +34,7 @@ namespace Treatment.Pages.Setting.UserManagment
             {
                 FillGroupPermission();
                 Change_LablesName_BasedOn_Language();
+                Save.Text = FieldNames.getFieldName("PermissionGroups-Save", "Save");
             }
         }
 
@@ -79,9 +80,12 @@ namespace Treatment.Pages.Setting.UserManagment
         private void FillGroupPermission()
         {
             List<Group> GroupList = db.Groups.ToList();
-            ddlFiller.dropDDL(ddlGroups, "Group_Id", "Group_Name_Ar", GroupList, "Select Group");
+            if(SessionWrapper.LoggedUser.Language_id == 1)
+            ddlFiller.dropDDL(ddlGroups, "Group_Id", "Group_Name_Ar", GroupList, "أختر المجموعة");
+            else
+                ddlFiller.dropDDL(ddlGroups, "Group_Id", "Group_Name_En", GroupList, "Select Group");
             //if (GroupList.Count > 0)
-                //ddlGroups.SelectedIndex = 1;
+            //ddlGroups.SelectedIndex = 1;
         }
 
         protected void ddlGroups_SelectedIndexChanged(object sender, EventArgs e)

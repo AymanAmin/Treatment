@@ -31,7 +31,6 @@
     <!-- feather Awesome -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\icon\feather\css\feather.css" />
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\style.css" />
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\jquery.mCustomScrollbar.css" />
 
     <!-- font-awesome -->
@@ -71,8 +70,6 @@
    
      <link rel="icon" href="~\Theme\files\assets\images\favicon.ico" type="image/x-icon" />
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\bootstrap\css\bootstrap.min.css" />
-    <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\bower_components\font-awesome\css\font-awesome.min.css" />
     <!-- Date-time picker css -->
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\pages\advance-elements\css\bootstrap-datetimepicker.css" />
@@ -93,6 +90,10 @@
 
     <!-- RTL Style.css
     <link rel="stylesheet" type="text/css" href="~\Theme\files\assets\css\bootstrap_rtl.css"/> -->
+
+    <!--Arabic Language-->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300&display=swap" rel="stylesheet"/>
+
     <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {
             background-color: transparent;
@@ -171,14 +172,110 @@
         .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item li .pcoded-submenu li:hover > a {
             color: #452a74 !important;
         }
-        .hover-notification:hover{
+        .hover-notification:hover {
             background-color: #f1f1f1 !important;
         }
+
         .ScrollStyle {
             overflow-y: auto;
             overflow-x: hidden;
-            
         }
+        :dir(rtl) > .input-group-addon {
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+            border-top-left-radius: 0.0rem;
+            border-bottom-left-radius: 0.0rem;
+        }
+
+        :dir(rtl) > .select2-container--default .select2-selection--single {
+            border-top-left-radius: 0.25rem;
+            border-bottom-left-radius: 0.25rem;
+            border-top-right-radius: 0.0rem;
+            border-bottom-right-radius: 0.0rem;
+            width:100%;
+        }
+        :dir(rtl) > .select2-container--default .select2-selection--multiple {
+            border-top-left-radius: 0.25rem;
+            border-bottom-left-radius: 0.25rem;
+            border-top-right-radius: 0.0rem;
+            border-bottom-right-radius: 0.0rem;
+        }
+
+        :dir(rtl) > .card .card-header .card-header-right {
+            display: inline-block;
+            border-radius: 0 0 0 7px;
+            right:auto;
+            top: auto;
+            float: none;
+            padding: 0;
+            position: absolute;
+            left:2%;
+            padding:unset;
+        }
+        :dir(rtl) > .flex-column {
+            -ms-flex-direction: column !important;
+            flex-direction: row-reverse !important;
+            text-align: right;
+        }
+
+        :dir(rtl) > .element {
+            position: relative;
+            top: 0px;
+            left: 0;
+            width: 100%;
+        }
+        :dir(rtl) > .pcoded[theme-layout="vertical"] .pcoded-header {
+            width: 100%;
+            background-color: white;
+            
+            
+            position: fixed;
+        }
+
+        :dir(rtl) > .pcoded[theme-layout="vertical"] .pcoded-main-container {
+            padding-top: 56px !important;
+        }
+
+        :dir(rtl) > .nav-right {
+            float: unset !important;
+            position: fixed;
+            top: 0.5%;
+            left: 1% !important;
+        }
+
+        :dir(rtl) > body .pcoded[vertical-placement="right"] .header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification, body .pcoded[vertical-placement="right"] .header-navbar .navbar-wrapper .navbar-container .header-notification .show-notification, body .pcoded[vertical-placement="right"] .header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification {
+            /*left: unset !important;*/
+            text-align: right !important;
+        }
+        :dir(rtl) > .header-navbar .navbar-wrapper .navbar-container .header-notification .show-notification::after, .header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification::after{
+            right:unset !important;
+            left: 20px !important;
+        }
+        :dir(rtl) > .latest-update-card .card-block .latest-update-box::after {
+            right: 110px !important;
+            width: 0px;
+
+        }
+        :dir(rtl) > .latest-update-card .card-block .latest-update-box .update-meta .update-icon {
+            margin-right: 10px !important;
+        }
+
+        :dir(rtl) > .pull-xl-4 {
+            left: 33.333333% !important;
+            right: unset;
+        }
+
+        :dir(rtl) > .push-xl-8 {
+            right: 66.666667% !important;
+        }
+        :dir(rtl) > .SubMenuRTL {
+            /*right:20px;*/
+        }
+        :dir(rtl) > html body h1 h2 h3 h4 h5 h6 p a li ul div {
+            font-family: 'Tajawal', sans-serif;
+            font-size: large;
+        }
+       
     </style>
 
     <script>
@@ -248,7 +345,7 @@
     <title><% = Treatment.Classes.FieldNames.getFieldName("Master-Title", "E-CMS - Main Screen") %></title>
 </head>
 
-<body onload="hidePcoded()">
+<body onload="hidePcoded()" dir="<%= Treatment.Classes.FieldNames.getDirRTL() %>">
     <input id="bt-data-dismiss" type="hidden" data-dismiss="modal" value="" />
     <form id="form1" runat="server">
         <div>
@@ -349,7 +446,7 @@
                                             <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                                 <li>
                                                     <a href="../../../../Pages/Eminutes/Home.aspx">
-                                                        <i class="feather icon-repeat"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-EMinutes", "E-Minutes") %>
+                                                        <i class="feather icon-repeat"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-E-Minutes", "E-Minutes") %>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -359,7 +456,7 @@
                                                 </li>
                                                 <li>
                                                     <a href="inbox.aspx">
-                                                        <i class="feather icon-mail"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-Messages", "My Messages") %>
+                                                        <i class="feather icon-mail"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-MyMessages", "My Messages") %>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -595,20 +692,28 @@
             <!-- user-profile -->
             <script src="..\..\..\..\Theme\files\assets\pages\user-profile.js"></script>
 
-            <!-- Change To arabic
+            <!-- Change To arabic 
             <script src="..\..\..\..\Theme\files\assets\js\menu\menu-rtl.js"></script> -->
+            <% = Treatment.Classes.FieldNames.getJavaScriptRTL() %>
 
 
             <script>
 
                 $(document).ready(function () {
-                    //var lang_id = <% = Website.Classes.SessionWrapper.LoggedUser.Language_id %>;
-                    /*if(lang_id == 1)
+                    
+                    var lang_id = <% = Website.Classes.SessionWrapper.LoggedUser.Language_id %>;
+                    if(lang_id == 1)
                     {
                         $("#pcoded").pcodedmenu({
                             verticalMenuplacement: 'right',
                         });
-                    //}*/
+
+                        document.getElementById("mCSB_1_container").style.width = "100%";
+                        document.getElementById("mCSB_1_container").style.left = "0px";
+                    }
+
+                    //Menu Icon Color 
+                    document.getElementById("colorIcon").click();
 
                     // themelight1 Theme for Menu
                     $(".pcoded-navbar").attr("navbar-theme", "themelight1");
@@ -617,17 +722,22 @@
                     document.getElementById("nav-bar-custom").style.backgroundColor = "white";
                     document.getElementById("nav-bar-custom").style.color = "#452a74";
 
-                    //Menu Icon Color 
-                    document.getElementById("colorIcon").click();
+                    
 
                     // SubMenu Style
-                    $(".pcoded-navbar .pcoded-hasmenu").attr("subitem-icon", "style4")
+                    $(".pcoded-navbar .pcoded-hasmenu").attr("subitem-icon", "style4");
 
                     // Header tool bar Style 
-                    $(".pcoded-header").attr("header-theme", "theme6"), $(".navbar-logo").attr("logo-theme", "theme6")
+                    $(".pcoded-header").attr("header-theme", "theme6"), $(".navbar-logo").attr("logo-theme", "theme6");
 
                     // Expand menu icon 
-                    $(".pcoded-navbar .pcoded-hasmenu").attr("dropdown-icon", "style3")
+                    $(".pcoded-navbar .pcoded-hasmenu").attr("dropdown-icon", "style3");
+
+                    //No border
+                    $(".pcoded-navbar .pcoded-item").attr("item-border-style", "none");
+
+                    
+
                 });
 
 

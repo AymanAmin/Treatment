@@ -27,5 +27,21 @@ namespace Treatment.Classes
 
             return name;
         }
+
+        public static string getJavaScriptRTL()
+        {
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                return "<script src='../../../../Theme/files/assets/js/menu/menu-rtl.js'></script>";
+            else
+                return string.Empty;
+        }
+
+        public static string getDirRTL()
+        {
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                return "rtl";
+            else
+                return string.Empty;
+        }
     }
 }

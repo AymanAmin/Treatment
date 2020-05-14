@@ -36,7 +36,10 @@ namespace Treatment
             //Change Layout to RTL
             if (SessionWrapper.LoggedUser.Language_id != null)
                 if (SessionWrapper.LoggedUser.Language_id == 1)
+                {
+                    //this.html.Attributes.Add("dir", "ltr");
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "RTL_Layout();", true);
+                }
             ListPermissions = SessionWrapper.Permssions;
 
             Employee_Name();
@@ -123,8 +126,11 @@ namespace Treatment
             string str = string.Empty;
             try
             {
-                str += "<ul class='pcoded-item pcoded-left-item'>";
-                str += "<li class=''>";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<ul class='pcoded-item pcoded-left-item'>";
+                else
+                    str += "<ul class='pcoded-item pcoded-left-item'>";
+                str += "<li class='SubMenuRTL'>";
                 str += "<a href = '../../../../' > ";
                 str += "<span class='pcoded-micon active' style='color:#452a74'><i class='feather icon-home'></i></span>";
                 if (SessionWrapper.LoggedUser.Language_id == 1)
@@ -173,7 +179,7 @@ namespace Treatment
                                     if (CurrentPageNow.Permission_Id == Third_List[Third_Level].Permission_Id)
                                         str += "<li class='active'>";
                                     else
-                                        str += "<li class=''>";
+                                        str += "<li class='SubMenuRTL'>";
                                     str += "<a href = '../../../../" + Third_List[Third_Level].Url_Path + "' > ";
                                     str += "<span class='pcoded-micon'><i class='"+ Third_List[Third_Level].Permission_Icon+ "'></i></span>";
                                     if (SessionWrapper.LoggedUser.Language_id == 2)
@@ -191,7 +197,7 @@ namespace Treatment
                                 if (CurrentPageNow.Permission_Id == Second_List[Second_Level].Permission_Id)
                                     str += "<li class='active'>";
                                 else
-                                    str += "<li class=''>";
+                                    str += "<li class='SubMenuRTL'>";
                                 str += "<a href = '../../../../" + Second_List[Second_Level].Url_Path + "' > ";
                                 str += "<span class='pcoded-micon'><i class='" + Second_List[Second_Level].Permission_Icon + "'></i></span>";
                                 if (SessionWrapper.LoggedUser.Language_id == 2)
@@ -207,7 +213,7 @@ namespace Treatment
                     }
                 }
                 str += "<ul class='pcoded-item pcoded-left-item'>";
-                str += "<li class=''>";
+                str += "<li class='SubMenuRTL'>";
                 str += "<a href = '../../../../Pages/Setting/Auth/Logout.ashx' > ";
                 str += "<span class='pcoded-micon active' style='color:#452a74'><i class='icofont icofont-logout'></i></span>";
                 if (SessionWrapper.LoggedUser.Language_id == 1)
@@ -265,7 +271,7 @@ namespace Treatment
                                     "<h6>" + Treatment.Classes.FieldNames.getFieldName("Master-Notifications", "Notifications") + "</h6>";
                 if (notificationMaster.Count > 0)
                 {
-                    yourHTMLstring += "<label class='label label-danger'>" + Treatment.Classes.FieldNames.getFieldName("Master-Notifications-New", "New") + "</label>";
+                    yourHTMLstring += "<label class='label label-danger'>" + Treatment.Classes.FieldNames.getFieldName("Master-New", "New") + "</label>";
                 } 
                 yourHTMLstring += "</li>";
                 panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
@@ -283,19 +289,26 @@ namespace Treatment
                         if (counter == 5)
                         {
                             yourHTMLstring = "<li style='padding-top: 2%;padding-bottom: 1%; text-align:center;'>" +
-                                "<a href='../../../../Pages/Setting/UserManagment/MyNotifications.aspx' class='hover-notification'>See all notifications</a>" +
+                                "<a href='../../../../Pages/Setting/UserManagment/MyNotifications.aspx' class='hover-notification'>"+ Classes.FieldNames.getFieldName("Master-SeeAllNotifications", "See All Notifications") + "</a>" +
                                 "</li>";
                             panelNotification.Controls.Add(new LiteralControl(yourHTMLstring));
 
                             break;
+                        }
+                        string NameOfEmp = employeeStructure.Employee.Employee_Name_En;
+                        string Description = notificationMaster[i].Notification_Description_En;
+                        if (SessionWrapper.LoggedUser.Language_id == 1)
+                        {
+                            NameOfEmp = employeeStructure.Employee.Employee_Name_Ar;
+                            Description = notificationMaster[i].Notification_Description_Ar;
                         }
                         yourHTMLstring = "<li style='padding-top: 2%;padding-bottom: 1%;'>" +
                                                 "<div class='media'>" +
                                                     "<img class='d-flex align-self-center img-radius' src='../../../../media/Profile/" + employeeStructure.Employee.Employee_Profile + "' alt='Avtar' />" +
                                                     "<a href='" + notificationMaster[i].Notification_Link + notificationMaster[i].Notification_Id + "' class='hover-notification'>" +
                                                         "<div class='media-body'>" +
-                                                            "<h5 class='notification-user'>" + employeeStructure.Employee.Employee_Name_En + "</h5>" +
-                                                            "<p class='notification-msg'>" + notificationMaster[i].Notification_Description_En + "</p>" +
+                                                            "<h5 class='notification-user'>" + NameOfEmp + "</h5>" +
+                                                            "<p class='notification-msg'>" + Description + "</p>" +
                                                             "<span class='notification-time'>" + dateAgo((DateTime)notificationMaster[i].Notification_Date) + "</span>" +
                                                         "</div>" +
                                                     "</a>" +
@@ -323,13 +336,16 @@ namespace Treatment
 
         private void LoadStructure()
         {
-            List<Employee_Structure> ListStructure = db.Employee_Structure.Where(x => (x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id || x.Employee_Delegation == SessionWrapper.LoggedUser.Employee_Id) && x.Type_Delegation == true).ToList();
+            List<Employee_Structure> ListStructure = db.Employee_Structure.Where(x => (x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id || x.Employee_Delegation == SessionWrapper.LoggedUser.Employee_Id) && x.Status_Structure == true).ToList();
             string str = string.Empty;
             for (int i = 0; i < ListStructure.Count; i++)
             {
                 str += "<li>";
-                str += "<a href = '../../../../Pages/Treatment/ChangeStructure.ashx?EmpStructureId="+ ListStructure[i].Employee_Structure_Id+ "'> ";
-                str += "<i class='feather icon-grid'></i> " + ListStructure[i].Structure.Structure_Name_En ;
+                str += "<a href = '../../../../Pages/Treatment/ChangeStructure.ashx?EmpStructureId=" + ListStructure[i].Employee_Structure_Id + "'> ";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<i class='feather icon-grid'></i> " + ListStructure[i].Structure.Structure_Name_Ar;
+                else
+                    str += "<i class='feather icon-grid'></i> " + ListStructure[i].Structure.Structure_Name_En;
                 str += "</a>";
                 str += "</li>";
             }
