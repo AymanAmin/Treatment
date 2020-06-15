@@ -35,8 +35,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
             }
 
             if (!IsPostBack)
-            {
-               
+            { 
                 fillDropDown();
                 txtStatusofBoard.SelectedValue = "1";
                 if (boardinfo != null)
@@ -63,7 +62,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                     board.Board_Description_En = txtEnglishDescription.Text;
 
                     board.Board_Type_Id = int.Parse(txtTypeofBoard.SelectedValue.ToString());
-                    board.Board_Status = 2; // int.Parse(txtStatusofBoard.SelectedValue.ToString());
+                    board.Board_Status_Id = 2; // int.Parse(txtStatusofBoard.SelectedValue.ToString());
                     board.Board_Classification_Id = int.Parse(txtClassification.SelectedValue.ToString());
                     board.Parent = int.Parse(txtParent.SelectedValue.ToString());
 
@@ -105,7 +104,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 board.Board_Description_En = txtEnglishDescription.Text;
 
                 board.Board_Type_Id = int.Parse(txtTypeofBoard.SelectedValue.ToString());
-                board.Board_Status = int.Parse(txtStatusofBoard.SelectedValue.ToString());
+                board.Board_Status_Id = int.Parse(txtStatusofBoard.SelectedValue.ToString());
                 board.Board_Classification_Id = int.Parse(txtClassification.SelectedValue.ToString());
                 board.Parent = int.Parse(txtParent.SelectedValue.ToString());
 
@@ -175,7 +174,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 txtEnglishName.Text = boardinfo.Board_Name_En;
                 txtArabicDescription.Text = boardinfo.Board_Description_Ar;
                 txtEnglishDescription.Text = boardinfo.Board_Description_En;
-                txtStatusofBoard.SelectedValue = boardinfo.Board_Status.ToString();
+                txtStatusofBoard.SelectedValue = boardinfo.Board_Status_Id.ToString();
                 txtTypeofBoard.SelectedValue = boardinfo.Board_Type_Id.ToString();
                 txtClassification.SelectedValue = boardinfo.Board_Classification_Id.ToString();
                 txtParent.SelectedValue = boardinfo.Parent.ToString();

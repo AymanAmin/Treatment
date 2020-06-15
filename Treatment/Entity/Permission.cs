@@ -29,7 +29,7 @@ namespace Treatment.Entity
         public Nullable<int> System_Id { get; set; }
     
         public virtual ICollection<Log_File> Log_File { get; set; }
-        public virtual ICollection<Permission_Group> Permission_Group { get; set; }
         public virtual OurSystem OurSystem { get; set; }
+        public virtual ICollection<Permission_Group> Permission_Group { get; set; }
     }
 }

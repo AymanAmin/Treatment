@@ -14,10 +14,16 @@ namespace Treatment.Entity
     
     public partial class M_Board_Status
     {
+        public M_Board_Status()
+        {
+            this.M_Board = new HashSet<M_Board>();
+        }
+    
         public int Board_Status_Id { get; set; }
         public string Board_Status_Name_Ar { get; set; }
         public string Board_Status_Name_En { get; set; }
     
+        public virtual ICollection<M_Board> M_Board { get; set; }
         public virtual M_Board_Status M_Board_Status1 { get; set; }
         public virtual M_Board_Status M_Board_Status2 { get; set; }
     }

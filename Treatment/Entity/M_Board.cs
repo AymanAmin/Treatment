@@ -30,12 +30,13 @@ namespace Treatment.Entity
         public string Board_Description_Ar { get; set; }
         public string Board_Description_En { get; set; }
         public Nullable<int> Parent { get; set; }
-        public Nullable<int> Board_Status { get; set; }
+        public Nullable<int> Board_Status_Id { get; set; }
         public Nullable<int> Board_Type_Id { get; set; }
         public Nullable<int> Board_Classification_Id { get; set; }
     
         public virtual ICollection<M_Board_Location> M_Board_Location { get; set; }
         public virtual M_Board_Classification M_Board_Classification { get; set; }
+        public virtual M_Board_Status M_Board_Status { get; set; }
         public virtual M_Board_Type M_Board_Type { get; set; }
         public virtual ICollection<M_Board_Member> M_Board_Member { get; set; }
         public virtual ICollection<M_Meeting> M_Meeting { get; set; }

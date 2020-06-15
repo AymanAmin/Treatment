@@ -48,9 +48,11 @@ namespace Treatment.Entity
         public DbSet<M_Member_Type> M_Member_Type { get; set; }
         public DbSet<M_Recommendation> M_Recommendation { get; set; }
         public DbSet<M_Topic> M_Topic { get; set; }
+        public DbSet<M_Topic_Status> M_Topic_Status { get; set; }
         public DbSet<Notification_Employee> Notification_Employee { get; set; }
         public DbSet<Notification_Master> Notification_Master { get; set; }
         public DbSet<Notification_Show> Notification_Show { get; set; }
+        public DbSet<OurSystem> OurSystems { get; set; }
         public DbSet<Owner_Relationship> Owner_Relationship { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Permission_Group> Permission_Group { get; set; }
@@ -64,8 +66,6 @@ namespace Treatment.Entity
         public DbSet<Treatment_Procedure> Treatment_Procedure { get; set; }
         public DbSet<Treatment_Status> Treatment_Status { get; set; }
         public DbSet<Treatment_Type> Treatment_Type { get; set; }
-        public DbSet<OurSystem> OurSystems { get; set; }
-        public DbSet<M_Topic_Status> M_Topic_Status { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

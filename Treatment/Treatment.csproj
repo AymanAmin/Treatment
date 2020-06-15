@@ -159,6 +159,7 @@
       <LastGenOutput>ECMS.cs</LastGenOutput>
     </Content>
     <Content Include="Pages\Eminutes\Board.aspx" />
+    <Content Include="Pages\Eminutes\BoardManagment\BoardApprove.aspx" />
     <Content Include="Pages\Eminutes\BoardManagment\BoardInfo.aspx" />
     <Content Include="Pages\Eminutes\BoardManagment\BoardLocations.aspx" />
     <Content Include="Pages\Eminutes\BoardManagment\BoardMember.aspx" />
@@ -2286,6 +2287,13 @@
     </Compile>
     <Compile Include="Pages\Eminutes\Board.aspx.designer.cs">
       <DependentUpon>Board.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\BoardManagment\BoardApprove.aspx.cs">
+      <DependentUpon>BoardApprove.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\BoardManagment\BoardApprove.aspx.designer.cs">
+      <DependentUpon>BoardApprove.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Eminutes\BoardManagment\BoardInfo.aspx.cs">
       <DependentUpon>BoardInfo.aspx</DependentUpon>
