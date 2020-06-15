@@ -241,6 +241,7 @@
             position: fixed;
             top: 0.5%;
             left: 1% !important;
+            /*color:red;*/
         }
 
         :dir(rtl) > body .pcoded[vertical-placement="right"] .header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification, body .pcoded[vertical-placement="right"] .header-navbar .navbar-wrapper .navbar-container .header-notification .show-notification, body .pcoded[vertical-placement="right"] .header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification {

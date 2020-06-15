@@ -120,21 +120,39 @@
 
                             <Columns>
                                 <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Arabic Name" FieldName="Permission_Name_Ar" ShowInFilterControl="Default" VisibleIndex="1">
-                                </dx:TreeListTextColumn>
+                                <HeaderStyle HorizontalAlign="Center" />
+                    <CellStyle HorizontalAlign="Center">
+                    </CellStyle>
+                            </dx:TreeListTextColumn>
                                 <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="English Name" FieldName="Permission_Name_En" ShowInFilterControl="Default" VisibleIndex="0">
-                                </dx:TreeListTextColumn>
+                                <HeaderStyle HorizontalAlign="Center" />
+                    <CellStyle HorizontalAlign="Center">
+                    </CellStyle>
+                            </dx:TreeListTextColumn>
                                 <dx:TreeListTextColumn AutoFilterCondition="Default" FieldName="Url_Path" ShowInFilterControl="Default" VisibleIndex="5" Caption="URL Path">
-                                </dx:TreeListTextColumn>
+                                <HeaderStyle HorizontalAlign="Center" />
+                    <CellStyle HorizontalAlign="Center">
+                    </CellStyle>
+                            </dx:TreeListTextColumn>
                                 <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Icon" FieldName="Permission_Icon" ShowInFilterControl="Default" VisibleIndex="4">
-                                </dx:TreeListTextColumn>
+                                <HeaderStyle HorizontalAlign="Center" />
+                    <CellStyle HorizontalAlign="Center">
+                    </CellStyle>
+                            </dx:TreeListTextColumn>
                                 <dx:TreeListComboBoxColumn AutoFilterCondition="Default" FieldName="Parent" ShowInFilterControl="Default" VisibleIndex="2" Caption="Parent">
                                     <PropertiesComboBox DataSourceID="PermissionDataSource" TextField="Permission_Name_En" ValueField="Permission_Id">
                                     </PropertiesComboBox>
-                                </dx:TreeListComboBoxColumn>
+                                <HeaderStyle HorizontalAlign="Center" />
+                    <CellStyle HorizontalAlign="Center">
+                    </CellStyle>
+                            </dx:TreeListComboBoxColumn>
                                 <dx:TreeListComboBoxColumn AutoFilterCondition="Default" Caption="System" FieldName="System_Id" ShowInFilterControl="Default" VisibleIndex="3">
                                     <PropertiesComboBox DataSourceID="SystemDataSource" TextField="System_Name_En" ValueField="ID">
                                     </PropertiesComboBox>
-                                </dx:TreeListComboBoxColumn>
+                                <HeaderStyle HorizontalAlign="Center" />
+                    <CellStyle HorizontalAlign="Center">
+                    </CellStyle>
+                            </dx:TreeListComboBoxColumn>
                                 <dx:TreeListCommandColumn VisibleIndex="6" Caption="Action">
                                     <EditButton Visible="True" Text=" ">
                                         <Styles>

@@ -110,8 +110,14 @@
                                         </CellStyle>
                                     </dx:GridViewDataTextColumn>
                                     <dx:GridViewDataTextColumn FieldName="Group_Name_Ar" ShowInCustomizationForm="True" VisibleIndex="1" Caption="Arabic Name">
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <CellStyle HorizontalAlign="Center">
+                                        </CellStyle>
                                     </dx:GridViewDataTextColumn>
                                     <dx:GridViewCommandColumn ShowDeleteButton="True" ShowEditButton="True" ShowInCustomizationForm="True" VisibleIndex="3" ButtonRenderMode="Link" ButtonType="Link" Caption="Action">
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <CellStyle HorizontalAlign="Center">
+                                        </CellStyle>
                                     </dx:GridViewCommandColumn>
                                     <dx:GridViewDataTextColumn Caption="English Name" FieldName="Group_Name_En" Name="English Name" VisibleIndex="2">
                                     </dx:GridViewDataTextColumn>

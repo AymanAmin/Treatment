@@ -101,7 +101,7 @@
                     <div class="form-group col-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-search"></i></span>
-                            <asp:TextBox ID="Keyword" runat="server" class="form-control" placeholder="Subject or Body..." TextMode="SingleLine"></asp:TextBox>
+                            <asp:TextBox ID="Keyword" runat="server" class="form-control" placeholder="" TextMode="SingleLine"></asp:TextBox>
                         </div>
                     </div>
                     <div class="form-group col-sm-2 text-right">
@@ -133,11 +133,11 @@
                         <thead>
                             <tr>
                                 <th style="text-align: center">#</th>
-                                <th><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-Mail", "Mail") %></th>
-                                <th><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-Subject", "Subject") %></th>
+                                <th style="text-align: center"><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-Mail", "Mail") %></th>
+                                <th style="text-align: center"><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-Subject", "Subject") %></th>
                                 <th style="text-align: center"><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-Managment", "Managment") %></th>
                                 <th style="text-align: center"><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-PreparedBy", "Prepared By") %></th>
-                                <th><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-Date", "Date") %></th>
+                                <th style="text-align: center"><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-Date", "Date") %></th>
                                 <th style="text-align: center"><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-SecritLevel", "Secrit Level") %></th>
                                 <th style="text-align: center"><% = Treatment.Classes.FieldNames.getFieldName("AdvancedSearch-View", "View") %> </th>
                             </tr>

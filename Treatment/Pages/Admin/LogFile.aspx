@@ -136,22 +136,40 @@ document.getElementsByClassName(&quot;dx-wrap dxgv&quot;)[0].innerHTML = tables 
                         <SettingsSearchPanel Visible="True" />
                         <Columns>
                             <dx:GridViewDataTextColumn FieldName="Log_Id" ReadOnly="True" VisibleIndex="0" Caption="ID">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataDateColumn FieldName="Log_Date" VisibleIndex="3" Caption="Date" PropertiesDateEdit-EditFormat="DateTime" PropertiesDateEdit-DisplayFormatInEditMode="True" SortIndex="0" SortOrder="Descending">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                                 <PropertiesDateEdit DisplayFormatString="MM/dd/yyyy h:mm tt">
                                 </PropertiesDateEdit>
                             </dx:GridViewDataDateColumn>
                             <dx:GridViewDataTextColumn FieldName="Log_Name" VisibleIndex="4" Caption="Log Name">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataComboBoxColumn Caption="Main Page" FieldName="Form_Id" VisibleIndex="1">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                                 <PropertiesComboBox DataSourceID="PermissionDataSource" TextField="Permission_Name_En" ValueField="Permission_Id">
                                 </PropertiesComboBox>
                             </dx:GridViewDataComboBoxColumn>
                             <dx:GridViewDataComboBoxColumn FieldName="Login_Id" VisibleIndex="2" Caption="Employee">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                                 <PropertiesComboBox DataSourceID="EmployeeDataSource" TextField="Employee_Name_En" ValueField="Employee_Id">
                                 </PropertiesComboBox>
                             </dx:GridViewDataComboBoxColumn>
                             <dx:GridViewDataTextColumn Caption="Description" FieldName="Log_Description" ShowInCustomizationForm="True" VisibleIndex="5">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                         </Columns>
                         <Templates>

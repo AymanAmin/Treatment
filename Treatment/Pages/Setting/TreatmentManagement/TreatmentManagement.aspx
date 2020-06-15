@@ -12,10 +12,13 @@
             <div class="col-lg-12">
                 <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Priority">
                     <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentPriority", "Treatment Priority") %></h4>
-                    <p class="text-sm-left"><span>In Class Css use <code>icofont icofont-star text-success</code> And change <code>success</code> Based on color.</span>
-                    <br />
-                    <span>In Class Card use <code>card card-border-success</code> And change <code>success</code> Based on color.</span><br />
-                    <br /></p><dx:ASPxGridView ID="PriorityGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="PriorityDataSource" EnableTheming="True" KeyFieldName="Treatment_Priority_Id" Theme="Mulberry" OnRowDeleted="PriorityGridView_RowDeleted" OnRowInserted="PriorityGridView_RowInserted" OnRowUpdated="PriorityGridView_RowUpdated">
+                    <p class="text-sm-left">
+                        <span>In Class Css use <code>icofont icofont-star text-success</code> And change <code>success</code> Based on color.</span>
+                        <br />
+                        <span>In Class Card use <code>card card-border-success</code> And change <code>success</code> Based on color.</span><br />
+                        <br />
+                    </p>
+                    <dx:ASPxGridView ID="PriorityGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="PriorityDataSource" EnableTheming="True" KeyFieldName="Treatment_Priority_Id" Theme="Mulberry" OnRowDeleted="PriorityGridView_RowDeleted" OnRowInserted="PriorityGridView_RowInserted" OnRowUpdated="PriorityGridView_RowUpdated">
                         <SettingsCommandButton>
                             <NewButton Text=" ">
                                 <Styles>
@@ -51,14 +54,29 @@
                         </SettingsCommandButton>
                         <Columns>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Action" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="5">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewCommandColumn>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Priority_Name_Ar" VisibleIndex="1">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Priority_Name_En" VisibleIndex="2">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="Card Class" FieldName="Card_Class" VisibleIndex="4">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="CSS Class" FieldName="Css_Class" VisibleIndex="3">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Priority_Id" VisibleIndex="0" Width="10%">
                                 <HeaderStyle HorizontalAlign="Center" />
@@ -75,7 +93,8 @@
             <div class="col-lg-12">
                 <div class="p-20 z-depth-bottom-0 waves-effect dt-responsive table-responsive" data-placement="top" title="Treatment Confidentiality">
                     <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("TreatmentManagement-TreatmentConfidentiality", "Treatment Confidentiality") %></h4>
-                    <p class="text-sm-left"><span>In Class Css use <code>label label-success</code> And change <code>success</code> Based on color.</span></p><br />
+                    <p class="text-sm-left"><span>In Class Css use <code>label label-success</code> And change <code>success</code> Based on color.</span></p>
+                    <br />
                     <dx:ASPxGridView ID="ConfidentialityGridView" runat="server" AutoGenerateColumns="False" Style="width: 100%" DataSourceID="ConfidentialityDataSource" EnableTheming="True" KeyFieldName="Treatment_Confidentiality_Id" Theme="Mulberry" OnRowDeleted="ConfidentialityGridView_RowDeleted" OnRowInserted="ConfidentialityGridView_RowInserted" OnRowUpdated="ConfidentialityGridView_RowUpdated">
                         <SettingsBehavior ConfirmDelete="True" />
                         <SettingsCommandButton>
@@ -113,12 +132,24 @@
                         </SettingsCommandButton>
                         <Columns>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Action" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="4">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewCommandColumn>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Confidentiality_Name_Ar" VisibleIndex="1">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Confidentiality_Name_En" VisibleIndex="2">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="CSS Class" FieldName="Css_Class" VisibleIndex="3">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Confidentiality_Id" VisibleIndex="0">
                                 <HeaderStyle HorizontalAlign="Center" />
@@ -189,14 +220,26 @@
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Type_Name_Ar" VisibleIndex="1">
                                 <PropertiesTextEdit Width="100%">
                                 </PropertiesTextEdit>
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Type_Name_En" VisibleIndex="2">
                                 <PropertiesTextEdit Width="100%">
                                 </PropertiesTextEdit>
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Actions" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewCommandColumn>
                             <dx:GridViewDataTextColumn FieldName="Treatment_Type_Id" VisibleIndex="0" Caption="ID">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <CellStyle HorizontalAlign="Center">
                                 </CellStyle>
@@ -248,12 +291,24 @@
                         </SettingsCommandButton>
                         <Columns>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Status_Name_Ar" VisibleIndex="1">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Status_Name_En" VisibleIndex="2">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Action" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewCommandColumn>
                             <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Status_Id" VisibleIndex="0">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <CellStyle HorizontalAlign="Center">
                                 </CellStyle>
@@ -304,10 +359,19 @@
                         </SettingsCommandButton>
                         <Columns>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Procedure_Name_Ar" VisibleIndex="1">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Procedure_Name_En" VisibleIndex="2">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewCommandColumn>
                             <dx:GridViewDataTextColumn FieldName="Treatment_Procedure_Id" VisibleIndex="0" Caption="ID">
                                 <HeaderStyle HorizontalAlign="Center" />
@@ -360,10 +424,19 @@
                         </SettingsCommandButton>
                         <Columns>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Action" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewCommandColumn>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Delivery_Name_Ar" VisibleIndex="1">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Delivery_Name_En" VisibleIndex="2">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Delivery_Id" VisibleIndex="0">
                                 <HeaderStyle HorizontalAlign="Center" />
@@ -416,10 +489,19 @@
                         </SettingsCommandButton>
                         <Columns>
                             <dx:GridViewCommandColumn ButtonRenderMode="Link" ButtonType="Link" Caption="Action" ShowDeleteButton="True" ShowEditButton="True" ShowNewButtonInHeader="True" VisibleIndex="3">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewCommandColumn>
                             <dx:GridViewDataTextColumn Caption="Arabic Name" FieldName="Treatment_Class_Name_Ar" VisibleIndex="1">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="English Name" FieldName="Treatment_Class_Name_En" VisibleIndex="2">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <CellStyle HorizontalAlign="Center">
+                                </CellStyle>
                             </dx:GridViewDataTextColumn>
                             <dx:GridViewDataTextColumn Caption="ID" FieldName="Treatment_Class_Id" VisibleIndex="0">
                                 <HeaderStyle HorizontalAlign="Center" />

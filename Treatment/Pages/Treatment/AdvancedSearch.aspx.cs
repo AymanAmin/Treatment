@@ -41,6 +41,9 @@ namespace Treatment.Pages.Treatment
 
             structureList = db.Structures.ToList();
 
+            btnSearch.Text = FieldNames.getFieldName("AdvancedSearch-Search", "Search");
+
+
             if (!IsPostBack)
             {
                 FillDropDownLists();

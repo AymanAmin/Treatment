@@ -59,10 +59,19 @@
                     </CellStyle>
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Language_Detial_FieldName" VisibleIndex="2" Caption="Field Name" Name="LangFieldName">
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <CellStyle HorizontalAlign="Center">
+                    </CellStyle>
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="Language_Detial_Value" VisibleIndex="3" Caption="Value" Name="LangValue">
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <CellStyle HorizontalAlign="Center">
+                    </CellStyle>
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataComboBoxColumn Caption="Language Name" FieldName="Language_Master_ID" VisibleIndex="1" Name="LangName">
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <CellStyle HorizontalAlign="Center">
+                    </CellStyle>
                     <PropertiesComboBox DataSourceID="LanguageMasterDataSource" TextField="Language_Name" ValueField="ID">
                     </PropertiesComboBox>
                 </dx:GridViewDataComboBoxColumn>
