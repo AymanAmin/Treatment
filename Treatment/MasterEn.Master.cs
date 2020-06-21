@@ -16,7 +16,7 @@ namespace Treatment
         Permission CurrentPageNow = new Permission();
         List<int> CurrentPageSequences = new List<int>();
         bool isDashBoard = false;
-        int currentStructureUserId = 0, currentUserId = 0;
+        int currentStructureUserId = 0, currentUserId = 0, delegationId = 0;
         List<Notification_Master> notificationMaster;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -47,9 +47,21 @@ namespace Treatment
             LoadMenu(ListPermissions);
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = SessionWrapper.EmpStructure;
+            delegationId = getDelegationId();
             loadNotification();
             LoadStructure();
             // ViewData(60);
+        }
+
+        private int getDelegationId()
+        {
+            int DeleId = 0;
+            try
+            {
+                DeleId = (int)db.Employee_Structure.First(x => x.Employee_Structure_Id == currentStructureUserId && x.Type_Delegation == true).Employee_Delegation;
+                return DeleId;
+            }
+            catch { return DeleId; }
         }
 
         private void Employee_Name()
@@ -251,7 +263,7 @@ namespace Treatment
                     }
                 }
                 notificationMaster = new List<Notification_Master>();
-                notificationMaster = db.Notification_Master.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Is_Read == false && (x.Notification_Show_Id == notfOne || x.Notification_Show_Id == notfTow || x.Notification_Show_Id == notfThir || x.Notification_Show_Id == notfFour)).OrderByDescending(x => x.Notification_Id).ToList<Notification_Master>();
+                notificationMaster = db.Notification_Master.Where(x => (x.To_Employee_Structure_Id == currentStructureUserId || x.To_Employee_Structure_Id == delegationId) && x.Is_Read == false && (x.Notification_Show_Id == notfOne || x.Notification_Show_Id == notfTow || x.Notification_Show_Id == notfThir || x.Notification_Show_Id == notfFour)).OrderByDescending(x => x.Notification_Id).ToList<Notification_Master>();
                 string yourHTMLstring = "";
                 yourHTMLstring = "<div class='dropdown-toggle' data-toggle='dropdown'>";
                 if (notificationMaster.Count > 0)

@@ -156,7 +156,7 @@ namespace Treatment.Pages.Treatment
                 {
                     treatmentDetialDel = new Treatment_Detial();
                     delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
-                    treatmentDetialDel = db.Treatment_Detial.FirstOrDefault(x => x.To_Employee_Structure_Id == delgEmpStrId && x.Treatment_Detial_Id == treatmentDetialId && x.Assignment_Status_Id != 3);
+                    treatmentDetialDel = db.Treatment_Detial.FirstOrDefault(x => x.To_Employee_Structure_Id == delgEmpStrId && x.Treatment_Detial_Id == treatmentDetialId);
                     if (treatmentDetialDel != null)
                         return delgEmpStrId;
                 }
