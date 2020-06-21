@@ -4,6 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title><% = Treatment.Classes.FieldNames.getFieldName("inbox-Title", "ECMS - Inbox") %></title>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
     <!-- Page-body start -->
@@ -84,17 +85,18 @@
                             </div>
                             <ul class="page-list nav nav-tabs flex-column" id="pills-tab" role="tablist">
                                 <li class="nav-item mail-section">
-                                    <a class="nav-link active" data-toggle="pill" href="#e-inbox" role="tab" style="font-size: 120%; color: #ccd0d5" id="addNfNumTreatment" runat="server">
+                                    <a class="nav-link active" data-toggle="pill" href="#e-inbox" role="tab" style="font-size: 120%; color: #ccd0d5">
                                         <i class="icofont icofont-inbox"></i><% = Treatment.Classes.FieldNames.getFieldName("inbox-Inbox", "Inbox") %>
+                                        <span class="label label-danger f-right" id="addNfNumTreatment" runat="server"></span>
                                     </a>
                                 </li>
                                 <li class="nav-item mail-section">
-                                    <a class="nav-link" data-toggle="pill" href="#e-send" role="tab" style="font-size: 120%; color: #ccd0d5">
+                                    <a class="nav-link" data-toggle="pill" href="#e-starred" role="tab" style="font-size: 120%; color: #ccd0d5">
                                         <i class="icofont icofont-paper-plane"></i><% = Treatment.Classes.FieldNames.getFieldName("inbox-Sent", "Sent") %>
                                     </a>
                                 </li>
                                 <li class="nav-item mail-section">
-                                    <a class="nav-link" data-toggle="pill" href="#e-completed" role="tab" style="font-size: 120%; color: #ccd0d5">
+                                    <a class="nav-link" data-toggle="pill" href="#e-drafts" role="tab" style="font-size: 120%; color: #ccd0d5">
                                         <i class="icofont icofont-license"></i><% = Treatment.Classes.FieldNames.getFieldName("inbox-Completed", "Completed") %>
                                     </a>
                                 </li>
@@ -119,7 +121,7 @@
                             <!-- End Inbox Treatment -->
 
                             <!-- Start Send Treatment-->
-                            <div class="tab-pane fade" id="e-send" role="tabpanel">
+                            <div class="tab-pane fade" id="e-starred" role="tabpanel">
                                 <div class="mail-body">
                                     <div class="mail-body-content">
                                         <div class="table-responsive" runat="server" id="sendTreatment">
@@ -131,7 +133,7 @@
                             <!-- End Send Treatment -->
 
                             <!-- Start Complete Treatment  -->
-                            <div class="tab-pane fade" id="e-completed" role="tabpanel">
+                            <div class="tab-pane fade" id="e-drafts" role="tabpanel">
                                 <div class="mail-body">
                                     <div class="mail-body-content">
                                         <div class="table-responsive" runat="server" id="completeTreatment">
@@ -149,12 +151,6 @@
             </div>
         </div>
         <!-- End View Inbox list  -->
-
-        <!-- Task board design block start-->
-        <div class="row" runat="server" id="gridViewTreatment" style="display:none;">
-
-        </div>
-        <!-- Task board design block end -->
     </div>
     <style>
         .email-card .user-body .page-list {

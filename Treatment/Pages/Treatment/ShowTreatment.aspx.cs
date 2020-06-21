@@ -24,14 +24,13 @@ namespace Treatment.Pages.Treatment
         Treatment_Detial oneTreatmentDetial;
         Treatment_Detial recoverTreatmentDetial;
         Treatment_Detial isTreatmentDetialParent;
-        bool isSecert = false, isPath = false, flayRequiredReply = false, flayBorder = false;
+        bool isSecert = false, isPath = false, flayRequiredReply = false, flayBorder = false, isDelegation = false;
         List<Attachment> listAttachmentTrack;
         string treatmentDetialDate = "", isTrackBorder = "";
         List<Employee_Structure> ListDelegationEmpStru = new List<Employee_Structure>();
         List<Structure> ListStructure = new List<Structure>();
         protected void Page_Load(object sender, EventArgs e)
         {
-
             reloadPage();
             if (IsPostBack)
             {
@@ -49,6 +48,7 @@ namespace Treatment.Pages.Treatment
             isSecert = false; isPath = false;
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = SessionWrapper.EmpStructure;
+            isDelegation = getIsDelegation();
             ListDelegationEmpStru = getAllEmployeeStructure();
             if (int.TryParse(Request["getTreatmentId"], out treatmentId) && treatmentId > 0)
             {
@@ -92,6 +92,7 @@ namespace Treatment.Pages.Treatment
 
             }
         }
+
         private void checkLogin()
         {
             if (SessionWrapper.LoggedUser != null)
@@ -103,6 +104,17 @@ namespace Treatment.Pages.Treatment
             {
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
             }
+        }
+
+        private bool getIsDelegation()
+        {
+            bool flayDele = false;
+            try
+            {
+                flayDele = (bool)db.Employee_Structure.First(x => x.Employee_Structure_Id == currentStructureUserId).Type_Delegation;
+                return flayDele;
+            }
+            catch { return flayDele; }
         }
 
         private List<Employee_Structure> getAllEmployeeStructure()
@@ -144,7 +156,7 @@ namespace Treatment.Pages.Treatment
                 {
                     treatmentDetialDel = new Treatment_Detial();
                     delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
-                    treatmentDetialDel = db.Treatment_Detial.FirstOrDefault(x => x.To_Employee_Structure_Id == delgEmpStrId && x.Treatment_Detial_Id == treatmentDetialId);
+                    treatmentDetialDel = db.Treatment_Detial.FirstOrDefault(x => x.To_Employee_Structure_Id == delgEmpStrId && x.Treatment_Detial_Id == treatmentDetialId && x.Assignment_Status_Id != 3);
                     if (treatmentDetialDel != null)
                         return delgEmpStrId;
                 }
@@ -163,14 +175,17 @@ namespace Treatment.Pages.Treatment
                 TreatmentMasterDel = db.Treatment_Master.FirstOrDefault(x => x.From_Employee_Structure_Id == currentStructureUserId && x.Treatment_Id == treatmentId);
                 if (TreatmentMasterDel != null)
                     return currentStructureUserId;
-                int delgEmpStrId = 0;
-                for (int i = 0; i < ListDelegationEmpStru.Count; i++)
+                if (!isDelegation)
                 {
-                    TreatmentMasterDel = new Treatment_Master();
-                    delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
-                    TreatmentMasterDel = db.Treatment_Master.FirstOrDefault(x => x.From_Employee_Structure_Id == delgEmpStrId && x.Treatment_Id == treatmentId);
-                    if (TreatmentMasterDel != null)
-                        return delgEmpStrId;
+                    int delgEmpStrId = 0;
+                    for (int i = 0; i < ListDelegationEmpStru.Count; i++)
+                    {
+                        TreatmentMasterDel = new Treatment_Master();
+                        delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
+                        TreatmentMasterDel = db.Treatment_Master.FirstOrDefault(x => x.From_Employee_Structure_Id == delgEmpStrId && x.Treatment_Id == treatmentId);
+                        if (TreatmentMasterDel != null)
+                            return delgEmpStrId;
+                    }
                 }
             }
             catch (Exception eexs) { }
@@ -416,7 +431,7 @@ namespace Treatment.Pages.Treatment
                                                 "</a>" +
                                             "</div>" +
                                             "<div class='media-body col-xs-12'>" +
-                                                "<h6 class='d-inline-block'>" + treatmentDetial[i].Employee_Structure.Employee.Employee_Name_En + "</h6>" +
+                                                "<h6 class='d-inline-block'>" + treatmentDetial[i].Employee_Structure.Employee.Employee_Name_En + getWorkDelegation((bool)treatmentDetial[i].Employee_Structure.Type_Delegation) + "</h6>" +
                                                 "<div class='f-13 text-muted m-b-10'>" + treatmentDetial[i].Employee_Structure.Structure.Structure_Name_En + "</div>" +
                                             "</div>" +
                                         "</div>";
@@ -425,12 +440,31 @@ namespace Treatment.Pages.Treatment
                         else
                             sendToTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                     }
+                    yourHTMLstring = "<div class='media'>" +
+                                            "<div class='media-left media-middle photo-table'>" +
+                                               "<a href='#'>" +
+                                                    "<img class='img-radius' src='../../../../media/Profile/" + treatmentDetial[0].Treatment_Master.Employee_Structure.Employee.Employee_Profile + "' alt='employee'>" +
+                                                "</a>" +
+                                            "</div>" +
+                                            "<div class='media-body col-xs-12'>" +
+                                                "<h6 class='d-inline-block'>" + treatmentDetial[0].Treatment_Master.Employee_Structure.Employee.Employee_Name_En + getWorkDelegation((bool)treatmentDetial[0].Treatment_Master.Employee_Structure.Type_Delegation) + "</h6>" +
+                                                "<div class='f-13 text-muted m-b-10'>" + treatmentDetial[0].Treatment_Master.Employee_Structure.Structure.Structure_Name_En + "</div>" +
+                                            "</div>" +
+                                        "</div>";
+                    createByTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                     return true;
                 }
                 catch (Exception eee) { return false; }
             }
         }
 
+        private string getWorkDelegation(bool flayDelegation)
+        {
+            string workDelegation = "";
+            if (flayDelegation)
+                workDelegation = " <label class='badge badge-inverse-danger'> Delegation </label> ";
+            return workDelegation;
+        }
         private bool changeReadAndStatus()
         {
             try
@@ -526,7 +560,7 @@ namespace Treatment.Pages.Treatment
                     newReplyTreatment.Note = replyTreatement.Text;
                     newReplyTreatment.Key_Word = keyworkTreatment.Text;
                     newReplyTreatment.Assignment_Status_Id = 3;
-
+                    newReplyTreatment.To_Employee_Structure_Id = currentStructureUserId;
                     db.Entry(newReplyTreatment).State = EntityState.Modified;
                     db.SaveChanges();
                     string linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentId + "&getTabId=4&getTreatmentDetialId=" + newReplyTreatment.Parent + "&getNotificationId=";
@@ -686,6 +720,16 @@ namespace Treatment.Pages.Treatment
                             return false;
                         }
                     }
+                    else
+                    {
+                        var closeAssignment = db.Treatment_Detial.FirstOrDefault(x => x.Treatment_Detial_Id == treatmentDetialId);
+                        if (closeAssignment != null)
+                        {
+                            closeAssignment.To_Employee_Structure_Id = currentStructureUserId;
+                            db.Entry(closeAssignment).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                    }
                 }
                 catch { messageAssignmentForm = "Error to save data in system"; return false; }
                 return true;
@@ -767,6 +811,7 @@ namespace Treatment.Pages.Treatment
                     closeAssignment.Treatment_Detial_Date = DateTime.Now;
                     closeAssignment.Assignment_Status_Id = 3;
                     closeAssignment.Note = "Done Close Treatment";
+                    closeAssignment.To_Employee_Structure_Id = currentStructureUserId;
                     db.Entry(closeAssignment).State = EntityState.Modified;
                     db.SaveChanges();
                     //LogData = "data:" + JsonConvert.SerializeObject(closeAssignment, logFileModule.settings);
@@ -875,7 +920,7 @@ namespace Treatment.Pages.Treatment
                     ///////////////////// color border/////////////////
                     yourHTMLStringTrack = "<div class='sortable-moves col-xs-12' style='margin-left: " + marginTreeTrack + "%;border-left:" + isTrackBorder + "'>" +
                                             "<img class='img-fluid p-absolute' src='../../../../media/Profile/" + oneTreatmentDetial.Employee_Structure.Employee.Employee_Profile + "' alt=''>" +
-                                            "<h6 class='d-inline-block'>" + oneTreatmentDetial.Employee_Structure.Employee.Employee_Name_En + "</h6>" +
+                                            "<h6 class='d-inline-block'>" + oneTreatmentDetial.Employee_Structure.Employee.Employee_Name_En + getWorkDelegation((bool)oneTreatmentDetial.Employee_Structure.Type_Delegation) + "</h6>" +
                                             "<span class='label label-default f-right' style='background: linear-gradient(to right, #452a74, #f6f7fb);'>" + treatmentDetialDate + "</span>" +
                                             "<div class='f-13 text-muted'>" + oneTreatmentDetial.Employee_Structure.Structure.Structure_Name_En + "</div>" +
                                             "<h6 class='d-inline-block'> From: " + oneTreatmentDetial.Treatment_Master.Employee_Structure.Employee.Employee_Name_En + "</h6></br>" +

@@ -17,13 +17,14 @@ namespace Treatment.Pages.Treatment
         String LogData = "";
         ECMSEntities dbSentTo = new ECMSEntities();
         List<Employee_Structure> ListDelegationEmpStru = new List<Employee_Structure>();
+        bool isDelegation = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             checkLogin();
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = SessionWrapper.EmpStructure;
+            isDelegation = getIsDelegation();
             ListDelegationEmpStru = getAllEmployeeStructure();
-
             if (loadListViewInboxTreatment())
             {
 
@@ -56,6 +57,17 @@ namespace Treatment.Pages.Treatment
             {
 
             }*/
+        }
+
+        private bool getIsDelegation()
+        {
+            bool flayDele = false;
+            try
+            {
+                flayDele = (bool)dbSentTo.Employee_Structure.First(x => x.Employee_Structure_Id == currentStructureUserId).Type_Delegation;
+                return flayDele;
+            }
+            catch { return flayDele; }
         }
 
         private List<Employee_Structure> getAllEmployeeStructure()
@@ -156,12 +168,15 @@ namespace Treatment.Pages.Treatment
                     treatmentMaster = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == currentStructureUserId && x.Treatment_Status_Id == 1).OrderByDescending(x => x.Treatment_Id).ToList<Treatment_Master>();
                     List<Treatment_Master> treatmentMasterDelegation;
                     int delgEmpStrId = 0;
-                    for (int i = 0; i < ListDelegationEmpStru.Count; i++)
+                    if (!isDelegation)
                     {
-                        delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
-                        treatmentMasterDelegation = new List<Treatment_Master>();
-                        treatmentMasterDelegation = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == delgEmpStrId && x.Treatment_Status_Id == 1).OrderByDescending(x => x.Treatment_Id).ToList<Treatment_Master>(); 
-                        treatmentMaster.AddRange(treatmentMasterDelegation);
+                        for (int i = 0; i < ListDelegationEmpStru.Count; i++)
+                        {
+                            delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
+                            treatmentMasterDelegation = new List<Treatment_Master>();
+                            treatmentMasterDelegation = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == delgEmpStrId && x.Treatment_Status_Id == 1).OrderByDescending(x => x.Treatment_Id).ToList<Treatment_Master>();
+                            treatmentMaster.AddRange(treatmentMasterDelegation);
+                        }
                     }
                 }
                 catch (Exception eexs) { }
@@ -179,12 +194,15 @@ namespace Treatment.Pages.Treatment
                     treatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Assignment_Status_Id == 3).OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
                     List<Treatment_Detial> treatmentDetialDelegation;
                     int delgEmpStrId = 0;
-                    for (int i = 0; i < ListDelegationEmpStru.Count; i++)
+                    if (!isDelegation)
                     {
-                        delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
-                        treatmentDetialDelegation = new List<Treatment_Detial>();
-                        treatmentDetialDelegation = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == delgEmpStrId && x.Assignment_Status_Id == 3).OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
-                        treatmentDetial.AddRange(treatmentDetialDelegation);
+                        for (int i = 0; i < ListDelegationEmpStru.Count; i++)
+                        {
+                            delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
+                            treatmentDetialDelegation = new List<Treatment_Detial>();
+                            treatmentDetialDelegation = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == delgEmpStrId && x.Assignment_Status_Id == 3).OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
+                            treatmentDetial.AddRange(treatmentDetialDelegation);
+                        }
                     }
                 }
                 catch (Exception eexs) { }
@@ -250,11 +268,15 @@ namespace Treatment.Pages.Treatment
                     yourHTMLstring = "</tbody></table>";
                     inboxTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
 
-                    var counterTreatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Is_Read == false).Count();
+                    var counterTreatmentDetial = treatmentDetial.Where(x => x.Is_Read == false).Count();
                     if (counterTreatmentDetial > 0)
                     {
-                        yourHTMLstring = "<span class='label label-danger f-right'>" + counterTreatmentDetial.ToString() + "</span>";
-                        addNfNumTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
+                        addNfNumTreatment.Visible = true;
+                        addNfNumTreatment.InnerText = counterTreatmentDetial.ToString();
+                    }
+                    else
+                    {
+                        addNfNumTreatment.Visible = false;
                     }
                     return true;
                 }
@@ -412,56 +434,6 @@ namespace Treatment.Pages.Treatment
                 return sendTo.Substring(0, sendTo.Length - 2);
             }
             catch (Exception eee) { return sendTo; }
-        }
-
-        private bool loadGridViewInboxTreatment()
-        {
-            using (ECMSEntities db = new ECMSEntities())
-            {
-                try
-                {
-                    string yourHTMLstring = "<table class='table' >";
-                    gridViewTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
-                    List<Treatment_Detial> treatmentDetial = new List<Treatment_Detial>();
-                    treatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && (x.Assignment_Status_Id == 1 || x.Assignment_Status_Id == 2)).OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
-                    Treatment_Master oneTreatmentMaster;
-                    int motherTreatmentId = 0;
-                    for (int i = 0; i < treatmentDetial.Count; i++)
-                    {
-                        oneTreatmentMaster = new Treatment_Master();
-                        motherTreatmentId = (int)treatmentDetial[i].Treatment_Master.Treatment_Mother;
-                        if (motherTreatmentId == 0)
-                            oneTreatmentMaster = treatmentDetial[i].Treatment_Master;
-                        else
-                        {
-                            oneTreatmentMaster = db.Treatment_Master.First(x => x.Treatment_Id == motherTreatmentId);
-                        }
-
-                        yourHTMLstring = "<div class='col-sm-4'>" +
-                                            "<div class='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Card_Class + "'>" +
-                                                "<div class='card-header'>" +
-                                                    "<a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'  class='card-title'>" + treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En + " </a>" +
-                                                    "<span class='label label-default f-right'>" + dateAgo((DateTime)treatmentDetial[i].Treatment_Master.Create_Date) + "</span>" +
-                                                "</div>" +
-                                                "<div class='card-block' style='margin-top: -2%;'>" +
-                                                    "<div class='row'>" +
-                                                        "<div class='col-sm-12'>" +
-                                                            "<p class='task-detail unread'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Subject + "</a></p>" +
-                                                            "<p class='task-due'><strong>Secret: </strong><strong class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</strong></p>" +
-                                                        "</div>" +
-                                                    "</div>" +
-                                                "</div>" +
-                                            "</div>" +
-                                        "</div>";
-                        gridViewTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
-                    }
-
-                    yourHTMLstring = "</table>";
-                    gridViewTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
-                    return true;
-                }
-                catch (Exception eee) { return false; }
-            }
         }
 
         private string dateAgo(DateTime yourDate)

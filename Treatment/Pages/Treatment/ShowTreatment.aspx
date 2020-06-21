@@ -117,8 +117,8 @@
                 
                 <div class="card ScrollStyle">
                     <div class="card-header">
-                        <h5><i class="icofont icofont-users-alt-4"></i></h5>
-                        <h5><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-SendTo", "Send To") %></h5>
+                        <h5><i class="icofont icofont-user-suited"></i></h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-CreateBy", "Create By") %></h5>
                         <span></span>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
@@ -127,6 +127,14 @@
                                 <li><i class="feather icon-trash-2 close-card"></i></li>
                             </ul>
                         </div>
+                    </div>
+                    <div class="card-block user-box assign-user" id="createByTreatment" runat="server">
+                        
+                    </div>
+                    <div class="card-header" style="margin-top:-8%">
+                        <h5><i class="icofont icofont-users-alt-4"></i></h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-SendTo", "Send To") %></h5>
+                        <span></span>
                     </div>
                     <div class="card-block user-box assign-user" id="sendToTreatment" runat="server">
                         
