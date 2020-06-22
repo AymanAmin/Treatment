@@ -199,6 +199,7 @@
     <Content Include="Theme\files\assets\css\linearicons.css" />
     <Content Include="Theme\files\assets\css\pcoded-horizontal.min.css" />
     <Content Include="Theme\files\assets\css\style.css" />
+    <Content Include="Theme\files\assets\css\styleRTL.css" />
     <Content Include="Theme\files\assets\fonts\fontawesome-webfont.svg" />
     <Content Include="Theme\files\assets\fonts\Linearicons-Free.svg" />
     <Content Include="Theme\files\assets\icon\feather\css\feather.css" />
