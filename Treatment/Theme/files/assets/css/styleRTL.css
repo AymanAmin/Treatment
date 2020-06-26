@@ -50,8 +50,6 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
 }
 
 .flex-column {
-    -ms-flex-direction: column !important;
-    flex-direction: row-reverse !important;
     text-align: right;
 }
 
@@ -195,5 +193,21 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child, table.dataTa
 .text-right
 {
     text-align:left !important;
+}
+
+.dxtlDataTable .dxtlHeader_Moderno:last-child {
+    text-align: right !important;
+}
+.dxgvHeader_Moderno td {
+    text-align: center !important;
+}
+.email-card .user-body .page-list {
+    padding-right: 0%;
+}
+.email-card .user-body .page-list li i {
+    margin-right: 0px;
+}
+.nav-link.active {
+    border-right-width: 0px !important;
 }
 

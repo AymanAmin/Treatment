@@ -70,5 +70,13 @@ namespace Treatment.Classes
             else
                 return "text-left";
         }
+        public static string getLangHome()
+        {
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                return "ar";
+            else
+                return "en";
+        }
+
     }
 }

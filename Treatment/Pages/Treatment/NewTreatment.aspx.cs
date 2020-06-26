@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Treatment.Classes;
 using Treatment.Entity;
 using Website.Classes;
 
@@ -38,7 +39,7 @@ namespace Treatment.Pages.Treatment
             getEmployeeTree();
             getEmployeeTreeCopy();
             Prepared_Management();
-
+            translateArabic();
 
         }
 
@@ -184,50 +185,87 @@ namespace Treatment.Pages.Treatment
         {
             List<Employee_Structure> ListEmployeeStructure10 = new List<Employee_Structure>();
             ListEmployeeStructure10 = loadSendEmployeeStructure();
-            var dc = from c in ListEmployeeStructure10
-                     where c.Employee_Id != currentUserId
-                     select new
-                     {
-                         ddlKey = c.Employee_Structure_Id,
-                         ddlValue = c.Employee.Employee_Name_En + " '" + c.Structure.Structure_Name_En + "'",
-                     };
-
-            ddlFiller.dropDDLBox(treatmentTo, "ddlKey", "ddlValue", dc.ToList());
-            ddlFiller.dropDDLBox(treatmentCopyTo, "ddlKey", "ddlValue", dc.ToList());
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+            {
+                var dc = from c in ListEmployeeStructure10
+                         where c.Employee_Id != currentUserId
+                         select new
+                         {
+                             ddlKey = c.Employee_Structure_Id,
+                             ddlValue = c.Employee.Employee_Name_Ar + " '" + c.Structure.Structure_Name_Ar + "'",
+                         };
+                ddlFiller.dropDDLBox(treatmentTo, "ddlKey", "ddlValue", dc.ToList());
+                ddlFiller.dropDDLBox(treatmentCopyTo, "ddlKey", "ddlValue", dc.ToList());
+            }
+            else
+            {
+                var dc = from c in ListEmployeeStructure10
+                         where c.Employee_Id != currentUserId
+                         select new
+                         {
+                             ddlKey = c.Employee_Structure_Id,
+                             ddlValue = c.Employee.Employee_Name_En + " '" + c.Structure.Structure_Name_En + "'",
+                         };
+                ddlFiller.dropDDLBox(treatmentTo, "ddlKey", "ddlValue", dc.ToList());
+                ddlFiller.dropDDLBox(treatmentCopyTo, "ddlKey", "ddlValue", dc.ToList());
+            }
         }
 
         private void fillAllStructure()
         {
             List<Employee_Structure> ListEmployeeStructure10 = new List<Employee_Structure>();
             ListEmployeeStructure10 = loadSendEmployeeStructure();
-            var dc1 = from c in ListEmployeeStructure10
-                      where c.Employee_Id != currentUserId
-                      select new
-                      {
-                          ddlKey = c.Employee_Structure_Id,
-                          employeeName = c.Employee.Employee_Name_En,
-                          jobTitle = c.Structure.Structure_Name_En
-                      };
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+            {
+                var dc1 = from c in ListEmployeeStructure10
+                          where c.Employee_Id != currentUserId
+                          select new
+                          {
+                              ddlKey = c.Employee_Structure_Id,
+                              employeeName = c.Employee.Employee_Name_Ar,
+                              jobTitle = c.Structure.Structure_Name_Ar
+                          };
 
-            ASPxGridView1.DataSource = dc1.ToList();
-            ASPxGridView1.DataBind();
+                ASPxGridView1.DataSource = dc1.ToList();
+                ASPxGridView1.DataBind();
 
-            ASPxGridView2.DataSource = dc1.ToList();
-            ASPxGridView2.DataBind();
+                ASPxGridView2.DataSource = dc1.ToList();
+                ASPxGridView2.DataBind();
+            }
+            else
+            {
+                var dc1 = from c in ListEmployeeStructure10
+                          where c.Employee_Id != currentUserId
+                          select new
+                          {
+                              ddlKey = c.Employee_Structure_Id,
+                              employeeName = c.Employee.Employee_Name_En,
+                              jobTitle = c.Structure.Structure_Name_En
+                          };
 
+                ASPxGridView1.DataSource = dc1.ToList();
+                ASPxGridView1.DataBind();
+
+                ASPxGridView2.DataSource = dc1.ToList();
+                ASPxGridView2.DataBind();
+            }
             ////////////////////////////////////////////////////////////////////////////////////////////////
             
             ListStructure = loadTreeStructure();
             ASPxTreeList1.DataSource = ListStructure;
             ASPxTreeList1.KeyFieldName = "Structure_Id";
             ASPxTreeList1.ParentFieldName = "Structure_Parent";
-            ASPxTreeList1.PreviewFieldName = "Structure_Name_En";
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                ASPxTreeList1.PreviewFieldName = "Structure_Name_Ar";
+            else ASPxTreeList1.PreviewFieldName = "Structure_Name_En";
             ASPxTreeList1.DataBind();
 
             ASPxTreeList2.DataSource = ListStructure;
             ASPxTreeList2.KeyFieldName = "Structure_Id";
             ASPxTreeList2.ParentFieldName = "Structure_Parent";
-            ASPxTreeList2.PreviewFieldName = "Structure_Name_En";
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                ASPxTreeList2.PreviewFieldName = "Structure_Name_Ar";
+            else ASPxTreeList2.PreviewFieldName = "Structure_Name_En"; 
             ASPxTreeList2.DataBind();
         }
 
@@ -319,13 +357,17 @@ namespace Treatment.Pages.Treatment
         {
             if (saveTreatment())
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Treatment was Sucessfully saved in system');", true);
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'left', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  حالة الحفظ : ','  تم حفظ المعاملة بنجاح في النظام');", true);
+                else Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Your Treatment was Sucessfully saved in system');", true);
                 clearTreatment();
                 Response.Redirect("~/Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentId + "&getTabId=2");
             }
             else
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','" + messageForm + "');", true);
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                     Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'left', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  حالة الحفظ : ','" + messageForm + "');", true);
+                else Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','" + messageForm + "');", true);
             }
         }
 
@@ -441,7 +483,9 @@ namespace Treatment.Pages.Treatment
                     string exceptionMessage = exceptionLog.Message;
                     string exceptionData = "data:{\"StackTrace\":\""+exceptionStackTrace+"\",\"GetType\":\""+exceptionGetType+"\",\"Message\":\""+exceptionMessage+"\"}";
                     logFileModule.logfile(1025, "حدث خطأ في حفظ المعاملة", "An error occurred in saving the transaction", exceptionData);
-                    messageForm = "Erorr to save data in system";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        messageForm = "حدث خطأ في حفظ البيانات في النظام";
+                    else messageForm = "Erorr to save data in system";
                     return false;
                 }
                 return true;
@@ -467,7 +511,9 @@ namespace Treatment.Pages.Treatment
                 string exceptionMessage = exceptionLog.Message;
 
                 logFileModule.logfile(1025, exceptionStackTrace, exceptionGetType, exceptionMessage);
-                messageForm = "Erorr to get Data Structure";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messageForm = "حدث خطأ في تحميل بيانات الهيكل الإداري";
+                else messageForm = "Erorr to get Data Structure";
             }
             return employeeStructureId;
         }
@@ -493,44 +539,60 @@ namespace Treatment.Pages.Treatment
         {
             if (treatmentDate.Text.Trim() == "")
             {
-                messageForm = "Pleace Enter Treatment Date";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messageForm = "الرجاء إدخال تاريخ المعاملة";
+                else messageForm = "Pleace Enter Treatment Date";
                 return false;
             }
             else if (treatmentTo.GetSelectedIndices().Count() == 0)
             {
-                messageForm = "Pleace Select Send To";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messageForm = "الرجاء إختيار إرسال إلي";
+                else messageForm = "Pleace Select Send To";
                 return false;
             }
             else if (typeTreatment.SelectedValue == "")
             {
-                messageForm = "Pleace Select Type Treatment";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messageForm = "الرجاء إختيار نوع المعاملة";
+                else messageForm = "Pleace Select Type Treatment";
                 return false;
             }
             else if (subjectTreatement.Text.Trim() == "")
             {
-                messageForm = "Pleace Enter Subject";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messageForm = "الرجاء إدخال الموضوع";
+                else messageForm = "Pleace Enter Subject";
                 return false;
             }
             else if (secretLevel.SelectedValue == "")
             {
-                messageForm = "Pleace Select Secret Level";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messageForm = "الرجاء إختيار درجة السرية";
+                else messageForm = "Pleace Select Secret Level";
                 return false;
             }
             else if (priorityLevel.SelectedValue == "")
             {
-                messageForm = "Pleace Select Priority Level";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messageForm = "الرجاء إختيار درجة الأهمية";
+                else messageForm = "Pleace Select Priority Level";
                 return false;
             }
             else if (speedUp.SelectedValue == "")
             {
-                messageForm = "Pleace Select Speed Up";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messageForm = "الرجاء إختيار سرعة الإنجاز";
+                else messageForm = "Pleace Select Speed Up";
                 return false;
             }
             else if (checkRequiredReply())
             {
                 if (replyDate.Text.Trim() == "")
                 {
-                    messageForm = "Pleace Enter Date Required Reply";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        messageForm = "الرجاء إدخال تاريخ الرد";
+                    else messageForm = "Pleace Enter Date Reply";
                     return false;
                 }
                 else return true;
@@ -604,9 +666,45 @@ namespace Treatment.Pages.Treatment
             catch { return false; }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        private void translateArabic()
         {
+            if (SessionWrapper.LoggedUser.Language_id != null)
+            {
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                {
+                    standardProcedure.DataTextField = "Treatment_Procedure_Name_Ar";
+                    preparedManagement.DataTextField = "Structure_Name_Ar";
+                    classificationSubject.DataTextField = "Treatment_Class_Name_Ar";
+                    typeTreatment.DataTextField = "Treatment_Type_Name_Ar";
+                    secretLevel.DataTextField = "Treatment_Confidentiality_Name_Ar";
+                    priorityLevel.DataTextField = "Treatment_Priority_Name_Ar";
+                    speedUp.DataTextField = "Treatment_Delivery_Name_Ar";
 
+                    treatmentDate.Attributes["placeholder"] = "تاريخ المعاملة";
+                    valTreatmentDate.Text = "أدخل تاريخ المعاملة";
+                    treatmentTo.Attributes["data-placeholder"] = "إرسال إلي";
+                    valTreatmentTo.Text = "إختيار إرسال إلي";
+                    treatmentCopyTo.Attributes["data-placeholder"] = "نسخة إلي";
+                    replyDate.Attributes["placeholder"] = "تاريخ الرد";
+                    subjectTreatement.Attributes["placeholder"] = "الموضوع";
+                    valSubjectTreatement.Text = "أدخل الموضوع";
+
+                    SaveTreatment.Text = "حفظ";
+
+
+                    ASPxGridView1.Columns[1].Caption = "إسم الموظف";
+                    ASPxGridView1.Columns[2].Caption = "المسمي الوظيفي";
+                    ASPxGridView2.Columns[1].Caption = "إسم الموظف";
+                    ASPxGridView2.Columns[2].Caption = "المسمي الوظيفي";
+                    ASPxTreeList1.Columns[0].Caption = "إسم الإدارة أو الوحدة";
+                    ASPxTreeList2.Columns[0].Caption = "إسم الإدارة أو الوحدة";
+                }
+
+                else
+                {
+
+                }
+            }
         }
 
 

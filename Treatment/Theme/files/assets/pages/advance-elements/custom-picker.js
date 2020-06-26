@@ -236,8 +236,12 @@ $(document).ready(function(){
         });
     });
 
-// Date-dropper js start
-
+    // Date-dropper js start
+    var langAr = "ar";
+    if ($("html").attr("dir") == "rtl")
+        langAr = "ar";
+    else langAr = "en";
+    console.log(langAr);
 $("#dropper-default").dateDropper( {
         dropWidth: 200,
         dropPrimaryColor: "#1abc9c", 
@@ -247,13 +251,15 @@ $("#Body_Holder_treatmentDate").dateDropper({
         dropWidth: 200,
         dropPrimaryColor: "#452a74",
         dropBorder: "1px solid #452a74",
-        maxYear: "3000"
+        maxYear: "3000",
+        lang: langAr
 }),
 $("#Body_Holder_replyDate").dateDropper({
     dropWidth: 200,
     dropPrimaryColor: "#452a74",
     dropBorder: "1px solid #452a74",
     maxYear: "3000",
+    lang: langAr
 }),
 $("#dropper-animation").dateDropper( {
         dropWidth: 200,

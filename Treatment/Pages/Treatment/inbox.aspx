@@ -81,7 +81,7 @@
                     <div class="col-lg-12 col-xl-2">
                         <div class="user-body">
                             <div class="p-20 text-center">
-                                <a href="NewTreatment.aspx" class="btn btn-danger btn-round btn-block"><i class="icofont icofont-plus"></i><% = Treatment.Classes.FieldNames.getFieldName("inbox-CreateNew", "Create New") %></a>
+                                <a href="NewTreatment.aspx" class="btn btn-danger btn-round btn-block"><i class="icofont icofont-plus"></i> <% = Treatment.Classes.FieldNames.getFieldName("inbox-CreateNew", "Create New") %></a>
                             </div>
                             <ul class="page-list nav nav-tabs flex-column" id="pills-tab" role="tablist">
                                 <li class="nav-item mail-section">
