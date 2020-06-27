@@ -41,7 +41,6 @@ body h1, body h2, body h3, body h4, body h5, body h6 {
     display: inline-block !important;
     border-radius: 0 0 0 7px !important;
     right: auto !important;
-    top: auto !important;
     float: none !important;
     padding: 0 !important;
     position: absolute !important;
@@ -210,4 +209,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child, table.dataTa
 .nav-link.active {
     border-right-width: 0px !important;
 }
-
+.sortable-moves img {
+    right: 10px !important;
+}
+#draggableMultiple .sortable-moves {
+    padding: 15px 60px 15px 5px !important;
+}
