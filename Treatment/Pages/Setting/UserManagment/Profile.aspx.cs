@@ -58,6 +58,13 @@ namespace Treatment.Pages.Setting.UserManagment
             {
                 ddlFiller.dropDDL(DefaultStructure, "Structure_Id", "Structure_Name_En", ListDefaultStructure, "Select Structure");
             }
+
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+            {
+                EmpUpdate.Text = "حفظ";
+                ChangeButton.Text = "حفظ";
+                translateValidationArabic();
+            }
         }
 
 
@@ -158,7 +165,8 @@ namespace Treatment.Pages.Setting.UserManagment
             if (result)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The Update Info was Sucessfully saved in system ! ');", true);
-                ViewEmpLoyeeData();
+                //ViewEmpLoyeeData();
+                Response.Redirect("~/Pages/Setting/UserManagment/Profile.aspx");
             }
         }
 
@@ -296,6 +304,29 @@ namespace Treatment.Pages.Setting.UserManagment
                 logFileModule.logfile(10, "تعديل تنبيهات موظف", "update Notification Employee", LogData);
             }
             catch { }
+        }
+
+        public void translateValidationArabic()
+        {
+
+            Employee_EmailValidator.Text = "أدخل البريد الإلكتروني";
+            Employee_PhoneValidator.Text = "أدخل الهاتف";
+            LanguageValidator.Text = "إختر اللغة";
+            DefaultStructureValidator.Text = "الهيكل الوظيفي الاساسي";
+
+            OldPassWordValidator.Text = "أدخل كلمة المرور";
+            NewPassWordValidator.Text = "أدخل كلمة المرور الجديدة";
+            TryNewPassWordValidator.Text = "أعادة كلمة المرور الجديدة";
+
+
+            Employee_Email.Attributes["placeholder"] = "أدخل البريد الإلكتروني";
+            Employee_Phone.Attributes["placeholder"] = "أدخل الهاتف";
+
+            OldPassWord.Attributes["placeholder"] = "أدخل كلمة المرور";
+            NewPassWord.Attributes["placeholder"] = "أدخل كلمة المرور الجديدة";
+            TryNewPassWord.Attributes["placeholder"] = "أعادة كلمة المرور الجديدة";
+
+
         }
     }
 }

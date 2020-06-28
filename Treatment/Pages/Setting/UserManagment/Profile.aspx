@@ -10,13 +10,7 @@
     <div class="page-body">
         <!-- Article Editor card start -->
         <%--<div class="card" runat="server">--%>
-            <div class="card-header">
-                <div class="card-header-right">
-                    <ul class="list-unstyled card-option">
-                        <li><i class="feather icon-maximize full-card"></i></li>
-                    </ul>
-                </div>
-            </div>
+           
             <div class="card-block">
                 <div class="row">
                     <div class="col-lg-12">
@@ -41,12 +35,7 @@
                                                     <span class="text-white"><label id="Position" runat="server" ></label></span>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <div class="pull-right cover-btn">
-                                                    <a href="../../../../Pages/Treatment/Inbox.aspx" class="btn btn-danger btn-outline-danger btn-icon"><i class="icofont icofont-inbox text-danger h5"></i></a>
-                                                    <a href="../../../../Pages/Treatment/NewTreatment.aspx" class="btn btn-primary btn-outline-primary btn-icon"><i class="icofont icofont-ui-messaging text-info h5"></i></a>
-                                                </div>
-                                            </div>
+                                         
                                         </div>
                                     </div>
                                 </div>
@@ -62,11 +51,11 @@
                         <div class="tab-header card">
                             <ul class="nav nav-tabs md-tabs tab-timeline" role="tablist" id="mytab">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-personal", "personal Info") %></a>
+                                    <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-Personal", "Personal Info") %></a>
                                     <div class="slide"></div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#changePassWord" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-changePassWord", "change PassWord") %></a>
+                                    <a class="nav-link" data-toggle="tab" href="#changePassWord" role="tab"><% = Treatment.Classes.FieldNames.getFieldName("Profile-ChangePassword", "Change Password") %></a>
                                     <div class="slide"></div>
                                 </li>
                                <li class="nav-item">
@@ -197,7 +186,7 @@
                                                                             <asp:TextBox ID="Employee_Email" runat="server" class="form-control" placeholder="Enter Employee Email" TextMode="SingleLine"></asp:TextBox>
                                                                         </div>
                                                                         <div class="col-sm-12">
-                                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Email" ValidationGroup="Per" ControlToValidate="Employee_Email" Display="Dynamic" SetFocusOnError="True">
+                                                                            <asp:RequiredFieldValidator ID="Employee_EmailValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Email" ValidationGroup="Per" ControlToValidate="Employee_Email" Display="Dynamic" SetFocusOnError="True">
                                                                             </asp:RequiredFieldValidator>
                                                                         </div>
                                                                     </td>
@@ -212,7 +201,7 @@
                                                                             </asp:EntityDataSource>
                                                                         </div>
                                                                          <div class="col-sm-12">
-                                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Language" ValidationGroup="Per" ControlToValidate="Language" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                                            <asp:RequiredFieldValidator ID="LanguageValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Language" ValidationGroup="Per" ControlToValidate="Language" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                                                           </div>
                                                                     </td>
                                                                 </tr>
@@ -225,7 +214,7 @@
                                                                              <asp:DropDownList ID="DefaultStructure" runat="server" class="form-control"  DataTextField="Language_Name" DataValueField="ID"  ></asp:DropDownList>
                                                                         </div>
                                                                          <div class="col-sm-12">
-                                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Language" ValidationGroup="Per" ControlToValidate="Language" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                                            <asp:RequiredFieldValidator ID="DefaultStructureValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Language" ValidationGroup="Per" ControlToValidate="Language" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                                                           </div>
                                                                     </td>
                                                                 </tr>
@@ -260,7 +249,7 @@
                                                                             <asp:TextBox ID="Employee_Phone" runat="server" class="form-control" placeholder="Enter Employee Phone" TextMode="SingleLine"></asp:TextBox>
                                                                         </div>
                                                                         <div class="col-sm-12">
-                                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Employee Phone" ValidationGroup="Per" ControlToValidate="Employee_Phone" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                                            <asp:RequiredFieldValidator ID="Employee_PhoneValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Employee Phone" ValidationGroup="Per" ControlToValidate="Employee_Phone" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
@@ -313,7 +302,7 @@
                         <!-- info card start -->
                          <div class="card">
                             <div class="card-header">
-                                <h5 class="card-header-text"><% = Treatment.Classes.FieldNames.getFieldName("Profile-ChangePassWord", "Change PassWord") %></h5>
+                                <h5 class="card-header-text"><% = Treatment.Classes.FieldNames.getFieldName("Profile-ChangePassword", "Change Password") %></h5>
                             </div>
                                 <!-- end of view-info -->
                                 <div class="edit-info-11">
@@ -326,37 +315,37 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
-                                                                       <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Profile-OldPassWord", "Old Pass Word") %></label>
+                                                                       <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Profile-OldPassword", "Old Password") %></label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
-                                                                            <asp:TextBox ID="OldPassWord" runat="server" class="form-control" placeholder="Enter Old Pass Word" TextMode="SingleLine" type="password"></asp:TextBox>
+                                                                            <asp:TextBox ID="OldPassWord" runat="server" class="form-control" placeholder="Enter Old Password" TextMode="SingleLine" type="password"></asp:TextBox>
                                                                         </div>
                                                                         <div class="col-sm-12">
-                                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Old Pass Word" ValidationGroup="Per2" ControlToValidate="OldPassWord" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                                            <asp:RequiredFieldValidator ID="OldPassWordValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Old Password" ValidationGroup="Per2" ControlToValidate="OldPassWord" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
-                                                                      <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Profile-NewPassWord", "New PassWord") %></label>
+                                                                      <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Profile-NewPassword", "New Password") %></label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
-                                                                            <asp:TextBox ID="NewPassWord" runat="server" class="form-control" placeholder="Enter New PassWord" TextMode="SingleLine" type="password"></asp:TextBox>
+                                                                            <asp:TextBox ID="NewPassWord" runat="server" class="form-control" placeholder="Enter New Password" TextMode="SingleLine" type="password"></asp:TextBox>
                                                                         </div>
                                                                         <div class="col-sm-12">
-                                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter New PassWord" ValidationGroup="Per2" ControlToValidate="NewPassWord" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                                            <asp:RequiredFieldValidator ID="NewPassWordValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter New Password" ValidationGroup="Per2" ControlToValidate="NewPassWord" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
                                                               <tr>
                                                                     <td>
-                                                                         <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Profile-TryNewPassWord", "Try New PassWord") %></label>
+                                                                         <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Profile-TryNewPassword", "Try New Password") %></label>
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
-                                                                            <asp:TextBox ID="TryNewPassWord" runat="server" class="form-control" placeholder="Try New PassWord" TextMode="SingleLine" type="password" ValidationGroup="Per2"></asp:TextBox>
+                                                                            <asp:TextBox ID="TryNewPassWord" runat="server" class="form-control" placeholder="Try New Password" TextMode="SingleLine" type="password" ValidationGroup="Per2"></asp:TextBox>
                                                                         </div>
                                                                         <div class="col-sm-12">
-                                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Try New PassWord" ValidationGroup="Per2" ControlToValidate="TryNewPassWord" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                                                            <asp:RequiredFieldValidator ID="TryNewPassWordValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Try New Password" ValidationGroup="Per2" ControlToValidate="TryNewPassWord" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                                                         </div>
                                                                     </td>
                                                                 </tr>

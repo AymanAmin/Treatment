@@ -6,12 +6,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Body_Holder" runat="server">
     <div class="row">
         <div class="col-sm-12">
-            <!-- Basic Form Inputs card start -->
             <div class="card">
                 <div class="card-header">
-                    <!--<h5>Basic Form Inputs</h5>
-                    <span>Here you can create or update information about Topic</span>-->
-
                     <div class="card-header-right">
                         <i class="icofont icofont-spinner-alt-5"></i>
                     </div>
@@ -31,29 +27,29 @@
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter Meeting Name" style="color:red" ControlToValidate="MeetingName" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="MeetingNameValidator" runat="server" ErrorMessage="Please enter Meeting Name" style="color:red" ControlToValidate="MeetingName" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("TopicInfo-ArabicName", "Arabic Name") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-underline primary"></i></span>
-                                    <asp:TextBox ID="ArabicName" runat="server" class="form-control form-txt-primary " placeholder=""></asp:TextBox>
+                                    <asp:TextBox ID="ArabicName" runat="server" class="form-control form-txt-primary" placeholder="Please enter arabic name"></asp:TextBox>
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RFVtxtArabicName" runat="server" ErrorMessage="Please enter arabic name" style="color:red" ControlToValidate="ArabicName" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="ArabicNameValidator" runat="server" ErrorMessage="Please enter arabic name" style="color:red" ControlToValidate="ArabicName" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("TopicInfo-EnglishName", "English Name") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-underline primary"></i></span>
-                                    <asp:TextBox ID="EnglishName" runat="server" class="form-control form-txt-primary " placeholder=""></asp:TextBox>
+                                    <asp:TextBox ID="EnglishName" runat="server" class="form-control form-txt-primary " placeholder="Please enter english name"></asp:TextBox>
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RFVtxtEnglishName" runat="server" ErrorMessage="Please enter english name" style="color:red" ControlToValidate="EnglishName" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="EnglishNameValidator" runat="server" ErrorMessage="Please enter english name" style="color:red" ControlToValidate="EnglishName" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -66,7 +62,7 @@
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RFVtxtStatusofTopic" runat="server" ErrorMessage="Please select status" style="color:red" ControlToValidate="TopicStatus" ValidationGroup="Topic" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="StatusofTopicValidator" runat="server" ErrorMessage="Please select status" style="color:red" ControlToValidate="TopicStatus" ValidationGroup="Topic" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -84,22 +80,22 @@
                                 <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("TopicInfo-ArabicDescription", "Arabic Description") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-clip-board primary"></i></span>
-                                    <asp:TextBox ID="ArabicDescription" runat="server" class="form-control form-txt-primary " placeholder="" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                                    <asp:TextBox ID="ArabicDescription" runat="server" class="form-control form-txt-primary " placeholder="Please enter arabic description" TextMode="MultiLine" Rows="5"></asp:TextBox>
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter arabic description" style="color:red" ControlToValidate="ArabicDescription" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="ArabicDescriptionValidator" runat="server" ErrorMessage="Please enter arabic description" style="color:red" ControlToValidate="ArabicDescription" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("TopicInfo-EnglishDescription", "English Description") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-clip-board primary"></i></span>
-                                    <asp:TextBox ID="EnglishDescription" runat="server" class="form-control form-txt-primary " placeholder="" Rows="5" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:TextBox ID="EnglishDescription" runat="server" class="form-control form-txt-primary" placeholder="Please enter english description" Rows="5" TextMode="MultiLine"></asp:TextBox>
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter english description" style="color:red" ControlToValidate="EnglishDescription" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="EnglishDescriptionValidator" runat="server" ErrorMessage="Please enter english description" style="color:red" ControlToValidate="EnglishDescription" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -113,10 +109,7 @@
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-clip-board primary"></i></span>
                                     <asp:TextBox ID="ArabicRecommendation" runat="server" class="form-control form-txt-primary " placeholder="" TextMode="MultiLine" Rows="5"></asp:TextBox>
                                 </div>
-                                <!--<div class="col-sm-3"></div>
-                                <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RFVtxtArabicDescription" runat="server" ErrorMessage="Please enter Arabic Recommendation" style="color:red" ControlToValidate="ArabicRecommendation" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
-                                </div>-->
+                           
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("TopicInfo-EnglishRecommendation", "English Recommendation") %></label>
@@ -124,10 +117,7 @@
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-clip-board primary"></i></span>
                                     <asp:TextBox ID="EnglishRecommendation" runat="server" class="form-control form-txt-primary " placeholder="" Rows="5" TextMode="MultiLine"></asp:TextBox>
                                 </div>
-                                <!--<div class="col-sm-3"></div>
-                                <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RFVtxtEnglishDescription" runat="server" ErrorMessage="Please enter english Recommendation" style="color:red" ControlToValidate="EnglishRecommendation" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
-                                </div>-->
+                               
                             </div>
 
                             <div class="form-group row">
@@ -136,10 +126,7 @@
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-clip-board primary"></i></span>
                                     <asp:TextBox ID="ArabicRecommendationDoc" runat="server" class="form-control form-txt-primary " placeholder="" TextMode="MultiLine" Rows="5"></asp:TextBox>
                                 </div>
-                                <!--<div class="col-sm-3"></div>
-                                <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please enter arabic description Document" style="color:red" ControlToValidate="ArabicRecommendationDoc" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
-                                </div>-->
+                             
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("TopicInfo-EnglishRecommendationDocument", "English Recommendation Document") %></label>
@@ -147,14 +134,10 @@
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-clip-board primary"></i></span>
                                     <asp:TextBox ID="EnglishRecommendationDoc" runat="server" class="form-control form-txt-primary " placeholder="" Rows="5" TextMode="MultiLine"></asp:TextBox>
                                 </div>
-                                <!--<div class="col-sm-3"></div>
-                                <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Please enter english description Document" style="color:red" ControlToValidate="EnglishRecommendationDoc" ValidationGroup="Topic" Display="Dynamic"></asp:RequiredFieldValidator>
-                                </div>-->
+                                
                             </div>
                         </div>
 
-                        <!-- button save , Update , Delete -->
                         <div class="col-sm-12 mobile-inputs" style="text-align: center">
                             <asp:Button ID="Save" runat="server" Text="Save" class="btn btn-success btn-round col-sm-1"  ValidationGroup="Topic" OnClick="Save_Click" />
                             <asp:Button ID="Cancel" runat="server" Text="Cancel" class="btn btn-warning btn-round col-sm-1" />

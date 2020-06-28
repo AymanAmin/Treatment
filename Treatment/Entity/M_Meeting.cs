@@ -17,6 +17,7 @@ namespace Treatment.Entity
         public M_Meeting()
         {
             this.M_Attendees = new HashSet<M_Attendees>();
+            this.M_M_Attachments = new HashSet<M_M_Attachments>();
             this.M_Recommendation = new HashSet<M_Recommendation>();
             this.M_Topic = new HashSet<M_Topic>();
         }
@@ -35,6 +36,7 @@ namespace Treatment.Entity
         public virtual ICollection<M_Attendees> M_Attendees { get; set; }
         public virtual M_Board M_Board { get; set; }
         public virtual M_Board_Location M_Board_Location { get; set; }
+        public virtual ICollection<M_M_Attachments> M_M_Attachments { get; set; }
         public virtual ICollection<M_Recommendation> M_Recommendation { get; set; }
         public virtual ICollection<M_Topic> M_Topic { get; set; }
     }

@@ -31,13 +31,13 @@ namespace Treatment.Pages.Eminutes.TopicManagment {
         protected global::System.Web.UI.WebControls.TextBox MeetingName;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// MeetingNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator MeetingNameValidator;
         
         /// <summary>
         /// ArabicName control.
@@ -49,13 +49,13 @@ namespace Treatment.Pages.Eminutes.TopicManagment {
         protected global::System.Web.UI.WebControls.TextBox ArabicName;
         
         /// <summary>
-        /// RFVtxtArabicName control.
+        /// ArabicNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtArabicName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ArabicNameValidator;
         
         /// <summary>
         /// EnglishName control.
@@ -67,13 +67,13 @@ namespace Treatment.Pages.Eminutes.TopicManagment {
         protected global::System.Web.UI.WebControls.TextBox EnglishName;
         
         /// <summary>
-        /// RFVtxtEnglishName control.
+        /// EnglishNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtEnglishName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EnglishNameValidator;
         
         /// <summary>
         /// TopicStatus control.
@@ -94,13 +94,13 @@ namespace Treatment.Pages.Eminutes.TopicManagment {
         protected global::System.Web.UI.WebControls.EntityDataSource TopicStatusDataSource;
         
         /// <summary>
-        /// RFVtxtStatusofTopic control.
+        /// StatusofTopicValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtStatusofTopic;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator StatusofTopicValidator;
         
         /// <summary>
         /// Structure control.
@@ -121,13 +121,13 @@ namespace Treatment.Pages.Eminutes.TopicManagment {
         protected global::System.Web.UI.WebControls.TextBox ArabicDescription;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// ArabicDescriptionValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ArabicDescriptionValidator;
         
         /// <summary>
         /// EnglishDescription control.
@@ -139,13 +139,13 @@ namespace Treatment.Pages.Eminutes.TopicManagment {
         protected global::System.Web.UI.WebControls.TextBox EnglishDescription;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// EnglishDescriptionValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EnglishDescriptionValidator;
         
         /// <summary>
         /// ArabicRecommendation control.
@@ -157,15 +157,6 @@ namespace Treatment.Pages.Eminutes.TopicManagment {
         protected global::System.Web.UI.WebControls.TextBox ArabicRecommendation;
         
         /// <summary>
-        /// RFVtxtArabicDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtArabicDescription;
-        
-        /// <summary>
         /// EnglishRecommendation control.
         /// </summary>
         /// <remarks>
@@ -173,15 +164,6 @@ namespace Treatment.Pages.Eminutes.TopicManagment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox EnglishRecommendation;
-        
-        /// <summary>
-        /// RFVtxtEnglishDescription control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtEnglishDescription;
         
         /// <summary>
         /// ArabicRecommendationDoc control.
@@ -193,15 +175,6 @@ namespace Treatment.Pages.Eminutes.TopicManagment {
         protected global::System.Web.UI.WebControls.TextBox ArabicRecommendationDoc;
         
         /// <summary>
-        /// RequiredFieldValidator4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-        
-        /// <summary>
         /// EnglishRecommendationDoc control.
         /// </summary>
         /// <remarks>
@@ -209,15 +182,6 @@ namespace Treatment.Pages.Eminutes.TopicManagment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox EnglishRecommendationDoc;
-        
-        /// <summary>
-        /// RequiredFieldValidator5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
         
         /// <summary>
         /// Save control.
