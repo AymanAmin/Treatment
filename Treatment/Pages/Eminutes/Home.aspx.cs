@@ -5,24 +5,35 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Treatment.Entity;
+using Website.Classes;
 
 namespace Treatment.Pages.Eminutes
 {
     public partial class Home : System.Web.UI.Page
     {
         ECMSEntities db = new ECMSEntities();
+        bool Can_Edit = false;
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadBoad();
-        }
+            if (SessionWrapper.LoggedUser == null)
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
 
-        private void LoadBoad()
+            List<M_Board> list_board = new List<M_Board>();
+            List<M_Board_Member> ListBoardMember = db.M_Board_Member.Where(x => x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id).ToList();
+            for (int i = 0; i < ListBoardMember.Count; i++)
+            {
+                list_board.Add(ListBoardMember[i].M_Board);
+            }
+            LoadBoad(list_board);
+        }
+       
+        private void LoadBoad(List<M_Board> list_board)
         {
-            List<M_Board> list_board = db.M_Board.Where(x => x.Parent == 0).ToList();
             string str = string.Empty;
             string color = string.Empty;
             for (int i = 0; i < list_board.Count; i++)
             {
+                Can_Edit = GetEditPermission(list_board[i]);
                 if (list_board[i].Board_Type_Id == 1)
                     color = "info";
                 else
@@ -54,24 +65,40 @@ namespace Treatment.Pages.Eminutes
                     //str += "<a href = '#'><i class='icofont icofont-plus'></i></a>";
                 }
 
-                str += "</div>" +
-                        "<div class='task-board'>" +
-                            "<div class='dropdown-secondary dropdown'>" +
-                                "<a href='BoardManagment/BoardMember.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#6a5590;'> Edit Member </a>&nbsp;" +
-                            "</div>" +
-                            "<div class='dropdown-secondary dropdown'>" +
-                                "<a href='MeetingManagment/MeetingInfo.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#583f82;'> Add Meeting </a>&nbsp;" +
-                            "</div>" +
-                            "<div class='dropdown-secondary dropdown'>" +
-                                "<a href='BoardManagment/BoardInfo.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#452a74;'> Edit Board  </a>&nbsp;" +
-                            "</div>" +
+                str += "</div>";
+                str += "<div class='task-board'>";
+                if (Can_Edit)
+                {
+                    str += "<div class='dropdown-secondary dropdown'>";
+                    str += "<a href='BoardManagment/BoardMember.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#6a5590;'> Edit Member </a>&nbsp;";
+                    str += "</div>";
+                    str += "<div class='dropdown-secondary dropdown'>";
+                    str += "<a href='MeetingManagment/MeetingInfo.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#583f82;'> Add Meeting </a>&nbsp;";
+                    str += "</div>";
+                    str += "<div class='dropdown-secondary dropdown'>";
+                    str += "<a href='BoardManagment/BoardInfo.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#452a74;'> Edit Board  </a>&nbsp;";
+                    str += "</div>";
+                }
+                str += "</div>";
+                str += "</div>";
 
-                        "</div>" +
-                   "</div>" +
-                "</div>" +
-            "</div>";
+                str += "</div>";
+                str += "</div>";
             }
             txtBoard.Text = str;
+        }
+
+        public bool GetEditPermission(M_Board board)
+        {
+            try
+            {
+                M_Board_Member member = board.M_Board_Member.Where(x => x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id).FirstOrDefault();
+                if (member.Member_Type_Id == 1 || member.Member_Type_Id == 2)
+                    return true;
+                else
+                    return false;
+            }
+            catch { return false; }
         }
     }
 }

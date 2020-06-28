@@ -96,8 +96,8 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 str += TempstrStatus;
                 
 
-                str += "<td>" + ListBoards[i].Board_Name_Ar + "</td>";
-                str += "<td>" + ListBoards[i].Board_Name_En + "</td>";
+                str += "<td> <a href= '../../../../Pages/Eminutes/Board.aspx?BoardId=" + ListBoards[i].Board_Id + "'>" + ListBoards[i].Board_Name_Ar + "</a></td>";
+                str += "<td> <a href= '../../../../Pages/Eminutes/Board.aspx?BoardId=" + ListBoards[i].Board_Id + "'>" + ListBoards[i].Board_Name_En + "</a></td>";
                 str += "<td>" + ListBoards[i].Board_Description_Ar + "</td>";
                 str += "<td>" + ListBoards[i].Board_Description_En + "</td>";
                 str += "</tr>";

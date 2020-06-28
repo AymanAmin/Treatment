@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Treatment.Entity;
+using Website.Classes;
 
 namespace Treatment.Pages.Eminutes
 {
@@ -12,7 +13,7 @@ namespace Treatment.Pages.Eminutes
     {
         ECMSEntities db = new ECMSEntities();
         M_Board Current_Board = new M_Board();
-
+        bool Can_Edit = false;
         /// <summary>
         /// Member type (1 = Supervisor , 2 = secretarial , 3 = Members)
         /// </summary>
@@ -59,6 +60,7 @@ namespace Treatment.Pages.Eminutes
 
         private void load_board_info(M_Board Current_Board)
         {
+            Can_Edit = GetEditPermission(Current_Board);
             // Board Properties
             txtArabicName.Text = Current_Board.Board_Name_Ar;
             txtEnglishName.Text = Current_Board.Board_Name_En;
@@ -67,17 +69,19 @@ namespace Treatment.Pages.Eminutes
             txtClassification.Text = Current_Board.M_Board_Classification.Board_Classification_Name_En;
 
             //Edit Board info if you are supervisor 
-            if (true)
+            if (Can_Edit)
             {
-                txtEditBoard.Text = "<a href='../../../../Pages/Eminutes/BoardManagment/BoardInfo.aspx?BoardId=" + Current_Board.Board_Id + "' class='text-muted m-r-10 f-16'> <i class='icofont icofont-edit'></i></a>";
-                txtMeetingMembers.Text = "<a href='../../../../Pages/Eminutes/BoardManagment/BoardMember.aspx?BoardId=" + Current_Board.Board_Id + "' class='text-muted m-r-10 f-16'> <i class='icofont icofont-edit'></i></a>";
-                txtEditLocations.Text = "<a href='../../../../Pages/Eminutes/BoardManagment/BoardLocations.aspx?BoardId=" + Current_Board.Board_Id + "' class='text-muted m-r-10 f-16'> <i class='icofont icofont-edit'></i></a>";
+                txtEditBoard.Text = "<a href='../../../../Pages/Eminutes/BoardManagment/BoardInfo.aspx?BoardId=" + Current_Board.Board_Id + "' class='text-muted m-r-10 f-16'> <i style='color:#4183d7' class='icofont icofont-edit'></i></a>";
+                txtMeetingMembers.Text = "<a href='../../../../Pages/Eminutes/BoardManagment/BoardMember.aspx?BoardId=" + Current_Board.Board_Id + "' class='text-muted m-r-10 f-16'> <i style='color:#4183d7' class='icofont icofont-edit'></i></a>";
+                txtEditLocations.Text = "<a href='../../../../Pages/Eminutes/BoardManagment/BoardLocations.aspx?BoardId=" + Current_Board.Board_Id + "' class='text-muted m-r-10 f-16'> <i style='color:#4183d7' class='icofont icofont-edit'></i></a>";
+                txtAddMeeting.Text = "<a href='MeetingManagment/MeetingInfo.aspx?BoardID=" + Current_Board.Board_Id + "' class='text-muted m-r-10 f-16'> <i style='color:green' class='icofont icofont-ui-add'></i></a>";
             }
             else
             {
                 txtEditBoard.Text = " <i class='icofont icofont-ui-note m-r-10'></i>";
                 txtMeetingMembers.Text = " <i class='icofont icofont-ui-note m-r-10'></i>";
                 txtEditLocations.Text = " <i class='icofont icofont-ui-note m-r-10'></i>";
+                txtAddMeeting.Text = " <i class='icofont icofont-ui-note m-r-10'></i>";
             }
         }
 
@@ -119,21 +123,22 @@ namespace Treatment.Pages.Eminutes
                 }
 
                 str += "</div>" +
-                        "<div class='task-board'>" +
-                            "<div class='dropdown-secondary dropdown'>" +
-                                "<a href='BoardManagment/BoardMember.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#6a5590;'> Edit Member </a>&nbsp;" +
-                            "</div>" +
-                            "<div class='dropdown-secondary dropdown'>" +
-                                "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#583f82;'> Add Meeting </a>&nbsp;" +
-                            "</div>" +
-                            "<div class='dropdown-secondary dropdown'>" +
-                                "<a href='BoardManagment/BoardInfo.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#452a74;'> Edit Board  </a>&nbsp;" +
-                            "</div>" +
-
-                        "</div>" +
-                   "</div>" +
+                        "<div class='task-board'>";
+                if(Can_Edit)
+                str += "<div class='dropdown-secondary dropdown'>" +
+                    "<a href='BoardManagment/BoardMember.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#6a5590;'> Edit Member </a>&nbsp;" +
                 "</div>" +
-            "</div>";
+                "<div class='dropdown-secondary dropdown'>" +
+                    "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#583f82;'> Add Meeting </a>&nbsp;" +
+                "</div>" +
+                "<div class='dropdown-secondary dropdown'>" +
+                    "<a href='BoardManagment/BoardInfo.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#452a74;'> Edit Board  </a>&nbsp;" +
+                "</div>";
+
+                str += "</div>";
+                str += "</div>";
+                str += "</div>";
+                str += "</div>";
             }
             SubBoard.Text = str;
         }
@@ -230,7 +235,7 @@ namespace Treatment.Pages.Eminutes
 
         private void LoadMeetings(int BoardId)
         {
-            txtAddMeeting.Text = "<a class='btn btn-success btn-round' href='MeetingManagment/MeetingInfo.aspx?BoardID=" + BoardId + "' > Add Meeting </a>";
+            
             int statusid = 1;
             List<M_Meeting> ListMeetings = db.M_Meeting.Where(x => x.Board_Id == BoardId).ToList();
             string str = string.Empty;
@@ -257,6 +262,19 @@ namespace Treatment.Pages.Eminutes
                 str += "</tr>";
             }
             txtMeetings.Text = str;
+        }
+
+        public bool GetEditPermission(M_Board board)
+        {
+            try
+            {
+                M_Board_Member member = board.M_Board_Member.Where(x => x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id).FirstOrDefault();
+                if (member.Member_Type_Id == 1 || member.Member_Type_Id == 2)
+                    return true;
+                else
+                    return false;
+            }
+            catch { return false; }
         }
     }
 }
