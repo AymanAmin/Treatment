@@ -26,6 +26,7 @@ namespace Treatment.Pages.Treatment
             if(!IsPostBack)
                 fillDropDownListBox();
             loadDelegation();
+            translateArabic();
         }
 
         private void checkLogin()
@@ -74,7 +75,9 @@ namespace Treatment.Pages.Treatment
         {
             List<Employee> ListEmployee = new List<Employee>();
             ListEmployee = db.Employees.Where(x => x.Employee_Id != currentUserId).ToList<Employee>();
-            ddlFiller.dropDDL(employeeDelegation, "Employee_Id", "Employee_Name_En", ListEmployee, "Select Employee Delegation");
+            if(SessionWrapper.LoggedUser.Language_id == 1)
+                 ddlFiller.dropDDL(employeeDelegation, "Employee_Id", "Employee_Name_Ar", ListEmployee, "إختيار الموظف المفوض");
+            else ddlFiller.dropDDL(employeeDelegation, "Employee_Id", "Employee_Name_En", ListEmployee, "Select Employee Delegation");
         }
 
         protected void SaveDelegation_Click(object sender, EventArgs e)
@@ -82,11 +85,15 @@ namespace Treatment.Pages.Treatment
             if (saveEmployeeDelegation())
             {
                 loadDelegation();
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Sucessfully saved Delegation in system');", true);
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'left', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  حالة الحفظ : ','  تم حفظ التفويض بنجاح في النظام');", true);
+                else Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Sucessfully saved Delegation in system');", true);
             }
             else
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','" + messageForm + "');", true);
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'left', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  حالة الحفظ : ','" + messageForm + "');", true);
+                else Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','" + messageForm + "');", true);
             }
         }
 
@@ -126,7 +133,9 @@ namespace Treatment.Pages.Treatment
                     string exceptionMessage = exceptionLog.Message;
                     string exceptionData = "data:{\"StackTrace\":\"" + exceptionStackTrace + "\",\"GetType\":\"" + exceptionGetType + "\",\"Message\":\"" + exceptionMessage + "\"}";
                     logFileModule.logfile(1025, "حدث خطأ في حفظ التفويض", "An error occurred in saving the Delegation", exceptionData);
-                    messageForm = "Erorr to save data in system";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        messageForm = "حدث خطأ في حفظ البيانات في النظام";
+                    else messageForm = "Erorr to save data in system";
                     return false;
                 }
                 return true;
@@ -141,7 +150,9 @@ namespace Treatment.Pages.Treatment
         {
             if (employeeDelegation.SelectedValue == "" || employeeDelegation.SelectedValue == "0")
             {
-                messageForm = "Pleace Select Employee Delegation";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messageForm = "الرجاء إختيار الموظف المفوض";
+                else messageForm = "Pleace Select Employee Delegation";
                 return false;
             }
             return true;
@@ -152,11 +163,15 @@ namespace Treatment.Pages.Treatment
             if (removeEmployeeDelegation())
             {
                 loadDelegation();
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Sucessfully Remove Delegation in system');", true);
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'left', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  حالة الحفظ : ','  تم إلغاء التفويض بنجاح');", true);
+                else Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  Sucessfully Remove Delegation in system');", true);
             }
             else
             {
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','" + messageForm + "');", true);
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'left', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  حالة الحفظ : ','" + messageForm + "');", true);
+                else Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','" + messageForm + "');", true);
             }
         }
 
@@ -191,7 +206,9 @@ namespace Treatment.Pages.Treatment
                     string exceptionMessage = exceptionLog.Message;
                     string exceptionData = "data:{\"StackTrace\":\"" + exceptionStackTrace + "\",\"GetType\":\"" + exceptionGetType + "\",\"Message\":\"" + exceptionMessage + "\"}";
                     logFileModule.logfile(1025, "حدث خطأ في حفظ التفويض", "An error occurred in saving the Delegation", exceptionData);
-                    messageForm = "Erorr to save data in system";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        messageForm = "حدث خطأ في حفظ البيانات في النظام";
+                    else messageForm = "Erorr to save data in system";
                     return false;
                 }
                 return true;
@@ -199,6 +216,26 @@ namespace Treatment.Pages.Treatment
             else
             {
                 return false;
+            }
+        }
+
+        private void translateArabic()
+        {
+            if (SessionWrapper.LoggedUser.Language_id != null)
+            {
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                {
+                    valEmployeeDelegation.Text = "إختير الموظف المفوض";
+
+                    SaveDelegation.Text = "حفظ التفويض";
+                    removeDelegation.Text = "حذف التفويض";
+
+                }
+
+                else
+                {
+
+                }
             }
         }
     }

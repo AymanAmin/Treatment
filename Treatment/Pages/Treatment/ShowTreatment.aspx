@@ -117,8 +117,8 @@
                 
                 <div class="card ScrollStyle">
                     <div class="card-header">
-                        <h5><i class="icofont icofont-users-alt-4"></i></h5>
-                        <h5><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-SendTo", "Send To") %></h5>
+                        <h5><i class="icofont icofont-user-suited"></i></h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-CreateBy", "Create By") %></h5>
                         <span></span>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
@@ -127,6 +127,14 @@
                                 <li><i class="feather icon-trash-2 close-card"></i></li>
                             </ul>
                         </div>
+                    </div>
+                    <div class="card-block user-box assign-user" id="createByTreatment" runat="server">
+                        
+                    </div>
+                    <div class="card-header" style="margin-top:-8%">
+                        <h5><i class="icofont icofont-users-alt-4"></i></h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-SendTo", "Send To") %></h5>
+                        <span></span>
                     </div>
                     <div class="card-block user-box assign-user" id="sendToTreatment" runat="server">
                         
@@ -383,7 +391,7 @@
                                     </div>
                                 </div>
                                 <!-- File upload card end -->
-                                <div class="form-group col-sm-12 text-right">
+                                <div class="form-group col-sm-12 text-center">
                                     <asp:Button ID="SaveAssignment" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="valFormAssignment" OnClick="SaveAssignment_Click" />
                                 </div>
                             </div>
@@ -408,7 +416,7 @@
                         <div class="auth-box card-block">
                             <div class="row m-b-10">
                                 <div class="col-md-12 m-t-10">
-                                    <h3 class="text-center txt-primary"><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Employees", "") %>Reply</h3>
+                                    <h3 class="text-center txt-primary"><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Reply", "Reply") %></h3>
                                 </div>
                             </div>
                             <div class="col-sm-12 ">
@@ -431,7 +439,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-12 text-right">
+                                <div class="form-group col-sm-12 text-center">
                                     <asp:Button ID="SaveReply" runat="server" Text="Save" class="btn btn-primary" ValidationGroup="valReplyGroup" OnClick="SaveReply_Click" />
 
                                 </div>
@@ -457,12 +465,12 @@
                                     <ul class="nav nav-tabs nav-justified" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link active" data-toggle="tab" href="#sign_in" role="tab">
-                                                <h6><strong><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Structure", "Structure") %></strong></h6>
+                                                <h6><strong><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-Structure", "Structure") %></strong></h6>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#regi" role="tab">
-                                                <h6><strong><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Employees", "Employees") %></strong></h6>
+                                                <h6><strong><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-Employees", "Employees") %></strong></h6>
                                             </a>
                                         </li>
                                     </ul>
@@ -489,8 +497,8 @@
                                                         <EditForm VerticalOffset="-1"></EditForm>
                                                     </SettingsPopup>
                                                 </dx:ASPxTreeList>
-                                                <div class="form-group col-sm-2 text-right m-t-15 f-right">
-                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployee()" >OK</button>
+                                                <div class="form-group col-sm-12 m-t-15">
+                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployee()" ><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-ok", "OK") %></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -508,8 +516,8 @@
                                                         </dx:GridViewDataTextColumn>
                                                     </Columns>
                                                 </dx:ASPxGridView>
-                                                <div class="form-group col-sm-2 text-right m-t-15 f-right">
-                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployee()" data-toggle="modal" data-target="#tabbed-form">OK</button>
+                                                <div class="form-group col-sm-12 m-t-15">
+                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployee()" data-toggle="modal" data-target="#tabbed-form"><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-ok", "OK") %></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -534,12 +542,12 @@
                                     <ul class="nav nav-tabs nav-justified" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link active" data-toggle="tab" href="#sign_in_copy" role="tab">
-                                                <h6><strong><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Structure", "Structure") %></strong></h6>
+                                                <h6><strong><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-Structure", "Structure") %></strong></h6>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#regi_copy" role="tab">
-                                                <h6><strong><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Employees", "Employees") %></strong></h6>
+                                                <h6><strong><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-Employees", "Employees") %></strong></h6>
                                             </a>
                                         </li>
                                     </ul>
@@ -566,8 +574,8 @@
                                                         <EditForm VerticalOffset="-1"></EditForm>
                                                     </SettingsPopup>
                                                 </dx:ASPxTreeList>
-                                                <div class="form-group col-sm-2 text-right m-t-15 f-right">
-                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployeeCopy()">OK</button>
+                                                <div class="form-group col-sm-12 m-t-15">
+                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployeeCopy()"><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-ok", "OK") %></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -585,8 +593,8 @@
                                                         </dx:GridViewDataTextColumn>
                                                     </Columns>
                                                 </dx:ASPxGridView>
-                                                <div class="form-group col-sm-2 text-right m-t-15 f-right">
-                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployeeCopy()">OK</button>
+                                                <div class="form-group col-sm-12 m-t-15">
+                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployeeCopy()"><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-ok", "OK") %></button>
                                                 </div>
                                             </div>
                                         </div>

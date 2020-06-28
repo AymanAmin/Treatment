@@ -19,7 +19,7 @@ namespace Treatment.Pages.Treatment {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor addNfNumTreatment;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl addNfNumTreatment;
         
         /// <summary>
         /// inboxTreatment control.
@@ -47,14 +47,5 @@ namespace Treatment.Pages.Treatment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl completeTreatment;
-        
-        /// <summary>
-        /// gridViewTreatment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridViewTreatment;
     }
 }

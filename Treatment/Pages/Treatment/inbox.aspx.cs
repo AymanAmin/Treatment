@@ -17,13 +17,14 @@ namespace Treatment.Pages.Treatment
         String LogData = "";
         ECMSEntities dbSentTo = new ECMSEntities();
         List<Employee_Structure> ListDelegationEmpStru = new List<Employee_Structure>();
+        bool isDelegation = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             checkLogin();
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = SessionWrapper.EmpStructure;
+            isDelegation = getIsDelegation();
             ListDelegationEmpStru = getAllEmployeeStructure();
-
             if (loadListViewInboxTreatment())
             {
 
@@ -56,6 +57,17 @@ namespace Treatment.Pages.Treatment
             {
 
             }*/
+        }
+
+        private bool getIsDelegation()
+        {
+            bool flayDele = false;
+            try
+            {
+                flayDele = (bool)dbSentTo.Employee_Structure.First(x => x.Employee_Structure_Id == currentStructureUserId).Type_Delegation;
+                return flayDele;
+            }
+            catch { return flayDele; }
         }
 
         private List<Employee_Structure> getAllEmployeeStructure()
@@ -156,12 +168,15 @@ namespace Treatment.Pages.Treatment
                     treatmentMaster = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == currentStructureUserId && x.Treatment_Status_Id == 1).OrderByDescending(x => x.Treatment_Id).ToList<Treatment_Master>();
                     List<Treatment_Master> treatmentMasterDelegation;
                     int delgEmpStrId = 0;
-                    for (int i = 0; i < ListDelegationEmpStru.Count; i++)
+                    if (!isDelegation)
                     {
-                        delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
-                        treatmentMasterDelegation = new List<Treatment_Master>();
-                        treatmentMasterDelegation = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == delgEmpStrId && x.Treatment_Status_Id == 1).OrderByDescending(x => x.Treatment_Id).ToList<Treatment_Master>(); 
-                        treatmentMaster.AddRange(treatmentMasterDelegation);
+                        for (int i = 0; i < ListDelegationEmpStru.Count; i++)
+                        {
+                            delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
+                            treatmentMasterDelegation = new List<Treatment_Master>();
+                            treatmentMasterDelegation = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == delgEmpStrId && x.Treatment_Status_Id == 1).OrderByDescending(x => x.Treatment_Id).ToList<Treatment_Master>();
+                            treatmentMaster.AddRange(treatmentMasterDelegation);
+                        }
                     }
                 }
                 catch (Exception eexs) { }
@@ -179,12 +194,15 @@ namespace Treatment.Pages.Treatment
                     treatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Assignment_Status_Id == 3).OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
                     List<Treatment_Detial> treatmentDetialDelegation;
                     int delgEmpStrId = 0;
-                    for (int i = 0; i < ListDelegationEmpStru.Count; i++)
+                    if (!isDelegation)
                     {
-                        delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
-                        treatmentDetialDelegation = new List<Treatment_Detial>();
-                        treatmentDetialDelegation = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == delgEmpStrId && x.Assignment_Status_Id == 3).OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
-                        treatmentDetial.AddRange(treatmentDetialDelegation);
+                        for (int i = 0; i < ListDelegationEmpStru.Count; i++)
+                        {
+                            delgEmpStrId = ListDelegationEmpStru[i].Employee_Structure_Id;
+                            treatmentDetialDelegation = new List<Treatment_Detial>();
+                            treatmentDetialDelegation = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == delgEmpStrId && x.Assignment_Status_Id == 3).OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
+                            treatmentDetial.AddRange(treatmentDetialDelegation);
+                        }
                     }
                 }
                 catch (Exception eexs) { }
@@ -216,6 +234,7 @@ namespace Treatment.Pages.Treatment
                     Treatment_Master oneTreatmentMaster;
                     int motherTreatmentId = 0;
                     int oneTreatmentDetailId = 0;
+                    string langTreatmentPriorityName = "", langEmployeeName = "", langTreatmentConfidentialityName = "";
                     for (int i = 0; i < treatmentDetial.Count; i++)
                     {
                         oneTreatmentDetailId = treatmentDetial[i].Treatment_Detial_Id;
@@ -230,18 +249,30 @@ namespace Treatment.Pages.Treatment
                             {
                                 oneTreatmentMaster = db.Treatment_Master.First(x => x.Treatment_Id == motherTreatmentId);
                             }
+                            if (SessionWrapper.LoggedUser.Language_id == 1)
+                            {
+                                langTreatmentPriorityName = treatmentDetial[i].Treatment_Master.Treatment_Priority.Treatment_Priority_Name_Ar;
+                                langEmployeeName = getSubString(treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_Ar, 20);
+                                langTreatmentConfidentialityName = treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_Ar;
+                            }
+                            else
+                            {
+                                langTreatmentPriorityName = treatmentDetial[i].Treatment_Master.Treatment_Priority.Treatment_Priority_Name_En;
+                                langEmployeeName = getSubString(treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En, 20);
+                                langTreatmentConfidentialityName = treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En;
+                            }
                             yourHTMLstring = "<tr class='" + getReadEmail((bool)treatmentDetial[i].Is_Read) + "'>" +
                                           "<td style='width: 4%;'>" +
                                                 "<div class='check-star'>" +
-                                                     "<a href='#!' data-toggle='tooltip' data-placement='top' data-trigger='hover' title='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Treatment_Priority_Name_En + "'>" +
+                                                "<a href='#!' data-toggle='tooltip' data-placement='top' data-trigger='hover' title='" + langTreatmentPriorityName + "'>" +
                                                          "<i class='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Css_Class + "' style='font-size: 150%;'></i>" +
                                                     "</a>" +
                                                  "</div>" +
                                            "</td>" +
-                                           "<td style='width: 20%;'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + getSubString(treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En,20) +"</a></td>" +
+                                           "<td style='width: 20%;'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + langEmployeeName + "</a></td>" +
                                            "<td style='width: 60%;'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + getSubString(treatmentDetial[i].Treatment_Master.Treatment_Subject, 90) + "</a></td>" +
-                                           "<td style='width: 7%;' class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'><label class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label></a></td>" +
-                                           "<td style='width: 9%;' class='email-time'>" + dateAgo((DateTime)treatmentDetial[i].Treatment_Master.Create_Date) + "</td>" +
+                                           "<td style='width: 7%;' class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'><label class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + langTreatmentConfidentialityName + "</label></a></td>" +
+                                           "<td style='width: 9%;' class='email-time'>" + Date_Different((DateTime)treatmentDetial[i].Treatment_Master.Create_Date) + "</td>" +
                                        "</tr>";
                             inboxTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                         }
@@ -250,11 +281,15 @@ namespace Treatment.Pages.Treatment
                     yourHTMLstring = "</tbody></table>";
                     inboxTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
 
-                    var counterTreatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Is_Read == false).Count();
+                    var counterTreatmentDetial = treatmentDetial.Where(x => x.Is_Read == false).Count();
                     if (counterTreatmentDetial > 0)
                     {
-                        yourHTMLstring = "<span class='label label-danger f-right'>" + counterTreatmentDetial.ToString() + "</span>";
-                        addNfNumTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
+                        addNfNumTreatment.Visible = true;
+                        addNfNumTreatment.InnerText = counterTreatmentDetial.ToString();
+                    }
+                    else
+                    {
+                        addNfNumTreatment.Visible = false;
                     }
                     return true;
                 }
@@ -304,24 +339,35 @@ namespace Treatment.Pages.Treatment
                     //treatmentMaster = db.Treatment_Master.Where(x => x.From_Employee_Structure_Id == currentStructureUserId && x.Treatment_Status_Id == 1).OrderByDescending(x => x.Treatment_Id).ToList<Treatment_Master>();
                     treatmentMaster = getTreatmentMaster();
                     int oneTreatmentMasterId = 0;
+                    string langTreatmentPriorityName = "", langTreatmentConfidentialityName = "";
                     for (int i = 0; i < treatmentMaster.Count; i++)
                     {
                         oneTreatmentMasterId = treatmentMaster[i].Treatment_Id;
                         treatmentMaster[i] = db.Treatment_Master.FirstOrDefault(x => x.Treatment_Id == oneTreatmentMasterId);
                         if (treatmentMaster[i] != null)
                         {
+                            if (SessionWrapper.LoggedUser.Language_id == 1)
+                            {
+                                langTreatmentPriorityName = treatmentMaster[i].Treatment_Priority.Treatment_Priority_Name_Ar;
+                                langTreatmentConfidentialityName = treatmentMaster[i].Treatment_Confidentiality.Treatment_Confidentiality_Name_Ar;
+                            }
+                            else
+                            {
+                                langTreatmentPriorityName = treatmentMaster[i].Treatment_Priority.Treatment_Priority_Name_En;
+                                langTreatmentConfidentialityName = treatmentMaster[i].Treatment_Confidentiality.Treatment_Confidentiality_Name_En;
+                            }
                             yourHTMLstring = "<tr class='unread'>" +
                                            "<td style='width: 4%;'>" +
                                                 "<div class='check-star'>" +
-                                                     "<a href='#!' data-toggle='tooltip' data-placement='top' data-trigger='hover' title='" + treatmentMaster[i].Treatment_Priority.Treatment_Priority_Name_En + "'>" +
+                                                     "<a href='#!' data-toggle='tooltip' data-placement='top' data-trigger='hover' title='" + langTreatmentPriorityName + "'>" +
                                                          "<i class='" + treatmentMaster[i].Treatment_Priority.Css_Class + "' style='font-size: 150%;'></i>" +
                                                     "</a>" +
                                                  "</div>" +
                                            "</td>" +
                                            "<td style='width: 20%;'><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentMaster[i].Treatment_Id + "&getTabId=2' class='email-name'>" + getSubString(getDetialSendTo(treatmentMaster[i].Treatment_Id), 20) + "</a></td>" +
                                            "<td style='width: 60%;'><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentMaster[i].Treatment_Id + "&getTabId=2' class='email-name'>" + getSubString(treatmentMaster[i].Treatment_Subject, 90) + "</a></td>" +
-                                           "<td style='width: 7%;' class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentMaster[i].Treatment_Id + "&getTabId=2'><label class='" + treatmentMaster[i].Treatment_Confidentiality.Css_Class + "'>" + treatmentMaster[i].Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label></a></td>" +
-                                           "<td style='width: 9%;' class='email-time'>" + dateAgo((DateTime)treatmentMaster[i].Create_Date) + "</td>" +
+                                           "<td style='width: 7%;' class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + treatmentMaster[i].Treatment_Id + "&getTabId=2'><label class='" + treatmentMaster[i].Treatment_Confidentiality.Css_Class + "'>" + langTreatmentConfidentialityName + "</label></a></td>" +
+                                           "<td style='width: 9%;' class='email-time'>" + Date_Different((DateTime)treatmentMaster[i].Create_Date) + "</td>" +
                                        " </tr>";
                             sendTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                         }
@@ -359,6 +405,7 @@ namespace Treatment.Pages.Treatment
                     Treatment_Master oneTreatmentMaster;
                     int motherTreatmentId = 0;
                     int oneTreatmentDetailId = 0;
+                    string langTreatmentPriorityName = "", langEmployeeName = "", langTreatmentConfidentialityName = "";
                     for (int i = 0; i < treatmentDetial.Count; i++)
                     {
                         oneTreatmentDetailId = treatmentDetial[i].Treatment_Detial_Id;
@@ -373,18 +420,30 @@ namespace Treatment.Pages.Treatment
                             {
                                 oneTreatmentMaster = db.Treatment_Master.First(x => x.Treatment_Id == motherTreatmentId);
                             }
+                            if (SessionWrapper.LoggedUser.Language_id == 1)
+                            {
+                                langTreatmentPriorityName = treatmentDetial[i].Treatment_Master.Treatment_Priority.Treatment_Priority_Name_Ar;
+                                langEmployeeName = getSubString(treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_Ar, 20);
+                                langTreatmentConfidentialityName = treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_Ar;
+                            }
+                            else
+                            {
+                                langTreatmentPriorityName = treatmentDetial[i].Treatment_Master.Treatment_Priority.Treatment_Priority_Name_En;
+                                langEmployeeName = getSubString(treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En, 20);
+                                langTreatmentConfidentialityName = treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En;
+                            }
                             yourHTMLstring = "<tr class='unread'>" +
                                           "<td style='width: 4%;'>" +
                                                 "<div class='check-star'>" +
-                                                     "<a href='#!' data-toggle='tooltip' data-placement='top' data-trigger='hover' title='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Treatment_Priority_Name_En + "'>" +
+                                                     "<a href='#!' data-toggle='tooltip' data-placement='top' data-trigger='hover' title='" + langTreatmentPriorityName + "'>" +
                                                          "<i class='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Css_Class + "' style='font-size: 150%;'></i>" +
                                                     "</a>" +
                                                  "</div>" +
                                            "</td>" +
-                                           "<td style='width: 20%;'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=3&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + getSubString(treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En,20) +"</a></td>" +
+                                           "<td style='width: 20%;'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=3&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + langEmployeeName +"</a></td>" +
                                            "<td style='width: 60%;'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=3&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "' class='email-name'>" + getSubString(treatmentDetial[i].Treatment_Master.Treatment_Subject, 90) + "</a></td>" +
-                                           "<td style='width: 7%;' class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=3&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'><label class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</label></a></td>" +
-                                           "<td style='width: 9%;' class='email-time'>" + dateAgo((DateTime)treatmentDetial[i].Treatment_Master.Create_Date) + "</td>" +
+                                           "<td style='width: 7%;' class='email-tag'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=3&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'><label class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + langTreatmentConfidentialityName + "</label></a></td>" +
+                                           "<td style='width: 9%;' class='email-time'>" + Date_Different((DateTime)treatmentDetial[i].Treatment_Master.Create_Date) + "</td>" +
                                        "</tr>";
                             completeTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
                         }
@@ -407,105 +466,88 @@ namespace Treatment.Pages.Treatment
                 treatmentDetial = dbSentTo.Treatment_Detial.Where(x => x.Treatment_Id == masterId && x.Treatment_Copy_To == false).ToList<Treatment_Detial>();
                 for (int i = 0; i < treatmentDetial.Count; i++)
                 {
-                    sendTo += treatmentDetial[i].Employee_Structure.Employee.Employee_Name_En + " , "; 
+                    if(SessionWrapper.LoggedUser.Language_id == 1)
+                        sendTo += treatmentDetial[i].Employee_Structure.Employee.Employee_Name_Ar + " , ";
+                    else sendTo += treatmentDetial[i].Employee_Structure.Employee.Employee_Name_En + " , "; 
                 }
                 return sendTo.Substring(0, sendTo.Length - 2);
             }
             catch (Exception eee) { return sendTo; }
         }
 
-        private bool loadGridViewInboxTreatment()
+        public string Date_Different(DateTime ReveviedDate)
         {
-            using (ECMSEntities db = new ECMSEntities())
+
+            string Different = "Unkown time";
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                Different = "غير معروف";
+            try
             {
-                try
+                // Get the current DateTime.
+                DateTime now = DateTime.Now;
+
+                // Get the TimeSpan of the difference.
+                TimeSpan elapsed = now.Subtract(ReveviedDate);
+
+
+                // Get number of days ago.
+                int Ago = (int)elapsed.TotalDays;
+
+                if (Ago > 366)
                 {
-                    string yourHTMLstring = "<table class='table' >";
-                    gridViewTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
-                    List<Treatment_Detial> treatmentDetial = new List<Treatment_Detial>();
-                    treatmentDetial = db.Treatment_Detial.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && (x.Assignment_Status_Id == 1 || x.Assignment_Status_Id == 2)).OrderByDescending(x => x.Treatment_Detial_Id).ToList<Treatment_Detial>();
-                    Treatment_Master oneTreatmentMaster;
-                    int motherTreatmentId = 0;
-                    for (int i = 0; i < treatmentDetial.Count; i++)
-                    {
-                        oneTreatmentMaster = new Treatment_Master();
-                        motherTreatmentId = (int)treatmentDetial[i].Treatment_Master.Treatment_Mother;
-                        if (motherTreatmentId == 0)
-                            oneTreatmentMaster = treatmentDetial[i].Treatment_Master;
-                        else
-                        {
-                            oneTreatmentMaster = db.Treatment_Master.First(x => x.Treatment_Id == motherTreatmentId);
-                        }
-
-                        yourHTMLstring = "<div class='col-sm-4'>" +
-                                            "<div class='" + treatmentDetial[i].Treatment_Master.Treatment_Priority.Card_Class + "'>" +
-                                                "<div class='card-header'>" +
-                                                    "<a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'  class='card-title'>" + treatmentDetial[i].Treatment_Master.Employee_Structure.Employee.Employee_Name_En + " </a>" +
-                                                    "<span class='label label-default f-right'>" + dateAgo((DateTime)treatmentDetial[i].Treatment_Master.Create_Date) + "</span>" +
-                                                "</div>" +
-                                                "<div class='card-block' style='margin-top: -2%;'>" +
-                                                    "<div class='row'>" +
-                                                        "<div class='col-sm-12'>" +
-                                                            "<p class='task-detail unread'><a href='ShowTreatment.aspx?getTreatmentId=" + oneTreatmentMaster.Treatment_Id + "&getTabId=1&getTreatmentDetialId=" + treatmentDetial[i].Treatment_Detial_Id + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Subject + "</a></p>" +
-                                                            "<p class='task-due'><strong>Secret: </strong><strong class='" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Css_Class + "'>" + treatmentDetial[i].Treatment_Master.Treatment_Confidentiality.Treatment_Confidentiality_Name_En + "</strong></p>" +
-                                                        "</div>" +
-                                                    "</div>" +
-                                                "</div>" +
-                                            "</div>" +
-                                        "</div>";
-                        gridViewTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
-                    }
-
-                    yourHTMLstring = "</table>";
-                    gridViewTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
-                    return true;
+                    if (SessionWrapper.LoggedUser.Language_id == 2)
+                        Different = Ago / 366 + " Years";
+                    else
+                        Different = "منذ " + Ago / 366 + " سنة";
                 }
-                catch (Exception eee) { return false; }
+                else if (Ago >= 30)
+                {
+                    if (SessionWrapper.LoggedUser.Language_id == 2)
+                        Different = Ago / 30 + " Mounths";
+                    else
+                        Different = "منذ " + Ago / 30 + " شهر";
+                }
+                else if (Ago >= 7)
+                {
+                    if (SessionWrapper.LoggedUser.Language_id == 2)
+                        Different = Ago / 7 + " Weeks";
+                    else
+                        Different = "منذ " + Ago / 7 + " اسبوع";
+                }
+                else if (Ago < 1)
+                {
+                    Ago = (int)elapsed.TotalHours;
+
+                    if (Ago < 1)
+                    {
+                        Ago = (int)elapsed.TotalMinutes;
+                        if (Ago < 1)
+                        {
+                            Ago = (int)elapsed.Seconds;
+                            if (SessionWrapper.LoggedUser.Language_id == 2)
+                                Different = Ago + " Seconds";
+                            else
+                                Different = "منذ " + Ago + " ثانية";
+                        }
+                        else if (SessionWrapper.LoggedUser.Language_id == 2)
+                            Different = Ago + " Minutes";
+                        else
+                            Different = "منذ " + Ago + " دقيقة";
+                    }
+                    else if (SessionWrapper.LoggedUser.Language_id == 2)
+                        Different = Ago + " Hours";
+                    else
+                        Different = "منذ " + Ago + " ساعة";
+
+                }
+                else if (SessionWrapper.LoggedUser.Language_id == 2)
+                    Different = Ago + " days";
+                else
+                    Different = "منذ " + Ago + " يوم";
             }
-        }
+            catch { }
 
-        private string dateAgo(DateTime yourDate)
-        {
-            const int SECOND = 1;
-            const int MINUTE = 60 * SECOND;
-            const int HOUR = 60 * MINUTE;
-            const int DAY = 24 * HOUR;
-            const int MONTH = 30 * DAY;
-
-            var ts = new TimeSpan(DateTime.Now.Ticks - yourDate.Ticks);
-            double delta = Math.Abs(ts.TotalSeconds);
-
-            if (delta < 1 * MINUTE)
-                return ts.Seconds == 1 ? "one second ago" : ts.Seconds + " seconds ago";
-
-            if (delta < 2 * MINUTE)
-                return "a minute ago";
-
-            if (delta < 45 * MINUTE)
-                return ts.Minutes + " minutes ago";
-
-            if (delta < 90 * MINUTE)
-                return "an hour ago";
-
-            if (delta < 24 * HOUR)
-                return ts.Hours + " hours ago";
-
-            if (delta < 48 * HOUR)
-                return "yesterday";
-
-            if (delta < 30 * DAY)
-                return ts.Days + " days ago";
-
-            if (delta < 12 * MONTH)
-            {
-                int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
-                return months <= 1 ? "one month ago" : months + " months ago";
-            }
-            else
-            {
-                int years = Convert.ToInt32(Math.Floor((double)ts.Days / 365));
-                return years <= 1 ? "one year ago" : years + " years ago";
-            }
+            return Different;
         }
     }
 }

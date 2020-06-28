@@ -38,10 +38,10 @@
                 <!-- Start Treatment Form-->
                 <div class="row">
                     <div class="form-group col-sm-3">
-                        <label><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-Treatment Date", "Treatment Date") %></label><i class="icofont icofont-star-alt-1 text-danger"></i>
+                        <label><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-TreatmentDate", "Treatment Date") %></label><i class="icofont icofont-star-alt-1 text-danger"></i>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                            <asp:TextBox ID="treatmentDate" runat="server" class="form-control" placeholder="Enter Treatment Date" TextMode="SingleLine"></asp:TextBox>
+                            <asp:TextBox ID="treatmentDate" runat="server" class="form-control" placeholder="Treatment Date" TextMode="SingleLine"></asp:TextBox>
                         </div>
                         <asp:RequiredFieldValidator ID="valTreatmentDate" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Treatment Date" ValidationGroup="valFormGroup" ControlToValidate="treatmentDate" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
                     </div>
@@ -75,9 +75,9 @@
                         <label><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-SendTo", "Send To") %></label><i class="icofont icofont-star-alt-1 text-danger"></i>
                         <div class="input-group">
                             <span class="input-group-addon" data-toggle="modal" data-target="#tabbed-form"><i class="icofont icofont-paper-plane"></i></span>
-                            <asp:ListBox ID="treatmentTo" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Send To" SelectionMode="Multiple"></asp:ListBox>
+                            <asp:ListBox ID="treatmentTo" runat="server" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Send To" SelectionMode="Multiple"></asp:ListBox>
                         </div>
-                        <asp:RequiredFieldValidator ID="valTreatmentTo" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Send To" ValidationGroup="valFormGroup" ControlToValidate="treatmentTo" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="valTreatmentTo" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Choose Send To" ValidationGroup="valFormGroup" ControlToValidate="treatmentTo" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="row">
@@ -85,7 +85,7 @@
                         <label><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-CopyTo", "Copy To") %></label>
                         <div class="input-group">
                             <span class="input-group-addon" data-toggle="modal" data-target="#tabbed-form-copy"><i class="icofont icofont-ui-copy"></i></span>
-                            <asp:ListBox ID="treatmentCopyTo" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Choose Copy To" runat="server" SelectionMode="Multiple"></asp:ListBox>
+                            <asp:ListBox ID="treatmentCopyTo" CssClass="js-example-placeholder-multiple col-sm-12" data-placeholder="Copy To" runat="server" SelectionMode="Multiple"></asp:ListBox>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                         <label><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-ReplyDate", "Reply Date") %></label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                            <asp:TextBox ID="replyDate" runat="server" class="form-control" placeholder="Enter Treatment Date" TextMode="SingleLine"></asp:TextBox>
+                            <asp:TextBox ID="replyDate" runat="server" class="form-control" placeholder="Reply Date" TextMode="SingleLine"></asp:TextBox>
                         </div>
                     </div>
 
@@ -112,7 +112,7 @@
                         <label><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-Subject", "Subject") %></label><i class="icofont icofont-star-alt-1 text-danger"></i>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-presentation-alt "></i></span>
-                            <asp:TextBox ID="subjectTreatement" runat="server" placeholder="Enter Subject" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
+                            <asp:TextBox ID="subjectTreatement" runat="server" placeholder="Subject" TextMode="MultiLine" Rows="3" class="form-control"></asp:TextBox>
                         </div>
                         <asp:RequiredFieldValidator ID="valSubjectTreatement" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Subject" ValidationGroup="valFormGroup" ControlToValidate="subjectTreatement" Display="Dynamic" CssClass="col-form-label"></asp:RequiredFieldValidator>
                     </div>
@@ -174,7 +174,7 @@
                 </div>
                 <!-- File upload card end -->
 
-                <div class="form-group col-sm-12 text-right">
+                <div class="form-group col-sm-12 text-center">
                     <asp:Button ID="SaveTreatment" runat="server" Text="Save" CssClass="btn btn-primary" ValidationGroup="valFormGroup" OnClick="SaveTreatment_Click" />
                 </div>
                 <!-- End Treatment Form-->
@@ -228,8 +228,8 @@
                                                         <EditForm VerticalOffset="-1"></EditForm>
                                                     </SettingsPopup>
                                                 </dx:ASPxTreeList>
-                                                <div class="form-group col-sm-2 text-right m-t-15 f-right">
-                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployee()" >OK</button>
+                                                <div class="form-group col-sm-12 m-t-15">
+                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployee()" ><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-ok", "OK") %></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -247,8 +247,8 @@
                                                         </dx:GridViewDataTextColumn>
                                                     </Columns>
                                                 </dx:ASPxGridView>
-                                                <div class="form-group col-sm-2 text-right m-t-15 f-right">
-                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployee()">OK</button>
+                                                <div class="form-group col-sm-12 m-t-15">
+                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployee()"><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-ok", "OK") %></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -308,8 +308,8 @@
                                                         <EditForm VerticalOffset="-1"></EditForm>
                                                     </SettingsPopup>
                                                 </dx:ASPxTreeList>
-                                                <div class="form-group col-sm-2 text-right m-t-15 f-right">
-                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployeeCopy()">OK</button>
+                                                <div class="form-group col-sm-12 m-t-15">
+                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployeeCopy()"><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-ok", "OK") %></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -327,8 +327,8 @@
                                                         </dx:GridViewDataTextColumn>
                                                     </Columns>
                                                 </dx:ASPxGridView>
-                                                <div class="form-group col-sm-2 text-right m-t-15 f-right">
-                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployeeCopy()">OK</button>
+                                                <div class="form-group col-sm-12 m-t-15">
+                                                    <button class="btn btn-primary btn-md btn-block waves-effect text-center" OnClick="getEmployeeCopy()"><% = Treatment.Classes.FieldNames.getFieldName("NewTreatment-ok", "OK") %></button>
                                                 </div>
                                             </div>
                                         </div>

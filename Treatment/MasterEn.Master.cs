@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Treatment.Classes;
 using Treatment.Entity;
 using Website.Classes;
 
@@ -16,7 +17,7 @@ namespace Treatment
         Permission CurrentPageNow = new Permission();
         List<int> CurrentPageSequences = new List<int>();
         bool isDashBoard = false;
-        int currentStructureUserId = 0, currentUserId = 0;
+        int currentStructureUserId = 0, currentUserId = 0, delegationId = 0;
         List<Notification_Master> notificationMaster;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,8 +38,10 @@ namespace Treatment
             if (SessionWrapper.LoggedUser.Language_id != null)
                 if (SessionWrapper.LoggedUser.Language_id == 1)
                 {
+                    Style.Text = FieldNames.getSTyleRTL();
+                    Script.Text = FieldNames.getJavaScriptRTL();
                     //this.html.Attributes.Add("dir", "ltr");
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "RTL_Layout();", true);
+                    //Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "RTL_Layout();", true);
                 }
             ListPermissions = SessionWrapper.Permssions;
 
@@ -47,9 +50,21 @@ namespace Treatment
             LoadMenu(ListPermissions);
             currentUserId = SessionWrapper.LoggedUser.Employee_Id;
             currentStructureUserId = SessionWrapper.EmpStructure;
+            delegationId = getDelegationId();
             loadNotification();
             LoadStructure();
             // ViewData(60);
+        }
+
+        private int getDelegationId()
+        {
+            int DeleId = 0;
+            try
+            {
+                DeleId = (int)db.Employee_Structure.First(x => x.Employee_Structure_Id == currentStructureUserId && x.Type_Delegation == true).Employee_Delegation;
+                return DeleId;
+            }
+            catch { return DeleId; }
         }
 
         private void Employee_Name()
@@ -251,7 +266,7 @@ namespace Treatment
                     }
                 }
                 notificationMaster = new List<Notification_Master>();
-                notificationMaster = db.Notification_Master.Where(x => x.To_Employee_Structure_Id == currentStructureUserId && x.Is_Read == false && (x.Notification_Show_Id == notfOne || x.Notification_Show_Id == notfTow || x.Notification_Show_Id == notfThir || x.Notification_Show_Id == notfFour)).OrderByDescending(x => x.Notification_Id).ToList<Notification_Master>();
+                notificationMaster = db.Notification_Master.Where(x => (x.To_Employee_Structure_Id == currentStructureUserId || x.To_Employee_Structure_Id == delegationId) && x.Is_Read == false && (x.Notification_Show_Id == notfOne || x.Notification_Show_Id == notfTow || x.Notification_Show_Id == notfThir || x.Notification_Show_Id == notfFour)).OrderByDescending(x => x.Notification_Id).ToList<Notification_Master>();
                 string yourHTMLstring = "";
                 yourHTMLstring = "<div class='dropdown-toggle' data-toggle='dropdown'>";
                 if (notificationMaster.Count > 0)
@@ -309,7 +324,7 @@ namespace Treatment
                                                         "<div class='media-body'>" +
                                                             "<h5 class='notification-user'>" + NameOfEmp + "</h5>" +
                                                             "<p class='notification-msg'>" + Description + "</p>" +
-                                                            "<span class='notification-time'>" + dateAgo((DateTime)notificationMaster[i].Notification_Date) + "</span>" +
+                                                            "<span class='notification-time'>" + Date_Different((DateTime)notificationMaster[i].Notification_Date) + "</span>" +
                                                         "</div>" +
                                                     "</a>" +
                                                 "</div>" +
@@ -353,48 +368,79 @@ namespace Treatment
 
         }
 
-        private string dateAgo(DateTime yourDate)
+        public string Date_Different(DateTime ReveviedDate)
         {
-            const int SECOND = 1;
-            const int MINUTE = 60 * SECOND;
-            const int HOUR = 60 * MINUTE;
-            const int DAY = 24 * HOUR;
-            const int MONTH = 30 * DAY;
 
-            var ts = new TimeSpan(DateTime.Now.Ticks - yourDate.Ticks);
-            double delta = Math.Abs(ts.TotalSeconds);
-
-            if (delta < 1 * MINUTE)
-                return ts.Seconds == 1 ? "one second ago" : ts.Seconds + " seconds ago";
-
-            if (delta < 2 * MINUTE)
-                return "a minute ago";
-
-            if (delta < 45 * MINUTE)
-                return ts.Minutes + " minutes ago";
-
-            if (delta < 90 * MINUTE)
-                return "an hour ago";
-
-            if (delta < 24 * HOUR)
-                return ts.Hours + " hours ago";
-
-            if (delta < 48 * HOUR)
-                return "yesterday";
-
-            if (delta < 30 * DAY)
-                return ts.Days + " days ago";
-
-            if (delta < 12 * MONTH)
+            string Different = "Unkown time";
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                Different = "غير معروف";
+            try
             {
-                int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
-                return months <= 1 ? "one month ago" : months + " months ago";
+                // Get the current DateTime.
+                DateTime now = DateTime.Now;
+
+                // Get the TimeSpan of the difference.
+                TimeSpan elapsed = now.Subtract(ReveviedDate);
+
+
+                // Get number of days ago.
+                int Ago = (int)elapsed.TotalDays;
+
+                if (Ago > 366)
+                {
+                    if (SessionWrapper.LoggedUser.Language_id == 2)
+                        Different = Ago / 366 + " Years";
+                    else
+                        Different = "منذ " + Ago / 366 + " سنة";
+                }
+                else if (Ago >= 30)
+                {
+                    if (SessionWrapper.LoggedUser.Language_id == 2)
+                        Different = Ago / 30 + " Mounths";
+                    else
+                        Different = "منذ " + Ago / 30 + " شهر";
+                }
+                else if (Ago >= 7)
+                {
+                    if (SessionWrapper.LoggedUser.Language_id == 2)
+                        Different = Ago / 7 + " Weeks";
+                    else
+                        Different = "منذ " + Ago / 7 + " اسبوع";
+                }
+                else if (Ago < 1)
+                {
+                    Ago = (int)elapsed.TotalHours;
+
+                    if (Ago < 1)
+                    {
+                        Ago = (int)elapsed.TotalMinutes;
+                        if (Ago < 1)
+                        {
+                            Ago = (int)elapsed.Seconds;
+                            if (SessionWrapper.LoggedUser.Language_id == 2)
+                                Different = Ago + " Seconds";
+                            else
+                                Different = "منذ " + Ago + " ثانية";
+                        }
+                        else if (SessionWrapper.LoggedUser.Language_id == 2)
+                            Different = Ago + " Minutes";
+                        else
+                            Different = "منذ " + Ago + " دقيقة";
+                    }
+                    else if (SessionWrapper.LoggedUser.Language_id == 2)
+                        Different = Ago + " Hours";
+                    else
+                        Different = "منذ " + Ago + " ساعة";
+
+                }
+                else if (SessionWrapper.LoggedUser.Language_id == 2)
+                    Different = Ago + " days";
+                else
+                    Different = "منذ " + Ago + " يوم";
             }
-            else
-            {
-                int years = Convert.ToInt32(Math.Floor((double)ts.Days / 365));
-                return years <= 1 ? "one year ago" : years + " years ago";
-            }
+            catch { }
+
+            return Different;
         }
     }
 }
