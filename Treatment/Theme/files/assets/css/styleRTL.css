@@ -215,3 +215,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child, table.dataTa
 #draggableMultiple .sortable-moves {
     padding: 15px 60px 15px 5px !important;
 }
+.header-navbar .navbar-wrapper .navbar-container .header-notification .show-notification li:first-child label{
+    float:left;
+}
