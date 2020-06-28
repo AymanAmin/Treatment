@@ -43,6 +43,7 @@ namespace Treatment.Entity
         public DbSet<M_Board_Member> M_Board_Member { get; set; }
         public DbSet<M_Board_Status> M_Board_Status { get; set; }
         public DbSet<M_Board_Type> M_Board_Type { get; set; }
+        public DbSet<M_M_Attachments> M_M_Attachments { get; set; }
         public DbSet<M_Meeting> M_Meeting { get; set; }
         public DbSet<M_Meeting_Status> M_Meeting_Status { get; set; }
         public DbSet<M_Member_Type> M_Member_Type { get; set; }

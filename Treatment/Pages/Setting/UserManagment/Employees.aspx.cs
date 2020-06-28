@@ -300,10 +300,12 @@ namespace Treatment.Pages.Treatment
                                                                 //"<img class='img-fluid img-radius' src='~/media/Signature/' alt='m.jpg'> " +
                                                                 ImgTag +
                                                                 "<div class='img-overlay img-radius'>" +
-                                                                 "   <span>" +
-                                                                       " <a class='btn btn-primary btn-outline-primary btn-icon'  id='" + ALLEmployees[i].Employee_Id.ToString()+ "'OnClick='showmodel(this)'><i class='icofont icofont-ui-edit text-info h5'></i></a> " +
-                                                                       " <a class='btn btn-danger btn-outline-danger btn-icon'  id='" + ALLEmployees[i].Employee_Id.ToString()+ "'OnClick='DeleteEmplooye(this)'><i class='icofont icofont-ui-delete text-danger h5'></i></a> " +
-                                                                    "</span>" +
+                                                                   "<span>" +
+                                                                         "<a class='btn btn-primary btn-outline-primary btn-icon'  id='" + ALLEmployees[i].Employee_Id.ToString()+ "'OnClick='showmodel(this)'><i class='icofont icofont-ui-edit text-info h5'></i></a> " +
+                                                                          //" <a class='btn btn-danger btn-outline-danger btn-icon'  id='" + ALLEmployees[i].Employee_Id.ToString()+ "'OnClick='DeleteEmplooye(this)'><i class='icofont icofont-ui-delete text-danger h5'></i></a> " +
+                                                                         "<a class='btn btn-danger btn-outline-danger btn-icon'  id='" + ALLEmployees[i].Employee_Id.ToString() + "' data-href = '" + ALLEmployees[i].Employee_Id.ToString() + "' data-toggle='modal' data-target='#confirm-delete'><i class='icofont icofont-ui-delete text-danger h5'></i></a>" +
+
+                                                                   "</span>" +
                                                                 "</div>" +
                                                             "</div>" +
                                                             "<div class='user-content'>" +
@@ -346,8 +348,9 @@ namespace Treatment.Pages.Treatment
         }
 
         [WebMethod]
-        public static void DeleteEmplooye(int Employee_Id)
+        public static string DeleteEmplooye(int Employee_Id)
         {
+            string returnDeleteEmp = "0";
             LogFileModule logFileModule = new LogFileModule();
             String LogData = "";
             try
@@ -364,6 +367,7 @@ namespace Treatment.Pages.Treatment
                 var DelEmp = db.Employees.First(x => x.Employee_Id == Employee_Id);
                 db.Employees.Remove(DelEmp);
                 db.SaveChanges();
+                returnDeleteEmp = "1";
                 /* Add it to log file */
                 LogData = "data:" + JsonConvert.SerializeObject(DelEmp, logFileModule.settings);
                 logFileModule.logfile(10, "حذف الموظف", "Delete Employee", LogData);
@@ -372,7 +376,7 @@ namespace Treatment.Pages.Treatment
             catch(Exception e)
             {
             }
-
+            return JsonConvert.SerializeObject(returnDeleteEmp);
         }
 
         public void ViewDataEmp()
@@ -414,6 +418,9 @@ namespace Treatment.Pages.Treatment
                 ddlFiller.dropDDL(LanguageF, "ID", "Language_Name", LanguageList, " - الكل -");
                 else
                 ddlFiller.dropDDL(LanguageF, "ID", "Language_Name", LanguageList, " - All -");
+
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                translateValidationArabic();
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -421,7 +428,27 @@ namespace Treatment.Pages.Treatment
             Fillter();
         }
 
+        public void translateValidationArabic()
+        {
+            Employee_Name_ArValidator.Text = "أدخل الإسم بالعربي";
+            Employee_Name_EnValidator.Text = "أدخل الإسم بالإنجليزي";
+            Employee_EmailValidator.Text = "أدخل البريد الإلكتروني";
+            Employee_PhoneValidator.Text = "أدخل الهاتف";
+            Emp_StructureValidator.Text = "إختر الهيكل الوظيفي";
+            GroupsValidator.Text = "إختر المجموعة";
+            LanguageValidator.Text = "إختر اللغة";
+            btnSearch.Text = "بحث";
 
-       
+            Employee_Name_Ar.Attributes["placeholder"] = "أدخل الإسم بالعربي";
+            Employee_Name_En.Attributes["placeholder"] = "أدخل الإسم بالإنجليزي";
+            Employee_Email.Attributes["placeholder"] = "أدخل البريد الإلكتروني";
+            Employee_Phone.Attributes["placeholder"] = "أدخل الهاتف";
+            Keyword.Attributes["placeholder"] = "الإسم أو الهاتف أو البريدالإلكتروني";
+            Emp_Structure.Attributes["placeholder"] = "إختر الهيكل الوظيفي";
+
+
+        }
+
+
     }
 }

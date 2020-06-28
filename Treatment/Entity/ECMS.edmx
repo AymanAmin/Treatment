@@ -161,6 +161,15 @@
           <Property Name="Board_Type_Name_Ar" Type="nvarchar(max)" />
           <Property Name="Board_Type_Name_En" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="M_M_Attachments">
+          <Key>
+            <PropertyRef Name="Attachments_Id" />
+          </Key>
+          <Property Name="Attachments_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Meeting_Id" Type="int" />
+          <Property Name="Path" Type="nvarchar" MaxLength="50" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="M_Meeting">
           <Key>
             <PropertyRef Name="Meeting_Id" />
@@ -619,6 +628,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_M_M_Attachments_M_Meeting">
+          <End Role="M_Meeting" Type="Self.M_Meeting" Multiplicity="0..1" />
+          <End Role="M_M_Attachments" Type="Self.M_M_Attachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Meeting">
+              <PropertyRef Name="Meeting_Id" />
+            </Principal>
+            <Dependent Role="M_M_Attachments">
+              <PropertyRef Name="Meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_M_Meeting_M_Board">
           <End Role="M_Board" Type="Self.M_Board" Multiplicity="0..1" />
           <End Role="M_Meeting" Type="Self.M_Meeting" Multiplicity="*" />
@@ -943,37 +964,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ECMSModelStoreContainer">
           <EntitySet Name="Assignment_Status" EntityType="Self.Assignment_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attachment" EntityType="Self.Attachment" Schema="dbo" store:Type="Tables" />
@@ -990,6 +980,7 @@
           <EntitySet Name="M_Board_Member" EntityType="Self.M_Board_Member" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Board_Status" EntityType="Self.M_Board_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Board_Type" EntityType="Self.M_Board_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_M_Attachments" EntityType="Self.M_M_Attachments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Meeting" EntityType="Self.M_Meeting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Meeting_Status" EntityType="Self.M_Meeting_Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Member_Type" EntityType="Self.M_Member_Type" Schema="dbo" store:Type="Tables" />
@@ -1080,6 +1071,10 @@
           <AssociationSet Name="FK_M_Board_Status_M_Board_Status" Association="Self.FK_M_Board_Status_M_Board_Status">
             <End Role="M_Board_Status" EntitySet="M_Board_Status" />
             <End Role="M_Board_Status1" EntitySet="M_Board_Status" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_M_Attachments_M_Meeting" Association="Self.FK_M_M_Attachments_M_Meeting">
+            <End Role="M_Meeting" EntitySet="M_Meeting" />
+            <End Role="M_M_Attachments" EntitySet="M_M_Attachments" />
           </AssociationSet>
           <AssociationSet Name="FK_M_Meeting_M_Board" Association="Self.FK_M_Meeting_M_Board">
             <End Role="M_Board" EntitySet="M_Board" />
@@ -1240,6 +1235,7 @@
           <EntitySet Name="M_Board_Member" EntityType="ECMSModel.M_Board_Member" />
           <EntitySet Name="M_Board_Status" EntityType="ECMSModel.M_Board_Status" />
           <EntitySet Name="M_Board_Type" EntityType="ECMSModel.M_Board_Type" />
+          <EntitySet Name="M_M_Attachments" EntityType="ECMSModel.M_M_Attachments" />
           <EntitySet Name="M_Meeting" EntityType="ECMSModel.M_Meeting" />
           <EntitySet Name="M_Meeting_Status" EntityType="ECMSModel.M_Meeting_Status" />
           <EntitySet Name="M_Member_Type" EntityType="ECMSModel.M_Member_Type" />
@@ -1370,6 +1366,10 @@
           <AssociationSet Name="FK_M_Board_Status_M_Board_Status" Association="ECMSModel.FK_M_Board_Status_M_Board_Status">
             <End Role="M_Board_Status" EntitySet="M_Board_Status" />
             <End Role="M_Board_Status1" EntitySet="M_Board_Status" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_M_Attachments_M_Meeting" Association="ECMSModel.FK_M_M_Attachments_M_Meeting">
+            <End Role="M_Meeting" EntitySet="M_Meeting" />
+            <End Role="M_M_Attachments" EntitySet="M_M_Attachments" />
           </AssociationSet>
           <AssociationSet Name="FK_M_Recommendation_M_Meeting" Association="ECMSModel.FK_M_Recommendation_M_Meeting">
             <End Role="M_Meeting" EntitySet="M_Meeting" />
@@ -1636,6 +1636,16 @@
           <Property Name="Board_Type_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_Board_M_Board_Type" FromRole="M_Board_Type" ToRole="M_Board" />
         </EntityType>
+        <EntityType Name="M_M_Attachments">
+          <Key>
+            <PropertyRef Name="Attachments_Id" />
+          </Key>
+          <Property Name="Attachments_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Meeting_Id" Type="Int32" />
+          <Property Name="Path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="M_Meeting" Relationship="ECMSModel.FK_M_M_Attachments_M_Meeting" FromRole="M_M_Attachments" ToRole="M_Meeting" />
+        </EntityType>
         <EntityType Name="M_Meeting">
           <Key>
             <PropertyRef Name="Meeting_Id" />
@@ -1653,6 +1663,7 @@
           <NavigationProperty Name="M_Attendees" Relationship="ECMSModel.FK_M_Attendees_M_Meeting" FromRole="M_Meeting" ToRole="M_Attendees" />
           <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_Meeting_M_Board" FromRole="M_Meeting" ToRole="M_Board" />
           <NavigationProperty Name="M_Board_Location" Relationship="ECMSModel.FK_M_Meeting_M_Board_Location" FromRole="M_Meeting" ToRole="M_Board_Location" />
+          <NavigationProperty Name="M_M_Attachments" Relationship="ECMSModel.FK_M_M_Attachments_M_Meeting" FromRole="M_Meeting" ToRole="M_M_Attachments" />
           <NavigationProperty Name="M_Recommendation" Relationship="ECMSModel.FK_M_Recommendation_M_Meeting" FromRole="M_Meeting" ToRole="M_Recommendation" />
           <NavigationProperty Name="M_Topic" Relationship="ECMSModel.FK_M_Topic_M_Meeting" FromRole="M_Meeting" ToRole="M_Topic" />
         </EntityType>
@@ -2262,6 +2273,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_M_M_Attachments_M_Meeting">
+          <End Type="ECMSModel.M_Meeting" Role="M_Meeting" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_M_Attachments" Role="M_M_Attachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Meeting">
+              <PropertyRef Name="Meeting_Id" />
+            </Principal>
+            <Dependent Role="M_M_Attachments">
+              <PropertyRef Name="Meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_M_Recommendation_M_Meeting">
           <End Type="ECMSModel.M_Meeting" Role="M_Meeting" Multiplicity="0..1" />
           <End Type="ECMSModel.M_Recommendation" Role="M_Recommendation" Multiplicity="*" />
@@ -2472,13 +2495,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ECMSModelStoreContainer" CdmEntityContainer="ECMSEntities">
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ECMSModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ECMSModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ECMSModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ECMSModel.Store.sp_helpdiagramdefinition" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ECMSModel.Store.sp_helpdiagrams" />
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ECMSModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ECMSModel.Store.sp_upgraddiagrams" />
           <EntitySetMapping Name="Assignment_Status">
             <EntityTypeMapping TypeName="ECMSModel.Assignment_Status">
               <MappingFragment StoreEntitySet="Assignment_Status">
@@ -2647,6 +2663,16 @@
                 <ScalarProperty Name="Board_Type_Name_En" ColumnName="Board_Type_Name_En" />
                 <ScalarProperty Name="Board_Type_Name_Ar" ColumnName="Board_Type_Name_Ar" />
                 <ScalarProperty Name="Board_Type_Id" ColumnName="Board_Type_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_M_Attachments">
+            <EntityTypeMapping TypeName="ECMSModel.M_M_Attachments">
+              <MappingFragment StoreEntitySet="M_M_Attachments">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Meeting_Id" ColumnName="Meeting_Id" />
+                <ScalarProperty Name="Attachments_Id" ColumnName="Attachments_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2927,7 +2953,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

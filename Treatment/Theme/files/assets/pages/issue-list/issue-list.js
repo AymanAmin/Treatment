@@ -1,8 +1,27 @@
 'use strict';
 $(document).ready(function() {
-    $('#issue-list-table').DataTable();
-    $('#issue-list-table1').DataTable();
-    $('#issue-list-table2').DataTable();
+    if ($("html").attr("dir") == "rtl") {
+        $('#issue-list-table').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Arabic.json"
+            }
+        });
+        $('#issue-list-table1').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Arabic.json"
+            }
+        });
+        $('#issue-list-table2').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Arabic.json"
+            }
+        });
+    }
+    else {
+        $('#issue-list-table').DataTable();
+        $('#issue-list-table1').DataTable();
+        $('#issue-list-table2').DataTable();
+    }
 
 
     var progression1 = 0;

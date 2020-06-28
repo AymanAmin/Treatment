@@ -40,31 +40,31 @@ namespace Treatment.Pages.Eminutes.MeetingManagment {
         protected global::System.Web.UI.WebControls.TextBox EnglishName;
         
         /// <summary>
-        /// RFVtxtEnglishName control.
+        /// EnglishNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtEnglishName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EnglishNameValidator;
         
         /// <summary>
-        /// timepicker control.
+        /// ArabicName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox timepicker;
+        protected global::System.Web.UI.WebControls.TextBox ArabicName;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// ArabicNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ArabicNameValidator;
         
         /// <summary>
         /// MeetingStatus control.
@@ -85,13 +85,13 @@ namespace Treatment.Pages.Eminutes.MeetingManagment {
         protected global::System.Web.UI.WebControls.EntityDataSource MeetingStatusDataSource;
         
         /// <summary>
-        /// RFVtxtStatusofMeeting control.
+        /// StatusofMeetingValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtStatusofMeeting;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator StatusofMeetingValidator;
         
         /// <summary>
         /// BoardName control.
@@ -103,31 +103,13 @@ namespace Treatment.Pages.Eminutes.MeetingManagment {
         protected global::System.Web.UI.WebControls.TextBox BoardName;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// BoardNameValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
-        /// <summary>
-        /// ArabicName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ArabicName;
-        
-        /// <summary>
-        /// RFVtxtArabicName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtArabicName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator BoardNameValidator;
         
         /// <summary>
         /// MeetingDate control.
@@ -139,13 +121,31 @@ namespace Treatment.Pages.Eminutes.MeetingManagment {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl MeetingDate;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// MeetingDateValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator MeetingDateValidator;
+        
+        /// <summary>
+        /// timepicker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox timepicker;
+        
+        /// <summary>
+        /// timepickerValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator timepickerValidator;
         
         /// <summary>
         /// MeetingLocation control.
@@ -166,13 +166,22 @@ namespace Treatment.Pages.Eminutes.MeetingManagment {
         protected global::System.Web.UI.WebControls.EntityDataSource LocationDataSource;
         
         /// <summary>
-        /// RFVtxtClassification control.
+        /// MeetingLocationValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtClassification;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator MeetingLocationValidator;
+        
+        /// <summary>
+        /// addAttachments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload addAttachments;
         
         /// <summary>
         /// Minutes control.

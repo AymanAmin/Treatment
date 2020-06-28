@@ -43,7 +43,16 @@ namespace Treatment.Pages.Eminutes.TopicManagment
         private void fillDropDown()
         {
             List<Structure> ListStructure = db.Structures.ToList();
-            ddlFiller.dropDDL(Structure, "Structure_Id", "Structure_Name_En", ListStructure, "Select Structure");
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                ddlFiller.dropDDL(Structure, "Structure_Id", "Structure_Name_Ar", ListStructure, "إختر من الهيكل الإداري");
+            else
+                ddlFiller.dropDDL(Structure, "Structure_Id", "Structure_Name_En", ListStructure, "Select Structure");
+
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                TopicStatus.DataTextField = "M_Topic_Status_Name_Ar";
+
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                translateValidationArabic();
         }
         public void ini()
         {
@@ -52,14 +61,15 @@ namespace Treatment.Pages.Eminutes.TopicManagment
                 if (MeetingID != 0)
                 {
                     var Board = db.M_Meeting.First(x => x.Meeting_Id == MeetingID);
-                    /*if (SessionWrapper.LoggedUser.Language_id == 1)
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
                     {
                         MeetingName.Text = Board.Meeting_Name_Ar;
                     }
                     else
                     {
-                    }*/
-                    MeetingName.Text = Board.Meeting_Name_En;
+                        MeetingName.Text = Board.Meeting_Name_En;
+                    }
+                    
                 }
             }
             catch (Exception e) { }
@@ -155,7 +165,7 @@ namespace Treatment.Pages.Eminutes.TopicManagment
 
         public void ClearForm()
         {
-            MeetingID = 0;
+            //MeetingID = 0;
             TopicID = 0;
             ArabicName.Text = "";
             EnglishName.Text = "";
@@ -167,6 +177,26 @@ namespace Treatment.Pages.Eminutes.TopicManagment
             ArabicRecommendationDoc.Text = "";
             EnglishRecommendationDoc.Text = "";
           
+        }
+
+        public void translateValidationArabic()
+        {
+            MeetingNameValidator.Text = "أدخل إسم الإجتماع";
+            EnglishNameValidator.Text = "أدخل إسم الموضوع بالانجليزي";
+            ArabicNameValidator.Text = "أدخل إسم الموضوع بالعربي";
+            StatusofTopicValidator.Text = "إختر الحالة الموضوع";
+            ArabicDescriptionValidator.Text = " أدخل وصف الموضوع بالعربي";
+            EnglishDescriptionValidator.Text = "أدخل وصف الموضوع بالانجليزي";
+          
+            MeetingName.Attributes["placeholder"] = "أدخل إسم الإجتماع";
+            EnglishName.Attributes["placeholder"] = "أدخل إسم الموضوع بالانجليزي";
+            ArabicName.Attributes["placeholder"] = "أدخل إسم الموضوع بالعربي";
+            ArabicDescription.Attributes["placeholder"] = " أدخل وصف الموضوع بالعربي";
+            EnglishDescription.Attributes["placeholder"] = "أدخل وصف الموضوع بالانجليزي";
+
+            Save.Text = "حفظ";
+            Cancel.Text = "إلغاء";
+
         }
     }
 }
