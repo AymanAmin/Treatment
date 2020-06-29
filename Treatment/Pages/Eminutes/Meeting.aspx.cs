@@ -72,7 +72,7 @@ namespace Treatment.Pages.Eminutes
                     AddRecommendation.Visible = false;
                 }
                 //var meet = (from m in db.M_Meeting join b in db.M_Board on m.Board_Id equals b.Board_Id where m.Meeting_Id == Meeting_Id select (m));
-
+                
                 yourHTMLstring = "<a href = '../../../../Pages/Eminutes/MeetingManagment/MeetingInfo.aspx?BoardId=" + Meeting.Board_Id+"&"+ "MeetingID=" + Meeting.Meeting_Id + "' class='text-muted m-r-10 f-16'> <i class='icofont icofont-edit'></i></a>";
 
                 MeetingInfTitel.Text=yourHTMLstring;
@@ -114,7 +114,7 @@ namespace Treatment.Pages.Eminutes
                 }
 
                 if (Locations.Board_Location_OnMap != null && Locations.Board_Location_OnMap != string.Empty)
-                    yourHTMLstring2 += "<a href ='" + Locations.Board_Location_OnMap + "' target='_blank'><p class='text-muted m-b-0'><i class='feather icon-map-pin m-r-10'></i>Open On Map</p></a>";
+                    yourHTMLstring2 += "<a href ='" + Locations.Board_Location_OnMap + "' target='_blank'><p class='text-muted m-b-0'><i class='feather icon-map-pin m-r-3'></i>Open On Map</p></a>";
                 
                 Location.Controls.Add(new LiteralControl(yourHTMLstring2));
             }
@@ -326,6 +326,7 @@ namespace Treatment.Pages.Eminutes
                 Attendees.Create_Date = DateTime.Now;
                 db.M_Attendees.Add(Attendees);
                 db.SaveChanges();
+
                 // Add it to log file 
                 LogData = "data:" + JsonConvert.SerializeObject(Attendees, logFileModule.settings);
                 logFileModule.logfile(10, "إضافة حضورالموظف", "Add Employee Attendees", LogData);
@@ -390,6 +391,7 @@ namespace Treatment.Pages.Eminutes
 
         public void Recommendation(int status)
         {
+            db.Configuration.LazyLoadingEnabled = false;
             M_Recommendation Recommendation = db.M_Recommendation.Create();
             Recommendation.Meeting_Id = MeetingID;
             Recommendation.Board_Member_Id = User_Id;
