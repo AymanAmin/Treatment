@@ -138,11 +138,10 @@
                 <div class="card user-activity-card feed-card">
                     <div class="card-header">
                         <h5><span>
-                            <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+                            <asp:Literal ID="txtAddMeeting" runat="server"></asp:Literal>
                             Meetings </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
-                                <li><asp:Literal ID="txtAddMeeting" runat="server"></asp:Literal></li>
                                 <li><i class="feather full-card icon-maximize"></i></li>
                                 <li><i class="feather icon-minus minimize-card"></i></li> 
                             </ul>
