@@ -454,6 +454,7 @@ namespace Treatment.Pages.Eminutes
 
         }
 
+
         public void RecommendationPermission(int Meeting_Id,int User_Id)
         {
             int BoardID, U_M_B= 0;
