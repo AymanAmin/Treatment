@@ -36,7 +36,6 @@
                     <div class="card-header">
                         <div class="col-auto p-r-0">
                                 <asp:Literal runat="server" ID="LocationTitel"></asp:Literal>
-                                <i class="feather icon-map-pin bg-simple-c-green feed-icon"></i>                            
                                 <h5 class='card -header-text'><% = Treatment.Classes.FieldNames.getFieldName("Meeting-MeetingLocation", " Meeting Location ") %></h5>
                           </div>  
                         <div class="card-header-right">
@@ -48,7 +47,9 @@
                     </div>
                     <div class="card-block">
                         <div class="row m-b-25">
-                                                          
+                              <div class='col-auto p-r-0'>
+                                <i class='feather icon-map-pin bg-simple-c-green feed-icon'></i>
+                             </div>                         
                             <div class="col" runat="server" id="Location">
                             </div>
                         </div>
