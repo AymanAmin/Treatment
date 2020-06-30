@@ -386,10 +386,9 @@ namespace Treatment.Pages.Eminutes
             }
         }
 
-    
-
         public void Recommendation(int status)
         {
+            db.Configuration.LazyLoadingEnabled = false;
             M_Recommendation Recommendation = db.M_Recommendation.Create();
             Recommendation.Meeting_Id = MeetingID;
             Recommendation.Board_Member_Id = User_Id;

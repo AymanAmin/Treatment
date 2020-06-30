@@ -2112,6 +2112,7 @@
     <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\EditBoardPermission.cs" />
     <Compile Include="EminutesMaster.Master.cs">
       <DependentUpon>EminutesMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2177,6 +2178,9 @@
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\M_Board_Type.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_B_Attachments.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\M_Meeting.cs">

@@ -82,6 +82,14 @@
                                     <asp:RequiredFieldValidator ID="RFVtxtStatusofBoard" runat="server" ErrorMessage="Please select status" style="color:red" ControlToValidate="txtStatusofBoard" ValidationGroup="Board" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
+                            <!-- File upload card start -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-AddAttachments", "Add Attachments") %></label>
+                                <div class="col-sm-9 input-group">
+                                    <asp:FileUpload ID="addAttachments" runat="server" class="form-control" AllowMultiple="True" />
+                                </div>
+                            </div>
+                          <!-- File upload card end -->
 
                         </div>
                         <div class="col-sm-6 mobile-inputs">
@@ -131,6 +139,7 @@
                                 </div>
                             </div>
                         </div>
+                        
 
                         <!-- button save , Update , Delete -->
                         <div class="col-sm-12 mobile-inputs" style="text-align: center">

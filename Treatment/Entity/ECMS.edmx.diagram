@@ -89,6 +89,8 @@
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Procedure" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Status" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Type" />
+        <EntityTypeShape EntityType="ECMSModel.M_B_Attachments" Width="1.5" PointX="3.75" PointY="30.375" />
+        <AssociationConnector Association="ECMSModel.FK_M_B_Attachments_M_Board" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

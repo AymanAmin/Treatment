@@ -143,9 +143,9 @@
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>
-                                <li><i class="feather icon-minus minimize-card"></i></li> 
+                                <li><i class="feather icon-minus minimize-card"></i></li>
                             </ul>
-                            
+
                         </div>
                     </div>
 
@@ -177,7 +177,7 @@
 
 
             <!--Laws regulations-->
-            <div class="col-md-12">
+            <div class="col-md-12" runat="server" visible="false" id="AttachmentFile">
                 <div class="card table-card">
                     <div class="card-header">
                         <h5>Laws Regulations</h5>
@@ -188,32 +188,12 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row card-block" style="padding-right: 3%; padding-left: 3%;">
-                        <div class="col-md-3">
-                            <div class="card thumb-block">
-                                <a href="../../../../media/Treatment/7c5933cd-0567-4e92-a143-227c4d6b890f.png" target="_blank"><span class="jFiler-icon-file f-file f-image" style="background-color: rgb(18, 132, 161);"><i class="icofont icofont-ui-image"></i></span></a>
-                                <div class="card-footer text-center"><a href="../../../../media/Treatment/7c5933cd-0567-4e92-a143-227c4d6b890f.png" target="_blank">profile-image.png</a></div>
+                    <!--Start Uploadedfiles-->
+
+                            <div class="row card-block" style="padding-right: 3%; padding-left: 3%;" id="downloadAttachment" runat="server">
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card thumb-block">
-                                <a href="../../../../media/Treatment/45a01576-ae85-416f-abdd-cdb9bf0daa5f.png" target="_blank"><span class="jFiler-icon-file f-file f-image" style="background-color: rgb(18, 132, 161);"><i class="icofont icofont-ui-image"></i></span></a>
-                                <div class="card-footer text-center"><a href="../../../../media/Treatment/45a01576-ae85-416f-abdd-cdb9bf0daa5f.png" target="_blank">logo1(4).png</a></div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card thumb-block">
-                                <a href="../../../../media/Treatment/152b4593-eae7-4fb9-8ac3-a80e69893bc9.pdf" target="_blank"><span class="jFiler-icon-file f-file f-image"><i class="icofont icofont-file-pdf"></i></span></a>
-                                <div class="card-footer text-center"><a href="../../../../media/Treatment/152b4593-eae7-4fb9-8ac3-a80e69893bc9.pdf" target="_blank">TreatmentReport.pdf</a></div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card thumb-block">
-                                <a href="../../../../media/Treatment/ba725354-f4cb-4193-bb13-667ed01eabee.docx" target="_blank"><span class="jFiler-icon-file f-file f-video"><i class="icofont icofont-file-word"></i></span></a>
-                                <div class="card-footer text-center"><a href="../../../../media/Treatment/ba725354-f4cb-4193-bb13-667ed01eabee.docx" target="_blank">نموذج ـ اوراق الجامعة.docx</a></div>
-                            </div>
-                        </div>
-                    </div>
+
+                    <!--End Uploadedfiles-->
                 </div>
             </div>
             <!--End Laws regulations-->

@@ -166,7 +166,7 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
                 {
                     M_M_Attachments Fil = db.M_M_Attachments.Create();
                     Fil.Meeting_Id = MeetingID;
-                    Fil.FileName = Uplofile.FileName;
+                    Fil.FileName = postfiles.FileName;
                     Fil.Path = UploadFile(postfiles,Path);
                     db.M_M_Attachments.Add(Fil);
                     db.SaveChanges();
