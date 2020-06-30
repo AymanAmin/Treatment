@@ -14,12 +14,12 @@
               $.ajax({
                   url: "Meeting.aspx/Attendees",
                   type: "POST",
-                  data: "{ Employee_Id: x.id + ", Attendess_Status:IsFound+"}",
+                  data: "{ Employee_Id:" + x.id + ", Attendess_Status:" + IsFound + "}",
                   contentType: "application/json; charset=utf-8",
                   dataType: "json",
                   success: function (resultData) {
-                     // notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight', '  Save Status : ', '  The new Employee was Sucessfully saved in system ! ');
-                     // window.location = window.location;
+                      // notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight', '  Save Status : ', '  The new Employee was Sucessfully saved in system ! ');
+                      // window.location = window.location;
                   }
               });
           }
