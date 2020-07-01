@@ -66,11 +66,11 @@ namespace Treatment.Pages.Eminutes
         private void load_board_info(M_Board Current_Board)
         {
             // Board Properties
-            txtArabicName.Text = Current_Board.Board_Name_Ar;
-            txtEnglishName.Text = Current_Board.Board_Name_En;
-            txtCreatedDate.Text = Current_Board.Create_Date.ToString();
-            txtType.Text = Current_Board.M_Board_Type.Board_Type_Name_En;
-            txtClassification.Text = Current_Board.M_Board_Classification.Board_Classification_Name_En;
+            txtArabicName.Text = Truncate(Current_Board.Board_Name_Ar,20); ;
+            txtEnglishName.Text = Truncate(Current_Board.Board_Name_En,20);
+            txtCreatedDate.Text = Truncate(Current_Board.Create_Date.ToString(), 20); ;
+            txtType.Text = Truncate(Current_Board.M_Board_Type.Board_Type_Name_En, 20);
+            txtClassification.Text = Truncate(Current_Board.M_Board_Classification.Board_Classification_Name_En, 20); 
 
             //Edit Board info if you are supervisor 
             Classes.EditBoardPermission EBP = new Classes.EditBoardPermission();
@@ -177,6 +177,8 @@ namespace Treatment.Pages.Eminutes
                 str += "<p class='text-muted m-b-0'>" + Locations[i].Board_Location_Description_En + "</p>";
                 if (Locations[i].Board_Location_OnMap != null && Locations[i].Board_Location_OnMap != string.Empty)
                     str += "<a href ='" + Locations[i].Board_Location_OnMap + "' target='_blank'><p class='text-muted m-b-0'><i class='feather icon-map-pin m-r-10'></i>Open On Map</p></a>";
+                if (Locations[i].Board_Location_URLVideo != null && Locations[i].Board_Location_URLVideo != string.Empty)
+                    str += "<a href ='" + Locations[i].Board_Location_URLVideo + "' target='_blank'><p class='text-muted m-b-0'><i class='icofont icofont-youtube-play m-r-10'></i>Open Video Link</p></a>";
                 str += "</div>";
                 str += "</div>";
             }
@@ -262,6 +264,12 @@ namespace Treatment.Pages.Eminutes
                 getImageExtention = "<span class='jFiler-icon-file f-file f-file-ext-doc' style='background-color: rgb(56, 78, 83);'>" + fileExtention + "</span>";
 
             return getImageExtention;
+        }
+
+        public static string Truncate(string value, int maxLength)
+        {
+            if (string.IsNullOrEmpty(value)) return value;
+            return value.Length <= maxLength ? value : value.Substring(0, maxLength);
         }
 
     }

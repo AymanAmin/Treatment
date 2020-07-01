@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title><% = Treatment.Classes.FieldNames.getFieldName("Meeting-Title", "Eminutes - Meetings") %></title>
      <script>
-         setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Meeting Name "; }, 1);
+      /*   setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Meeting Name "; }, 1);*/
     </script>
       <script type="text/javascript">
           function Attendees(x) {

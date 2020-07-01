@@ -32,7 +32,7 @@ namespace Treatment.Classes
                 if (list_board[i].Board_Status_Id == 5)
                     continue;
 
-                
+                List<M_Meeting> List_M = list_board[i].M_Meeting.Where(x => x.Meeting_Date >= DateTime.Now).OrderByDescending(y => y.Meeting_Date).ToList();
                 Can_Edit = GetEditPermission(list_board[i]);
 
                 if (list_board[i].Board_Type_Id == 1)
@@ -41,7 +41,7 @@ namespace Treatment.Classes
                     color = "warning";
 
                 DateTime date = DateTime.Parse(list_board[i].Create_Date.ToString());
-                str += "<div class='col-sm-"+ width + "'>" +
+                str += "<div class='col-sm-" + width + "'>" +
                     "<div class='card card-border-" + color + "'>" +
                     "<div class='card-header'>" +
                         "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "' class='card-title'><strong>" + list_board[i].Board_Name_En + "</strong> (" + list_board[i].M_Board_Status.Board_Status_Name_En + ")</a>" +
@@ -50,9 +50,15 @@ namespace Treatment.Classes
                     "<div class='card-block'>" +
                         "<div class='row'>" +
                             "<div class='col-sm-12'>" +
-                                "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "'><p class='task-detail'>" + list_board[i].Board_Description_En + ".</p></a>" +
-                                "<a href='Meeting.aspx?MeetingId=1'><p class='task-due'><strong>Next Meeting : </strong> " + date + "</p></a>" +
-                           "</div>" +
+                                "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "'><p class='task-detail'>" + list_board[i].Board_Description_En + ".</p></a>";
+                if (List_M.Count > 0)
+                {
+                    DateTime nextmeeting_date = DateTime.Parse(List_M[0].Meeting_Date.ToString());
+                    string nextmeeting = nextmeeting_date.ToShortDateString();
+                    str += "<a href='Meeting.aspx?BoardId="+ List_M[0].Board_Id + "&MeetingID=" + List_M[0].Meeting_Id + "'><p class='task-due'><strong>Next Meeting : </strong> " + nextmeeting + "</p></a>";
+                }
+
+                           str += "</div>" +
                         "</div>" +
                     "</div>" +
                     "<div class='card-footer'>" +
@@ -85,7 +91,7 @@ namespace Treatment.Classes
 
                 str += "</div>";
                 str += "</div>";
-            }
+            } 
            return str;
         }
     }
