@@ -218,3 +218,17 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child, table.dataTa
 .header-navbar .navbar-wrapper .navbar-container .header-notification .show-notification li:first-child label{
     float:left;
 }
+.cover-btn {
+    right: auto;
+}
+.nav-link.active {
+    border-left-width: 0px !important; 
+    border-right-color: #452a74 !important; 
+    border-right-style: solid !important; 
+    border-right-width: 3px !important; 
+    background-color: #fafafa !important;
+    color: #452a74;
+}
+.tab-timeline{
+    padding-right:0px;
+}
