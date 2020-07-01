@@ -2,10 +2,11 @@
 
 <%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title><% = Treatment.Classes.FieldNames.getFieldName("Meeting-Title", "Eminutes - Meetings") %></title>
      <script>
-      /*   setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Meeting Name "; }, 1);*/
+         setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Meeting Name "; }, 1);
     </script>
       <script type="text/javascript">
           function Attendees(x) {
@@ -14,12 +15,12 @@
               $.ajax({
                   url: "Meeting.aspx/Attendees",
                   type: "POST",
-                  data: "{ Employee_Id: x.id + ", Attendess_Status:IsFound+"}",
+                  data: "{ Employee_Id:" + x.id + ", Attendess_Status:" + IsFound + "}",
                   contentType: "application/json; charset=utf-8",
                   dataType: "json",
                   success: function (resultData) {
-                     // notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight', '  Save Status : ', '  The new Employee was Sucessfully saved in system ! ');
-                     // window.location = window.location;
+                      // notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight', '  Save Status : ', '  The new Employee was Sucessfully saved in system ! ');
+                      // window.location = window.location;
                   }
               });
           }

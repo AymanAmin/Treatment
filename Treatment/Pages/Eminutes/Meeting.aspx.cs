@@ -20,6 +20,8 @@ namespace Treatment.Pages.Eminutes
         static int MeetingID = 0;
         int User_Id = 0;
         string _fileExt;
+        bool Can_Edit;
+        Board boardClass = new Board();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,10 +39,10 @@ namespace Treatment.Pages.Eminutes
             if (SessionWrapper.LoggedUser.Language_id == 1)
                 translateValidationArabic();
 
-           /* if (SessionWrapper.LoggedUser != null)
-                logFileInsert.Login_Id = SessionWrapper.LoggedUser.Employee_Id;*/
-
-            User_Id = 2;
+           
+            M_Board B = db.M_Board.FirstOrDefault(x => x.Board_Id == BoardID);
+            Can_Edit = boardClass.GetEditPermission(B);
+            User_Id = SessionWrapper.LoggedUser.Employee_Id;
             MeetingInfo(MeetingID);
             loadDownloadAttachment(MeetingID);
             ViewTopic(MeetingID);
@@ -61,8 +63,10 @@ namespace Treatment.Pages.Eminutes
                 var Locations = db.M_Board_Location.FirstOrDefault(x => x.Board_Location_Id == Meeting.Board_Location_Id);
 
                 //var meet = (from m in db.M_Meeting join b in db.M_Board on m.Board_Id equals b.Board_Id where m.Meeting_Id == Meeting_Id select (m));
-
-                yourHTMLstring = "<a href = '../../../../Pages/Eminutes/MeetingManagment/MeetingInfo.aspx?BoardId=" + Meeting.Board_Id + "&" + "MeetingID=" + Meeting.Meeting_Id + "' class='text-muted m-r-10 f-16'> <i class='icofont icofont-edit'></i></a>";
+                if (Can_Edit) 
+                    yourHTMLstring = "<a href = '../../../../Pages/Eminutes/MeetingManagment/MeetingInfo.aspx?BoardId=" + Meeting.Board_Id + "&" + "MeetingID=" + Meeting.Meeting_Id + "' class='text-muted m-r-10 f-16'> <i class='icofont icofont-edit' style='color:#4183d7'></i></a>";
+                else
+                    yourHTMLstring = " <i class='icofont icofont-ui-note m-r-10'></i>";
 
                 MeetingInfTitel.Text = yourHTMLstring;
 
@@ -87,8 +91,10 @@ namespace Treatment.Pages.Eminutes
 
 
 
-
-                yourHTMLstring2 = "<a href = '../../../../Pages/Eminutes/MeetingManagment/MeetingInfo.aspx?BoardId=" + Meeting.Board_Id + "&" + "MeetingID=" + Meeting.Meeting_Id + "' class='text-muted m-r-10 f-16'> <i class='icofont icofont-edit'></i></a>";
+                if (Can_Edit)
+                    yourHTMLstring2 = "<a href = '../../../../Pages/Eminutes/MeetingManagment/MeetingInfo.aspx?BoardId=" + Meeting.Board_Id + "&" + "MeetingID=" + Meeting.Meeting_Id + "' class='text-muted m-r-10 f-16'> <i class='icofont icofont-edit' style='color:#4183d7'></i></a>";
+                else
+                    yourHTMLstring2 = " <i class='icofont icofont-ui-note m-r-10'></i>";
 
                 LocationTitel.Text = yourHTMLstring2;
                 if (SessionWrapper.LoggedUser.Language_id == 1)
@@ -173,7 +179,11 @@ namespace Treatment.Pages.Eminutes
                 if (SessionWrapper.LoggedUser.Language_id == 1) AddTopicText = "إضافة موضوع";
 
                 var Topic = db.M_Topic.Where(x => x.Meeting_Id == Meeting_Id).ToList();
-                yourHTMLstring = "<a class='btn btn-success btn-round' href='TopicManagment/TopicInfo.aspx?BoardID=" + BoardID + "&MeetingID=" + Meeting_Id + "' > " + AddTopicText + "</a>";
+                if (Can_Edit)
+                   yourHTMLstring = "<a href='TopicManagment/TopicInfo.aspx?BoardID=" + BoardID + "&MeetingID=" + Meeting_Id + "' class='text-muted m-r-10 f-16'> <i style='color:green' class='icofont icofont-ui-add'></i></a>" + AddTopicText + "</a>";
+                else
+                    yourHTMLstring = " <i class='icofont icofont-ui-note m-r-10'></i>";
+
                 AddTopic.Controls.Add(new LiteralControl(yourHTMLstring));
 
                 yourHTMLstring = "";
@@ -258,10 +268,9 @@ namespace Treatment.Pages.Eminutes
                         int.TryParse(BoardMember[i].Board_Member_Id.ToString(), out BoMe_Id);
                         var Employee = db.Employees.FirstOrDefault(x => x.Employee_Id == emp_id);
                         var MemberAttendees = db.M_Attendees.FirstOrDefault(x => x.Board_Member_Id == BoMe_Id && x.Meeting_Id == MeetingID);
-                        if (MemberAttendees != null)
-
+                        if (MemberAttendees != null) { 
                             if (MemberAttendees.Attendess_Status == 1) AttendeesCheck = "checked='checked'"; else AttendeesCheck = "";
-                        else { AttendeesCheck = ""; }
+                        }else { AttendeesCheck = ""; }
                         ImgTag = "<img class='img-radius img-40 align-top m-r-15'" + "src='../../../../media/Profile/" + Employee.Employee_Profile + "'alt='" + Employee.Employee_Profile + "'>";
                         yourHTMLstring += "<tr>" +
                                "<td class='b-none'>" +
@@ -298,15 +307,16 @@ namespace Treatment.Pages.Eminutes
             try
             {
                 ECMSEntities db = new ECMSEntities();
+                db.Configuration.LazyLoadingEnabled = false;
                 var EmpAttendees = db.M_Attendees.Where(x => x.Board_Member_Id == Employee_Id && x.Meeting_Id == MeetingID).ToList();
                 if (EmpAttendees.Count > 0)
                 {
-                    var DelAttendees = db.M_Attendees.FirstOrDefault(x => x.Board_Member_Id == Employee_Id && x.Meeting_Id == MeetingID);
+                    var DelAttendees = db.M_Attendees.First(x => x.Board_Member_Id == Employee_Id && x.Meeting_Id == MeetingID);
                     db.M_Attendees.Remove(DelAttendees);
                     db.SaveChanges();
-                    //Add it to log file 
+                    /* Add it to log file 
                     LogData = "data:" + JsonConvert.SerializeObject(DelAttendees, logFileModule.settings);
-                    logFileModule.logfile(10, "حذف حضورالموظف", "Delete Employee Attendees", LogData);
+                    logFileModule.logfile(10, "حذف حضورالموظف", "Delete Employee Attendees", LogData);*/
                 }
                 M_Attendees Attendees = db.M_Attendees.Create();
                 Attendees.Board_Member_Id = Employee_Id;
@@ -315,8 +325,7 @@ namespace Treatment.Pages.Eminutes
                 Attendees.Create_Date = DateTime.Now;
                 db.M_Attendees.Add(Attendees);
                 db.SaveChanges();
-
-                // Add it to log file 
+                //Add it to log file 
                 LogData = "data:" + JsonConvert.SerializeObject(Attendees, logFileModule.settings);
                 logFileModule.logfile(10, "إضافة حضورالموظف", "Add Employee Attendees", LogData);
             }
@@ -383,16 +392,23 @@ namespace Treatment.Pages.Eminutes
 
         public void Recommendation(int status)
         {
+            int U_M_B = 0;
             db.Configuration.LazyLoadingEnabled = false;
+
+            var UMB = db.M_Board_Member.FirstOrDefault(x => x.Board_Id == BoardID && x.Employee_Id == User_Id);
+            int.TryParse(UMB.Board_Member_Id.ToString(), out U_M_B);
+
             M_Recommendation Recommendation = db.M_Recommendation.Create();
             Recommendation.Meeting_Id = MeetingID;
-            Recommendation.Board_Member_Id = User_Id;
+            Recommendation.Board_Member_Id = U_M_B;
             Recommendation.Recommendation_Status = status;
             Recommendation.Create_Date = DateTime.Now;
             if (status < 4) Recommendation.Recommendation_Description = RecommendationValue.Value; else Recommendation.Recommendation_Description = ApprovalR.Value;
             db.M_Recommendation.Add(Recommendation);
             db.SaveChanges();
             RecommendationValue.InnerText = string.Empty;
+            AddRecommendation.Visible = false;
+            ApprovalRecommendation.Visible = false;
             ViewVotes(MeetingID);
 
             //Add it to log file 
@@ -438,16 +454,62 @@ namespace Treatment.Pages.Eminutes
 
         }
 
+
         public void RecommendationPermission(int Meeting_Id,int User_Id)
         {
+            int BoardID, U_M_B= 0;
             var Meeting = db.M_Meeting.FirstOrDefault(x => x.Meeting_Id == Meeting_Id);
+            int.TryParse(Meeting.Board_Id.ToString(), out BoardID);
+
+            var UMB = db.M_Board_Member.FirstOrDefault(x => x.Board_Id == BoardID && x.Employee_Id== User_Id);
+            int.TryParse(UMB.Board_Member_Id.ToString(), out U_M_B);
+
+            DateTime M_Date = DateTime.Parse(Meeting.Meeting_Date.ToString());
+            M_Date = M_Date.Date.AddDays(2);
+            DateTime Date = DateTime.Now.Date;
+            if (M_Date <= Date && Meeting.Meeting_Status == 2)
+            {
+                var B_M = db.M_Board_Member.Where(x => x.Board_Id == BoardID).ToList();
+                for (int i = 0; i < B_M.Count; i++)
+                {
+                    int M_id = B_M[i].Board_Member_Id;
+                    M_Recommendation Rec = db.M_Recommendation.FirstOrDefault(x => x.Meeting_Id == Meeting_Id && x.Board_Member_Id == M_id);
+                    if (Rec == null)
+                    {
+                        M_Recommendation Recommendation = db.M_Recommendation.Create();
+                        Recommendation.Meeting_Id = MeetingID;
+                        Recommendation.Board_Member_Id = M_id;
+                        Recommendation.Recommendation_Status = 1;
+                        Recommendation.Create_Date = DateTime.Now;
+                        Recommendation.Recommendation_Description = "auto Recommendation";
+                        db.M_Recommendation.Add(Recommendation);
+                        db.SaveChanges();
+                    }
+                }
+                ViewVotes(Meeting_Id);
+            }
 
             if (Meeting!=null &&Meeting.Meeting_Status == 2)
             {
-               M_Recommendation Rec = db.M_Recommendation.FirstOrDefault(x => x.Meeting_Id == Meeting_Id && x.Board_Member_Id == User_Id);
+               M_Recommendation Rec = db.M_Recommendation.FirstOrDefault(x => x.Meeting_Id == Meeting_Id && x.Board_Member_Id == U_M_B);
                 if(Rec != null)AddRecommendation.Visible = false;else AddRecommendation.Visible = true;
             }
-            // ApprovalRecommendation.Visible = false;
+
+            var Votes = db.M_Recommendation.Where(x => x.Meeting_Id == Meeting_Id).ToList();
+            var B_Member = db.M_Board_Member.Where(x => x.Board_Id == BoardID).ToList();
+            M_Recommendation ApprovalReco = db.M_Recommendation.FirstOrDefault(x => x.Meeting_Id== Meeting_Id && ( x.Recommendation_Status == 4 || x.Recommendation_Status == 5));
+
+            if (Votes.Count == B_Member.Count && Can_Edit &&  ApprovalReco == null)
+            {
+                ApprovalRecommendation.Visible = true;
+                AddRecommendation.Visible = false;
+            }
+            else
+            {
+                ApprovalRecommendation.Visible = false;
+            }
+
+            
 
         }
     }
