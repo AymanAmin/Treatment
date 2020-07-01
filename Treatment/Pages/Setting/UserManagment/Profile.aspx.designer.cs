@@ -148,13 +148,13 @@ namespace Treatment.Pages.Setting.UserManagment {
         protected global::System.Web.UI.WebControls.TextBox Employee_Email;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// Employee_EmailValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Employee_EmailValidator;
         
         /// <summary>
         /// Language control.
@@ -175,13 +175,13 @@ namespace Treatment.Pages.Setting.UserManagment {
         protected global::System.Web.UI.WebControls.EntityDataSource LangDataSource;
         
         /// <summary>
-        /// RequiredFieldValidator7 control.
+        /// LanguageValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator LanguageValidator;
         
         /// <summary>
         /// DefaultStructure control.
@@ -193,13 +193,13 @@ namespace Treatment.Pages.Setting.UserManagment {
         protected global::System.Web.UI.WebControls.DropDownList DefaultStructure;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// DefaultStructureValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator DefaultStructureValidator;
         
         /// <summary>
         /// Emp_Signature control.
@@ -229,13 +229,13 @@ namespace Treatment.Pages.Setting.UserManagment {
         protected global::System.Web.UI.WebControls.TextBox Employee_Phone;
         
         /// <summary>
-        /// RequiredFieldValidator4 control.
+        /// Employee_PhoneValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Employee_PhoneValidator;
         
         /// <summary>
         /// DateofHegira control.
@@ -274,13 +274,13 @@ namespace Treatment.Pages.Setting.UserManagment {
         protected global::System.Web.UI.WebControls.TextBox OldPassWord;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// OldPassWordValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator OldPassWordValidator;
         
         /// <summary>
         /// NewPassWord control.
@@ -292,13 +292,13 @@ namespace Treatment.Pages.Setting.UserManagment {
         protected global::System.Web.UI.WebControls.TextBox NewPassWord;
         
         /// <summary>
-        /// RequiredFieldValidator5 control.
+        /// NewPassWordValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator NewPassWordValidator;
         
         /// <summary>
         /// TryNewPassWord control.
@@ -310,13 +310,13 @@ namespace Treatment.Pages.Setting.UserManagment {
         protected global::System.Web.UI.WebControls.TextBox TryNewPassWord;
         
         /// <summary>
-        /// RequiredFieldValidator6 control.
+        /// TryNewPassWordValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator TryNewPassWordValidator;
         
         /// <summary>
         /// ChangeButton control.

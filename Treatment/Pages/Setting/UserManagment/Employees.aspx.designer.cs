@@ -112,13 +112,13 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.TextBox Employee_Name_Ar;
         
         /// <summary>
-        /// RFVtxtEmployee_Name_Ar control.
+        /// Employee_Name_ArValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtEmployee_Name_Ar;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Employee_Name_ArValidator;
         
         /// <summary>
         /// Employee_Name_En control.
@@ -130,13 +130,13 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.TextBox Employee_Name_En;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// Employee_Name_EnValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Employee_Name_EnValidator;
         
         /// <summary>
         /// Employee_Email control.
@@ -148,13 +148,13 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.TextBox Employee_Email;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// Employee_EmailValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Employee_EmailValidator;
         
         /// <summary>
         /// Employee_Phone control.
@@ -166,13 +166,13 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.TextBox Employee_Phone;
         
         /// <summary>
-        /// RequiredFieldValidator4 control.
+        /// Employee_PhoneValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Employee_PhoneValidator;
         
         /// <summary>
         /// Emp_Structure control.
@@ -193,13 +193,13 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.EntityDataSource StructureDataSource;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// Emp_StructureValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Emp_StructureValidator;
         
         /// <summary>
         /// Groups control.
@@ -220,13 +220,13 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.EntityDataSource GroupDataSource;
         
         /// <summary>
-        /// RequiredFieldValidator6 control.
+        /// GroupsValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator GroupsValidator;
         
         /// <summary>
         /// Language control.
@@ -247,13 +247,13 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.EntityDataSource LangDataSource;
         
         /// <summary>
-        /// RequiredFieldValidator5 control.
+        /// LanguageValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator LanguageValidator;
         
         /// <summary>
         /// DateofHegira control.

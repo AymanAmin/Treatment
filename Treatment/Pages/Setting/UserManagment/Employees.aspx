@@ -5,6 +5,10 @@
 <%@ Register Assembly="DevExpress.Web.Bootstrap.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.Bootstrap" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title><% = Treatment.Classes.FieldNames.getFieldName("Employees-Title", "User Management - Employee") %></title>
+
+    <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script data-require="bootstrap@*" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
     <script type="text/javascript">
 
         function showmodel(x) {           // debugger;            if (!isNaN(x.id)){            $.ajax({
@@ -65,14 +69,26 @@
            // GetServiceInformation(x.id)
         }
 
-        function DeleteEmplooye(x) {            $.ajax({
+
+        function DeleteEmplooye(x) {
+            $.ajax({
                 url: "Employees.aspx/DeleteEmplooye",
                 type: "POST",
-                data: "{ Employee_Id:" + x.id + "}",
+                data: "{ Employee_Id:" + x + "}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (resultData) {
-                    notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight', '  Save Status : ', '  The new Employee was Sucessfully saved in system ! ');
+                    var Emp = JSON.parse(resultData.d);
+                    if (Emp == "1") {
+                        if ($("html").attr("dir") == "rtl")
+                            notify('top', 'left', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight', 'حالة الحفظ : ', '  تم حذف الموظف بنجاح في النظام ');
+                        else notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight', '  Save Status : ', '  The Employee was Sucessfully Deleted in system ! ');
+                    }
+                    else {
+                        if ($("html").attr("dir") == "rtl")
+                            notify('top', 'left', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight', 'حالة الحفظ: ', 'حدث خطأ  ');
+                        else notify('top', 'right', 'fa fa-delete', 'danger', 'animated fadeInRight', 'animated fadeOutRight', 'Save Status: ', 'Error  ');
+                    }
                     window.location = window.location;
                 }
             });
@@ -82,6 +98,24 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
+
+         <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <% = Treatment.Classes.FieldNames.getFieldName("Employees-DeleteHeader", "Delete Specialization") %>
+                </div>
+                <div class="modal-body">
+                    <% = Treatment.Classes.FieldNames.getFieldName("Employees-DeleteMessage", "Are you sure you want to delete this Specialization?") %>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><% = Treatment.Classes.FieldNames.getFieldName("View-Cancel", "Cancel") %></button>
+                    <a class="btn btn-danger btn-ok"  style="color:white;"><% = Treatment.Classes.FieldNames.getFieldName("View-Delete", "Delete") %></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <input id="AddEmp_show" type="hidden" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" />
     <div class="page-body">
           <!-- Article Editor card start -->
@@ -223,7 +257,7 @@
                                         <asp:TextBox ID="Employee_Name_Ar" runat="server" class="form-control" placeholder="Enter Arabic Name" TextMode="SingleLine"></asp:TextBox>
                                     </div>
                                     <div class="col-sm-12">
-                                        <asp:RequiredFieldValidator ID="RFVtxtEmployee_Name_Ar" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Arabic Name" ValidationGroup="Per" ControlToValidate="Employee_Name_Ar" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="Employee_Name_ArValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Arabic Name" ValidationGroup="Per" ControlToValidate="Employee_Name_Ar" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
@@ -234,7 +268,7 @@
                                         <asp:TextBox ID="Employee_Name_En" runat="server" class="form-control" placeholder="Enter English Name" TextMode="SingleLine"></asp:TextBox>
                                     </div>
                                     <div class="col-sm-12">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter English Name" ValidationGroup="Per" ControlToValidate="Employee_Name_En" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="Employee_Name_EnValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter English Name" ValidationGroup="Per" ControlToValidate="Employee_Name_En" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +281,7 @@
                                         <asp:TextBox ID="Employee_Email" runat="server" class="form-control" placeholder="Enter Employee Email" TextMode="SingleLine"></asp:TextBox>
                                     </div>
                                     <div class="col-sm-12">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Email" ValidationGroup="Per" ControlToValidate="Employee_Email" Display="Dynamic" SetFocusOnError="True">
+                                        <asp:RequiredFieldValidator ID="Employee_EmailValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Email" ValidationGroup="Per" ControlToValidate="Employee_Email" Display="Dynamic" SetFocusOnError="True">
                                         </asp:RequiredFieldValidator>
                                     </div>
                                 </div>
@@ -259,7 +293,7 @@
                                         <asp:TextBox ID="Employee_Phone" runat="server" class="form-control" placeholder="Enter Employee Phone" TextMode="SingleLine"></asp:TextBox>
                                     </div>
                                     <div class="col-sm-12">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Employee Phone" ValidationGroup="Per" ControlToValidate="Employee_Phone" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="Employee_PhoneValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Employee Phone" ValidationGroup="Per" ControlToValidate="Employee_Phone" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
@@ -274,7 +308,7 @@
                                         </asp:EntityDataSource>
                                     </div>
                                      <div class="col-sm-12">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Employee Structure" ValidationGroup="Per" ControlToValidate="Emp_Structure" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="Emp_StructureValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Employee Structure" ValidationGroup="Per" ControlToValidate="Emp_Structure" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
@@ -287,7 +321,7 @@
                                         </asp:EntityDataSource>
                                     </div>
                                     <div class="col-sm-12">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Pesmission Group" ValidationGroup="Per" ControlToValidate="Groups" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="GroupsValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Pesmission Group" ValidationGroup="Per" ControlToValidate="Groups" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                             </div>
@@ -303,7 +337,7 @@
                                         </asp:EntityDataSource>
                                     </div>
                                      <div class="col-sm-12">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Language" ValidationGroup="Per" ControlToValidate="Language" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="LanguageValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Select Language" ValidationGroup="Per" ControlToValidate="Language" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
 
@@ -361,7 +395,7 @@
         <!-- End Employee Form-->
                <span class="text-muted"><asp:Literal ID="FilterUsed" runat="server"></asp:Literal></span>
               <div class="form-group col-sm-12" style="text-align: right;">
-                <button runat="server" id="AddEmp" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" OnClick="showmodel(this)">Add Employees</button>
+                <button runat="server" id="AddEmp" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" OnClick="showmodel(this)"><% = Treatment.Classes.FieldNames.getFieldName("Employees-AddEmployee", "Add Employee") %>s</button>
             </div>
              <div class="row users-card" runat="server" id="UCard">
               
@@ -372,4 +406,13 @@
         </div>
         <!-- Page-body end -->
     </div>
+
+     <script>
+         $('#confirm-delete').on('show.bs.modal', function (e) {
+             deleteEmp = $(e.relatedTarget).data('href');
+         });
+         $('.btn-ok').on('click', function (event) {
+             DeleteEmplooye(deleteEmp);
+         });
+    </script>
 </asp:Content>

@@ -23,9 +23,9 @@
                             <asp:Literal ID="LtrMessage" runat="server"></asp:Literal>
                         </div>
                         <div class="col-sm-6 mobile-inputs">
-                            <h4 class="sub-title">Basic Info</h4>
+                            <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-BasicInfo", "Basic Info") %></h4>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Arabic Name</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-ArabicName", "Arabic Name") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-underline primary"></i></span>
                                     <asp:TextBox ID="txtArabicName" runat="server" class="form-control form-txt-primary " placeholder=""></asp:TextBox>
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">English Name</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-EnglishName", "English Name") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-underline primary"></i></span>
                                     <asp:TextBox ID="txtEnglishName" runat="server" class="form-control form-txt-primary " placeholder=""></asp:TextBox>
@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Board Type </label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-BoardType", "Board Type") %> </label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-company primary"></i></span>
                                     <asp:DropDownList ID="txtTypeofBoard" runat="server" class="form-control form-txt-primary "></asp:DropDownList>
@@ -58,21 +58,21 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Start Date</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-StartDate", "Start Date") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-calendar primary"></i></span>
                                     <input id="txtStartDate" type="date" runat="server" class="form-control form-txt-primary "/>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">End Date</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-EndDate", "End Date") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-calendar primary"></i></span>
                                     <input id="txtEndDate" type="date" runat="server" class="form-control form-txt-primary "/>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Board Status</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-BoardStatus", "Board Status") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-toggle-off primary"></i></span>
                                     <asp:DropDownList ID="txtStatusofBoard" runat="server" class="form-control form-txt-primary "></asp:DropDownList>
@@ -82,12 +82,20 @@
                                     <asp:RequiredFieldValidator ID="RFVtxtStatusofBoard" runat="server" ErrorMessage="Please select status" style="color:red" ControlToValidate="txtStatusofBoard" ValidationGroup="Board" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
+                            <!-- File upload card start -->
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-AddAttachments", "Add Attachments") %></label>
+                                <div class="col-sm-9 input-group">
+                                    <asp:FileUpload ID="addAttachments" runat="server" class="form-control" AllowMultiple="True" />
+                                </div>
+                            </div>
+                          <!-- File upload card end -->
 
                         </div>
                         <div class="col-sm-6 mobile-inputs">
-                            <h4 class="sub-title">Addition Info</h4>
+                            <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-AdditionInfo", "Addition Info") %></h4>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Parent</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-Parent", "Parent") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-chart-flow primary"></i></span>
                                     <asp:DropDownList ID="txtParent" runat="server" class="form-control form-txt-primary "></asp:DropDownList>
@@ -98,7 +106,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Classification</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-Classification", "Classification") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-chart-pie primary"></i></span>
                                     <asp:DropDownList ID="txtClassification" runat="server" class="form-control form-txt-primary "></asp:DropDownList>
@@ -109,7 +117,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Arabic Description</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-ArabicDescription", "Arabic Description") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-clip-board primary"></i></span>
                                     <asp:TextBox ID="txtArabicDescription" runat="server" class="form-control form-txt-primary " placeholder="" TextMode="MultiLine" Rows="5"></asp:TextBox>
@@ -120,7 +128,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">English Description</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardInfo-English Description", "English Description") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-clip-board primary"></i></span>
                                     <asp:TextBox ID="txtEnglishDescription" runat="server" class="form-control form-txt-primary " placeholder="" Rows="5" TextMode="MultiLine"></asp:TextBox>
@@ -131,6 +139,7 @@
                                 </div>
                             </div>
                         </div>
+                        
 
                         <!-- button save , Update , Delete -->
                         <div class="col-sm-12 mobile-inputs" style="text-align: center">

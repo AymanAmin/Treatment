@@ -59,6 +59,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 txtMapLocation.Text = Location.Board_Location_OnMap;
                 txtEnglishDescription.Text = Location.Board_Location_Description_En;
                 txtArabicDescription.Text = Location.Board_Location_Description_Ar;
+                txtVideoURL.Text = Location.Board_Location_URLVideo;
             }
             else
             {
@@ -81,6 +82,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 str += "<td>" + ListLocations[i].Board_Location_Name_Ar + "</td>";
                 str += "<td>" + ListLocations[i].Board_Location_Name_En + "</td>";
                 str += "<td>" + ListLocations[i].Board_Location_OnMap + "</td>";
+                str += "<td>" + ListLocations[i].Board_Location_URLVideo + "</td>";
                 str += "<td>" + ListLocations[i].Board_Location_Description_Ar + "</td>";
                 str += "<td>" + ListLocations[i].Board_Location_Description_En + "</td>";
 
@@ -104,6 +106,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                     locations.Board_Location_Description_Ar = txtArabicDescription.Text;
                     locations.Board_Location_Description_En = txtEnglishDescription.Text;
                     locations.Board_Location_OnMap = txtMapLocation.Text;
+                    locations.Board_Location_URLVideo = txtVideoURL.Text;
 
                     db.M_Board_Location.Add(locations);
                     db.SaveChanges();
@@ -125,6 +128,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 locations.Board_Location_Description_Ar = txtArabicDescription.Text;
                 locations.Board_Location_Description_En = txtEnglishDescription.Text;
                 locations.Board_Location_OnMap = txtMapLocation.Text;
+                locations.Board_Location_URLVideo = txtVideoURL.Text;
 
                 db.Entry(locations).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
@@ -141,6 +145,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
             txtMapLocation.Text = string.Empty;
             txtEnglishDescription.Text = string.Empty;
             txtArabicDescription.Text = string.Empty;
+            txtVideoURL.Text = string.Empty; ;
 
         }
     }

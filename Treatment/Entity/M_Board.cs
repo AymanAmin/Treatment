@@ -19,6 +19,7 @@ namespace Treatment.Entity
             this.M_Board_Location = new HashSet<M_Board_Location>();
             this.M_Board_Member = new HashSet<M_Board_Member>();
             this.M_Meeting = new HashSet<M_Meeting>();
+            this.M_B_Attachments = new HashSet<M_B_Attachments>();
         }
     
         public int Board_Id { get; set; }
@@ -40,5 +41,6 @@ namespace Treatment.Entity
         public virtual M_Board_Type M_Board_Type { get; set; }
         public virtual ICollection<M_Board_Member> M_Board_Member { get; set; }
         public virtual ICollection<M_Meeting> M_Meeting { get; set; }
+        public virtual ICollection<M_B_Attachments> M_B_Attachments { get; set; }
     }
 }

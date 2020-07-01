@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="<%= Treatment.Classes.FieldNames.getLangHome() %>" dir="<%= Treatment.Classes.FieldNames.getDirRTL() %>" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -14,8 +14,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="#" />
-    <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app" />
+    <meta name="description" content="REU - E-MINUTS -  Riyadh Elm University محاضر المجالس واللجان - جامعة رياض العلم"  />
+    <meta name="keywords" content="E-MINUTS REU Riyadh Elm University SoftwareCornerIT محاضر المجالس واللجان جامعة رياض العلم" />
     <meta name="author" content="#" />
     <!-- Favicon icon -->
     <link rel="icon" href="~\Theme\files\assets\images\favicon.ico" type="image/x-icon" />
@@ -64,7 +64,7 @@
     <!-- radial chart -->
     <link rel="stylesheet" href="~\Theme\files\assets\pages\chart\radial\css\radial.css" type="text/css" media="all"/>
 
-    
+    <asp:Literal ID="Style" runat="server"></asp:Literal>
 
      <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -162,7 +162,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body dir="<%= Treatment.Classes.FieldNames.getDirRTL() %>">
     <form id="form1" runat="server">
 
         <!-- Pre-loader start -->
@@ -501,19 +501,24 @@
      <script type="text/javascript" src=".\..\..\..\Theme\files\assets\pages\advance-elements\select2-custom.js"></script>
 
 
-  
+  <!-- Change To arabic 
+            <script src="..\..\..\..\Theme\files\assets\js\menu\menu-rtl.js"></script> -->
+            <asp:Literal ID="Script" runat="server"></asp:Literal>
     
 
     <script type="text/javascript">
 
          $(document).ready(function () {
-                    //var lang_id = <% = Website.Classes.SessionWrapper.LoggedUser.Language_id %>;
-                    /*if(lang_id == 1)
+                    var lang_id = <% = Website.Classes.SessionWrapper.LoggedUser.Language_id %>;
+                    if(lang_id == 1)
                     {
                         $("#pcoded").pcodedmenu({
                             verticalMenuplacement: 'right',
                         });
-                    //}*/
+
+                        document.getElementById("mCSB_1_container").style.width = "100%";
+                        document.getElementById("mCSB_1_container").style.left = "0px";
+                    }
 
                     // themelight1 Theme for Menu
                     //$(".pcoded-navbar").attr("navbar-theme", "themelight1");

@@ -43,26 +43,26 @@
                                 <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("MeetingInfo-EnglishName", "English Name") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-underline primary"></i></span>
-                                    <asp:TextBox ID="EnglishName" runat="server" class="form-control form-txt-primary " placeholder=""></asp:TextBox>
+                                    <asp:TextBox ID="EnglishName" runat="server" class="form-control form-txt-primary" placeholder="Please enter English Name"></asp:TextBox>
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RFVtxtEnglishName" runat="server" ErrorMessage="Please enter English Name" style="color:red" ControlToValidate="EnglishName" ValidationGroup="Meeting" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="EnglishNameValidator" runat="server" ErrorMessage="Please enter English Name" style="color:red" ControlToValidate="EnglishName" ValidationGroup="Meeting" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
-                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("MeetingInfo-MeetingTime", "Meeting Time") %></label>
+
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("MeetingInfo-ArabicName", "Arabic Name") %></label>
                                 <div class="col-sm-9 input-group">
-                                <div class='input-group date' id='datetimepicker3'>
-                                    <span class="input-group-addon changeIconColor"><i class="icofont icofont-ui-calendar primary"></i></span>
-                                     <asp:TextBox ID="timepicker" runat="server" class="form-control form-txt-primary " placeholder=""></asp:TextBox>
+                                    <span class="input-group-addon changeIconColor"><i class="icofont icofont-underline primary"></i></span>
+                                    <asp:TextBox ID="ArabicName" runat="server" class="form-control form-txt-primary " placeholder="Please enter arabic name"></asp:TextBox>
                                 </div>
-                            </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter Meeting Time" style="color:red" ControlToValidate="timepicker" ValidationGroup="Meeting" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="ArabicNameValidator" runat="server" ErrorMessage="Please enter arabic name" style="color:red" ControlToValidate="ArabicName" ValidationGroup="Meeting" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
+
                           
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("MeetingInfo-MeetingStatus", "Meeting Status") %></label>
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RFVtxtStatusofMeeting" runat="server" ErrorMessage="Please select status" style="color:red" ControlToValidate="MeetingStatus" ValidationGroup="Meeting" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="StatusofMeetingValidator" runat="server" ErrorMessage="Please select status" style="color:red" ControlToValidate="MeetingStatus" ValidationGroup="Meeting" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
 
@@ -88,18 +88,7 @@
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter Board Name" style="color:red" ControlToValidate="BoardName" ValidationGroup="Meeting" Display="Dynamic"></asp:RequiredFieldValidator>
-                                </div>
-                            </div>
-                               <div class="form-group row">
-                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("MeetingInfo-ArabicName", "Arabic Name") %></label>
-                                <div class="col-sm-9 input-group">
-                                    <span class="input-group-addon changeIconColor"><i class="icofont icofont-underline primary"></i></span>
-                                    <asp:TextBox ID="ArabicName" runat="server" class="form-control form-txt-primary " placeholder=""></asp:TextBox>
-                                </div>
-                                <div class="col-sm-3"></div>
-                                <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RFVtxtArabicName" runat="server" ErrorMessage="Please enter arabic name" style="color:red" ControlToValidate="ArabicName" ValidationGroup="Meeting" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="BoardNameValidator" runat="server" ErrorMessage="Please enter Board Name" style="color:red" ControlToValidate="BoardName" ValidationGroup="Meeting" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                          
@@ -111,9 +100,25 @@
                                 </div>
                                       <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter Meeting Date" style="color:red" ControlToValidate="MeetingDate" ValidationGroup="Meeting" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="MeetingDateValidator" runat="server" ErrorMessage="Please enter Meeting Date" style="color:red" ControlToValidate="MeetingDate" ValidationGroup="Meeting" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
+
+                            
+                             <div class="form-group row">
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("MeetingInfo-MeetingTime", "Meeting Time") %></label>
+                                <div class="col-sm-9 input-group">
+                                <div class='input-group date' id='datetimepicker3'>
+                                    <span class="input-group-addon changeIconColor"><i class="icofont icofont-ui-calendar primary"></i></span>
+                                     <asp:TextBox ID="timepicker" runat="server" class="form-control form-txt-primary " placeholder="Please enter Meeting Time"></asp:TextBox>
+                                </div>
+                            </div>
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-9">
+                                    <asp:RequiredFieldValidator ID="timepickerValidator" runat="server" ErrorMessage="Please enter Meeting Time" style="color:red" ControlToValidate="timepicker" ValidationGroup="Meeting" Display="Dynamic"></asp:RequiredFieldValidator>
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("MeetingInfo-MeetingLocation", "Meeting Location") %></label>
                                 <div class="col-sm-9 input-group">
@@ -124,11 +129,20 @@
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">
-                                    <asp:RequiredFieldValidator ID="RFVtxtClassification" runat="server" ErrorMessage="Please select classification" style="color:red" ControlToValidate="MeetingLocation" ValidationGroup="Meeting" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="MeetingLocationValidator" runat="server" ErrorMessage="Please select classification" style="color:red" ControlToValidate="MeetingLocation" ValidationGroup="Meeting" InitialValue="0" Display="Dynamic"></asp:RequiredFieldValidator>
                                 </div>
                             </div>
                         </div>
                        </div>
+
+                           <!-- File upload card start -->
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    <label><% = Treatment.Classes.FieldNames.getFieldName("MeetingInfo-AddAttachments", "Add Attachments") %></label>
+                                    <asp:FileUpload ID="addAttachments" runat="server" class="form-control" AllowMultiple="True" />
+                                </div>
+                            </div>
+                          <!-- File upload card end -->
 
                            <div class="row">
                                <div class="form-group col-sm-16">

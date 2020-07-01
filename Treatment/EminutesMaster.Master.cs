@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Treatment.Classes;
 using Treatment.Entity;
 using Website.Classes;
 
@@ -20,6 +21,14 @@ namespace Treatment
             Session["IsECMS"] = false;
             if (SessionWrapper.LoggedUser == null)
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+            {
+                Style.Text = FieldNames.getSTyleRTL();
+                Script.Text = FieldNames.getJavaScriptRTL();
+                //this.html.Attributes.Add("dir", "ltr");
+                //Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "RTL_Layout();", true);
+            }
 
             if (!IsPostBack)
             {

@@ -112,6 +112,15 @@ namespace Treatment.Pages.Eminutes.BoardManagment {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVtxtStatusofBoard;
         
         /// <summary>
+        /// addAttachments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload addAttachments;
+        
+        /// <summary>
         /// txtParent control.
         /// </summary>
         /// <remarks>

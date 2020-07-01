@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2810-5-2020%29.sql" />
+    <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2828-06-2020%29.sql" />
     <Content Include="Entity\ECMS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ECMS.edmx</DependentUpon>
@@ -2112,6 +2113,7 @@
     <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\EditBoardPermission.cs" />
     <Compile Include="EminutesMaster.Master.cs">
       <DependentUpon>EminutesMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2179,6 +2181,9 @@
     <Compile Include="Entity\M_Board_Type.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\M_B_Attachments.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\M_Meeting.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
@@ -2186,6 +2191,9 @@
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\M_Member_Type.cs">
+      <DependentUpon>ECMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\M_M_Attachments.cs">
       <DependentUpon>ECMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\M_Recommendation.cs">
@@ -2678,6 +2686,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="media\Treatment\" />
+    <Folder Include="Pages\Eminutes\media\M_Attachments\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

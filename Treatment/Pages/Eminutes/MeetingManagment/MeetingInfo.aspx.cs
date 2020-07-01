@@ -39,7 +39,16 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
         private void fillDropDown()
         {
             List<M_Board_Location> ListLocations  = db.M_Board_Location.Where(x => x.Board_Id == BoardID).ToList();
-            ddlFiller.dropDDL(MeetingLocation, "Board_Location_Id", "Board_Location_Name_En", ListLocations, "Select Locations");
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                ddlFiller.dropDDL(MeetingLocation, "Board_Location_Id", "Board_Location_Name_Ar", ListLocations, "إختر الموقع");
+            else
+                ddlFiller.dropDDL(MeetingLocation, "Board_Location_Id", "Board_Location_Name_En", ListLocations, "Select Locations");
+
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                MeetingStatus.DataTextField = "Meeting_Status__Name_Ar";
+
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                translateValidationArabic();
         }
 
         public void ini()
@@ -54,14 +63,14 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
                 if (BoardID != 0)
                 {
                     var Board = db.M_Board.First(x => x.Board_Id == BoardID);
-                    /*if (SessionWrapper.LoggedUser.Language_id == 1)
+                   if (SessionWrapper.LoggedUser.Language_id == 1)
                     {
                         BoardName.Text = Board.Board_Name_Ar;
                     }
                     else
                     {
-                    }*/
-                    BoardName.Text = Board.Board_Name_En;
+                        BoardName.Text = Board.Board_Name_En;
+                    }
                 }
             }
             catch (Exception e) { }
@@ -81,7 +90,7 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
             DateTime MeetingTme = DateTime.Now;
             DateTime.TryParse(timepicker.Text, out MeetingTme);
             
-            bool result = SaveMeeting(MeetingID,BoardID,ArabicName.Text,EnglishName.Text, MDate, MeetingTme, MeetingStatus_id,Minutes.Text, MeetingLocation_id);
+            bool result = SaveMeeting(MeetingID,BoardID,ArabicName.Text,EnglishName.Text, MDate, MeetingTme, MeetingStatus_id,Minutes.Text, MeetingLocation_id, addAttachments);
             if (result)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The  Meeting was Sucessfully saved in system ! ');", true);
@@ -95,7 +104,7 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
             }
         }
 
-        public bool SaveMeeting(int Meeting_Id, int Board_Id, string Meeting_Name_Ar, string Meeting_Name_En, DateTime Meeting_Date, DateTime Meeting_Time, int Meeting_Status_Id, string Meeting_Minutes, int Board_Location_Id)
+        public bool SaveMeeting(int Meeting_Id, int Board_Id, string Meeting_Name_Ar, string Meeting_Name_En, DateTime Meeting_Date, DateTime Meeting_Time, int Meeting_Status_Id, string Meeting_Minutes, int Board_Location_Id,FileUpload M_Attachments)
         {
             
             try
@@ -122,6 +131,17 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
                     db.M_Meeting.Add(Meeting);
                 }
                 db.SaveChanges();
+
+                if (Meeting_Id != 0)
+                {
+                    MeetingID = Meeting_Id;
+                }
+                else
+                {
+                    MeetingID = Meeting.Meeting_Id;
+                }
+
+                 AttachmentFile(MeetingID, M_Attachments, @"~\Pages\Eminutes\media\M_Attachments\");
                 /* Add it to log file */
                 LogData = "data:" + JsonConvert.SerializeObject(Meeting, logFileModule.settings);
                 if (Meeting_Id != 0)
@@ -137,6 +157,41 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
             catch { return false; }
             return true;
         }
+
+        public void AttachmentFile(int MeetingID, FileUpload Uplofile, string Path)
+        {
+            foreach (HttpPostedFile postfiles in Uplofile.PostedFiles)
+            {
+                if (postfiles.ContentLength > 0 && postfiles.FileName != "")
+                {
+                    M_M_Attachments Fil = db.M_M_Attachments.Create();
+                    Fil.Meeting_Id = MeetingID;
+                    Fil.FileName = postfiles.FileName;
+                    Fil.Path = UploadFile(postfiles,Path);
+                    db.M_M_Attachments.Add(Fil);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public string UploadFile(HttpPostedFile fileAttach , string Path)
+        {
+            string Imagepath = " ";
+            if (this.Page.IsValid)
+            {
+                if (!UtilityClass.UploadFileIsValid(ref fileAttach, UtilityClass.ValidFileExtentions))
+                {
+                    //ltrMessage.Text = "<div class='alert alert-danger fade in'><strong>Images only allowed !</strong></div>";
+                    Imagepath = "false";
+                }
+                Imagepath = string.Empty;
+
+                Imagepath = UtilityClass.UploadFilePostedFile(ref fileAttach, Server.MapPath(Path));
+            }
+            return Imagepath;
+        }
+
+       
 
         public void ViewMeeting(int Meeting_Id)
         {
@@ -187,6 +242,28 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
                 return false;
             }
             return true;
+        }
+
+        public void translateValidationArabic()
+        {
+            EnglishNameValidator.Text = "أدخل إسم الإجتماع بالانجليزي";
+            ArabicNameValidator.Text = "أدخل إسم الإجتماع بالعربي";
+            StatusofMeetingValidator.Text = "إختر الحالة الإجتماع";
+            BoardNameValidator.Text = " أدخل الإسم المجلس أو اللجنة";
+            MeetingDateValidator.Text = "أدخل تاريخ الإجتماع";
+            timepickerValidator.Text = " أدخل زمن الإجتماع";
+            MeetingLocationValidator.Text = "إختر موقع الإجتماع";
+       
+            EnglishName.Attributes["placeholder"] = "أدخل الإسم بالانجليزي";
+            ArabicName.Attributes["placeholder"] = "أدخل الإسم بالعربي";
+            BoardName.Attributes["placeholder"] = "أدخل الإسم المجلس أو اللجنة";
+            MeetingDate.Attributes["placeholder"] = "أدخل تاريخ الإجتماع";
+            timepicker.Attributes["placeholder"] = "أدخل زمن الإجتماع";
+            MeetingLocation.Attributes["placeholder"] = "إختر موقع الإجتماع";
+
+            Save.Text = "حفظ";
+            Cancel.Text = "إلغاء";
+
         }
     }
 }

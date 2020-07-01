@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-sm-12 ">
                                 <div class="form-group col-sm-12 j-unit" style="margin-top: 5%">
-                                    <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("PermissionGroups-Member", "Member") %></label>
+                                    <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardMember-Member", "Member") %></label>
                                     <div class="input-group">
                                         <span class="input-group-addon changeIconColor" id="basic-addon1"><i class="icofont icofont-underline primary"></i></span>
                                         <asp:DropDownList ID="txtEmployees" runat="server" class="form-control form-txt-primary"></asp:DropDownList>
@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-12 j-unit">
-                                    <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("PermissionGroups-Type", "Type") %></label>
+                                    <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardMember-Type", "Type") %></label>
                                     <div class="input-group">
                                         <span class="input-group-addon changeIconColor" id="basic-addon2"><i class="icofont icofont-underline primary"></i></span>
                                         <asp:DropDownList ID="txtType" runat="server" class="form-control form-txt-primary"></asp:DropDownList>
@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="col-md-12" style="text-align: right">
-            <button class="btn btn-success btn-round" type="button" data-toggle="modal" data-target="#add-model">Add Member</button>
+            <button class="btn btn-success btn-round" type="button" data-toggle="modal" data-target="#add-model"><% = Treatment.Classes.FieldNames.getFieldName("BoardMember-AddMember", "Add Member") %></button>
         </div>
         <div class="col-md-12">&nbsp;</div>
     </div>

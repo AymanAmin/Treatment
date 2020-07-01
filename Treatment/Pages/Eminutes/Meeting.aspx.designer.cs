@@ -19,7 +19,7 @@ namespace Treatment.Pages.Eminutes {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LocationTitel;
+        protected global::System.Web.UI.WebControls.Literal LocationTitel;
         
         /// <summary>
         /// Location control.
@@ -37,7 +37,7 @@ namespace Treatment.Pages.Eminutes {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MeetingInfTitel;
+        protected global::System.Web.UI.WebControls.Literal MeetingInfTitel;
         
         /// <summary>
         /// MeetingInf control.
@@ -49,6 +49,60 @@ namespace Treatment.Pages.Eminutes {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MeetingInf;
         
         /// <summary>
+        /// BoardName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl BoardName;
+        
+        /// <summary>
+        /// EnglishName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl EnglishName;
+        
+        /// <summary>
+        /// ArabicName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ArabicName;
+        
+        /// <summary>
+        /// MeetingDateInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MeetingDateInfo;
+        
+        /// <summary>
+        /// TimeOfMeeting control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TimeOfMeeting;
+        
+        /// <summary>
+        /// Status control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Status;
+        
+        /// <summary>
         /// MeetingMembers control.
         /// </summary>
         /// <remarks>
@@ -58,13 +112,49 @@ namespace Treatment.Pages.Eminutes {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MeetingMembers;
         
         /// <summary>
+        /// AddTopic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddTopic;
+        
+        /// <summary>
         /// Topics control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Topics;
+        protected global::System.Web.UI.WebControls.Literal Topics;
+        
+        /// <summary>
+        /// AttachmentFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AttachmentFile;
+        
+        /// <summary>
+        /// downloadAttachment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl downloadAttachment;
+        
+        /// <summary>
+        /// ShowRecommendation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ShowRecommendation;
         
         /// <summary>
         /// trackVotes control.
@@ -74,6 +164,15 @@ namespace Treatment.Pages.Eminutes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl trackVotes;
+        
+        /// <summary>
+        /// AddRecommendation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddRecommendation;
         
         /// <summary>
         /// RecommendationValue control.
@@ -94,6 +193,15 @@ namespace Treatment.Pages.Eminutes {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
+        /// Button3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button3;
+        
+        /// <summary>
         /// Button2 control.
         /// </summary>
         /// <remarks>
@@ -101,5 +209,41 @@ namespace Treatment.Pages.Eminutes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
+        
+        /// <summary>
+        /// ApprovalRecommendation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ApprovalRecommendation;
+        
+        /// <summary>
+        /// ApprovalR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea ApprovalR;
+        
+        /// <summary>
+        /// Approval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Approval;
+        
+        /// <summary>
+        /// NotApproval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button NotApproval;
     }
 }

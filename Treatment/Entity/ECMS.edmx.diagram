@@ -15,12 +15,13 @@
         <EntityTypeShape EntityType="ECMSModel.Log_File" Width="1.5" PointX="6" PointY="3.125" />
         <EntityTypeShape EntityType="ECMSModel.M_Attendees" Width="1.5" PointX="8.25" PointY="23.125" />
         <EntityTypeShape EntityType="ECMSModel.M_Board" Width="1.5" PointX="1.5" PointY="29.125" />
-        <EntityTypeShape EntityType="ECMSModel.M_Board_Classification" Width="1.5" PointX="1.5" PointY="40.125" />
+        <EntityTypeShape EntityType="ECMSModel.M_Board_Classification" Width="1.5" PointX="1.5" PointY="34.625" />
         <EntityTypeShape EntityType="ECMSModel.M_Board_Location" Width="1.5" PointX="1.5" PointY="24.125" />
         <EntityTypeShape EntityType="ECMSModel.M_Board_Member" Width="1.5" PointX="6" PointY="18" />
-        <EntityTypeShape EntityType="ECMSModel.M_Board_Status" Width="1.5" PointX="1.5" PointY="34.625" />
-        <EntityTypeShape EntityType="ECMSModel.M_Board_Type" Width="1.5" PointX="1.5" PointY="37.625" />
-        <EntityTypeShape EntityType="ECMSModel.M_Meeting" Width="1.5" PointX="0.75" PointY="18.625" />
+        <EntityTypeShape EntityType="ECMSModel.M_Board_Status" Width="1.5" PointX="1.5" PointY="37.25" />
+        <EntityTypeShape EntityType="ECMSModel.M_Board_Type" Width="1.5" PointX="1.5" PointY="40.125" />
+        <EntityTypeShape EntityType="ECMSModel.M_M_Attachments" Width="1.5" PointX="3" PointY="43.625" />
+        <EntityTypeShape EntityType="ECMSModel.M_Meeting" Width="1.5" PointX="0.75" PointY="18.5" />
         <EntityTypeShape EntityType="ECMSModel.M_Meeting_Status" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="ECMSModel.M_Member_Type" Width="1.5" PointX="3.75" PointY="18.5" />
         <EntityTypeShape EntityType="ECMSModel.M_Recommendation" Width="1.5" PointX="8.25" PointY="19" />
@@ -34,15 +35,15 @@
         <EntityTypeShape EntityType="ECMSModel.Permission" Width="1.5" PointX="1.5" PointY="0.875" />
         <EntityTypeShape EntityType="ECMSModel.Permission_Group" Width="1.5" PointX="3.75" PointY="2.25" />
         <EntityTypeShape EntityType="ECMSModel.Structure" Width="1.5" PointX="0.75" PointY="11.125" />
-        <EntityTypeShape EntityType="ECMSModel.Treatment_Class" Width="1.5" PointX="12" PointY="21.5" />
-        <EntityTypeShape EntityType="ECMSModel.Treatment_Confidentiality" Width="1.5" PointX="12" PointY="3.75" />
-        <EntityTypeShape EntityType="ECMSModel.Treatment_Delivery" Width="1.5" PointX="12" PointY="16" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Class" Width="1.5" PointX="12" PointY="18.625" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Confidentiality" Width="1.5" PointX="12" PointY="15.875" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Delivery" Width="1.5" PointX="12" PointY="3.75" />
         <EntityTypeShape EntityType="ECMSModel.Treatment_Detial" Width="1.5" PointX="11.25" PointY="10.5" />
         <EntityTypeShape EntityType="ECMSModel.Treatment_Master" Width="1.5" PointX="14.25" PointY="9.125" />
-        <EntityTypeShape EntityType="ECMSModel.Treatment_Priority" Width="1.5" PointX="12" PointY="18.625" />
-        <EntityTypeShape EntityType="ECMSModel.Treatment_Procedure" Width="1.5" PointX="12" PointY="6.5" />
-        <EntityTypeShape EntityType="ECMSModel.Treatment_Status" Width="1.5" PointX="12" PointY="26.5" />
-        <EntityTypeShape EntityType="ECMSModel.Treatment_Type" Width="1.5" PointX="12" PointY="24" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Priority" Width="1.5" PointX="12" PointY="23.625" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Procedure" Width="1.5" PointX="12" PointY="21.125" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Status" Width="1.5" PointX="12" PointY="6.25" />
+        <EntityTypeShape EntityType="ECMSModel.Treatment_Type" Width="1.5" PointX="12" PointY="26.5" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Detial_Assignment_Status" />
         <AssociationConnector Association="ECMSModel.FK_Employee_Group" />
         <AssociationConnector Association="ECMSModel.FK_Employee_LanguageMaster" />
@@ -70,6 +71,7 @@
         <AssociationConnector Association="ECMSModel.FK_M_Board_Member_M_Member_Type" />
         <AssociationConnector Association="ECMSModel.FK_M_Recommendation_M_Board_Member" />
         <AssociationConnector Association="ECMSModel.FK_M_Board_Status_M_Board_Status" />
+        <AssociationConnector Association="ECMSModel.FK_M_M_Attachments_M_Meeting" />
         <AssociationConnector Association="ECMSModel.FK_M_Recommendation_M_Meeting" />
         <AssociationConnector Association="ECMSModel.FK_M_Topic_M_Meeting" />
         <AssociationConnector Association="ECMSModel.FK_M_Topic_Structure" />
@@ -87,6 +89,8 @@
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Procedure" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Status" />
         <AssociationConnector Association="ECMSModel.FK_Treatment_Treatment_Type" />
+        <EntityTypeShape EntityType="ECMSModel.M_B_Attachments" Width="1.5" PointX="3.75" PointY="30.375" />
+        <AssociationConnector Association="ECMSModel.FK_M_B_Attachments_M_Board" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
