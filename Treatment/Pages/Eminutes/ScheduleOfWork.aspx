@@ -112,7 +112,7 @@
                     <div class="m-t-10">
                         <i class="icofont icofont-warning text-white bg-c-yellow"></i>
                         <h4 class="f-w-600 m-t-25"><% = Treatment.Classes.FieldNames.getFieldName("ScheduleOfWork-Notsupported", "Not supported") %></h4>
-                        <p class="text-muted m-b-0"><% = Treatment.Classes.FieldNames.getFieldName("ScheduleOfWork-FullCalendernotsupportedinthisdevice", "Full Calender not supported in this device") %></p>
+                        <p class="text-muted"><% = Treatment.Classes.FieldNames.getFieldName("ScheduleOfWork-FullCalendernotsupportedinthisdevice", "Full Calender not supported in this device") %></p>
                     </div>
                 </div>
             </div>

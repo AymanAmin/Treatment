@@ -195,12 +195,16 @@
     <Content Include="Pages\Treatment\ShowTreatment.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Theme\files\assets\css\bootstrap-rtl.min.css" />
     <Content Include="Theme\files\assets\css\component.css" />
+    <Content Include="Theme\files\assets\css\font-awesome-rtl.min.css" />
     <Content Include="Theme\files\assets\css\font-awesome.min.css" />
     <Content Include="Theme\files\assets\css\jquery.mCustomScrollbar.css" />
     <Content Include="Theme\files\assets\css\linearicons.css" />
     <Content Include="Theme\files\assets\css\pcoded-horizontal.min.css" />
+    <Content Include="Theme\files\assets\css\rtl.css" />
     <Content Include="Theme\files\assets\css\style.css" />
+    <Content Include="Theme\files\assets\css\styleRTL-eminutes.css" />
     <Content Include="Theme\files\assets\css\styleRTL.css" />
     <Content Include="Theme\files\assets\fonts\fontawesome-webfont.svg" />
     <Content Include="Theme\files\assets\fonts\Linearicons-Free.svg" />

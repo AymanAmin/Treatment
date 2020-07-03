@@ -118,14 +118,14 @@ namespace Treatment.Pages.Eminutes
 
                 //check if there is structure in his information
                 if (emp_struc.Count > 0)
-                    str += "<p class='text-muted m-b-0'>" + emp_struc[0].Structure.Structure_Name_En + "</p>";
+                    str += "<p class='text-muted'>" + emp_struc[0].Structure.Structure_Name_En + "</p>";
                 else if (emp_struc.Count > 1)
                 {
-                    str += "<p class='text-muted m-b-0'>" + emp_struc[0].Structure.Structure_Name_En + "</p> , ";
-                    str += " <p class='text-muted m-b-0'>" + emp_struc[1].Structure.Structure_Name_En + "</p>";
+                    str += "<p class='text-muted'>" + emp_struc[0].Structure.Structure_Name_En + "</p> , ";
+                    str += " <p class='text-muted'>" + emp_struc[1].Structure.Structure_Name_En + "</p>";
                 }
                 else
-                    str += "<p class='text-muted m-b-0'> Unknow </p>";
+                    str += "<p class='text-muted'> Unknow </p>";
 
                 str += "</div>";
                 str += "</a>";
@@ -169,16 +169,16 @@ namespace Treatment.Pages.Eminutes
             for (int i = 0; i < Locations.Count; i++)
             {
                 str += "<div class='row m-b-25'>";
-                str += "<div class='col-auto p-r-0'>";
+                str += "<div class='col-auto'>";
                 str += "<i class='feather icon-map-pin bg-simple-c-green feed-icon'></i>";
                 str += "</div>";
                 str += "<div class='col'>";
                 str += "<h6 class='m-b-5'>" + Locations[i].Board_Location_Name_En + "</h6>";
-                str += "<p class='text-muted m-b-0'>" + Locations[i].Board_Location_Description_En + "</p>";
+                str += "<p class='text-muted'>" + Locations[i].Board_Location_Description_En + "</p>";
                 if (Locations[i].Board_Location_OnMap != null && Locations[i].Board_Location_OnMap != string.Empty)
-                    str += "<a href ='" + Locations[i].Board_Location_OnMap + "' target='_blank'><p class='text-muted m-b-0'><i class='feather icon-map-pin m-r-10'></i>Open On Map</p></a>";
+                    str += "<a href ='" + Locations[i].Board_Location_OnMap + "' target='_blank'><p class='text-muted'><i class='feather icon-map-pin m-r-10'></i>Open On Map</p></a>";
                 if (Locations[i].Board_Location_URLVideo != null && Locations[i].Board_Location_URLVideo != string.Empty)
-                    str += "<a href ='" + Locations[i].Board_Location_URLVideo + "' target='_blank'><p class='text-muted m-b-0'><i class='icofont icofont-youtube-play m-r-10'></i>Open Video Link</p></a>";
+                    str += "<a href ='" + Locations[i].Board_Location_URLVideo + "' target='_blank'><p class='text-muted'><i class='icofont icofont-youtube-play m-r-10'></i>Open Video Link</p></a>";
                 str += "</div>";
                 str += "</div>";
             }

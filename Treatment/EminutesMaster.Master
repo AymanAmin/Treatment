@@ -65,6 +65,7 @@
     <link rel="stylesheet" href="~\Theme\files\assets\pages\chart\radial\css\radial.css" type="text/css" media="all"/>
 
     <asp:Literal ID="Style" runat="server"></asp:Literal>
+    <asp:Literal ID="StyleEminutes" runat="server"></asp:Literal>
 
      <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -508,36 +509,6 @@
 
     <script type="text/javascript">
 
-         $(document).ready(function () {
-                    var lang_id = <% = Website.Classes.SessionWrapper.LoggedUser.Language_id %>;
-                    if(lang_id == 1)
-                    {
-                        $("#pcoded").pcodedmenu({
-                            verticalMenuplacement: 'right',
-                        });
-
-                        document.getElementById("mCSB_1_container").style.width = "100%";
-                        document.getElementById("mCSB_1_container").style.left = "0px";
-                    }
-
-                    // themelight1 Theme for Menu
-                    //$(".pcoded-navbar").attr("navbar-theme", "themelight1");
-
-                    // Change the color of nav-bar-custom
-                    //document.getElementById("nav-bar-custom").style.backgroundColor = "white";
-                    //document.getElementById("nav-bar-custom").style.color = "#452a74";
-                    //Menu Icon Color 
-                    document.getElementById("colorIcon").click();
-                    
-                    // SubMenu Style
-                    $(".pcoded-navbar .pcoded-hasmenu").attr("subitem-icon", "style4")
-
-                    // Header tool bar Style 
-                    $(".pcoded-header").attr("header-theme", "theme6"), $(".navbar-logo").attr("logo-theme", "theme6")
-
-                    // Expand menu icon 
-                    $(".pcoded-navbar .pcoded-hasmenu").attr("dropdown-icon", "style3")
-                });
 
 $(document).ready(function () {
     $('select:not(.normal)').each(function () {

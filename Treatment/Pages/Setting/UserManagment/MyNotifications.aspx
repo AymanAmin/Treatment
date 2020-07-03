@@ -26,12 +26,12 @@
                         <asp:Literal ID="Notifications" runat="server"></asp:Literal>
                         <!--<div class="row p-b-30">
                         <div class="col-auto text-right update-meta">
-                            <p class="text-muted m-b-0 d-inline">1 day ago</p>
+                            <p class="text-muted d-inline">1 day ago</p>
                             <i class="feather icon-check bg-simple-c-yellow  update-icon"></i>
                         </div>
                         <div class="col">
                             <h6>Database backup completed!</h6>
-                            <p class="text-muted m-b-0">Download the <span class="text-c-blue">latest backup</span>.</p>
+                            <p class="text-muted">Download the <span class="text-c-blue">latest backup</span>.</p>
                         </div>
                     </div>-->
                     </div>
@@ -71,7 +71,7 @@
                          <asp:Literal ID="Activity" runat="server"></asp:Literal>
                         
                        <!-- <div class="row m-b-30">
-                            <div class="col-auto p-r-0">
+                            <div class="col-auto">
                                 <i class="feather icon-shopping-cart bg-simple-c-pink feed-icon"></i>
                             </div>
                             <div class="col">
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="row m-b-30">
-                            <div class="col-auto p-r-0">
+                            <div class="col-auto">
                                 <i class="feather icon-file-text bg-simple-c-green feed-icon"></i>
                             </div>
                             <div class="col">
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <div class="row m-b-20">
-                            <div class="col-auto p-r-0">
+                            <div class="col-auto">
                                 <i class="feather icon-shopping-cart bg-simple-c-pink feed-icon"></i>
                             </div>
                             <div class="col">
