@@ -58,3 +58,9 @@
 .dropdown-menu i {
     padding-top: 0%;
 }
+.media-body {
+    padding-right: 12px;
+}
+.main-body .page-wrapper .page-header-breadcrumb {
+    float: left;
+}

@@ -142,9 +142,9 @@
                         
 
                         <!-- button save , Update , Delete -->
-                        <div class="col-sm-12 mobile-inputs" style="text-align: center">
+                        <div class="col-sm-12 mobile-inputs" style="text-align: center;margin-right: 47%;">
                             <asp:Button ID="Save" runat="server" Text="Save" class="btn btn-success btn-round col-sm-1" OnClick="Save_Click" ValidationGroup="Board" />
-                            <asp:Button ID="Cancel" runat="server" Text="Cancel" class="btn btn-warning btn-round col-sm-1" />
+                            <asp:Button ID="Cancel" runat="server" Text="Cancel" class="btn btn-warning btn-round col-sm-1" style="margin-right: 0.5%;" />
                         </div>
                     </div>
                 </div>

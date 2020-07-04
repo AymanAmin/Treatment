@@ -247,3 +247,10 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child, table.dataTa
 .f-right {
     float: left;
 }
+.radio .helper::after, .radio .helper::before {
+    right:0;
+}
+.radio .helper {
+    right: -0.25rem;
+    left: 0rem;
+}
