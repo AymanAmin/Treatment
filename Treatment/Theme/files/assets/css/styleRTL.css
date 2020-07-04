@@ -254,3 +254,10 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child, table.dataTa
     right: -0.25rem;
     left: 0rem;
 }
+.header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification li:first-child {
+    padding: 0.7em 0px;
+}
+.header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification li {
+    border-top: none;
+    padding: 0.7em 0px;
+}
