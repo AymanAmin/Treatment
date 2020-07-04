@@ -158,8 +158,8 @@
                                         <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Expand", "Expand") %></th>
                                         <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Actions", "Actions") %></th>
                                         <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Status", "Status") %></th>
-                                        <th><% = Treatment.Classes.FieldNames.getFieldName("Board-English Name", "English Name") %></th>
-                                        <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Arabic Name", "Arabic Name") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("Board-EnglishName", "English Name") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("Board-ArabicName", "Arabic Name") %></th>
                                         <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Date", "Date") %></th>
                                         <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Time", "Time") %></th>
                                     </tr>

@@ -244,7 +244,7 @@
                <div class="col-md-12" runat="server" visible="false" id="ApprovalRecommendation">
                 <div class="card">
                     <div class="card-header">
-                        <h5><% = Treatment.Classes.FieldNames.getFieldName("Meeting-Approval Recommendation", "Approval Recommendation") %></h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("Meeting-ApprovalRecommendation", "Approval Recommendation") %></h5>
                           <div class="card-header-right">
                              <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>
