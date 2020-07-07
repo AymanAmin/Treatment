@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title><% = Treatment.Classes.FieldNames.getFieldName("Board-Title", "Eminutes - Board") %></title>
     <script>
-        setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Council: Department of Software"; }, 1);
+        /*setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Council: Department of Software"; }, 1);*/
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
@@ -15,7 +15,7 @@
                     <div class="card-header">
                         <h5 class="card-header-text"><span>
                             <asp:Literal ID="txtEditBoard" runat="server"></asp:Literal>
-                            Board Properties </span></h5>
+                            <% = Treatment.Classes.FieldNames.getFieldName("Board-BoardProperties", "Board Properties") %> </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>
@@ -28,27 +28,27 @@
                         <table class="table table-border table-xs">
                             <tbody>
                                 <tr>
-                                    <td><i class="icofont icofont-contrast"></i>&nbsp;English Name:</td>
+                                    <td><i class="icofont icofont-contrast"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("Board-EnglishName", "English Name") %>:</td>
                                     <td class="text-right f-left"><span class="f-left">
                                         <asp:Literal ID="txtEnglishName" runat="server"></asp:Literal></span></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-meeting-add"></i>&nbsp;Arabic Name:</td>
+                                    <td><i class="icofont icofont-meeting-add"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("Board-ArabicName", "Arabic Name") %>:</td>
                                     <td class="text-right f-left">
                                         <asp:Literal ID="txtArabicName" runat="server"></asp:Literal></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-id-card"></i>&nbsp;Created Date:</td>
+                                    <td><i class="icofont icofont-id-card"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("Board-CreatedDate", "Created Date") %>:</td>
                                     <td class="text-right f-left">
                                         <asp:Literal ID="txtCreatedDate" runat="server"></asp:Literal></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-spinner-alt-5"></i>&nbsp;Type:</td>
+                                    <td><i class="icofont icofont-spinner-alt-5"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("Board-Type", "Type") %>:</td>
                                     <td class="text-right f-left">
                                         <asp:Literal ID="txtType" runat="server"></asp:Literal></td>
                                 </tr>
                                 <tr>
-                                    <td><i class="icofont icofont-spinner-alt-5"></i>&nbsp;Classification:</td>
+                                    <td><i class="icofont icofont-spinner-alt-5"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("Board-Classification", "Classification") %>:</td>
                                     <td class="text-right f-left">
                                         <asp:Literal ID="txtClassification" runat="server"></asp:Literal></td>
                                 </tr>
@@ -67,7 +67,7 @@
                     <div class="card-header">
                         <h5><span>
                             <asp:Literal ID="txtMeetingMembers" runat="server"></asp:Literal>
-                            Meeting Members </span></h5>
+                            <% = Treatment.Classes.FieldNames.getFieldName("Board-MeetingMembers", "Meeting Members") %> </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>
@@ -77,25 +77,25 @@
                     </div>
                     <div class="card-block">
                         <div class="col">
-                            <p id="Div_HolderOfAuthority" runat="server" class="text-muted m-b-10">Holder of authority</p>
+                            <p id="Div_HolderOfAuthority" runat="server" class="text-muted m-b-10"><% = Treatment.Classes.FieldNames.getFieldName("Board-HolderofAuthority", "Holder of Authority") %></p>
                             <div id="Div_HolderOfAuthority_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
                                     <asp:Literal ID="txtHolderOfAuthority" runat="server"></asp:Literal>
                                 </table>
                             </div>
-                            <p id="Div_SuperVisor" runat="server" class="text-muted m-b-10">Chairman</p>
+                            <p id="Div_SuperVisor" runat="server" class="text-muted m-b-10"><% = Treatment.Classes.FieldNames.getFieldName("Board-Chairman", "Chairman") %></p>
                             <div id="Div_SuperVisor_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
                                     <asp:Literal ID="txtSuperVisor" runat="server"></asp:Literal>
                                 </table>
                             </div>
-                            <p id="Div_Secretarial" runat="server" class="text-muted m-b-10">The Secretary</p>
+                            <p id="Div_Secretarial" runat="server" class="text-muted m-b-10"><% = Treatment.Classes.FieldNames.getFieldName("Board-TheSecretary", "The Secretary") %></p>
                             <div id="Div_Secretarial_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
                                     <asp:Literal ID="txtSecretarial" runat="server"></asp:Literal>
                                 </table>
                             </div>
-                            <p id="Div_Members" runat="server" class="text-muted m-b-10">Members</p>
+                            <p id="Div_Members" runat="server" class="text-muted m-b-10"><% = Treatment.Classes.FieldNames.getFieldName("Board-Members", "Members") %></p>
                             <div id="Div_Members_Table" runat="server" class="table-responsive">
                                 <table class="table table-hover">
                                     <asp:Literal ID="txtMembers" runat="server"></asp:Literal>
@@ -113,7 +113,7 @@
                     <div class="card-header">
                         <h5><span>
                             <asp:Literal ID="txtEditLocations" runat="server"></asp:Literal>
-                            Locations </span></h5>
+                            <% = Treatment.Classes.FieldNames.getFieldName("Board-Locations", "Locations") %> </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>
@@ -139,13 +139,13 @@
                     <div class="card-header">
                         <h5><span>
                             <asp:Literal ID="txtAddMeeting" runat="server"></asp:Literal>
-                            Meetings </span></h5>
+                            <% = Treatment.Classes.FieldNames.getFieldName("Board-Meetings", "Meetings") %> </span></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>
-                                <li><i class="feather icon-minus minimize-card"></i></li> 
+                                <li><i class="feather icon-minus minimize-card"></i></li>
                             </ul>
-                            
+
                         </div>
                     </div>
 
@@ -155,13 +155,13 @@
                             <table id="issue-list-table" class="table dt-responsive width-100">
                                 <thead class="text-left">
                                     <tr>
-                                        <th>Expand</th>
-                                        <th>Actions</th>
-                                        <th>Status</th>
-                                        <th>English Name</th>
-                                        <th>Arabic Name</th>
-                                        <th>Date</th>
-                                        <th>Time</th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Expand", "Expand") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Actions", "Actions") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Status", "Status") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("Board-EnglishName", "English Name") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("Board-ArabicName", "Arabic Name") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Date", "Date") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Time", "Time") %></th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-left">
@@ -177,10 +177,10 @@
 
 
             <!--Laws regulations-->
-            <div class="col-md-12">
+            <div class="col-md-12" runat="server" visible="false" id="AttachmentFile">
                 <div class="card table-card">
                     <div class="card-header">
-                        <h5>Laws Regulations</h5>
+                        <h5><% = Treatment.Classes.FieldNames.getFieldName("Board-LawsRegulations", "Laws Regulations") %></h5>
                         <div class="card-header-right">
                             <ul class="list-unstyled card-option">
                                 <li><i class="feather full-card icon-maximize"></i></li>
@@ -188,32 +188,12 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="row card-block" style="padding-right: 3%; padding-left: 3%;">
-                        <div class="col-md-3">
-                            <div class="card thumb-block">
-                                <a href="../../../../media/Treatment/7c5933cd-0567-4e92-a143-227c4d6b890f.png" target="_blank"><span class="jFiler-icon-file f-file f-image" style="background-color: rgb(18, 132, 161);"><i class="icofont icofont-ui-image"></i></span></a>
-                                <div class="card-footer text-center"><a href="../../../../media/Treatment/7c5933cd-0567-4e92-a143-227c4d6b890f.png" target="_blank">profile-image.png</a></div>
+                    <!--Start Uploadedfiles-->
+
+                            <div class="row card-block" style="padding-right: 3%; padding-left: 3%;" id="downloadAttachment" runat="server">
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card thumb-block">
-                                <a href="../../../../media/Treatment/45a01576-ae85-416f-abdd-cdb9bf0daa5f.png" target="_blank"><span class="jFiler-icon-file f-file f-image" style="background-color: rgb(18, 132, 161);"><i class="icofont icofont-ui-image"></i></span></a>
-                                <div class="card-footer text-center"><a href="../../../../media/Treatment/45a01576-ae85-416f-abdd-cdb9bf0daa5f.png" target="_blank">logo1(4).png</a></div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card thumb-block">
-                                <a href="../../../../media/Treatment/152b4593-eae7-4fb9-8ac3-a80e69893bc9.pdf" target="_blank"><span class="jFiler-icon-file f-file f-image"><i class="icofont icofont-file-pdf"></i></span></a>
-                                <div class="card-footer text-center"><a href="../../../../media/Treatment/152b4593-eae7-4fb9-8ac3-a80e69893bc9.pdf" target="_blank">TreatmentReport.pdf</a></div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card thumb-block">
-                                <a href="../../../../media/Treatment/ba725354-f4cb-4193-bb13-667ed01eabee.docx" target="_blank"><span class="jFiler-icon-file f-file f-video"><i class="icofont icofont-file-word"></i></span></a>
-                                <div class="card-footer text-center"><a href="../../../../media/Treatment/ba725354-f4cb-4193-bb13-667ed01eabee.docx" target="_blank">نموذج ـ اوراق الجامعة.docx</a></div>
-                            </div>
-                        </div>
-                    </div>
+
+                    <!--End Uploadedfiles-->
                 </div>
             </div>
             <!--End Laws regulations-->

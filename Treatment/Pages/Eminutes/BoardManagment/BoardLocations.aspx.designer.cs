@@ -85,6 +85,15 @@ namespace Treatment.Pages.Eminutes.BoardManagment {
         protected global::System.Web.UI.WebControls.TextBox txtMapLocation;
         
         /// <summary>
+        /// txtVideoURL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVideoURL;
+        
+        /// <summary>
         /// txtArabicDescription control.
         /// </summary>
         /// <remarks>

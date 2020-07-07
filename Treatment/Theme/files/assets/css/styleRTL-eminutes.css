@@ -1,0 +1,63 @@
+.pcoded[theme-layout="horizontal"][pcoded-device-type="desktop"] .pcoded-navbar .pcoded-inner-navbar{
+    float: right;
+}
+.pcoded .pcoded-navbar .pcoded-item > li {
+    float: right;
+}
+.pcoded[theme-layout="horizontal"] .pcoded-navbar li.pcoded-hasmenu[dropdown-icon="style1"] > a:after {
+    content: "\e64a";
+}
+.pcoded .pcoded-navbar .pcoded-item>li>a>.pcoded-micon {
+    margin-left: 10px;
+    margin-right: 0px;
+}
+.pcoded[theme-layout="horizontal"] .pcoded-navbar .pcoded-item > li.pcoded-hasmenu > a:after {
+    margin-right: 3px;
+    padding-right: 5px;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+.pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li > a {
+    text-align: right;
+}
+    .pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li > a:before {
+        border-left-width: 0px;
+        border-left-color: transparent !important;
+        border-right-style: solid;
+        border-right-width: 3px;
+        border-right-color: #2196F3 !important;
+    }
+.pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu[subitem-icon="style1"] .pcoded-submenu li>a .pcoded-mtext:before {
+    content: "\e843";
+}
+.pcoded .pcoded-navbar .pcoded-item .pcoded-submenu li.pcoded-hasmenu > a:after {
+    float: left;
+}
+.header-navbar .navbar-wrapper .navbar-container .nav-left{
+    float: right !important;
+}
+.header-navbar .navbar-wrapper .navbar-logo{
+    float:right !important;
+}
+.card .card-header span {
+    float: left !important;
+}
+.task-board {
+    float: left !important;
+}
+.header-navbar .navbar-wrapper .navbar-container .nav-right li {
+    float:right !important;
+}
+.header-navbar .navbar-wrapper .navbar-container .header-notification .show-notification{
+    right:auto!important;
+    left:-15px !important;
+}
+.header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification li {
+    text-align: right;
+}
+.media-body {
+    padding-right: 12px;
+}
+.main-body .page-wrapper .page-header-breadcrumb {
+    float: left;
+}

@@ -14,6 +14,7 @@ namespace Treatment.Pages.Eminutes
         ECMSEntities db = new ECMSEntities();
         M_Board Current_Board = new M_Board();
         bool Can_Edit = false;
+        string _fileExt;
         /// <summary>
         /// Member type (1 = Supervisor , 2 = secretarial , 3 = Members)
         /// </summary>
@@ -33,11 +34,15 @@ namespace Treatment.Pages.Eminutes
             {
                 // load current board info
                 load_board_info(Current_Board);
+                loadDownloadAttachment(Current_Board.Board_Id);
 
                 //Load sub boards
                 List<M_Board> sub_board = db.M_Board.Where(x => x.Parent == board_id).ToList();
                 if (sub_board.Count > 0)
-                    LoadSubBoard(sub_board);
+                {
+                    Classes.EditBoardPermission EBP = new Classes.EditBoardPermission();
+                    SubBoard.Text = EBP.LoadBoad(sub_board, "12");
+                }
 
                 // Load member 
                 List<M_Board_Member> list_member = db.M_Board_Member.Where(x => x.Board_Id == board_id).ToList();
@@ -60,15 +65,16 @@ namespace Treatment.Pages.Eminutes
 
         private void load_board_info(M_Board Current_Board)
         {
-            Can_Edit = GetEditPermission(Current_Board);
             // Board Properties
-            txtArabicName.Text = Current_Board.Board_Name_Ar;
-            txtEnglishName.Text = Current_Board.Board_Name_En;
-            txtCreatedDate.Text = Current_Board.Create_Date.ToString();
-            txtType.Text = Current_Board.M_Board_Type.Board_Type_Name_En;
-            txtClassification.Text = Current_Board.M_Board_Classification.Board_Classification_Name_En;
+            txtArabicName.Text = Truncate(Current_Board.Board_Name_Ar,20); ;
+            txtEnglishName.Text = Truncate(Current_Board.Board_Name_En,20);
+            txtCreatedDate.Text = Truncate(Current_Board.Create_Date.ToString(), 20); ;
+            txtType.Text = Truncate(Current_Board.M_Board_Type.Board_Type_Name_En, 20);
+            txtClassification.Text = Truncate(Current_Board.M_Board_Classification.Board_Classification_Name_En, 20); 
 
             //Edit Board info if you are supervisor 
+            Classes.EditBoardPermission EBP = new Classes.EditBoardPermission();
+            Can_Edit = EBP.GetEditPermission(Current_Board);
             if (Can_Edit)
             {
                 txtEditBoard.Text = "<a href='../../../../Pages/Eminutes/BoardManagment/BoardInfo.aspx?BoardId=" + Current_Board.Board_Id + "' class='text-muted m-r-10 f-16'> <i style='color:#4183d7' class='icofont icofont-edit'></i></a>";
@@ -85,63 +91,7 @@ namespace Treatment.Pages.Eminutes
             }
         }
 
-        private void LoadSubBoard(List<M_Board> list_board)
-        {
-            string str = string.Empty;
-            string color = string.Empty;
-            for (int i = 0; i < list_board.Count; i++)
-            {
-                if (list_board[i].Board_Type_Id == 1)
-                    color = "info";
-                else
-                    color = "warning";
 
-                DateTime date = DateTime.Parse(list_board[i].Create_Date.ToString());
-                str += "<div class='col-sm-12'>" +
-                    "<div class='card card-border-" + color + "'>" +
-                    "<div class='card-header'>" +
-                        "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "' class='card-title'><strong>" + list_board[i].Board_Name_En + "</strong> </a>" +
-                        "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "'><span class='label label-" + color + " f-right' >" + date.ToLongDateString() + "</span></a>" +
-                    "</div>" +
-                    "<div class='card-block'>" +
-                        "<div class='row'>" +
-                            "<div class='col-sm-12'>" +
-                                "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "'><p class='task-detail'>" + list_board[i].Board_Description_En + ".</p></a>" +
-                                "<a href='Meeting.aspx?MeetingId=1'><p class='task-due'><strong>Next Meeting : </strong> " + date + "</p></a>" +
-                           "</div>" +
-                        "</div>" +
-                    "</div>" +
-                    "<div class='card-footer'>" +
-                    "<div class='task-list-table'>";
-                // Add Member Profile Pic
-                List<M_Board_Member> List_board_member = list_board[i].M_Board_Member.Where(x => x.Member_Type_Id != 4).ToList();
-                for (int k = 0; k < List_board_member.Count; k++)
-                {
-                    str += " <a href = '#'>" +
-                           "<img class='img-fluid img-radius' data-toggle='tooltip' data-placement='top' title='" + List_board_member[k].Employee.Employee_Name_En + "' src='../../../../media/Profile/" + List_board_member[k].Employee.Employee_Profile + "' alt=''/></a>";
-                    //str += "<a href = '#'><i class='icofont icofont-plus'></i></a>";
-                }
-
-                str += "</div>" +
-                        "<div class='task-board'>";
-                if(Can_Edit)
-                str += "<div class='dropdown-secondary dropdown'>" +
-                    "<a href='BoardManagment/BoardMember.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#6a5590;'> Edit Member </a>&nbsp;" +
-                "</div>" +
-                "<div class='dropdown-secondary dropdown'>" +
-                    "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#583f82;'> Add Meeting </a>&nbsp;" +
-                "</div>" +
-                "<div class='dropdown-secondary dropdown'>" +
-                    "<a href='BoardManagment/BoardInfo.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#452a74;'> Edit Board  </a>&nbsp;" +
-                "</div>";
-
-                str += "</div>";
-                str += "</div>";
-                str += "</div>";
-                str += "</div>";
-            }
-            SubBoard.Text = str;
-        }
 
         private void LoadMember(List<M_Board_Member> list_member)
         {
@@ -168,14 +118,14 @@ namespace Treatment.Pages.Eminutes
 
                 //check if there is structure in his information
                 if (emp_struc.Count > 0)
-                    str += "<p class='text-muted m-b-0'>" + emp_struc[0].Structure.Structure_Name_En + "</p>";
+                    str += "<p class='text-muted'>" + emp_struc[0].Structure.Structure_Name_En + "</p>";
                 else if (emp_struc.Count > 1)
                 {
-                    str += "<p class='text-muted m-b-0'>" + emp_struc[0].Structure.Structure_Name_En + "</p> , ";
-                    str += " <p class='text-muted m-b-0'>" + emp_struc[1].Structure.Structure_Name_En + "</p>";
+                    str += "<p class='text-muted'>" + emp_struc[0].Structure.Structure_Name_En + "</p> , ";
+                    str += " <p class='text-muted'>" + emp_struc[1].Structure.Structure_Name_En + "</p>";
                 }
                 else
-                    str += "<p class='text-muted m-b-0'> Unknow </p>";
+                    str += "<p class='text-muted'> Unknow </p>";
 
                 str += "</div>";
                 str += "</a>";
@@ -219,14 +169,16 @@ namespace Treatment.Pages.Eminutes
             for (int i = 0; i < Locations.Count; i++)
             {
                 str += "<div class='row m-b-25'>";
-                str += "<div class='col-auto p-r-0'>";
+                str += "<div class='col-auto'>";
                 str += "<i class='feather icon-map-pin bg-simple-c-green feed-icon'></i>";
                 str += "</div>";
                 str += "<div class='col'>";
                 str += "<h6 class='m-b-5'>" + Locations[i].Board_Location_Name_En + "</h6>";
-                str += "<p class='text-muted m-b-0'>" + Locations[i].Board_Location_Description_En + "</p>";
+                str += "<p class='text-muted'>" + Locations[i].Board_Location_Description_En + "</p>";
                 if (Locations[i].Board_Location_OnMap != null && Locations[i].Board_Location_OnMap != string.Empty)
-                    str += "<a href ='" + Locations[i].Board_Location_OnMap + "' target='_blank'><p class='text-muted m-b-0'><i class='feather icon-map-pin m-r-10'></i>Open On Map</p></a>";
+                    str += "<a href ='" + Locations[i].Board_Location_OnMap + "' target='_blank'><p class='text-muted'><i class='feather icon-map-pin m-r-10'></i>Open On Map</p></a>";
+                if (Locations[i].Board_Location_URLVideo != null && Locations[i].Board_Location_URLVideo != string.Empty)
+                    str += "<a href ='" + Locations[i].Board_Location_URLVideo + "' target='_blank'><p class='text-muted'><i class='icofont icofont-youtube-play m-r-10'></i>Open Video Link</p></a>";
                 str += "</div>";
                 str += "</div>";
             }
@@ -235,7 +187,7 @@ namespace Treatment.Pages.Eminutes
 
         private void LoadMeetings(int BoardId)
         {
-            
+
             int statusid = 1;
             List<M_Meeting> ListMeetings = db.M_Meeting.Where(x => x.Board_Id == BoardId).ToList();
             string str = string.Empty;
@@ -264,17 +216,61 @@ namespace Treatment.Pages.Eminutes
             txtMeetings.Text = str;
         }
 
-        public bool GetEditPermission(M_Board board)
+        private bool loadDownloadAttachment(int Board_ID)
         {
             try
             {
-                M_Board_Member member = board.M_Board_Member.Where(x => x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id).FirstOrDefault();
-                if (member.Member_Type_Id == 1 || member.Member_Type_Id == 2)
-                    return true;
-                else
-                    return false;
+                string yourHTMLstring = "";
+                List<M_B_Attachments> M_Attachment = new List<M_B_Attachments>();
+                M_Attachment = db.M_B_Attachments.Where(x => x.Board_Id == Board_ID).ToList<M_B_Attachments>();
+                if (M_Attachment.Count > 0) AttachmentFile.Visible = true; else AttachmentFile.Visible = false;
+                for (int i = 0; i < M_Attachment.Count; i++)
+                {
+                    _fileExt = System.IO.Path.GetExtension(M_Attachment[i].Path);
+                    yourHTMLstring = "<div class='col-md-3'>" +
+                                     "<div class='card thumb-block'>" +
+                                            "<a href='../../../../Pages/Eminutes/media/M_Attachments/" + M_Attachment[i].Path + "' target='_blank'>" +
+                                                getFileImages(_fileExt) +
+                                            "</a>" +
+                                            "<div class='card-footer text-center'>" +
+                                                "<a href='../../../../Pages/Eminutes/media/M_Attachments/" + M_Attachment[i].Path + "' target='_blank'>" + M_Attachment[i].FileName + "</a>" +
+                                             "</div>" +
+                                             "</div>" +
+                                       "</div>";
+                    downloadAttachment.Controls.Add(new LiteralControl(yourHTMLstring));
+                }
+
             }
-            catch { return false; }
+            catch { string messageForm = "Erorr to save data in system"; return false; }
+            return true;
         }
+
+        private string getFileImages(string fileExtention)
+        {
+            string getImageExtention = "";
+            if (fileExtention == ".pdf")
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image'><i class='icofont icofont-file-pdf'></i></span>";
+            else if (fileExtention == ".png" || fileExtention == ".jpeg" || fileExtention == ".jpg" || fileExtention == ".jpe")
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: rgb(18, 132, 161);'><i class='icofont icofont-ui-image'></i></span>";
+            else if (fileExtention == ".doc" || fileExtention == ".docx")
+                getImageExtention = "<span class='jFiler-icon-file f-file f-video'><i class='icofont icofont-file-word'></i></span>";
+            else if (fileExtention == ".ppt" || fileExtention == ".pptx")
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: #ffc107;'><i class='icofont icofont-file-powerpoint'></i></span>";
+            else if (fileExtention == ".xls" || fileExtention == ".xlsx")
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: rgb(33, 200, 114);'><i class='icofont icofont-file-excel'></i></span>";
+            else if (fileExtention == ".txt")
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: rgb(191, 47, 139);'><i class='icofont icofont-file-text'></i></span>";
+            else
+                getImageExtention = "<span class='jFiler-icon-file f-file f-file-ext-doc' style='background-color: rgb(56, 78, 83);'>" + fileExtention + "</span>";
+
+            return getImageExtention;
+        }
+
+        public static string Truncate(string value, int maxLength)
+        {
+            if (string.IsNullOrEmpty(value)) return value;
+            return value.Length <= maxLength ? value : value.Substring(0, maxLength);
+        }
+
     }
 }

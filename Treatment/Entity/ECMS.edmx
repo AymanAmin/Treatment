@@ -99,6 +99,16 @@
           <Property Name="Attendess_Status" Type="int" />
           <Property Name="Create_Date" Type="datetime" />
         </EntityType>
+        <EntityType Name="M_B_Attachments">
+          <Key>
+            <PropertyRef Name="Attachments_Id" />
+          </Key>
+          <Property Name="Attachments_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Board_Id" Type="int" />
+          <Property Name="Path" Type="nvarchar(max)" />
+          <Property Name="FileName" Type="nvarchar(max)" />
+          <Property Name="DateCreation" Type="datetime" />
+        </EntityType>
         <EntityType Name="M_Board">
           <Key>
             <PropertyRef Name="Board_Id" />
@@ -135,6 +145,7 @@
           <Property Name="Board_Location_Description_Ar" Type="ntext" />
           <Property Name="Board_Location_Description_En" Type="ntext" />
           <Property Name="Board_Location_OnMap" Type="ntext" />
+          <Property Name="Board_Location_URLVideo" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="M_Board_Member">
           <Key>
@@ -529,6 +540,18 @@
             </Principal>
             <Dependent Role="M_Attendees">
               <PropertyRef Name="Meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_B_Attachments_M_Board">
+          <End Role="M_Board" Type="Self.M_Board" Multiplicity="0..1" />
+          <End Role="M_B_Attachments" Type="Self.M_B_Attachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board">
+              <PropertyRef Name="Board_Id" />
+            </Principal>
+            <Dependent Role="M_B_Attachments">
+              <PropertyRef Name="Board_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -974,6 +997,7 @@
           <EntitySet Name="Lanuage_Detials" EntityType="Self.Lanuage_Detials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log_File" EntityType="Self.Log_File" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Attendees" EntityType="Self.M_Attendees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_B_Attachments" EntityType="Self.M_B_Attachments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Board" EntityType="Self.M_Board" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Board_Classification" EntityType="Self.M_Board_Classification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="M_Board_Location" EntityType="Self.M_Board_Location" Schema="dbo" store:Type="Tables" />
@@ -1039,6 +1063,10 @@
           <AssociationSet Name="FK_M_Attendees_M_Meeting" Association="Self.FK_M_Attendees_M_Meeting">
             <End Role="M_Meeting" EntitySet="M_Meeting" />
             <End Role="M_Attendees" EntitySet="M_Attendees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_B_Attachments_M_Board" Association="Self.FK_M_B_Attachments_M_Board">
+            <End Role="M_Board" EntitySet="M_Board" />
+            <End Role="M_B_Attachments" EntitySet="M_B_Attachments" />
           </AssociationSet>
           <AssociationSet Name="FK_M_Board_Location_M_Board" Association="Self.FK_M_Board_Location_M_Board">
             <End Role="M_Board" EntitySet="M_Board" />
@@ -1439,6 +1467,11 @@
             <End Role="Treatment_Type" EntitySet="Treatment_Type" />
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
           </AssociationSet>
+          <EntitySet Name="M_B_Attachments" EntityType="ECMSModel.M_B_Attachments" />
+          <AssociationSet Name="FK_M_B_Attachments_M_Board" Association="ECMSModel.FK_M_B_Attachments_M_Board">
+            <End Role="M_Board" EntitySet="M_Board" />
+            <End Role="M_B_Attachments" EntitySet="M_B_Attachments" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Assignment_Status">
           <Key>
@@ -1578,6 +1611,7 @@
           <NavigationProperty Name="M_Board_Type" Relationship="ECMSModel.FK_M_Board_M_Board_Type" FromRole="M_Board" ToRole="M_Board_Type" />
           <NavigationProperty Name="M_Board_Member" Relationship="ECMSModel.FK_M_Board_Member_M_Board" FromRole="M_Board" ToRole="M_Board_Member" />
           <NavigationProperty Name="M_Meeting" Relationship="ECMSModel.FK_M_Meeting_M_Board" FromRole="M_Board" ToRole="M_Meeting" />
+          <NavigationProperty Name="M_B_Attachments" Relationship="ECMSModel.FK_M_B_Attachments_M_Board" FromRole="M_Board" ToRole="M_B_Attachments" />
         </EntityType>
         <EntityType Name="M_Board_Classification">
           <Key>
@@ -1601,6 +1635,7 @@
           <Property Name="Board_Location_OnMap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_Board_Location_M_Board" FromRole="M_Board_Location" ToRole="M_Board" />
           <NavigationProperty Name="M_Meeting" Relationship="ECMSModel.FK_M_Meeting_M_Board_Location" FromRole="M_Board_Location" ToRole="M_Meeting" />
+          <Property Name="Board_Location_URLVideo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="M_Board_Member">
           <Key>
@@ -2489,6 +2524,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="M_B_Attachments">
+          <Key>
+            <PropertyRef Name="Attachments_Id" />
+          </Key>
+          <Property Name="Attachments_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Board_Id" Type="Int32" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreation" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_B_Attachments_M_Board" FromRole="M_B_Attachments" ToRole="M_Board" />
+        </EntityType>
+        <Association Name="FK_M_B_Attachments_M_Board">
+          <End Type="ECMSModel.M_Board" Role="M_Board" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_B_Attachments" Role="M_B_Attachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board">
+              <PropertyRef Name="Board_Id" />
+            </Principal>
+            <Dependent Role="M_B_Attachments">
+              <PropertyRef Name="Board_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2628,6 +2686,7 @@
           <EntitySetMapping Name="M_Board_Location">
             <EntityTypeMapping TypeName="ECMSModel.M_Board_Location">
               <MappingFragment StoreEntitySet="M_Board_Location">
+                <ScalarProperty Name="Board_Location_URLVideo" ColumnName="Board_Location_URLVideo" />
                 <ScalarProperty Name="Board_Location_OnMap" ColumnName="Board_Location_OnMap" />
                 <ScalarProperty Name="Board_Location_Description_En" ColumnName="Board_Location_Description_En" />
                 <ScalarProperty Name="Board_Location_Description_Ar" ColumnName="Board_Location_Description_Ar" />
@@ -2950,6 +3009,17 @@
                 <ScalarProperty Name="Treatment_Type_Name_En" ColumnName="Treatment_Type_Name_En" />
                 <ScalarProperty Name="Treatment_Type_Name_Ar" ColumnName="Treatment_Type_Name_Ar" />
                 <ScalarProperty Name="Treatment_Type_Id" ColumnName="Treatment_Type_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_B_Attachments">
+            <EntityTypeMapping TypeName="ECMSModel.M_B_Attachments">
+              <MappingFragment StoreEntitySet="M_B_Attachments">
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Board_Id" ColumnName="Board_Id" />
+                <ScalarProperty Name="Attachments_Id" ColumnName="Attachments_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

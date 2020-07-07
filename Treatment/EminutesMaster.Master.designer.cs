@@ -13,6 +13,24 @@ namespace Treatment {
     public partial class EminutesMaster {
         
         /// <summary>
+        /// Style control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Style;
+        
+        /// <summary>
+        /// StyleEminutes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal StyleEminutes;
+        
+        /// <summary>
         /// head control.
         /// </summary>
         /// <remarks>
@@ -74,5 +92,14 @@ namespace Treatment {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder Body_Holder;
+        
+        /// <summary>
+        /// Script control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Script;
     }
 }

@@ -23,9 +23,9 @@
                             <asp:Literal ID="LtrMessage" runat="server"></asp:Literal>
                         </div>
                         <div class="col-sm-6 mobile-inputs">
-                            <h4 class="sub-title">Basic Info</h4>
+                            <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-BasicInfo", "Basic Info") %></h4>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Board</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-Board", "Board") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-ui-home primary"></i></span>
                                     <asp:DropDownList ID="txtBoard" runat="server" class="form-control form-txt-primary "></asp:DropDownList>
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Arabic Name</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-ArabicName", "Arabic Name") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-underline primary"></i></span>
                                     <asp:TextBox ID="txtArabicName" runat="server" class="form-control form-txt-primary " placeholder=""></asp:TextBox>
@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">English Name</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-EnglishName", "English Name") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-underline primary"></i></span>
                                     <asp:TextBox ID="txtEnglishName" runat="server" class="form-control form-txt-primary " placeholder=""></asp:TextBox>
@@ -58,17 +58,24 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Map Location</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-MapLocation", "Map Location") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-location-pin primary"></i></span>
                                     <asp:TextBox ID="txtMapLocation" runat="server" class="form-control form-txt-primary " placeholder=""></asp:TextBox>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-VideoURL", "Video URL") %></label>
+                                <div class="col-sm-9 input-group">
+                                    <span class="input-group-addon changeIconColor"><i class="icofont icofont-location-pin primary"></i></span>
+                                    <asp:TextBox ID="txtVideoURL" runat="server" class="form-control form-txt-primary " placeholder=""></asp:TextBox>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-6 mobile-inputs">
-                            <h4 class="sub-title">Addition Info</h4>
+                            <h4 class="sub-title"><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-AdditionInfo", "Addition Info") %></h4>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Arabic Description</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-ArabicDescription", "Arabic Description") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-clip-board primary"></i></span>
                                     <asp:TextBox ID="txtArabicDescription" runat="server" class="form-control form-txt-primary " placeholder="" TextMode="MultiLine" Rows="5"></asp:TextBox>
@@ -79,7 +86,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">English Description</label>
+                                <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-EnglishDescription", "English Description") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-clip-board primary"></i></span>
                                     <asp:TextBox ID="txtEnglishDescription" runat="server" class="form-control form-txt-primary " placeholder="" Rows="5" TextMode="MultiLine"></asp:TextBox>
@@ -92,9 +99,9 @@
                         </div>
 
                         <!-- button save , Update , Delete -->
-                        <div class="col-sm-12 mobile-inputs" style="text-align: center">
+                        <div class="col-sm-12 mobile-inputs" style="text-align: center;margin-right: 47%;">
                             <asp:Button ID="Save" runat="server" Text="Save" class="btn btn-success btn-round col-sm-1" ValidationGroup="Location" OnClick="Save_Click" />
-                            <asp:Button ID="Cancel" runat="server" Text="Cancel" class="btn btn-warning btn-round col-sm-1" />
+                            <asp:Button ID="Cancel" runat="server" Text="Cancel" class="btn btn-warning btn-round col-sm-1" style="margin-right: 0.5%;" />
                         </div>
                     </div>
 
@@ -107,13 +114,14 @@
                             <table id="issue-list-table" class="table dt-responsive width-100">
                                 <thead class="text-left">
                                     <tr>
-                                        <th>Expand</th>
-                                        <th>Actions</th>
-                                        <th>Arabic Name</th>
-                                        <th>English Name</th>
-                                        <th>Location on Map</th>
-                                        <th>Arabic Description</th>
-                                        <th>English Description</th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-Expand", "Expand") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-Actions", "Actions") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-ArabicName", "Arabic Name") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-EnglishName", "English Name") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-LocationonMap", "Location on Map") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-URLVideo", "URL Video") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-ArabicDescription", "Arabic Description") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("BoardLocations-EnglishDescription", "English Description") %></th>
                                         
                                     </tr>
                                 </thead>

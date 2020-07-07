@@ -26,6 +26,7 @@ namespace Treatment.Entity
         public string Board_Location_Description_Ar { get; set; }
         public string Board_Location_Description_En { get; set; }
         public string Board_Location_OnMap { get; set; }
+        public string Board_Location_URLVideo { get; set; }
     
         public virtual M_Board M_Board { get; set; }
         public virtual ICollection<M_Meeting> M_Meeting { get; set; }

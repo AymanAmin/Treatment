@@ -220,6 +220,24 @@ namespace Treatment.Pages.Eminutes {
         protected global::System.Web.UI.WebControls.Literal txtMeetings;
         
         /// <summary>
+        /// AttachmentFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AttachmentFile;
+        
+        /// <summary>
+        /// downloadAttachment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl downloadAttachment;
+        
+        /// <summary>
         /// SubBoard control.
         /// </summary>
         /// <remarks>

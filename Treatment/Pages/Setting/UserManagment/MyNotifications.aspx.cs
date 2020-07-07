@@ -77,14 +77,14 @@ namespace Treatment.Pages.Setting.UserManagment
                 else
                     str += "<div class='col-auto text-right update-meta'>";
                 str += "<a href='" + List_Notify[i].Notification_Link + List_Notify[i].Notification_Id + "'>" +
-                  "<p class='text-muted m-b-0 d-inline'>" + Date_Different((DateTime)List_Notify[i].Notification_Date) + "</p>" +
+                  "<p class='text-muted d-inline'>" + Date_Different((DateTime)List_Notify[i].Notification_Date) + "</p>" +
                   icon +
                   "</a>" +
                  "</div>" +
                 "<div class='col'>" +
                     "<a href='" + List_Notify[i].Notification_Link + List_Notify[i].Notification_Id + "'>" +
                   "<h6>" + emp_name + "</h6>" +
-                  "<p class='text-muted m-b-0'>" + Notification_Description + "</p>" +
+                  "<p class='text-muted'>" + Notification_Description + "</p>" +
                   "</a>" +
                 "</div>" +
                 "</div>";
@@ -151,13 +151,13 @@ namespace Treatment.Pages.Setting.UserManagment
                 }
 
                 str += "<div class='row m-b-25'>" +
-                                "<div class='col-auto p-r-0' style='margin-top:3%;'>" +
+                                "<div class='col-auto' style='margin-top:3%;'>" +
                                 "<a class='btn btn-lg txt-muted btn-icon' href='#' role='button' style='font-size:150%;border-color:" + per.Url_Path + ";color: " + per.Url_Path + " !important;" + marginRight_RTL + "'>" + space + "<i class='" + CssClass + "'></i></a>" +
                                 "</div>" +
                                 "<div class='col'>" +
                                 "<h6 class='m-b-5'>"+ per_name + "</h6>" +
-                                "<p class='text-muted m-b-0'>" + "<span style='color:green'>" + activity_verb + "</span>" + Log_Name + " </p>" +
-                                "<p class='text-muted m-b-0'> <i class='feather icon-clock m-r-10'></i> " + Date_Different((DateTime)activites[i].Log_Date) + "</p>" +
+                                "<p class='text-muted'>" + "<span style='color:green'>" + activity_verb + "</span>" + Log_Name + " </p>" +
+                                "<p class='text-muted'> <i class='feather icon-clock m-r-10'></i> " + Date_Different((DateTime)activites[i].Log_Date) + "</p>" +
                                 "</div>" +
                             "</div>";
             }

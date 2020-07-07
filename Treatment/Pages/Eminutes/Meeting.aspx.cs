@@ -41,7 +41,9 @@ namespace Treatment.Pages.Eminutes
 
            
             M_Board B = db.M_Board.FirstOrDefault(x => x.Board_Id == BoardID);
+			
             Can_Edit = boardClass.GetEditPermission(B);
+            //Can_Edit = boardClass.GetEditPermission(B);
             User_Id = SessionWrapper.LoggedUser.Employee_Id;
             MeetingInfo(MeetingID);
             loadDownloadAttachment(MeetingID);
@@ -100,16 +102,16 @@ namespace Treatment.Pages.Eminutes
                 if (SessionWrapper.LoggedUser.Language_id == 1)
                 {
                     yourHTMLstring2 = "<h6 class='m-b-5'>" + Locations.Board_Location_Name_Ar + "</h6> " +
-                                      "<p class='text-muted m-b-0'>" + Locations.Board_Location_Description_Ar + "</p>";
+                                      "<p class='text-muted'>" + Locations.Board_Location_Description_Ar + "</p>";
                 }
                 else
                 {
                     yourHTMLstring2 = "<h6 class='m-b-5'>" + Locations.Board_Location_Name_En + "</h6> " +
-                                      "<p class='text-muted m-b-0'>" + Locations.Board_Location_Description_En + "</p>";
+                                      "<p class='text-muted'>" + Locations.Board_Location_Description_En + "</p>";
                 }
 
                 if (Locations.Board_Location_OnMap != null && Locations.Board_Location_OnMap != string.Empty)
-                    yourHTMLstring2 += "<a href ='" + Locations.Board_Location_OnMap + "' target='_blank'><p class='text-muted m-b-0'><i class='feather icon-map-pin m-r-3'></i>Open On Map</p></a>";
+                    yourHTMLstring2 += "<a href ='" + Locations.Board_Location_OnMap + "' target='_blank'><p class='text-muted'><i class='feather icon-map-pin m-r-3'></i>Open On Map</p></a>";
 
                 Location.Controls.Add(new LiteralControl(yourHTMLstring2));
             }
@@ -282,7 +284,7 @@ namespace Treatment.Pages.Eminutes
                         else
                             yourHTMLstring += "<h6>" + Employee.Employee_Name_En + "</h6>";
 
-                        //"<p class='text-muted m-b-0'>Graphic Designer</p>" +
+                        //"<p class='text-muted'>Graphic Designer</p>" +
                         yourHTMLstring += "</div>" +
                                          "</a>" +
                                      "</td>" +

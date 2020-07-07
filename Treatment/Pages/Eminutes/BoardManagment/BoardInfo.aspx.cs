@@ -79,6 +79,8 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                         board.End_Date = DateTime.Parse(txtEndDate.Value.ToString());
                     }
 
+                    AttachmentFile(board.Board_Id, addAttachments, @"~\Pages\Eminutes\media\M_Attachments\");
+
                     db.M_Board.Add(board);
                     db.SaveChanges();
 
@@ -125,6 +127,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                     board.Start_Date = DateTime.Parse(txtStartDate.Value.ToString());
                     board.End_Date = DateTime.Parse(txtEndDate.Value.ToString());
                 }
+                AttachmentFile(board.Board_Id, addAttachments, @"~\Pages\Eminutes\media\M_Attachments\");
 
                 db.Entry(board).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
@@ -133,6 +136,40 @@ namespace Treatment.Pages.Eminutes.BoardManagment
             catch { LtrMessage.Text = "<div class='alert alert-danger' role='alert'>System Error...</div>"; return false; }
             LtrMessage.Text = "<div class='alert alert-success' role='alert'>Board update successfully..</div>";
             return true;
+        }
+
+        public void AttachmentFile(int MeetingID, FileUpload Uplofile, string Path)
+        {
+            foreach (HttpPostedFile postfiles in Uplofile.PostedFiles)
+            {
+                if (postfiles.ContentLength > 0 && postfiles.FileName != "")
+                {
+                    M_B_Attachments Fil = db.M_B_Attachments.Create();
+                    Fil.Board_Id = MeetingID;
+                    Fil.FileName = postfiles.FileName;
+                    Fil.Path = UploadFile(postfiles, Path);
+                    Fil.DateCreation = DateTime.Now;
+                    db.M_B_Attachments.Add(Fil);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public string UploadFile(HttpPostedFile fileAttach, string Path)
+        {
+            string Imagepath = " ";
+            if (this.Page.IsValid)
+            {
+                if (!UtilityClass.UploadFileIsValid(ref fileAttach, UtilityClass.ValidFileExtentions))
+                {
+                    //ltrMessage.Text = "<div class='alert alert-danger fade in'><strong>Images only allowed !</strong></div>";
+                    Imagepath = "false";
+                }
+                Imagepath = string.Empty;
+
+                Imagepath = UtilityClass.UploadFilePostedFile(ref fileAttach, Server.MapPath(Path));
+            }
+            return Imagepath;
         }
 
         private void fillDropDown()

@@ -1,4 +1,4 @@
-	"use strict";
+	/*"use strict";
 	$(document).ready(function() {
 	    $('#external-events .fc-event').each(function() {
 
@@ -107,4 +107,4 @@
 	            }
 	        ]
 	    });
-	});
+	});*/
