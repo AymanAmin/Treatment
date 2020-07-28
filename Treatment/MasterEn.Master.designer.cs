@@ -76,6 +76,15 @@ namespace Treatment {
         protected global::System.Web.UI.WebControls.Literal Emp_Name;
         
         /// <summary>
+        /// txtlockscreen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal txtlockscreen;
+        
+        /// <summary>
         /// Menu control.
         /// </summary>
         /// <remarks>

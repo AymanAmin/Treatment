@@ -17,6 +17,9 @@ namespace Treatment.Pages.Eminutes.BoardManagment
         int Location_id = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (SessionWrapper.LoggedUser == null)
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+
             if (!IsPostBack)
             {
                 fillDropDown();
@@ -46,7 +49,10 @@ namespace Treatment.Pages.Eminutes.BoardManagment
         private void fillDropDown()
         {
             List<M_Board> ListBoard = db.M_Board.ToList();
-            ddlFiller.dropDDL(txtBoard, "Board_Id", "Board_Name_En", ListBoard, "Select Board");
+            if(SessionWrapper.LoggedUser.Language_id == 1)
+                ddlFiller.dropDDL(txtBoard, "Board_Id", "Board_Name_Ar", ListBoard, "إختر المجلس");
+            else
+                ddlFiller.dropDDL(txtBoard, "Board_Id", "Board_Name_En", ListBoard, "Select Board");
         }
 
         private void FillData(int locationid)

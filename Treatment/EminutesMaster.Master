@@ -311,9 +311,7 @@
                                                     </a>
                                                 </li>-->
                                                 <li>
-                                                    <a href="../../../../Pages/Setting/Auth/LockScreen.aspx">
-                                                        <i class="feather icon-lock"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-LockScreen", "Lock Screen") %>
-                                                    </a>
+                                                    <asp:Literal ID="txtlockscreen" runat="server"></asp:Literal>
                                                 </li>
                                                 <li>
                                                     <a href="../../../../Pages/Setting/Auth/Logout.ashx">
@@ -501,6 +499,8 @@
      <!-- Custom js -->
      <script type="text/javascript" src=".\..\..\..\Theme\files\assets\pages\advance-elements\select2-custom.js"></script>
 
+    <!-- user-profile -->
+    <script src="..\..\..\..\Theme\files\assets\pages\user-profile.js"></script>
 
   <!-- Change To arabic 
             <script src="..\..\..\..\Theme\files\assets\js\menu\menu-rtl.js"></script> -->

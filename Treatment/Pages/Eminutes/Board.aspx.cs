@@ -22,6 +22,9 @@ namespace Treatment.Pages.Eminutes
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (SessionWrapper.LoggedUser == null)
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+
             int board_id = 0;
             if (Request["BoardId"] == null)
                 Response.Redirect("~/Pages/Eminutes/Home.aspx");
@@ -68,9 +71,17 @@ namespace Treatment.Pages.Eminutes
             // Board Properties
             txtArabicName.Text = Truncate(Current_Board.Board_Name_Ar,20); ;
             txtEnglishName.Text = Truncate(Current_Board.Board_Name_En,20);
-            txtCreatedDate.Text = Truncate(Current_Board.Create_Date.ToString(), 20); ;
-            txtType.Text = Truncate(Current_Board.M_Board_Type.Board_Type_Name_En, 20);
-            txtClassification.Text = Truncate(Current_Board.M_Board_Classification.Board_Classification_Name_En, 20); 
+            txtCreatedDate.Text = Truncate(Current_Board.Create_Date.ToString(), 20);
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+            {
+                txtType.Text = Truncate(Current_Board.M_Board_Type.Board_Type_Name_Ar, 20);
+                txtClassification.Text = Truncate(Current_Board.M_Board_Classification.Board_Classification_Name_Ar, 20);
+            }
+            else
+            {
+                txtType.Text = Truncate(Current_Board.M_Board_Type.Board_Type_Name_En, 20);
+                txtClassification.Text = Truncate(Current_Board.M_Board_Classification.Board_Classification_Name_En, 20);
+            }
 
             //Edit Board info if you are supervisor 
             Classes.EditBoardPermission EBP = new Classes.EditBoardPermission();
@@ -114,20 +125,39 @@ namespace Treatment.Pages.Eminutes
                 str += "<a href = '#!' class='align-middle'>";
                 str += "<img src = '../../../media/Profile/" + emp.Employee_Profile + "' alt='user image' class='img-radius img-40 align-top m-r-15'>";
                 str += "<div class='d-inline-block'>";
-                str += "<h6>" + emp.Employee_Name_En + "</h6>";
+                if(SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<h6>" + emp.Employee_Name_Ar + "</h6>";
+                else
+                    str += "<h6>" + emp.Employee_Name_En + "</h6>";
 
                 //check if there is structure in his information
                 if (emp_struc.Count > 0)
-                    str += "<p class='text-muted'>" + emp_struc[0].Structure.Structure_Name_En + "</p>";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        str += "<p class='text-muted'>" + emp_struc[0].Structure.Structure_Name_Ar + "</p>";
+                    else
+                        str += "<p class='text-muted'>" + emp_struc[0].Structure.Structure_Name_En + "</p>";
                 else if (emp_struc.Count > 1)
                 {
-                    str += "<p class='text-muted'>" + emp_struc[0].Structure.Structure_Name_En + "</p> , ";
-                    str += " <p class='text-muted'>" + emp_struc[1].Structure.Structure_Name_En + "</p>";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                    {
+                        str += "<p class='text-muted'>" + emp_struc[0].Structure.Structure_Name_Ar + "</p> , ";
+                        str += " <p class='text-muted'>" + emp_struc[1].Structure.Structure_Name_Ar + "</p>";
+                    }
+                    else
+                    {
+                        str += "<p class='text-muted'>" + emp_struc[0].Structure.Structure_Name_En + "</p> , ";
+                        str += " <p class='text-muted'>" + emp_struc[1].Structure.Structure_Name_En + "</p>";
+                    }
                 }
                 else
-                    str += "<p class='text-muted'> Unknow </p>";
+                {
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        str += "<p class='text-muted'> غير معروف </p>";
+                    else
+                        str += "<p class='text-muted'> Unknow </p>";
+                }
 
-                str += "</div>";
+                    str += "</div>";
                 str += "</a>";
                 str += "</td>";
                 str += "</tr>";
@@ -165,6 +195,7 @@ namespace Treatment.Pages.Eminutes
 
         private void LoadLocations(List<M_Board_Location> Locations)
         {
+            string Open_On_Map = "Open On Map", Open_Video_Link = "Open Video Link";
             string str = string.Empty;
             for (int i = 0; i < Locations.Count; i++)
             {
@@ -173,12 +204,23 @@ namespace Treatment.Pages.Eminutes
                 str += "<i class='feather icon-map-pin bg-simple-c-green feed-icon'></i>";
                 str += "</div>";
                 str += "<div class='col'>";
-                str += "<h6 class='m-b-5'>" + Locations[i].Board_Location_Name_En + "</h6>";
-                str += "<p class='text-muted'>" + Locations[i].Board_Location_Description_En + "</p>";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                {
+                    Open_On_Map = "افتح علي الخريطة";
+                    Open_Video_Link = "افتح رابط الاجتماع";
+
+                    str += "<h6 class='m-b-5'>" + Locations[i].Board_Location_Name_Ar + "</h6>";
+                    str += "<p class='text-muted'>" + Locations[i].Board_Location_Description_Ar + "</p>";
+                }
+                else
+                {
+                    str += "<h6 class='m-b-5'>" + Locations[i].Board_Location_Name_En + "</h6>";
+                    str += "<p class='text-muted'>" + Locations[i].Board_Location_Description_En + "</p>";
+                }
                 if (Locations[i].Board_Location_OnMap != null && Locations[i].Board_Location_OnMap != string.Empty)
-                    str += "<a href ='" + Locations[i].Board_Location_OnMap + "' target='_blank'><p class='text-muted'><i class='feather icon-map-pin m-r-10'></i>Open On Map</p></a>";
+                    str += "<a href ='" + Locations[i].Board_Location_OnMap + "' target='_blank'><p class='text-muted'><i class='feather icon-map-pin m-r-10'></i>"+ Open_On_Map + "</p></a>";
                 if (Locations[i].Board_Location_URLVideo != null && Locations[i].Board_Location_URLVideo != string.Empty)
-                    str += "<a href ='" + Locations[i].Board_Location_URLVideo + "' target='_blank'><p class='text-muted'><i class='icofont icofont-youtube-play m-r-10'></i>Open Video Link</p></a>";
+                    str += "<a href ='" + Locations[i].Board_Location_URLVideo + "' target='_blank'><p class='text-muted'><i class='icofont icofont-youtube-play m-r-10'></i>"+ Open_Video_Link+"</p></a>";
                 str += "</div>";
                 str += "</div>";
             }
@@ -200,12 +242,26 @@ namespace Treatment.Pages.Eminutes
                 try { statusid = (int)ListMeetings[i].Meeting_Status; } catch { }
                 M_Meeting_Status status = db.M_Meeting_Status.FirstOrDefault(x => x.Meeting_Status_Id == statusid);
                 if (status != null)
-                    if (status.Meeting_Status_Id == 1)
-                        str += "<td><label class='label label-success'>" + status.Meeting_Status__Name_En + "</label></td>";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                    {
+                        if (status.Meeting_Status_Id == 1)
+                            str += "<td><label class='label label-success'>" + status.Meeting_Status__Name_Ar + "</label></td>";
+                        else
+                            str += "<td> <label class='label label-danger'>" + status.Meeting_Status__Name_Ar + "</label></td>";
+                    }
                     else
-                        str += "<td> <label class='label label-danger'>" + status.Meeting_Status__Name_En + "</label></td>";
+                    {
+                        if (status.Meeting_Status_Id == 1)
+                            str += "<td><label class='label label-success'>" + status.Meeting_Status__Name_En + "</label></td>";
+                        else
+                            str += "<td> <label class='label label-danger'>" + status.Meeting_Status__Name_En + "</label></td>";
+                    }
+
+                else if (SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<td> <label class='label label-info'>غير معروف </label></td>";
                 else
                     str += "<td> <label class='label label-info'>Unknow </label></td>";
+
                 str += "<td>" + ListMeetings[i].Meeting_Name_En + "</td>";
                 str += "<td>" + ListMeetings[i].Meeting_Name_Ar + "</td>";
                 DateTime date = DateTime.Parse(ListMeetings[i].Meeting_Date.ToString());
@@ -249,19 +305,19 @@ namespace Treatment.Pages.Eminutes
         {
             string getImageExtention = "";
             if (fileExtention == ".pdf")
-                getImageExtention = "<span class='jFiler-icon-file f-file f-image'><i class='icofont icofont-file-pdf'></i></span>";
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image'><i class='icofont icofont-file-pdf' style='font-size: x-large;'></i></span>";
             else if (fileExtention == ".png" || fileExtention == ".jpeg" || fileExtention == ".jpg" || fileExtention == ".jpe")
-                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: rgb(18, 132, 161);'><i class='icofont icofont-ui-image'></i></span>";
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: rgb(18, 132, 161);'><i class='icofont icofont-ui-image' style='font-size: x-large;'></i></span>";
             else if (fileExtention == ".doc" || fileExtention == ".docx")
-                getImageExtention = "<span class='jFiler-icon-file f-file f-video'><i class='icofont icofont-file-word'></i></span>";
+                getImageExtention = "<span class='jFiler-icon-file f-file f-video'><i class='icofont icofont-file-word' style='font-size: x-large;'></i></span>";
             else if (fileExtention == ".ppt" || fileExtention == ".pptx")
-                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: #ffc107;'><i class='icofont icofont-file-powerpoint'></i></span>";
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: #ffc107;'><i class='icofont icofont-file-powerpoint' style='font-size: x-large;'></i></span>";
             else if (fileExtention == ".xls" || fileExtention == ".xlsx")
-                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: rgb(33, 200, 114);'><i class='icofont icofont-file-excel'></i></span>";
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: rgb(33, 200, 114);'><i class='icofont icofont-file-excel' style='font-size: x-large;'></i></span>";
             else if (fileExtention == ".txt")
-                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: rgb(191, 47, 139);'><i class='icofont icofont-file-text'></i></span>";
+                getImageExtention = "<span class='jFiler-icon-file f-file f-image' style='background-color: rgb(191, 47, 139);'><i class='icofont icofont-file-text' style='font-size: x-large;'></i></span>";
             else
-                getImageExtention = "<span class='jFiler-icon-file f-file f-file-ext-doc' style='background-color: rgb(56, 78, 83);'>" + fileExtention + "</span>";
+                getImageExtention = "<span class='jFiler-icon-file f-file f-file-ext-doc' style='background-color: rgb(56, 78, 83);'  style='font-size: x-large;'>" + fileExtention + "</span>";
 
             return getImageExtention;
         }

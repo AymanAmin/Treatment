@@ -34,6 +34,13 @@ namespace Treatment
             {
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
             }
+
+            string path_and_query = HttpContext.Current.Request.Url.PathAndQuery;
+
+            path_and_query = HttpUtility.UrlEncode(path_and_query);
+            txtlockscreen.Text = "<a  href='../../../../Pages/Setting/Auth/LockScreen.aspx?URL="+ path_and_query + "'>"+
+                                                        "<i class='feather icon-lock'></i> "+FieldNames.getFieldName("Master-LockScreen", "Lock Screen")+
+                                                    "</a>"; 
             //Change Layout to RTL
             if (SessionWrapper.LoggedUser.Language_id != null)
                 if (SessionWrapper.LoggedUser.Language_id == 1)

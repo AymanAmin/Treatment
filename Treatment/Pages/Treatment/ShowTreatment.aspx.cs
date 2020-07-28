@@ -367,18 +367,18 @@ namespace Treatment.Pages.Treatment
                         string requiredReplyDate = "";
                         if (ts.Hours > 0)
                             requiredReplyDate = "<div class='row m-l-20'>" +
-                                                        "<div class='col-xs-3'>" +
+                                                        "<div class='col-xs-12'>" +
                                                             "<h2>" + ts.Days + "&nbsp;&nbsp;&nbsp;</h2>" +
                                                             "<p>ايام&nbsp;&nbsp;&nbsp;&nbsp;</p>" +
                                                         "</div>" +
-                                                        "<div class='col-xs-3'>" +
+                                                        "<div class='col-xs-12'>" +
                                                             "<h2>" + ts.Hours + "&nbsp;&nbsp;&nbsp;</h2>" +
                                                             "<p>ساعات&nbsp;&nbsp;&nbsp;&nbsp;</p>" +
                                                         "</div>" +
                                                     "</div>";
                         else
                             requiredReplyDate = "<div class='row m-l-20'>" +
-                                                    "<div class='col-xs-3'>" +
+                                                    "<div class='col-xs-12'>" +
                                                         "<h2>" + yourDate.ToShortDateString().ToString() + "&nbsp;&nbsp;&nbsp;</h2>" +
                                                     "</div>" +
                                                 "</div>";

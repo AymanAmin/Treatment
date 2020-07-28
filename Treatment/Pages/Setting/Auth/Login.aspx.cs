@@ -20,11 +20,15 @@ namespace Treatment.Pages.Setting.Auth
 
         LogFileModule logFileModule = new LogFileModule();
         String LogData = "";
+        string URL = string.Empty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request["URL"] == null)
+                URL = Request["URL"];
+
             if (SessionWrapper.LoggedUser != null)
-                Response.Redirect("~/");
+                Response.Redirect("~/"+URL);
         }
 
         protected void btLogin_Click(object sender, EventArgs e)
@@ -32,7 +36,7 @@ namespace Treatment.Pages.Setting.Auth
           //string Encrpted_Password = StringCipher.Encrypt(,"Password");
            bool result =  auth_Login(txtEmail.Text, txtPassword.Text);
             if (result)
-                Response.Redirect("~/");
+                Response.Redirect("~/"+URL);
             else
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "notify('top', 'right', 'fa fa-check', 'danger', 'animated fadeInRight', 'animated fadeOutRight','  Validation : ','  " + Error_message + " ! ');", true);

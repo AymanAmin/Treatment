@@ -43,19 +43,28 @@ namespace Treatment.Classes
                 DateTime date = DateTime.Parse(list_board[i].Create_Date.ToString());
                 str += "<div class='col-sm-" + width + "'>" +
                     "<div class='card card-border-" + color + "'>" +
-                    "<div class='card-header'>" +
-                        "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "' class='card-title'><strong>" + list_board[i].Board_Name_En + "</strong> (" + list_board[i].M_Board_Status.Board_Status_Name_En + ")</a>" +
-                        "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "'><span class='label label-" + color + " f-right' >" + date.ToLongDateString() + "</span></a>" +
-                    "</div>" +
+                    "<div class='card-header'>";
+                if(SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "' class='card-title'><strong>" + list_board[i].Board_Name_Ar + "</strong> (" + list_board[i].M_Board_Status.Board_Status_Name_Ar + ")</a>";
+                else
+                    str += "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "' class='card-title'><strong>" + list_board[i].Board_Name_En + "</strong> (" + list_board[i].M_Board_Status.Board_Status_Name_En + ")</a>";
+                str += "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "'><span class='label label-" + color + " f-right' >" + date.ToLongDateString() + "</span></a>";
+                str += "</div>" +
                     "<div class='card-block'>" +
                         "<div class='row'>" +
-                            "<div class='col-sm-12'>" +
-                                "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "'><p class='task-detail'>" + list_board[i].Board_Description_En + ".</p></a>";
+                            "<div class='col-sm-12'>";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "'><p class='task-detail'>" + list_board[i].Board_Description_Ar + ".</p></a>";
+                else
+                    str += "<a href='Board.aspx?BoardId=" + list_board[i].Board_Id + "'><p class='task-detail'>" + list_board[i].Board_Description_En + ".</p></a>";
                 if (List_M.Count > 0)
                 {
                     DateTime nextmeeting_date = DateTime.Parse(List_M[0].Meeting_Date.ToString());
                     string nextmeeting = nextmeeting_date.ToShortDateString();
-                    str += "<a href='Meeting.aspx?BoardId="+ List_M[0].Board_Id + "&MeetingID=" + List_M[0].Meeting_Id + "'><p class='task-due'><strong>Next Meeting : </strong> " + nextmeeting + "</p></a>";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        str += "<a href='Meeting.aspx?BoardId="+ List_M[0].Board_Id + "&MeetingID=" + List_M[0].Meeting_Id + "'><p class='task-due'><strong>Next Meeting : </strong> " + nextmeeting + "</p></a>";
+                    else
+                        str += "<a href='Meeting.aspx?BoardId=" + List_M[0].Board_Id + "&MeetingID=" + List_M[0].Meeting_Id + "'><p class='task-due'><strong>الاجتماع التالي : </strong> " + nextmeeting + "</p></a>";
                 }
 
                            str += "</div>" +
@@ -76,14 +85,21 @@ namespace Treatment.Classes
                 str += "<div class='task-board'>";
                 if (Can_Edit)
                 {
-                    str += "<div class='dropdown-secondary dropdown'>";
-                    str += "<a href='BoardManagment/BoardMember.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#6a5590;'> Edit Member </a>&nbsp;";
+                    string Edit_Member = "Edit Member", Add_Meeting = "Add Meeting",Edit_Board = "Edit Board";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                    {
+                        Edit_Member = "الأعضاء";
+                        Add_Meeting = "إضافة اجتماع";
+                        Edit_Board = "تعديل المجلس";
+                    }
+                        str += "<div class='dropdown-secondary dropdown'>";
+                    str += "<a href='BoardManagment/BoardMember.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#6a5590;'> "+ Edit_Member + " </a>&nbsp;";
                     str += "</div>";
                     str += "<div class='dropdown-secondary dropdown'>";
-                    str += "<a href='MeetingManagment/MeetingInfo.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#583f82;'> Add Meeting </a>&nbsp;";
+                    str += "<a href='MeetingManagment/MeetingInfo.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#583f82;'> "+ Add_Meeting + " </a>&nbsp;";
                     str += "</div>";
                     str += "<div class='dropdown-secondary dropdown'>";
-                    str += "<a href='BoardManagment/BoardInfo.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#452a74;'> Edit Board  </a>&nbsp;";
+                    str += "<a href='BoardManagment/BoardInfo.aspx?BoardId=" + list_board[i].Board_Id + "' class='btn btn-primary btn-mini waves-effect waves-light' style='background-color:#452a74;'> "+ Edit_Board + "  </a>&nbsp;";
                     str += "</div>";
                 }
                 str += "</div>";

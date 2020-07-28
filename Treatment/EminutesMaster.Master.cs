@@ -22,6 +22,13 @@ namespace Treatment
             if (SessionWrapper.LoggedUser == null)
                 Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
 
+            string path_and_query = HttpContext.Current.Request.Url.PathAndQuery;
+
+            path_and_query = HttpUtility.UrlEncode(path_and_query);
+            txtlockscreen.Text = "<a  href='../../../../Pages/Setting/Auth/LockScreen.aspx?URL=" + path_and_query + "'>" +
+                                                        "<i class='feather icon-lock'></i> " + FieldNames.getFieldName("Master-LockScreen", "Lock Screen") +
+                                                    "</a>";
+
             if (SessionWrapper.LoggedUser.Language_id == 1)
             {
                 Style.Text = FieldNames.getSTyleRTL();
@@ -43,7 +50,14 @@ namespace Treatment
                     if (per != null)
                         Permission_List.Add(per);
                 }
-                List<M_Board> ListBoard = db.M_Board.ToList();
+                List<M_Board> ListBoardTemp = db.M_Board.ToList();
+                List<M_Board> ListBoard = new List<M_Board>();
+                for (int i = 0; i < ListBoardTemp.Count;i++)
+                {
+                    M_Board_Member BM = ListBoardTemp[i].M_Board_Member.Where(x => x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id).FirstOrDefault();
+                    if (BM != null)
+                        ListBoard.Add(ListBoardTemp[i]);
+                }
 
                 Employee_Name();
                 MargeBoardToMenu(Permission_List, ListBoard);
@@ -199,9 +213,9 @@ namespace Treatment
                 {
                     if (Permission_List[First_Level].Parent == 0)
                     {
-                        if (CurrentPageSequences.Contains(Permission_List[First_Level].Permission_Id) || (isDashBoard && First_Level == 0))
-                            str += "<li id='" + Permission_List[First_Level].Permission_Id + "' class='pcoded-hasmenu pcoded-trigger'>";
-                        else
+                        //if (CurrentPageSequences.Contains(Permission_List[First_Level].Permission_Id) || (isDashBoard && First_Level == 0))
+                        //    str += "<li id='" + Permission_List[First_Level].Permission_Id + "' class='pcoded-hasmenu pcoded-trigger'>";
+                        //else
                             str += "<li id='" + Permission_List[First_Level].Permission_Id + "' class='pcoded-hasmenu'>";
 
                         // Make diffrent between Menu and board from MargeBoardToMenu function

@@ -147,6 +147,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Entity\DataBase\Treatment Schema and Data.sql" />
     <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2810-5-2020%29.sql" />
     <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2828-06-2020%29.sql" />
     <Content Include="Entity\ECMS.Context.tt">

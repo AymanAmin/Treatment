@@ -17,6 +17,9 @@ namespace Treatment.Pages.Eminutes.BoardManagment
         bool IsUpdate = false;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (SessionWrapper.LoggedUser == null)
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+
             int board_id = 0;
             M_Board boardinfo = null;
             txtStatusofBoard.Enabled = false;
@@ -46,7 +49,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
         protected void Save_Click(object sender, EventArgs e)
         {
             if (IsUpdate)
-               update();
+                update();
             else
             {
                 string str = string.Empty;
@@ -62,7 +65,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                     board.Board_Description_En = txtEnglishDescription.Text;
 
                     board.Board_Type_Id = int.Parse(txtTypeofBoard.SelectedValue.ToString());
-                    board.Board_Status_Id = 2; // int.Parse(txtStatusofBoard.SelectedValue.ToString());
+                    board.Board_Status_Id = 1; // int.Parse(txtStatusofBoard.SelectedValue.ToString());
                     board.Board_Classification_Id = int.Parse(txtClassification.SelectedValue.ToString());
                     board.Parent = int.Parse(txtParent.SelectedValue.ToString());
 
@@ -79,11 +82,26 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                         board.End_Date = DateTime.Parse(txtEndDate.Value.ToString());
                     }
 
-                    AttachmentFile(board.Board_Id, addAttachments, @"~\Pages\Eminutes\media\M_Attachments\");
+                    
 
+                    string message = "";
                     db.M_Board.Add(board);
                     db.SaveChanges();
 
+                    int board_id = db.M_Board.Max(x => x.Board_Id);
+
+                    if (addAttachments != null)
+                        AttachmentFile(board_id, addAttachments, @"~\Pages\Eminutes\media\M_Attachments\");
+
+                    // Update exist member
+                    M_Board_Member member = db.M_Board_Member.Create();
+                    member.Board_Id = board_id;
+                    member.Employee_Id = SessionWrapper.LoggedUser.Employee_Id;
+                    member.Member_Type_Id = 1; // رئيس
+                    db.M_Board_Member.Add(member);
+                    db.SaveChanges();
+                    message = "Board add success...";
+                    LtrMessage.Text = "<div class='alert alert-success' role='alert'>"+ message +"</div>";
                     clear();
                 }
                 catch { LtrMessage.Text = "<div class='alert alert-danger' role='alert'>System Error...</div>"; }
@@ -140,19 +158,25 @@ namespace Treatment.Pages.Eminutes.BoardManagment
 
         public void AttachmentFile(int MeetingID, FileUpload Uplofile, string Path)
         {
-            foreach (HttpPostedFile postfiles in Uplofile.PostedFiles)
-            {
-                if (postfiles.ContentLength > 0 && postfiles.FileName != "")
+           
+                foreach (HttpPostedFile postfiles in Uplofile.PostedFiles)
                 {
-                    M_B_Attachments Fil = db.M_B_Attachments.Create();
-                    Fil.Board_Id = MeetingID;
-                    Fil.FileName = postfiles.FileName;
-                    Fil.Path = UploadFile(postfiles, Path);
-                    Fil.DateCreation = DateTime.Now;
-                    db.M_B_Attachments.Add(Fil);
-                    db.SaveChanges();
+                    if (postfiles.ContentLength > 0 && postfiles.FileName != "")
+                    {
+                        M_B_Attachments Fil = db.M_B_Attachments.Create();
+                        Fil.Board_Id = MeetingID;
+                        Fil.FileName = postfiles.FileName;
+                        Fil.Path = UploadFile(postfiles, Path);
+                        Fil.DateCreation = DateTime.Now;
+                    try
+                    {
+                        db.M_B_Attachments.Add(Fil);
+                        db.SaveChanges();
+                    }
+                    catch { LtrMessage.Text = "<div class='alert alert-danger' role='alert'>System Error in file upload...</div>"; }
                 }
-            }
+               
+        }
         }
 
         public string UploadFile(HttpPostedFile fileAttach, string Path)
@@ -175,16 +199,24 @@ namespace Treatment.Pages.Eminutes.BoardManagment
         private void fillDropDown()
         {
             List<M_Board_Type> ListBoardType = db.M_Board_Type.ToList();
-            ddlFiller.dropDDL(txtTypeofBoard, "Board_Type_Id", "Board_Type_Name_En", ListBoardType, "Select Type");
-
             List<M_Board_Status> ListBoardStatus = db.M_Board_Status.ToList();
-            ddlFiller.dropDDL(txtStatusofBoard, "Board_Status_Id", "Board_Status_Name_En", ListBoardStatus, "Select Status");
-
             List<M_Board_Classification> ListBoardClassification = db.M_Board_Classification.ToList();
-            ddlFiller.dropDDL(txtClassification, "Board_Classification_Id", "Board_Classification_Name_En", ListBoardClassification, "Select Classification");
-
             List<M_Board> ListBoard = db.M_Board.ToList();
-            ddlFiller.dropDDL(txtParent, "Board_Id", "Board_Name_En", ListBoard, "Select Parent");
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+            {
+                ddlFiller.dropDDL(txtTypeofBoard, "Board_Type_Id", "Board_Type_Name_Ar", ListBoardType, "إختر النوع");
+                ddlFiller.dropDDL(txtStatusofBoard, "Board_Status_Id", "Board_Status_Name_Ar", ListBoardStatus, "إختر الحالة");
+                ddlFiller.dropDDL(txtClassification, "Board_Classification_Id", "Board_Classification_Name_Ar", ListBoardClassification, "أختر التصنيف");
+                ddlFiller.dropDDL(txtParent, "Board_Id", "Board_Name_Ar", ListBoard, "اختر المجلس ");
+            }
+            else
+            {
+                ddlFiller.dropDDL(txtTypeofBoard, "Board_Type_Id", "Board_Type_Name_En", ListBoardType, "Select Type");
+                ddlFiller.dropDDL(txtStatusofBoard, "Board_Status_Id", "Board_Status_Name_En", ListBoardStatus, "Select Status");
+                ddlFiller.dropDDL(txtClassification, "Board_Classification_Id", "Board_Classification_Name_En", ListBoardClassification, "Select Classification");
+                ddlFiller.dropDDL(txtParent, "Board_Id", "Board_Name_En", ListBoard, "Select Parent");
+            }
+
         }
 
         private void clear()

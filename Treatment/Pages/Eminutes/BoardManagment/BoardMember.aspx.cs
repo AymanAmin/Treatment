@@ -14,6 +14,8 @@ namespace Treatment.Pages.Eminutes.BoardManagment
         ECMSEntities db = new ECMSEntities();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (SessionWrapper.LoggedUser == null)
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
 
             if (Request["BoardId"] == null)
                 Response.Redirect("~/Pages/Eminutes/Home.aspx");
@@ -30,10 +32,17 @@ namespace Treatment.Pages.Eminutes.BoardManagment
         private void fillDropDown()
         {
             List<Employee> ListEmployee = db.Employees.ToList();
-            ddlFiller.dropDDL(txtEmployees, "Employee_Id", "Employee_Name_En", ListEmployee, "Select Member");
-
             List<M_Member_Type> ListMemberType = db.M_Member_Type.ToList();
-            ddlFiller.dropDDL(txtType, "Member_Type_Id", "Member_Type_Name_En", ListMemberType, "Select Type");
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+            {
+                ddlFiller.dropDDL(txtEmployees, "Employee_Id", "Employee_Name_Ar", ListEmployee, "إختر عضو");
+                ddlFiller.dropDDL(txtType, "Member_Type_Id", "Member_Type_Name_Ar", ListMemberType, "اختر النوع");
+            }
+            else
+            {
+                ddlFiller.dropDDL(txtEmployees, "Employee_Id", "Employee_Name_En", ListEmployee, "Select Member");
+                ddlFiller.dropDDL(txtType, "Member_Type_Id", "Member_Type_Name_En", ListMemberType, "Select Type");
+            }
         }
 
         protected void Save_Click(object sender, EventArgs e)
@@ -107,20 +116,32 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 str += "<img src = '../../../../media/Profile/" + ListMember[i].Employee.Employee_Profile + "' alt='User-Image'>";
                 str += "</div>";
                 str += "<br />";
-                str += "<span class='f-15 " + color + "'>"+ ListMember[i].M_Member_Type.Member_Type_Name_En + "</span>";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<span class='f-15 " + color + "'>"+ ListMember[i].M_Member_Type.Member_Type_Name_Ar + "</span>";
+                else
+                    str += "<span class='f-15 " + color + "'>" + ListMember[i].M_Member_Type.Member_Type_Name_En + "</span>";
                 str += "<br />";
-                str += "<span class='f-20 " + color + "'>"+ ListMember[i].Employee.Employee_Name_En + "</span>";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<span class='f-20 " + color + "'>"+ ListMember[i].Employee.Employee_Name_Ar + "</span>";
+                else
+                    str += "<span class='f-20 " + color + "'>" + ListMember[i].Employee.Employee_Name_En + "</span>";
                 List<Employee_Structure> emp_struc = ListMember[i].Employee.Employee_Structure.ToList();
                 if (emp_struc.Count > 0)
                 {
                     str += "<br />";
-                    str += "<p  class='f-15 " + color + "'>" + emp_struc[0].Structure.Structure_Name_En + "</p>";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        str += "<p  class='f-15 " + color + "'>" + emp_struc[0].Structure.Structure_Name_Ar + "</p>";
+                    else
+                        str += "<p  class='f-15 " + color + "'>" + emp_struc[0].Structure.Structure_Name_En + "</p>";
                 }
                 str += "<br />";
                 //str += "<button class='btn btn-info btn-icon' type='button' data-toggle='modal' data-target='#add-model'>&nbsp;<i class='icofont icofont-edit'></i></button>&nbsp;";
-                str += "<a href ='DeleteMembers.ashx?BoardId=" + board_id + "&MemberTableId="+ ListMember[i].Board_Member_Id+ "&EmpId="+ ListMember[i].Employee_Id+ "' class='btn btn-warning btn-round'>&nbsp;<i class='icofont icofont-ui-delete'> Remove</i></a>";
-                
-                
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    str += "<a href ='DeleteMembers.ashx?BoardId=" + board_id + "&MemberTableId="+ ListMember[i].Board_Member_Id+ "&EmpId="+ ListMember[i].Employee_Id+ "' class='btn btn-warning btn-round'>&nbsp;<i class='icofont icofont-ui-delete'> حذف </i></a>";
+                else
+                    str += "<a href ='DeleteMembers.ashx?BoardId=" + board_id + "&MemberTableId=" + ListMember[i].Board_Member_Id + "&EmpId=" + ListMember[i].Employee_Id + "' class='btn btn-warning btn-round'>&nbsp;<i class='icofont icofont-ui-delete'> Remove </i></a>";
+
+
                 str += "</div>";
                 str += "</div>";
                 str += "</div>";

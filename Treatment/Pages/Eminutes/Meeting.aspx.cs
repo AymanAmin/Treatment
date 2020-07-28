@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Treatment.Classes;
 using Treatment.Entity;
 using Website.Classes;
 
@@ -21,10 +22,13 @@ namespace Treatment.Pages.Eminutes
         int User_Id = 0;
         string _fileExt;
         bool Can_Edit;
-        Board boardClass = new Board();
+        EditBoardPermission boardClass = new EditBoardPermission();
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (SessionWrapper.LoggedUser == null)
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+
             if (Request["BoardId"] == null)
                 Response.Redirect("~/Pages/Eminutes/Home.aspx");
             else

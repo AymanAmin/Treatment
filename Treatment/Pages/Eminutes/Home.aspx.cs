@@ -12,7 +12,6 @@ namespace Treatment.Pages.Eminutes
     public partial class Home : System.Web.UI.Page
     {
         ECMSEntities db = new ECMSEntities();
-        bool Can_Edit = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (SessionWrapper.LoggedUser == null)
@@ -27,9 +26,6 @@ namespace Treatment.Pages.Eminutes
             Classes.EditBoardPermission EBP = new Classes.EditBoardPermission();
             txtBoard.Text = EBP.LoadBoad(list_board,"6");
         }
-       
-        
 
-        
     }
 }

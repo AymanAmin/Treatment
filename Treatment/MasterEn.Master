@@ -367,9 +367,8 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="../../../../Pages/Setting/Auth/LockScreen.aspx">
-                                                        <i class="feather icon-lock"></i><% = Treatment.Classes.FieldNames.getFieldName("Master-LockScreen", "Lock Screen") %>
-                                                    </a>
+                                                    <asp:Literal ID="txtlockscreen" runat="server"></asp:Literal>
+                                                    
                                                 </li>
                                                 <li>
                                                     <a href="../../../../Pages/Setting/Auth/Logout.ashx">

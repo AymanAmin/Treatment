@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Treatment.Classes;
 using Treatment.Entity;
+using Website.Classes;
 
 namespace Treatment.Pages.Eminutes.BoardManagment
 {
@@ -18,6 +19,9 @@ namespace Treatment.Pages.Eminutes.BoardManagment
         String LogData = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (SessionWrapper.LoggedUser == null)
+                Response.Redirect("~/Pages/Setting/Auth/Login.aspx");
+
             if (Request["BoardId"] != null && Request["TypeProcess"] != null)
             {
                 BoardId = int.Parse(Request["BoardId"].ToString());
@@ -30,7 +34,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
             {
             }*/
             db.Configuration.LazyLoadingEnabled = true;
-            List<M_Board> ListBoards = db.M_Board.ToList();
+            List<M_Board> ListBoards = db.M_Board.OrderByDescending(x => x.Create_Date).ToList();
             LoadBoard(ListBoards);
         }
 
@@ -71,17 +75,21 @@ namespace Treatment.Pages.Eminutes.BoardManagment
 
                 str += "<tr>";
                 str += "<td class='txt-primary'>"+ FieldNames.getFieldName("BoardApprove-Expand", "Expand") + "</td>";
-                
+
+                string StatusName = ListBoards[i].M_Board_Status.Board_Status_Name_En;
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    StatusName = ListBoards[i].M_Board_Status.Board_Status_Name_Ar;
+
                 if (ListBoards[i].Board_Status_Id == 1)// New
-                { TempstrStatus += "<td> <label class='label label-success'>" + ListBoards[i].M_Board_Status.Board_Status_Name_En + "</label></td>"; PendingStatus = string.Empty; AvailableStatus = string.Empty; DeletedStatus = string.Empty; }
+                { TempstrStatus += "<td> <label class='label label-success'>" + StatusName + "</label></td>"; PendingStatus = string.Empty; AvailableStatus = string.Empty; DeletedStatus = string.Empty; }
                 else if (ListBoards[i].Board_Status_Id == 2) // Pending
-                { TempstrStatus += "<td> <label class='label' style='background-color:#452a74;'>" + ListBoards[i].M_Board_Status.Board_Status_Name_En + "</label></td>"; AvailableStatus = string.Empty; DeletedStatus = string.Empty; }
+                { TempstrStatus += "<td> <label class='label' style='background-color:#452a74;'>" + StatusName + "</label></td>"; AvailableStatus = string.Empty; DeletedStatus = string.Empty; }
                 else if (ListBoards[i].Board_Status_Id == 3) // Available
-                { TempstrStatus += "<td> <label class='label label-info'>" + ListBoards[i].M_Board_Status.Board_Status_Name_En + "</label></td>"; CloseStatus = string.Empty; DeletedStatus = string.Empty; }
+                { TempstrStatus += "<td> <label class='label label-info'>" + StatusName + "</label></td>"; CloseStatus = string.Empty; DeletedStatus = string.Empty; }
                 else if (ListBoards[i].Board_Status_Id == 4) // Closed
-                { TempstrStatus += "<td> <label class='label' style='background-color:black;'>" + ListBoards[i].M_Board_Status.Board_Status_Name_En + "</label></td>"; AvailableStatus = string.Empty; DeletedStatus = string.Empty; }
+                { TempstrStatus += "<td> <label class='label' style='background-color:black;'>" + StatusName + "</label></td>"; AvailableStatus = string.Empty; DeletedStatus = string.Empty; }
                 else // Deleted
-                { TempstrStatus += "<td> <label class='label label-danger'>" + ListBoards[i].M_Board_Status.Board_Status_Name_En + "</label></td>"; AvailableStatus = string.Empty; CloseStatus = string.Empty; }
+                { TempstrStatus += "<td> <label class='label label-danger'>" + StatusName + "</label></td>"; AvailableStatus = string.Empty; CloseStatus = string.Empty; }
 
                 str += "<td class='text-left'> ";
                 if (NewStatus == string.Empty || true) str += "<a href= '../../../../Pages/Eminutes/BoardManagment/BoardApprove.aspx?BoardId=" + ListBoards[i].Board_Id + "&TypeProcess=1' class='" + NewStatus + "' style='color:green;font-size: 20px;'> <i class='icofont icofont-newspaper'></i>&nbsp;&nbsp; </a>";
