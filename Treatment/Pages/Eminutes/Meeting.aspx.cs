@@ -42,7 +42,6 @@ namespace Treatment.Pages.Eminutes
            
             M_Board B = db.M_Board.FirstOrDefault(x => x.Board_Id == BoardID);
 			
-            Can_Edit = boardClass.GetEditPermission(B);
             //Can_Edit = boardClass.GetEditPermission(B);
             User_Id = SessionWrapper.LoggedUser.Employee_Id;
             MeetingInfo(MeetingID);
