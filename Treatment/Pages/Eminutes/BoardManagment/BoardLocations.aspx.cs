@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Treatment.Classes;
 using Treatment.Entity;
 using Website.Classes;
 
@@ -25,6 +26,14 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 fillDropDown();
             }
 
+            Save.Text = "Save";
+            Cancel.Text = "Cancel";
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+            {
+                Save.Text = "حفظ";
+                Cancel.Text = "الغاء";
+            }
+
             if (Request["BoardId"] != null)
             {
                 board_id = int.Parse(Request["BoardId"].ToString());
@@ -34,6 +43,8 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 {
                     Location_id = int.Parse(Request["LocationId"].ToString());
                     Save.Text = "Update";
+                    if(SessionWrapper.LoggedUser.Language_id == 1)
+                        Save.Text = "تحديث";
                     IsUpdate = true;
                 }
             }
@@ -69,7 +80,10 @@ namespace Treatment.Pages.Eminutes.BoardManagment
             }
             else
             {
-                Save.Text = "Save";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    Save.Text = "حفظ";
+                else
+                    Save.Text = "Save";
                 IsUpdate = true;
             }
         }
@@ -82,7 +96,7 @@ namespace Treatment.Pages.Eminutes.BoardManagment
             for (int i = 0; i < ListLocations.Count; i++)
             {
                 str += "<tr>";
-                str += "<td class='txt-primary'>Expand</td>";
+                str += "<td class='txt-primary'>"+FieldNames.getFieldName("BoardLocations-Expand", "Expand")+"</td>";
                 str += "<td> <a href= '../../../../Pages/Eminutes/BoardManagment/BoardLocations.aspx?BoardId=" + ListLocations[i].Board_Id + "&LocationId=" + ListLocations[i].Board_Location_Id + "' style='color:#00c3da;'> <i class='icofont icofont-ui-edit'></i>&nbsp;&nbsp; </a>";
                 str += "<a href= '../../../../Pages/Eminutes/BoardManagment/BoardLocations.aspx?BoardId=" + ListLocations[i].Board_Id + "&LocationId=" + ListLocations[i].Board_Location_Id + "' style='color:red;'> <i class='icofont icofont-ui-delete'> </i></a></td>";
                 str += "<td>" + ListLocations[i].Board_Location_Name_Ar + "</td>";
@@ -116,11 +130,18 @@ namespace Treatment.Pages.Eminutes.BoardManagment
 
                     db.M_Board_Location.Add(locations);
                     db.SaveChanges();
-                    LtrMessage.Text = "<div class='alert alert-success' role='alert'>Location Added successfully..</div>";
+                    string messages = "Location Added successfully..";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        messages = "تم اضافة الموقع بنجاح";
+                    LtrMessage.Text = "<div class='alert alert-success' role='alert'>"+messages+"</div>";
                     LoadLocations();
                     Clear();
                 }
-                catch { LtrMessage.Text = "<div class='alert alert-danger' role='alert'>System Error...</div>"; }
+                catch {
+                    string messages = "System Error...";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        messages = "حدث خطاء في النظام...";
+                    LtrMessage.Text = "<div class='alert alert-danger' role='alert'>"+messages+"</div>"; }
             }
         }
 
@@ -138,10 +159,18 @@ namespace Treatment.Pages.Eminutes.BoardManagment
 
                 db.Entry(locations).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
-                LtrMessage.Text = "<div class='alert alert-success' role='alert'>Location Updated successfully..</div>";
+                string messages = "Location Updated successfully..";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messages = "تم تحديث بيانات الموقع بنجاح";
+                LtrMessage.Text = "<div class='alert alert-success' role='alert'>"+messages+"</div>";
                 LoadLocations();
             }
-            catch { LtrMessage.Text = "<div class='alert alert-danger' role='alert'>System Error...</div>"; }
+            catch {
+                string messages = "System Error...";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messages = "حدث خطاء في النظام...";
+                LtrMessage.Text = "<div class='alert alert-danger' role='alert'>" + messages + "</div>";
+            }
         }
 
         private void Clear()

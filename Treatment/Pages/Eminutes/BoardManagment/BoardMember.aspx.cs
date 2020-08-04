@@ -64,6 +64,8 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                     member.Member_Type_Id = int.Parse(txtType.SelectedValue);
                     db.M_Board_Member.Add(member);
                     message = "Member Added successfully..";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        message = "تم اضافة عضو بنجاح";
                 }
                 else
                 {
@@ -75,16 +77,24 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                     member.Board_Member_Id = IsMemberExisted.Board_Member_Id;
                     db.Entry(member).State = System.Data.EntityState.Modified;
                     message = "Member updated successfully..";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        message = "تم تحديث صلاحية عضو بنجاح";
                 }
                 db.SaveChanges();
-                LtrMessage.Text = "<div class='alert alert-success' role='alert'>"+ message + "</div>";
+                LtrMessage.Text = "<div class='alert alert-success' role='alert'>" + message + "</div>";
 
                 // Reload data
                 List<M_Board_Member> ListMember = db.M_Board_Member.Where(x => x.Board_Id == board_id).ToList();
                 fillDropDown();
-                LoadMember(ListMember , board_id);
+                LoadMember(ListMember, board_id);
             }
-            catch { LtrMessage.Text = "<div class='alert alert-danger' role='alert'>System Error...</div>"; }
+            catch
+            {
+                string messages = "System Error...";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messages = "حدث خطاء في النظام...";
+                LtrMessage.Text = "<div class='alert alert-danger' role='alert'>" + messages + "</div>";
+            }
         }
 
         private void LoadMember(List<M_Board_Member> ListMember, int board_id)
