@@ -496,7 +496,7 @@ namespace Treatment.Pages.Treatment
                                             "</div>" +
                                             "<div class='media-body col-xs-12'>" +
                                                 "<h6 class='d-inline-block'>" + langEmployeeName + getWorkDelegation((bool)treatmentDetial[i].Employee_Structure.Type_Delegation) + "</h6>" +
-                                                "<div class='f-13 text-muted m-b-10 p-r-10'>" + langStructureName + "</div>" +
+                                                "<div class='f-13 text-muted m-b-10'>" + langStructureName + "</div>" +
                                             "</div>" +
                                         "</div>";
                         if ((bool)treatmentDetial[i].Treatment_Copy_To)
@@ -522,7 +522,7 @@ namespace Treatment.Pages.Treatment
                                             "</div>" +
                                             "<div class='media-body col-xs-12'>" +
                                                 "<h6 class='d-inline-block'>" + langEmployeeName + getWorkDelegation((bool)treatmentDetial[0].Treatment_Master.Employee_Structure.Type_Delegation) + "</h6>" +
-                                                "<div class='f-13 text-muted m-b-10 p-r-10'>" + langStructureName + "</div>" +
+                                                "<div class='f-13 text-muted m-b-10'>" + langStructureName + "</div>" +
                                             "</div>" +
                                         "</div>";
                     createByTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
