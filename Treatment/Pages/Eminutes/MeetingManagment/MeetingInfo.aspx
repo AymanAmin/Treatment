@@ -96,7 +96,7 @@
                                 <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("MeetingInfo-MeetingDate", "Meeting Date") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-calendar primary"></i></span>
-                                    <input id="MeetingDate" type="date" runat="server" class="form-control form-txt-primary "/>
+                                    <input id="MeetingDate" type="date" runat="server" class="form-control form-txt-primary " />
                                 </div>
                                       <div class="col-sm-3"></div>
                                 <div class="col-sm-9">

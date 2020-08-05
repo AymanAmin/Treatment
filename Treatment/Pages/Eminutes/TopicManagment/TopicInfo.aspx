@@ -23,7 +23,7 @@
                                 <label class="col-sm-3 col-form-label"><% = Treatment.Classes.FieldNames.getFieldName("TopicInfo-MeetingName", "Meeting Name") %></label>
                                 <div class="col-sm-9 input-group">
                                     <span class="input-group-addon changeIconColor"><i class="icofont icofont-underline primary"></i></span>
-                                    <asp:TextBox ID="MeetingName" runat="server" class="form-control form-txt-primary " placeholder=""></asp:TextBox>
+                                    <asp:TextBox ID="MeetingName" runat="server" class="form-control form-txt-primary " placeholder="" ReadOnly="true"></asp:TextBox>
                                 </div>
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9">

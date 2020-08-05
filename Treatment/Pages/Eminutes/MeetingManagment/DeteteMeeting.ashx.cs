@@ -41,13 +41,26 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
             String LogData = "";
             try
             {
-                var DelMeeting = db.M_Meeting.First(x => x.Meeting_Id == Meeting_id);
-                db.M_Meeting.Remove(DelMeeting);
-                db.SaveChanges();
-                /* Add it to log file */
-                LogData = "data:" + JsonConvert.SerializeObject(DelMeeting, logFileModule.settings);
-                logFileModule.logfile(10, "حذف الإجتماع", "Delete Meeting", LogData);
+                var M_Topic = db.M_Topic.Where(x => x.Meeting_Id == Meeting_id).ToList();
+                 if(M_Topic.Count==0){
+                    
+                    var widgets = db.M_M_Attachments.Where(x => x.Meeting_Id == Meeting_id).ToList();
+                    if (widgets.Count > 0)
+                    {
+                        foreach (M_M_Attachments widget in widgets)
+                        {
+                            db.M_M_Attachments.Remove(widget);
+                        }
+                    }
+                     db.SaveChanges();
 
+                    var DelMeeting = db.M_Meeting.First(x => x.Meeting_Id == Meeting_id);
+                    db.M_Meeting.Remove(DelMeeting);
+                    db.SaveChanges();
+                    /* Add it to log file */
+                    LogData = "data:" + JsonConvert.SerializeObject(DelMeeting, logFileModule.settings);
+                    logFileModule.logfile(10, "حذف الإجتماع", "Delete Meeting", LogData);
+                }
             }
             catch (Exception e)
             {

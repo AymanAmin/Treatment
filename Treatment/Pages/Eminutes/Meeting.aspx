@@ -5,6 +5,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title><% = Treatment.Classes.FieldNames.getFieldName("Meeting-Title", "Eminutes - Meetings") %></title>
+     <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script data-require="bootstrap@*" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
      <script>
          setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Meeting Name "; }, 1);
     </script>
@@ -28,6 +30,22 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
 
+   <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   <% =  Treatment.Classes.FieldNames.getFieldName("Meeting-DeleteHeader", "Delete Topic") %>
+                </div>
+                <div class="modal-body">
+                    <%  = Treatment.Classes.FieldNames.getFieldName("Meeting-DeleteMessage", "Are you sure you want to delete this Topic?") %>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><%  = Treatment.Classes.FieldNames.getFieldName("Meeting-Cancel", "Cancel") %></button>
+                    <a class="btn btn-danger btn-ok" style="color:white;"><% = Treatment.Classes.FieldNames.getFieldName("Meeting-Delete", "Delete") %></a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xl-4 col-lg-12 push-xl-8 task-detail-right">
 
@@ -270,4 +288,11 @@
                 <!--End Approval Recommendation-->
             </div>
           </div>
+
+    <script>
+          $('#confirm-delete').on('show.bs.modal', function (e) {
+              $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+              $('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
+          });
+    </script>
 </asp:Content>

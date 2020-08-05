@@ -96,7 +96,7 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The  Meeting was Sucessfully saved in system ! ');", true);
                 if(MeetingID==0)ClearForm();
 
-                Response.Redirect("~/Pages/Eminutes/Board.aspx?BoardId=" + BoardID);
+                Response.Redirect("~/Pages/Eminutes/Meeting.aspx?MeetingID= "+ MeetingID + " &BoardId=" + BoardID);
             }
             else
             {
@@ -203,7 +203,8 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
             BoardName.Text = BName.Board_Name_En;
             ArabicName.Text= Meet.Meeting_Name_Ar;
             EnglishName.Text= Meet.Meeting_Name_En;
-            MeetingDate.Value = Meet.Meeting_Date.ToString();
+            string MDate =DateTime.Parse( Meet.Meeting_Date.ToString()).Date.ToString("yyyy-MM-dd");
+            MeetingDate.Value = MDate;
             timepicker.Text= Meet.Meeting_Time.ToString();
             MeetingStatus.SelectedValue= Meet.Meeting_Status.ToString();
             Minutes.Text= Meet.Meeting_Minutes;

@@ -46,7 +46,7 @@ namespace Treatment.Pages.Eminutes
            
             M_Board B = db.M_Board.FirstOrDefault(x => x.Board_Id == BoardID);
 			
-            //Can_Edit = boardClass.GetEditPermission(B);
+            Can_Edit = boardClass.GetEditPermission(B);
             User_Id = SessionWrapper.LoggedUser.Employee_Id;
             MeetingInfo(MeetingID);
             loadDownloadAttachment(MeetingID);
@@ -83,8 +83,8 @@ namespace Treatment.Pages.Eminutes
                 EnglishName.InnerText = Meeting.Meeting_Name_En;
 
                 ArabicName.InnerText = Meeting.Meeting_Name_Ar;
-
-                MeetingDateInfo.InnerText = Meeting.Meeting_Date.ToString();
+                string MDate = DateTime.Parse(Meeting.Meeting_Date.ToString()).Date.ToString("yyyy-MM-dd");
+                MeetingDateInfo.InnerText = MDate;
 
                 TimeOfMeeting.InnerText = Meeting.Meeting_Time.ToString();
 
@@ -114,7 +114,12 @@ namespace Treatment.Pages.Eminutes
                 }
 
                 if (Locations.Board_Location_OnMap != null && Locations.Board_Location_OnMap != string.Empty)
-                    yourHTMLstring2 += "<a href ='" + Locations.Board_Location_OnMap + "' target='_blank'><p class='text-muted'><i class='feather icon-map-pin m-r-3'></i>Open On Map</p></a>";
+                {
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        yourHTMLstring2 += "<a href ='" + Locations.Board_Location_OnMap + "' target='_blank'><p class='text-muted'><i class='feather icon-map-pin m-r-3'></i>افتح الخريطة</p></a>";
+                    else
+                        yourHTMLstring2 += "<a href ='" + Locations.Board_Location_OnMap + "' target='_blank'><p class='text-muted'><i class='feather icon-map-pin m-r-3'></i>Open On Map</p></a>";
+                }
 
                 Location.Controls.Add(new LiteralControl(yourHTMLstring2));
             }
@@ -228,7 +233,7 @@ namespace Treatment.Pages.Eminutes
                         yourHTMLstring += "<td> <label class='label label-info'>Unknow </label></td>";
                     //"<td><span class='label label-danger'>" + "Close" + "</span></td>" +
                     yourHTMLstring += "<td><a href='TopicManagment/TopicInfo.aspx?BoardID=" + BoardID + "&MeetingID=" + Meeting_Id + "&TopicID=" + Topic[i].Topic_Id + "'  ><i class='icofont icofont-ui-edit text-info h6'></i> &nbsp;&nbsp; </a>" +
-                    "<a href='TopicManagment/deleteTopic.ashx?BoardId=" + BoardID + "&MeetingId=" + Meeting_Id + "&TopicId=" + Topic[i].Topic_Id + "'><i class='icofont icofont-ui-delete text-danger h6'></i></a></td>" +
+                    "<a href='#' data-href='TopicManagment/deleteTopic.ashx?BoardId=" + BoardID + "&MeetingId=" + Meeting_Id + "&TopicId=" + Topic[i].Topic_Id + "' data-toggle='modal' data-target='#confirm-delete'><i class='icofont icofont-ui-delete text-danger h6'></i></a></td>" +
                     "<td>" + Topic[i].Topic_Description_En + "</td>" +
                     "<td>" + Topic[i].Topic_Recommendation_En + "</td>" +
                     "<td>" + Topic[i].Topic_Recommendation_Doc_En + "</td>" +
@@ -343,6 +348,7 @@ namespace Treatment.Pages.Eminutes
     
 
             string yourHTMLStringTrack, isTrackBorder = "";
+            string TypeOfVote = "";
             var Votes = db.M_Recommendation.Where(x => x.Meeting_Id == Meeting_Id).ToList();
             if (Votes.Count > 0) {
                 ShowRecommendation.Visible = true;
@@ -353,21 +359,26 @@ namespace Treatment.Pages.Eminutes
                 if (Votes[i].Recommendation_Status == 1)
                 {
                     isTrackBorder = "border-left:3px solid #0ac282";
+                    if (SessionWrapper.LoggedUser.Language_id == 1) TypeOfVote = "<lable class='label label-success'>موافق</lable>"; else TypeOfVote = "<lable class='label label-success'>Approve</lable>";
                 } else if (Votes[i].Recommendation_Status == 2)
                 {
                     isTrackBorder = "border-left:3px solid #fe9365";
+                    if (SessionWrapper.LoggedUser.Language_id == 1) TypeOfVote = "<lable class='label label-warning'>متحفظ</lable>"; else TypeOfVote = "<lable class='label label-warning'>Discreet</lable>";
                 }
                 else if (Votes[i].Recommendation_Status == 3)
                 {
                     isTrackBorder = "border-left:3px solid #eb3422";
+                    if (SessionWrapper.LoggedUser.Language_id == 1) TypeOfVote = "<lable class='label label-danger'>غير موافق</lable>"; else TypeOfVote = "<lable class='label label-danger'>Not Approve</lable>";
                 }
                 else if (Votes[i].Recommendation_Status == 4)
                 {
                     isTrackBorder = "border-Top:3px solid #0ac282";
+                    if (SessionWrapper.LoggedUser.Language_id == 1) TypeOfVote = "<lable class='label label-success'>قبول</lable>"; else TypeOfVote = "<lable class='label label-success'>Approvel</lable>";
                 }
                 else if (Votes[i].Recommendation_Status == 5)
                 {
                     isTrackBorder = "border-Top:3px solid #eb3422";
+                    if (SessionWrapper.LoggedUser.Language_id == 1) TypeOfVote = "<lable class='label label-danger'>رفض</lable>"; else TypeOfVote = "<lable class='label label-danger'>Not Approvel</lable>";
                 }
                 // isTrackBorder = "0px solid #fe9365";
                 int BM_Id = 0;
@@ -377,9 +388,9 @@ namespace Treatment.Pages.Eminutes
                 yourHTMLStringTrack = "<div class='sortable-moves col-xs-12' style='" + isTrackBorder + "'>" +
                                             "<img class='img-fluid p-absolute' src='../../../../media/Profile/" + Emp[0].e.Employee_Profile + "' alt=''>";
                 if (SessionWrapper.LoggedUser.Language_id == 1)
-                    yourHTMLStringTrack += "<h6 class='d-inline-block'>" + Emp[0].e.Employee_Name_Ar + "</h6>";
+                    yourHTMLStringTrack += "<h6 class='d-inline-block'>" + Emp[0].e.Employee_Name_Ar + " - " + TypeOfVote + "</h6>";
                 else
-                    yourHTMLStringTrack += "<h6 class='d-inline-block'>" + Emp[0].e.Employee_Name_En + "</h6>";
+                    yourHTMLStringTrack += "<h6 class='d-inline-block'>" + Emp[0].e.Employee_Name_En + " - " + TypeOfVote + "</h6>";
 
                 yourHTMLStringTrack += "<span class='label label-default f-right' style='background: linear-gradient(to right, #452a74, #f6f7fb);'>" + Votes[i].Create_Date + "</span>";
                 if (SessionWrapper.LoggedUser.Language_id == 1)
@@ -463,13 +474,15 @@ namespace Treatment.Pages.Eminutes
         public void RecommendationPermission(int Meeting_Id,int User_Id)
         {
             int BoardID, U_M_B= 0;
+            bool Can_Approval = false;
             var Meeting = db.M_Meeting.FirstOrDefault(x => x.Meeting_Id == Meeting_Id);
+            
             int.TryParse(Meeting.Board_Id.ToString(), out BoardID);
-
             var UMB = db.M_Board_Member.FirstOrDefault(x => x.Board_Id == BoardID && x.Employee_Id== User_Id);
             int.TryParse(UMB.Board_Member_Id.ToString(), out U_M_B);
 
-            DateTime M_Date = DateTime.Parse(Meeting.Meeting_Date.ToString());
+            if (UMB.Member_Type_Id == 3) Can_Approval = true; else Can_Approval = false;
+           DateTime M_Date = DateTime.Parse(Meeting.Meeting_Date.ToString());
             M_Date = M_Date.Date.AddDays(2);
             DateTime Date = DateTime.Now.Date;
             if (M_Date <= Date && Meeting.Meeting_Status == 2)
@@ -504,7 +517,7 @@ namespace Treatment.Pages.Eminutes
             var B_Member = db.M_Board_Member.Where(x => x.Board_Id == BoardID).ToList();
             M_Recommendation ApprovalReco = db.M_Recommendation.FirstOrDefault(x => x.Meeting_Id== Meeting_Id && ( x.Recommendation_Status == 4 || x.Recommendation_Status == 5));
 
-            if (Votes.Count == B_Member.Count && Can_Edit &&  ApprovalReco == null)
+            if (Votes.Count == B_Member.Count && Can_Approval &&  ApprovalReco == null)
             {
                 ApprovalRecommendation.Visible = true;
                 AddRecommendation.Visible = false;
