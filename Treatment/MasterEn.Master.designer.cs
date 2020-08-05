@@ -58,6 +58,15 @@ namespace Treatment {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl EmpStructures;
         
         /// <summary>
+        /// showStructure control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl showStructure;
+        
+        /// <summary>
         /// txtStructure control.
         /// </summary>
         /// <remarks>

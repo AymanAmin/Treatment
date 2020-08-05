@@ -308,7 +308,7 @@ namespace Treatment
                     employeeStructure = db.Employee_Structure.FirstOrDefault(x => x.Employee_Structure_Id == employeeStructureId);
                     if (employeeStructure != null)
                     {
-                        if (counter == 5)
+                        if (counter == 4)
                         {
                             yourHTMLstring = "<li style='padding-top: 2%;padding-bottom: 1%; text-align:center;'>" +
                                 "<a href='../../../../Pages/Setting/UserManagment/MyNotifications.aspx' class='hover-notification'>"+ Classes.FieldNames.getFieldName("Master-SeeAllNotifications", "See All Notifications") + "</a>" +
@@ -362,14 +362,25 @@ namespace Treatment
             string str = string.Empty;
             for (int i = 0; i < ListStructure.Count; i++)
             {
-                str += "<li>";
-                str += "<a href = '../../../../Pages/Treatment/ChangeStructure.ashx?EmpStructureId=" + ListStructure[i].Employee_Structure_Id + "'> ";
-                if (SessionWrapper.LoggedUser.Language_id == 1)
-                    str += "<i class='feather icon-grid'></i> " + ListStructure[i].Structure.Structure_Name_Ar;
+                if (currentStructureUserId == ListStructure[i].Employee_Structure_Id)
+                {
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        showStructure.InnerText = ListStructure[i].Structure.Structure_Name_Ar;
+                    else
+                        showStructure.InnerText = ListStructure[i].Structure.Structure_Name_En;
+                }
                 else
-                    str += "<i class='feather icon-grid'></i> " + ListStructure[i].Structure.Structure_Name_En;
-                str += "</a>";
-                str += "</li>";
+                {
+                    str += "<li>";
+                    str += "<a href = '../../../../Pages/Treatment/ChangeStructure.ashx?EmpStructureId=" + ListStructure[i].Employee_Structure_Id + "'> ";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        str += "<i class='feather icon-grid'></i> " + ListStructure[i].Structure.Structure_Name_Ar;
+                    else
+                        str += "<i class='feather icon-grid'></i> " + ListStructure[i].Structure.Structure_Name_En;
+                    str += "</a>";
+                    str += "</li>";
+                }
+                
             }
             txtStructure.Text = str;
 

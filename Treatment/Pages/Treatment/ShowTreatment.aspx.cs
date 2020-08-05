@@ -745,7 +745,7 @@ namespace Treatment.Pages.Treatment
                     newAssignmentTreatment.From_Employee_Structure_Id = currentStructureUserId;
                     newAssignmentTreatment.Required_Reply = requiredReply.Checked;
                     if(requiredReply.Checked)
-                        newAssignmentTreatment.Required_Reply_Date = DateTime.Parse(replyDate10.Text);
+                        newAssignmentTreatment.Required_Reply_Date = DateTime.Parse(replyDate10.Value);
                     /////////////////////////////////////// Start Insert Send To /////////////////////////////////////
                     Treatment_Detial treatmentDetial;
                     var selectedItemsTreatmentTo = from li in treatmentTo.Items.Cast<ListItem>()
@@ -890,7 +890,7 @@ namespace Treatment.Pages.Treatment
             }
             else if (requiredReply.Checked)
             {
-                if (replyDate10.Text.Trim() == "")
+                if (replyDate10.Value.Trim() == "")
                 {
                     if (SessionWrapper.LoggedUser.Language_id == 1)
                         messageForm = "الرجاء إدخال تاريخ الرد";

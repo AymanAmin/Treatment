@@ -640,13 +640,13 @@ namespace Treatment.Pages.Treatment
                         for (int i = 0; i < listTreatmentDetialNotf.Count; i++)
                         {
 
-                            linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentIdNotf + "&getTabId=4&getTreatmentDetialId=" + listTreatmentDetialNotf[i].Treatment_Detial_Id + "&getNotificationId=";
+                            linkNotif = "../../../../Pages/Treatment/ShowTreatment.aspx?getTreatmentId=" + treatmentIdNotf + "&getTabId=4&getTreatmentDetialId=" + 0 + "&getNotificationId=";
                             Notification_Master notificationMaster = new Notification_Master();
                             notificationMaster = dbEcms.Notification_Master.Create();
                             notificationMaster.Notification_Date = DateTime.Now;
                             notificationMaster.Is_Read = false;
                             notificationMaster.From_Employee_Structure_Id = listTreatmentDetialNotf[i].To_Employee_Structure_Id;
-                            notificationMaster.To_Employee_Structure_Id = getStructure(currentUserId);
+                            notificationMaster.To_Employee_Structure_Id = currentStructureUserId;
                             notificationMaster.Master_Id = treatmentIdNotf;
                             notificationMaster.Notification_Description_Ar = "لم يتم الرد علي المعاملة";
                             notificationMaster.Notification_Description_En = "The transaction was not answered";

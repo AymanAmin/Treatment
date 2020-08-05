@@ -333,6 +333,7 @@
                                         <div class="dropdown-primary dropdown" runat="server" id="EmpStructures">
                                             <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
                                                 <i class="feather icon-grid"></i>
+                                                <span runat="server" id="showStructure"></span>
                                             </div>
                                         
                                         <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -692,13 +693,13 @@ $(function () {
                             dropdownParent: $(this).parent()
                         });
                     });
-                    $("#Body_Holder_replyDate10").datepicker({
-                        dateFormat: "mm/dd/yy"
-                    });
                 });
 
     $(document).ready(function () {
         $('#add-model-assignment').prepend($('#dd-w-0'));
+        $('#e-inbox').show();
+        $('#e-starred').hide();
+        $('#e-drafts').hide();
     });
 
 </script>
@@ -712,6 +713,21 @@ $(function () {
             $('#listViewTreatment').hide();
             $('#Body_Holder_gridViewTreatment').show();
         });
+    });
+    $('#inboxClick').on('click', function () {
+        $('#e-inbox').show();
+        $('#e-starred').hide();
+        $('#e-drafts').hide();
+    });
+    $('#starredClick').on('click', function () {
+        $('#e-inbox').hide();
+        $('#e-starred').show();
+        $('#e-drafts').hide();
+    });
+    $('#draftsClick').on('click', function () {
+        $('#e-inbox').hide();
+        $('#e-starred').hide();
+        $('#e-drafts').show();
     });
 </script>
 
