@@ -42,6 +42,7 @@ namespace Treatment.Pages.Treatment
             {
                 FillDropDownLists();
             }
+            ALLEmployees = db.Employees.ToList();
             UserCard();
             Emp_Language();
         }
@@ -72,6 +73,7 @@ namespace Treatment.Pages.Treatment
             if (result)
             {
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "HideTheModel(); notify('top', 'right', 'fa fa-check', 'success', 'animated fadeInRight', 'animated fadeOutRight','  Save Status : ','  The  Employee was Sucessfully saved in system ! ');", true);
+                ALLEmployees = db.Employees.ToList();
                 UserCard();
 
             }
@@ -275,7 +277,7 @@ namespace Treatment.Pages.Treatment
             string yourHTMLstring = "";
             string Emp_Name = "";
             UCard.Controls.Clear();
-            ALLEmployees = db.Employees.ToList();
+           // ALLEmployees = db.Employees.ToList();
             while (i < ALLEmployees.Count)
             {
 

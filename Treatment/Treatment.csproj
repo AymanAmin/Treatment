@@ -2358,6 +2358,9 @@
     <Compile Include="Pages\Eminutes\MeetingManagment\MeetingInfo.aspx.designer.cs">
       <DependentUpon>MeetingInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Eminutes\MeetingManagment\UpdateMeetingStats.ashx.cs">
+      <DependentUpon>UpdateMeetingStats.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Eminutes\ScheduleOfWork.aspx.cs">
       <DependentUpon>ScheduleOfWork.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2374,6 +2377,9 @@
     </Compile>
     <Compile Include="Pages\Eminutes\TopicManagment\TopicInfo.aspx.designer.cs">
       <DependentUpon>TopicInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\TopicManagment\UptadeTopicStatus.ashx.cs">
+      <DependentUpon>UptadeTopicStatus.ashx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Reports\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
@@ -2678,6 +2684,8 @@
     <Content Include="Pages\Treatment\ChangeStructure.ashx" />
     <Content Include="Pages\Eminutes\MeetingManagment\DeteteMeeting.ashx" />
     <Content Include="Pages\Eminutes\TopicManagment\deleteTopic.ashx" />
+    <Content Include="Pages\Eminutes\TopicManagment\UptadeTopicStatus.ashx" />
+    <Content Include="Pages\Eminutes\MeetingManagment\UpdateMeetingStats.ashx" />
     <None Include="Properties\PublishProfiles\ECMS-Publish.pubxml" />
     <None Include="Properties\PublishProfiles\ECMS.pubxml" />
     <None Include="Web.Debug.config">

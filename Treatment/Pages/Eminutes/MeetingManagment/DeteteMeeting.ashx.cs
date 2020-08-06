@@ -39,6 +39,7 @@ namespace Treatment.Pages.Eminutes.MeetingManagment
         {
             LogFileModule logFileModule = new LogFileModule();
             String LogData = "";
+            db.Configuration.LazyLoadingEnabled = false;
             try
             {
                 var M_Topic = db.M_Topic.Where(x => x.Meeting_Id == Meeting_id).ToList();

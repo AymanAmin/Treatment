@@ -99,14 +99,15 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body_Holder" runat="server">
 
+
          <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <% = Treatment.Classes.FieldNames.getFieldName("Employees-DeleteHeader", "Delete Specialization") %>
+                    <% = Treatment.Classes.FieldNames.getFieldName("Employees-DeleteHeader", "Delete Employee") %>
                 </div>
                 <div class="modal-body">
-                    <% = Treatment.Classes.FieldNames.getFieldName("Employees-DeleteMessage", "Are you sure you want to delete this Specialization?") %>
+                    <% = Treatment.Classes.FieldNames.getFieldName("Employees-DeleteMessage", "Are you sure you want to delete this Employee?") %>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"><% = Treatment.Classes.FieldNames.getFieldName("View-Cancel", "Cancel") %></button>
@@ -395,7 +396,7 @@
         <!-- End Employee Form-->
                <span class="text-muted"><asp:Literal ID="FilterUsed" runat="server"></asp:Literal></span>
               <div class="form-group col-sm-12" style="text-align: right;">
-                <button runat="server" id="AddEmp" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" OnClick="showmodel(this)"><% = Treatment.Classes.FieldNames.getFieldName("Employees-AddEmployee", "Add Employee") %>s</button>
+                <button runat="server" id="AddEmp" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-social" OnClick="showmodel(this)"><% = Treatment.Classes.FieldNames.getFieldName("Employees-AddEmployee", "Add Employee") %></button>
             </div>
              <div class="row users-card" runat="server" id="UCard">
               

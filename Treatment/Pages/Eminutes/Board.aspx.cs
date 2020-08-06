@@ -238,7 +238,8 @@ namespace Treatment.Pages.Eminutes
                 str += "<tr>";
                 str += "<td class='txt-primary'>Expand</td>";
                 str += "<td> <a href= '../../../../Pages/Eminutes/Meeting.aspx?MeetingID=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:#00c3da;'> <i class='icofont icofont-eye-alt h6'></i>&nbsp;&nbsp;&nbsp; </a>";
-                str += "<a  href='#' data-href= 'MeetingManagment/DeteteMeeting.ashx?MeetingId=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:red;' data-toggle='modal' data-target='#confirm-delete'> <i class='icofont icofont-ui-delete h6'> </i></a></td>";
+                str += "<a  href='#' data-href= 'MeetingManagment/DeteteMeeting.ashx?MeetingId=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:red;' data-toggle='modal' data-target='#confirm-delete'> <i class='icofont icofont-ui-delete h6'> </i></a>";
+                str += "<a  href= 'MeetingManagment/UpdateMeetingStats.ashx?MeetingId=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:red;' > <i class='icofont icofont-recycle text-primary h6'> </i></a></td>";
                 try { statusid = (int)ListMeetings[i].Meeting_Status; } catch { }
                 M_Meeting_Status status = db.M_Meeting_Status.FirstOrDefault(x => x.Meeting_Status_Id == statusid);
                 if (status != null)

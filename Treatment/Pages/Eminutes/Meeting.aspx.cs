@@ -67,6 +67,7 @@ namespace Treatment.Pages.Eminutes
                 var Meeting_Status = db.M_Meeting_Status.FirstOrDefault(x => x.Meeting_Status_Id == Meeting.Meeting_Status);
                 var Locations = db.M_Board_Location.FirstOrDefault(x => x.Board_Location_Id == Meeting.Board_Location_Id);
 
+                //if (Meeting.Meeting_Status==2) Can_Edit = false;
                 //var meet = (from m in db.M_Meeting join b in db.M_Board on m.Board_Id equals b.Board_Id where m.Meeting_Id == Meeting_Id select (m));
                 if (Can_Edit) 
                     yourHTMLstring = "<a href = '../../../../Pages/Eminutes/MeetingManagment/MeetingInfo.aspx?BoardId=" + Meeting.Board_Id + "&" + "MeetingID=" + Meeting.Meeting_Id + "' class='text-muted m-r-10 f-16'> <i class='icofont icofont-edit' style='color:#4183d7'></i></a>";
@@ -119,6 +120,14 @@ namespace Treatment.Pages.Eminutes
                         yourHTMLstring2 += "<a href ='" + Locations.Board_Location_OnMap + "' target='_blank'><p class='text-muted'><i class='feather icon-map-pin m-r-3'></i>افتح الخريطة</p></a>";
                     else
                         yourHTMLstring2 += "<a href ='" + Locations.Board_Location_OnMap + "' target='_blank'><p class='text-muted'><i class='feather icon-map-pin m-r-3'></i>Open On Map</p></a>";
+                }
+
+                if (Locations.Board_Location_URLVideo != null && Locations.Board_Location_URLVideo != string.Empty)
+                {
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        yourHTMLstring2 += "<a href ='" + Locations.Board_Location_URLVideo + "' target='_blank'><p class='text-muted'><i class='icofont icofont-ui-video-chat m-r-3'></i>  افتح الرابط</p></a>";
+                    else
+                        yourHTMLstring2 += "<a href ='" + Locations.Board_Location_URLVideo + "' target='_blank'><p class='text-muted'><i class='icofont icofont-ui-video-chat m-r-3'></i> Open Link </p></a>";
                 }
 
                 Location.Controls.Add(new LiteralControl(yourHTMLstring2));
@@ -188,7 +197,9 @@ namespace Treatment.Pages.Eminutes
 
                 if (SessionWrapper.LoggedUser.Language_id == 1) AddTopicText = "إضافة موضوع";
 
-                var Topic = db.M_Topic.Where(x => x.Meeting_Id == Meeting_Id).ToList();
+                if (!Can_Edit) AddTopic.Visible = false;
+
+                 var Topic = db.M_Topic.Where(x => x.Meeting_Id == Meeting_Id).ToList();
                 if (Can_Edit)
                    yourHTMLstring = "<a href='TopicManagment/TopicInfo.aspx?BoardID=" + BoardID + "&MeetingID=" + Meeting_Id + "' class='text-muted m-r-10 f-16'> <i style='color:green' class='icofont icofont-ui-add'></i></a>" + AddTopicText + "</a>";
                 else
@@ -205,11 +216,11 @@ namespace Treatment.Pages.Eminutes
                     if (Topic[i].Structure_Id != null) {
                         int.TryParse(Topic[i].Structure_Id.ToString(), out str_id);
                         var Structure = db.Structures.FirstOrDefault(x => x.Structure_Id == str_id);
-                        StruName = Structure.Structure_Name_En;
+                        if (SessionWrapper.LoggedUser.Language_id == 1) StruName = Structure.Structure_Name_Ar; else StruName = Structure.Structure_Name_En;
                     }
-                    yourHTMLstring += "<tr>" +
-                    "<td class='txt-primary'>" + "Extend" + "</td>" +
-                    "<td>" + Topic[i].Topic_Name_En + "</td>";
+                    yourHTMLstring += "<tr>";
+                    if (SessionWrapper.LoggedUser.Language_id == 1) yourHTMLstring += "<td class='txt-primary'>" + "عرض" + "</td>"; else yourHTMLstring += "<td class='txt-primary'>" + "Extend" + "</td>";
+                    if (SessionWrapper.LoggedUser.Language_id == 1) yourHTMLstring += "<td>" + Topic[i].Topic_Name_Ar + "</td>"; else yourHTMLstring += "<td>" + Topic[i].Topic_Name_En + "</td>";
                     try { statusid = (int)Topic[i].Topic_Status; } catch { }
                     M_Topic_Status status = db.M_Topic_Status.FirstOrDefault(x => x.M_Topic_Status_Id == statusid);
                     if (status != null)
@@ -231,14 +242,22 @@ namespace Treatment.Pages.Eminutes
                         }
                     else
                         yourHTMLstring += "<td> <label class='label label-info'>Unknow </label></td>";
-                    //"<td><span class='label label-danger'>" + "Close" + "</span></td>" +
-                    yourHTMLstring += "<td><a href='TopicManagment/TopicInfo.aspx?BoardID=" + BoardID + "&MeetingID=" + Meeting_Id + "&TopicID=" + Topic[i].Topic_Id + "'  ><i class='icofont icofont-ui-edit text-info h6'></i> &nbsp;&nbsp; </a>" +
-                    "<a href='#' data-href='TopicManagment/deleteTopic.ashx?BoardId=" + BoardID + "&MeetingId=" + Meeting_Id + "&TopicId=" + Topic[i].Topic_Id + "' data-toggle='modal' data-target='#confirm-delete'><i class='icofont icofont-ui-delete text-danger h6'></i></a></td>" +
-                    "<td>" + Topic[i].Topic_Description_En + "</td>" +
-                    "<td>" + Topic[i].Topic_Recommendation_En + "</td>" +
-                    "<td>" + Topic[i].Topic_Recommendation_Doc_En + "</td>" +
-                    "<td>" + StruName + "</td>" +
-                    "</tr>";
+                    if (Can_Edit) {
+                        yourHTMLstring += "<td><a href='TopicManagment/TopicInfo.aspx?BoardID=" + BoardID + "&MeetingID=" + Meeting_Id + "&TopicID=" + Topic[i].Topic_Id + "'  ><i class='icofont icofont-ui-edit text-info h6'></i> &nbsp;&nbsp; </a>" +
+                        "<a href='#' data-href='TopicManagment/deleteTopic.ashx?BoardId=" + BoardID + "&MeetingId=" + Meeting_Id + "&TopicId=" + Topic[i].Topic_Id + "' data-toggle='modal' data-target='#confirm-delete'><i class='icofont icofont-ui-delete text-danger h6'></i> &nbsp;&nbsp; </a>" +
+                        "<a href='TopicManagment/UptadeTopicStatus.ashx?BoardId=" + BoardID + "&MeetingId=" + Meeting_Id + "&TopicId=" + Topic[i].Topic_Id + "' ><i class='icofont icofont-recycle text-primary h6'></i></a></td>";
+                    }
+                    else
+                    {
+                        yourHTMLstring += "<td><i class='icofont icofont-ui-edit text-info h6'></i>" +
+                                               "<i class='icofont icofont-ui-delete text-info h6'></i>" +
+                                               "<i class='icofont icofont-recycle text-primary h6'></i></td>";
+                    }
+                    if (SessionWrapper.LoggedUser.Language_id == 1) yourHTMLstring += "<td>" + Topic[i].Topic_Description_Ar + "</td>"; else yourHTMLstring += "<td>" + Topic[i].Topic_Description_En + "</td>";
+                    if (SessionWrapper.LoggedUser.Language_id == 1) yourHTMLstring += "<td>" + Topic[i].Topic_Recommendation_Ar + "</td>";  else yourHTMLstring += "<td>" + Topic[i].Topic_Recommendation_En + "</td>";
+                    if (SessionWrapper.LoggedUser.Language_id == 1) yourHTMLstring += "<td>" + Topic[i].Topic_Recommendation_Doc_Ar + "</td>"; else yourHTMLstring += "<td>" + Topic[i].Topic_Recommendation_Doc_En + "</td>";
+                     yourHTMLstring += "<td>" + StruName + "</td>";
+                     yourHTMLstring += "</tr>";
                     i += 1;
                 }
                 Topics.Text = yourHTMLstring;
@@ -256,6 +275,8 @@ namespace Treatment.Pages.Eminutes
                 string img = "Profile.jpg";
                 string ImgTag = "";
                 string AttendeesCheck = "";
+                string DisableAttendess = "";
+                if(!Can_Edit) DisableAttendess = "disabled='disabled'";
                 var MemberType = db.M_Member_Type.ToList();
                 for (int y = 0; y < MemberType.Count; y++)
                 {
@@ -297,7 +318,7 @@ namespace Treatment.Pages.Eminutes
                                          "</a>" +
                                      "</td>" +
                                      "<td style = 'border: 0px' >" +
-                                         "<input type='checkbox' id='" + BoardMember[i].Board_Member_Id.ToString() + "'  class='js-small f-right' onchange='Attendees(this)' " + AttendeesCheck + "/>" +
+                                         "<input type='checkbox' id='" + BoardMember[i].Board_Member_Id.ToString() + "'  class='js-small f-right' onchange='Attendees(this)' " + AttendeesCheck + " "+ DisableAttendess + "/>" +
                                      "</td>" +
                                  "</tr>";
                         i += 1;

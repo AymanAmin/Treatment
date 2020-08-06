@@ -8,9 +8,9 @@ using Treatment.Entity;
 namespace Treatment.Pages.Eminutes.TopicManagment
 {
     /// <summary>
-    /// Summary description for deleteTopic
+    /// Summary description for UptadeTopicStatus
     /// </summary>
-    public class deleteTopic : IHttpHandler
+    public class UptadeTopicStatus : IHttpHandler
     {
         ECMSEntities db = new ECMSEntities();
         public void ProcessRequest(HttpContext context)
@@ -22,9 +22,9 @@ namespace Treatment.Pages.Eminutes.TopicManagment
             int MeetingId = int.Parse(context.Request["MeetingId"].ToString());
             int TopicId = int.Parse(context.Request["TopicId"].ToString());
 
-            if (TopicId > 0) DeleteTopic(TopicId);
+            if (TopicId > 0) UpdateTopic(TopicId);
 
-            context.Response.Redirect("~/Pages/Eminutes/Meeting.aspx?BoardId=" + BoardId+ "&MeetingID="+ MeetingId);
+            context.Response.Redirect("~/Pages/Eminutes/Meeting.aspx?BoardId=" + BoardId + "&MeetingID=" + MeetingId);
         }
 
         public bool IsReusable
@@ -35,19 +35,28 @@ namespace Treatment.Pages.Eminutes.TopicManagment
             }
         }
 
-        public bool DeleteTopic(int Topic_id)
+        public bool UpdateTopic(int Topic_id)
         {
             LogFileModule logFileModule = new LogFileModule();
             String LogData = "";
             db.Configuration.LazyLoadingEnabled = false;
             try
             {
-                var DelTopic = db.M_Topic.First(x => x.Topic_Id == Topic_id);
-                db.M_Topic.Remove(DelTopic);
+                var Topic = db.M_Topic.First(x => x.Topic_Id == Topic_id);
+
+                if (Topic.Topic_Status == 1)
+                {
+                    Topic.Topic_Status = 2;
+                }
+                else if (Topic.Topic_Status == 2)
+                {
+                    Topic.Topic_Status = 1;
+                }
+                db.Entry(Topic).State = System.Data.EntityState.Modified;
                 db.SaveChanges();
                 /* Add it to log file */
-                LogData = "data:" + JsonConvert.SerializeObject(DelTopic, logFileModule.settings);
-                logFileModule.logfile(10, "حذف الموضوع", "Delete Topic", LogData);
+                LogData = "data:" + JsonConvert.SerializeObject(Topic, logFileModule.settings);
+                logFileModule.logfile(10, "تعديل  حالة الموضوع", "Update Topic stats", LogData);
 
             }
             catch (Exception e)

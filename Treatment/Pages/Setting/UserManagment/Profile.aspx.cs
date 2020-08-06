@@ -317,6 +317,7 @@ namespace Treatment.Pages.Setting.UserManagment
             OldPassWordValidator.Text = "أدخل كلمة المرور";
             NewPassWordValidator.Text = "أدخل كلمة المرور الجديدة";
             TryNewPassWordValidator.Text = "أعادة كلمة المرور الجديدة";
+            NotificationSave.Text = "حفظ";
 
 
             Employee_Email.Attributes["placeholder"] = "أدخل البريد الإلكتروني";
@@ -326,7 +327,9 @@ namespace Treatment.Pages.Setting.UserManagment
             NewPassWord.Attributes["placeholder"] = "أدخل كلمة المرور الجديدة";
             TryNewPassWord.Attributes["placeholder"] = "أعادة كلمة المرور الجديدة";
 
-
+            NotificationGridView.Columns[1].Caption = "إسم عربي";
+            NotificationGridView.Columns[2].Caption = "إسم إنجليزي";
+            NotificationGridView.Columns[3].Caption = "الرقم";
         }
     }
 }

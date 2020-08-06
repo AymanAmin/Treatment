@@ -8,7 +8,7 @@
      <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script data-require="bootstrap@*" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
      <script>
-         setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Meeting Name "; }, 1);
+         //setTimeout(function () { document.getElementById("header_page_name").innerHTML = "Meeting Name "; }, 1);
     </script>
       <script type="text/javascript">
           function Attendees(x) {
@@ -42,7 +42,8 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"><%  = Treatment.Classes.FieldNames.getFieldName("Meeting-Cancel", "Cancel") %></button>
                     <a class="btn btn-danger btn-ok" style="color:white;"><% = Treatment.Classes.FieldNames.getFieldName("Meeting-Delete", "Delete") %></a>
-                </div>
+                    
+                 </div>
             </div>
         </div>
     </div>
