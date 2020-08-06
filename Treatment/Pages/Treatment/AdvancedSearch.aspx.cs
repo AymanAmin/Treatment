@@ -47,7 +47,7 @@ namespace Treatment.Pages.Treatment
             if (!IsPostBack)
             {
                 FillDropDownLists();
-                LoadTable();
+                //LoadTable();
             }
         }
 
@@ -196,7 +196,7 @@ namespace Treatment.Pages.Treatment
                     // Check if inbox or not (اضفت كلمة انبوكس دي في دالة اللود فوق عشان افرق)
                     if (treatmentList[i].Treatment_Keywork == "inbox")
                     {
-                        Treatment_Detial Treat = List_Fill_D.FirstOrDefault(x => x.Treatment_Id == treatmentList[i].Treatment_Id);
+                        Treatment_Detial Treat = List_Fill_D.FirstOrDefault(x => x.Treatment_Id == treatmentList[i].Treatment_Id && x.To_Employee_Structure_Id == SessionWrapper.EmpStructure);
                         if (Treat != null)
                             if (Treat.Assignment_Status_Id == 3)
                             {

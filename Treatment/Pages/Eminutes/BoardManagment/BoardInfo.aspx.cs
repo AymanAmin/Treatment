@@ -28,16 +28,17 @@ namespace Treatment.Pages.Eminutes.BoardManagment
             {
                 board_id = int.Parse(Request["BoardId"].ToString());
                 boardinfo = db.M_Board.FirstOrDefault(x => x.Board_Id == board_id);
-                if (SessionWrapper.LoggedUser.Language_id == 1)
-                {
-                    if (boardinfo != null) { Save.Text = "تحديث"; IsUpdate = true; } else Save.Text = "حفظ";
-                    Cancel.Text = "الغاء";
-                }
-                else
-                {
-                    if (boardinfo != null) { Save.Text = "Update"; IsUpdate = true; } else Save.Text = "Save";
-                    Cancel.Text = "Cancel";
-                }
+            }
+
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+            {
+                if (boardinfo != null) { Save.Text = "تحديث"; IsUpdate = true; } else Save.Text = "حفظ";
+                Cancel.Text = "الغاء";
+            }
+            else
+            {
+                if (boardinfo != null) { Save.Text = "Update"; IsUpdate = true; } else Save.Text = "Save";
+                Cancel.Text = "Cancel";
             }
 
             if (!IsPostBack)

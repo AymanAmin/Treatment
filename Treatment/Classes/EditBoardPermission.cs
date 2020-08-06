@@ -62,9 +62,9 @@ namespace Treatment.Classes
                     DateTime nextmeeting_date = DateTime.Parse(List_M[0].Meeting_Date.ToString());
                     string nextmeeting = nextmeeting_date.ToShortDateString();
                     if (SessionWrapper.LoggedUser.Language_id == 1)
-                        str += "<a href='Meeting.aspx?BoardId="+ List_M[0].Board_Id + "&MeetingID=" + List_M[0].Meeting_Id + "'><p class='task-due'><strong>Next Meeting : </strong> " + nextmeeting + "</p></a>";
+                         str += "<a href='Meeting.aspx?BoardId="+ List_M[0].Board_Id + "&MeetingID=" + List_M[0].Meeting_Id + "'><p class='task-due'><label class='label label-warning'><strong>الاجتماع التالي : </strong></label> " + nextmeeting+ "(اجندة)"+ "</p></a>";
                     else
-                        str += "<a href='Meeting.aspx?BoardId=" + List_M[0].Board_Id + "&MeetingID=" + List_M[0].Meeting_Id + "'><p class='task-due'><strong>الاجتماع التالي : </strong> " + nextmeeting + "</p></a>";
+                        str += "<a href='Meeting.aspx?BoardId=" + List_M[0].Board_Id + "&MeetingID=" + List_M[0].Meeting_Id + "'><p class='task-due'><label class='label label-warning'><strong>Next Meeting : </strong></label> " + nextmeeting + "()" + "</p></a>";
                 }
 
                            str += "</div>" +
