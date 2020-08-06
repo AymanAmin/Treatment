@@ -24,6 +24,7 @@ namespace Treatment.Pages.Eminutes
                 list_board.Add(ListBoardMember[i].M_Board);
             }
             Classes.EditBoardPermission EBP = new Classes.EditBoardPermission();
+            list_board = list_board.OrderByDescending(x => x.Create_Date).ToList();
             txtBoard.Text = EBP.LoadBoad(list_board,"6");
         }
 

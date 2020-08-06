@@ -27,6 +27,9 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 fillDropDown();
                 LoadMember(ListMember , board_id);
             }
+
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                Save.Text = "حفظ";
         }
 
         private void fillDropDown()
