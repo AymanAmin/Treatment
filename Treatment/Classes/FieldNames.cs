@@ -85,5 +85,13 @@ namespace Treatment.Classes
                 return "en";
         }
 
+        public static string getFloatRTL()
+        {
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                return "f-left";
+            else
+                return "f-right";
+        }
+
     }
 }

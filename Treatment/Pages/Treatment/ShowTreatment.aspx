@@ -361,7 +361,7 @@
                                         <label><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-ReplyDate", "Reply Date") %></label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                                            <asp:TextBox ID="replyDate10" runat="server" class="form-control" data-dd-modal="true" placeholder="Enter Treatment Date" TextMode="SingleLine"></asp:TextBox>
+                                            <input id="replyDate10" type="date" runat="server" class="form-control" data-dd-modal="true" placeholder="Enter Treatment Date" TextMode="SingleLine"/>
                                         </div>
                                     </div>
                                 </div>

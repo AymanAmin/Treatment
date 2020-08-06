@@ -496,7 +496,7 @@ namespace Treatment.Pages.Treatment
                                             "</div>" +
                                             "<div class='media-body col-xs-12'>" +
                                                 "<h6 class='d-inline-block'>" + langEmployeeName + getWorkDelegation((bool)treatmentDetial[i].Employee_Structure.Type_Delegation) + "</h6>" +
-                                                "<div class='f-13 text-muted m-b-10 p-r-10'>" + langStructureName + "</div>" +
+                                                "<div class='f-13 text-muted m-b-10'>" + langStructureName + "</div>" +
                                             "</div>" +
                                         "</div>";
                         if ((bool)treatmentDetial[i].Treatment_Copy_To)
@@ -522,7 +522,7 @@ namespace Treatment.Pages.Treatment
                                             "</div>" +
                                             "<div class='media-body col-xs-12'>" +
                                                 "<h6 class='d-inline-block'>" + langEmployeeName + getWorkDelegation((bool)treatmentDetial[0].Treatment_Master.Employee_Structure.Type_Delegation) + "</h6>" +
-                                                "<div class='f-13 text-muted m-b-10 p-r-10'>" + langStructureName + "</div>" +
+                                                "<div class='f-13 text-muted m-b-10'>" + langStructureName + "</div>" +
                                             "</div>" +
                                         "</div>";
                     createByTreatment.Controls.Add(new LiteralControl(yourHTMLstring));
@@ -745,7 +745,7 @@ namespace Treatment.Pages.Treatment
                     newAssignmentTreatment.From_Employee_Structure_Id = currentStructureUserId;
                     newAssignmentTreatment.Required_Reply = requiredReply.Checked;
                     if(requiredReply.Checked)
-                        newAssignmentTreatment.Required_Reply_Date = DateTime.Parse(replyDate10.Text);
+                        newAssignmentTreatment.Required_Reply_Date = DateTime.Parse(replyDate10.Value);
                     /////////////////////////////////////// Start Insert Send To /////////////////////////////////////
                     Treatment_Detial treatmentDetial;
                     var selectedItemsTreatmentTo = from li in treatmentTo.Items.Cast<ListItem>()
@@ -890,7 +890,7 @@ namespace Treatment.Pages.Treatment
             }
             else if (requiredReply.Checked)
             {
-                if (replyDate10.Text.Trim() == "")
+                if (replyDate10.Value.Trim() == "")
                 {
                     if (SessionWrapper.LoggedUser.Language_id == 1)
                         messageForm = "الرجاء إدخال تاريخ الرد";

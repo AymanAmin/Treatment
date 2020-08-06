@@ -23,18 +23,21 @@ namespace Treatment.Pages.Eminutes.BoardManagment
             int board_id = 0;
             M_Board boardinfo = null;
             txtStatusofBoard.Enabled = false;
-            
+
             if (Request["BoardId"] != null)
             {
                 board_id = int.Parse(Request["BoardId"].ToString());
                 boardinfo = db.M_Board.FirstOrDefault(x => x.Board_Id == board_id);
-                if (boardinfo != null)
+                if (SessionWrapper.LoggedUser.Language_id == 1)
                 {
-                    Save.Text = "Update";
-                    IsUpdate = true;
+                    if (boardinfo != null) { Save.Text = "تحديث"; IsUpdate = true; } else Save.Text = "حفظ";
+                    Cancel.Text = "الغاء";
                 }
                 else
-                    Save.Text = "Save";
+                {
+                    if (boardinfo != null) { Save.Text = "Update"; IsUpdate = true; } else Save.Text = "Save";
+                    Cancel.Text = "Cancel";
+                }
             }
 
             if (!IsPostBack)
@@ -73,7 +76,11 @@ namespace Treatment.Pages.Eminutes.BoardManagment
 
                     if (txtTypeofBoard.SelectedValue == "3" && (txtStartDate.Value.ToString() == "" || txtStartDate.Value.ToString() == ""))
                     {
-                        LtrMessage.Text = "<div class='alert alert-warning' role='alert'>Please Select start date & end date...</div>";
+                        if (SessionWrapper.LoggedUser.Language_id == 1)
+                            LtrMessage.Text = "<div class='alert alert-warning' role='alert'>الرجاء اختيار تاريخ البداية والنهاية</div>";
+                        else
+                            LtrMessage.Text = "<div class='alert alert-warning' role='alert'>Please Select start date & end date...</div>";
+
                         return;
                     }
                     else if ((txtTypeofBoard.SelectedValue == "3"))
@@ -100,11 +107,19 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                     member.Member_Type_Id = 1; // رئيس
                     db.M_Board_Member.Add(member);
                     db.SaveChanges();
-                    message = "Board add success...";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        message = "Board add success...";
+                    else
+                        message = "تم اضافة المجلس/اللجنة بنجاح";
+
                     LtrMessage.Text = "<div class='alert alert-success' role='alert'>"+ message +"</div>";
                     clear();
                 }
-                catch { LtrMessage.Text = "<div class='alert alert-danger' role='alert'>System Error...</div>"; }
+                catch {
+                    string message = "System Error...";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        message = "حدث خطاء ...";
+                    LtrMessage.Text = "<div class='alert alert-danger' role='alert'>"+message+"</div>"; }
             }
         }
 
@@ -137,7 +152,11 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 }
                 else if ((txtStartDate.Value.ToString() == "" || txtEndDate.Value.ToString() == ""))
                 {
-                    LtrMessage.Text = "<div class='alert alert-warning' role='alert'>Please Select start date & end date...</div>";
+                    string messages = "Please Select start date & end date...";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                        messages = "الرجاء اختيار تاريخ البداية والنهاية";
+
+                    LtrMessage.Text = "<div class='alert alert-warning' role='alert'>"+messages+"</div>";
                     return false;
                 }
                 else
@@ -151,8 +170,17 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                 db.SaveChanges();
 
             }
-            catch { LtrMessage.Text = "<div class='alert alert-danger' role='alert'>System Error...</div>"; return false; }
-            LtrMessage.Text = "<div class='alert alert-success' role='alert'>Board update successfully..</div>";
+            catch {
+                string messages = "System Error...";
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    messages = "حدث خطاء ...";
+                LtrMessage.Text = "<div class='alert alert-danger' role='alert'>" + messages + "</div>";
+                return false; }
+
+            string message = "Board update successfully..";
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                message = "تم تحديث المجلس/اللجنة بنجاح";
+            LtrMessage.Text = "<div class='alert alert-success' role='alert'>"+message+"</div>";
             return true;
         }
 
@@ -173,7 +201,11 @@ namespace Treatment.Pages.Eminutes.BoardManagment
                         db.M_B_Attachments.Add(Fil);
                         db.SaveChanges();
                     }
-                    catch { LtrMessage.Text = "<div class='alert alert-danger' role='alert'>System Error in file upload...</div>"; }
+                    catch {
+                        string messages = "System Error in file upload...";
+                        if (SessionWrapper.LoggedUser.Language_id == 1)
+                            messages = "حدث خطاء اثناء رفع الملفات";
+                        LtrMessage.Text = "<div class='alert alert-danger' role='alert'>"+messages+"</div>"; }
                 }
                
         }
@@ -232,7 +264,10 @@ namespace Treatment.Pages.Eminutes.BoardManagment
             txtStartDate.Value = "";
             txtEndDate.Value = "";
 
-            LtrMessage.Text = "<div class='alert alert-success' role='alert'>Board saved successfully..</div>";
+            string messages = "Board saved successfully..";
+            if (SessionWrapper.LoggedUser.Language_id == 1)
+                messages = "تم حفظ المجلس/اللجنة بنجاح";
+            LtrMessage.Text = "<div class='alert alert-success' role='alert'>"+messages+"</div>";
         }
 
         private void LoadInfo(M_Board boardinfo)
