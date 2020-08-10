@@ -107,34 +107,6 @@ namespace Treatment.Pages.Treatment
             }
         }
 
-        private int getStructure(int employeeId)
-        {
-            int employeeStructureId = 0;
-            try
-            {
-                Employee_Structure employeeStructure = dbSentTo.Employee_Structure.First(x => x.Employee_Id == employeeId);
-                employeeStructureId = (int)employeeStructure.Employee_Structure_Id;
-            }
-            catch (Exception)
-            {
-            }
-            return employeeStructureId;
-        }
-
-        private string getEmployeeName(int employeeStrurtId)
-        {
-            string employeeName = "";
-            try
-            {
-                Employee_Structure employeeStructure = dbSentTo.Employee_Structure.First(x => x.Employee_Structure_Id == employeeStrurtId);
-                employeeName = employeeStructure.Employee.Employee_Name_En;
-            }
-            catch (Exception)
-            {
-            }
-            return employeeName;
-        }
-
         private List<Treatment_Detial> getTreatmentDetail()
         {
             List<Treatment_Detial> treatmentDetial = new List<Treatment_Detial>();

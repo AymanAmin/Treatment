@@ -183,6 +183,12 @@
             overflow-y: auto;
             overflow-x: hidden;
         } 
+        .delegation-css-en{
+            float:none !important;
+        }
+        .delegation-css-ar{
+            float:none !important;
+        }
     </style>
 
     <script>

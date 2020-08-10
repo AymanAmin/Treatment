@@ -358,25 +358,26 @@ namespace Treatment
 
         private void LoadStructure()
         {
-            List<Employee_Structure> ListStructure = db.Employee_Structure.Where(x => (x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id || x.Employee_Delegation == SessionWrapper.LoggedUser.Employee_Id) && x.Status_Structure == true).ToList();
+            List<Employee_Structure> ListStructure = db.Employee_Structure.Where(x => (x.Employee_Id == SessionWrapper.LoggedUser.Employee_Id || (x.Employee_Delegation == SessionWrapper.LoggedUser.Employee_Id && x.Type_Delegation == false)) && x.Status_Structure == true).ToList();
             string str = string.Empty;
             for (int i = 0; i < ListStructure.Count; i++)
             {
                 if (currentStructureUserId == ListStructure[i].Employee_Structure_Id)
                 {
+                    
                     if (SessionWrapper.LoggedUser.Language_id == 1)
-                        showStructure.InnerText = ListStructure[i].Structure.Structure_Name_Ar;
+                        showStructure.InnerHtml = ListStructure[i].Structure.Structure_Name_Ar + isEmployeeDelegation((bool)ListStructure[i].Type_Delegation);
                     else
-                        showStructure.InnerText = ListStructure[i].Structure.Structure_Name_En;
+                        showStructure.InnerHtml = ListStructure[i].Structure.Structure_Name_En + isEmployeeDelegation((bool)ListStructure[i].Type_Delegation);
                 }
                 else
                 {
                     str += "<li>";
                     str += "<a href = '../../../../Pages/Treatment/ChangeStructure.ashx?EmpStructureId=" + ListStructure[i].Employee_Structure_Id + "'> ";
                     if (SessionWrapper.LoggedUser.Language_id == 1)
-                        str += "<i class='feather icon-grid'></i> " + ListStructure[i].Structure.Structure_Name_Ar;
+                        str += "<i class='feather icon-grid'></i> " + ListStructure[i].Structure.Structure_Name_Ar + isEmployeeDelegation((bool)ListStructure[i].Type_Delegation);
                     else
-                        str += "<i class='feather icon-grid'></i> " + ListStructure[i].Structure.Structure_Name_En;
+                        str += "<i class='feather icon-grid'></i> " + ListStructure[i].Structure.Structure_Name_En + isEmployeeDelegation((bool)ListStructure[i].Type_Delegation);
                     str += "</a>";
                     str += "</li>";
                 }
@@ -384,6 +385,18 @@ namespace Treatment
             }
             txtStructure.Text = str;
 
+        }
+
+        private string isEmployeeDelegation(bool flayDelegation)
+        {
+            string workDelegation = "";
+            if (flayDelegation)
+            {
+                if (SessionWrapper.LoggedUser.Language_id == 1)
+                    workDelegation = " <label class='label label-inverse-danger delegation-css-ar'> مفوض </label> ";
+                else workDelegation = " <label class='label label-inverse-danger delegation-css-en'> Delegation </label> ";
+            }
+            return workDelegation;
         }
 
         public string Date_Different(DateTime ReveviedDate)

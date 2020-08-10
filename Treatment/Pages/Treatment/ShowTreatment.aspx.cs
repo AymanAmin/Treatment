@@ -29,7 +29,7 @@ namespace Treatment.Pages.Treatment
         string treatmentDetialDate = "", isTrackBorder = "", langDir = "left", langMarg = "right";
         List<Employee_Structure> ListDelegationEmpStru = new List<Employee_Structure>();
         List<Structure> ListStructure = new List<Structure>();
-        string langEmployeeName = "", langStructureName = "", langEmployeeNameMaster = "", langTreatmentProcedureName = "", langFrom = "", langProcedure = "";
+        string langEmployeeName = "", langStructureName = "", langEmployeeNameMaster = "", langTreatmentProcedureName = "", langFrom = "", langProcedure = "", langWidth = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             reloadPage();
@@ -359,7 +359,7 @@ namespace Treatment.Pages.Treatment
                                                          "<i class='" + showTreatment.Treatment_Priority.Css_Class + "'></i>" +
                                                     "</a>&nbsp;" + showTreatment.Treatment_Priority.Treatment_Priority_Name_Ar;
                     treatmentSpeedUp.InnerText = showTreatment.Treatment_Delivery.Treatment_Delivery_Name_Ar;
-                    treatmentStatus.InnerText = showTreatment.Treatment_Status.Treatment_Status_Name_Ar;
+                   // treatmentStatus.InnerText = showTreatment.Treatment_Status.Treatment_Status_Name_Ar;
                     if ((bool)showTreatment.Required_Reply)
                     {
                         DateTime yourDate = (DateTime)showTreatment.Required_Reply_Date;
@@ -405,7 +405,7 @@ namespace Treatment.Pages.Treatment
                                                          "<i class='" + showTreatment.Treatment_Priority.Css_Class + "'></i>" +
                                                     "</a>&nbsp;" + showTreatment.Treatment_Priority.Treatment_Priority_Name_En;
                     treatmentSpeedUp.InnerText = showTreatment.Treatment_Delivery.Treatment_Delivery_Name_En;
-                    treatmentStatus.InnerText = showTreatment.Treatment_Status.Treatment_Status_Name_En;
+                    //treatmentStatus.InnerText = showTreatment.Treatment_Status.Treatment_Status_Name_En;
                     if ((bool)showTreatment.Required_Reply)
                     {
                         DateTime yourDate = (DateTime)showTreatment.Required_Reply_Date;
@@ -930,7 +930,21 @@ namespace Treatment.Pages.Treatment
                 {
                     closeAssignment.Treatment_Detial_Date = DateTime.Now;
                     closeAssignment.Assignment_Status_Id = 3;
-                    closeAssignment.Note = "Done Close Treatment";
+                    if (SessionWrapper.LoggedUser.Language_id == 1)
+                    {
+                        if ((bool)closeAssignment.Treatment_Copy_To)
+                            closeAssignment.Note = "تم الاطلاع علي المعاملة";
+                        else
+                            closeAssignment.Note = "تم إغلاق المعاملة";
+                    }
+                    else
+                    {
+                        if ((bool)closeAssignment.Treatment_Copy_To)
+                            closeAssignment.Note = "The Correspondence has been viewed";
+                        else
+                            closeAssignment.Note = "Done Close Correspondence";
+                    }
+
                     closeAssignment.To_Employee_Structure_Id = currentStructureUserId;
                     db.Entry(closeAssignment).State = EntityState.Modified;
                     db.SaveChanges();
@@ -1042,7 +1056,7 @@ namespace Treatment.Pages.Treatment
                         isTrackBorder = "0px solid #fe9365";
                     flayBorder = false;
                     ///////////////////// color border/////////////////
-                    langEmployeeName = ""; langStructureName = ""; langEmployeeNameMaster = ""; langTreatmentProcedureName = ""; langFrom = ""; langProcedure = "";
+                    langEmployeeName = ""; langStructureName = ""; langEmployeeNameMaster = ""; langTreatmentProcedureName = ""; langFrom = ""; langProcedure = ""; langWidth = "";
                     if (SessionWrapper.LoggedUser.Language_id == 1)
                     {
                         langEmployeeName = oneTreatmentDetial.Employee_Structure.Employee.Employee_Name_Ar;
@@ -1051,6 +1065,7 @@ namespace Treatment.Pages.Treatment
                         langTreatmentProcedureName = oneTreatmentDetial.Treatment_Master.Treatment_Procedure.Treatment_Procedure_Name_Ar;
                         langFrom = "من";
                         langProcedure = "الإجراء";
+                        langWidth = "width:" + (100 - marginTreeTrack).ToString() + "%";
                     }
                     else
                     {
@@ -1061,7 +1076,7 @@ namespace Treatment.Pages.Treatment
                         langFrom = "From";
                         langProcedure = "Procedure ";
                     }
-                    yourHTMLStringTrack = "<div class='sortable-moves col-xs-12' style='margin-" + langDir + ": " + marginTreeTrack + "%;border-" + langDir + ":" + isTrackBorder + "'>" +
+                    yourHTMLStringTrack = "<div class='sortable-moves col-xs-12' style='margin-" + langDir + ": " + marginTreeTrack + "%;border-" + langDir + ":" + isTrackBorder + ";" + langWidth + "'>" +
                                             "<img class='img-fluid p-absolute' src='../../../../media/Profile/" + oneTreatmentDetial.Employee_Structure.Employee.Employee_Profile + "' alt=''>" +
                                             "<h6 class='d-inline-block'>" + langEmployeeName + getWorkDelegation((bool)oneTreatmentDetial.Employee_Structure.Type_Delegation) + "</h6>" +
                                             "<span class='label label-default f-" + langMarg + "' style='background: linear-gradient(to " + langMarg + ", #452a74, #f6f7fb);'>" + treatmentDetialDate + "</span>" +

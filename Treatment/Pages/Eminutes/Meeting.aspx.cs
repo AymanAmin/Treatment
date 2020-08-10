@@ -413,7 +413,7 @@ namespace Treatment.Pages.Eminutes
                 else
                     yourHTMLStringTrack += "<h6 class='d-inline-block'>" + Emp[0].e.Employee_Name_En + " - " + TypeOfVote + "</h6>";
 
-                yourHTMLStringTrack += "<span class='label label-default f-right' style='background: linear-gradient(to right, #452a74, #f6f7fb);'>" + Votes[i].Create_Date + "</span>";
+                yourHTMLStringTrack += "<span class='label label-default " + Classes.FieldNames.getFloatRTL()+ "' style='background: linear-gradient(to right, #452a74, #f6f7fb);'>" + Votes[i].Create_Date + "</span>";
                 if (SessionWrapper.LoggedUser.Language_id == 1)
                     yourHTMLStringTrack += "<div class='f-13 text-muted'>" + Emp[0].l.Member_Type_Name_Ar + "</div>";
                 else

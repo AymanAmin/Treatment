@@ -106,10 +106,10 @@
                                     <td><i class="icofont icofont-speed-meter"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-SpeedUp", "Speed Up") %>:</td>
                                     <td class="text-left" id="treatmentSpeedUp" runat="server"></td>
                                 </tr>
-                                <tr>
+                               <!-- <tr>
                                     <td><i class="icofont icofont-ticket"></i>&nbsp;<% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Status", "Status") %>:</td>
                                     <td class="text-left" id="treatmentStatus" runat="server"></td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
