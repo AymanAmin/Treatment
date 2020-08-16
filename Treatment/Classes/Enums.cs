@@ -7,6 +7,25 @@ namespace Website.Classes
 {
     public class Enums
     {
+
+        public enum EmailCase
+        {
+            CreateNewAcount = 1,
+            ResetPassword = 2,
+            NewTreatment = 3,
+            Meeting = 4,
+            vote = 5
+
+        }
+        public enum SMSCase
+        {
+            CreateNewAcount = 1,
+            ResetPassword = 2,
+            NewTreatment = 3,
+            Meeting = 4,
+            vote = 5
+
+        }
         public enum LogFileID
         {
             Login = 11,
@@ -16,6 +35,7 @@ namespace Website.Classes
             CreatePermission = 15
 
         }
+
         public enum brnch
         {
             Olaya = 1,
