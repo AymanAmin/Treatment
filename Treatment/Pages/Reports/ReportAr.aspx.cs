@@ -23,11 +23,12 @@ namespace Treatment.Pages.Reports
                 int treatmentId = 0;
                 if (int.TryParse(Request["getTreatmentId"], out treatmentId) && treatmentId > 0)
                 {
-                    TreatmentReport report = new TreatmentReport();
+                    TreatmentReportAr report = new TreatmentReportAr();
                     report.RequestParameters = false;
                     report.Parameters["TreatmentID"].Value = treatmentId;
-                    report.Parameters["CurrentUser"].Value = SessionWrapper.LoggedUser.Employee_Name_En;
-                    try { report.Parameters["CurrentManagment"].Value = stList[0].Structure.Structure_Name_En; }
+                    report.Parameters["body"].Value = "<div style='text-align: right !important;direction: rtl !important;'>" + db.Treatment_Master.Find(treatmentId).Treatment_Body + "<div>";
+                    report.Parameters["CurrentUser"].Value = SessionWrapper.LoggedUser.Employee_Name_Ar;
+                    try { report.Parameters["CurrentManagment"].Value = stList[0].Structure.Structure_Name_Ar; }
                     catch { }
                     TreatmentASPxDocumentViewer.Report = report;
                 }

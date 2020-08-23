@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using Website.Classes;
 using Treatment.Entity;
-using ElectronicSubmission;
 
 namespace Treatment.Classes
 {
