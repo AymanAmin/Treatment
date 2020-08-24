@@ -102,12 +102,12 @@ namespace Treatment.Pages.Treatment
                     Emp.Employee_Password = Encrypted_Password;
 
                     string sever_name = Request.Url.Authority.ToString();
-                    SendEmail send = new SendEmail();
+                  /*  SendEmail send = new SendEmail();
                     bool EmailResult = send.ResetEmail(Email, New_Password, sever_name);
                     if (EmailResult)
                     {
                         Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "show_model_sucess();", true);
-                    }
+                    }*/
                 }
                 Emp.Employee_Phone = Phone;
                 Emp.Employee_Active = Active;

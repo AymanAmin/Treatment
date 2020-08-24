@@ -169,6 +169,7 @@
     <Content Include="Pages\Eminutes\Home.aspx" />
     <Content Include="Pages\Eminutes\Meeting.aspx" />
     <Content Include="Pages\Eminutes\MeetingManagment\MeetingInfo.aspx" />
+    <Content Include="Pages\Eminutes\Reports\R_Minutes.aspx" />
     <Content Include="Pages\Eminutes\ScheduleOfWork.aspx" />
     <Content Include="Entity\DataBase\Dropp All Tables.sql" />
     <Content Include="Entity\DataBase\Treatment Schema &amp; Data%2812-4-2020%29.sql" />
@@ -2364,6 +2365,25 @@
     <Compile Include="Pages\Eminutes\MeetingManagment\UpdateMeetingStats.ashx.cs">
       <DependentUpon>UpdateMeetingStats.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Eminutes\Reports\Minutes.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\Reports\Minutes.Designer.cs">
+      <DependentUpon>Minutes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\Reports\Minutes_Ar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\Reports\Minutes_Ar.Designer.cs">
+      <DependentUpon>Minutes_Ar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Eminutes\Reports\R_Minutes.aspx.cs">
+      <DependentUpon>R_Minutes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Eminutes\Reports\R_Minutes.aspx.designer.cs">
+      <DependentUpon>R_Minutes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Eminutes\ScheduleOfWork.aspx.cs">
       <DependentUpon>ScheduleOfWork.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2718,6 +2738,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Pages\Eminutes\Reports\Minutes.resx">
+      <DependentUpon>Minutes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Eminutes\Reports\Minutes_Ar.resx">
+      <DependentUpon>Minutes_Ar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Reports\TreatmentReportAr.resx">
       <DependentUpon>TreatmentReportAr.cs</DependentUpon>
     </EmbeddedResource>
