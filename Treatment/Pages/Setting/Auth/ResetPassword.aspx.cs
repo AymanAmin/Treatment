@@ -25,14 +25,14 @@ namespace Treatment.Pages.Setting.Auth
 
         protected void btRest_Click(object sender, EventArgs e)
         {
-            bool restult =  rest_account(txtEmail.Text);
+           /* bool restult =  rest_account(txtEmail.Text);
             if(!restult)
             {
                 return;
-            }
+            }*/
         }
 
-        private bool rest_account(string email)
+      /*  private bool rest_account(string email)
         {
             db.Configuration.LazyLoadingEnabled = false;
             Employee emp = db.Employees.Where(x => x.Employee_Email == email).FirstOrDefault();
@@ -52,7 +52,6 @@ namespace Treatment.Pages.Setting.Auth
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "show_model_sucess();", true);
                     txtEmail.Text = "";
 
-                    /* Add it to log file */
                     
                     LogData = "data:" + JsonConvert.SerializeObject(emp, logFileModule.settings);
                     logFileModule.logfile(10, "إعادة تعين كلمة السر", "reset your password", LogData);
@@ -70,7 +69,7 @@ namespace Treatment.Pages.Setting.Auth
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", " show_model_notfound();", true);
                 return false;
             }
-        }
+        }*/
 
         
         
