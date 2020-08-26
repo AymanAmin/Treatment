@@ -196,8 +196,8 @@
     <Content Include="Pages\Treatment\inbox.aspx" />
     <Content Include="Pages\Treatment\NewTreatment.aspx" />
     <Content Include="Pages\Treatment\ShowTreatment.aspx" />
-    <Content Include="scripts\ai.0.22.9-build00167.js" />
-    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Theme\scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Theme\scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Theme\files\assets\css\bootstrap-rtl.min.css" />
     <Content Include="Theme\files\assets\css\component.css" />
     <Content Include="Theme\files\assets\css\font-awesome-rtl.min.css" />

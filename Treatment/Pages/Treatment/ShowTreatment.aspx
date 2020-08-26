@@ -249,7 +249,8 @@
                         </div>
                     </div>
                     <div class="card-block">
-                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-info m-b-15" OnClick="LinkButton1_Click"><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-Print", "Print") %></asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-info m-b-15" OnClick="LinkButton1_Click"><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-PrintEnglish", "Print English") %></asp:LinkButton>
+                        <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn btn-info m-b-15" OnClick="LinkButton2_Click"><% = Treatment.Classes.FieldNames.getFieldName("ShowTreatment-PrintArabic", "Print Arabic") %></asp:LinkButton>
                         <div class="">
                             <div class="m-b-20" id="speech" runat="server">
                             </div>

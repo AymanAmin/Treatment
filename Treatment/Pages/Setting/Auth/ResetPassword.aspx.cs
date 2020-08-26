@@ -46,7 +46,7 @@ namespace Treatment.Pages.Setting.Auth
 
                 string sever_name = Request.Url.Authority.ToString();
                 SendEmail send = new SendEmail();
-                bool result = send.ResetEmail(emp.Employee_Email, New_Password, sever_name);
+                bool result = send.ResetEmail(emp.Employee_Email, New_Password, sever_name,"Reset Password");
                 if (result)
                 {
                     Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "show_model_sucess();", true);

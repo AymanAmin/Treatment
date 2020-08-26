@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
+using Website.Classes;
 
 /// <summary>
 /// Summary description for TreatmentReport
@@ -44,6 +45,8 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
     private DevExpress.XtraReports.Parameters.Parameter CurrentUser;
     private DevExpress.XtraReports.Parameters.Parameter CurrentManagment;
     private XRLabel xrLabel9;
+    private XRControlStyle xrControlStyle2;
+    public DevExpress.XtraReports.Parameters.Parameter body;
 
     /// <summary>
     /// Required designer variable.
@@ -53,6 +56,10 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
     public TreatmentReportAr()
     {
         InitializeComponent();
+        string image_Path = SessionWrapper.LoggedUser.Employee_Signature;
+        xrPictureBox4.ImageUrl = "~/media/Signature/" + image_Path;
+        xrPictureBox4.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
+        xrPictureBox4.SizeF = new SizeF(175F, 118.08F);
         //
         // TODO: Add constructor logic here
         //
@@ -94,6 +101,7 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             this.xrPictureBox2 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.reportHeaderBand1 = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
@@ -116,7 +124,8 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             this.xrControlStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.CurrentUser = new DevExpress.XtraReports.Parameters.Parameter();
             this.CurrentManagment = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrControlStyle2 = new DevExpress.XtraReports.UI.XRControlStyle();
+            this.body = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.efDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -139,7 +148,7 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Employee_Structure].[Employee].[Employee_Name_Ar]")});
             this.xrLabel8.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(35.00002F, 0F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(571.5833F, 0F);
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.OddStyleName = "DetailData3";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -151,7 +160,7 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel8.StylePriority.UseFont = false;
             this.xrLabel8.StylePriority.UseTextAlignment = false;
             this.xrLabel8.Text = "xrLabel8";
-            this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // TopMargin
             // 
@@ -263,6 +272,16 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             this.reportHeaderBand1.StylePriority.UseTextAlignment = false;
             this.reportHeaderBand1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
+            // xrLabel9
+            // 
+            this.xrLabel9.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
+            this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(127.5833F, 34.87498F);
+            this.xrLabel9.Name = "xrLabel9";
+            this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel9.SizeF = new System.Drawing.SizeF(67.70837F, 23F);
+            this.xrLabel9.StylePriority.UseFont = false;
+            this.xrLabel9.Text = "تاريخ المعامله";
+            // 
             // xrLabel3
             // 
             this.xrLabel3.AutoWidth = true;
@@ -327,21 +346,25 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             this.groupHeaderBand1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
             this.groupHeaderBand1.HeightF = 520.625F;
             this.groupHeaderBand1.Name = "groupHeaderBand1";
+            this.groupHeaderBand1.StylePriority.UseTextAlignment = false;
+            this.groupHeaderBand1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleJustify;
             // 
             // xrPictureBox4
             // 
             this.xrPictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox4.Image")));
-            this.xrPictureBox4.LocationFloat = new DevExpress.Utils.PointFloat(611.5624F, 382.7499F);
+            this.xrPictureBox4.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleCenter;
+            this.xrPictureBox4.LocationFloat = new DevExpress.Utils.PointFloat(92.81235F, 377.125F);
             this.xrPictureBox4.Name = "xrPictureBox4";
-            this.xrPictureBox4.SizeF = new System.Drawing.SizeF(175.0001F, 110.7917F);
+            this.xrPictureBox4.SizeF = new System.Drawing.SizeF(175.0001F, 118.0834F);
             this.xrPictureBox4.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
+
             // 
             // xrLabel1
             // 
             this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[CurrentUser]")});
             this.xrLabel1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(571.5832F, 432.6667F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(52.83318F, 434.3334F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.SizeF = new System.Drawing.SizeF(257.0418F, 23F);
@@ -355,7 +378,7 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[CurrentManagment]")});
             this.xrLabel2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(571.5832F, 399.3333F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(52.83318F, 401.0001F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel2.SizeF = new System.Drawing.SizeF(257.0418F, 23F);
@@ -367,8 +390,8 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             // xrRichText1
             // 
             this.xrRichText1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Rtf", "[Treatment_Master].[Treatment_Body]"),
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Html", "[Treatment_Master].[Treatment_Body]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Rtf", "[Parameters].[body]"),
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Html", "[Parameters].[body]")});
             this.xrRichText1.Font = new System.Drawing.Font("Times New Roman", 9.75F);
             this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(34.99994F, 52.04166F);
             this.xrRichText1.Name = "xrRichText1";
@@ -384,7 +407,7 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Treatment_Master].[Treatment_Procedure].[Treatment_Procedure_Name_Ar]")});
             this.xrLabel10.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(35.00002F, 495.2084F);
+            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(571.5833F, 497.625F);
             this.xrLabel10.Name = "xrLabel10";
             this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel10.SizeF = new System.Drawing.SizeF(225.1665F, 23F);
@@ -394,7 +417,7 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel10.StylePriority.UseFont = false;
             this.xrLabel10.StylePriority.UseTextAlignment = false;
             this.xrLabel10.Text = "CC : ";
-            this.xrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // xrLabel7
             // 
@@ -499,15 +522,16 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             this.CurrentManagment.Name = "CurrentManagment";
             this.CurrentManagment.Visible = false;
             // 
-            // xrLabel9
+            // xrControlStyle2
             // 
-            this.xrLabel9.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(95.29168F, 34.87498F);
-            this.xrLabel9.Name = "xrLabel9";
-            this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel9.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrLabel9.StylePriority.UseFont = false;
-            this.xrLabel9.Text = "تاريخ المعامله";
+            this.xrControlStyle2.Name = "xrControlStyle2";
+            this.xrControlStyle2.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            // 
+            // body
+            // 
+            this.body.Description = "body";
+            this.body.Name = "body";
+            this.body.Visible = false;
             // 
             // TreatmentReportAr
             // 
@@ -526,7 +550,10 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.TreatmentID,
             this.CurrentUser,
-            this.CurrentManagment});
+            this.CurrentManagment,
+            this.body});
+            this.RightToLeft = DevExpress.XtraReports.UI.RightToLeft.Inherit;
+            this.RightToLeftLayout = DevExpress.XtraReports.UI.RightToLeftLayout.Yes;
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.DetailCaption3,
@@ -534,7 +561,9 @@ public class TreatmentReportAr : DevExpress.XtraReports.UI.XtraReport
             this.DetailData3_Odd,
             this.DetailCaptionBackground3,
             this.PageInfo,
-            this.xrControlStyle1});
+            this.xrControlStyle1,
+            this.xrControlStyle2});
+            this.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             this.Version = "17.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.efDataSource1)).EndInit();

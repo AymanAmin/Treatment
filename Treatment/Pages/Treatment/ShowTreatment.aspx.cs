@@ -1309,6 +1309,12 @@ namespace Treatment.Pages.Treatment
             Response.Redirect(linkTreatment);
         }
 
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            string linkTreatment = "~/Pages/Reports/ReportAr.aspx?getTreatmentId=" + treatmentId;
+            Response.Redirect(linkTreatment);
+        }
+
         private List<Employee_Structure> loadSendEmployeeStructure()
         {
             List<Employee_Structure> ListEmployeeStructure = new List<Employee_Structure>();
