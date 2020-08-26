@@ -4801,7 +4801,7 @@ where "M_Meeting"."Meeting_Id" =@Meeting_Id</value>
        "M_Board_Member"."Board_Member_Id",
        "Employee"."Employee_Name_Ar", "Structure"."Structure_Name_Ar",
        "Employee_Structure"."Default_Structure",
-       '../../../media/Signature/'+"Employee"."Employee_Signature" as Signature
+       '../../../../media/Signature/'+"Employee"."Employee_Signature" as Signature
   from ((("dbo"."M_Board_Member" "M_Board_Member"
   inner join "dbo"."Employee" "Employee"
        on ("Employee"."Employee_Id" = "M_Board_Member"."Employee_Id"))
