@@ -370,12 +370,13 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.xrRichText1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Rtf", "[Treatment_Master].[Treatment_Body]"),
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Html", "[Treatment_Master].[Treatment_Body]")});
-            this.xrRichText1.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.xrRichText1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(34.99994F, 52.04166F);
             this.xrRichText1.Name = "xrRichText1";
             this.xrRichText1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
             this.xrRichText1.SizeF = new System.Drawing.SizeF(793.4582F, 269.875F);
+            this.xrRichText1.StylePriority.UseFont = false;
             // 
             // xrLabel10
             // 
