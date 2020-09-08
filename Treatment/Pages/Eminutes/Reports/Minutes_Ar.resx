@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="xrLabel64.ExpressionBindings" xml:space="preserve">
+    <value>'إشارة إلي ما تضمنته الموضوعات و التوصيات الواردة في المحضر للإجتماع'  +' '+ [M_Meeting].[Meeting_Name_Ar] + ' ' + 'بتاريخ'+' '+FormatString('{0:MM/dd/yyyy}',[M_Meeting].[Meeting_Date])+' '+'فأننا نفيدكم باعتمادنا'+'  و موافقتنا على ما تضمنه من توصيات مع ملاحظة ما تضمنه التوجيه الوارد في الفقرة (سادسا) في المحضر المرفق'+' '
++ NewLine()+'.نأمل الاطلاع و إتمام ما يلزم وفق الأنظمة و اللوائح'</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrPictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4801,7 +4805,7 @@ where "M_Meeting"."Meeting_Id" =@Meeting_Id</value>
        "M_Board_Member"."Board_Member_Id",
        "Employee"."Employee_Name_Ar", "Structure"."Structure_Name_Ar",
        "Employee_Structure"."Default_Structure",
-       '../../../media/Signature/'+"Employee"."Employee_Signature" as Signature
+       '../../../../media/Signature/'+"Employee"."Employee_Signature" as Signature
   from ((("dbo"."M_Board_Member" "M_Board_Member"
   inner join "dbo"."Employee" "Employee"
        on ("Employee"."Employee_Id" = "M_Board_Member"."Employee_Id"))
