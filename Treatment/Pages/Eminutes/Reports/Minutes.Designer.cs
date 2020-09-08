@@ -632,6 +632,7 @@
             this.Meeting_Id.Name = "Meeting_Id";
             this.Meeting_Id.Type = typeof(int);
             this.Meeting_Id.ValueInfo = "0";
+            this.Meeting_Id.Visible = false;
             // 
             // DetailReport
             // 
@@ -1547,7 +1548,6 @@
         private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox3;
         private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
         private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
-        private DevExpress.XtraReports.Parameters.Parameter Meeting_Id;
         private DevExpress.XtraReports.UI.DetailReportBand DetailReport;
         private DevExpress.XtraReports.UI.DetailBand Detail1;
         private DevExpress.XtraReports.UI.GroupHeaderBand GroupHeader1;
@@ -1642,5 +1642,6 @@
         private DevExpress.XtraReports.UI.XRRichText xrRichText1;
         private DevExpress.XtraReports.UI.XRRichText xrRichText2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel6;
+        public DevExpress.XtraReports.Parameters.Parameter Meeting_Id;
     }
 }

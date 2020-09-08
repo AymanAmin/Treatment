@@ -39,7 +39,7 @@ namespace Treatment.Pages.Reports
                     TreatmentASPxDocumentViewer.Report = report;
                 }
             }
-            catch { }
+            catch (Exception er){ }
             
         }
     }
