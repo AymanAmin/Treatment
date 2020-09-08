@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
+using System.IO;
+using Website.Classes;
 
 /// <summary>
 /// Summary description for TreatmentReport
@@ -38,7 +40,6 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
     private XRPictureBox xrPictureBox3;
     private XRLabel xrLabel15;
     private XRLabel xrLabel14;
-    private XRPictureBox xrPictureBox4;
     private XRLabel xrLabel2;
     private XRLabel xrLabel1;
     private DevExpress.XtraReports.Parameters.Parameter CurrentUser;
@@ -48,6 +49,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
     private DevExpress.XtraReports.Parameters.Parameter TreatmentDate;
     private DevExpress.XtraReports.Parameters.Parameter TreatmentSubject;
     private DevExpress.XtraReports.Parameters.Parameter body;
+    private XRPictureBox xrPictureBox4;
 
     /// <summary>
     /// Required designer variable.
@@ -102,7 +104,6 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.groupHeaderBand1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
-            this.xrPictureBox4 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
@@ -123,6 +124,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.TreatmentDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.TreatmentSubject = new DevExpress.XtraReports.Parameters.Parameter();
             this.body = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrPictureBox4 = new DevExpress.XtraReports.UI.XRPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -334,13 +336,6 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.groupHeaderBand1.HeightF = 520.625F;
             this.groupHeaderBand1.Name = "groupHeaderBand1";
             // 
-            // xrPictureBox4
-            // 
-            this.xrPictureBox4.LocationFloat = new DevExpress.Utils.PointFloat(611.5624F, 382.7499F);
-            this.xrPictureBox4.Name = "xrPictureBox4";
-            this.xrPictureBox4.SizeF = new System.Drawing.SizeF(175.0001F, 110.7917F);
-            this.xrPictureBox4.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
-            // 
             // xrLabel1
             // 
             this.xrLabel1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
@@ -527,6 +522,15 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.body.Name = "body";
             this.body.Visible = false;
             // 
+            // xrPictureBox4
+            // 
+            this.xrPictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox4.Image")));
+            this.xrPictureBox4.LocationFloat = new DevExpress.Utils.PointFloat(599.7499F, 371.8333F);
+            this.xrPictureBox4.Name = "xrPictureBox4";
+            this.xrPictureBox4.SizeF = new System.Drawing.SizeF(197.9166F, 124.0416F);
+            this.xrPictureBox4.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage;
+            this.xrPictureBox4.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrPictureBox4_BeforePrint);
+            // 
             // TreatmentReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -562,4 +566,35 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
     }
 
     #endregion
+
+    private void xrPictureBox4_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+    {
+        if (SessionWrapper.LoggedUser.Employee_Signature != null && SessionWrapper.LoggedUser.Employee_Signature != "")
+        {
+            string PathURL = "~/media/Signature/" + SessionWrapper.LoggedUser.Employee_Signature;
+            string Path = System.Web.Hosting.HostingEnvironment.MapPath(PathURL);
+            using (Image image = Image.FromFile(Path))
+            {
+                using (MemoryStream m = new MemoryStream())
+                {
+                    image.Save(m, image.RawFormat);
+                    byte[] imageBytes = m.ToArray();
+
+                    // Convert byte[] to Base64 String
+                    string base64String = Convert.ToBase64String(imageBytes);
+
+                    Image img = ByteArrayToImage(Convert.FromBase64String(base64String));
+                    xrPictureBox4.Image = img;
+                }
+            }
+        }
+
+    }
+
+    public Image ByteArrayToImage(byte[] byteArrayIn)
+    {
+        MemoryStream ms = new MemoryStream(byteArrayIn);
+        Image returnImage = Image.FromStream(ms);
+        return returnImage;
+    }
 }

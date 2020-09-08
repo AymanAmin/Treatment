@@ -161,6 +161,7 @@
       <LastGenOutput>ECMS.cs</LastGenOutput>
     </Content>
     <Content Include="Entity\DataBase\scriptTraslateLanuage.sql" />
+    <Content Include="media\none.png" />
     <Content Include="Pages\Eminutes\Board.aspx" />
     <Content Include="Pages\Eminutes\BoardManagment\BoardApprove.aspx" />
     <Content Include="Pages\Eminutes\BoardManagment\BoardInfo.aspx" />
