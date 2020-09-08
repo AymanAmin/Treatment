@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
+using Website.Classes;
 
 /// <summary>
 /// Summary description for TreatmentReport
@@ -27,14 +28,11 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel5;
     private XRLabel xrLabel4;
     private XRLabel xrLabel7;
-    private XRLabel xrLabel8;
-    private XRLabel xrLabel10;
     private XRRichText xrRichText2;
     private XRLabel xrLabel6;
     private XRPictureBox xrPictureBox2;
     private XRRichText xrRichText1;
     public DevExpress.XtraReports.Parameters.Parameter TreatmentID;
-    private DevExpress.DataAccess.EntityFramework.EFDataSource efDataSource1;
     private XRControlStyle xrControlStyle1;
     private XRPictureBox xrPictureBox3;
     private XRLabel xrLabel15;
@@ -44,6 +42,13 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
     private XRLabel xrLabel1;
     private DevExpress.XtraReports.Parameters.Parameter CurrentUser;
     private DevExpress.XtraReports.Parameters.Parameter CurrentManagment;
+    private XRLabel xrLabel8;
+    private XRLabel xrLabel10;
+    public DevExpress.XtraReports.Parameters.Parameter TreatmentNumber;
+    public DevExpress.XtraReports.Parameters.Parameter PreparedStructure;
+    public DevExpress.XtraReports.Parameters.Parameter TreatmentDate;
+    public DevExpress.XtraReports.Parameters.Parameter body;
+    public DevExpress.XtraReports.Parameters.Parameter TreatmentSubject;
 
     /// <summary>
     /// Required designer variable.
@@ -53,6 +58,14 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
     public TreatmentReport()
     {
         InitializeComponent();
+        //string image_Path = SessionWrapper.LoggedUser.Employee_Signature;
+        //xrPictureBox4.ImageUrl = "~/media/Signature/" + image_Path;
+
+        //xrPictureBox4.SizeF = new SizeF(175F, 118.08F);
+        //xrPictureBox4.Size = new System.Drawing.Size(175, 118);
+        //xrPictureBox4.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
+        //xrPictureBox4.Width = 175;
+        //xrPictureBox4.Height = 118;
         //
         // TODO: Add constructor logic here
         //
@@ -79,9 +92,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
     /// </summary>
     private void InitializeComponent()
     {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TreatmentReport));
-            DevExpress.DataAccess.EntityFramework.EFConnectionParameters efConnectionParameters1 = new DevExpress.DataAccess.EntityFramework.EFConnectionParameters();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
@@ -113,13 +124,16 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.DetailCaptionBackground3 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.PageInfo = new DevExpress.XtraReports.UI.XRControlStyle();
             this.TreatmentID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.efDataSource1 = new DevExpress.DataAccess.EntityFramework.EFDataSource(this.components);
             this.xrControlStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.CurrentUser = new DevExpress.XtraReports.Parameters.Parameter();
             this.CurrentManagment = new DevExpress.XtraReports.Parameters.Parameter();
+            this.TreatmentNumber = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PreparedStructure = new DevExpress.XtraReports.Parameters.Parameter();
+            this.TreatmentDate = new DevExpress.XtraReports.Parameters.Parameter();
+            this.body = new DevExpress.XtraReports.Parameters.Parameter();
+            this.TreatmentSubject = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.efDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -138,7 +152,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel8.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel8.EvenStyleName = "DetailData3";
             this.xrLabel8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Employee_Structure].[Employee].[Employee_Name_En]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Treatment_Detial].[Employee_Name_En]")});
             this.xrLabel8.Font = new System.Drawing.Font("Tahoma", 10F);
             this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(35.00002F, 0F);
             this.xrLabel8.Name = "xrLabel8";
@@ -266,7 +280,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             // 
             this.xrLabel3.AutoWidth = true;
             this.xrLabel3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Treatment_Master].[Structure].[Structure_Name_En]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[PreparedStructure]")});
             this.xrLabel3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
             this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(35.00001F, 10.00001F);
             this.xrLabel3.Name = "xrLabel3";
@@ -288,7 +302,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             // xrLabel6
             // 
             this.xrLabel6.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Treatment_Master].[Create_Date]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[TreatmentDate]")});
             this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(670.125F, 58.87502F);
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -299,11 +313,11 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             // xrLabel5
             // 
             this.xrLabel5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Treatment_Master].[Treatment_Number]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[TreatmentNumber]")});
             this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(165.9168F, 34.00002F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(179.6665F, 23F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(182.0831F, 23F);
             this.xrLabel5.Text = "xrLabel5";
             // 
             // xrLabel4
@@ -331,11 +345,12 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             // 
             // xrPictureBox4
             // 
-            this.xrPictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox4.Image")));
+            this.xrPictureBox4.ImageUrl = "C:\\Users\\Kakashi\\Downloads\\REU elearning.jpg";
             this.xrPictureBox4.LocationFloat = new DevExpress.Utils.PointFloat(611.5624F, 382.7499F);
             this.xrPictureBox4.Name = "xrPictureBox4";
             this.xrPictureBox4.SizeF = new System.Drawing.SizeF(175.0001F, 110.7917F);
             this.xrPictureBox4.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
+            this.xrPictureBox4.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrPictureBox4_BeforePrint);
             // 
             // xrLabel1
             // 
@@ -368,8 +383,8 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             // xrRichText1
             // 
             this.xrRichText1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Rtf", "[Treatment_Master].[Treatment_Body]"),
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Html", "[Treatment_Master].[Treatment_Body]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Rtf", "[Parameters].[body]"),
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Html", "[Parameters].[body]")});
             this.xrRichText1.Font = new System.Drawing.Font("Times New Roman", 9.75F);
             this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(34.99994F, 52.04166F);
             this.xrRichText1.Name = "xrRichText1";
@@ -383,7 +398,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.xrLabel10.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
             this.xrLabel10.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Treatment_Master].[Treatment_Procedure].[Treatment_Procedure_Name_En]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Treatment_Master].[Treatment_Procedure_Name_En]")});
             this.xrLabel10.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Bold);
             this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(35.00002F, 495.2084F);
             this.xrLabel10.Name = "xrLabel10";
@@ -400,7 +415,7 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             // xrLabel7
             // 
             this.xrLabel7.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Treatment_Master].[Treatment_Subject]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[TreatmentSubject]")});
             this.xrLabel7.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold);
             this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(228.9167F, 10.00001F);
             this.xrLabel7.Name = "xrLabel7";
@@ -475,14 +490,6 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.TreatmentID.ValueInfo = "1009";
             this.TreatmentID.Visible = false;
             // 
-            // efDataSource1
-            // 
-            efConnectionParameters1.ConnectionString = "";
-            efConnectionParameters1.ConnectionStringName = "ECMSEntities";
-            efConnectionParameters1.Source = typeof(Treatment.Entity.ECMSEntities);
-            this.efDataSource1.ConnectionParameters = efConnectionParameters1;
-            this.efDataSource1.Name = "efDataSource1";
-            // 
             // xrControlStyle1
             // 
             this.xrControlStyle1.Name = "xrControlStyle1";
@@ -500,6 +507,36 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.CurrentManagment.Name = "CurrentManagment";
             this.CurrentManagment.Visible = false;
             // 
+            // TreatmentNumber
+            // 
+            this.TreatmentNumber.Description = "TreatmentNumber";
+            this.TreatmentNumber.Name = "TreatmentNumber";
+            this.TreatmentNumber.Visible = false;
+            // 
+            // PreparedStructure
+            // 
+            this.PreparedStructure.Description = "PreparedStructure";
+            this.PreparedStructure.Name = "PreparedStructure";
+            this.PreparedStructure.Visible = false;
+            // 
+            // TreatmentDate
+            // 
+            this.TreatmentDate.Description = "TreatmentDate";
+            this.TreatmentDate.Name = "TreatmentDate";
+            this.TreatmentDate.Visible = false;
+            // 
+            // body
+            // 
+            this.body.Description = "body";
+            this.body.Name = "body";
+            this.body.Visible = false;
+            // 
+            // TreatmentSubject
+            // 
+            this.TreatmentSubject.Description = "TreatmentSubject";
+            this.TreatmentSubject.Name = "TreatmentSubject";
+            this.TreatmentSubject.Visible = false;
+            // 
             // TreatmentReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -508,16 +545,17 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.BottomMargin,
             this.reportHeaderBand1,
             this.groupHeaderBand1});
-            this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
-            this.efDataSource1});
-            this.DataMember = "Treatment_Detial";
-            this.DataSource = this.efDataSource1;
             this.FilterString = "[Treatment_Id] = ?TreatmentID";
             this.Margins = new System.Drawing.Printing.Margins(0, 1, 95, 146);
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.TreatmentID,
             this.CurrentUser,
-            this.CurrentManagment});
+            this.CurrentManagment,
+            this.TreatmentNumber,
+            this.PreparedStructure,
+            this.TreatmentDate,
+            this.body,
+            this.TreatmentSubject});
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
             this.DetailCaption3,
@@ -529,10 +567,15 @@ public class TreatmentReport : DevExpress.XtraReports.UI.XtraReport
             this.Version = "17.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.efDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
     }
 
     #endregion
+
+    private void xrPictureBox4_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+    {
+        string image_Path = SessionWrapper.LoggedUser.Employee_Signature;
+        xrPictureBox4.ImageUrl = "~/media/Signature/" + image_Path;
+    }
 }

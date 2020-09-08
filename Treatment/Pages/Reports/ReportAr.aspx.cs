@@ -23,10 +23,16 @@ namespace Treatment.Pages.Reports
                 int treatmentId = 0;
                 if (int.TryParse(Request["getTreatmentId"], out treatmentId) && treatmentId > 0)
                 {
+                    Treatment_Master treat_Master = db.Treatment_Master.Find(treatmentId);
+
                     TreatmentReportAr report = new TreatmentReportAr();
                     report.RequestParameters = false;
                     report.Parameters["TreatmentID"].Value = treatmentId;
-                    report.Parameters["body"].Value = "<div style='text-align: right !important;direction: rtl !important;'>" + db.Treatment_Master.Find(treatmentId).Treatment_Body + "<div>";
+                    report.Parameters["TreatmentNumber"].Value = treat_Master.Treatment_Number;
+                    report.Parameters["PreparedStructure"].Value = treat_Master.Structure.Structure_Name_Ar;
+                    report.Parameters["TreatmentDate"].Value = treat_Master.Create_Date;
+                    report.Parameters["TreatmentSubject"].Value = treat_Master.Treatment_Subject;
+                    report.Parameters["body"].Value = "<div style='text-align: right !important;direction: rtl !important;'>" + treat_Master.Treatment_Body + "<div>";
                     report.Parameters["CurrentUser"].Value = SessionWrapper.LoggedUser.Employee_Name_Ar;
                     try { report.Parameters["CurrentManagment"].Value = stList[0].Structure.Structure_Name_Ar; }
                     catch { }
