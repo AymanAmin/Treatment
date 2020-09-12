@@ -177,6 +177,7 @@
                                     <tr>
                                         <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Expand", "Expand") %></th>
                                         <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Actions", "Actions") %></th>
+                                        <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Minutes", "Minutes") %></th>
                                         <th><% = Treatment.Classes.FieldNames.getFieldName("Board-Status", "Status") %></th>
                                         <th><% = Treatment.Classes.FieldNames.getFieldName("Board-EnglishName", "English Name") %></th>
                                         <th><% = Treatment.Classes.FieldNames.getFieldName("Board-ArabicName", "Arabic Name") %></th>
