@@ -236,11 +236,14 @@ namespace Treatment.Pages.Eminutes
             for (int i = 0; i < ListMeetings.Count; i++)
             {
                 str += "<tr>";
-                str += "<td class='txt-primary'>Expand</td>";
+                str += "<td style='text-align:center' class='txt-primary'>Expand</td>";
                 str += "<td> <a href= '../../../../Pages/Eminutes/Meeting.aspx?MeetingID=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:#00c3da;'> <i class='icofont icofont-eye-alt h6'></i>&nbsp;&nbsp;&nbsp; </a>";
                 str += "<a  href='#' data-href= 'MeetingManagment/DeteteMeeting.ashx?MeetingId=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:red;' data-toggle='modal' data-target='#confirm-delete'> <i class='icofont icofont-ui-delete h6'> </i></a>";
-                str += "<a  href= 'MeetingManagment/UpdateMeetingStats.ashx?MeetingId=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:red;' > <i class='icofont icofont-recycle text-primary h6'> </i></a>";
-                str += "<a  href= 'Reports/R_Minutes.aspx?Meeting_Id=" + ListMeetings[i].Meeting_Id + "' style='color:#00c3da;' > <i class='icofont icofont-law-document text-primary h6'> </i></a></td>";
+                str += "<a  href= 'MeetingManagment/UpdateMeetingStats.ashx?MeetingId=" + ListMeetings[i].Meeting_Id + "&BoardId=" + ListMeetings[i].Board_Id + "' style='color:red;' > <i class='icofont icofont-recycle text-primary h6'> </i></a></td>";
+
+                str += "<td style='text-align:center'> <a  href= 'Reports/R_Minutes.aspx?Meeting_Id=" + ListMeetings[i].Meeting_Id + "&Lang=Ar' style='color:#00c3da;' > <i class='fa fa-font text-primary h6'> </i></a>";
+                str += "<a  href= 'Reports/R_Minutes.aspx?Meeting_Id=" + ListMeetings[i].Meeting_Id + "&Lang=En' style='color:#00c3da;' > <i class='icofont icofont-law-document text-primary h6'> </i></a></td>";
+               
 
                 try { statusid = (int)ListMeetings[i].Meeting_Status; } catch { }
                 M_Meeting_Status status = db.M_Meeting_Status.FirstOrDefault(x => x.Meeting_Status_Id == statusid);
