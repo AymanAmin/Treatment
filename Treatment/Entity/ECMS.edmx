@@ -332,6 +332,7 @@
           <Property Name="Structure_Name_En" Type="nvarchar(max)" />
           <Property Name="Is_Job_Title" Type="bit" />
           <Property Name="Is_Manager" Type="bit" />
+          <Property Name="Code" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Treatment_Class">
           <Key>
@@ -1257,6 +1258,7 @@
           <EntitySet Name="Lanuage_Detials" EntityType="ECMSModel.Lanuage_Detials" />
           <EntitySet Name="Log_File" EntityType="ECMSModel.Log_File" />
           <EntitySet Name="M_Attendees" EntityType="ECMSModel.M_Attendees" />
+          <EntitySet Name="M_B_Attachments" EntityType="ECMSModel.M_B_Attachments" />
           <EntitySet Name="M_Board" EntityType="ECMSModel.M_Board" />
           <EntitySet Name="M_Board_Classification" EntityType="ECMSModel.M_Board_Classification" />
           <EntitySet Name="M_Board_Location" EntityType="ECMSModel.M_Board_Location" />
@@ -1354,6 +1356,10 @@
           <AssociationSet Name="FK_M_Attendees_M_Meeting" Association="ECMSModel.FK_M_Attendees_M_Meeting">
             <End Role="M_Meeting" EntitySet="M_Meeting" />
             <End Role="M_Attendees" EntitySet="M_Attendees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_M_B_Attachments_M_Board" Association="ECMSModel.FK_M_B_Attachments_M_Board">
+            <End Role="M_Board" EntitySet="M_Board" />
+            <End Role="M_B_Attachments" EntitySet="M_B_Attachments" />
           </AssociationSet>
           <AssociationSet Name="FK_M_Board_Location_M_Board" Association="ECMSModel.FK_M_Board_Location_M_Board">
             <End Role="M_Board" EntitySet="M_Board" />
@@ -1466,11 +1472,6 @@
           <AssociationSet Name="FK_Treatment_Treatment_Type" Association="ECMSModel.FK_Treatment_Treatment_Type">
             <End Role="Treatment_Type" EntitySet="Treatment_Type" />
             <End Role="Treatment_Master" EntitySet="Treatment_Master" />
-          </AssociationSet>
-          <EntitySet Name="M_B_Attachments" EntityType="ECMSModel.M_B_Attachments" />
-          <AssociationSet Name="FK_M_B_Attachments_M_Board" Association="ECMSModel.FK_M_B_Attachments_M_Board">
-            <End Role="M_Board" EntitySet="M_Board" />
-            <End Role="M_B_Attachments" EntitySet="M_B_Attachments" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Assignment_Status">
@@ -1589,6 +1590,17 @@
           <NavigationProperty Name="M_Board_Member" Relationship="ECMSModel.FK_M_Attendees_M_Board_Member" FromRole="M_Attendees" ToRole="M_Board_Member" />
           <NavigationProperty Name="M_Meeting" Relationship="ECMSModel.FK_M_Attendees_M_Meeting" FromRole="M_Attendees" ToRole="M_Meeting" />
         </EntityType>
+        <EntityType Name="M_B_Attachments">
+          <Key>
+            <PropertyRef Name="Attachments_Id" />
+          </Key>
+          <Property Name="Attachments_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Board_Id" Type="Int32" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreation" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_B_Attachments_M_Board" FromRole="M_B_Attachments" ToRole="M_Board" />
+        </EntityType>
         <EntityType Name="M_Board">
           <Key>
             <PropertyRef Name="Board_Id" />
@@ -1605,13 +1617,13 @@
           <Property Name="Board_Status_Id" Type="Int32" />
           <Property Name="Board_Type_Id" Type="Int32" />
           <Property Name="Board_Classification_Id" Type="Int32" />
+          <NavigationProperty Name="M_B_Attachments" Relationship="ECMSModel.FK_M_B_Attachments_M_Board" FromRole="M_Board" ToRole="M_B_Attachments" />
           <NavigationProperty Name="M_Board_Location" Relationship="ECMSModel.FK_M_Board_Location_M_Board" FromRole="M_Board" ToRole="M_Board_Location" />
           <NavigationProperty Name="M_Board_Classification" Relationship="ECMSModel.FK_M_Board_M_Board_Classification" FromRole="M_Board" ToRole="M_Board_Classification" />
           <NavigationProperty Name="M_Board_Status" Relationship="ECMSModel.FK_M_Board_M_Board_Status" FromRole="M_Board" ToRole="M_Board_Status" />
           <NavigationProperty Name="M_Board_Type" Relationship="ECMSModel.FK_M_Board_M_Board_Type" FromRole="M_Board" ToRole="M_Board_Type" />
           <NavigationProperty Name="M_Board_Member" Relationship="ECMSModel.FK_M_Board_Member_M_Board" FromRole="M_Board" ToRole="M_Board_Member" />
           <NavigationProperty Name="M_Meeting" Relationship="ECMSModel.FK_M_Meeting_M_Board" FromRole="M_Board" ToRole="M_Meeting" />
-          <NavigationProperty Name="M_B_Attachments" Relationship="ECMSModel.FK_M_B_Attachments_M_Board" FromRole="M_Board" ToRole="M_B_Attachments" />
         </EntityType>
         <EntityType Name="M_Board_Classification">
           <Key>
@@ -1633,9 +1645,9 @@
           <Property Name="Board_Location_Description_Ar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Board_Location_Description_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Board_Location_OnMap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Board_Location_URLVideo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_Board_Location_M_Board" FromRole="M_Board_Location" ToRole="M_Board" />
           <NavigationProperty Name="M_Meeting" Relationship="ECMSModel.FK_M_Meeting_M_Board_Location" FromRole="M_Board_Location" ToRole="M_Meeting" />
-          <Property Name="Board_Location_URLVideo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="M_Board_Member">
           <Key>
@@ -1857,6 +1869,7 @@
           <Property Name="Structure_Name_En" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Is_Job_Title" Type="Boolean" />
           <Property Name="Is_Manager" Type="Boolean" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employee_Structure" Relationship="ECMSModel.FK_Employee_Structure_Structure" FromRole="Structure" ToRole="Employee_Structure" />
           <NavigationProperty Name="M_Topic" Relationship="ECMSModel.FK_M_Topic_Structure" FromRole="Structure" ToRole="M_Topic" />
           <NavigationProperty Name="Treatment_Master" Relationship="ECMSModel.FK_Treatment_Prepared_Administration" FromRole="Structure" ToRole="Treatment_Master" />
@@ -2185,6 +2198,18 @@
             </Principal>
             <Dependent Role="M_Attendees">
               <PropertyRef Name="Meeting_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_M_B_Attachments_M_Board">
+          <End Type="ECMSModel.M_Board" Role="M_Board" Multiplicity="0..1" />
+          <End Type="ECMSModel.M_B_Attachments" Role="M_B_Attachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="M_Board">
+              <PropertyRef Name="Board_Id" />
+            </Principal>
+            <Dependent Role="M_B_Attachments">
+              <PropertyRef Name="Board_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2524,29 +2549,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="M_B_Attachments">
-          <Key>
-            <PropertyRef Name="Attachments_Id" />
-          </Key>
-          <Property Name="Attachments_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Board_Id" Type="Int32" />
-          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreation" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="M_Board" Relationship="ECMSModel.FK_M_B_Attachments_M_Board" FromRole="M_B_Attachments" ToRole="M_Board" />
-        </EntityType>
-        <Association Name="FK_M_B_Attachments_M_Board">
-          <End Type="ECMSModel.M_Board" Role="M_Board" Multiplicity="0..1" />
-          <End Type="ECMSModel.M_B_Attachments" Role="M_B_Attachments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="M_Board">
-              <PropertyRef Name="Board_Id" />
-            </Principal>
-            <Dependent Role="M_B_Attachments">
-              <PropertyRef Name="Board_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2653,6 +2655,17 @@
                 <ScalarProperty Name="Meeting_Id" ColumnName="Meeting_Id" />
                 <ScalarProperty Name="Board_Member_Id" ColumnName="Board_Member_Id" />
                 <ScalarProperty Name="Attendees_Id" ColumnName="Attendees_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_B_Attachments">
+            <EntityTypeMapping TypeName="ECMSModel.M_B_Attachments">
+              <MappingFragment StoreEntitySet="M_B_Attachments">
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Board_Id" ColumnName="Board_Id" />
+                <ScalarProperty Name="Attachments_Id" ColumnName="Attachments_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2892,6 +2905,7 @@
           <EntitySetMapping Name="Structures">
             <EntityTypeMapping TypeName="ECMSModel.Structure">
               <MappingFragment StoreEntitySet="Structure">
+                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Is_Manager" ColumnName="Is_Manager" />
                 <ScalarProperty Name="Is_Job_Title" ColumnName="Is_Job_Title" />
                 <ScalarProperty Name="Structure_Name_En" ColumnName="Structure_Name_En" />
@@ -3009,17 +3023,6 @@
                 <ScalarProperty Name="Treatment_Type_Name_En" ColumnName="Treatment_Type_Name_En" />
                 <ScalarProperty Name="Treatment_Type_Name_Ar" ColumnName="Treatment_Type_Name_Ar" />
                 <ScalarProperty Name="Treatment_Type_Id" ColumnName="Treatment_Type_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="M_B_Attachments">
-            <EntityTypeMapping TypeName="ECMSModel.M_B_Attachments">
-              <MappingFragment StoreEntitySet="M_B_Attachments">
-                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="Path" ColumnName="Path" />
-                <ScalarProperty Name="Board_Id" ColumnName="Board_Id" />
-                <ScalarProperty Name="Attachments_Id" ColumnName="Attachments_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

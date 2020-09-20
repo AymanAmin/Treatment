@@ -41,7 +41,7 @@ namespace Treatment.Pages.Treatment
             IsJob = IsJobTitle.Checked;
             Is_Manager = IsManager.Checked;
 
-            bool result = insert_tree_record(Name_Ar.Text, Name_En.Text, parent, IsJob, Is_Manager);
+            bool result = insert_tree_record(Name_Ar.Text, Name_En.Text, parent, StructureCode.Text, IsJob, Is_Manager);
             if (result)
             {
                 ASPxTreeList1.DataBind();
@@ -51,7 +51,7 @@ namespace Treatment.Pages.Treatment
             }
         }
 
-        private bool insert_tree_record(string Name_Ar, string Name_En, int parent_id, bool IsJob, bool IsManager)
+        private bool insert_tree_record(string Name_Ar, string Name_En, int parent_id, string StructureCode, bool IsJob, bool IsManager)
         {
             try
             {
@@ -59,6 +59,7 @@ namespace Treatment.Pages.Treatment
                 stru.Structure_Name_Ar = Name_Ar;
                 stru.Structure_Name_En = Name_En;
                 stru.Structure_Parent = parent_id;
+                stru.Code= StructureCode;
                 stru.Is_Job_Title = IsJob;
                 stru.Is_Manager = IsManager;
                 db.Structures.Add(stru);
@@ -88,13 +89,21 @@ namespace Treatment.Pages.Treatment
             Parent.DataTextField = "Structure_Name_Ar";
             Name_Ar.Attributes["placeholder"] = "أدخل الاسم بالعربي";
             Name_En.Attributes["placeholder"] = "أدخل الاسم بالإنجليزي";
+            StructureCode.Attributes["placeholder"] = "أدخل الرمز الوظيفي";
             RFVtxtPermission_Name.Text = "الرجاء إدخال الاسم بالعربي";
             RFVtxtPermission_Name_En.Text = "الرجاء إدخال الاسم بالانجليزي";
+            StructureCodeValidator.Text = "الرجاء إدخال الرمز الوظيفي";
 
             ASPxTreeList1.Columns[0].Caption = "إسم عربي";
             ASPxTreeList1.Columns[2].Caption = "إسم إنجليزي";
             ASPxTreeList1.Columns[3].Caption = "هل وظيفة";
             ASPxTreeList1.Columns[4].Caption = " هل مدير";
+            ASPxTreeList1.Columns[5].Caption = " الرمز الوظيفي ";
+
         }
+
+
+
+
     }
 }

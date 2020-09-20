@@ -9,6 +9,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title><% = Treatment.Classes.FieldNames.getFieldName("Structure-Title", "User Management - Structure") %></title>
+     <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script data-require="bootstrap@*" data-semver="3.1.1" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Body_Holder" runat="server">
 
@@ -67,9 +70,21 @@
                                             <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Structure-ParentForm", "Parent Form") %></label>
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon3"><i class="icofont icofont-tree"></i></span>
-                                                <asp:DropDownList ID="Parent" runat="server" class="form-control form-control-primary" DataSourceID="TreeDataSourceView" DataTextField="Structure_Name_En" DataValueField="Structure_Id"></asp:DropDownList>
+                                                <asp:DropDownList ID="Parent" runat="server" class="form-control form-control-primary" DataSourceID="TreeDataSourceView" DataTextField="Structure_Name_En" DataValueField="Structure_Id"  ></asp:DropDownList>
                                             </div>
                                         </div>
+
+                                          <div class="col-sm-12">
+                                            <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Structure-StructureCode", "Structure Code") %></label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon4"><i class="icofont icofont-underline"></i></span>
+                                                <asp:TextBox ID="StructureCode" runat="server" class="form-control" placeholder="Enter Structure Code"></asp:TextBox>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <asp:RequiredFieldValidator ID="StructureCodeValidator" runat="server" ForeColor="Red" ErrorMessage="RequiredFieldValidator" Text="Enter Structure Code" ValidationGroup="Per" ControlToValidate="StructureCode"></asp:RequiredFieldValidator>
+                                            </div>
+                                        </div>
+
                                         <div class="col-sm-12">
                                             <label class="j-label"><% = Treatment.Classes.FieldNames.getFieldName("Structure-IsManager", "Is Manager") %></label>
                                             <div class="">
@@ -104,7 +119,6 @@
                     <dx:ASPxTreeList ID="ASPxTreeList1" runat="server" AutoGenerateColumns="False" DataSourceID="TreeDataSourceView" EnableTheming="True" KeyFieldName="Structure_Id" ParentFieldName="Structure_Parent" PreviewFieldName="Structure_Name" Theme="MetropolisBlue" OnNodeDeleting="ASPxTreeList1_NodeDeleting" OnNodeDeleted="ASPxTreeList1_NodeDeleted">
                         <Columns>
                             <dx:TreeListTextColumn Caption="Arabic Name" FieldName="Structure_Name_Ar" VisibleIndex="0">
-
                                 <PropertiesTextEdit>
                                     <ValidationSettings SetFocusOnError="True">
                                         <ErrorFrameStyle Font-Bold="True" Font-Italic="True" Font-Strikeout="True" Font-Underline="True" CssClass="j-input j-error-view">
@@ -115,7 +129,7 @@
                                         </Style>
                                 </PropertiesTextEdit>
                             </dx:TreeListTextColumn>
-                            <dx:TreeListCommandColumn VisibleIndex="4">
+                            <dx:TreeListCommandColumn VisibleIndex="5">
                                 <EditButton Visible="True" Text=" ">
                                     <Styles>
                                         <Style CssClass=" icofont icofont-ui-edit text-info h6" VerticalAlign="Middle" Font-Underline="false">
@@ -162,15 +176,17 @@
                                         </Style>
                                 </PropertiesTextEdit>
                             </dx:TreeListTextColumn>
-                            <dx:TreeListCheckColumn AutoFilterCondition="Default" Caption="Is Job Title" FieldName="Is_Job_Title" ShowInFilterControl="Default" VisibleIndex="2">
+                            <dx:TreeListCheckColumn AutoFilterCondition="Default" Caption="Is Job Title" FieldName="Is_Job_Title" ShowInFilterControl="Default" VisibleIndex="3">
                                 <PropertiesCheckEdit>
                                     <CheckBoxStyle CssClass="js-single" />
                                     <Style CssClass="js-single">
                                     </Style>
                                 </PropertiesCheckEdit>
                             </dx:TreeListCheckColumn>
-                            <dx:TreeListCheckColumn AutoFilterCondition="Default" Caption="Is Manager" FieldName="Is_Manager" Name="Is_Manager" ShowInFilterControl="Default" VisibleIndex="3">
+                            <dx:TreeListCheckColumn AutoFilterCondition="Default" Caption="Is Manager" FieldName="Is_Manager" Name="Is_Manager" ShowInFilterControl="Default" VisibleIndex="4">
                             </dx:TreeListCheckColumn>
+                            <dx:TreeListTextColumn AutoFilterCondition="Default" Caption="Structure Code" FieldName="Code" ShowInFilterControl="Default" VisibleIndex="2">
+                            </dx:TreeListTextColumn>
                         </Columns>
                         <SettingsBehavior AutoExpandAllNodes="True" AllowFocusedNode="True" />
 

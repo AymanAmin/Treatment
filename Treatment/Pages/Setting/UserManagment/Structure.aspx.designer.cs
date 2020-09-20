@@ -58,6 +58,24 @@ namespace Treatment.Pages.Treatment {
         protected global::System.Web.UI.WebControls.DropDownList Parent;
         
         /// <summary>
+        /// StructureCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox StructureCode;
+        
+        /// <summary>
+        /// StructureCodeValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator StructureCodeValidator;
+        
+        /// <summary>
         /// IsManager control.
         /// </summary>
         /// <remarks>
