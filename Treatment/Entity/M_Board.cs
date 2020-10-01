@@ -16,10 +16,10 @@ namespace Treatment.Entity
     {
         public M_Board()
         {
+            this.M_B_Attachments = new HashSet<M_B_Attachments>();
             this.M_Board_Location = new HashSet<M_Board_Location>();
             this.M_Board_Member = new HashSet<M_Board_Member>();
             this.M_Meeting = new HashSet<M_Meeting>();
-            this.M_B_Attachments = new HashSet<M_B_Attachments>();
         }
     
         public int Board_Id { get; set; }
@@ -35,12 +35,12 @@ namespace Treatment.Entity
         public Nullable<int> Board_Type_Id { get; set; }
         public Nullable<int> Board_Classification_Id { get; set; }
     
+        public virtual ICollection<M_B_Attachments> M_B_Attachments { get; set; }
         public virtual ICollection<M_Board_Location> M_Board_Location { get; set; }
         public virtual M_Board_Classification M_Board_Classification { get; set; }
         public virtual M_Board_Status M_Board_Status { get; set; }
         public virtual M_Board_Type M_Board_Type { get; set; }
         public virtual ICollection<M_Board_Member> M_Board_Member { get; set; }
         public virtual ICollection<M_Meeting> M_Meeting { get; set; }
-        public virtual ICollection<M_B_Attachments> M_B_Attachments { get; set; }
     }
 }
