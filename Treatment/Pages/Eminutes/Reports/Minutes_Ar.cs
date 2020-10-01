@@ -22,7 +22,7 @@ namespace Treatment.Pages.Eminutes.Reports
             if (SessionWrapper.LoggedUser.Employee_Signature != null && SessionWrapper.LoggedUser.Employee_Signature != "")
             {
                 ECMSEntities db = new ECMSEntities();
-                string PathURL = "~/media/Signature/" + ESignature.Value;
+                string PathURL = "~/media/Signature/" + SessionWrapper.LoggedUser.Employee_Signature;
                 string Path = System.Web.Hosting.HostingEnvironment.MapPath(PathURL);
                 using (Image image = Image.FromFile(Path))
                 {
