@@ -121,7 +121,7 @@ namespace Treatment.Pages.Treatment
                             else
                             {
                                 oneEmployeeStructure = new Employee_Structure();
-                                oneEmployeeStructure = dbEcms.Employee_Structure.FirstOrDefault(x => x.Structure.Structure_Id == strurId && x.Structure.Is_Job_Title == true && x.Structure.Is_Manager == false);
+                                oneEmployeeStructure = dbEcms.Employee_Structure.FirstOrDefault(x => x.Structure.Structure_Id == strurId && x.Structure.Is_Job_Title == true);
                                 if (oneEmployeeStructure != null)
                                     flayAdd = true;
                             }
